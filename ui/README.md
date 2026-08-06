@@ -11,6 +11,7 @@ Reusable UI design and engineering guidance organized by universal concepts rath
 - [Layout Systems](layout/LAYOUT_SYSTEMS.md)
 - [Component and State Contracts](components/COMPONENT_AND_STATE_CONTRACTS.md)
 - [UI Audit Checklist](checklists/UI_AUDIT_CHECKLIST.md)
+- [Authoritative Sources](references/AUTHORITATIVE_SOURCES.md)
 
 ## Scope
 
