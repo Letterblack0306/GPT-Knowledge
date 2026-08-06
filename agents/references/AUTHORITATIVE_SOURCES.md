@@ -59,6 +59,56 @@ Use the current official MCP specification for:
 
 Boundary: MCP standardizes integration. It does not make a server trusted or remove the need for authorization, policy, validation, and audit.
 
+## Browser and computer-use sources
+
+### Chrome DevTools Protocol
+
+Use the official CDP documentation for:
+
+- browser and page WebSocket endpoints;
+- target discovery and attachment;
+- Target, Page, Accessibility, DOM, Runtime, Network, and Input domains;
+- target lifecycle events;
+- browser contexts;
+- protocol-version and experimental-method boundaries.
+
+Important source fact: tip-of-tree CDP changes frequently and does not guarantee backward compatibility. Adapter capability detection and runtime protocol inspection are therefore engineering requirements.
+
+### Playwright
+
+Use official Playwright documentation for:
+
+- browser contexts and pages;
+- role, label, text, placeholder, title, alt-text, and test-ID locators;
+- locator retryability and actionability;
+- navigation, popup, and frame handling.
+
+Engineering interpretation: semantic locator patterns are reusable beyond Playwright. Browser agents should prefer role/label-based references over brittle coordinates or raw CSS selectors when the target exposes accessible semantics.
+
+### Chrome Extensions
+
+Use official Chrome Extensions documentation for:
+
+- service workers and content scripts;
+- isolated and main execution worlds;
+- one-time and long-lived messaging;
+- host permissions and tab/frame access;
+- native messaging and extension security.
+
+Important source fact: Chrome documentation treats content scripts as less trustworthy than extension service workers. Validate and sanitize their messages, and limit the privileged actions they can trigger.
+
+### Computer-use providers
+
+Use official provider documentation for:
+
+- screenshot and visual action schemas;
+- browser/computer environment setup;
+- safety and approval recommendations;
+- supported surfaces and limitations;
+- model/version-specific behavior.
+
+Do not turn one provider's API into a universal browser-agent standard. Extract reusable contracts while preserving provider-specific adapters.
+
 ## Additional primary research areas
 
 Research separately before promotion into validated guidance:
@@ -67,7 +117,6 @@ Research separately before promotion into validated guidance:
 - long-horizon planning;
 - tool-use learning;
 - agent memory;
-- browser and computer use;
 - multi-agent coordination;
 - agent benchmarks and evaluation;
 - prompt injection and tool security.
@@ -94,4 +143,5 @@ Do not turn a benchmark result or framework feature into a universal claim.
 - distinguish research findings from production guidance;
 - mark interpretations explicitly;
 - do not silently replace old conclusions;
-- re-review protocol and SDK guidance when versions materially change.
+- re-review protocol, browser, extension, and SDK guidance when versions materially change;
+- do not treat a successful mock as live browser proof.
