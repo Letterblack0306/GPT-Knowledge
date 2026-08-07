@@ -12,153 +12,60 @@
   },
   "domains": {
     "browser-agents": {
-      "triggers": [
-        "browser",
-        "browser agent",
-        "cdp",
-        "chrome",
-        "chromium",
-        "tab",
-        "page target",
-        "browser automation",
-        "browser evidence",
-        "screenshot",
-        "browser tool"
-      ],
-      "canonical": [
-        "browser-agents/browser-access-tooling-and-evidence.md"
-      ],
+      "triggers": ["browser", "browser agent", "cdp", "chrome", "chromium", "tab", "page target", "browser automation", "browser evidence", "screenshot", "browser tool"],
+      "canonical": ["browser-agents/browser-access-tooling-and-evidence.md"],
       "optional": {
-        "ui-runtime-wiring": [
-          "ui-engineering/runtime-accessibility-and-shell-integration.md"
-        ],
-        "lm-studio-provider": [
-          "local-models/lm-studio-runtime-and-agent-integration.md"
-        ]
+        "ui-runtime-wiring": ["ui-engineering/runtime-accessibility-and-shell-integration.md"],
+        "lm-studio-provider": ["local-models/lm-studio-runtime-and-agent-integration.md"]
       }
     },
     "ai-agents": {
-      "triggers": [
-        "agent architecture",
-        "agent runtime",
-        "coding agent",
-        "cli agent",
-        "tool calling",
-        "tool registry",
-        "session",
-        "approval",
-        "orchestration",
-        "memory",
-        "agent loop",
-        "agent tooling",
-        "repository cognition",
-        "repo map",
-        "provider registry",
-        "model registry",
-        "autonomous software engineering"
-      ],
-      "canonical": [
-        "ai-agents/cli-agent-reference-study-map.md"
-      ],
+      "triggers": ["agent architecture", "agent runtime", "coding agent", "cli agent", "tool calling", "tool registry", "session", "approval", "orchestration", "memory", "agent loop", "agent tooling", "repository cognition", "repo map", "provider registry", "model registry", "autonomous software engineering"],
+      "canonical": ["ai-agents/cli-agent-reference-study-map.md"],
       "optional": {
-        "repository-cognition": [
-          "ai-agents/studies/aider-repository-cognition.md"
-        ],
-        "execution-validation": [
-          "ai-agents/studies/codex-execution-validation.md"
-        ],
-        "memory-skills-agent-loop": [
-          "ai-agents/studies/hermes-memory-skills-agent-loop.md"
-        ],
-        "provider-model-integration": [
-          "ai-agents/studies/lobehub-provider-integration-architecture.md"
-        ],
-        "autonomous-swe-runtime": [
-          "ai-agents/studies/openhands-autonomous-swe-runtime.md"
-        ],
-        "cross-project-architecture": [
-          "ai-agents/reference-derived-agent-architecture.md"
-        ],
-        "browser": [
-          "browser-agents/browser-access-tooling-and-evidence.md"
-        ],
-        "local-model": [
-          "local-models/lm-studio-runtime-and-agent-integration.md"
-        ]
+        "repository-cognition": ["ai-agents/studies/aider-repository-cognition.md"],
+        "execution-validation": ["ai-agents/studies/codex-execution-validation.md"],
+        "memory-skills-agent-loop": ["ai-agents/studies/hermes-memory-skills-agent-loop.md"],
+        "provider-model-integration": ["ai-agents/studies/lobehub-provider-integration-architecture.md"],
+        "autonomous-swe-runtime": ["ai-agents/studies/openhands-autonomous-swe-runtime.md"],
+        "cross-project-architecture": ["ai-agents/reference-derived-agent-architecture.md"],
+        "browser": ["browser-agents/browser-access-tooling-and-evidence.md"],
+        "local-model": ["local-models/lm-studio-runtime-and-agent-integration.md"]
       }
     },
     "local-models": {
-      "triggers": [
-        "lm studio",
-        "local llm",
-        "local model",
-        "provider",
-        "inference",
-        "openai compatible",
-        "model discovery",
-        "context length",
-        "jit ttl"
-      ],
-      "canonical": [
-        "local-models/lm-studio-runtime-and-agent-integration.md"
-      ],
+      "triggers": ["lm studio", "local llm", "local model", "provider", "inference", "openai compatible", "model discovery", "context length", "jit ttl"],
+      "canonical": ["local-models/lm-studio-runtime-and-agent-integration.md"],
       "optional": {
-        "provider-architecture": [
-          "ai-agents/studies/lobehub-provider-integration-architecture.md"
-        ],
-        "agent-runtime": [
-          "ai-agents/cli-agent-reference-study-map.md"
-        ]
+        "provider-architecture": ["ai-agents/studies/lobehub-provider-integration-architecture.md"],
+        "agent-runtime": ["ai-agents/cli-agent-reference-study-map.md"]
       }
     },
     "ui-engineering": {
-      "triggers": [
-        "ui",
-        "ux",
-        "workbench",
-        "shell",
-        "accessibility",
-        "renderer",
-        "navigation",
-        "panel",
-        "electron ui"
-      ],
-      "canonical": [
-        "ui-engineering/runtime-accessibility-and-shell-integration.md"
-      ],
-      "optional": {}
+      "triggers": ["ui", "ux", "workbench", "shell", "accessibility", "renderer", "navigation", "panel", "electron ui"],
+      "canonical": ["ui-engineering/runtime-accessibility-and-shell-integration.md"],
+      "optional": {
+        "letterblack-branding": ["letterblack-branding/industrial-dark-ui-system.md"]
+      }
+    },
+    "letterblack-branding": {
+      "triggers": ["letterblack branding", "letterblack ui", "industrial dark", "letterblack theme", "brand guide", "branding guide", "letterblack design system", "letterblack icons", "icon gallery", "letterblack cockpit"],
+      "canonical": ["letterblack-branding/industrial-dark-ui-system.md"],
+      "optional": {
+        "screen-system": ["letterblack-branding/ui-screen-system.md"],
+        "adobe-ui-reference": ["letterblack-branding/adobe-ai-generations-ui-reference.md"],
+        "runtime-ui": ["ui-engineering/runtime-accessibility-and-shell-integration.md"]
+      }
     },
     "motion-design": {
-      "triggers": [
-        "motion design",
-        "motion graphics",
-        "animation",
-        "typography",
-        "palette",
-        "visual style",
-        "transition",
-        "composition",
-        "video"
-      ],
-      "canonical": [
-        "motion-design/house-style.md"
-      ],
+      "triggers": ["motion design", "motion graphics", "animation", "typography", "palette", "visual style", "transition", "composition", "video"],
+      "canonical": ["motion-design/house-style.md"],
       "optional": {
-        "production": [
-          "motion-design/production-principles.md"
-        ],
-        "palette": [
-          "motion-design/palette-library.md"
-        ],
-        "patterns": [
-          "motion-design/patterns.md"
-        ],
-        "visual-style": [
-          "motion-design/visual-styles.md"
-        ],
-        "data-motion": [
-          "motion-design/data-in-motion.md"
-        ]
+        "production": ["motion-design/production-principles.md"],
+        "palette": ["motion-design/palette-library.md"],
+        "patterns": ["motion-design/patterns.md"],
+        "visual-style": ["motion-design/visual-styles.md"],
+        "data-motion": ["motion-design/data-in-motion.md"]
       }
     }
   },
@@ -166,6 +73,7 @@
     "Match the task to the fewest relevant domains.",
     "Load canonical files first; load optional files only when their subtopic is actually in scope.",
     "For ai-agents, route to the one or two study documents matching the subsystem rather than loading all reference studies.",
+    "For Letterblack product UI, load the branding guide first; use Adobe_AI_Generations-04 only as a reference source, not as canonical brand truth.",
     "Do not preload all domains.",
     "Do not use file-name proximity as evidence of relevance.",
     "Stop loading knowledge once there is enough context to inspect the live workspace/runtime.",

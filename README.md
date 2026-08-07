@@ -1,6 +1,6 @@
 # GPT-Knowledge
 
-A versioned, reusable engineering knowledge base for research-backed design, development, debugging, validation, agent architecture, browser automation, local-model integration, and creative technology workflows.
+A versioned, reusable engineering knowledge base for research-backed design, development, debugging, validation, agent architecture, browser automation, local-model integration, Letterblack product design, and creative technology workflows.
 
 ## Load order
 
@@ -20,6 +20,12 @@ Research
 → validate in runtime
 → promote reusable lessons back here
 ```
+
+## Letterblack branding entry point
+
+Use [`letterblack-branding/industrial-dark-ui-system.md`](letterblack-branding/industrial-dark-ui-system.md) as the canonical Letterblack product UI/branding guide. It defines the Industrial Dark palette, typography, density, cockpit layout, state semantics, interaction behavior, component language, icon rules, and evidence-aware UI principles.
+
+Use [`letterblack-branding/ui-screen-system.md`](letterblack-branding/ui-screen-system.md) when screen families or the operational component vocabulary are needed. Use [`letterblack-branding/adobe-ai-generations-ui-reference.md`](letterblack-branding/adobe-ai-generations-ui-reference.md) only when inspecting reusable UI/token/icon patterns from `Adobe_AI_Generations-04`; that repository is a reference implementation, not canonical brand truth.
 
 ## Agent architecture entry point
 
@@ -49,6 +55,7 @@ Use [`motion-design/house-style.md`](motion-design/house-style.md) as the defaul
 
 ## Current knowledge domains
 
+- `letterblack-branding/` — canonical Industrial Dark Letterblack UI branding, operational screen system, UI/icon reference catalogue.
 - `ai-agents/` — agent control planes, coding-agent reference studies, repository cognition, execution, memory/skills, provider architecture, autonomous SWE runtimes, permissions, delegation, and evidence-first completion.
 - `browser-agents/` — browser access models, CDP and connector patterns, target management, browser tools, security, screenshots, and verification.
 - `local-models/` — local-provider runtimes, model lifecycle, inference configuration, health checks, tool calling, structured output, and multi-machine routing.
