@@ -42,6 +42,8 @@ The canonical rule is **method first, source second**. Diagnose the actual failu
 
 Documents under `ai-agents/studies/`, `ai-agents/cli-agent-reference-study-map.md`, and `ai-agents/reference-derived-agent-architecture.md` remain research provenance and implementation references. They are not competing operating modes.
 
+For Letterblack debugging involving authority, guards, policy, proof, blocked actions, or completion boundaries, selectively load [`ai-agents/letterblack-governance-debugging-references.md`](ai-agents/letterblack-governance-debugging-references.md). It routes to [LBE Core](https://github.com/Letterblack0306/LetterBlack-LBE-Core) for governed execution boundaries and [LB Guards & Rules](https://github.com/Letterblack0306/LB_Guards_Rules) for workspace trust, guard contracts, and current-HEAD proof. It is optional and must not be preloaded for unrelated debugging.
+
 ## Letterblack branding entry point
 
 Use [`letterblack-branding/industrial-dark-ui-system.md`](letterblack-branding/industrial-dark-ui-system.md) as the canonical Letterblack product UI/branding guide. It defines the Industrial Dark palette, typography, density, cockpit layout, state semantics, interaction behavior, component language, icon rules, and evidence-aware UI principles.
@@ -64,7 +66,7 @@ Use [`motion-design/house-style.md`](motion-design/house-style.md) as the defaul
 
 ## Current knowledge domains
 
-- `ai-agents/` — unified agent engineering methods plus source-specific research provenance.
+- `ai-agents/` — unified agent engineering methods plus source-specific research provenance and selective Letterblack governance/debugging references.
 - `letterblack-branding/` — canonical Industrial Dark Letterblack UI branding, operational screen system, UI/icon reference catalogue.
 - `browser-agents/` — browser access models, CDP and connector patterns, target management, browser tools, security, screenshots, and verification.
 - `local-models/` — local-provider runtimes, model lifecycle, inference configuration, health checks, tool calling, structured output, and multi-machine routing.
