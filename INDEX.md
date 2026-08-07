@@ -4,6 +4,31 @@
 
 Use the smallest relevant knowledge set. Do not preload every domain.
 
+## Project or feature work — FIRST REFERENCE
+
+For any project or feature implementation, extension, replacement, integration, migration, planning, or learning task, load first:
+
+- `project-engineering/project-feature-implementation-plan.md`
+
+This is the cross-domain pre-route. It requires the agent to learn the active project/feature from the live repository and runtime before fixing an implementation boundary, then define observable requirements, acceptance criteria, ownership, dependencies, implementation order, validation, and recovery where needed.
+
+Use it before agent, browser, UI, provider, branding, motion, or other domain-specific implementation knowledge.
+
+```text
+Project / feature request
+  -> project-feature-implementation-plan.md
+  -> establish project + revision + runtime identity
+  -> learn current feature owner / flow / state / evidence
+  -> define requirement + acceptance contract
+  -> map impact and dependencies
+  -> load only relevant domain knowledge
+  -> implement smallest architecture-consistent change
+  -> validate at the evidence level required by the claim
+  -> preserve only durable learned project facts
+```
+
+The implementation plan does not override live project truth. If its predicted owner, file, dependency, or sequence is disproven by inspection, update the plan and follow the evidence.
+
 ## Browser or CDP work
 
 Load:
@@ -12,11 +37,13 @@ Load:
 - `ui-engineering/runtime-accessibility-and-shell-integration.md` when UI/runtime wiring is involved
 - `local-models/lm-studio-runtime-and-agent-integration.md` only when the provider is LM Studio
 
+When this is project or feature implementation work, use the project/feature first-reference route above before loading these documents.
+
 Skip motion-design and branding domains unless the task explicitly involves them.
 
 ## Agent architecture, debugging, tooling, or execution
 
-Load one canonical guide first:
+Load one canonical guide first after the project/feature pre-route when applicable:
 
 - `ai-agents/unified-agent-engineering-methods.md`
 
@@ -41,6 +68,7 @@ Do not preload either repository for ordinary debugging. First classify the fail
 
 ```text
 Wrong file / duplicate implementation
+  -> project/feature plan first when part of implementation work
   -> unified guide
   -> repository cognition + active-owner tracing
 
@@ -49,6 +77,7 @@ Unknown bug cause
   -> evidence capture + hypothesis-driven diagnosis
 
 Tests pass but feature fails
+  -> project/feature plan first when changing the feature
   -> unified guide
   -> active-path tracing + runtime/user-visible validation
 
@@ -85,9 +114,11 @@ Load:
 - `local-models/lm-studio-runtime-and-agent-integration.md`
 - `ai-agents/unified-agent-engineering-methods.md` when provider health, capability routing, tool execution, recovery, or validation behavior is involved
 
+Use the project/feature first-reference route before these when implementing or learning a project feature.
+
 ## Letterblack product UI / branding
 
-Start with:
+Start with the project/feature first-reference route when this is implementation or feature-learning work, then load:
 
 - `letterblack-branding/industrial-dark-ui-system.md`
 
@@ -107,6 +138,8 @@ Load:
 - `letterblack-branding/industrial-dark-ui-system.md` only for Letterblack-branded products
 - project-specific design guidance when present
 
+Use the project/feature first-reference route before these when implementing or learning a project feature.
+
 ## Motion design
 
 Load:
@@ -116,9 +149,13 @@ Load:
 
 Project-specific `design.md` takes precedence over house style.
 
+For implementation of motion tooling, automation, templates, extensions, or project features, use the project/feature first-reference route before motion-domain guidance.
+
 ## Selection rules
 
 - Prefer `knowledge-index.json` for deterministic routing.
+- For any project or feature implementation/planning/learning task, load `project-engineering/project-feature-implementation-plan.md` before domain-specific knowledge.
+- Learn the active project/feature from live source/runtime evidence before fixing the plan boundary.
 - Prefer one canonical entry document per active domain.
 - For agent work, choose methods by failure class and evidence, not by source repository.
 - Load the Letterblack governance debugging reference only when authority, policy, guard, or proof boundaries are implicated.
@@ -131,7 +168,21 @@ Project-specific `design.md` takes precedence over house style.
 ## Typical routes
 
 ```text
+New project feature
+  -> project-engineering/project-feature-implementation-plan.md
+  -> learn project/revision/runtime + nearest active architecture
+  -> define observable acceptance criteria
+  -> route to required domains only
+  -> implement + validate real path
+
+Existing feature learning
+  -> project-engineering/project-feature-implementation-plan.md
+  -> build feature learning record from live source/runtime
+  -> identify authoritative owner, flow, state, tests, evidence, and parallel paths
+  -> load domain knowledge only after the boundary is known
+
 Repository bug / debugging
+  -> project-feature plan first when the bug fix changes a project/feature
   -> ai-agents/unified-agent-engineering-methods.md
   -> classify failure
   -> choose diagnostic method
@@ -140,15 +191,18 @@ Repository bug / debugging
   -> source-specific study only if implementation detail is needed
 
 Agent architecture
+  -> project-engineering/project-feature-implementation-plan.md when building/changing a project feature
   -> ai-agents/unified-agent-engineering-methods.md
   -> choose methods/contracts required by the actual system
 
 Letterblack UI design
+  -> project-engineering/project-feature-implementation-plan.md when implementing a product feature
   -> letterblack-branding/industrial-dark-ui-system.md
   -> ui-screen-system.md only when screen/layout design is needed
   -> adobe-ai-generations-ui-reference.md only for existing UI/icon patterns
 
 Browser UI audit
+  -> project-feature plan first when the audit leads to project implementation
   -> browser-agents
   -> ui-engineering
   -> letterblack-branding only when the product is Letterblack-branded
