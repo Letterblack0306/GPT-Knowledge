@@ -1,0 +1,146 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Deterministic routing metadata for selective GPT-Knowledge loading. This file points to canonical knowledge; it does not duplicate it.",
+  "boot": {
+    "always": [
+      "000_START_HERE.md"
+    ],
+    "router": "knowledge-index.json",
+    "humanRouter": "INDEX.md",
+    "maxDomainsByDefault": 3,
+    "rule": "Load only the smallest task-relevant set, then inspect the live project/runtime."
+  },
+  "domains": {
+    "browser-agents": {
+      "triggers": [
+        "browser",
+        "browser agent",
+        "cdp",
+        "chrome",
+        "chromium",
+        "tab",
+        "page target",
+        "browser automation",
+        "browser evidence",
+        "screenshot",
+        "browser tool"
+      ],
+      "canonical": [
+        "browser-agents/browser-access-tooling-and-evidence.md"
+      ],
+      "optional": {
+        "ui-runtime-wiring": [
+          "ui-engineering/runtime-accessibility-and-shell-integration.md"
+        ],
+        "lm-studio-provider": [
+          "local-models/lm-studio-runtime-and-agent-integration.md"
+        ]
+      }
+    },
+    "ai-agents": {
+      "triggers": [
+        "agent architecture",
+        "agent runtime",
+        "tool calling",
+        "tool registry",
+        "session",
+        "approval",
+        "orchestration",
+        "memory",
+        "agent loop",
+        "agent tooling"
+      ],
+      "canonical": [
+        "ai-agents/reference-derived-agent-architecture.md"
+      ],
+      "optional": {
+        "browser": [
+          "browser-agents/browser-access-tooling-and-evidence.md"
+        ],
+        "local-model": [
+          "local-models/lm-studio-runtime-and-agent-integration.md"
+        ]
+      }
+    },
+    "local-models": {
+      "triggers": [
+        "lm studio",
+        "local llm",
+        "local model",
+        "provider",
+        "inference",
+        "openai compatible",
+        "model discovery",
+        "context length",
+        "jit ttl"
+      ],
+      "canonical": [
+        "local-models/lm-studio-runtime-and-agent-integration.md"
+      ],
+      "optional": {
+        "agent-runtime": [
+          "ai-agents/reference-derived-agent-architecture.md"
+        ]
+      }
+    },
+    "ui-engineering": {
+      "triggers": [
+        "ui",
+        "ux",
+        "workbench",
+        "shell",
+        "accessibility",
+        "renderer",
+        "navigation",
+        "panel",
+        "electron ui"
+      ],
+      "canonical": [
+        "ui-engineering/runtime-accessibility-and-shell-integration.md"
+      ],
+      "optional": {}
+    },
+    "motion-design": {
+      "triggers": [
+        "motion design",
+        "motion graphics",
+        "animation",
+        "typography",
+        "palette",
+        "visual style",
+        "transition",
+        "composition",
+        "video"
+      ],
+      "canonical": [
+        "motion-design/house-style.md"
+      ],
+      "optional": {
+        "production": [
+          "motion-design/production-principles.md"
+        ],
+        "palette": [
+          "motion-design/palette-library.md"
+        ],
+        "patterns": [
+          "motion-design/patterns.md"
+        ],
+        "visual-style": [
+          "motion-design/visual-styles.md"
+        ],
+        "data-motion": [
+          "motion-design/data-in-motion.md"
+        ]
+      }
+    }
+  },
+  "routingRules": [
+    "Match the task to the fewest relevant domains.",
+    "Load canonical files first; load optional files only when their subtopic is actually in scope.",
+    "Do not preload all domains.",
+    "Do not use file-name proximity as evidence of relevance.",
+    "Stop loading knowledge once there is enough context to inspect the live workspace/runtime.",
+    "Project-specific guidance and live runtime evidence take precedence over this routing metadata.",
+    "If no domain matches confidently, inspect the project first rather than loading unrelated knowledge."
+  ]
+}
