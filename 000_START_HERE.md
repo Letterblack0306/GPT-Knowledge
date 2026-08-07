@@ -5,11 +5,12 @@ This repository is a selective decision aid, not a monolithic prompt.
 ## Mandatory boot rules
 
 1. Load only the minimum knowledge required for the current task.
-2. Do not load unrelated domains merely because they exist.
-3. Knowledge guides decisions; it never replaces live workspace inspection.
-4. Treat missing evidence as unverified, not successful.
-5. Separate source proof, test proof, runtime proof, and user-visible proof.
-6. Do not infer capability from names, UI, documentation, endpoints, classes, or passing tests alone.
+2. Use `knowledge-index.json` as the deterministic routing manifest; use `INDEX.md` as its human-readable companion.
+3. Do not load unrelated domains merely because they exist.
+4. Knowledge guides decisions; it never replaces live workspace inspection.
+5. Treat missing evidence as unverified, not successful.
+6. Separate source proof, test proof, runtime proof, and user-visible proof.
+7. Do not infer capability from names, UI, documentation, endpoints, classes, or passing tests alone.
 
 ## Trust hierarchy
 
@@ -73,7 +74,7 @@ Agents must prevent their own common failures:
 
 ```text
 Understand the task
-  -> consult INDEX.md
+  -> consult knowledge-index.json
   -> load only relevant knowledge
   -> discover relevant ecosystem capabilities
   -> inspect the live workspace/runtime
@@ -83,6 +84,8 @@ Understand the task
   -> validate
   -> report proven results and limits
 ```
+
+Use `INDEX.md` only when a human-readable route explanation is useful; do not load it automatically when `knowledge-index.json` already resolves the task.
 
 ## Browser-agent rule
 
