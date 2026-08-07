@@ -6,11 +6,13 @@ This repository is a selective decision aid, not a monolithic prompt.
 
 1. Load only the minimum knowledge required for the current task.
 2. Use `knowledge-index.json` as the deterministic routing manifest; use `INDEX.md` as its human-readable companion.
-3. Do not load unrelated domains merely because they exist.
-4. Knowledge guides decisions; it never replaces live workspace inspection.
-5. Treat missing evidence as unverified, not successful.
-6. Separate source proof, test proof, runtime proof, and user-visible proof.
-7. Do not infer capability from names, UI, documentation, endpoints, classes, or passing tests alone.
+3. For any project or feature implementation, extension, replacement, integration, migration, planning, or learning task, load `project-engineering/project-feature-implementation-plan.md` before domain-specific knowledge.
+4. Learn the active project/feature from live source and runtime evidence before accepting a planned implementation boundary.
+5. Do not load unrelated domains merely because they exist.
+6. Knowledge guides decisions; it never replaces live workspace inspection.
+7. Treat missing evidence as unverified, not successful.
+8. Separate source proof, test proof, runtime proof, and user-visible proof.
+9. Do not infer capability from names, UI, documentation, endpoints, classes, or passing tests alone.
 
 ## Trust hierarchy
 
@@ -75,11 +77,13 @@ Agents must prevent their own common failures:
 ```text
 Understand the task
   -> consult knowledge-index.json
-  -> load only relevant knowledge
+  -> if project/feature work: load project-feature-implementation-plan.md first
+  -> learn the active project/feature from live source/runtime
+  -> load only relevant domain knowledge
   -> discover relevant ecosystem capabilities
-  -> inspect the live workspace/runtime
   -> compare knowledge with evidence
-  -> plan the smallest correct action
+  -> define requirement + acceptance contract
+  -> plan the smallest architecture-consistent action
   -> implement
   -> validate
   -> report proven results and limits
