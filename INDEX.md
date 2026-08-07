@@ -1,6 +1,8 @@
 # Knowledge Router
 
-Use this file to choose the smallest relevant knowledge set. Do not preload every domain.
+`knowledge-index.json` is the canonical machine-readable routing manifest. This file is the human-readable companion.
+
+Use the smallest relevant knowledge set. Do not preload every domain.
 
 ## Browser or CDP work
 
@@ -40,17 +42,19 @@ Load motion-design knowledge only for animation, timing, typography, visual rhyt
 Load:
 
 - `motion-design/house-style.md`
-- only the linked palette, composition, typography, transition, caption, or motion documents needed for the current deliverable
+- only the linked palette, production, pattern, visual-style, or data-in-motion documents needed for the current deliverable
 
 Project-specific `design.md` takes precedence over house style.
 
 ## Selection rules
 
+- Prefer `knowledge-index.json` for deterministic routing.
 - Prefer one canonical entry document per active domain.
-- Follow linked documents only when the current task needs their detail.
+- Follow optional documents only when the current task needs their detail.
 - Do not load a domain because a nearby file name sounds relevant.
 - Stop loading when enough knowledge exists to inspect and reason about the live project.
 - When documents conflict with runtime evidence, runtime evidence wins and the contradiction should be recorded.
+- If routing is uncertain, inspect the project first instead of broad-loading knowledge.
 
 ## Typical routes
 
@@ -66,7 +70,7 @@ Provider troubleshooting
 
 Motion graphics deliverable
   -> motion-design/house-style
-  -> selected palette/composition/typography documents
+  -> only the required optional motion document
 
 Generic repository bug
   -> inspect project first
