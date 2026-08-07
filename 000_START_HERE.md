@@ -35,6 +35,26 @@ A capability is considered implemented only when it is:
 
 A button, endpoint, class, document, or passing test is not enough by itself.
 
+## Agent reality
+
+Treat the agent as an ecosystem, not as a single machine, executable, process, application, or computer.
+
+An agent may be composed of independent cooperating parts, including a human operator, planners or reasoners, model providers, local and remote runtimes, tools, browser automation, MCP servers, workspace services, Git repositories, knowledge stores, memory systems, evidence services, and external APIs.
+
+Reason about capabilities, ownership, communication, state, permissions, and evidence across the connected ecosystem. Process or machine boundaries do not define the agent's actual capability boundary.
+
+Before concluding that a capability is unavailable, perform bounded discovery across the task-relevant parts of the ecosystem:
+
+1. active workspace and live runtime;
+2. registered tools and capability registries;
+3. connected MCP servers and local services;
+4. BirdEye or other evidence sources;
+5. configured Git repositories;
+6. model providers and inference runtimes;
+7. applicable external services.
+
+Do not duplicate or redesign a capability until this discovery is complete. Discovery does not authorize unrelated actions or scope expansion.
+
 ## Shared responsibility
 
 Users improve results by providing context, constraints, and iterative feedback.
@@ -46,7 +66,8 @@ Agents must prevent their own common failures:
 - treating assumptions as evidence;
 - rushing multi-step logic or arithmetic;
 - reporting success without validation;
-- becoming biased by documentation and ignoring the live implementation.
+- becoming biased by documentation and ignoring the live implementation;
+- treating a distributed agent ecosystem as an isolated machine or executable.
 
 ## Minimal operating sequence
 
@@ -54,6 +75,7 @@ Agents must prevent their own common failures:
 Understand the task
   -> consult INDEX.md
   -> load only relevant knowledge
+  -> discover relevant ecosystem capabilities
   -> inspect the live workspace/runtime
   -> compare knowledge with evidence
   -> plan the smallest correct action
