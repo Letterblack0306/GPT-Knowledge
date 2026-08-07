@@ -15,29 +15,38 @@ This repository stores reusable knowledge rather than project-specific implement
 ```text
 Research
 → extract universal principles
+→ consolidate overlapping methods
 → document evidence and applicability
 → apply to a project
 → validate in runtime
 → promote reusable lessons back here
 ```
 
+## Agent engineering entry point
+
+Use [`ai-agents/unified-agent-engineering-methods.md`](ai-agents/unified-agent-engineering-methods.md) as the **single canonical agent-engineering guide**.
+
+It consolidates techniques learned from Aider, Claude Code, Codex, Hermes, LobeHub, OpenHands, and the existing cross-project studies into problem-driven methods for:
+
+- repository cognition and structural discovery;
+- hypothesis-driven debugging;
+- controlled execution and approvals;
+- runtime/user-visible validation;
+- duplicate-authority and regression scanning;
+- state, memory, skills, and checkpoints;
+- providers, models, tools, MCP, and integrations;
+- autonomous action/observation loops;
+- recovery, retry, and completion evidence.
+
+The canonical rule is **method first, source second**. Diagnose the actual failure or requirement, choose the appropriate method from the unified guide, then consult a source-specific study only when concrete implementation detail is useful.
+
+Documents under `ai-agents/studies/`, `ai-agents/cli-agent-reference-study-map.md`, and `ai-agents/reference-derived-agent-architecture.md` remain research provenance and implementation references. They are not competing operating modes.
+
 ## Letterblack branding entry point
 
 Use [`letterblack-branding/industrial-dark-ui-system.md`](letterblack-branding/industrial-dark-ui-system.md) as the canonical Letterblack product UI/branding guide. It defines the Industrial Dark palette, typography, density, cockpit layout, state semantics, interaction behavior, component language, icon rules, and evidence-aware UI principles.
 
 Use [`letterblack-branding/ui-screen-system.md`](letterblack-branding/ui-screen-system.md) when screen families or the operational component vocabulary are needed. Use [`letterblack-branding/adobe-ai-generations-ui-reference.md`](letterblack-branding/adobe-ai-generations-ui-reference.md) only when inspecting reusable UI/token/icon patterns from `Adobe_AI_Generations-04`; that repository is a reference implementation, not canonical brand truth.
-
-## Agent architecture entry point
-
-Use [`ai-agents/cli-agent-reference-study-map.md`](ai-agents/cli-agent-reference-study-map.md) as the current agent-architecture router. It assigns each reference project to the subsystem where it is most useful:
-
-- **Aider** → repository cognition, repo maps, selective context, Git-aware editing.
-- **Codex** → execution, sandboxing, approvals, execution/validation evidence.
-- **Hermes** → persistent agent behavior, memory, skills, toolsets, checkpoints, delegation.
-- **LobeHub** → providers, models, configuration, custom endpoints, knowledge, MCP/integration registries.
-- **OpenHands** → autonomous software-engineering runtime, typed events, workspace abstraction, remote execution.
-
-Load only the matching deep study from `ai-agents/studies/` rather than all five by default. Use [`ai-agents/reference-derived-agent-architecture.md`](ai-agents/reference-derived-agent-architecture.md) when broader cross-project control-plane, identity, observability, deployment, or capability-registry patterns are needed.
 
 ## Browser knowledge entry point
 
@@ -47,7 +56,7 @@ Use [`browser-agents/browser-access-tooling-and-evidence.md`](browser-agents/bro
 
 Use [`local-models/lm-studio-runtime-and-agent-integration.md`](local-models/lm-studio-runtime-and-agent-integration.md) for LM Studio server configuration, authentication, model discovery and lifecycle, stateful chats, tool calling, structured output, MCP controls, multi-machine proxy routing, performance tuning, and provider health evidence.
 
-When designing provider/model registries or custom endpoint abstractions, additionally load [`ai-agents/studies/lobehub-provider-integration-architecture.md`](ai-agents/studies/lobehub-provider-integration-architecture.md).
+When agent-side provider routing, health, permissions, recovery, or validation is involved, pair it with the unified agent-engineering guide rather than loading a provider-project study directly.
 
 ## Motion-design entry point
 
@@ -55,14 +64,12 @@ Use [`motion-design/house-style.md`](motion-design/house-style.md) as the defaul
 
 ## Current knowledge domains
 
+- `ai-agents/` — unified agent engineering methods plus source-specific research provenance.
 - `letterblack-branding/` — canonical Industrial Dark Letterblack UI branding, operational screen system, UI/icon reference catalogue.
-- `ai-agents/` — agent control planes, coding-agent reference studies, repository cognition, execution, memory/skills, provider architecture, autonomous SWE runtimes, permissions, delegation, and evidence-first completion.
 - `browser-agents/` — browser access models, CDP and connector patterns, target management, browser tools, security, screenshots, and verification.
 - `local-models/` — local-provider runtimes, model lifecycle, inference configuration, health checks, tool calling, structured output, and multi-machine routing.
 - `ui-engineering/` — validated runtime UI integration and shell behavior.
 - `motion-design/` — canonical creative direction, palettes, composition patterns, motion systems, captions, and visual styles.
-
-Additional reusable domains may be added when they have a canonical entry point and deterministic router metadata.
 
 ## Knowledge quality rules
 
