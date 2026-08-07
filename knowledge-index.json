@@ -1,14 +1,30 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "purpose": "Deterministic routing metadata for selective GPT-Knowledge loading. This file points to canonical knowledge; it does not duplicate it.",
   "boot": {
     "always": ["000_START_HERE.md"],
     "router": "knowledge-index.json",
     "humanRouter": "INDEX.md",
+    "projectFeatureFirst": {
+      "canonical": "project-engineering/project-feature-implementation-plan.md",
+      "when": ["project implementation", "feature implementation", "feature development", "feature extension", "feature replacement", "feature integration", "feature migration", "project planning", "implementation planning", "project learning", "feature learning", "learn existing project", "learn existing feature"],
+      "rule": "For project or feature work, load this guide before domain-specific knowledge, learn the active project/feature from live source and runtime evidence, then route to the smallest relevant domain set."
+    },
     "maxDomainsByDefault": 3,
     "rule": "Load only the smallest task-relevant set, then inspect the live project/runtime."
   },
   "domains": {
+    "project-engineering": {
+      "triggers": ["project implementation", "feature implementation", "feature development", "feature extension", "feature replacement", "feature integration", "feature migration", "project planning", "implementation planning", "project learning", "feature learning", "learn existing project", "learn existing feature", "acceptance criteria", "implementation plan"],
+      "canonical": ["project-engineering/project-feature-implementation-plan.md"],
+      "optional": {
+        "agent-methods": ["ai-agents/unified-agent-engineering-methods.md"],
+        "browser": ["browser-agents/browser-access-tooling-and-evidence.md"],
+        "local-model": ["local-models/lm-studio-runtime-and-agent-integration.md"],
+        "ui-runtime": ["ui-engineering/runtime-accessibility-and-shell-integration.md"],
+        "letterblack-branding": ["letterblack-branding/industrial-dark-ui-system.md"]
+      }
+    },
     "browser-agents": {
       "triggers": ["browser", "browser agent", "cdp", "chrome", "chromium", "tab", "page target", "browser automation", "browser evidence", "screenshot", "browser tool"],
       "canonical": ["browser-agents/browser-access-tooling-and-evidence.md"],
@@ -63,13 +79,15 @@
     }
   },
   "routingRules": [
+    "For any project or feature implementation, extension, replacement, integration, migration, planning, or learning task, load project-engineering/project-feature-implementation-plan.md before domain-specific knowledge.",
+    "The project/feature plan must be grounded in active workspace source and runtime evidence; it must not become a substitute for live inspection.",
     "Match the task to the fewest relevant domains.",
     "Load canonical files first; load optional files only when their subtopic is actually in scope.",
-    "For agent work, load the unified problem-driven engineering guide first. Do not route by upstream repository name.",
+    "For agent work, load the unified problem-driven engineering guide first after the project/feature pre-route when applicable. Do not route by upstream repository name.",
     "Select debugging, execution, memory, provider, recovery, or validation methods from the proven failure class and evidence before consulting source-specific references.",
     "When a Letterblack debugging task implicates execution authority, governance, workspace guards, current-HEAD proof, or policy boundaries, load ai-agents/letterblack-governance-debugging-references.md only after the failure class is identified.",
     "Use source-specific agent studies only as provenance or implementation examples after a method has been selected.",
-    "For Letterblack product UI, load the branding guide first; use Adobe_AI_Generations-04 only as a reference source, not as canonical brand truth.",
+    "For Letterblack product UI, load the branding guide first after the project/feature pre-route when applicable; use Adobe_AI_Generations-04 only as a reference source, not as canonical brand truth.",
     "Do not preload all domains.",
     "Stop loading knowledge once there is enough context to inspect the live workspace/runtime.",
     "Project-specific guidance and live runtime evidence take precedence over this routing metadata.",
