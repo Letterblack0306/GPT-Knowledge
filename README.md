@@ -4,15 +4,13 @@ A versioned, reusable engineering knowledge base for research-backed design, dev
 
 ## Load order
 
-Always begin with [`000_START_HERE.md`](000_START_HERE.md), then use [`INDEX.md`](INDEX.md) to load only the smallest relevant knowledge set.
+Always begin with [`000_START_HERE.md`](000_START_HERE.md), then use [`knowledge-index.json`](knowledge-index.json) for deterministic routing or [`INDEX.md`](INDEX.md) as its human-readable companion.
 
 Do not preload every domain. Knowledge guides decisions; it does not replace live workspace or runtime inspection.
 
 ## Purpose
 
 This repository stores reusable knowledge rather than project-specific implementation details.
-
-The operating cycle is:
 
 ```text
 Research
@@ -23,47 +21,51 @@ Research
 → promote reusable lessons back here
 ```
 
-## Canonical motion-design entry point
+## Agent architecture entry point
 
-Use [`motion-design/house-style.md`](motion-design/house-style.md) as the default starting point for motion-design and video-composition work when a project-specific `design.md` is not available. Project-specific brand direction takes precedence; house style fills gaps and routes to palettes, composition patterns, visual styles, data treatment, typography, motion, captions, and transitions.
+Use [`ai-agents/cli-agent-reference-study-map.md`](ai-agents/cli-agent-reference-study-map.md) as the current agent-architecture router. It assigns each reference project to the subsystem where it is most useful:
 
-## Agent and browser knowledge entry points
+- **Aider** → repository cognition, repo maps, selective context, Git-aware editing.
+- **Codex** → execution, sandboxing, approvals, execution/validation evidence.
+- **Hermes** → persistent agent behavior, memory, skills, toolsets, checkpoints, delegation.
+- **LobeHub** → providers, models, configuration, custom endpoints, knowledge, MCP/integration registries.
+- **OpenHands** → autonomous software-engineering runtime, typed events, workspace abstraction, remote execution.
 
-Use these as the current canonical starting points for agent/runtime and browser-tooling design:
+Load only the matching deep study from `ai-agents/studies/` rather than all five by default. Use [`ai-agents/reference-derived-agent-architecture.md`](ai-agents/reference-derived-agent-architecture.md) when broader cross-project control-plane, identity, observability, deployment, or capability-registry patterns are needed.
 
-- [`ai-agents/reference-derived-agent-architecture.md`](ai-agents/reference-derived-agent-architecture.md) — control planes, sessions, tools, skills, memory, projects, delegation, deployment backends, observability, and bounded recovery.
-- [`browser-agents/browser-access-tooling-and-evidence.md`](browser-agents/browser-access-tooling-and-evidence.md) — browser transports, target identity, inspect/action/capture tools, DOM annotation, host-browser trust bridges, screenshots, evidence, lifecycle, permissions, and validation.
+## Browser knowledge entry point
 
-These documents are reference-derived from `openai/codex`, `openclaw/openclaw`, `agent0ai/agent-zero`, and `NousResearch/hermes-agent`. They extract reusable principles rather than treating any one repository as the required architecture.
+Use [`browser-agents/browser-access-tooling-and-evidence.md`](browser-agents/browser-access-tooling-and-evidence.md) for browser transports, target identity, inspect/action/capture tools, DOM annotation, host-browser trust bridges, screenshots, evidence, lifecycle, permissions, and validation.
 
 ## Local-model knowledge entry point
 
-Use [`local-models/lm-studio-runtime-and-agent-integration.md`](local-models/lm-studio-runtime-and-agent-integration.md) for LM Studio server configuration, authentication, model discovery and lifecycle, JIT loading, TTL and Auto-Evict, stateful chats, tool calling, structured output, MCP controls, multi-machine proxy routing, performance tuning, and provider health evidence.
+Use [`local-models/lm-studio-runtime-and-agent-integration.md`](local-models/lm-studio-runtime-and-agent-integration.md) for LM Studio server configuration, authentication, model discovery and lifecycle, stateful chats, tool calling, structured output, MCP controls, multi-machine proxy routing, performance tuning, and provider health evidence.
 
-## Initial knowledge domains
+When designing provider/model registries or custom endpoint abstractions, additionally load [`ai-agents/studies/lobehub-provider-integration-architecture.md`](ai-agents/studies/lobehub-provider-integration-architecture.md).
 
-- `ui/` — universal UI and UX principles, layout, components, states, workflows, accessibility, and audit methods.
-- `ui-engineering/` — validated runtime UI integration and shell behavior.
-- `engineering/` — debugging, testing, validation, runtime, Git, and fast-fail practices.
-- `ai-agents/` — agent architecture, planning, memory, tools, skills, permissions, delegation, deployment, and evidence-first execution.
+## Motion-design entry point
+
+Use [`motion-design/house-style.md`](motion-design/house-style.md) as the default starting point for motion-design and video-composition work when project-specific direction is not available. Project-specific brand direction takes precedence.
+
+## Current knowledge domains
+
+- `ai-agents/` — agent control planes, coding-agent reference studies, repository cognition, execution, memory/skills, provider architecture, autonomous SWE runtimes, permissions, delegation, and evidence-first completion.
 - `browser-agents/` — browser access models, CDP and connector patterns, target management, browser tools, security, screenshots, and verification.
 - `local-models/` — local-provider runtimes, model lifecycle, inference configuration, health checks, tool calling, structured output, and multi-machine routing.
-- `creative/` — motion graphics, VFX, generative image/video, After Effects, Blender, and related workflows.
+- `ui-engineering/` — validated runtime UI integration and shell behavior.
 - `motion-design/` — canonical creative direction, palettes, composition patterns, motion systems, captions, and visual styles.
-- `references/` — source-specific notes from established design systems and technical platforms.
-- `templates/` — reusable decision, component, audit, research, and review templates.
-- `lessons/` — validated patterns, mistakes, discoveries, and corrections promoted from real projects.
+
+Additional reusable domains may be added when they have a canonical entry point and deterministic router metadata.
 
 ## Knowledge quality rules
 
-Every durable knowledge entry should identify:
+Every durable knowledge entry should identify, where applicable:
 
-- source
-- confidence
-- verification status
-- last reviewed date
-- applicability
-- limitations
-- related evidence
+- source;
+- confidence;
+- verification status or review date;
+- applicability;
+- limitations;
+- related evidence.
 
-Claims must remain bounded to what has actually been researched or proven.
+Claims must remain bounded to what has actually been researched or proven. Upstream reference projects evolve, so source-specific details must be revalidated before being treated as current implementation truth.
