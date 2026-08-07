@@ -41,6 +41,8 @@
       "triggers": [
         "agent architecture",
         "agent runtime",
+        "coding agent",
+        "cli agent",
         "tool calling",
         "tool registry",
         "session",
@@ -48,12 +50,35 @@
         "orchestration",
         "memory",
         "agent loop",
-        "agent tooling"
+        "agent tooling",
+        "repository cognition",
+        "repo map",
+        "provider registry",
+        "model registry",
+        "autonomous software engineering"
       ],
       "canonical": [
-        "ai-agents/reference-derived-agent-architecture.md"
+        "ai-agents/cli-agent-reference-study-map.md"
       ],
       "optional": {
+        "repository-cognition": [
+          "ai-agents/studies/aider-repository-cognition.md"
+        ],
+        "execution-validation": [
+          "ai-agents/studies/codex-execution-validation.md"
+        ],
+        "memory-skills-agent-loop": [
+          "ai-agents/studies/hermes-memory-skills-agent-loop.md"
+        ],
+        "provider-model-integration": [
+          "ai-agents/studies/lobehub-provider-integration-architecture.md"
+        ],
+        "autonomous-swe-runtime": [
+          "ai-agents/studies/openhands-autonomous-swe-runtime.md"
+        ],
+        "cross-project-architecture": [
+          "ai-agents/reference-derived-agent-architecture.md"
+        ],
         "browser": [
           "browser-agents/browser-access-tooling-and-evidence.md"
         ],
@@ -78,8 +103,11 @@
         "local-models/lm-studio-runtime-and-agent-integration.md"
       ],
       "optional": {
+        "provider-architecture": [
+          "ai-agents/studies/lobehub-provider-integration-architecture.md"
+        ],
         "agent-runtime": [
-          "ai-agents/reference-derived-agent-architecture.md"
+          "ai-agents/cli-agent-reference-study-map.md"
         ]
       }
     },
@@ -137,6 +165,7 @@
   "routingRules": [
     "Match the task to the fewest relevant domains.",
     "Load canonical files first; load optional files only when their subtopic is actually in scope.",
+    "For ai-agents, route to the one or two study documents matching the subsystem rather than loading all reference studies.",
     "Do not preload all domains.",
     "Do not use file-name proximity as evidence of relevance.",
     "Stop loading knowledge once there is enough context to inspect the live workspace/runtime.",
