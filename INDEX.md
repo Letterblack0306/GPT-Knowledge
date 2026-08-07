@@ -12,7 +12,7 @@ Load:
 - `ui-engineering/runtime-accessibility-and-shell-integration.md` when UI/runtime wiring is involved
 - `local-models/lm-studio-runtime-and-agent-integration.md` only when the provider is LM Studio
 
-Skip motion-design and creative domains unless the task explicitly involves them.
+Skip motion-design and branding domains unless the task explicitly involves them.
 
 ## Agent architecture or tooling
 
@@ -30,24 +30,34 @@ Then load only the study matching the subsystem:
 
 Load `ai-agents/reference-derived-agent-architecture.md` only when broader cross-project control-plane, identity, capability-registry, observability, or deployment patterns are needed.
 
-Relevant browser or local-model documents should still be loaded only when those systems are actually involved.
-
 ## LM Studio or local-provider work
 
 Load:
 
 - `local-models/lm-studio-runtime-and-agent-integration.md`
 - `ai-agents/studies/lobehub-provider-integration-architecture.md` when provider/model registry, custom endpoint, model discovery, or normalized health architecture is in scope
-- `ai-agents/cli-agent-reference-study-map.md` only when broader agent/provider boundaries are needed
+
+## Letterblack product UI / branding
+
+Start with:
+
+- `letterblack-branding/industrial-dark-ui-system.md`
+
+Then load only what the task needs:
+
+- screen families, cockpit composition, component vocabulary -> `letterblack-branding/ui-screen-system.md`
+- reusable CSS/token patterns or icon catalogue from Adobe AI Generations -> `letterblack-branding/adobe-ai-generations-ui-reference.md`
+- runtime shell/accessibility integration -> `ui-engineering/runtime-accessibility-and-shell-integration.md`
+
+The Letterblack branding guide is canonical. `Adobe_AI_Generations-04` is a reference implementation and asset source; it does not override the canonical guide.
 
 ## UI engineering
 
 Load:
 
 - `ui-engineering/runtime-accessibility-and-shell-integration.md`
+- `letterblack-branding/industrial-dark-ui-system.md` only for Letterblack-branded products
 - project-specific design guidance when present
-
-Load motion-design knowledge only for animation, timing, typography, visual rhythm, transitions, or video composition.
 
 ## Motion design
 
@@ -64,23 +74,26 @@ Project-specific `design.md` takes precedence over house style.
 - Prefer one canonical entry document per active domain.
 - Follow optional documents only when the current task needs their detail.
 - Do not load all five agent studies merely because the task concerns an agent.
-- Do not load a domain because a nearby file name sounds relevant.
+- Do not load the Adobe UI reference for every Letterblack UI task; use it only when source patterns or icons are relevant.
 - Stop loading when enough knowledge exists to inspect and reason about the live project.
-- When documents conflict with runtime evidence, runtime evidence wins and the contradiction should be recorded.
+- When documents conflict with runtime evidence, runtime evidence wins.
 - If routing is uncertain, inspect the project first instead of broad-loading knowledge.
 
 ## Typical routes
 
 ```text
+Letterblack UI design
+  -> letterblack-branding/industrial-dark-ui-system.md
+  -> ui-screen-system.md only when screen/layout design is needed
+  -> adobe-ai-generations-ui-reference.md only for existing UI/icon patterns
+
 Repository-wide duplicate/parallel-structure bug
   -> ai-agents/cli-agent-reference-study-map.md
   -> ai-agents/studies/aider-repository-cognition.md
-  -> inspect live repository structure before proposing changes
 
 Execution/approval failure
   -> ai-agents/cli-agent-reference-study-map.md
   -> ai-agents/studies/codex-execution-validation.md
-  -> optionally OpenHands study when event/workspace lifecycle is involved
 
 Persistent agent memory/skills design
   -> ai-agents/cli-agent-reference-study-map.md
@@ -93,18 +106,13 @@ Provider/model integration
 Autonomous software-engineering runtime
   -> ai-agents/cli-agent-reference-study-map.md
   -> ai-agents/studies/openhands-autonomous-swe-runtime.md
-  -> Codex study when sandbox/approval details matter
 
 Browser UI audit
   -> browser-agents
   -> ui-engineering
-  -> local-models only when LM Studio behavior is involved
+  -> letterblack-branding only when the product is Letterblack-branded
 
 Motion graphics deliverable
   -> motion-design/house-style
   -> only the required optional motion document
-
-Generic repository bug
-  -> inspect project first
-  -> load a domain only after the failing subsystem is identified
 ```
