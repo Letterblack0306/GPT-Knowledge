@@ -26,6 +26,17 @@ This guide consolidates repository cognition, debugging, execution, approvals, v
 
 Source-specific notes under `ai-agents/studies/` and `ai-agents/cli-agent-reference-study-map.md` are research provenance, not primary operating routes.
 
+### Letterblack governance/debugging route
+
+Load `ai-agents/letterblack-governance-debugging-references.md` only when the proven failure involves execution authority, policy boundaries, workspace guards, current-HEAD proof, blocked actions, completion claims, or governance behavior.
+
+That reference routes selectively to:
+
+- **LBE Core** — https://github.com/Letterblack0306/LetterBlack-LBE-Core — execution-boundary/controller/adapter/host authority and governed proof.
+- **LB Guards & Rules** — https://github.com/Letterblack0306/LB_Guards_Rules — workspace trust, guard contracts, policy profiles, and proof bound to the active Git `HEAD`.
+
+Do not preload either repository for ordinary debugging. First classify the failure and inspect the live project/runtime; consult the relevant governance repository only when that boundary is actually implicated.
+
 ### Examples
 
 ```text
@@ -44,10 +55,21 @@ Tests pass but feature fails
 Repeated or unsafe execution
   -> unified guide
   -> operation identity + authority + retry/idempotency analysis
+  -> Letterblack governance reference only if LBE/guards own the boundary
 
 Provider/tool appears configured but does not work
   -> unified guide
   -> capability/health/permission validation
+
+Guard blocks commit/push/DONE or proof looks stale
+  -> unified guide
+  -> Letterblack governance debugging reference
+  -> LB Guards & Rules current guard/profile/proof path
+
+Agent action is allowed/denied/incomplete unexpectedly
+  -> unified guide
+  -> Letterblack governance debugging reference
+  -> LBE Core current controller/adapter/host path
 
 Agent reports done too early
   -> unified guide
@@ -99,6 +121,7 @@ Project-specific `design.md` takes precedence over house style.
 - Prefer `knowledge-index.json` for deterministic routing.
 - Prefer one canonical entry document per active domain.
 - For agent work, choose methods by failure class and evidence, not by source repository.
+- Load the Letterblack governance debugging reference only when authority, policy, guard, or proof boundaries are implicated.
 - Source-specific studies are optional provenance and implementation references.
 - Do not load the Adobe UI reference for every Letterblack UI task; use it only when source patterns or icons are relevant.
 - Stop loading when enough knowledge exists to inspect and reason about the live project.
@@ -113,6 +136,7 @@ Repository bug / debugging
   -> classify failure
   -> choose diagnostic method
   -> inspect live repository/runtime
+  -> governance reference only if authority/guards/proof are involved
   -> source-specific study only if implementation detail is needed
 
 Agent architecture
@@ -128,6 +152,7 @@ Browser UI audit
   -> browser-agents
   -> ui-engineering
   -> letterblack-branding only when the product is Letterblack-branded
+  -> Letterblack governance reference only if a browser action is being blocked/governed or proof boundaries are involved
 
 Motion graphics deliverable
   -> motion-design/house-style
