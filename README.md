@@ -2,6 +2,12 @@
 
 A versioned, reusable engineering knowledge base for research-backed design, development, debugging, validation, agent architecture, browser automation, local-model integration, and creative technology workflows.
 
+## Load order
+
+Always begin with [`000_START_HERE.md`](000_START_HERE.md), then use [`INDEX.md`](INDEX.md) to load only the smallest relevant knowledge set.
+
+Do not preload every domain. Knowledge guides decisions; it does not replace live workspace or runtime inspection.
+
 ## Purpose
 
 This repository stores reusable knowledge rather than project-specific implementation details.
