@@ -17,13 +17,19 @@ Research
 → promote reusable lessons back here
 ```
 
+## Canonical motion-design entry point
+
+Use [`motion-design/house-style.md`](motion-design/house-style.md) as the default starting point for motion-design and video-composition work when a project-specific `design.md` is not available. Project-specific brand direction takes precedence; house style fills gaps and routes to palettes, composition patterns, visual styles, data treatment, typography, motion, captions, and transitions.
+
 ## Initial knowledge domains
 
 - `ui/` — universal UI and UX principles, layout, components, states, workflows, accessibility, and audit methods.
+- `ui-engineering/` — validated runtime UI integration and shell behavior.
 - `engineering/` — debugging, testing, validation, runtime, Git, and fast-fail practices.
 - `ai/` — agent architecture, planning, memory, tools, MCP, and evidence-first execution.
 - `browser/` — CDP, browser agents, automation, and target management.
 - `creative/` — motion graphics, VFX, generative image/video, After Effects, Blender, and related workflows.
+- `motion-design/` — canonical creative direction, palettes, composition patterns, motion systems, captions, and visual styles.
 - `references/` — source-specific notes from established design systems and technical platforms.
 - `templates/` — reusable decision, component, audit, research, and review templates.
 - `lessons/` — validated patterns, mistakes, discoveries, and corrections promoted from real projects.
