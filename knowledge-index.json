@@ -35,10 +35,11 @@
       }
     },
     "ai-agents": {
-      "triggers": ["agent architecture", "agent runtime", "coding agent", "cli agent", "debugging", "bug hunting", "repository bug", "tool calling", "tool registry", "session", "approval", "orchestration", "memory", "agent loop", "agent tooling", "repository cognition", "repo map", "provider registry", "model registry", "autonomous software engineering", "validation", "completion", "recovery", "duplicate implementation", "parallel structure", "execution boundary", "governance", "guard", "workspace trust", "proof bound to head", "policy boundary", "blocked action"],
+      "triggers": ["agent architecture", "agent runtime", "coding agent", "cli agent", "debugging", "bug hunting", "repository bug", "tool calling", "tool registry", "session", "approval", "orchestration", "memory", "agent loop", "agent tooling", "repository cognition", "repo map", "provider registry", "model registry", "autonomous software engineering", "validation", "completion", "recovery", "duplicate implementation", "parallel structure", "execution boundary", "governance", "guard", "workspace trust", "proof bound to head", "policy boundary", "blocked action", "agent tracing", "execution trace", "deep review", "skill audit", "skill freshness", "durable work", "work registry", "heterogeneous agent"],
       "canonical": ["ai-agents/unified-agent-engineering-methods.md"],
       "optional": {
         "source-provenance": ["ai-agents/cli-agent-reference-study-map.md", "ai-agents/reference-derived-agent-architecture.md"],
+        "lobehub-agent-skills": ["ai-agents/studies/lobehub-agent-skills-system.md"],
         "browser": ["browser-agents/browser-access-tooling-and-evidence.md"],
         "local-model": ["local-models/lm-studio-runtime-and-agent-integration.md"],
         "letterblack-governance": ["ai-agents/letterblack-governance-debugging-references.md"]
@@ -87,6 +88,7 @@
     "Load canonical files first; load optional files only when their subtopic is actually in scope.",
     "For agent work, load the unified problem-driven engineering guide first after the project/feature pre-route when applicable. Do not route by upstream repository name.",
     "Select debugging, execution, memory, provider, recovery, or validation methods from the proven failure class and evidence before consulting source-specific references.",
+    "Use ai-agents/studies/lobehub-agent-skills-system.md only when concrete implementation evidence is needed for tracing, durable work registration, deep review, skill freshness, heterogeneous agents, registry alignment, compatibility gates, or related LobeHub-derived patterns.",
     "When a Letterblack debugging task implicates execution authority, governance, workspace guards, current-HEAD proof, or policy boundaries, load ai-agents/letterblack-governance-debugging-references.md only after the failure class is identified.",
     "Use source-specific agent studies only as provenance or implementation examples after a method has been selected.",
     "For Letterblack product UI, load the branding guide first after the project/feature pre-route when applicable; use Adobe_AI_Generations-04 only as a reference source, not as canonical brand truth.",
