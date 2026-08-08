@@ -15,9 +15,10 @@
   },
   "domains": {
     "project-engineering": {
-      "triggers": ["project implementation", "feature implementation", "feature development", "feature extension", "feature replacement", "feature integration", "feature migration", "project planning", "implementation planning", "project learning", "feature learning", "learn existing project", "learn existing feature", "acceptance criteria", "implementation plan"],
+      "triggers": ["project implementation", "feature implementation", "feature development", "feature extension", "feature replacement", "feature integration", "feature migration", "project planning", "implementation planning", "project learning", "feature learning", "learn existing project", "learn existing feature", "acceptance criteria", "implementation plan", "LBE persistent agent", "LBE reasoning status", "LBE reasoning progress", "LBE_Presistent_Agent_wall", "Agents-Memory-Tool-v6-integration"],
       "canonical": ["project-engineering/project-feature-implementation-plan.md"],
       "optional": {
+        "lbe-persistent-agent-status": ["project-engineering/projects/lbe-persistent-agent-wall-status.md"],
         "agent-methods": ["ai-agents/unified-agent-engineering-methods.md"],
         "browser": ["browser-agents/browser-access-tooling-and-evidence.md"],
         "local-model": ["local-models/lm-studio-runtime-and-agent-integration.md"],
@@ -80,7 +81,8 @@
   },
   "routingRules": [
     "For any project or feature implementation, extension, replacement, integration, migration, planning, or learning task, load project-engineering/project-feature-implementation-plan.md before domain-specific knowledge.",
-    "The project/feature plan must be grounded in active workspace source and runtime evidence; it must not become a substitute for live inspection.",
+    "For LBE Persistent Agent status, progress, workspace, or roadmap-boundary questions, additionally load project-engineering/projects/lbe-persistent-agent-wall-status.md, then revalidate the live repository before acting.",
+    "The project/feature plan and project status records must be grounded in active workspace source and runtime evidence; they must not become substitutes for live inspection.",
     "Match the task to the fewest relevant domains.",
     "Load canonical files first; load optional files only when their subtopic is actually in scope.",
     "For agent work, load the unified problem-driven engineering guide first after the project/feature pre-route when applicable. Do not route by upstream repository name.",

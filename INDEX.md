@@ -29,6 +29,14 @@ Project / feature request
 
 The implementation plan does not override live project truth. If its predicted owner, file, dependency, or sequence is disproven by inspection, update the plan and follow the evidence.
 
+### LBE Persistent Agent project status
+
+For questions specifically about the current LBE Guard Inspector / reasoning-layer workspace, its implementation progress, canonical local workspace, merged milestones, or next roadmap boundary, additionally load:
+
+- `project-engineering/projects/lbe-persistent-agent-wall-status.md`
+
+This is a dated project-status record, not runtime truth. Revalidate the live repository branch, `HEAD`, working tree, source, and tests before making or judging changes.
+
 ## Browser or CDP work
 
 Load:
@@ -155,6 +163,7 @@ For implementation of motion tooling, automation, templates, extensions, or proj
 
 - Prefer `knowledge-index.json` for deterministic routing.
 - For any project or feature implementation/planning/learning task, load `project-engineering/project-feature-implementation-plan.md` before domain-specific knowledge.
+- For LBE Persistent Agent status/progress/workspace questions, load `project-engineering/projects/lbe-persistent-agent-wall-status.md` after the project/feature first reference, then verify the live repo before acting.
 - Learn the active project/feature from live source/runtime evidence before fixing the plan boundary.
 - Prefer one canonical entry document per active domain.
 - For agent work, choose methods by failure class and evidence, not by source repository.
@@ -180,6 +189,12 @@ Existing feature learning
   -> build feature learning record from live source/runtime
   -> identify authoritative owner, flow, state, tests, evidence, and parallel paths
   -> load domain knowledge only after the boundary is known
+
+LBE Persistent Agent status / next step
+  -> project-engineering/project-feature-implementation-plan.md
+  -> project-engineering/projects/lbe-persistent-agent-wall-status.md
+  -> verify current branch, HEAD, status, source, and tests
+  -> continue only from the verified roadmap boundary
 
 Repository bug / debugging
   -> project-feature plan first when the bug fix changes a project/feature
