@@ -29,21 +29,12 @@ The reasoning layer may interpret, plan retrieval, request evidence, select regi
 
 At this review point:
 
-- `main` baseline: `a4de54e01f77252ae4a88d1b5071323e361575b0`
-- latest merged capability on `main`: governed read-only `ProposalPlanner`
-- full-suite baseline before controller integration: 462 tests passing
+- `main` baseline: `baea87694337e56c4b12618d75528f2b7abec266`
+- merged PR #27 head: `cd0b7031ec1026adb9ea4f681630de4f3d806008`
+- latest merged capability: governed proposal-controller integration in the normal reasoning response path
+- latest validated full-suite evidence for that slice: 468 tests passing
 
-The active proposal-controller integration is isolated on:
-
-```text
-branch: feat/reasoning-proposal-controller-integration
-HEAD: cd0b7031ec1026adb9ea4f681630de4f3d806008
-PR: #27
-status: draft / not yet merged
-validation: 468 passed in 34.99s
-```
-
-The integration has also been exercised through the existing `/reasoning/run` route with HTTP 200 and an optional serialized `proposal` result.
+PR #27 is merged and the normal `/reasoning/run` path can now return an optional governed read-only proposal through the existing response contract.
 
 ## Reasoning-layer progress
 
@@ -58,7 +49,7 @@ Guard planning                     COMPLETE
 Investigation planner              COMPLETE
 Explanation layer                  COMPLETE
 Workspace-rule proposal planner    COMPLETE
-LLM/controller proposal wiring     IMPLEMENTED + VALIDATED, PR #27 pending merge
+LLM/controller proposal wiring     COMPLETE + MERGED
 Persistent runtime integration     NEXT MAJOR MILESTONE
 ```
 
@@ -71,11 +62,13 @@ The repository now contains bounded reasoning components for:
 - guard candidate adjudication without moving verdict authority;
 - bounded investigation expansion from verified failures/evidence;
 - deterministic explanation orchestration with verdict/authority immutability;
-- governed, read-only workspace-rule proposal construction through `RuleGatekeeper`.
+- governed, read-only workspace-rule proposal construction through `RuleGatekeeper`;
+- optional proposal-candidate transport through the existing LLM/provider/controller path;
+- optional governed proposal serialization in the normal `LBEResponse` / `/reasoning/run` path.
 
-### Proposal-controller integration
+### Current reasoning flow
 
-The pending integration adds the final normal-response wiring:
+The merged path is now:
 
 ```text
 normal reasoning request
@@ -139,7 +132,7 @@ This guidance is support infrastructure for local implementation. It does not ch
 
 ## Validation state
 
-Latest validated proposal-controller integration evidence:
+Validated evidence for the merged proposal-controller integration head `cd0b7031ec1026adb9ea4f681630de4f3d806008`:
 
 ```text
 focused controller/provider/http tests: 52 passed
@@ -149,11 +142,13 @@ live /reasoning/run:               HTTP 200 with proposal field
 working tree after commit/push:    clean
 ```
 
-These results apply to commit `cd0b7031ec1026adb9ea4f681630de4f3d806008`. They must not be generalized to a later revision without rerunning validation.
+PR #27 was then merged into `main` as `baea87694337e56c4b12618d75528f2b7abec266`.
+
+These validation results prove the exact validated feature head that landed through the merge. They must not be generalized to later unrelated revisions without rerunning the relevant validation.
 
 ## Next implementation direction
 
-After PR #27 is merged, the reasoning-layer roadmap reaches the boundary before persistent runtime integration.
+The reasoning-layer roadmap has now reached the boundary before persistent runtime integration.
 
 The next milestone is not another planner. It is runtime integration around the completed reasoning layer, including only the responsibilities that belong to the host runtime:
 
