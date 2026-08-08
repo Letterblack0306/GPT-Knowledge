@@ -15,10 +15,11 @@
   },
   "domains": {
     "project-engineering": {
-      "triggers": ["project implementation", "feature implementation", "feature development", "feature extension", "feature replacement", "feature integration", "feature migration", "project planning", "implementation planning", "project learning", "feature learning", "learn existing project", "learn existing feature", "acceptance criteria", "implementation plan", "LBE persistent agent", "LBE reasoning status", "LBE reasoning progress", "LBE_Presistent_Agent_wall", "Agents-Memory-Tool-v6-integration"],
+      "triggers": ["project implementation", "feature implementation", "feature development", "feature extension", "feature replacement", "feature integration", "feature migration", "project planning", "implementation planning", "project learning", "feature learning", "learn existing project", "learn existing feature", "acceptance criteria", "implementation plan", "LBE persistent agent", "LBE reasoning status", "LBE reasoning progress", "LBE_Presistent_Agent_wall", "Agents-Memory-Tool-v6-integration", "Access Browser Agent", "Accecc_Browser_Agent", "45_Accecc_Browser_Agent", "lm-studio-runtime-capability-truth"],
       "canonical": ["project-engineering/project-feature-implementation-plan.md"],
       "optional": {
         "lbe-persistent-agent-status": ["project-engineering/projects/lbe-persistent-agent-wall-status.md"],
+        "access-browser-agent-status": ["project-engineering/projects/access-browser-agent-status.md"],
         "agent-methods": ["ai-agents/unified-agent-engineering-methods.md"],
         "browser": ["browser-agents/browser-access-tooling-and-evidence.md"],
         "local-model": ["local-models/lm-studio-runtime-and-agent-integration.md"],
@@ -82,6 +83,7 @@
   "routingRules": [
     "For any project or feature implementation, extension, replacement, integration, migration, planning, or learning task, load project-engineering/project-feature-implementation-plan.md before domain-specific knowledge.",
     "For LBE Persistent Agent status, progress, workspace, or roadmap-boundary questions, additionally load project-engineering/projects/lbe-persistent-agent-wall-status.md, then revalidate the live repository before acting.",
+    "For Access Browser Agent status, progress, workspace, LM Studio, browser-control, or merge-readiness questions, additionally load project-engineering/projects/access-browser-agent-status.md, then query BirdEye/live workspace evidence before acting when available.",
     "The project/feature plan and project status records must be grounded in active workspace source and runtime evidence; they must not become substitutes for live inspection.",
     "Match the task to the fewest relevant domains.",
     "Load canonical files first; load optional files only when their subtopic is actually in scope.",
