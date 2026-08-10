@@ -170,6 +170,196 @@ A TUI can remain useful as an optional operator console for:
 
 The TUI should consume the same runtime/session contract rather than implement a second authority path.
 
+## CLI as the governed entry boundary
+
+The CLI is not just a convenience wrapper around unrestricted shell execution. It is the primary entry boundary through which an external coding agent, local model, script, or operator requests work from LBE.
+
+```text
+external agent / user / automation
+        |
+        v
+LBE CLI command or session request
+        |
+        v
+session + workspace identity resolution
+        |
+        v
+mode / permission / policy resolution
+        |
+        v
+registered runtime capability
+        |
+        v
+execution + evidence capture
+        |
+        v
+validation + lifecycle persistence
+```
+
+Important distinctions:
+
+```text
+installed != active
+initialized != governed
+a policy file exists != that policy was enforced
+an agent emitted a command != LBE authorized it
+a command exited 0 != the task is complete
+```
+
+A governed run should carry or resolve enough identity to prove which workspace, session, task, mode, policy, capability, and validation boundary applied.
+
+## External coding-agent integration behavior
+
+An external agent such as a coding CLI, IDE agent, browser-side planner, or local LLM can integrate with LBE without becoming a second authority.
+
+The external agent may:
+
+- interpret the user's request;
+- propose an operation or bounded task;
+- request inspection, editing, command, retrieval, or validation capabilities;
+- consume structured evidence and task state;
+- continue reasoning after deterministic results return.
+
+The external agent should not directly own:
+
+- workspace identity;
+- persistent session truth;
+- permission decisions;
+- guard activation truth;
+- validation truth;
+- completion truth;
+- durable policy changes.
+
+Preferred integration shape:
+
+```text
+agent intent
+  -> LBE request envelope
+  -> controller resolves authority
+  -> approved capability executes
+  -> structured result/evidence returned
+  -> task/session state persisted
+  -> agent reasons over returned state
+```
+
+This keeps the model flexible while preventing each coding agent from implementing its own incompatible approval, memory, workspace, and completion semantics.
+
+## Agent request and result envelopes
+
+Transport syntax is implementation-specific, but agent-to-LBE integration should use bounded structured envelopes rather than implicit terminal state.
+
+A request should be able to identify, directly or through the active session:
+
+```text
+session_id
+task_id
+workspace identity
+requested operation/capability
+mode
+scope/path
+relevant arguments
+source request identity
+```
+
+A result should preserve:
+
+```text
+operation identity
+status/outcome
+exit/result data
+runtime evidence references
+validation evidence references
+policy/guard decision when relevant
+session/task correlation
+```
+
+Raw model prose should not be promoted to verified state merely because it appears inside an agent response.
+
+## Persistent session behavior across agents and providers
+
+The persistent session belongs to LBE, not to a specific model process.
+
+A session may survive:
+
+- CLI process restart;
+- model/provider switch;
+- context compaction;
+- operator handoff;
+- external agent replacement;
+- temporary transport disconnect.
+
+After continuation, LBE should rehydrate bounded verified state and historical context while requiring fresh workspace evidence for claims that may have changed.
+
+```text
+checkpoint/history informs
+current workspace evidence proves
+```
+
+Changing from one coding agent or provider to another must not silently reset permissions, guards, completion requirements, or workspace identity.
+
+## Integration with direct terminal execution
+
+Some external agents may emit commands for a local terminal relay. Treat the relay as an execution transport, not as governance itself.
+
+A safe architecture is:
+
+```text
+agent proposes command
+        ↓
+LBE/session policy classifies command + scope
+        ↓
+authorized capability/command contract
+        ↓
+terminal transport executes
+        ↓
+structured stdout/stderr/exit evidence
+        ↓
+LBE persists result + validation state
+```
+
+Do not infer authority from the fact that the terminal transport technically can execute arbitrary shell commands. Capability is broader than authorization.
+
+Command chaining must also preserve failure semantics. A later successful command must not hide an earlier failed governed operation. Completion logic should evaluate the intended operation sequence and its evidence, not only the final process exit code.
+
+## Agent autonomy without approval fatigue
+
+Autonomy should come from pre-authorized bounded capability, not from bypassing governance.
+
+```text
+known workspace + known mode + allowed capability + allowed scope
+    -> execute without repeated approval
+
+authority expansion / destructive scope / policy widening
+    -> escalate according to policy
+```
+
+This allows a coding agent to inspect, edit, test, and validate repeatedly inside a granted task boundary without turning every internal step into a user confirmation.
+
+The policy engine should distinguish:
+
+- operation is already authorized;
+- operation needs deterministic guard/policy evaluation;
+- operation expands authority;
+- operation is forbidden;
+- operation needs explicit user approval.
+
+## Completion behavior for integrated agents
+
+An external coding agent should not be able to declare a task complete merely because it produced a patch or a command returned success.
+
+Completion should be derived from the active session contract and required evidence, for example:
+
+```text
+requested change exists
+required tests/builds pass
+required runtime proof exists
+no unresolved blocking guard/verdict remains
+workspace/task scope is consistent
+lifecycle outcome persisted
+```
+
+The agent may explain completion; LBE should own the completion predicate and evidence used to justify it.
+
 ## Session-oriented contract
 
 Prefer a persistent session abstraction over unrelated one-shot commands.
@@ -211,6 +401,10 @@ Load this reference when the task concerns:
 - whether a TUI should own agent behavior;
 - approval versus pre-authorized policy;
 - reusable CLI control planes for coding agents;
+- external coding-agent integration with LBE;
+- terminal relay versus governance boundaries;
+- persistent sessions across agent/provider changes;
+- structured request/result envelopes;
 - preventing model/provider changes from altering workspace governance.
 
 For implementation work, first inspect the current LBE Persistent Agent repository and current LBE Core interfaces. This document records the intended boundary; live source remains authoritative for current implementation state.
@@ -219,10 +413,13 @@ For implementation work, first inspect the current LBE Persistent Agent reposito
 
 ```text
 Provider reasons.
+External agent proposes and interacts.
 LBE runtime orchestrates.
+CLI/API transport requests capabilities.
 Guards detect.
 Workspace evidence supplies current facts.
 LBE governance authorizes.
 Validation proves.
+Persistent session state belongs to LBE.
 User-configured policy decides when another confirmation is required.
 ```
