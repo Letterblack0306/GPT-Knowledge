@@ -2,7 +2,7 @@
 
 ## Knowledge metadata
 
-- Last reviewed: 2026-08-07
+- Last reviewed: 2026-08-10
 - Purpose: route agent-development questions to the reference project that best exposes the relevant subsystem
 - Confidence: high at architectural level; individual upstream implementations evolve and must be rechecked before copying details
 
@@ -17,6 +17,12 @@ OpenHands  -> autonomous SWE runtime + event loop + workspace abstraction
 ```
 
 These are complementary references, not competing full-system templates.
+
+For completion-contract and validation-gate questions, also use the dedicated LBE evidence study before proposing implementation changes:
+
+- `ai-agents/studies/lbe-completion-contract-and-validation-evidence-study.md`
+
+That study combines current LBE source verification with primary live references such as GitHub required status checks and durable execution systems. It is specifically intended to prevent a CLI, provider, or model from becoming a second completion/evidence authority.
 
 ## Study matrix
 
@@ -36,6 +42,7 @@ These are complementary references, not competing full-system templates.
 | MCP/tools/integrations | LobeHub | Hermes/OpenHands | dynamic capability registry and independent health |
 | Autonomous SWE loop | OpenHands | Codex | event history, actions, observations, lifecycle state |
 | Local/remote workspace | OpenHands | Codex/Hermes | execution abstraction and environment identity |
+| Completion contract / validation gate | LBE completion evidence study | GitHub required checks / durable runtimes | requirement ownership, trusted producers, persisted proof, thin final gate |
 
 ## Combined reference architecture
 
@@ -113,6 +120,10 @@ CLI, web UI, desktop, Slack/Telegram-like messaging, APIs, and IDEs are ingress/
 
 The agent can stop because it is blocked, waiting, out of budget, or thinks it is done. Completion requires a separate evidence-aware predicate.
 
+### 8. Validation requirement is not validation producer
+
+The task's required proof must be resolved by the authoritative runtime/task policy before execution evidence is interpreted. A producer reports a bounded result; it does not get to widen the task contract. The final gate evaluates the contract against accepted producer-bound evidence.
+
 ## Recommended implementation contracts
 
 ### Repository contract
@@ -160,6 +171,21 @@ observationRef
 validationRefs
 ```
 
+### Completion contract
+
+```text
+sessionId
+taskId
+workspaceId
+requirements[]
+requirementId
+evidenceKind
+resolvedByPolicyRef
+createdAt
+```
+
+The completion contract should be durable and immutable for the task once established unless an explicit governed task/policy transition creates a new contract version.
+
 ### Knowledge/memory contract
 
 ```text
@@ -180,7 +206,8 @@ confidence
 3. **Hermes:** determine what survives turns/sessions and how procedures/tools are loaded without prompt bloat.
 4. **LobeHub:** determine how providers, models, knowledge, tools, and external integrations are registered and validated.
 5. **OpenHands:** determine how all runtime actions become event-driven software-engineering work over explicit workspaces.
-6. Synthesize only the patterns that solve a proven requirement in the target project.
+6. For completion/validation architecture, read `lbe-completion-contract-and-validation-evidence-study.md` and recheck its external primary references plus current target-repository source.
+7. Synthesize only the patterns that solve a proven requirement in the target project.
 
 ## Related studies
 
@@ -189,6 +216,7 @@ confidence
 - `ai-agents/studies/hermes-memory-skills-agent-loop.md`
 - `ai-agents/studies/lobehub-provider-integration-architecture.md`
 - `ai-agents/studies/openhands-autonomous-swe-runtime.md`
+- `ai-agents/studies/lbe-completion-contract-and-validation-evidence-study.md`
 - `ai-agents/reference-derived-agent-architecture.md`
 
 ## Rule
