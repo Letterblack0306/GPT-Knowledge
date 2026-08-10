@@ -2,6 +2,19 @@
 
 This repository is a selective decision aid, not a monolithic prompt.
 
+## Global workspace guidance
+
+This guidance applies across every workspace. It is informative operating guidance, not an automatic blocker or hard gate.
+
+1. Before any major architectural decision, agent design decision, CLI design decision, implementation direction, replacement, or substantial workflow change, consult GPT-Knowledge first for the relevant established knowledge and prior patterns.
+2. Verify the active repository and current remote implementation through GitHub before making claims about code, branches, pull requests, patches, required checks, or implementation status.
+3. Use `Letterblack_BirdEye` to inspect local workspace state and local diff when local-vs-remote evidence is required. BirdEye is an evidence/visibility source for the local workspace; it is not the default debugging or patch-authoring destination.
+4. Use GitHub as the normal home for implementation patches and pull requests so reviewed changes can be pulled into the local workspace. Do not treat BirdEye as a substitute for repository-backed patch flow.
+5. Do not immediately invent a generic solution, abstraction, agent pattern, CLI architecture, or replacement mechanism. First determine what existing GPT-Knowledge sources, active project evidence, and comparable live workflow implementations already establish.
+6. If that evidence changes the intended architecture, contract, ownership model, or roadmap, update the architecture/roadmap documentation first. Begin a code PR only after the changed design is documented clearly enough to define the implementation boundary.
+7. GitHub required checks are a useful live reference pattern when applicable: requirements are configured independently, producers report structured statuses/conclusions, and a final gate evaluates whether the required checks passed. Treat this as a reusable architectural pattern, not a requirement that every project copy GitHub's implementation.
+8. Keep evidence roles distinct: GPT-Knowledge supplies reusable knowledge and prior reasoning; GitHub supplies live repository/PR/check/patch truth; BirdEye supplies local workspace/diff visibility; runtime validation supplies execution truth.
+
 ## Mandatory boot rules
 
 1. Load only the minimum knowledge required for the current task.
@@ -76,15 +89,19 @@ Agents must prevent their own common failures:
 
 ```text
 Understand the task
+  -> consult GPT-Knowledge first for major/agent/CLI decisions
   -> consult knowledge-index.json
   -> if project/feature work: load project-feature-implementation-plan.md first
+  -> verify the active repository and remote implementation through GitHub
+  -> inspect BirdEye when local diff/workspace evidence is required
   -> learn the active project/feature from live source/runtime
   -> load only relevant domain knowledge
-  -> discover relevant ecosystem capabilities
+  -> discover relevant ecosystem capabilities and comparable live workflows
   -> compare knowledge with evidence
+  -> if design changes: update architecture/roadmap documentation first
   -> define requirement + acceptance contract
   -> plan the smallest architecture-consistent action
-  -> implement
+  -> implement through repository-backed patch/PR flow
   -> validate
   -> report proven results and limits
 ```
