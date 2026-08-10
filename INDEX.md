@@ -124,6 +124,30 @@ Load:
 
 Use the project/feature first-reference route before these when implementing or learning a project feature.
 
+## Telegram integration work
+
+Load:
+
+- `telegram/telegram-platform-integration.md`
+- `ai-agents/unified-agent-engineering-methods.md` when Telegram capability health, execution, recovery, permissions, or validation behavior is involved
+
+Start by distinguishing the required Telegram authority:
+
+```text
+bot-facing HTTP behavior
+  -> Bot API
+
+self-hosted bot endpoint / local-file and webhook capabilities
+  -> local telegram-bot-api server
+
+full Telegram client behavior / direct Telegram API
+  -> MTProto + current TL schema
+```
+
+Do not treat the Bot API, local Bot API server, and MTProto as interchangeable surfaces. Revalidate the current Telegram API layer and upstream deployment limits before implementation because these are time-sensitive.
+
+Use the project/feature first-reference route before this when implementing or learning a project feature.
+
 ## Letterblack product UI / branding
 
 Start with the project/feature first-reference route when this is implementation or feature-learning work, then load:
@@ -167,6 +191,7 @@ For implementation of motion tooling, automation, templates, extensions, or proj
 - Learn the active project/feature from live source/runtime evidence before fixing the plan boundary.
 - Prefer one canonical entry document per active domain.
 - For agent work, choose methods by failure class and evidence, not by source repository.
+- For Telegram work, distinguish Bot API, local Bot API server, and MTProto/TL-schema requirements before choosing implementation authority.
 - Load the Letterblack governance debugging reference only when authority, policy, guard, or proof boundaries are implicated.
 - Source-specific studies are optional provenance and implementation references.
 - Do not load the Adobe UI reference for every Letterblack UI task; use it only when source patterns or icons are relevant.
@@ -209,6 +234,12 @@ Agent architecture
   -> project-engineering/project-feature-implementation-plan.md when building/changing a project feature
   -> ai-agents/unified-agent-engineering-methods.md
   -> choose methods/contracts required by the actual system
+
+Telegram integration
+  -> project-engineering/project-feature-implementation-plan.md when changing a project feature
+  -> telegram/telegram-platform-integration.md
+  -> choose Bot API vs local Bot API server vs MTProto/TL schema from the actual requirement
+  -> verify endpoint/session/schema-layer/runtime evidence
 
 Letterblack UI design
   -> project-engineering/project-feature-implementation-plan.md when implementing a product feature
