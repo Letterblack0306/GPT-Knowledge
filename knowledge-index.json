@@ -42,12 +42,20 @@
         "lobehub-agent-skills": ["ai-agents/studies/lobehub-agent-skills-system.md"],
         "browser": ["browser-agents/browser-access-tooling-and-evidence.md"],
         "local-model": ["local-models/lm-studio-runtime-and-agent-integration.md"],
+        "telegram": ["telegram/telegram-platform-integration.md"],
         "letterblack-governance": ["ai-agents/letterblack-governance-debugging-references.md"]
       }
     },
     "local-models": {
       "triggers": ["lm studio", "local llm", "local model", "provider", "inference", "openai compatible", "model discovery", "context length", "jit ttl"],
       "canonical": ["local-models/lm-studio-runtime-and-agent-integration.md"],
+      "optional": {
+        "agent-methods": ["ai-agents/unified-agent-engineering-methods.md"]
+      }
+    },
+    "telegram": {
+      "triggers": ["telegram", "telegram bot", "bot api", "telegram bot api", "telegram-bot-api", "mtproto", "tl schema", "telegram schema", "telegram api layer", "telegram webhook", "telegram polling", "telegram local bot api", "telegram client"],
+      "canonical": ["telegram/telegram-platform-integration.md"],
       "optional": {
         "agent-methods": ["ai-agents/unified-agent-engineering-methods.md"]
       }
@@ -88,6 +96,7 @@
     "Load canonical files first; load optional files only when their subtopic is actually in scope.",
     "For agent work, load the unified problem-driven engineering guide first after the project/feature pre-route when applicable. Do not route by upstream repository name.",
     "Select debugging, execution, memory, provider, recovery, or validation methods from the proven failure class and evidence before consulting source-specific references.",
+    "For Telegram integration, distinguish Bot API, local telegram-bot-api server, and MTProto/TL-schema requirements before selecting the implementation path.",
     "Use ai-agents/studies/lobehub-agent-skills-system.md only when concrete implementation evidence is needed for tracing, durable work registration, deep review, skill freshness, heterogeneous agents, registry alignment, compatibility gates, or related LobeHub-derived patterns.",
     "When a Letterblack debugging task implicates execution authority, governance, workspace guards, current-HEAD proof, or policy boundaries, load ai-agents/letterblack-governance-debugging-references.md only after the failure class is identified.",
     "Use source-specific agent studies only as provenance or implementation examples after a method has been selected.",
