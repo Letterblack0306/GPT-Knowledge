@@ -35,7 +35,7 @@
       }
     },
     "ai-agents": {
-      "triggers": ["agent architecture", "agent runtime", "coding agent", "cli agent", "debugging", "bug hunting", "repository bug", "tool calling", "tool registry", "session", "approval", "orchestration", "memory", "agent loop", "agent tooling", "repository cognition", "repo map", "provider registry", "model registry", "autonomous software engineering", "validation", "completion", "recovery", "duplicate implementation", "parallel structure", "execution boundary", "governance", "guard", "workspace trust", "proof bound to head", "policy boundary", "blocked action", "agent tracing", "execution trace", "deep review", "skill audit", "skill freshness", "durable work", "work registry", "heterogeneous agent"],
+      "triggers": ["agent architecture", "agent runtime", "coding agent", "cli agent", "LBE CLI", "LBE provider", "provider switching", "coding mode", "audit mode", "pre-authorized edits", "auto apply rules", "TUI operator console", "debugging", "bug hunting", "repository bug", "tool calling", "tool registry", "session", "approval", "orchestration", "memory", "agent loop", "agent tooling", "repository cognition", "repo map", "provider registry", "model registry", "autonomous software engineering", "validation", "completion", "recovery", "duplicate implementation", "parallel structure", "execution boundary", "governance", "guard", "workspace trust", "proof bound to head", "policy boundary", "blocked action", "agent tracing", "execution trace", "deep review", "skill audit", "skill freshness", "durable work", "work registry", "heterogeneous agent"],
       "canonical": ["ai-agents/unified-agent-engineering-methods.md"],
       "optional": {
         "source-provenance": ["ai-agents/cli-agent-reference-study-map.md", "ai-agents/reference-derived-agent-architecture.md"],
@@ -43,14 +43,16 @@
         "browser": ["browser-agents/browser-access-tooling-and-evidence.md"],
         "local-model": ["local-models/lm-studio-runtime-and-agent-integration.md"],
         "telegram": ["telegram/telegram-platform-integration.md"],
-        "letterblack-governance": ["ai-agents/letterblack-governance-debugging-references.md"]
+        "letterblack-governance": ["ai-agents/letterblack-governance-debugging-references.md"],
+        "lbe-cli-provider-boundary": ["ai-agents/lbe-cli-control-plane-provider-boundary.md"]
       }
     },
     "local-models": {
       "triggers": ["lm studio", "local llm", "local model", "provider", "inference", "openai compatible", "model discovery", "context length", "jit ttl"],
       "canonical": ["local-models/lm-studio-runtime-and-agent-integration.md"],
       "optional": {
-        "agent-methods": ["ai-agents/unified-agent-engineering-methods.md"]
+        "agent-methods": ["ai-agents/unified-agent-engineering-methods.md"],
+        "lbe-cli-provider-boundary": ["ai-agents/lbe-cli-control-plane-provider-boundary.md"]
       }
     },
     "telegram": {
@@ -91,6 +93,7 @@
   "routingRules": [
     "For any project or feature implementation, extension, replacement, integration, migration, planning, or learning task, load project-engineering/project-feature-implementation-plan.md before domain-specific knowledge.",
     "For LBE Persistent Agent status, progress, workspace, or roadmap-boundary questions, additionally load project-engineering/projects/lbe-persistent-agent-wall-status.md, then revalidate the live repository before acting.",
+    "For LBE CLI control-plane, provider switching, coding/audit mode, pre-authorized edits/rules, or TUI-role questions, additionally load ai-agents/lbe-cli-control-plane-provider-boundary.md and verify the live LBE runtime/Core implementation before prescribing changes.",
     "The project/feature plan and project status records must be grounded in active workspace source and runtime evidence; they must not become substitutes for live inspection.",
     "Match the task to the fewest relevant domains.",
     "Load canonical files first; load optional files only when their subtopic is actually in scope.",
