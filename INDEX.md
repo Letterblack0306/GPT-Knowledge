@@ -37,6 +37,14 @@ For questions specifically about the current LBE Guard Inspector / reasoning-lay
 
 This is a dated project-status record, not runtime truth. Revalidate the live repository branch, `HEAD`, working tree, source, and tests before making or judging changes.
 
+### LBE CLI / provider / mode boundary
+
+When work concerns the LBE CLI control plane, provider switching, coding versus audit behavior, pre-authorized edits/rules, or the role of a future TUI, additionally load:
+
+- `ai-agents/lbe-cli-control-plane-provider-boundary.md`
+
+This records the accepted separation: LBE remains the stable workspace/governance runtime; the LLM is replaceable per session; modes are runtime contracts rather than model personalities; and user-configured policy determines whether another confirmation is required. Live repository source and active LBE policy remain authoritative for implementation details.
+
 ## Browser or CDP work
 
 Load:
@@ -108,6 +116,11 @@ Agent action is allowed/denied/incomplete unexpectedly
   -> Letterblack governance debugging reference
   -> LBE Core current controller/adapter/host path
 
+LBE CLI/provider/mode architecture
+  -> project/feature plan first when implementing
+  -> lbe-cli-control-plane-provider-boundary.md
+  -> inspect current LBE runtime and Core interfaces
+
 Agent reports done too early
   -> unified guide
   -> completion predicate + evidence ladder
@@ -121,6 +134,7 @@ Load:
 
 - `local-models/lm-studio-runtime-and-agent-integration.md`
 - `ai-agents/unified-agent-engineering-methods.md` when provider health, capability routing, tool execution, recovery, or validation behavior is involved
+- `ai-agents/lbe-cli-control-plane-provider-boundary.md` when the question is specifically how LBE should switch or host providers without changing workspace governance
 
 Use the project/feature first-reference route before these when implementing or learning a project feature.
 
@@ -188,6 +202,7 @@ For implementation of motion tooling, automation, templates, extensions, or proj
 - Prefer `knowledge-index.json` for deterministic routing.
 - For any project or feature implementation/planning/learning task, load `project-engineering/project-feature-implementation-plan.md` before domain-specific knowledge.
 - For LBE Persistent Agent status/progress/workspace questions, load `project-engineering/projects/lbe-persistent-agent-wall-status.md` after the project/feature first reference, then verify the live repo before acting.
+- For LBE CLI/provider/mode/approval-boundary questions, load `ai-agents/lbe-cli-control-plane-provider-boundary.md` and verify the live LBE runtime/Core implementation before prescribing changes.
 - Learn the active project/feature from live source/runtime evidence before fixing the plan boundary.
 - Prefer one canonical entry document per active domain.
 - For agent work, choose methods by failure class and evidence, not by source repository.
@@ -220,6 +235,12 @@ LBE Persistent Agent status / next step
   -> project-engineering/projects/lbe-persistent-agent-wall-status.md
   -> verify current branch, HEAD, status, source, and tests
   -> continue only from the verified roadmap boundary
+
+LBE CLI / provider / coding-audit boundary
+  -> project-engineering/project-feature-implementation-plan.md when implementing
+  -> ai-agents/lbe-cli-control-plane-provider-boundary.md
+  -> verify current LBE Persistent Agent + LBE Core interfaces
+  -> preserve stable workspace governance while provider remains replaceable
 
 Repository bug / debugging
   -> project-feature plan first when the bug fix changes a project/feature
