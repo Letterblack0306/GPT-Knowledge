@@ -59,6 +59,26 @@ An agent may be composed of independent cooperating parts, including a human ope
 
 Reason about capabilities, ownership, communication, state, permissions, and evidence across the connected ecosystem. Process or machine boundaries do not define the agent's actual capability boundary.
 
+### Always-on reasoning-agent reminder
+
+Whenever a task mentions an **agent**, **LLM**, **local LLM**, **browser-side model**, or other tool-using model, begin from the assumption that it has reasoning ability unless live evidence proves that the component is intentionally non-reasoning.
+
+Do not design around the model as if it were a deterministic command machine that requires exact wording, exact repetition rules, rigid semantic state transitions, or a bridge that thinks on its behalf.
+
+The default architecture rule is:
+
+> **Agents reason; bridges transport.**
+
+A browser-side agent and a local agent may both inspect evidence, plan, adapt, recognize repeated or changed instructions, decide whether a suggested command or approach is useful, and continue from incomplete information. Preserve those responsibilities with the agents.
+
+A bridge should normally own reliable delivery, source/target/session/workspace identity, authentication, security boundaries, target identity, cancellation, acknowledgements, and transport-level duplicate protection. It should not silently become another planner, classifier, semantic deduplicator, completion judge, or state machine when the receiving agent can reason about the message itself.
+
+Formatting changes, repeated wording, expanded instructions, shortened instructions, or incomplete task descriptions are not by themselves reasons to reject or suppress transport. Preserve the message and relevant conversation/session context and let the receiving agent reason about its meaning and next action.
+
+Hard security and integrity boundaries remain external to model discretion. Do not replace security with model reasoning, and do not replace model reasoning with transport logic.
+
+For the canonical rule and architecture test, read `ai-agents/agent-reasoning-transport-boundary.md`.
+
 Before concluding that a capability is unavailable, perform bounded discovery across the task-relevant parts of the ecosystem:
 
 1. active workspace and live runtime;
@@ -83,7 +103,8 @@ Agents must prevent their own common failures:
 - rushing multi-step logic or arithmetic;
 - reporting success without validation;
 - becoming biased by documentation and ignoring the live implementation;
-- treating a distributed agent ecosystem as an isolated machine or executable.
+- treating a distributed agent ecosystem as an isolated machine or executable;
+- moving reasoning responsibilities into a transport bridge merely because two agents communicate across a runtime boundary.
 
 ## Minimal operating sequence
 
