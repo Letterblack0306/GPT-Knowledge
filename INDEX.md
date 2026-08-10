@@ -45,6 +45,22 @@ When work concerns the LBE CLI control plane, provider switching, coding versus 
 
 This records the accepted separation: LBE remains the stable workspace/governance runtime; the LLM and external coding agent are replaceable participants; the CLI/API are governed entry surfaces; modes are runtime contracts rather than model personalities; terminal execution capability does not itself grant authority; persistent session/completion truth remains with LBE; and user-configured policy determines whether another confirmation is required. Live repository source and active LBE policy remain authoritative for implementation details.
 
+## Agent / LLM reasoning boundary — ALWAYS REMEMBER
+
+Whenever work mentions an **agent, LLM, local LLM, browser-side model, coding agent, relay, bridge, or agent-to-agent transport**, additionally load:
+
+- `ai-agents/agent-reasoning-transport-boundary.md`
+
+Default interpretation: the agent/LLM is a reasoning-capable participant. Do not model it as a mechanical state token that needs a relay/router to decide conversational meaning on its behalf.
+
+The durable rule is:
+
+> **Agents reason; bridges transport. Governance constrains authority, but must not become a second reasoning engine.**
+
+Transport may enforce authentication, workspace isolation, target identity, cancellation, delivery ordering, capability/security boundaries, and technical deduplication. It should not infer whether repeated or reformatted user instructions are semantically new, historical, corrective, redundant, complete, or waiting when the receiving reasoning agent can decide that from preserved conversation and evidence.
+
+Before adding another parser, task-state router, hash classifier, lifecycle label, approval state, or semantic state machine, first prove that the requirement is a hard integrity/security boundary rather than duplicated agent reasoning.
+
 ## Browser or CDP work
 
 Load:
@@ -62,6 +78,7 @@ Skip motion-design and branding domains unless the task explicitly involves them
 Load one canonical guide first after the project/feature pre-route when applicable:
 
 - `ai-agents/unified-agent-engineering-methods.md`
+- `ai-agents/agent-reasoning-transport-boundary.md` whenever an LLM/agent communicates through a relay, bridge, router, provider, browser, CLI, or another agent
 
 This guide consolidates repository cognition, debugging, execution, approvals, validation, memory, skills, provider/tool integration, autonomous runtime behavior, recovery, and completion methods.
 
@@ -116,9 +133,16 @@ Agent action is allowed/denied/incomplete unexpectedly
   -> Letterblack governance debugging reference
   -> LBE Core current controller/adapter/host path
 
+Agent/LLM relay or bridge over-classifies messages
+  -> agent-reasoning-transport-boundary.md
+  -> preserve conversation/session metadata
+  -> remove duplicated semantic interpretation from transport
+  -> keep hard security/integrity boundaries
+
 LBE CLI/provider/mode architecture or external coding-agent integration
   -> project/feature plan first when implementing
   -> lbe-cli-control-plane-provider-boundary.md
+  -> agent-reasoning-transport-boundary.md
   -> inspect current LBE runtime and Core interfaces
 
 Agent reports done too early
@@ -134,6 +158,7 @@ Load:
 
 - `local-models/lm-studio-runtime-and-agent-integration.md`
 - `ai-agents/unified-agent-engineering-methods.md` when provider health, capability routing, tool execution, recovery, or validation behavior is involved
+- `ai-agents/agent-reasoning-transport-boundary.md` when the local LLM participates as an agent rather than a passive inference endpoint
 - `ai-agents/lbe-cli-control-plane-provider-boundary.md` when the question is specifically how LBE should switch or host providers without changing workspace governance
 
 Use the project/feature first-reference route before these when implementing or learning a project feature.
@@ -203,6 +228,7 @@ For implementation of motion tooling, automation, templates, extensions, or proj
 - For any project or feature implementation/planning/learning task, load `project-engineering/project-feature-implementation-plan.md` before domain-specific knowledge.
 - For LBE Persistent Agent status/progress/workspace questions, load `project-engineering/projects/lbe-persistent-agent-wall-status.md` after the project/feature first reference, then verify the live repo before acting.
 - For LBE CLI/provider/mode/approval/external-agent-integration questions, load `ai-agents/lbe-cli-control-plane-provider-boundary.md` and verify the live LBE runtime/Core implementation before prescribing changes.
+- Whenever an agent, LLM, local LLM, relay, bridge, or agent-to-agent transport is in scope, remember `ai-agents/agent-reasoning-transport-boundary.md`: agents reason; bridges transport; governance constrains authority without duplicating cognition.
 - Learn the active project/feature from live source/runtime evidence before fixing the plan boundary.
 - Prefer one canonical entry document per active domain.
 - For agent work, choose methods by failure class and evidence, not by source repository.
@@ -239,8 +265,15 @@ LBE Persistent Agent status / next step
 LBE CLI / provider / coding-audit / external-agent boundary
   -> project-engineering/project-feature-implementation-plan.md when implementing
   -> ai-agents/lbe-cli-control-plane-provider-boundary.md
+  -> ai-agents/agent-reasoning-transport-boundary.md
   -> verify current LBE Persistent Agent + LBE Core interfaces
-  -> preserve stable workspace governance while provider and external agent remain replaceable
+  -> preserve stable workspace governance while provider and external agent remain replaceable reasoning participants
+
+Agent / LLM bridge or relay design
+  -> ai-agents/agent-reasoning-transport-boundary.md
+  -> keep semantic reasoning with the agents
+  -> keep transport integrity/security/governance hard boundaries outside the agents
+  -> avoid duplicate state machines/classifiers unless a proven non-reasoning requirement needs them
 
 Repository bug / debugging
   -> project-feature plan first when the bug fix changes a project/feature
@@ -254,6 +287,7 @@ Repository bug / debugging
 Agent architecture
   -> project-engineering/project-feature-implementation-plan.md when building/changing a project feature
   -> ai-agents/unified-agent-engineering-methods.md
+  -> ai-agents/agent-reasoning-transport-boundary.md when messages cross relays/bridges/providers/agents
   -> choose methods/contracts required by the actual system
 
 Telegram integration
