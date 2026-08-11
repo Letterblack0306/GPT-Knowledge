@@ -97,6 +97,23 @@ That reference routes selectively to:
 
 Do not preload either repository for ordinary debugging. First classify the failure and inspect the live project/runtime; consult the relevant governance repository only when that boundary is actually implicated.
 
+
+### Repeated audit-failure correction
+
+For agent/runtime audits, “end-to-end” claims, runtime-log reviews, cleanup/reset work, destructive repository operations, force-push decisions, or any review where focused tests may be mistaken for live behavior, additionally load:
+
+- `ai-agents/repeated-audit-failures-and-corrective-method.md`
+
+This record exists because the same evidence failures recurred after the correct general method was already known. Apply it before conclusions or mutations. Its core requirements are:
+
+- lock repository/workspace/revision/runtime identity;
+- correlate one real user → active route → agent → tool → result → response path;
+- label runtime-confirmed, static-confirmed, suspected, and disproved findings separately;
+- do not patch inactive compatibility paths and call the user path fixed;
+- do not treat Git tracking, user authorization, or successful focused tests as semantic authority;
+- stop on failed dry runs, unresolved destructive targets, or stale force-with-lease state;
+- preserve agent reasoning while keeping deterministic execution, security, workspace, validation, and evidence boundaries.
+
 ### Examples
 
 ```text
