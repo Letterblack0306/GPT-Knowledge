@@ -106,6 +106,20 @@ Agents must prevent their own common failures:
 - treating a distributed agent ecosystem as an isolated machine or executable;
 - moving reasoning responsibilities into a transport bridge merely because two agents communicate across a runtime boundary.
 
+
+## Repeated audit-failure correction
+
+For agent/runtime audits, end-to-end claims, cleanup/reset work, destructive repository operations, or reviews where focused tests may be mistaken for live behavior, additionally load `ai-agents/repeated-audit-failures-and-corrective-method.md`.
+
+Mandatory reminders:
+
+- “End-to-end” requires one correlated real user/runtime path; repository inspection alone is static evidence.
+- A file, route, test, or tracked document is not active authority without registration, consumers, and matching runtime evidence.
+- Audit scope does not authorize mutation unless the user also requests a fix or change.
+- A failed dry run, unresolved target identity, or rejected `--force-with-lease` is a stop condition.
+- User authorization does not replace semantic target classification, especially for broad commits, force-pushes, or deletion.
+- Preserving agent reasoning never removes deterministic transport, execution, policy, workspace, security, validation, or evidence boundaries.
+
 ## Minimal operating sequence
 
 ```text
