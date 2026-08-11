@@ -15,10 +15,11 @@
   },
   "domains": {
     "project-engineering": {
-      "triggers": ["project implementation", "feature implementation", "feature development", "feature extension", "feature replacement", "feature integration", "feature migration", "project planning", "implementation planning", "project learning", "feature learning", "learn existing project", "learn existing feature", "acceptance criteria", "implementation plan", "LBE persistent agent", "LBE reasoning status", "LBE reasoning progress", "LBE_Presistent_Agent_wall", "Agents-Memory-Tool-v6-integration"],
+      "triggers": ["project implementation", "feature implementation", "feature development", "feature extension", "feature replacement", "feature integration", "feature migration", "project planning", "implementation planning", "project learning", "feature learning", "learn existing project", "learn existing feature", "acceptance criteria", "implementation plan", "LBE persistent agent", "LBE reasoning status", "LBE reasoning progress", "LBE_Presistent_Agent_wall", "Agents-Memory-Tool-v6-integration", "C5", "R7", "C5/R7", "installed-path proof", "installed-path acceptance", "persistent-agent acceptance"],
       "canonical": ["project-engineering/project-feature-implementation-plan.md"],
       "optional": {
         "lbe-persistent-agent-status": ["project-engineering/projects/lbe-persistent-agent-wall-status.md"],
+        "lbe-c5-r7-acceptance": ["project-engineering/projects/lbe-persistent-agent-c5-r7-acceptance-routing.md"],
         "agent-methods": ["ai-agents/unified-agent-engineering-methods.md"],
         "browser": ["browser-agents/browser-access-tooling-and-evidence.md"],
         "local-model": ["local-models/lm-studio-runtime-and-agent-integration.md"],
@@ -97,6 +98,7 @@
   "routingRules": [
     "For any project or feature implementation, extension, replacement, integration, migration, planning, or learning task, load project-engineering/project-feature-implementation-plan.md before domain-specific knowledge.",
     "For LBE Persistent Agent status, progress, workspace, or roadmap-boundary questions, additionally load project-engineering/projects/lbe-persistent-agent-wall-status.md, then revalidate the live repository before acting.",
+    "For LBE C5/R7, installed-path acceptance, coding proof, provider-switch proof, resume proof, audit proof, escalation/denial proof, or overall persistent-agent readiness claims, additionally load project-engineering/projects/lbe-persistent-agent-c5-r7-acceptance-routing.md and then read the current project-owned docs/acceptance/C5_R7_ACCEPTANCE_RECORD.md before planning or claiming completion.",
     "For LBE CLI control-plane, provider switching, coding/audit mode, pre-authorized edits/rules, external coding-agent integration, terminal relay, persistent agent-session, or request/result-envelope questions, additionally load ai-agents/lbe-cli-control-plane-provider-boundary.md and verify the live LBE runtime/Core implementation before prescribing changes.",
     "Whenever an agent, LLM, local LLM, browser-side model, relay, bridge, router, or agent-to-agent transport is in scope, load ai-agents/agent-reasoning-transport-boundary.md early. Treat the agent/LLM as reasoning-capable by default; preserve semantic interpretation with the agent while transport owns delivery/integrity and governance owns hard authority constraints.",
     "For agent/runtime audits, end-to-end claims, cleanup/reset work, destructive repository operations, force-push decisions, or reviews where focused tests may be mistaken for live behavior, load ai-agents/repeated-audit-failures-and-corrective-method.md and apply its stop conditions before conclusions or mutations.",
