@@ -11,21 +11,26 @@ This guidance applies across every workspace. It is informative operating guidan
 3. Use `Letterblack_BirdEye` to inspect local workspace state and local diff when local-vs-remote evidence is required. BirdEye is an evidence/visibility source for the local workspace; it is not the default debugging or patch-authoring destination.
 4. Use GitHub as the normal home for implementation patches and pull requests so reviewed changes can be pulled into the local workspace. Do not treat BirdEye as a substitute for repository-backed patch flow.
 5. Do not immediately invent a generic solution, abstraction, agent pattern, CLI architecture, or replacement mechanism. First determine what existing GPT-Knowledge sources, active project evidence, and comparable live workflow implementations already establish.
-6. If that evidence changes the intended architecture, contract, ownership model, or roadmap, update the architecture/roadmap documentation first. Begin a code PR only after the changed design is documented clearly enough to define the implementation boundary.
-7. GitHub required checks are a useful live reference pattern when applicable: requirements are configured independently, producers report structured statuses/conclusions, and a final gate evaluates whether the required checks passed. Treat this as a reusable architectural pattern, not a requirement that every project copy GitHub's implementation.
-8. Keep evidence roles distinct: GPT-Knowledge supplies reusable knowledge and prior reasoning; GitHub supplies live repository/PR/check/patch truth; BirdEye supplies local workspace/diff visibility; runtime validation supplies execution truth.
+6. Do not issue a strong factual conclusion, architecture recommendation, implementation plan, or autonomy claim until the relevant evidence has been researched and the claim has been practically proven at the level it requires. Plans are revisable hypotheses, not implementation truth.
+7. If required evidence cannot be collected because a tool/runtime/dependency fails, mark the claim `UNKNOWN` or `BLOCKED`; never fill the gap with a plausible guess or with documentation that has not been tied to live behavior.
+8. If that evidence changes the intended architecture, contract, ownership model, or roadmap, update the architecture/roadmap documentation first. Begin a code PR only after the changed design is documented clearly enough to define the implementation boundary.
+9. GitHub required checks are a useful live reference pattern when applicable: requirements are configured independently, producers report structured statuses/conclusions, and a final gate evaluates whether the required checks passed. Treat this as a reusable architectural pattern, not a requirement that every project copy GitHub's implementation.
+10. Keep evidence roles distinct: GPT-Knowledge supplies reusable knowledge and prior reasoning; GitHub supplies live repository/PR/check/patch truth; BirdEye supplies local workspace/diff visibility; runtime validation supplies execution truth.
 
 ## Mandatory boot rules
 
 1. Load only the minimum knowledge required for the current task.
 2. Use `knowledge-index.json` as the deterministic routing manifest; use `INDEX.md` as its human-readable companion.
 3. For any project or feature implementation, extension, replacement, integration, migration, planning, or learning task, load `project-engineering/project-feature-implementation-plan.md` before domain-specific knowledge.
-4. Learn the active project/feature from live source and runtime evidence before accepting a planned implementation boundary.
-5. Do not load unrelated domains merely because they exist.
-6. Knowledge guides decisions; it never replaces live workspace inspection.
-7. Treat missing evidence as unverified, not successful.
-8. Separate source proof, test proof, runtime proof, and user-visible proof.
-9. Do not infer capability from names, UI, documentation, endpoints, classes, or passing tests alone.
+4. For agent/LLM/runtime/autonomy work, load `ai-agents/unified-agent-engineering-methods.md` as the canonical method guide. Its research-before-conclusion, proof-before-plan, evidence classification, adaptive assistant loop, and practical-autonomy requirements are authoritative reusable guidance.
+5. Learn the active project/feature from live source and runtime evidence before accepting a planned implementation boundary.
+6. Do not load unrelated domains merely because they exist.
+7. Knowledge guides decisions; it never replaces live workspace inspection.
+8. Treat missing evidence as unverified, not successful.
+9. Separate source proof, test proof, runtime proof, and user-visible proof.
+10. Do not infer capability from names, UI, documentation, endpoints, classes, or passing tests alone.
+11. Treat a failed tool invocation only as proof that the invocation failed. It does not reveal the result that the unavailable command/action would have produced.
+12. Before producing a consequential implementation plan, establish the actual owner, requirement, constraints, and acceptance proof from research and live evidence. Revise the plan when later observations contradict it.
 
 ## Trust hierarchy
 
@@ -38,6 +43,20 @@ User request
   > official external documentation
   > model prior knowledge
 ```
+
+## Evidence classes
+
+Use these explicitly when a conclusion could otherwise be overstated:
+
+```text
+PROVEN      = directly observed and validated at the level required by the claim
+SUPPORTED   = relevant evidence supports the claim but practical proof is incomplete
+HYPOTHESIS  = plausible explanation or design candidate awaiting a discriminating check
+UNKNOWN     = evidence is insufficient
+BLOCKED     = required evidence cannot currently be collected because a real dependency/tool/boundary failed
+```
+
+The assistant's narrative does not outrank its tool/runtime receipts. When a runtime trace is available, inspect what tools were actually called and what they actually returned before accepting the agent's final conclusion.
 
 ## Capability truth
 
@@ -55,7 +74,7 @@ A button, endpoint, class, document, or passing test is not enough by itself.
 
 Treat the agent as an ecosystem, not as a single machine, executable, process, application, or computer.
 
-An agent may be composed of independent cooperating parts, including a human operator, planners or reasoners, model providers, local and remote runtimes, tools, browser automation, MCP servers, workspace services, Git repositories, knowledge stores, memory systems, evidence services, and external APIs.
+An agent may be composed of independent cooperating parts, including a human operator, reasoning models, local and remote runtimes, tools, browser automation, MCP servers, workspace services, Git repositories, knowledge stores, memory systems, evidence services, and external APIs.
 
 Reason about capabilities, ownership, communication, state, permissions, and evidence across the connected ecosystem. Process or machine boundaries do not define the agent's actual capability boundary.
 
@@ -79,6 +98,14 @@ Hard security and integrity boundaries remain external to model discretion. Do n
 
 For the canonical rule and architecture test, read `ai-agents/agent-reasoning-transport-boundary.md`.
 
+### Practical autonomy reminder
+
+Do not call an agent autonomous because it has a planner, a state machine, multiple workers, or the ability to execute commands.
+
+Practical autonomy must be demonstrated with runtime evidence that the reasoning agent can preserve the objective, research uncertain facts, choose useful tools, observe real results, distinguish tool failure from task failure, adapt when evidence changes, stay inside hard boundaries, validate consequential outcomes, avoid duplicate side effects on retry, and report a real blocker rather than inventing missing proof.
+
+Lifecycle labels may support telemetry, persistence, cancellation, recovery, and UI truth. They must not become a replacement semantic reasoning authority. The canonical autonomy method is in `ai-agents/unified-agent-engineering-methods.md`.
+
 Before concluding that a capability is unavailable, perform bounded discovery across the task-relevant parts of the ecosystem:
 
 1. active workspace and live runtime;
@@ -100,8 +127,10 @@ Agents must prevent their own common failures:
 - hallucinating facts, files, APIs, studies, citations, branches, or capabilities;
 - drifting from the stated scope;
 - treating assumptions as evidence;
-- rushing multi-step logic or arithmetic;
+- creating implementation plans before researching the active system;
+- turning documentation or model prior into runtime truth;
 - reporting success without validation;
+- presenting `SUPPORTED`, `HYPOTHESIS`, `UNKNOWN`, or `BLOCKED` claims as `PROVEN`;
 - becoming biased by documentation and ignoring the live implementation;
 - treating a distributed agent ecosystem as an isolated machine or executable;
 - moving reasoning responsibilities into a transport bridge merely because two agents communicate across a runtime boundary.
@@ -127,18 +156,21 @@ Understand the task
   -> consult GPT-Knowledge first for major/agent/CLI decisions
   -> consult knowledge-index.json
   -> if project/feature work: load project-feature-implementation-plan.md first
+  -> if agent/autonomy work: load unified-agent-engineering-methods.md
   -> verify the active repository and remote implementation through GitHub
   -> inspect BirdEye when local diff/workspace evidence is required
   -> learn the active project/feature from live source/runtime
-  -> load only relevant domain knowledge
+  -> research only the relevant domain and primary sources
+  -> classify observed facts, hypotheses, unknowns, and blockers
   -> discover relevant ecosystem capabilities and comparable live workflows
   -> compare knowledge with evidence
+  -> define requirement + acceptance proof
   -> if design changes: update architecture/roadmap documentation first
-  -> define requirement + acceptance contract
-  -> plan the smallest architecture-consistent action
+  -> create a revisable plan from the established evidence
   -> implement through repository-backed patch/PR flow
-  -> validate
-  -> report proven results and limits
+  -> observe real results and revise as needed
+  -> validate at the level required by the claim
+  -> report proven results, evidence level, and remaining limits
 ```
 
 Use `INDEX.md` only when a human-readable route explanation is useful; do not load it automatically when `knowledge-index.json` already resolves the task.
