@@ -37,9 +37,10 @@
       }
     },
     "ai-agents": {
-      "triggers": ["agent", "LLM", "reasoning agent", "local agent", "local LLM", "browser-side model", "agent architecture", "agent runtime", "coding agent", "cli agent", "external coding agent", "agent integration", "relay", "bridge", "transport bridge", "terminal relay", "task router", "state machine", "semantic deduplication", "request envelope", "result envelope", "persistent agent session", "LBE CLI", "LBE provider", "provider switching", "coding mode", "audit mode", "pre-authorized edits", "auto apply rules", "TUI operator console", "debugging", "bug hunting", "repository bug", "tool calling", "tool registry", "session", "approval", "orchestration", "memory", "agent loop", "agent tooling", "repository cognition", "repo map", "provider registry", "model registry", "autonomous software engineering", "validation", "completion", "recovery", "duplicate implementation", "parallel structure", "execution boundary", "governance", "guard", "workspace trust", "proof bound to head", "policy boundary", "blocked action", "agent tracing", "execution trace", "deep review", "skill audit", "skill freshness", "durable work", "work registry", "heterogeneous agent", "end-to-end audit", "runtime log audit", "cleanup reset", "force push", "destructive repository operation", "completion claim"],
+      "triggers": ["agent", "LLM", "reasoning agent", "local agent", "local LLM", "browser-side model", "agent architecture", "agent runtime", "professional agent runtime", "professional CLI", "coding agent", "cli agent", "external coding agent", "agent integration", "relay", "bridge", "transport bridge", "terminal relay", "task router", "state machine", "semantic deduplication", "request envelope", "result envelope", "persistent agent session", "session turn item", "provider event normalization", "provider-native streaming", "provider capability negotiation", "active user steering", "turn steer", "agent-control protocol", "cooperative attachment", "strict attachment", "PTY", "ConPTY", "background process", "live tool output", "worktree isolation", "LBE CLI", "LBE provider", "provider switching", "coding mode", "audit mode", "pre-authorized edits", "auto apply rules", "TUI operator console", "debugging", "bug hunting", "repository bug", "tool calling", "tool registry", "session", "approval", "orchestration", "memory", "agent loop", "agent tooling", "repository cognition", "repo map", "provider registry", "model registry", "autonomous software engineering", "validation", "completion", "recovery", "duplicate implementation", "parallel structure", "execution boundary", "governance", "guard", "workspace trust", "proof bound to head", "policy boundary", "blocked action", "agent tracing", "execution trace", "deep review", "skill audit", "skill freshness", "durable work", "work registry", "heterogeneous agent", "end-to-end audit", "runtime log audit", "cleanup reset", "force push", "destructive repository operation", "completion claim"],
       "canonical": ["ai-agents/unified-agent-engineering-methods.md"],
       "optional": {
+        "professional-agent-runtime": ["ai-agents/professional-agent-runtime-cli-and-provider-architecture.md"],
         "reasoning-transport-boundary": ["ai-agents/agent-reasoning-transport-boundary.md"],
         "source-provenance": ["ai-agents/cli-agent-reference-study-map.md", "ai-agents/reference-derived-agent-architecture.md"],
         "lobehub-agent-skills": ["ai-agents/studies/lobehub-agent-skills-system.md"],
@@ -56,6 +57,7 @@
       "canonical": ["local-models/lm-studio-runtime-and-agent-integration.md"],
       "optional": {
         "agent-methods": ["ai-agents/unified-agent-engineering-methods.md"],
+        "professional-agent-runtime": ["ai-agents/professional-agent-runtime-cli-and-provider-architecture.md"],
         "reasoning-transport-boundary": ["ai-agents/agent-reasoning-transport-boundary.md"],
         "lbe-cli-provider-boundary": ["ai-agents/lbe-cli-control-plane-provider-boundary.md"]
       }
@@ -71,6 +73,7 @@
       "triggers": ["ui", "ux", "workbench", "shell", "accessibility", "renderer", "navigation", "panel", "electron ui"],
       "canonical": ["ui-engineering/runtime-accessibility-and-shell-integration.md"],
       "optional": {
+        "professional-agent-runtime": ["ai-agents/professional-agent-runtime-cli-and-provider-architecture.md"],
         "letterblack-branding": ["letterblack-branding/industrial-dark-ui-system.md"]
       }
     },
@@ -99,6 +102,7 @@
     "For any project or feature implementation, extension, replacement, integration, migration, planning, or learning task, load project-engineering/project-feature-implementation-plan.md before domain-specific knowledge.",
     "For LBE Persistent Agent status, progress, workspace, or roadmap-boundary questions, additionally load project-engineering/projects/lbe-persistent-agent-wall-status.md, then revalidate the live repository before acting.",
     "For LBE C5/R7, installed-path acceptance, coding proof, provider-switch proof, resume proof, audit proof, escalation/denial proof, or overall persistent-agent readiness claims, additionally load project-engineering/projects/lbe-persistent-agent-c5-r7-acceptance-routing.md and then read the current project-owned docs/acceptance/C5_R7_ACCEPTANCE_RECORD.md before planning or claiming completion.",
+    "For professional agent runtime, interactive coding-agent CLI/TUI, provider-native streaming/tool calls, provider/model capability negotiation, Session/Turn/Item persistence, live terminal/process output, active user steering, worktree isolation, MCP versus agent-control protocol, or external-agent cooperative/strict attachment work, additionally load ai-agents/professional-agent-runtime-cli-and-provider-architecture.md before designing implementation.",
     "For LBE CLI control-plane, provider switching, coding/audit mode, pre-authorized edits/rules, external coding-agent integration, terminal relay, persistent agent-session, or request/result-envelope questions, additionally load ai-agents/lbe-cli-control-plane-provider-boundary.md and verify the live LBE runtime/Core implementation before prescribing changes.",
     "Whenever an agent, LLM, local LLM, browser-side model, relay, bridge, router, or agent-to-agent transport is in scope, load ai-agents/agent-reasoning-transport-boundary.md early. Treat the agent/LLM as reasoning-capable by default; preserve semantic interpretation with the agent while transport owns delivery/integrity and governance owns hard authority constraints.",
     "For agent/runtime audits, end-to-end claims, cleanup/reset work, destructive repository operations, force-push decisions, or reviews where focused tests may be mistaken for live behavior, load ai-agents/repeated-audit-failures-and-corrective-method.md and apply its stop conditions before conclusions or mutations.",
