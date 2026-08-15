@@ -29,9 +29,15 @@ BirdEye maintains configured local roots through `config.json`. A representative
 
 - `developments` -> `G:\Developments` (`workspace`)
 - `agents-memory-tool-v6` -> `C:\Agents-Memory-Tool-v6-integration` (`workspace`)
-- `gpt-knowledge` -> `C:\MCP Local\GPT-Knowledge` (`knowledge`)
+- `gpt-knowledge` -> `C:\MCP Local\GPT-Knowledge` (configured as `knowledge`)
 
 Always verify the current local `config.json`; do not assume these paths are unchanged merely because they are documented here.
+
+### Known root-class implementation discrepancy
+
+Current source must be checked before trusting configured `root_class` labels. In the observed BirdEye implementation, `Context.load()` reads each configured root but constructs it with `root_class="workspace"` rather than preserving the configured value. A live `agent.py roots` trace therefore reported `gpt-knowledge` as `workspace` even though `config.json` declares it as `knowledge`.
+
+Treat this as a current implementation discrepancy, not intended architecture. Until fixed and runtime-proven, do not claim that configured trust classes are preserved merely because `config.json` contains them.
 
 ## Capability surface
 
@@ -60,14 +66,15 @@ BirdEye command execution is intentionally governed.
 
 Commands are passed as argv arrays, not free-form shell strings. The workspace is resolved from configured roots, execution occurs with `shell=False`, and policy decides whether the command is allowed.
 
-Current governance is designed to permit bounded diagnostics and validation such as:
+Current governance permits bounded diagnostics and validation such as:
 
 - Git status/diff/log/show/branch/rev-parse/ls-files/grep/fetch;
 - Node version;
 - npm test/lint/check/build;
 - Python version;
-- pytest/unittest;
-- selected explicitly governed mutation commands where policy permits them.
+- pytest/unittest.
+
+The governance file also declares mutation-command categories, but the observed policy has `allowed_write_paths: []`, `max_changed_files: 0`, and `max_patch_bytes: 0`. Therefore do not infer writable/mutating BirdEye authority from the presence of a `mutation_commands` list alone; validate the effective policy and actual execution result first.
 
 Current policy explicitly blocks shell wrappers and broad destructive operations such as PowerShell/pwsh/cmd/bash/sh/wsl wrappers, destructive reset/clean/restore patterns, force push, and similar unsafe commands.
 
