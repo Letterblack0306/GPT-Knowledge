@@ -15,7 +15,7 @@
   },
   "domains": {
     "project-engineering": {
-      "triggers": ["project implementation", "feature implementation", "feature development", "feature extension", "feature replacement", "feature integration", "feature migration", "project planning", "implementation planning", "project learning", "feature learning", "learn existing project", "learn existing feature", "acceptance criteria", "implementation plan", "LBE persistent agent", "LBE reasoning status", "LBE reasoning progress", "LBE_Presistent_Agent_wall", "Agents-Memory-Tool-v6-integration", "C5", "R7", "C5/R7", "installed-path proof", "installed-path acceptance", "persistent-agent acceptance", "governed repository", "change documentation gate", "change declaration", "agent intent", ".ai/intent.json", "module registry", "module health", "maintenance warning", "maintenance caution", "break glass", "protected surface"],
+      "triggers": ["project implementation", "feature implementation", "feature development", "feature extension", "feature replacement", "feature integration", "feature migration", "project planning", "implementation planning", "project learning", "feature learning", "learn existing project", "learn existing feature", "acceptance criteria", "implementation plan", "LBE persistent agent", "LBE reasoning status", "LBE reasoning progress", "LBE_Presistent_Agent_wall", "Agents-Memory-Tool-v6-integration", "C5", "R7", "C5/R7", "installed-path proof", "installed-path acceptance", "persistent-agent acceptance", "governed repository", "change documentation gate", "change declaration", "agent intent", ".ai/intent.json", "module registry", "module health", "maintenance warning", "maintenance caution", "break glass", "protected surface", "Letterblack BirdEye", "BirdEye", "birdeye_search", "birdeye_inspect", "birdeye_roots", "birdeye_status", "workspace_identity", "revision_status", "workspace_run", "workspace_run_sequence", "workspace_command_history", "local workspace evidence", "local diff evidence", "governed local execution"],
       "canonical": ["project-engineering/project-feature-implementation-plan.md"],
       "optional": {
         "governed-repository-maintenance": ["project-engineering/governed-repository-change-documentation-and-module-health.md"],
@@ -28,7 +28,8 @@
         "cline-runtime-reuse": ["ai-agents/cline-runtime-reuse-for-governed-agent-infrastructure.md"],
         "ui-runtime": ["ui-engineering/runtime-accessibility-and-shell-integration.md"],
         "letterblack-branding": ["letterblack-branding/industrial-dark-ui-system.md"],
-        "machine-capability-discovery": ["ai-agents/machine-capability-discovery-and-governed-execution.md"]
+        "machine-capability-discovery": ["ai-agents/machine-capability-discovery-and-governed-execution.md"],
+        "letterblack-birdeye": ["project-engineering/letterblack-birdeye-local-evidence-and-governed-execution.md"]
       }
     },
     "browser-agents": {
@@ -109,6 +110,7 @@
     }
   },
   "routingRules": [
+    "When Letterblack_BirdEye, local workspace evidence, local-vs-remote drift, workspace identity, revision status, indexed local search/inspection, or governed local command execution is relevant, load project-engineering/letterblack-birdeye-local-evidence-and-governed-execution.md. Use BirdEye for local evidence and policy-governed argv execution; use GitHub for canonical remote repository/PR/patch truth; use runtime-specific tools for behavior requiring live user-visible proof.",
     "For any project or feature implementation, extension, replacement, integration, migration, planning, or learning task, load project-engineering/project-feature-implementation-plan.md before domain-specific knowledge.",
     "When a repository contains or mentions a change-documentation gate, agent intent declaration, .ai/intent.json, module registry, module-health check, maintenance warning/caution, protected-surface documentation, or break-glass rule, additionally load project-engineering/governed-repository-change-documentation-and-module-health.md before editing. First understand why the repository uses the mechanism, which parts are blocking versus warning-only, and the repository-specific contract. Do not bypass, weaken, or mechanically copy the Adobe_AI_Generations-04 gate stack.",
     "For LBE Persistent Agent status, progress, workspace, or roadmap-boundary questions, additionally load project-engineering/projects/lbe-persistent-agent-wall-status.md, then revalidate the live repository before acting.",
