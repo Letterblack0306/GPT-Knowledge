@@ -61,15 +61,6 @@ Transport may enforce authentication, workspace isolation, target identity, canc
 
 Before adding another parser, task-state router, hash classifier, lifecycle label, approval state, or semantic state machine, first prove that the requirement is a hard integrity/security boundary rather than duplicated agent reasoning.
 
-
-Letterblack BirdEye local evidence / governed execution
-
-When local workspace state, local-vs-remote drift, workspace/revision identity, indexed file inspection, or governed local execution matters, load:
-
-project-engineering/letterblack-birdeye-local-evidence-and-governed-execution.md
-
-Use the authority split deliberately: GPT-Knowledge supplies reusable method and routing guidance; GitHub supplies canonical remote repository/branch/PR/patch truth; BirdEye supplies local indexed evidence, workspace/revision identity, and policy-governed argv execution. BirdEye does not replace GitHub patch flow, and a BirdEye policy denial proves only that the operation is not authorized through BirdEye's current boundary.
-## Letterblack BirdEye local evidence / governed executionrnrnWhen local workspace state, local-vs-remote drift, workspace/revision identity, indexed file inspection, or governed local execution matters, load:rnrn- `project-engineering/letterblack-birdeye-local-evidence-and-governed-execution.md`nrnUse the authority split deliberately: GPT-Knowledge supplies reusable method and routing guidance; GitHub supplies canonical remote repository/branch/PR/patch truth; BirdEye supplies local indexed evidence, workspace/revision identity, and policy-governed argv execution. BirdEye does not replace GitHub patch flow, and a BirdEye policy denial proves only that the operation is not authorized through BirdEye's current boundary.rnr
 ## Browser or CDP work
 
 Load:
@@ -339,5 +330,3 @@ Motion graphics deliverable
   -> motion-design/house-style
   -> only the required optional motion document
 ```
-
-
