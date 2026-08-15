@@ -2,12 +2,28 @@
   "schemaVersion": 2,
   "purpose": "Deterministic routing metadata for selective GPT-Knowledge loading. This file points to canonical knowledge; it does not duplicate it.",
   "boot": {
-    "always": ["000_START_HERE.md"],
+    "always": [
+      "000_START_HERE.md"
+    ],
     "router": "knowledge-index.json",
     "humanRouter": "INDEX.md",
     "projectFeatureFirst": {
       "canonical": "project-engineering/project-feature-implementation-plan.md",
-      "when": ["project implementation", "feature implementation", "feature development", "feature extension", "feature replacement", "feature integration", "feature migration", "project planning", "implementation planning", "project learning", "feature learning", "learn existing project", "learn existing feature"],
+      "when": [
+        "project implementation",
+        "feature implementation",
+        "feature development",
+        "feature extension",
+        "feature replacement",
+        "feature integration",
+        "feature migration",
+        "project planning",
+        "implementation planning",
+        "project learning",
+        "feature learning",
+        "learn existing project",
+        "learn existing feature"
+      ],
       "rule": "For project or feature work, load this guide before domain-specific knowledge, learn the active project/feature from live source and runtime evidence, then route to the smallest relevant domain set."
     },
     "maxDomainsByDefault": 3,
@@ -15,100 +31,440 @@
   },
   "domains": {
     "project-engineering": {
-      "triggers": ["project implementation", "feature implementation", "feature development", "feature extension", "feature replacement", "feature integration", "feature migration", "project planning", "implementation planning", "project learning", "feature learning", "learn existing project", "learn existing feature", "acceptance criteria", "implementation plan", "LBE persistent agent", "LBE reasoning status", "LBE reasoning progress", "LBE_Presistent_Agent_wall", "Agents-Memory-Tool-v6-integration", "C5", "R7", "C5/R7", "installed-path proof", "installed-path acceptance", "persistent-agent acceptance", "governed repository", "change documentation gate", "change declaration", "agent intent", ".ai/intent.json", "module registry", "module health", "maintenance warning", "maintenance caution", "break glass", "protected surface"],
-      "canonical": ["project-engineering/project-feature-implementation-plan.md"],
+      "triggers": [
+        "project implementation",
+        "feature implementation",
+        "feature development",
+        "feature extension",
+        "feature replacement",
+        "feature integration",
+        "feature migration",
+        "project planning",
+        "implementation planning",
+        "project learning",
+        "feature learning",
+        "learn existing project",
+        "learn existing feature",
+        "acceptance criteria",
+        "implementation plan",
+        "LBE persistent agent",
+        "LBE reasoning status",
+        "LBE reasoning progress",
+        "LBE_Presistent_Agent_wall",
+        "Agents-Memory-Tool-v6-integration",
+        "C5",
+        "R7",
+        "C5/R7",
+        "installed-path proof",
+        "installed-path acceptance",
+        "persistent-agent acceptance",
+        "governed repository",
+        "change documentation gate",
+        "change declaration",
+        "agent intent",
+        ".ai/intent.json",
+        "module registry",
+        "module health",
+        "maintenance warning",
+        "maintenance caution",
+        "break glass",
+        "protected surface",
+        "Letterblack BirdEye",
+        "BirdEye",
+        "birdeye_search",
+        "birdeye_inspect",
+        "birdeye_roots",
+        "birdeye_status",
+        "workspace_identity",
+        "revision_status",
+        "workspace_run",
+        "workspace_run_sequence",
+        "workspace_command_history",
+        "local workspace evidence",
+        "local diff evidence",
+        "governed local execution"
+      ],
+      "canonical": [
+        "project-engineering/project-feature-implementation-plan.md"
+      ],
       "optional": {
-        "governed-repository-maintenance": ["project-engineering/governed-repository-change-documentation-and-module-health.md"],
-        "lbe-persistent-agent-status": ["project-engineering/projects/lbe-persistent-agent-wall-status.md"],
-        "lbe-c5-r7-acceptance": ["project-engineering/projects/lbe-persistent-agent-c5-r7-acceptance-routing.md"],
-        "agent-methods": ["ai-agents/unified-agent-engineering-methods.md"],
-        "browser": ["browser-agents/browser-access-tooling-and-evidence.md"],
-        "local-model": ["local-models/lm-studio-runtime-and-agent-integration.md"],
-        "provider-neutral": ["ai-agents/provider-neutral-agent-auth-and-model-routing.md"],
-        "cline-runtime-reuse": ["ai-agents/cline-runtime-reuse-for-governed-agent-infrastructure.md"],
-        "ui-runtime": ["ui-engineering/runtime-accessibility-and-shell-integration.md"],
-        "letterblack-branding": ["letterblack-branding/industrial-dark-ui-system.md"],
-        "machine-capability-discovery": ["ai-agents/machine-capability-discovery-and-governed-execution.md"]
+        "governed-repository-maintenance": [
+          "project-engineering/governed-repository-change-documentation-and-module-health.md"
+        ],
+        "lbe-persistent-agent-status": [
+          "project-engineering/projects/lbe-persistent-agent-wall-status.md"
+        ],
+        "lbe-c5-r7-acceptance": [
+          "project-engineering/projects/lbe-persistent-agent-c5-r7-acceptance-routing.md"
+        ],
+        "agent-methods": [
+          "ai-agents/unified-agent-engineering-methods.md"
+        ],
+        "browser": [
+          "browser-agents/browser-access-tooling-and-evidence.md"
+        ],
+        "local-model": [
+          "local-models/lm-studio-runtime-and-agent-integration.md"
+        ],
+        "provider-neutral": [
+          "ai-agents/provider-neutral-agent-auth-and-model-routing.md"
+        ],
+        "cline-runtime-reuse": [
+          "ai-agents/cline-runtime-reuse-for-governed-agent-infrastructure.md"
+        ],
+        "ui-runtime": [
+          "ui-engineering/runtime-accessibility-and-shell-integration.md"
+        ],
+        "letterblack-branding": [
+          "letterblack-branding/industrial-dark-ui-system.md"
+        ],
+        "machine-capability-discovery": [
+          "ai-agents/machine-capability-discovery-and-governed-execution.md"
+        ],
+        "letterblack-birdeye": [
+          "project-engineering/letterblack-birdeye-local-evidence-and-governed-execution.md"
+        ]
       }
     },
     "browser-agents": {
-      "triggers": ["browser", "browser agent", "cdp", "chrome", "chromium", "tab", "page target", "browser automation", "browser evidence", "screenshot", "browser tool"],
-      "canonical": ["browser-agents/browser-access-tooling-and-evidence.md"],
+      "triggers": [
+        "browser",
+        "browser agent",
+        "cdp",
+        "chrome",
+        "chromium",
+        "tab",
+        "page target",
+        "browser automation",
+        "browser evidence",
+        "screenshot",
+        "browser tool"
+      ],
+      "canonical": [
+        "browser-agents/browser-access-tooling-and-evidence.md"
+      ],
       "optional": {
-        "ui-runtime-wiring": ["ui-engineering/runtime-accessibility-and-shell-integration.md"],
-        "lm-studio-provider": ["local-models/lm-studio-runtime-and-agent-integration.md"],
-        "provider-neutral": ["ai-agents/provider-neutral-agent-auth-and-model-routing.md"],
-        "reasoning-transport-boundary": ["ai-agents/agent-reasoning-transport-boundary.md"]
+        "ui-runtime-wiring": [
+          "ui-engineering/runtime-accessibility-and-shell-integration.md"
+        ],
+        "lm-studio-provider": [
+          "local-models/lm-studio-runtime-and-agent-integration.md"
+        ],
+        "provider-neutral": [
+          "ai-agents/provider-neutral-agent-auth-and-model-routing.md"
+        ],
+        "reasoning-transport-boundary": [
+          "ai-agents/agent-reasoning-transport-boundary.md"
+        ]
       }
     },
     "ai-agents": {
-      "triggers": ["agent", "LLM", "reasoning agent", "local agent", "local LLM", "browser-side model", "agent architecture", "agent runtime", "professional agent runtime", "professional CLI", "coding agent", "cli agent", "external coding agent", "agent integration", "relay", "bridge", "transport bridge", "terminal relay", "task router", "state machine", "semantic deduplication", "request envelope", "result envelope", "persistent agent session", "session turn item", "provider event normalization", "provider-native streaming", "provider capability negotiation", "provider-neutral", "provider authentication", "OAuth provider", "Cline SDK", "Cline provider", "Cline login", "free model", "model routing", "model discovery", "active user steering", "turn steer", "agent-control protocol", "cooperative attachment", "strict attachment", "PTY", "ConPTY", "background process", "live tool output", "worktree isolation", "LBE CLI", "LBE provider", "provider switching", "coding mode", "audit mode", "pre-authorized edits", "auto apply rules", "TUI operator console", "debugging", "bug hunting", "repository bug", "tool calling", "tool registry", "session", "approval", "orchestration", "memory", "agent loop", "agent tooling", "repository cognition", "repo map", "provider registry", "model registry", "autonomous software engineering", "validation", "completion", "recovery", "duplicate implementation", "parallel structure", "execution boundary", "governance", "guard", "workspace trust", "proof bound to head", "policy boundary", "blocked action", "agent tracing", "execution trace", "deep review", "skill audit", "skill freshness", "durable work", "work registry", "heterogeneous agent", "end-to-end audit", "runtime log audit", "cleanup reset", "force push", "destructive repository operation", "completion claim", "machine capability", "environment discovery", "PATH", "PATHEXT", "executable discovery", "shell identity", "dynamic executable", "host environment"],
-      "canonical": ["ai-agents/unified-agent-engineering-methods.md"],
+      "triggers": [
+        "agent",
+        "LLM",
+        "reasoning agent",
+        "local agent",
+        "local LLM",
+        "browser-side model",
+        "agent architecture",
+        "agent runtime",
+        "professional agent runtime",
+        "professional CLI",
+        "coding agent",
+        "cli agent",
+        "external coding agent",
+        "agent integration",
+        "relay",
+        "bridge",
+        "transport bridge",
+        "terminal relay",
+        "task router",
+        "state machine",
+        "semantic deduplication",
+        "request envelope",
+        "result envelope",
+        "persistent agent session",
+        "session turn item",
+        "provider event normalization",
+        "provider-native streaming",
+        "provider capability negotiation",
+        "provider-neutral",
+        "provider authentication",
+        "OAuth provider",
+        "Cline SDK",
+        "Cline provider",
+        "Cline login",
+        "free model",
+        "model routing",
+        "model discovery",
+        "active user steering",
+        "turn steer",
+        "agent-control protocol",
+        "cooperative attachment",
+        "strict attachment",
+        "PTY",
+        "ConPTY",
+        "background process",
+        "live tool output",
+        "worktree isolation",
+        "LBE CLI",
+        "LBE provider",
+        "provider switching",
+        "coding mode",
+        "audit mode",
+        "pre-authorized edits",
+        "auto apply rules",
+        "TUI operator console",
+        "debugging",
+        "bug hunting",
+        "repository bug",
+        "tool calling",
+        "tool registry",
+        "session",
+        "approval",
+        "orchestration",
+        "memory",
+        "agent loop",
+        "agent tooling",
+        "repository cognition",
+        "repo map",
+        "provider registry",
+        "model registry",
+        "autonomous software engineering",
+        "validation",
+        "completion",
+        "recovery",
+        "duplicate implementation",
+        "parallel structure",
+        "execution boundary",
+        "governance",
+        "guard",
+        "workspace trust",
+        "proof bound to head",
+        "policy boundary",
+        "blocked action",
+        "agent tracing",
+        "execution trace",
+        "deep review",
+        "skill audit",
+        "skill freshness",
+        "durable work",
+        "work registry",
+        "heterogeneous agent",
+        "end-to-end audit",
+        "runtime log audit",
+        "cleanup reset",
+        "force push",
+        "destructive repository operation",
+        "completion claim",
+        "machine capability",
+        "environment discovery",
+        "PATH",
+        "PATHEXT",
+        "executable discovery",
+        "shell identity",
+        "dynamic executable",
+        "host environment"
+      ],
+      "canonical": [
+        "ai-agents/unified-agent-engineering-methods.md"
+      ],
       "optional": {
-        "professional-agent-runtime": ["ai-agents/professional-agent-runtime-cli-and-provider-architecture.md"],
-        "provider-neutral-auth-model-routing": ["ai-agents/provider-neutral-agent-auth-and-model-routing.md"],
-        "cline-runtime-reuse": ["ai-agents/cline-runtime-reuse-for-governed-agent-infrastructure.md"],
-        "reasoning-transport-boundary": ["ai-agents/agent-reasoning-transport-boundary.md"],
-        "source-provenance": ["ai-agents/cli-agent-reference-study-map.md", "ai-agents/reference-derived-agent-architecture.md"],
-        "lobehub-agent-skills": ["ai-agents/studies/lobehub-agent-skills-system.md"],
-        "browser": ["browser-agents/browser-access-tooling-and-evidence.md"],
-        "local-model": ["local-models/lm-studio-runtime-and-agent-integration.md"],
-        "telegram": ["telegram/telegram-platform-integration.md"],
-        "letterblack-governance": ["ai-agents/letterblack-governance-debugging-references.md"],
-        "lbe-cli-provider-boundary": ["ai-agents/lbe-cli-control-plane-provider-boundary.md"],
-        "audit-failure-correction": ["ai-agents/repeated-audit-failures-and-corrective-method.md"],
-        "machine-capability-discovery": ["ai-agents/machine-capability-discovery-and-governed-execution.md"]
+        "professional-agent-runtime": [
+          "ai-agents/professional-agent-runtime-cli-and-provider-architecture.md"
+        ],
+        "provider-neutral-auth-model-routing": [
+          "ai-agents/provider-neutral-agent-auth-and-model-routing.md"
+        ],
+        "cline-runtime-reuse": [
+          "ai-agents/cline-runtime-reuse-for-governed-agent-infrastructure.md"
+        ],
+        "reasoning-transport-boundary": [
+          "ai-agents/agent-reasoning-transport-boundary.md"
+        ],
+        "source-provenance": [
+          "ai-agents/cli-agent-reference-study-map.md",
+          "ai-agents/reference-derived-agent-architecture.md"
+        ],
+        "lobehub-agent-skills": [
+          "ai-agents/studies/lobehub-agent-skills-system.md"
+        ],
+        "browser": [
+          "browser-agents/browser-access-tooling-and-evidence.md"
+        ],
+        "local-model": [
+          "local-models/lm-studio-runtime-and-agent-integration.md"
+        ],
+        "telegram": [
+          "telegram/telegram-platform-integration.md"
+        ],
+        "letterblack-governance": [
+          "ai-agents/letterblack-governance-debugging-references.md"
+        ],
+        "lbe-cli-provider-boundary": [
+          "ai-agents/lbe-cli-control-plane-provider-boundary.md"
+        ],
+        "audit-failure-correction": [
+          "ai-agents/repeated-audit-failures-and-corrective-method.md"
+        ],
+        "machine-capability-discovery": [
+          "ai-agents/machine-capability-discovery-and-governed-execution.md"
+        ]
       }
     },
     "local-models": {
-      "triggers": ["lm studio", "local llm", "local model", "provider", "inference", "openai compatible", "model discovery", "context length", "jit ttl", "provider login", "Cline provider", "Cline free model", "provider-neutral model"],
-      "canonical": ["local-models/lm-studio-runtime-and-agent-integration.md"],
+      "triggers": [
+        "lm studio",
+        "local llm",
+        "local model",
+        "provider",
+        "inference",
+        "openai compatible",
+        "model discovery",
+        "context length",
+        "jit ttl",
+        "provider login",
+        "Cline provider",
+        "Cline free model",
+        "provider-neutral model"
+      ],
+      "canonical": [
+        "local-models/lm-studio-runtime-and-agent-integration.md"
+      ],
       "optional": {
-        "agent-methods": ["ai-agents/unified-agent-engineering-methods.md"],
-        "professional-agent-runtime": ["ai-agents/professional-agent-runtime-cli-and-provider-architecture.md"],
-        "provider-neutral": ["ai-agents/provider-neutral-agent-auth-and-model-routing.md"],
-        "cline-runtime-reuse": ["ai-agents/cline-runtime-reuse-for-governed-agent-infrastructure.md"],
-        "reasoning-transport-boundary": ["ai-agents/agent-reasoning-transport-boundary.md"],
-        "lbe-cli-provider-boundary": ["ai-agents/lbe-cli-control-plane-provider-boundary.md"]
+        "agent-methods": [
+          "ai-agents/unified-agent-engineering-methods.md"
+        ],
+        "professional-agent-runtime": [
+          "ai-agents/professional-agent-runtime-cli-and-provider-architecture.md"
+        ],
+        "provider-neutral": [
+          "ai-agents/provider-neutral-agent-auth-and-model-routing.md"
+        ],
+        "cline-runtime-reuse": [
+          "ai-agents/cline-runtime-reuse-for-governed-agent-infrastructure.md"
+        ],
+        "reasoning-transport-boundary": [
+          "ai-agents/agent-reasoning-transport-boundary.md"
+        ],
+        "lbe-cli-provider-boundary": [
+          "ai-agents/lbe-cli-control-plane-provider-boundary.md"
+        ]
       }
     },
     "telegram": {
-      "triggers": ["telegram", "telegram bot", "bot api", "telegram bot api", "telegram-bot-api", "mtproto", "tl schema", "telegram schema", "telegram api layer", "telegram webhook", "telegram polling", "telegram local bot api", "telegram client"],
-      "canonical": ["telegram/telegram-platform-integration.md"],
+      "triggers": [
+        "telegram",
+        "telegram bot",
+        "bot api",
+        "telegram bot api",
+        "telegram-bot-api",
+        "mtproto",
+        "tl schema",
+        "telegram schema",
+        "telegram api layer",
+        "telegram webhook",
+        "telegram polling",
+        "telegram local bot api",
+        "telegram client"
+      ],
+      "canonical": [
+        "telegram/telegram-platform-integration.md"
+      ],
       "optional": {
-        "agent-methods": ["ai-agents/unified-agent-engineering-methods.md"]
+        "agent-methods": [
+          "ai-agents/unified-agent-engineering-methods.md"
+        ]
       }
     },
     "ui-engineering": {
-      "triggers": ["ui", "ux", "workbench", "shell", "accessibility", "renderer", "navigation", "panel", "electron ui"],
-      "canonical": ["ui-engineering/runtime-accessibility-and-shell-integration.md"],
+      "triggers": [
+        "ui",
+        "ux",
+        "workbench",
+        "shell",
+        "accessibility",
+        "renderer",
+        "navigation",
+        "panel",
+        "electron ui"
+      ],
+      "canonical": [
+        "ui-engineering/runtime-accessibility-and-shell-integration.md"
+      ],
       "optional": {
-        "professional-agent-runtime": ["ai-agents/professional-agent-runtime-cli-and-provider-architecture.md"],
-        "letterblack-branding": ["letterblack-branding/industrial-dark-ui-system.md"]
+        "professional-agent-runtime": [
+          "ai-agents/professional-agent-runtime-cli-and-provider-architecture.md"
+        ],
+        "letterblack-branding": [
+          "letterblack-branding/industrial-dark-ui-system.md"
+        ]
       }
     },
     "letterblack-branding": {
-      "triggers": ["letterblack branding", "letterblack ui", "industrial dark", "letterblack theme", "brand guide", "branding guide", "letterblack design system", "letterblack icons", "icon gallery", "letterblack cockpit"],
-      "canonical": ["letterblack-branding/industrial-dark-ui-system.md"],
+      "triggers": [
+        "letterblack branding",
+        "letterblack ui",
+        "industrial dark",
+        "letterblack theme",
+        "brand guide",
+        "branding guide",
+        "letterblack design system",
+        "letterblack icons",
+        "icon gallery",
+        "letterblack cockpit"
+      ],
+      "canonical": [
+        "letterblack-branding/industrial-dark-ui-system.md"
+      ],
       "optional": {
-        "screen-system": ["letterblack-branding/ui-screen-system.md"],
-        "adobe-ui-reference": ["letterblack-branding/adobe-ai-generations-ui-reference.md"],
-        "runtime-ui": ["ui-engineering/runtime-accessibility-and-shell-integration.md"]
+        "screen-system": [
+          "letterblack-branding/ui-screen-system.md"
+        ],
+        "adobe-ui-reference": [
+          "letterblack-branding/adobe-ai-generations-ui-reference.md"
+        ],
+        "runtime-ui": [
+          "ui-engineering/runtime-accessibility-and-shell-integration.md"
+        ]
       }
     },
     "motion-design": {
-      "triggers": ["motion design", "motion graphics", "animation", "typography", "palette", "visual style", "transition", "composition", "video"],
-      "canonical": ["motion-design/house-style.md"],
+      "triggers": [
+        "motion design",
+        "motion graphics",
+        "animation",
+        "typography",
+        "palette",
+        "visual style",
+        "transition",
+        "composition",
+        "video"
+      ],
+      "canonical": [
+        "motion-design/house-style.md"
+      ],
       "optional": {
-        "production": ["motion-design/production-principles.md"],
-        "palette": ["motion-design/palette-library.md"],
-        "patterns": ["motion-design/patterns.md"],
-        "visual-style": ["motion-design/visual-styles.md"],
-        "data-motion": ["motion-design/data-in-motion.md"]
+        "production": [
+          "motion-design/production-principles.md"
+        ],
+        "palette": [
+          "motion-design/palette-library.md"
+        ],
+        "patterns": [
+          "motion-design/patterns.md"
+        ],
+        "visual-style": [
+          "motion-design/visual-styles.md"
+        ],
+        "data-motion": [
+          "motion-design/data-in-motion.md"
+        ]
       }
     }
   },
   "routingRules": [
+    "When Letterblack_BirdEye, local workspace evidence, local-vs-remote drift, workspace identity, revision status, indexed local search/inspection, or governed local command execution is relevant, load project-engineering/letterblack-birdeye-local-evidence-and-governed-execution.md. Use BirdEye for local evidence and policy-governed argv execution; use GitHub for canonical remote repository/PR/patch truth; use runtime-specific tools for behavior requiring live user-visible proof.",
     "For any project or feature implementation, extension, replacement, integration, migration, planning, or learning task, load project-engineering/project-feature-implementation-plan.md before domain-specific knowledge.",
     "When a repository contains or mentions a change-documentation gate, agent intent declaration, .ai/intent.json, module registry, module-health check, maintenance warning/caution, protected-surface documentation, or break-glass rule, additionally load project-engineering/governed-repository-change-documentation-and-module-health.md before editing. First understand why the repository uses the mechanism, which parts are blocking versus warning-only, and the repository-specific contract. Do not bypass, weaken, or mechanically copy the Adobe_AI_Generations-04 gate stack.",
     "For LBE Persistent Agent status, progress, workspace, or roadmap-boundary questions, additionally load project-engineering/projects/lbe-persistent-agent-wall-status.md, then revalidate the live repository before acting.",
