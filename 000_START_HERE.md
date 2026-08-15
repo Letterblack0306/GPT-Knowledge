@@ -8,14 +8,14 @@ This guidance applies across every workspace. It is informative operating guidan
 
 1. Before any major architectural decision, agent design decision, CLI design decision, implementation direction, replacement, or substantial workflow change, consult GPT-Knowledge first for the relevant established knowledge and prior patterns.
 2. Verify the active repository and current remote implementation through GitHub before making claims about code, branches, pull requests, patches, required checks, or implementation status.
-3. Use `Letterblack_BirdEye` to inspect local workspace state and local diff when local-vs-remote evidence is required. BirdEye is an evidence/visibility source for the local workspace; it is not the default debugging or patch-authoring destination.
+3. Use `Letterblack_BirdEye` as the preferred local evidence layer when local workspace, revision, diff, indexed-file, or governed command-execution evidence is required. BirdEye exposes workspace identity, revision status, search/inspect/index health, governed `workspace_run` / `workspace_run_sequence`, and command history. Load `project-engineering/letterblack-birdeye-local-evidence-and-governed-execution.md` before relying on or changing BirdEye. BirdEye is not the default patch-authoring destination and does not replace GitHub repository/PR truth.
 4. Use GitHub as the normal home for implementation patches and pull requests so reviewed changes can be pulled into the local workspace. Do not treat BirdEye as a substitute for repository-backed patch flow.
 5. Do not immediately invent a generic solution, abstraction, agent pattern, CLI architecture, or replacement mechanism. First determine what existing GPT-Knowledge sources, active project evidence, and comparable live workflow implementations already establish.
 6. Do not issue a strong factual conclusion, architecture recommendation, implementation plan, or autonomy claim until the relevant evidence has been researched and the claim has been practically proven at the level it requires. Plans are revisable hypotheses, not implementation truth.
 7. If required evidence cannot be collected because a tool/runtime/dependency fails, mark the claim `UNKNOWN` or `BLOCKED`; never fill the gap with a plausible guess or with documentation that has not been tied to live behavior.
 8. If that evidence changes the intended architecture, contract, ownership model, or roadmap, update the architecture/roadmap documentation first. Begin a code PR only after the changed design is documented clearly enough to define the implementation boundary.
 9. GitHub required checks are a useful live reference pattern when applicable: requirements are configured independently, producers report structured statuses/conclusions, and a final gate evaluates whether the required checks passed. Treat this as a reusable architectural pattern, not a requirement that every project copy GitHub's implementation.
-10. Keep evidence roles distinct: GPT-Knowledge supplies reusable knowledge and prior reasoning; GitHub supplies live repository/PR/check/patch truth; BirdEye supplies local workspace/diff visibility; runtime validation supplies execution truth.
+10. Keep evidence roles distinct: GPT-Knowledge supplies reusable knowledge and prior reasoning; GitHub supplies live repository/PR/check/patch truth; BirdEye supplies local workspace/revision/index evidence and policy-governed execution; runtime validation supplies behavior and user-visible execution truth.
 
 ## Mandatory boot rules
 
@@ -158,7 +158,7 @@ Understand the task
   -> if project/feature work: load project-feature-implementation-plan.md first
   -> if agent/autonomy work: load unified-agent-engineering-methods.md
   -> verify the active repository and remote implementation through GitHub
-  -> inspect BirdEye when local diff/workspace evidence is required
+  -> inspect/use BirdEye when local workspace/revision/index evidence or governed local execution is required
   -> learn the active project/feature from live source/runtime
   -> research only the relevant domain and primary sources
   -> classify observed facts, hypotheses, unknowns, and blockers

@@ -61,6 +61,27 @@ Transport may enforce authentication, workspace isolation, target identity, canc
 
 Before adding another parser, task-state router, hash classifier, lifecycle label, approval state, or semantic state machine, first prove that the requirement is a hard integrity/security boundary rather than duplicated agent reasoning.
 
+## Letterblack BirdEye local evidence / governed execution
+
+
+When local workspace state, local-vs-remote drift, workspace/revision identity, indexed file inspection, or governed local execution matters, load:
+
+
+- `project-engineering/letterblack-birdeye-local-evidence-and-governed-execution.md`
+
+
+Use the authority split deliberately:
+
+
+- GPT-Knowledge supplies reusable methods, routing, and durable guidance.
+- GitHub supplies canonical remote repository, branch, commit, PR, check, and patch truth.
+- BirdEye supplies local indexed evidence, workspace/revision identity, local status/diff evidence, and policy-governed argv execution.
+- Runtime-specific tools remain required when the claim needs live behavior or user-visible proof.
+
+
+BirdEye does not replace GitHub patch flow. A BirdEye policy denial proves only that the operation is not authorized through BirdEye's current boundary; it does not prove the operation is impossible.
+
+
 ## Browser or CDP work
 
 Load:
