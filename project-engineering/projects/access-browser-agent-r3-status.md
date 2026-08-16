@@ -343,3 +343,26 @@ At combined PR #18 head `de7e9adf54c10c137aa9a1cf5627c3040d587f64`:
 The active `acceptance:ui` script was inspected and not run. It can select a saved or uniquely discovered real ChatGPT conversation, start the live relay, and invoke Check once. It is mutation-capable and cannot be classified as an isolated non-submitting proof.
 
 PR #18 remains draft. The next decision requires explicit authority either to run that live-provider acceptance or to merge without claiming live-provider proof. Do not convert the safe validation result into a live-content acceptance claim.
+
+## PR #18 authorized live-provider acceptance - 2026-08-16
+
+### Classification
+
+`LIVE_TARGET_SELECTION_PROVEN / RELAY_START_BLOCKED_CONFIGURATION`
+
+The authorized live UI acceptance used an isolated temporary transport journal. It reached the real renderer, started managed Chrome, resolved the selected ChatGPT conversation, and retained exact target identity. BrowserSessionAuthority then blocked relay start before any instruction execution or result submission.
+
+Provider readiness evidence:
+
+- provider: `cline`;
+- configured: false;
+- reachable: false;
+- healthy: false;
+- agentReady: false;
+- readiness status: `unverified`;
+- saved model string: `nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free`;
+- authority classification: `PROVIDER_CAPABILITY_UNVERIFIED`.
+
+The production journal remained unchanged at SHA-256 `BC64FA793BE0C2B52459CAE47ABCDB560C91A698793C08E7F874963B806EF503`. No live instruction executed and no result was submitted.
+
+PR #18 remains draft. The next step is environment/provider configuration, not a source patch: configure a reachable provider through the existing supported provider flow, prove agent capability readiness, then rerun the same isolated-journal live UI acceptance. Do not bypass the readiness gate or infer readiness from a saved model name.
