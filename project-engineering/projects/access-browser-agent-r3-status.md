@@ -268,3 +268,38 @@ Green regression and acceptance results prove behavior on the tested head; they 
 - Do not run live ChatGPT content mutation merely to increase the R3 label.
 - Do not merge PR #20 based only on green tests.
 - Do not perform broad cleanup while commit/file ownership remains unclassified.
+
+## Clean R3 integration closure - 2026-08-16
+
+### Classification
+
+`CLEAN_BRANCH_VALIDATION_PASSED`
+
+This section supersedes the earlier PR #20 integration-gate section.
+
+### Current GitHub truth
+
+- The scope audit classified combined PR #20 `SPLIT_REQUIRED`.
+- PR #20 is closed as a superseded integration vehicle; its history remains audit evidence.
+- Clean draft PR #22 is the validated R3/bootstrap integration lane.
+- Clean branch: `r3/clean-recovery-integration-20260816`.
+- Exact base: PR #18 head `68eff6f3708bca0198453d6ec9c25ccd862fdc61`.
+- Validated implementation/documentation head: `70568ebd7b6e43116c81a1f2c188af719d401d90`.
+- Current closure-document head in Access: `cf8651b5e1d4952f21573cff3d194bd1df5e40c7`.
+
+### Proof
+
+- Change governance: PASS (20 records; none active).
+- Module registry: PASS (25 modules).
+- Full repository check: PASS.
+- Copied-production-journal R3 acceptance: PASS.
+- Rendered recovery core: `CORE_RENDERED_PASSED_WAITING_BLOCKED_CONFIGURATION`.
+- Rendered evidence, Quarantine action, IPC receipt, restart projection, zero historical replay, and unchanged production journal: PROVEN.
+- Provider capability readiness correctly blocked the final WAITING transition and execution.
+- Managed Chrome bootstrap retirement: `VISIBLE_ACCEPTANCE_PASSED` with one provider page and zero bootstrap pages.
+- Production journal SHA-256 remained `BC64FA793BE0C2B52459CAE47ABCDB560C91A698793C08E7F874963B806EF503`.
+- Production reconciliation and live ChatGPT submission were not attempted.
+
+### Next integration step
+
+Review and merge clean PR #22 through the normal repository integration policy. Do not reopen or merge PR #20. Treat provider capability availability and live-provider content acceptance as separate lanes from the completed clean R3/bootstrap contract.
