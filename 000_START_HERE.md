@@ -23,14 +23,15 @@ This guidance applies across every workspace. It is informative operating guidan
 2. Use `knowledge-index.json` as the deterministic routing manifest; use `INDEX.md` as its human-readable companion.
 3. For any project or feature implementation, extension, replacement, integration, migration, planning, or learning task, load `project-engineering/project-feature-implementation-plan.md` before domain-specific knowledge.
 4. For agent/LLM/runtime/autonomy work, load `ai-agents/unified-agent-engineering-methods.md` as the canonical method guide. Its research-before-conclusion, proof-before-plan, evidence classification, adaptive assistant loop, and practical-autonomy requirements are authoritative reusable guidance.
-5. Learn the active project/feature from live source and runtime evidence before accepting a planned implementation boundary.
-6. Do not load unrelated domains merely because they exist.
-7. Knowledge guides decisions; it never replaces live workspace inspection.
-8. Treat missing evidence as unverified, not successful.
-9. Separate source proof, test proof, runtime proof, and user-visible proof.
-10. Do not infer capability from names, UI, documentation, endpoints, classes, or passing tests alone.
-11. Treat a failed tool invocation only as proof that the invocation failed. It does not reveal the result that the unavailable command/action would have produced.
-12. Before producing a consequential implementation plan, establish the actual owner, requirement, constraints, and acceptance proof from research and live evidence. Revise the plan when later observations contradict it.
+5. For UI building, UI debugging, interactive workflow automation, renderer/runtime integration, or UI acceptance work, load `ui-engineering/state-driven-ui-build-debug-and-acceptance.md` in addition to the smallest relevant UI/domain knowledge. Repetitive manual click-hunting or blind fixed-delay scripts are not the default validation method; advance through interactive steps only when the authoritative state predicate for the previous step is proven.
+6. Learn the active project/feature from live source and runtime evidence before accepting a planned implementation boundary.
+7. Do not load unrelated domains merely because they exist.
+8. Knowledge guides decisions; it never replaces live workspace inspection.
+9. Treat missing evidence as unverified, not successful.
+10. Separate source proof, test proof, runtime proof, and user-visible proof.
+11. Do not infer capability from names, UI, documentation, endpoints, classes, or passing tests alone.
+12. Treat a failed tool invocation only as proof that the invocation failed. It does not reveal the result that the unavailable command/action would have produced.
+13. Before producing a consequential implementation plan, establish the actual owner, requirement, constraints, and acceptance proof from research and live evidence. Revise the plan when later observations contradict it.
 
 ## Trust hierarchy
 
@@ -135,7 +136,6 @@ Agents must prevent their own common failures:
 - treating a distributed agent ecosystem as an isolated machine or executable;
 - moving reasoning responsibilities into a transport bridge merely because two agents communicate across a runtime boundary.
 
-
 ## Repeated audit-failure correction
 
 For agent/runtime audits, end-to-end claims, cleanup/reset work, destructive repository operations, or reviews where focused tests may be mistaken for live behavior, additionally load `ai-agents/repeated-audit-failures-and-corrective-method.md`.
@@ -157,6 +157,7 @@ Understand the task
   -> consult knowledge-index.json
   -> if project/feature work: load project-feature-implementation-plan.md first
   -> if agent/autonomy work: load unified-agent-engineering-methods.md
+  -> if UI build/debug/acceptance work: load state-driven-ui-build-debug-and-acceptance.md
   -> verify the active repository and remote implementation through GitHub
   -> inspect/use BirdEye when local workspace/revision/index evidence or governed local execution is required
   -> learn the active project/feature from live source/runtime
@@ -174,6 +175,26 @@ Understand the task
 ```
 
 Use `INDEX.md` only when a human-readable route explanation is useful; do not load it automatically when `knowledge-index.json` already resolves the task.
+
+## State-driven UI rule
+
+For UI building, debugging, and interactive workflow testing, do not repeatedly require a human to click through the same sequence when the application exposes observable state.
+
+Prefer:
+
+```text
+perform one UI/application action
+  -> observe authoritative runtime/application state
+  -> verify the declared success predicate
+  -> record evidence
+  -> only then perform the next action
+```
+
+A delay is not a success predicate. Fixed sleeps may be polling intervals, but they must not decide whether a step passed.
+
+Use real UI clicking as a focused wiring test for semantic controls, and keep the primary runtime acceptance tied to the same action/API plus authoritative state consequence. Stop immediately on the first failed gate and preserve the state/evidence needed to diagnose that boundary.
+
+Canonical method: `ui-engineering/state-driven-ui-build-debug-and-acceptance.md`.
 
 ## Browser-agent rule
 
