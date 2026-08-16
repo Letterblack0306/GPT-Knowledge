@@ -10,7 +10,7 @@
 
 ## Mandatory route
 
-For any implementation, debugging, roadmap, provider, tool, session, recovery, CLI, or acceptance task:
+For implementation, debugging, roadmap, provider, tool, session, recovery, CLI, or acceptance work:
 
 ```text
 project-feature implementation method
@@ -74,11 +74,11 @@ Python LBE authoritative parent
  -> same Cline continuation
 ```
 
-Durable lessons from that acceptance:
+Durable lessons:
 
 - inspect the actual installed provider registry; do not guess SDK/provider IDs;
 - provider configured/reachable/authenticated/capable/healthy are separate facts;
-- a runtime may return a structured failed result instead of throwing; inspect terminal status and preserve the real error;
+- structured failed runtime results must remain failures;
 - DENIED/ESCALATED tool outcomes must not execute the governed handler;
 - cancellation proof must occur while the provider turn is actually in flight;
 - transport completion is not LBE task-completion truth.
@@ -87,8 +87,6 @@ Durable lessons from that acceptance:
 
 The project completed a documentation-only evidence-driven reconciliation after the Cline continuation slice.
 
-Project phase/slice:
-
 ```text
 phase: LBE_RUNTIME_ROADMAP_RECONCILIATION
 slice: CLASSIFY_IMPLEMENTED_VS_ACCEPTED_RUNTIME_CAPABILITIES
@@ -96,40 +94,14 @@ status: PASS
 next_phase_locked: true
 ```
 
-Validated project reconciliation head:
+That reconciliation established the rule:
 
 ```text
-c13fe3a6643496ec6a2d5d6fec7e115149d17141
+file/test exists != roadmap accepted
+old roadmap says future != implementation missing
 ```
 
-Project-owned reconciliation records:
-
-```text
-docs/acceptance/LBE_RUNTIME_ROADMAP_RECONCILIATION_GATE.md
-docs/acceptance/LBE_RUNTIME_ROADMAP_RECONCILIATION_CHECKPOINT.md
-docs/acceptance/CURRENT_IMPLEMENTATION_GATE.md
-docs/IMPLEMENTATION_PLAN.md
-docs/CURRENT_STATUS.md
-```
-
-Local evidence proved:
-
-```text
-HEAD == origin/main: PASS
-documentation-only fail-closed gate: PASS
-implementation_allowed=false: PASS
-architecture_changes_allowed=false: PASS
-next_phase_locked=true: PASS
-reconciliation changed files: exact expected scope
-runtime/test source changed: NO
-human/machine/roadmap authority alignment: PASS
-git diff --check: PASS
-worktree clean: PASS
-```
-
-Important reusable lesson: an implementation-only gate checker that hard-requires `implementation_allowed=true` must not be used as proof for a deliberately documentation-only fail-closed slice. Classify that as a validation-harness mismatch and validate the documentation gate contract directly rather than weakening policy to satisfy the checker.
-
-## Final roadmap classification from reconciliation
+and initially classified:
 
 ```text
 R3  IMPLEMENTED_NOT_ACCEPTED
@@ -146,41 +118,94 @@ R7  PARTIALLY_PROVEN
 release/package readiness PARTIALLY_PROVEN
 ```
 
-This classification means source/tests and roadmap-level acceptance are different evidence layers. Existing owners must not be reimplemented because an older roadmap presents them as future work.
+## R3 runtime reasoning acceptance — PASS
 
-## Earliest next project candidate
+The next bounded acceptance slice then proved the existing R3 runtime-to-reasoning path without modifying runtime source.
+
+Project phase/slice:
 
 ```text
 phase: R3_RUNTIME_REASONING_ACCEPTANCE
 slice: PROVE_PERSISTENT_RUNTIME_TO_EXISTING_REASONING_BOUNDARY
-kind: acceptance proof
+status: PASS
+validated acceptance head: d0b542930dcccccc0e9b3a8f3483ac0d3bd20c00
+next_phase_locked: true
+```
+
+Accepted owner path:
+
+```text
+SessionMemoryRuntimeBridge.run_reasoning
+ -> existing LBERequest
+ -> real existing LBERequestController.run
+ -> existing LBEResponse
+ -> canonical task lifecycle persistence
+```
+
+Observed integration outcomes:
+
+```text
+COMPLETED -> TaskStatus.COMPLETED
+INSUFFICIENT_EVIDENCE -> TaskStatus.BLOCKED
+ORCHESTRATION_ERROR -> TaskStatus.FAILED
+independent LBERequestController invocation -> PASS
+```
+
+Focused regression:
+
+```text
+tests/test_session_memory_runtime.py
+tests/test_request_controller.py
+46 passed
+```
+
+No runtime or test implementation source changed during R3 acceptance.
+
+### Reusable harness lesson
+
+The first R3 acceptance command printed `R3_ACCEPTANCE_INTEGRATION=PASS` and all required lifecycle observations, then exited nonzero because Windows could not delete a temporary SQLite file whose handle was still open.
+
+Classify this pattern as:
+
+```text
+TEST_HARNESS_CLEANUP_FAILURE
+```
+
+not as a product/runtime defect when the claimed observable already completed and subsequent focused regression is clean.
+
+Do not patch production source to make a disposable acceptance harness clean up more conveniently.
+
+### Current R3 classification
+
+```text
+R3 persistent runtime -> existing reasoning boundary: PROVEN_COMPLETE
+```
+
+## Earliest next project candidate
+
+```text
+phase family: R4 checkpoint/resume/rehydration acceptance
+classification: IMPLEMENTED_NOT_ACCEPTED
 active: NO
 ```
 
-R3 implementation already exists through the project's persistent runtime/reasoning boundary and focused tests. The first missing artifact is current roadmap-level acceptance evidence.
+R4 source/tests already contain checkpoint/session persistence, restart/rehydration, stale source invalidation, Git state checks, constraint survival and provider/session preservation. The missing artifact is roadmap-level acceptance proof, not assumed implementation work.
 
-Therefore future work should ask:
-
-```text
-Can the canonical runtime-to-existing-reasoning boundary satisfy the R3 exit proof on the normal accepted path?
-```
-
-Do not ask:
+The next task should therefore ask:
 
 ```text
-How should R3 be implemented?
+Does the existing R4 checkpoint/resume path satisfy its roadmap exit proof against current canonical runtime state?
 ```
 
-unless current project evidence later disproves the existing owner.
+Do not ask how to implement R4 unless evidence first disproves the existing owner.
 
-## Future dependency order
+## Remaining dependency order
 
-After R3 acceptance, select later work only from current evidence. Known candidate families include:
+After R4 acceptance, select later work only from current evidence:
 
-- R4 resume/rehydration roadmap acceptance;
-- R5 classified recovery roadmap acceptance;
+- R5 classified recovery acceptance;
 - same-session provider-switch acceptance;
-- mode/context/authorization/tool/completion acceptance at their claimed proof levels;
+- mode/context/authorization/tool/completion acceptance at claimed proof levels;
 - installed R7 coding/audit/resume/provider-switch/escalation flows;
 - release/package readiness.
 
@@ -201,11 +226,12 @@ Do not infer overall readiness from lower-level PASS checkpoints.
 Future agents must not:
 
 - trust stale `CURRENT` labels over live accepted evidence;
-- treat source presence or focused tests as automatic roadmap acceptance;
+- treat source presence/focused tests as automatic roadmap acceptance;
+- reimplement a capability whose current owner exists before acceptance evidence disproves it;
 - patch from a hypothesis before exposing the earliest actual runtime failure;
 - assume installed provider IDs/capabilities;
 - interpret wrapper command status without inspecting internal evidence;
-- treat provider continuation after DENIED/ESCALATED as execution bypass without checking whether the handler ran;
+- treat harness cleanup errors as product defects when the target observable already passed;
 - use GPT-Knowledge as a competing project-state database;
 - create a second session, authorization, tool, receipt, validation, or completion owner;
 - auto-activate the next phase after PASS.
