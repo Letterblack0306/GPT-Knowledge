@@ -120,3 +120,73 @@ A real Electron renderer reached the real preload, IPC, authority, relay, and jo
 - PR #18 remote head was 68eff6f3708bca0198453d6ec9c25ccd862fdc61.
 
 - R3 branch r3/canonical-46-integration-20260816 is pushed. - Access Browser Agent draft PR #20 targets the PR #18 head branch and contains R3 candidate 78d749f plus documentation checkpoint e663b9e. - PR #20: https://github.com/Letterblack0306/Accecc_Browser_Agent/pull/20 - PR #18 does not itself contain R3; PR #20 is a separate stacked draft and must not be described as merged. - The recovery-readiness ordering fix and rendered acceptance harness remain local and uncommitted pending review and proof.
+Managed Chrome blank bootstrap-tab investigation - 2026-08-16
+Classification
+
+PROVEN_PRODUCT_LIFECYCLE_GAP / IMPLEMENTATION_NOT_STARTED
+
+Proven local cause
+
+src/system/managed-chrome.js launches every managed Chrome generation with --new-window about:blank.
+
+ManagedChrome does not retain the resulting bootstrap page targetId.
+
+BrowserSessionAuthority.openBrowser() only ensures the browser is running.
+
+ProviderChannel.openTab() creates a separate provider target and records only that returned targetId.
+
+Selecting an existing provider tab also leaves the launcher-created blank tab untouched.
+
+Existing browser capability/tool runtimes already demonstrate exact Target.createTarget / Target.closeTarget operations by targetId.
+
+No active Access path owns or retires the launcher-created blank target.
+
+User-visible result
+
+An empty about:blank tab remains beside the actual provider/conversation tab on every managed-browser launch. This is independent of R3 recovery behavior.
+
+Relevant GitHub reference patterns
+
+browser-use/browser-use: its AboutBlankWatchdog treats the blank page as explicit lifecycle state and creates one only when no page targets exist, avoiding extra blank tabs when real pages exist.
+
+GoogleChrome/chrome-launcher: models about:blank as an explicit configurable starting URL.
+
+puppeteer/puppeteer: creates pages with Target.createTarget, preserving the exact returned target identity.
+
+microsoft/playwright: attaches to and tracks targets explicitly rather than inferring ownership from URL.
+
+Architecture conclusion
+
+The blank tab must become an explicitly owned bootstrap target. Access must never close a tab merely because its URL is about:blank, because that could delete a user-created tab.
+
+The candidate lifecycle is:
+
+establish the managed-browser generation;
+
+identify and retain the exact launcher/bootstrap targetId;
+
+keep it only while no real page/provider target is available;
+
+after a supported provider target is created or validated, reuse or close only the owned bootstrap target;
+
+recreate a fallback blank target only if browser-liveness semantics require a page and no page targets remain;
+
+clear ownership when the target disappears or the browser generation changes.
+
+Next bounded work
+
+Document the bootstrap-target ownership contract in the Access project current-position record.
+
+Create a dedicated GitHub issue separate from R3.
+
+Decide between exact-target reuse and exact-target retirement using one bounded lifecycle test.
+
+Implement only after the ownership transition and falsifier are recorded.
+
+Add focused launch, provider-open, existing-target-selection, user-created-blank preservation, restart-generation, and last-page behavior coverage.
+
+Run full regression and live visible acceptance proving no extra blank tab and no user tab deletion.
+
+Safety boundary
+
+Do not use URL-only cleanup, title matching, first-tab assumptions, or broad “close every about:blank tab” logic.
