@@ -23,92 +23,72 @@ R3 persistent runtime -> reasoning: PROVEN_COMPLETE
 R4 checkpoint/resume/rehydration: PROVEN_COMPLETE
 R5 bounded classified recovery: PROVEN_COMPLETE
 R6A provider abstraction: PROVEN_COMPLETE
+R6B typed mode policy: PROVEN_COMPLETE
 ```
 
-Final synchronized R6A closure baseline:
+## R6B typed mode policy acceptance — PASS
 
-```text
-project HEAD: 4deee8e6a45c4ec179dbc6bf3524b76a38e9fd2b
-origin/main: 4deee8e6a45c4ec179dbc6bf3524b76a38e9fd2b
-machine gate: R6A_PROVIDER_ABSTRACTION_ACCEPTANCE / PASS
-roadmap: R6A PROVEN_COMPLETE
-implementation_allowed: false
-architecture_changes_allowed: false
-next_phase_locked: true
-worktree: clean
-LoopTool closure hash: BE73BAAF3292B2DB4FAD6B4C9C548D2BA252D97ADFD12B115FC9C1E4049A35CF
-LoopTool response-check hash: EFCF5A4D97F74E93A62C79301C8C93E752F360813A7E683955DA8C29F076A37D
-```
-
-R6A accepted same-session provider A -> B behavior with both responses `COMPLETED`, stable session/workspace/task/mode/permission/runtime-policy state, 64 focused regression tests, unchanged runtime/test source, clean diff and worktree.
-
-## Active R6B typed mode policy acceptance
-
-The user explicitly authorized continuing after R6A closure. Dependency review selected R6B because R6C authorization consumes `ModeDecision`, and later governed-tool/completion behavior depends on the active typed mode contract.
+Closed project authority:
 
 ```text
 phase: R6B_TYPED_MODE_POLICY_ACCEPTANCE
 slice: PROVE_TYPED_MODE_CONTRACTS_ACROSS_PERSISTENT_RUNTIME_WITHOUT_PROVIDER_OR_AUTHORITY_DRIFT
-status: OPEN
+status: PASS
 implementation_allowed: false
 architecture_changes_allowed: false
 next_phase_locked: true
 required_evidence_level: INTEGRATION
-base_sha: 4deee8e6a45c4ec179dbc6bf3524b76a38e9fd2b
+acceptance_head: 9086ad67bebb48f6505c7b3660f1ac49e0cc57c3
 ```
 
-Project authority files:
+Accepted owner path:
 
 ```text
-docs/acceptance/R6B_TYPED_MODE_POLICY_ACCEPTANCE_GATE.md
-docs/acceptance/R6B_TYPED_MODE_POLICY_ACCEPTANCE_CHECKPOINT.md
-docs/acceptance/CURRENT_IMPLEMENTATION_GATE.md
-.lbe/governance/implementation-gates.json
-docs/CURRENT_STATUS.md
+ModeRequest / ModeDecision / resolve_mode
+ -> behavior.contracts
+ -> SessionMemoryRuntimeBridge
+ -> persisted session mode
+ -> AuthorizationRequest / resolve_authorization
 ```
 
-## R6B existing-owner evidence
+Accepted evidence:
 
 ```text
-mode authority:
-  runtime.mode_controller.ModeRequest
-  runtime.mode_controller.ModeDecision
-  runtime.mode_controller.resolve_mode
+mode contract tests: 28 passed
+hash: 572E3034723732631FD32DCA972BDD3DAC39C8C859A58AC16D31582753B24F28
 
-behavior vocabulary:
-  behavior.contracts
+persistent mode integration: PASS
+hash: 9C54DBC9E1792039991E4EEFDD4F0FE0C2ED59782318E94BC8DA904135159859
 
-persistent state:
-  SessionMemoryRuntimeBridge
-  WorkspaceMemoryStore
+coding -> propose -> ALLOW
+audit -> propose -> ESCALATE
+investigation -> propose -> ESCALATE
+same session/workspace/task/provider identity preserved
+permission remained write_allowed
+runtime policy remained permissive
+mode sequence coding -> audit -> investigation
 
-downstream typed consumer:
-  runtime.authorization_resolver.AuthorizationRequest
+focused regression: 69 passed
+hash: F8627BCC2D9EC0B81D9CBC828147876195FC894A439EF795767BC58CAC9C1305
+runtime/test source unchanged: PASS
+diff check: PASS
+worktree clean: PASS
+acceptance scope: PASS
 ```
 
-Current source/tests establish independently:
+Accepted conclusion: coding, audit and investigation are proven at this boundary as typed LBE runtime capability contracts. Provider identity does not determine mode authority. Audit and investigation do not expose the tested proposal capability, and downstream authorization consumes typed `ModeDecision`.
 
-- intent + permission + runtime policy deterministically resolve coding/audit/investigation;
-- coding reuses the existing development behavior/capability vocabulary;
-- audit and investigation strip write/proposal/promotion capabilities;
-- investigation is read-only even with elevated/write permission under permissive policy;
-- persisted session state owns `mode` separately from provider configuration;
-- downstream authorization requires a typed `ModeDecision`;
-- R6A proves provider identity does not own LBE mode/policy authority.
+## Harness evidence boundary
 
-Reuse decision:
+The first oversized ad hoc R6B diagnostic was truncated by LoopTool transport before Python execution.
 
 ```text
-REUSE
+hash: E397E967D70C9B128DE8C6E1ABEB4872583D476B10232E292E5EEA9645CDD09B
+classification: TEST_HARNESS_TRANSPORT_TRUNCATION
+product implication: none
 ```
 
-No new mode/session/policy owner is authorized.
-
-## R6B acceptance gap
-
-The missing artifact is one claim-matched integration proof showing a persistent session intentionally exercises coding -> audit -> investigation typed contracts while preserving session/workspace/provider identity and keeping audit/investigation read-only.
-
-R6B cannot PASS if mode is prompt-only, provider identity determines mode/authority, audit/investigation expose write capability, a mode transition forks session/workspace identity, unrelated policy/provider fields drift, or a parallel owner is required.
+Do not reinterpret it as an R6B product defect.
 
 ## Current roadmap position
 
@@ -117,7 +97,7 @@ R3  PROVEN_COMPLETE
 R4  PROVEN_COMPLETE
 R5  PROVEN_COMPLETE
 R6A PROVEN_COMPLETE
-R6B PARTIALLY_PROVEN — ACTIVE ACCEPTANCE
+R6B PROVEN_COMPLETE
 R6C PARTIALLY_PROVEN
 R6D IMPLEMENTED_NOT_ACCEPTED
 R6E PARTIALLY_PROVEN
@@ -135,14 +115,16 @@ release_ready: NO
 next_phase_locked: true
 ```
 
+R6C is not active. R6B PASS does not automatically authorize another phase.
+
 ## Anti-repeat rules
 
 Future agents must not:
 
-- reimplement mode/session/policy authority before acceptance proves a defect;
+- reimplement mode/session/policy authority without new contradictory evidence;
 - treat provider prompt/personality text as the canonical mode contract;
 - treat unit tests alone as integration acceptance;
-- patch from harness failures;
+- patch from transport/harness failures;
 - use LoopTool for normal tracked authoring when GitHub is available;
 - create a second session, recovery, authorization, tool, receipt, validation, completion, provider, reasoning, mode, or policy owner;
 - auto-activate R6C after R6B PASS.
