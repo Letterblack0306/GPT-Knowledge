@@ -2,7 +2,7 @@
 
 ## Knowledge metadata
 
-- Last reviewed: 2026-08-08
+- Last reviewed: 2026-08-17
 - Purpose: canonical first reference for learning an existing project or feature and planning any implementation, extension, replacement, or significant change
 - Scope: cross-domain; applies before browser, agent, UI, provider, motion, branding, or other implementation-specific knowledge
 - Authority: planning guide only; live project source, runtime evidence, and project-specific instructions remain higher authority
@@ -246,6 +246,75 @@ Examples:
 
 Passing a lower evidence layer cannot justify a higher-layer claim.
 
+## 8.1 Composition acceptance is a separate proof obligation
+
+A frequent failure mode is proving every constituent component independently, then assuming the actual installed/user entry point composes them correctly.
+
+Keep these claims separate:
+
+```text
+component exists
+!= component is reachable
+!= component is validated in isolation
+!= neighboring components are wired together
+!= installed entry point traverses the intended chain
+!= user-visible/runtime behavior satisfies the end-to-end requirement
+```
+
+When a feature depends on multiple accepted authorities or subsystems, add an explicit **composition acceptance** step before release or completion.
+
+Examples:
+
+```text
+authorization tests PASS
++ tool-orchestrator tests PASS
++ provider-continuation tests PASS
+
+DOES NOT PROVE
+
+installed command -> authorization -> tool execution -> receipt -> continuation
+```
+
+Similarly:
+
+```text
+CLI/session persistence PASS
+!= installed coding path reaches governed execution
+
+provider health PASS
+!= provider-requested action was authorized and executed
+
+receipt type exists
+!= active runtime produces that receipt
+```
+
+Composition acceptance should start at the actual entry point being claimed and correlate the real path through every required boundary.
+
+For a composed capability, record:
+
+```text
+entry point
+producer
+consumer
+authority boundary
+execution owner
+result/receipt boundary
+continuation/response boundary
+persistence/state consequence
+validation/completion boundary
+```
+
+If a composed acceptance test fails:
+
+1. stop later acceptance steps that depend on the failed boundary;
+2. do not reopen every constituent component automatically;
+3. identify the earliest incorrect or missing composition state;
+4. trace active producers/consumers and alternate paths;
+5. repair the smallest proven composition owner;
+6. rerun the failed composition acceptance before continuing.
+
+A lower-layer PASS remains valid for its bounded claim unless new evidence directly falsifies that layer.
+
 ---
 
 # 9. Recovery, migration, and rollback
@@ -295,6 +364,7 @@ Implementation
 
 Validation
   focused checks
+  composition acceptance when multiple authorities must cooperate
   runtime/user-visible proof
   regression/duplicate scan
 
@@ -317,6 +387,7 @@ After a meaningful implementation, preserve only durable learned facts that will
 - important contract or lifecycle behavior;
 - non-obvious dependency;
 - validation command or runtime proof path;
+- composition boundary that must be re-proven for installed/release claims;
 - migration/recovery rule;
 - known intentional compatibility path.
 
@@ -361,4 +432,4 @@ Domain knowledge refines the implementation method; it does not redefine the act
 
 ## Final rule
 
-**Learn the active project and feature first. Plan against proven ownership and observable acceptance criteria. Implement the smallest architecture-consistent change. Complete only with evidence matching the claim.**
+**Learn the active project and feature first. Plan against proven ownership and observable acceptance criteria. Implement the smallest architecture-consistent change. For multi-owner capabilities, separately prove composition from the real entry point. Complete only with evidence matching the claim.**
