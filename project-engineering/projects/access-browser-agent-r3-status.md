@@ -323,3 +323,23 @@ The PR #22 workflow reported `startup_failure` with path `BuildFailed` and zero 
 ### Next gate
 
 Validate the new PR #18 head as the complete integration unit before changing PR #18 from draft or merging it. Confirm governance, full repository checks, the relevant conversation-transport acceptance, R3 isolated acceptance, bootstrap acceptance, and production-journal immutability. Do not infer PR #18 readiness solely from PR #22's clean-branch proof.
+
+## PR #18 safe validation result - 2026-08-16
+
+### Classification
+
+`SAFE_VALIDATION_PASSED / LIVE_PROVIDER_ACCEPTANCE_NOT_AUTHORIZED`
+
+At combined PR #18 head `de7e9adf54c10c137aa9a1cf5627c3040d587f64`:
+
+- governance: PASS (20 records; none active);
+- module registry: PASS (25 modules);
+- full repository check: PASS;
+- copied-production-journal R3 acceptance: PASS;
+- rendered recovery core: `CORE_RENDERED_PASSED_WAITING_BLOCKED_CONFIGURATION`;
+- bootstrap retirement: `VISIBLE_ACCEPTANCE_PASSED`;
+- production journal remained byte-identical at SHA-256 `BC64FA793BE0C2B52459CAE47ABCDB560C91A698793C08E7F874963B806EF503`.
+
+The active `acceptance:ui` script was inspected and not run. It can select a saved or uniquely discovered real ChatGPT conversation, start the live relay, and invoke Check once. It is mutation-capable and cannot be classified as an isolated non-submitting proof.
+
+PR #18 remains draft. The next decision requires explicit authority either to run that live-provider acceptance or to merge without claiming live-provider proof. Do not convert the safe validation result into a live-content acceptance claim.
