@@ -82,104 +82,20 @@ Python LBE authoritative parent
  -> same Cline continuation
 ```
 
-## Roadmap reconciliation milestone — PASS
-
-The project established the durable distinction:
-
-```text
-file/test exists != roadmap accepted
-old roadmap says future != implementation missing
-```
-
-Missing acceptance evidence is not permission to create a second owner.
-
-## R3 runtime reasoning acceptance — PASS
+## Accepted roadmap baseline through R5
 
 ```text
 R3 persistent runtime -> existing reasoning boundary: PROVEN_COMPLETE
-```
-
-Accepted owner path:
-
-```text
-SessionMemoryRuntimeBridge.run_reasoning
- -> existing LBERequest
- -> real existing LBERequestController.run
- -> existing LBEResponse
- -> canonical task lifecycle persistence
-```
-
-Focused regression: `46 passed`.
-
-## R4 checkpoint/resume/rehydration acceptance — PASS
-
-```text
 R4 checkpoint/resume/rehydration: PROVEN_COMPLETE
-```
-
-Accepted path re-inspects current Git/source state on resume, invalidates stale source-backed facts, preserves session/task/config/constraints, makes stale checkpoints ineligible when HEAD changes, and never treats assistant/compaction summaries as current workspace truth.
-
-Focused R4 regression: `37 passed`.
-
-Reusable R4 LoopTool lesson:
-
-- large embedded-Python probes were corrupted by command transport;
-- classify such failures as `TEST_HARNESS_TRANSPORT_FAILURE` when product execution was never reached;
-- change the method instead of mechanically retrying the same payload;
-- prefer GitHub inspection of repository-owned tests and use LoopTool only to execute the smallest local discriminator.
-
-## R5 bounded classified recovery acceptance — PASS
-
-```text
-phase: R5_BOUNDED_RECOVERY_ACCEPTANCE
-slice: PROVE_CLASSIFIED_BOUNDED_RECOVERY_AND_DUPLICATE_PREVENTION
-status: PASS
-next_phase_locked: true
-```
-
-Current classification:
-
-```text
 R5 bounded classified recovery: PROVEN_COMPLETE
 ```
 
-Accepted owner path:
+R3 focused regression: `46 passed`.
 
-```text
-SessionMemoryRuntimeBridge.run_recoverable
- -> recovery.run_with_recovery
- -> classify_failure / RetryPolicy
- -> persist_recovery_state
- -> WorkspaceMemoryStore
-```
+R4 focused regression: `37 passed`.
 
-Repository-owned recovery discriminator:
-
-```text
-tests/test_runtime_recovery.py
-7 passed
-```
-
-It proved:
-
-- transient retryable failure recovers within declared policy;
-- attempt count and terminal state persist;
-- persisted retry count survives runtime reconstruction;
-- permission denial does not retry;
-- scope conflict cannot be configured as retryable;
-- non-idempotent retryable work is rejected before retry execution;
-- missing required evidence-between-attempts stops before another attempt;
-- terminal success blocks duplicate execution under the same task/operation identity.
-
-Focused R5 regression:
-
-```text
-tests/test_runtime_recovery.py
-tests/test_session_memory_runtime.py
-30 passed
-```
-
-No runtime/test implementation source changed during R5 acceptance.
+R5 repository-owned recovery discriminator: `7 passed`.
+R5 focused regression: `30 passed`.
 
 ### R5 cancellation evidence boundary
 
@@ -190,7 +106,7 @@ classification: TEST_HARNESS_TRANSPORT_FAILURE
 product implication: none
 ```
 
-The active gate explicitly permitted source-supported cancellation classification when no repository-owned direct harness existed. Canonical `run_with_recovery()` checks cancellation before another attempt, persists `FailureClass.CANCELLATION` as terminal with `succeeded=false`, and `RetryPolicy` forbids cancellation from the retryable set.
+The R5 gate explicitly permitted source-supported cancellation classification when no repository-owned direct harness existed. Canonical `run_with_recovery()` checks cancellation before another attempt, persists `FailureClass.CANCELLATION` as terminal with `succeeded=false`, and `RetryPolicy` forbids cancellation from the retryable set.
 
 ```text
 cancellation acceptance level: SUPPORTED_BY_CANONICAL_SOURCE_ALLOWED_BY_GATE
@@ -200,8 +116,6 @@ direct runtime synthesis: NOT_OBTAINED
 Do not later rewrite this limitation as direct runtime proof.
 
 ### Final synchronized R5 closure baseline
-
-The accepted project state was synchronized into the canonical local workspace and verified against the canonical remote.
 
 ```text
 project HEAD: 535fe532f3faabf4b64a60d9f007ab584e2c8d37
@@ -214,7 +128,72 @@ worktree: clean
 LoopTool command hash: A0AE9161A7A1C9B8533A0E48C15D8D876DC0F02EE181733903903AF68A98551E
 ```
 
-Use this exact synchronized closure as the baseline when selecting the first R6 acceptance slice.
+## Active R6A provider abstraction acceptance
+
+Evidence review across R6A-R6F selected **R6A provider abstraction** as the dependency-first R6 acceptance boundary.
+
+```text
+phase: R6A_PROVIDER_ABSTRACTION_ACCEPTANCE
+slice: PROVE_SAME_SESSION_PROVIDER_SWITCH_WITHOUT_LBE_AUTHORITY_DRIFT
+status: OPEN
+implementation_allowed: false
+architecture_changes_allowed: false
+next_phase_locked: true
+required_evidence_level: INTEGRATION
+```
+
+Project authority files:
+
+```text
+docs/acceptance/R6A_PROVIDER_ABSTRACTION_ACCEPTANCE_GATE.md
+docs/acceptance/R6A_PROVIDER_ABSTRACTION_ACCEPTANCE_CHECKPOINT.md
+docs/acceptance/CURRENT_IMPLEMENTATION_GATE.md
+.lbe/governance/implementation-gates.json
+```
+
+### Selection rationale
+
+R6A is dependency-first because provider neutrality is a lower boundary that later R6 mode, authorization, context, governed-tool, evidence and completion claims must preserve across provider changes.
+
+Current project evidence already establishes independent pieces:
+
+- `ProviderRegistry` and `build_provider_controller()` provide generic registered-provider composition while retaining `LBERequestController` as the reasoning controller owner;
+- provider backend request/response behavior remains typed and structurally validated;
+- persisted session provider configuration can change without changing workspace/task identity;
+- LBE mode and authorization owners are provider-independent runtime layers.
+
+The missing acceptance artifact is the **combined same-session provider A -> provider B integration proof**, not a new provider architecture.
+
+### R6A acceptance question
+
+Can equivalent logical requests execute through provider A and provider B within one persisted session/workspace contract while provider/model identity changes only where intended and LBE-owned workspace, task, mode, permission, policy, evidence and completion authority remain unchanged?
+
+### R6A falsifier
+
+R6A cannot PASS if switching providers changes workspace/session/task identity, changes delegated LBE authority, bypasses the existing LBE controller contract, requires a provider-specific governance fork, or creates a parallel provider/session/reasoning owner.
+
+### R6A active-owner/reuse decision
+
+```text
+provider registration/composition:
+  ProviderRegistry
+  build_provider_controller
+
+provider backend contract:
+  reasoning_provider
+
+reasoning boundary:
+  LBERequestController
+  LBERequest / LBEResponse
+
+persistent session/workspace authority:
+  SessionMemoryRuntimeBridge
+  WorkspaceMemoryStore
+
+reuse decision: REUSE
+```
+
+Do not implement a new provider/session/reasoning owner merely because the combined acceptance proof is not yet recorded.
 
 ## Current roadmap position
 
@@ -222,7 +201,7 @@ Use this exact synchronized closure as the baseline when selecting the first R6 
 R3  PROVEN_COMPLETE
 R4  PROVEN_COMPLETE
 R5  PROVEN_COMPLETE
-R6A PARTIALLY_PROVEN
+R6A PARTIALLY_PROVEN — ACTIVE ACCEPTANCE
 R6B PARTIALLY_PROVEN
 R6C PARTIALLY_PROVEN
 R6D IMPLEMENTED_NOT_ACCEPTED
@@ -233,23 +212,6 @@ R7  PARTIALLY_PROVEN
 release/package readiness PARTIALLY_PROVEN
 ```
 
-## Next project selection
-
-No R6 slice is active.
-
-Before opening another gate, inspect current project evidence and select one dependency-appropriate R6 family:
-
-```text
-R6A provider abstraction
-R6B typed mode policy
-R6C permission/authorization
-R6D context assembly + rule/guard injection
-R6E governed tool orchestration
-R6F completion/validation
-```
-
-Do not combine the R6 families into one acceptance slice.
-
 ## Readiness boundary
 
 ```text
@@ -258,7 +220,7 @@ release_ready: NO
 next_phase_locked: true
 ```
 
-Do not infer overall readiness from lower-level PASS checkpoints.
+R6A OPEN does not authorize runtime implementation. If acceptance evidence proves a real defect, open a separate bounded repair gate before changing runtime or tests.
 
 ## Anti-repeat rules
 
@@ -273,8 +235,8 @@ Future agents must not:
 - use LoopTool for normal file transfer or patch authoring when GitHub is available;
 - silently promote source-supported cancellation evidence into direct runtime proof;
 - use GPT-Knowledge as a competing project-state database;
-- create a second session, recovery, authorization, tool, receipt, validation, or completion owner;
-- auto-activate the next phase after PASS.
+- create a second session, recovery, authorization, tool, receipt, validation, completion, provider, or reasoning owner;
+- auto-activate another phase after R6A PASS.
 
 ## Update rule
 
