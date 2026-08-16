@@ -24,95 +24,74 @@ R6A provider abstraction: PROVEN_COMPLETE
 R6B typed mode policy: PROVEN_COMPLETE
 R6C permission/authorization: PROVEN_COMPLETE
 R6D context assembly + rule/guard injection: PROVEN_COMPLETE
+R6E governed tool orchestration: PROVEN_COMPLETE
 ```
 
-Final synchronized R6D closure baseline:
+## R6E governed tool orchestration acceptance — PASS
 
-```text
-project HEAD: a237ac0184116a47fdc5b2efc782940faa065efb
-origin/main: a237ac0184116a47fdc5b2efc782940faa065efb
-R6D: PASS / PROVEN_COMPLETE
-LoopTool closure hash: 59D4EDC96D22306F176535E3FA9FE52B0373F2BCBAB9FE46970D7A6867D5CCEB
-```
-
-## Active R6E governed tool orchestration acceptance
-
-The user explicitly authorized continuing after R6D closure. R6E is active as acceptance-only because the next dependency boundary is registered/authorized tool execution, structured receipts/idempotency, and receipt-backed provider continuation.
+Closed project authority:
 
 ```text
 phase: R6E_GOVERNED_TOOL_ORCHESTRATION_ACCEPTANCE
 slice: PROVE_RECEIPT_BACKED_GOVERNED_TOOL_LIFECYCLE_WITH_IDEMPOTENCY_AND_PROVIDER_CONTINUATION
-status: OPEN
+status: PASS
 implementation_allowed: false
 architecture_changes_allowed: false
 next_phase_locked: true
 required_evidence_level: INTEGRATION
-base_sha: a237ac0184116a47fdc5b2efc782940faa065efb
+acceptance_head: 8d755418c81efa75522d8cd360b60f8cdbd55ed5
 ```
 
-Project authority files:
+Accepted owner path:
 
 ```text
-docs/acceptance/R6E_GOVERNED_TOOL_ORCHESTRATION_ACCEPTANCE_GATE.md
-docs/acceptance/R6E_GOVERNED_TOOL_ORCHESTRATION_ACCEPTANCE_CHECKPOINT.md
-docs/acceptance/CURRENT_IMPLEMENTATION_GATE.md
-.lbe/governance/implementation-gates.json
-docs/CURRENT_STATUS.md
-docs/IMPLEMENTATION_PLAN.md
+ToolRequest
+ -> ToolRegistry lookup
+ -> argument validation
+ -> R6C resolve_authorization
+ -> GovernedToolOrchestrator
+ -> registered handler / existing service owner
+ -> ToolReceipt(output/evidence/authorization)
+ -> operation-id idempotency
+ -> continuation_from_receipt
+ -> continue_provider
 ```
 
-## Existing R6E owners
+Accepted evidence:
 
 ```text
-ToolRegistry
-GovernedToolOrchestrator
-ToolRequest / ToolExecutionContext
-ToolReceipt
-resolve_authorization
-build_workspace_read_handler
-EvidenceService
-continuation_from_receipt
-continue_provider
+repository baseline: 29 passed
+hash: 2C05376D268B47A944EDD267CDD5EF4E37B37342FD19A069DADC2F4435CF90AB
+
+authorized execution/idempotency: PASS
+hash: 85A894FA0BB9EFBD297255952B9E61317AEB0250B6D2DF2EBD5DFA453AAB8AD0
+
+receipt-backed continuation: PASS
+hash: B24E0F0CECFE6CCA4DD18D54D929D1DF29FB9C35EF02E4CDABD77620888EB600
+
+combined lifecycle + escalation stop: PASS
+hash: D5D43751BE65F6F765960CA119CA59D74732181E520D3353AE00F1B0329A7A9A
+
+focused regression: 51 passed
+hash: 8D7906D783094242D072C6C2D49D392896810ADF2C162D2B16623A8BFAE9AA43
+
+runtime/test source unchanged: PASS
+diff check: PASS
+worktree clean: PASS
+acceptance scope: PASS
+observed falsifier: NONE
 ```
 
-Current source/tests establish separately:
+Accepted conclusion: only registered and authorized operations execute; receipt evidence and authorization provenance remain LBE-owned; duplicate operation IDs return the original receipt without re-execution; provider continuation is derived from governed receipts and has no execution authority; escalation stops before both handler execution and continuation; no second dispatcher, receipt authority, or continuation owner was introduced.
 
-- unregistered tools cannot execute;
-- invalid arguments fail before authorization/execution;
-- R6C `DENY`/`ESCALATE` prevent handler execution;
-- authorized registered tools produce structured receipts with output/evidence;
-- duplicate operation IDs return the original receipt without re-execution;
-- `workspace.read` delegates to `EvidenceService` and rejects path escape before evidence read;
-- provider continuation consumes an existing governed `ToolReceipt`, preserves operation/receipt/tool identity and has no execution authority;
-- escalated receipts stop before provider continuation.
-
-Reuse decision:
+Harness failure retained:
 
 ```text
-REUSE
+F37E90BAE875E4620291920E662C5D78DBC3B3C6D11CF28A30745F3CA258161E
+ -> TEST_HARNESS_TRANSPORT_TRUNCATION / POWERSHELL_PARSE_FAILURE; Python not executed
 ```
 
-## R6E acceptance gap
-
-The missing artifact is one combined integration proof showing:
-
-```text
-registered + authorized operation
- -> exactly one governed execution
- -> structured receipt/evidence
- -> same operation repeated -> original receipt / no re-execution
- -> receipt-backed provider continuation
-```
-
-and the stop path:
-
-```text
-ESCALATE
- -> no handler execution
- -> no provider continuation
-```
-
-R6E cannot PASS if unregistered/unauthorized/invalid work executes, duplicate operation IDs re-execute, receipt provenance/evidence disappears, provider continuation bypasses governed receipts or proceeds from escalation, provider code gains execution authority, or a second dispatcher/receipt/continuation owner is required.
+No product defect was established by that failure.
 
 ## Current roadmap position
 
@@ -124,7 +103,7 @@ R6A PROVEN_COMPLETE
 R6B PROVEN_COMPLETE
 R6C PROVEN_COMPLETE
 R6D PROVEN_COMPLETE
-R6E PARTIALLY_PROVEN — ACTIVE ACCEPTANCE
+R6E PROVEN_COMPLETE
 R6F PARTIALLY_PROVEN
 CLI PARTIALLY_PROVEN
 R7  PARTIALLY_PROVEN
@@ -139,12 +118,14 @@ release_ready: NO
 next_phase_locked: true
 ```
 
+R6F is not active. R6E PASS does not automatically authorize another phase.
+
 ## Anti-repeat rules
 
 Future agents must not:
 
-- reopen R3-R6D without new contradictory current evidence;
-- reimplement governed tool/receipt/provider-continuation authority before R6E acceptance proves a defect;
+- reopen R3-R6E without new contradictory current evidence;
+- reimplement governed tool/receipt/provider-continuation authority without a proven defect;
 - allow provider-native execution to bypass LBE tool registration/authorization/receipts;
 - patch from transport/harness failures;
 - use LoopTool for normal tracked authoring when GitHub is available;
