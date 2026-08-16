@@ -2,7 +2,7 @@
 
 ## Knowledge metadata
 
-- Last reviewed: 2026-08-16
+- Last reviewed: 2026-08-17
 - Project repository: `Letterblack0306/LBE_Presistent_Agent_wall`
 - Active local workspace: `C:\Agents-Memory-Tool-v6-integration`
 - Authority: reference only; live project source, Git/workspace/runtime evidence, machine gates, and project-owned acceptance records remain authoritative
@@ -26,69 +26,78 @@ R6A provider abstraction: PROVEN_COMPLETE
 R6B typed mode policy: PROVEN_COMPLETE
 ```
 
-## R6B typed mode policy acceptance — PASS
-
-Closed project authority:
+Final synchronized R6B closure baseline:
 
 ```text
-phase: R6B_TYPED_MODE_POLICY_ACCEPTANCE
-slice: PROVE_TYPED_MODE_CONTRACTS_ACROSS_PERSISTENT_RUNTIME_WITHOUT_PROVIDER_OR_AUTHORITY_DRIFT
-status: PASS
+project HEAD: d584752b105fc8db8f941dc09b66ed32f803ec4c
+origin/main: d584752b105fc8db8f941dc09b66ed32f803ec4c
+R6B: PASS / PROVEN_COMPLETE
+implementation_allowed: false
+architecture_changes_allowed: false
+next_phase_locked: true
+LoopTool closure hash: 57DD2253CC26768B4F311D94DBC45B289568F515CE65B987BEFA106D3869ACBC
+```
+
+## Active R6C permission/authorization acceptance
+
+The user explicitly authorized continuing after R6B closure. Dependency review selected R6C because typed mode/capability authority is now proven and `GovernedToolOrchestrator` consumes the deterministic authorization resolver before handler execution.
+
+```text
+phase: R6C_PERMISSION_AUTHORIZATION_ACCEPTANCE
+slice: PROVE_DELEGATED_AUTHORITY_REUSE_AND_EXPANSION_BOUNDARIES_THROUGH_GOVERNED_EXECUTION
+status: OPEN
 implementation_allowed: false
 architecture_changes_allowed: false
 next_phase_locked: true
 required_evidence_level: INTEGRATION
-acceptance_head: 9086ad67bebb48f6505c7b3660f1ac49e0cc57c3
+base_sha: d584752b105fc8db8f941dc09b66ed32f803ec4c
 ```
 
-Accepted owner path:
+Project authority files:
 
 ```text
-ModeRequest / ModeDecision / resolve_mode
- -> behavior.contracts
- -> SessionMemoryRuntimeBridge
- -> persisted session mode
- -> AuthorizationRequest / resolve_authorization
+docs/acceptance/R6C_PERMISSION_AUTHORIZATION_ACCEPTANCE_GATE.md
+docs/acceptance/R6C_PERMISSION_AUTHORIZATION_ACCEPTANCE_CHECKPOINT.md
+docs/acceptance/CURRENT_IMPLEMENTATION_GATE.md
+.lbe/governance/implementation-gates.json
+docs/CURRENT_STATUS.md
 ```
 
-Accepted evidence:
+## R6C existing-owner evidence
 
 ```text
-mode contract tests: 28 passed
-hash: 572E3034723732631FD32DCA972BDD3DAC39C8C859A58AC16D31582753B24F28
-
-persistent mode integration: PASS
-hash: 9C54DBC9E1792039991E4EEFDD4F0FE0C2ED59782318E94BC8DA904135159859
-
-coding -> propose -> ALLOW
-audit -> propose -> ESCALATE
-investigation -> propose -> ESCALATE
-same session/workspace/task/provider identity preserved
-permission remained write_allowed
-runtime policy remained permissive
-mode sequence coding -> audit -> investigation
-
-focused regression: 69 passed
-hash: F8627BCC2D9EC0B81D9CBC828147876195FC894A439EF795767BC58CAC9C1305
-runtime/test source unchanged: PASS
-diff check: PASS
-worktree clean: PASS
-acceptance scope: PASS
+ModeDecision
+AuthorizationRequest
+AuthorizationDecision
+resolve_authorization
+ToolExecutionContext
+GovernedToolOrchestrator
+ToolReceipt
 ```
 
-Accepted conclusion: coding, audit and investigation are proven at this boundary as typed LBE runtime capability contracts. Provider identity does not determine mode authority. Audit and investigation do not expose the tested proposal capability, and downstream authorization consumes typed `ModeDecision`.
+Current source/tests establish independently:
 
-## Harness evidence boundary
+- deterministic `ALLOW`, `DENY`, `ESCALATE`;
+- already-enabled capability may `ALLOW` without repeat confirmation;
+- explicit forbidden policy `DENY`s;
+- missing capability, workspace expansion, intent/scope conflict, undelegated destructive action and undelegated persistent-policy change `ESCALATE`;
+- explicit destructive or persistent-policy delegation may `ALLOW`;
+- governed tool orchestration does not invoke handlers after `DENY` or `ESCALATE`;
+- only `ALLOW` reaches the registered handler and receipts retain `AuthorizationDecision`.
 
-The first oversized ad hoc R6B diagnostic was truncated by LoopTool transport before Python execution.
+Reuse decision:
 
 ```text
-hash: E397E967D70C9B128DE8C6E1ABEB4872583D476B10232E292E5EEA9645CDD09B
-classification: TEST_HARNESS_TRANSPORT_TRUNCATION
-product implication: none
+REUSE
 ```
 
-Do not reinterpret it as an R6B product defect.
+No new permission/authorization/prompt-approval owner is authorized.
+
+## R6C acceptance gap
+
+The missing artifact is one claim-matched integration proof showing repeated already-delegated operations execute without an unrelated confirmation state, authority expansion deterministically escalates or denies without handler execution, explicitly delegated authority-change classes may proceed, and authorization verdict/rationale provenance remains visible in governed receipts.
+
+R6C cannot PASS if denied/escalated operations invoke handlers, explicitly forbidden policy silently executes, authority expansion bypasses escalation, provenance disappears, or a parallel authorization owner is required.
 
 ## Current roadmap position
 
@@ -98,7 +107,7 @@ R4  PROVEN_COMPLETE
 R5  PROVEN_COMPLETE
 R6A PROVEN_COMPLETE
 R6B PROVEN_COMPLETE
-R6C PARTIALLY_PROVEN
+R6C PARTIALLY_PROVEN — ACTIVE ACCEPTANCE
 R6D IMPLEMENTED_NOT_ACCEPTED
 R6E PARTIALLY_PROVEN
 R6F PARTIALLY_PROVEN
@@ -115,16 +124,14 @@ release_ready: NO
 next_phase_locked: true
 ```
 
-R6C is not active. R6B PASS does not automatically authorize another phase.
-
 ## Anti-repeat rules
 
 Future agents must not:
 
-- reimplement mode/session/policy authority without new contradictory evidence;
-- treat provider prompt/personality text as the canonical mode contract;
-- treat unit tests alone as integration acceptance;
+- reimplement authorization/prompt approval before acceptance proves a defect;
+- treat provider approval prose as canonical LBE authority;
+- treat resolver unit tests alone as integration acceptance;
 - patch from transport/harness failures;
 - use LoopTool for normal tracked authoring when GitHub is available;
 - create a second session, recovery, authorization, tool, receipt, validation, completion, provider, reasoning, mode, or policy owner;
-- auto-activate R6C after R6B PASS.
+- auto-activate another phase after R6C PASS.
