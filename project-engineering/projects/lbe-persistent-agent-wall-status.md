@@ -26,62 +26,93 @@ R6C permission/authorization: PROVEN_COMPLETE
 R6D context assembly + rule/guard injection: PROVEN_COMPLETE
 ```
 
-## R6D context assembly acceptance — PASS
-
-Closed project authority:
+Final synchronized R6D closure baseline:
 
 ```text
-phase: R6D_CONTEXT_ASSEMBLY_ACCEPTANCE
-slice: PROVE_BOUNDED_AUTHORITY_PRESERVING_CONTEXT_ACROSS_PROVIDER_AND_LIVE_WORKSPACE_BOUNDARIES
-status: PASS
+project HEAD: a237ac0184116a47fdc5b2efc782940faa065efb
+origin/main: a237ac0184116a47fdc5b2efc782940faa065efb
+R6D: PASS / PROVEN_COMPLETE
+LoopTool closure hash: 59D4EDC96D22306F176535E3FA9FE52B0373F2BCBAB9FE46970D7A6867D5CCEB
+```
+
+## Active R6E governed tool orchestration acceptance
+
+The user explicitly authorized continuing after R6D closure. R6E is active as acceptance-only because the next dependency boundary is registered/authorized tool execution, structured receipts/idempotency, and receipt-backed provider continuation.
+
+```text
+phase: R6E_GOVERNED_TOOL_ORCHESTRATION_ACCEPTANCE
+slice: PROVE_RECEIPT_BACKED_GOVERNED_TOOL_LIFECYCLE_WITH_IDEMPOTENCY_AND_PROVIDER_CONTINUATION
+status: OPEN
 implementation_allowed: false
 architecture_changes_allowed: false
 next_phase_locked: true
 required_evidence_level: INTEGRATION
-acceptance_head: 00ff4ca854f7f1568f806ad659d512ca72d8374e
+base_sha: a237ac0184116a47fdc5b2efc782940faa065efb
 ```
 
-Accepted owner path:
+Project authority files:
 
 ```text
-LBERequest.reference_context / persisted session context
- -> assemble_reasoning_context
- -> validated indexed reference evidence
- -> ReasoningRequest.reference_context
-
-approved guard authority
- -> ReasoningRequest.approved_guard_ids
-
-current workspace inspection
- -> EvidenceService / GuardRunner / validated evidence contracts
- -> deterministic LBE result
+docs/acceptance/R6E_GOVERNED_TOOL_ORCHESTRATION_ACCEPTANCE_GATE.md
+docs/acceptance/R6E_GOVERNED_TOOL_ORCHESTRATION_ACCEPTANCE_CHECKPOINT.md
+docs/acceptance/CURRENT_IMPLEMENTATION_GATE.md
+.lbe/governance/implementation-gates.json
+docs/CURRENT_STATUS.md
+docs/IMPLEMENTATION_PLAN.md
 ```
 
-Accepted evidence:
+## Existing R6E owners
 
 ```text
-context/provider baseline: 14 passed
-hash: 8E61C736848B5CDAEB144F7D80A1304BB119D1CFD6E6C14C4E84CC9B2AD54698
-
-authority discriminators: 9 passed
-hash: 73222C712C91124E873E1A30E3F9241C62ED6C61A4CB568AED17178F9B360820
-
-provider-equivalent authoritative context: PASS
-hash: 61CDCECAAC3951B7A79051F10819BDB3CC3BA65CD6F8635900CD8ACA2CBE17C7
-
-focused regression: 128 passed
-hash: 0157C71BFDAF6ACC55A00573C97FAF4181D23D660E3290852B35166EBB841DA9
-
-runtime/test source unchanged: PASS
-diff check: PASS
-worktree clean: PASS
-acceptance scope: PASS
-observed falsifier: NONE
+ToolRegistry
+GovernedToolOrchestrator
+ToolRequest / ToolExecutionContext
+ToolReceipt
+resolve_authorization
+build_workspace_read_handler
+EvidenceService
+continuation_from_receipt
+continue_provider
 ```
 
-Accepted conclusion: context assembly composes bounded session/reference context but does not create authority; stale/conflicting indexed evidence is subordinate to current workspace evidence; guard applicability remains on typed LBE channels; model prose cannot inject policy/authorization/verdict/mutation authority; and provider changes do not alter equivalent LBE-owned context, workspace identity/profile, approved guards, or approved tools.
+Current source/tests establish separately:
 
-Two temporary harness failures are retained as non-product evidence: an invalid synthetic evidence fixture that reached zero provider requests, and a PowerShell transport truncation before Python execution. Neither justified product changes.
+- unregistered tools cannot execute;
+- invalid arguments fail before authorization/execution;
+- R6C `DENY`/`ESCALATE` prevent handler execution;
+- authorized registered tools produce structured receipts with output/evidence;
+- duplicate operation IDs return the original receipt without re-execution;
+- `workspace.read` delegates to `EvidenceService` and rejects path escape before evidence read;
+- provider continuation consumes an existing governed `ToolReceipt`, preserves operation/receipt/tool identity and has no execution authority;
+- escalated receipts stop before provider continuation.
+
+Reuse decision:
+
+```text
+REUSE
+```
+
+## R6E acceptance gap
+
+The missing artifact is one combined integration proof showing:
+
+```text
+registered + authorized operation
+ -> exactly one governed execution
+ -> structured receipt/evidence
+ -> same operation repeated -> original receipt / no re-execution
+ -> receipt-backed provider continuation
+```
+
+and the stop path:
+
+```text
+ESCALATE
+ -> no handler execution
+ -> no provider continuation
+```
+
+R6E cannot PASS if unregistered/unauthorized/invalid work executes, duplicate operation IDs re-execute, receipt provenance/evidence disappears, provider continuation bypasses governed receipts or proceeds from escalation, provider code gains execution authority, or a second dispatcher/receipt/continuation owner is required.
 
 ## Current roadmap position
 
@@ -93,7 +124,7 @@ R6A PROVEN_COMPLETE
 R6B PROVEN_COMPLETE
 R6C PROVEN_COMPLETE
 R6D PROVEN_COMPLETE
-R6E PARTIALLY_PROVEN
+R6E PARTIALLY_PROVEN — ACTIVE ACCEPTANCE
 R6F PARTIALLY_PROVEN
 CLI PARTIALLY_PROVEN
 R7  PARTIALLY_PROVEN
@@ -108,16 +139,14 @@ release_ready: NO
 next_phase_locked: true
 ```
 
-R6E is not active. R6D PASS does not automatically authorize another phase.
-
 ## Anti-repeat rules
 
 Future agents must not:
 
 - reopen R3-R6D without new contradictory current evidence;
-- reimplement context/retrieval/guard authority without a proven defect;
-- allow provider or model prose to become canonical context/evidence/governance authority;
+- reimplement governed tool/receipt/provider-continuation authority before R6E acceptance proves a defect;
+- allow provider-native execution to bypass LBE tool registration/authorization/receipts;
 - patch from transport/harness failures;
 - use LoopTool for normal tracked authoring when GitHub is available;
-- create a second session, context, retrieval, recovery, authorization, tool, receipt, validation, completion, provider, reasoning, mode, or policy owner;
-- auto-activate R6E or another phase after R6D PASS.
+- create a second session, context, retrieval, recovery, authorization, tool, receipt, continuation, validation, completion, provider, reasoning, mode, or policy owner;
+- auto-activate R6F or another phase after R6E PASS.
