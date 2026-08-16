@@ -199,6 +199,23 @@ direct runtime synthesis: NOT_OBTAINED
 
 Do not later rewrite this limitation as direct runtime proof.
 
+### Final synchronized R5 closure baseline
+
+The accepted project state was synchronized into the canonical local workspace and verified against the canonical remote.
+
+```text
+project HEAD: 535fe532f3faabf4b64a60d9f007ab584e2c8d37
+origin/main: 535fe532f3faabf4b64a60d9f007ab584e2c8d37
+machine gate: R5_BOUNDED_RECOVERY_ACCEPTANCE / PASS
+implementation_allowed: false
+next_phase_locked: true
+roadmap: R5 PROVEN_COMPLETE
+worktree: clean
+LoopTool command hash: A0AE9161A7A1C9B8533A0E48C15D8D876DC0F02EE181733903903AF68A98551E
+```
+
+Use this exact synchronized closure as the baseline when selecting the first R6 acceptance slice.
+
 ## Current roadmap position
 
 ```text
