@@ -32,6 +32,35 @@ This guidance applies across every workspace. It is informative operating guidan
 11. Treat a failed tool invocation only as proof that the invocation failed. It does not reveal the result that the unavailable command/action would have produced.
 12. Before producing a consequential implementation plan, establish the actual owner, requirement, constraints, and acceptance proof from research and live evidence. Revise the plan when later observations contradict it.
 
+## Installed ChatGPT skill routing
+
+When installed ChatGPT Skills are available, use `project-engineering/chatgpt-installed-skill-routing.md` to select the smallest task-relevant skill set before beginning a substantial engineering investigation.
+
+The routing contract is:
+
+```text
+engineering investigation
+  -> evidence driven engineering owns the bounded investigation loop
+  -> route only the specialist skills required by the proven task boundary
+  -> do not activate every installed skill
+  -> specialist skills contribute evidence, constraints, proof, governance, or domain guidance
+  -> the central investigation router remains the workflow owner
+```
+
+Important routes include:
+
+- product intent / architecture drift -> `Project Truth Review`;
+- existing Letterblack project evidence -> `Letterblack Project Evidence`;
+- technical defect localization -> `Code Audit & Debug`;
+- live runtime closure / end-to-end proof -> `Agent Runtime Proof`;
+- agent/LLM/relay reasoning boundaries -> `Preserve Agent Reasoning`;
+- execution authority, MCP, permissions, policy, destructive/governed side effects -> `devils governenece rules`;
+- explicitly exhaustive whole-system audits -> `devils audit masterbulletpoints`;
+- Brew-specific UI/product design -> `brew ui designer`;
+- Tailwind-specific implementation -> `tailwind`.
+
+Skill routing does not replace GPT-Knowledge domain routing, repository verification, BirdEye/local evidence, or runtime proof. If a named installed skill is unavailable in the active environment, do not pretend it was applied; continue from the relevant GPT-Knowledge method and state the unavailable route when material.
+
 ## Trust hierarchy
 
 ```text
@@ -154,6 +183,7 @@ Mandatory reminders:
 ```text
 Understand the task
   -> consult GPT-Knowledge first for major/agent/CLI decisions
+  -> if installed Skills are available: route through chatgpt-installed-skill-routing.md using the smallest relevant set
   -> consult knowledge-index.json
   -> if project/feature work: load project-feature-implementation-plan.md first
   -> if agent/autonomy work: load unified-agent-engineering-methods.md
