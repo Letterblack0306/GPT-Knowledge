@@ -119,6 +119,4 @@ A real Electron renderer reached the real preload, IPC, authority, relay, and jo
 
 - PR #18 remote head was 68eff6f3708bca0198453d6ec9c25ccd862fdc61.
 
-- Local R3 branch was not yet pushed.
-
-- PR #18 does not contain local R3 commit 78d749f; do not describe it as carrying R3.
+- R3 branch r3/canonical-46-integration-20260816 is pushed. - Access Browser Agent draft PR #20 targets the PR #18 head branch and contains R3 candidate 78d749f plus documentation checkpoint e663b9e. - PR #20: https://github.com/Letterblack0306/Accecc_Browser_Agent/pull/20 - PR #18 does not itself contain R3; PR #20 is a separate stacked draft and must not be described as merged. - The recovery-readiness ordering fix and rendered acceptance harness remain local and uncommitted pending review and proof.
