@@ -5,32 +5,27 @@
 - Last reviewed: 2026-08-16
 - Project repository: `Letterblack0306/LBE_Presistent_Agent_wall`
 - Active local workspace used by latest proof: `C:\Agents-Memory-Tool-v6-integration`
-- Latest verified project head before the status-doc reconciliation commit: `121c4faa296c02a3add8b304545079d2011c193a`
 - Purpose: routing/status aid for future LBE Persistent Agent work
 - Authority: reference only; live project source, current Git/workspace/runtime evidence, machine gates, and project-owned acceptance records remain authoritative
 
 ## Mandatory route
 
-For any new implementation, debugging, roadmap, Cline-runtime, provider, tool-orchestration, session, recovery, CLI, or acceptance task:
+For any implementation, debugging, roadmap, provider, tool, session, recovery, CLI, or acceptance task:
 
 ```text
 project-feature implementation method
--> unified agent engineering method
--> current LBE repository docs
+-> unified/evidence-driven agent engineering method
+-> current LBE project docs
 -> current Git/workspace/runtime evidence
 -> active machine/human gate
--> smallest relevant specialist knowledge
+-> smallest relevant specialist guidance
 -> one bounded slice
 -> current validation
 ```
 
 Do not use this file to override current project evidence.
 
-## Current durable architecture
-
-The current LBE Persistent Agent architecture has advanced beyond the older R1/R2-only status previously recorded here.
-
-The stable authority model remains:
+## Durable architecture
 
 ```text
 provider / reasoning engine
@@ -38,20 +33,20 @@ provider / reasoning engine
         v
 persistent LBE runtime
         |
-        +-- project/workspace identity
+        +-- workspace/session identity
         +-- mode/policy
         +-- deterministic authorization
-        +-- registered governed tools
-        +-- evidence/receipts
+        +-- governed executable tools
+        +-- receipts/evidence
         +-- validation/completion truth
         |
         v
 current workspace
 ```
 
-Persistent memory and reference knowledge remain lower-authority context. They never replace live workspace/Git/runtime inspection or deterministic validation.
+Persistent memory/reference knowledge are lower-authority context. They never replace live workspace/Git/runtime inspection.
 
-## Cline runtime reuse milestone — PASS
+## Cline reuse milestone — PASS
 
 Pinned audited Cline revision:
 
@@ -64,272 +59,157 @@ Reusable decision:
 ```text
 ADAPT Cline AgentRuntime provider/tool/continuation mechanics
 KEEP LBE authority owners
-REJECT native overlapping Cline mutation/execution paths as canonical LBE paths
+DO NOT adopt ClineCore/native mutation paths as canonical LBE authority
 ```
 
-Selected architecture:
+Accepted architecture:
 
 ```text
-Python LBE runtime — authoritative parent
-        |
-        | strict typed stdio
-        v
-bounded Node worker
-        |
-        v
-Cline AgentRuntime
-        |
-        +-- provider events
-        +-- tool proposal
-                 |
-                 v
-       LBE GovernedToolOrchestrator
-                 |
-                 v
-             ToolReceipt
-                 |
-                 v
-        same Cline continuation
+Python LBE authoritative parent
+ -> bounded Node worker
+ -> Cline AgentRuntime provider/continuation mechanics
+ -> tool proposal
+ -> LBE GovernedToolOrchestrator
+ -> ToolReceipt
+ -> same Cline continuation
 ```
 
-Durable ownership rule:
+Durable lessons from that acceptance:
 
-- Cline owns its provider-native streaming/tool-call/continuation mechanics.
-- LBE owns session/workspace identity, authorization, executable-tool ownership, receipts/evidence, validation, completion truth, process lifecycle, and persistent project state.
-- `ClineCore` is not adopted as a replacement authority layer.
-- native Cline filesystem/editor/shell/process mutation remains non-canonical for LBE execution.
+- inspect the actual installed provider registry; do not guess SDK/provider IDs;
+- provider configured/reachable/authenticated/capable/healthy are separate facts;
+- a runtime may return a structured failed result instead of throwing; inspect terminal status and preserve the real error;
+- DENIED/ESCALATED tool outcomes must not execute the governed handler;
+- cancellation proof must occur while the provider turn is actually in flight;
+- transport completion is not LBE task-completion truth.
 
-## Latest provider-continuation acceptance
+## Roadmap reconciliation milestone — PASS
 
-Project-owned records:
+The project completed a documentation-only evidence-driven reconciliation after the Cline continuation slice.
 
-```text
-docs/acceptance/LBE_CLINE_PROVIDER_CONTINUATION_GATE.md
-docs/acceptance/LBE_CLINE_PROVIDER_CONTINUATION_CHECKPOINT.md
-docs/acceptance/CURRENT_IMPLEMENTATION_GATE.md
-```
-
-Accepted state at the latest verified project proof:
+Project phase/slice:
 
 ```text
-phase: LBE_CLINE_PROVIDER_CONTINUATION
-slice: ENABLE_PROVIDER_BACKED_AGENTRUNTIME_CONTINUATION
+phase: LBE_RUNTIME_ROADMAP_RECONCILIATION
+slice: CLASSIFY_IMPLEMENTED_VS_ACCEPTED_RUNTIME_CAPABILITIES
 status: PASS
 next_phase_locked: true
 ```
 
-Validated implementation head:
+Validated project reconciliation head:
 
 ```text
-0db541cafe8578130d74f8e8cf89fed0503301ea
+c13fe3a6643496ec6a2d5d6fec7e115149d17141
 ```
 
-Human gate/checkpoint closure was synchronized at project head:
+Project-owned reconciliation records:
 
 ```text
-121c4faa296c02a3add8b304545079d2011c193a
+docs/acceptance/LBE_RUNTIME_ROADMAP_RECONCILIATION_GATE.md
+docs/acceptance/LBE_RUNTIME_ROADMAP_RECONCILIATION_CHECKPOINT.md
+docs/acceptance/CURRENT_IMPLEMENTATION_GATE.md
+docs/IMPLEMENTATION_PLAN.md
+docs/CURRENT_STATUS.md
 ```
 
-Observed acceptance evidence included:
-
-- real pinned Cline provider-backed local continuation;
-- governed Cline tool proposal -> existing LBE orchestrator -> receipt -> same continuation loop;
-- denied/escalated outcomes do not execute the handler;
-- governed tool execution failure is returned to Cline as a tool failure;
-- failed `AgentRuntime` results map truthfully to `turn.failed`;
-- in-flight cancel maps to `AgentRuntime.abort()` and terminal `status=aborted`;
-- focused provider-continuation tests: 12 passed;
-- governed orchestrator regression: 12 passed;
-- npm dependency audit: 0 high / 0 critical;
-- implementation gate PASS;
-- clean synchronized worktree.
-
-Project-specific chronology and exact commands remain in the project acceptance records, not here.
-
-## Reusable diagnostic lesson: verify the installed provider registry
-
-A provider-ID assumption caused the first deterministic continuation proof to fail before any HTTP request.
-
-Observed installed `@cline/llms@0.0.75` behavior:
+Local evidence proved:
 
 ```text
-provider_id=openai -> unknown/disabled
-provider_id=openai-compatible -> available
-model=gpt-4o -> usable against the deterministic OpenAI-compatible endpoint
+HEAD == origin/main: PASS
+documentation-only fail-closed gate: PASS
+implementation_allowed=false: PASS
+architecture_changes_allowed=false: PASS
+next_phase_locked=true: PASS
+reconciliation changed files: exact expected scope
+runtime/test source changed: NO
+human/machine/roadmap authority alignment: PASS
+git diff --check: PASS
+worktree clean: PASS
 ```
 
-The corrected direct runtime probe reached:
+Important reusable lesson: an implementation-only gate checker that hard-requires `implementation_allowed=true` must not be used as proof for a deliberately documentation-only fail-closed slice. Classify that as a validation-harness mismatch and validate the documentation gate contract directly rather than weakening policy to satisfy the checker.
+
+## Final roadmap classification from reconciliation
 
 ```text
-/v1/chat/completions
+R3  IMPLEMENTED_NOT_ACCEPTED
+R4  IMPLEMENTED_NOT_ACCEPTED
+R5  IMPLEMENTED_NOT_ACCEPTED
+R6A PARTIALLY_PROVEN
+R6B PARTIALLY_PROVEN
+R6C PARTIALLY_PROVEN
+R6D IMPLEMENTED_NOT_ACCEPTED
+R6E PARTIALLY_PROVEN
+R6F PARTIALLY_PROVEN
+CLI PARTIALLY_PROVEN
+R7  PARTIALLY_PROVEN
+release/package readiness PARTIALLY_PROVEN
 ```
 
-and completed.
+This classification means source/tests and roadmap-level acceptance are different evidence layers. Existing owners must not be reimplemented because an older roadmap presents them as future work.
 
-Reusable method:
+## Earliest next project candidate
 
 ```text
-provider-backed test fails
--> inspect exact AgentRunResult/error
--> determine whether network request occurred
--> inspect actual installed provider registry/capabilities
--> test corrected provider directly
--> only then patch adapter/test configuration
+phase: R3_RUNTIME_REASONING_ACCEPTANCE
+slice: PROVE_PERSISTENT_RUNTIME_TO_EXISTING_REASONING_BOUNDARY
+kind: acceptance proof
+active: NO
 ```
 
-Do not assume source comments, provider family names, or remembered SDK IDs match the actual published package registry.
+R3 implementation already exists through the project's persistent runtime/reasoning boundary and focused tests. The first missing artifact is current roadmap-level acceptance evidence.
 
-## Reusable terminal-truth lesson
-
-A provider/runtime library may return a structured failed result instead of throwing.
-
-Adapters must inspect terminal status and preserve the underlying error. Do not translate:
+Therefore future work should ask:
 
 ```text
-AgentRunResult(status=failed)
+Can the canonical runtime-to-existing-reasoning boundary satisfy the R3 exit proof on the normal accepted path?
 ```
 
-into a generic success-shaped/`completed` transport frame.
-
-Transport completion and task success are different concepts.
-
-## Reusable governed-tool lesson
-
-When the reasoning runtime calls a host tool:
+Do not ask:
 
 ```text
-model tool call
--> LBE proposal identity
--> deterministic authorization
--> governed execution owner
--> structured receipt
--> tool result back to the same model continuation
+How should R3 be implemented?
 ```
 
-For `DENIED` or `ESCALATED`, the executable handler must not run. For `FAILED`, the actual governed failure should be returned as tool failure evidence. The model may reason after receiving that failure, but it does not gain authority to bypass it.
+unless current project evidence later disproves the existing owner.
 
-## Reusable cancellation lesson
+## Future dependency order
 
-Cancellation must be proven while a provider turn is actually in flight.
+After R3 acceptance, select later work only from current evidence. Known candidate families include:
 
-The accepted path demonstrated:
-
-```text
-control.cancel
--> worker receives control
--> AgentRuntime.abort()
--> terminal status=aborted
-```
-
-A pre-run no-op or source-only assertion is not sufficient proof of live cancellation.
-
-## Current readiness boundary
-
-The Cline continuation slice is complete, but the overall product is not yet proven user-ready or release-ready.
-
-Do not infer completion of:
-
-- provider switching across the same persistent session;
-- resume/rehydration after workspace change;
-- classified recovery/retry;
-- complete coding/audit/investigation installed paths;
-- completion/validation gate across all task classes;
-- final CLI/API product surface;
-- R7 end-to-end acceptance;
+- R4 resume/rehydration roadmap acceptance;
+- R5 classified recovery roadmap acceptance;
+- same-session provider-switch acceptance;
+- mode/context/authorization/tool/completion acceptance at their claimed proof levels;
+- installed R7 coding/audit/resume/provider-switch/escalation flows;
 - release/package readiness.
 
-These require current project-owned proof.
+These are candidates, not active slices.
 
-## Immediate next project task — documentation and remaining-gap reconciliation
-
-Before another implementation feature, the project needs a bounded reconciliation slice.
-
-Reason:
-
-- project `docs/CURRENT_STATUS.md` has now been refreshed;
-- project `docs/IMPLEMENTATION_PLAN.md` still describes an older R2-current sequence;
-- project `docs/acceptance/CURRENT_AGENT_EXECUTION_GATE.md` still describes an older P16 cancellation-reconciliation phase;
-- the current `CURRENT_IMPLEMENTATION_GATE.md` is the newer accepted continuation authority;
-- older roadmap/status documents must not silently reactivate already-completed work.
-
-Required method:
-
-1. prove current canonical repo/main/HEAD/workspace state;
-2. inventory acceptance checkpoints and current runtime owners;
-3. compare live implementation against roadmap milestones R3-R7;
-4. classify each milestone as `PROVEN_COMPLETE`, `PARTIALLY_PROVEN`, `NOT_IMPLEMENTED`, `BLOCKED_CONFIGURATION`, or `STALE_DOCUMENT_ONLY`;
-5. reconcile the project's canonical implementation plan/current execution gate;
-6. identify the first genuinely missing capability from source/runtime evidence;
-7. activate exactly one new machine/human gate for that capability;
-8. keep the next phase locked until activation is explicit.
-
-Do not change product source merely to match an old plan.
-
-## Candidate future capability families to evaluate, not assume
-
-The project's canonical roadmap describes these end-state families:
-
-- checkpoint/resume/rehydration with stale-source invalidation;
-- bounded classified retry/recovery;
-- provider/model switching while LBE policy/session identity remains stable;
-- coding/audit/investigation typed runtime policies;
-- bounded context, rule and guard injection;
-- governed coding tool classes;
-- completion/validation gating;
-- thin CLI/API over canonical runtime services;
-- installed-path R7 proofs: coding, provider switch, resume, audit, escalation/denial;
-- release/package readiness.
-
-Their current implementation status must be revalidated in the project repository before choosing the next slice.
-
-## Broken/stale C5-R7 route warning
-
-The existing GPT-Knowledge routing page `project-engineering/projects/lbe-persistent-agent-c5-r7-acceptance-routing.md` references:
+## Readiness boundary
 
 ```text
-docs/acceptance/C5_R7_ACCEPTANCE_RECORD.md
+project_user_ready: NO
+release_ready: NO
+next_phase_locked: true
 ```
 
-but that file was not present on current project `main` when checked on 2026-08-16.
-
-Until that route is reconciled, future C5/R7 work must not fabricate or reconstruct a missing project acceptance record from memory. Use the live acceptance directory, `CURRENT_IMPLEMENTATION_GATE.md`, current source/runtime evidence, and the reconciled canonical plan. If a new canonical R7 acceptance record is required, create it only as part of an explicitly authorized documentation/acceptance slice.
+Do not infer overall readiness from lower-level PASS checkpoints.
 
 ## Anti-repeat rules
 
 Future agents must not:
 
-- trust an older `CURRENT` label over newer accepted runtime evidence;
-- interpret a completed checkpoint as automatic permission for the next feature;
-- patch from a provider-protocol hypothesis before exposing the actual runtime error/request boundary;
-- assume provider IDs from memory or source comments instead of the installed registry;
-- treat wrapper `COMMAND STATUS: PASS` as proof without inspecting internal stdout/stderr;
-- treat model continuation after a denied tool as execution bypass; inspect whether the governed handler actually ran and what receipt/error was returned;
-- equate transport completion with validated task completion;
-- use GPT-Knowledge as a competing project-status database;
-- treat historical tests, memory, indexed corpus, or prior conversations as current workspace truth.
-
-## Workspace truth rule
-
-At every new task start, re-prove the active project state. At minimum:
-
-```text
-git branch --show-current
-git rev-parse HEAD
-git status --short
-git fetch origin
-```
-
-Then inspect the current machine/human gates and relevant source/runtime owners before proposing changes.
+- trust stale `CURRENT` labels over live accepted evidence;
+- treat source presence or focused tests as automatic roadmap acceptance;
+- patch from a hypothesis before exposing the earliest actual runtime failure;
+- assume installed provider IDs/capabilities;
+- interpret wrapper command status without inspecting internal evidence;
+- treat provider continuation after DENIED/ESCALATED as execution bypass without checking whether the handler ran;
+- use GPT-Knowledge as a competing project-state database;
+- create a second session, authorization, tool, receipt, validation, or completion owner;
+- auto-activate the next phase after PASS.
 
 ## Update rule
 
-Update this record only for meaningful milestones:
-
-- accepted runtime/architecture slice;
-- canonical roadmap sequencing change;
-- project identity/workspace change;
-- major acceptance baseline change;
-- authority-boundary change;
-- retirement/supersession of a canonical path.
-
-Keep detailed project chronology in the project repository.
+Update this status record only for meaningful accepted milestones, authority-boundary changes, canonical sequencing changes, or readiness changes. Keep detailed commands/chronology in the project repository.
