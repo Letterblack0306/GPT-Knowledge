@@ -190,3 +190,38 @@ Run full regression and live visible acceptance proving no extra blank tab and n
 Safety boundary
 
 Do not use URL-only cleanup, title matching, first-tab assumptions, or broad “close every about:blank tab” logic.
+
+
+## Managed Chrome blank bootstrap-tab resolution - 2026-08-16
+
+### Classification
+
+`VISIBLE_ACCEPTANCE_PASSED`
+
+### Implemented ownership contract
+
+- Each managed-browser generation launches a uniquely marked bootstrap page.
+- The bootstrap page is claimed as one exact CDP target ID for that generation.
+- Exact-chat creation and existing supported-target selection retire only the claimed target.
+- User-created `about:blank` pages are not selected for cleanup.
+- Bootstrap ownership clears after retirement and when managed Chrome stops.
+- The active rebuild exact-chat path and BrowserSessionAuthority selection path share the same retirement authority.
+
+### Evidence
+
+- Access branch: `r3/canonical-46-integration-20260816`.
+- Proven commit: `80cc5735f074fdff54ccec230539851d0e09cdd5`.
+- Focused ManagedChrome, ProviderChannel, and BrowserSessionAuthority tests: PASS.
+- Full `npm run check`: PASS.
+- Real visible managed-Chrome acceptance: PASS.
+- Provider pages retained: one.
+- Owned bootstrap pages remaining: zero.
+- Relay started: false.
+- Submission attempted: false.
+- Production journal was not involved.
+- GitHub issue #21 is closed as completed.
+- Access draft PR #20 carries the implementation and evidence.
+
+### Boundary
+
+This proves removal of the Access-owned startup tab after exact provider verification. It does not authorize URL-only blank-tab cleanup and does not claim ownership of user-created tabs.
