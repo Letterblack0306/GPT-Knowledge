@@ -303,3 +303,23 @@ This section supersedes the earlier PR #20 integration-gate section.
 ### Next integration step
 
 Review and merge clean PR #22 through the normal repository integration policy. Do not reopen or merge PR #20. Treat provider capability availability and live-provider content acceptance as separate lanes from the completed clean R3/bootstrap contract.
+
+## PR #22 merge and PR #18 post-merge gate - 2026-08-16
+
+### GitHub truth
+
+- Clean PR #22 was marked ready and merged successfully on 2026-08-16.
+- Exact PR #22 head: `cf8651b5e1d4952f21573cff3d194bd1df5e40c7`.
+- Merge commit into the PR #18 branch: `de7e9adf54c10c137aa9a1cf5627c3040d587f64`.
+- PR #22 is closed and merged.
+- PR #18 remains open, draft, unmerged, and GitHub reports it mergeable.
+- PR #18 head is now `de7e9adf54c10c137aa9a1cf5627c3040d587f64`.
+- PR #18 base remains `feat/state-driven-ui-acceptance-20260816` at `4ffa6d3d0eabdaab71bcc272af36870039361116`.
+
+### CI boundary
+
+The PR #22 workflow reported `startup_failure` with path `BuildFailed` and zero jobs. No repository test ran in GitHub Actions. This was not treated as a passing check or as a code-test failure; merge relied on the recorded full local validation and GitHub's mergeable state.
+
+### Next gate
+
+Validate the new PR #18 head as the complete integration unit before changing PR #18 from draft or merging it. Confirm governance, full repository checks, the relevant conversation-transport acceptance, R3 isolated acceptance, bootstrap acceptance, and production-journal immutability. Do not infer PR #18 readiness solely from PR #22's clean-branch proof.
