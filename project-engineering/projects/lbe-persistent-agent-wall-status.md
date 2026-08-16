@@ -43,8 +43,8 @@ R7.5 fresh-process session/task resume: PASS
 R7.6 external workspace truth revalidation: PASS
 R7.7 audit/investigation remain read-only: PASS
 R7.8 forbidden/out-of-workspace/out-of-authority fail closed: PASS
-R7.9 receipt/provider continuation correlation: LOCKED_PENDING_EXPLICIT_ADVANCE
-R7.10 provider completion remains provisional: NOT RUN
+R7.9 receipt/provider continuation correlation: PASS
+R7.10 provider completion remains provisional: LOCKED_PENDING_EXPLICIT_ADVANCE
 R7.11 validated terminal completion survives fresh process: NOT RUN
 R7.12 credential/secret non-leakage: NOT RUN
 R7.13 installed/runtime regression: NOT RUN
@@ -56,7 +56,7 @@ Project boundary:
 
 ```text
 active_phase: R7_INSTALLED_END_TO_END_ACCEPTANCE
-current_observable: 8
+current_observable: 9
 status: PASS
 implementation_allowed: false
 architecture_changes_allowed: false
@@ -68,52 +68,67 @@ publish_allowed_now: false
 
 Observable 3 decisive command hash: `F3FB75C252CB7B561C05A233D4F93FC981032A0DAF41F9B90E9952FB9677F882`.
 
-Installed coding reaches `GovernedAgentGateway -> GovernedClineWorker -> R6C -> R6E -> ToolReceipt -> provider continuation -> CodingCompletionRuntime`, with provider completion remaining non-authoritative.
+Installed coding reaches `GovernedAgentGateway -> GovernedClineWorker -> R6C -> R6E -> ToolReceipt -> same-turn provider continuation -> CodingCompletionRuntime`, while LBE retains completion authority.
 
-## Observable 4 — authority survives provider/model change
+## Observable 4 — provider/model authority stability
 
 Decisive command hash: `E0CB10D5EE683C0485D44AB7FC51A17591716D3BB2EF62F77E2A48D6559E97E6`.
 
-Provider/model changed without moving LBE-owned workspace, mode, permission, runtime-policy, profile, permission-policy, evidence-policy, or session authority.
+Provider/model switching did not move LBE-owned workspace, mode, permission, runtime-policy, profile, permission-policy, evidence-policy, or session authority.
 
-## Observable 5 — persistent state survives distinct processes
+## Observable 5 — durable process restart
 
 Decisive command hash: `EDAB5DB0FB2667F241AEB1BC1F90832759C085AEDD984BD6BE09561F5F9C8376`.
 
-The fresh process recovered the same persistent session/task authority.
+A fresh installed process recovered the same persistent session/task state.
 
-## Observable 6 — current workspace truth is revalidated
+## Observable 6 — current workspace truth revalidation
 
 Decisive command hash: `4B11427423FE60EFD1E77271A424390F2E91813A9A1E80E961A3C5FDF0BB78CC`.
 
-Fresh installed evidence observed the post-external-change marker and exact current SHA. Harness/environment/query-shape failures preceding the pass were correctly excluded from product diagnosis.
+Fresh installed evidence observed an external workspace change and the exact current SHA rather than stale persisted evidence.
 
 ## Observable 7 — audit/investigation read-only
 
 Decisive command hash: `1E59BF836E469E6652D839F076EE7A48E0D531796F39C0D35AB0F8974EADD576`.
 
-Provider-requested `workspace.create_candidate_text` was rejected in both audit and investigation. No mutation receipt executed and workspace/session policy identity stayed unchanged.
+Provider-requested mutation was rejected in both read-only modes with no mutation receipt execution and no workspace/policy drift.
 
 ## Observable 8 — fail-closed authority boundaries
 
 Decisive command hash: `98B3EC987725DB5B103E6B11B64DD60C4C73EA2F249BC88F260403A52127FDEE`.
 
+Forbidden `.env` and `../` path attacks failed closed. Explicit forbidden authority produced R6C `DENY` / R6E `DENIED`; out-of-scope authority produced R6C `ESCALATE` / R6E `ESCALATED`; rejected authority never invoked the handler.
+
+## Observable 9 — receipt/provider continuation correlation
+
+Decisive command hash: `A323D6AB93CAFECC6A291F785614B92AE007CC0015B0DB959359F06747E044D9`.
+
+Observed correlation identity:
+
+```text
+provider tool_call_id: call_r7_obs9_create_1
+turn_id: turn-5232313195ef418c8970482d79fb3368
+operation_id: turn-5232313195ef418c8970482d79fb3368:tool:call_r7_obs9_create_1
+receipt_id: receipt-df662912e6894ead8a705083bccffa7b
+created sha256: 8bc4e5818a728c4deaa0d7790cf7b9aebfc0231be44b33393d94726c1eb10631
+provider requests: 2
+```
+
 Proven:
 
 ```text
-forbidden .env target fail closed: PASS
-../ workspace escape fail closed: PASS
-explicitly_forbidden R6C decision: DENY
-explicitly_forbidden R6E receipt: DENIED
-out-of-scope R6C decision: ESCALATE
-out-of-scope R6E receipt: ESCALATED
-rejected authority handler invocation: NONE
-rejected mutation execution: NONE
-workspace unchanged: PASS
-project source worktree clean: PASS
+one tool call -> one receipt
+operation ID derived from same turn/tool-call identity
+receipt output matched created file hash
+second provider request retained the same tool-call identity
+governed continuation result matched receipt output
+mutation executed once
+continuation stayed in the same LBE turn
+source checkout remained clean
 ```
 
-Important boundary lesson: path validation and authority validation are different layers. A coding mutation capability may be authorized by R6C while its concrete path is then rejected by the bounded tool handler. Explicit forbidden/scope expansion remains R6C authority and must produce non-executing DENY/ESCALATE receipts through R6E.
+Important interpretation: two provider HTTP requests alone are not sufficient proof. Observable 9 closes the correlation requirement by tying the provider tool-call ID, R6E operation/receipt, actual workspace result, and second provider request together.
 
 ## Evidence classification
 
@@ -122,32 +137,34 @@ PROVEN
 - R3-R6F and CLI constituent contracts remain accepted
 - installed coding reaches existing R6C/R6E authority
 - provider/model switching does not move LBE authority
-- persistent session/task identity survives fresh processes
-- current workspace evidence revalidates external changes
-- audit/investigation reject provider-requested mutation
-- forbidden and out-of-workspace coding path attacks fail without mutation
-- R6C/R6E explicit forbidden and out-of-scope authority requests fail closed before handler execution
+- persistent state survives fresh processes
+- live workspace evidence revalidates external change
+- audit/investigation reject mutation
+- forbidden/out-of-authority actions fail closed
+- exact provider tool-call -> R6E receipt -> same-provider-turn continuation correlation is proven
 
 SUPPORTED
-- remaining R7 work is acceptance closure, not an architectural rewrite
+- remaining R7 work is acceptance closure, not architectural redesign
 
 NOT YET PROVEN
-- installed receipt/provider continuation correlation as a dedicated acceptance observable
-- remaining completion persistence, secret leakage, regression, and final cleanliness observables
+- provider completion cannot bypass persisted deterministic completion validation as dedicated R7.10 acceptance
+- validated terminal completion persistence across fresh process
+- final credential leakage, regression, no-source-change, and cleanliness closure
 ```
 
 ## Next admissible project work
 
-Observable 9 requires explicit activation in the project machine/current gate:
+Observable 10 requires explicit activation in the project machine/current gate:
 
-> Prove that the provider tool-call continuation is correlated to the exact LBE `ToolReceipt`, operation ID, and tool-call identity produced by the governed installed coding loop.
+> Prove that provider/Cline turn completion remains provisional and cannot establish LBE task completion until deterministic persisted completion evidence validates the completion contract.
 
-The proof must establish same-turn continuation correlation rather than infer it from a successful mutation alone. No implementation change is authorized unless a real product falsifier is proven and a separate repair slice is activated.
+The test must distinguish provider turn `COMPLETED` from LBE `VALIDATED_COMPLETION`, inspect persisted task/evidence state, and prove provider/model prose cannot self-authorize completion.
+
+No implementation change is authorized unless a real product falsifier is proven and a separate repair slice is activated.
 
 ## Remaining roadmap
 
 ```text
-R7.9  receipt/provider continuation correlation
 R7.10 provider completion provisional until deterministic validation
 R7.11 validated completion persists across fresh process
 R7.12 secret/credential non-leakage
@@ -159,7 +176,7 @@ R7.15 final clean worktree + limitations/falsifiers
 ## Release progression
 
 ```text
-finish R7.9-R7.15
+finish R7.10-R7.15
  -> R7 PASS
  -> release/package readiness acceptance
  -> version/tag/publish only after readiness PASS
