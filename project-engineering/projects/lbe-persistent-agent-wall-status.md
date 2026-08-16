@@ -42,6 +42,7 @@ persistent LBE runtime
         |
         +-- workspace/session identity
         +-- mode/policy
+        +-- bounded classified recovery
         +-- deterministic authorization
         +-- governed executable tools
         +-- receipts/evidence
@@ -81,31 +82,18 @@ Python LBE authoritative parent
  -> same Cline continuation
 ```
 
-Durable lessons:
-
-- inspect the actual installed provider registry; do not guess SDK/provider IDs;
-- provider configured/reachable/authenticated/capable/healthy are separate facts;
-- structured failed runtime results must remain failures;
-- DENIED/ESCALATED tool outcomes must not execute the governed handler;
-- cancellation proof must occur while the provider turn is actually in flight;
-- transport completion is not LBE task-completion truth.
-
 ## Roadmap reconciliation milestone — PASS
 
-The project completed a documentation-only evidence-driven reconciliation after the Cline continuation slice.
-
-That reconciliation established:
+The project established the durable distinction:
 
 ```text
 file/test exists != roadmap accepted
 old roadmap says future != implementation missing
 ```
 
-and identified R3 as the first then-unaccepted implemented capability.
+Missing acceptance evidence is not permission to create a second owner.
 
 ## R3 runtime reasoning acceptance — PASS
-
-R3 proved the existing runtime-to-reasoning path without modifying runtime source.
 
 ```text
 R3 persistent runtime -> existing reasoning boundary: PROVEN_COMPLETE
@@ -121,138 +109,129 @@ SessionMemoryRuntimeBridge.run_reasoning
  -> canonical task lifecycle persistence
 ```
 
-Focused regression:
-
-```text
-46 passed
-```
-
-Reusable R3 harness lesson: if the target observable completes and a later disposable temporary-file cleanup fails, classify the cleanup separately rather than patching production behavior.
+Focused regression: `46 passed`.
 
 ## R4 checkpoint/resume/rehydration acceptance — PASS
-
-R4 then proved the existing restart/rehydration/stale-state path without modifying runtime or test implementation source.
-
-Project phase/slice:
-
-```text
-phase: R4_CHECKPOINT_RESUME_ACCEPTANCE
-slice: PROVE_CHECKPOINT_RESTART_REHYDRATION_AND_STALE_STATE_INVALIDATION
-status: PASS
-validated acceptance head: 7369ae41311870866a919092c59d13d02a99c942
-next_phase_locked: true
-```
-
-Accepted owner path:
-
-```text
-SessionMemoryRuntimeBridge.start_or_resume
- -> SessionMemoryAdapter.rehydrate
- -> rehydrate_context
- -> inspect current Git state
- -> load VERIFIED records
- -> invalidate changed source-backed records
- -> protected checkpoint revalidation
- -> current context packet
-```
-
-Accepted checkpoint path:
-
-```text
-SessionMemoryRuntimeBridge.checkpoint
- -> SessionMemoryAdapter.checkpoint_compaction
- -> WorkspaceMemoryStore
-```
-
-Decisive repository-owned discriminator:
-
-```text
-tests/test_session_resume_runtime.py::test_resume_invalidates_changed_source_fact_and_reports_changed_head
-PASS
-```
-
-It proves:
-
-- task/session continuity survives reconstruction;
-- active checkpoint constraints survive;
-- an external committed source change produces a new current Git HEAD;
-- current Git state outranks checkpoint state;
-- changed checkpoint HEAD is reported `MISMATCH` and checkpoint status becomes `INELIGIBLE`;
-- `reactivation_allowed=false` for that stale checkpoint;
-- previously verified source-backed evidence becomes `STALE` when its source changes;
-- stale evidence is excluded from resumed `verified_facts`.
-
-The source contract additionally proves assistant reasoning/compaction summaries are not promoted into verified workspace truth: the adapter accepts structured deterministic evidence, rehydration queries VERIFIED records and revalidates source hashes, and the context packet explicitly states not to use assistant reasoning or compaction summaries as authority.
-
-Focused R4 regression:
-
-```text
-37 passed
-```
-
-across:
-
-```text
-tests/test_session_resume_runtime.py
-tests/test_session_memory_runtime.py
-tests/test_session_memory_adapter.py
-tests/test_checkpoint_eligibility.py
-```
-
-### Reusable LoopTool lesson
-
-Two ad hoc embedded-Python R4 probes failed before product execution because the LoopTool command transport corrupted quoting/indentation. They were correctly classified:
-
-```text
-TEST_HARNESS_TRANSPORT_FAILURE
-```
-
-The method was changed instead of mechanically retrying the same payload: GitHub was used to inspect the canonical repository-owned tests and LoopTool was then used only to execute the smallest existing test locally.
-
-Use this boundary in future work:
-
-```text
-GitHub = repository truth and file transfer/patch updates
-LoopTool = local testing/debugging/runtime evidence
-```
-
-Do not use LoopTool as the normal repository authoring mechanism when GitHub is available.
-
-### Current R4 classification
 
 ```text
 R4 checkpoint/resume/rehydration: PROVEN_COMPLETE
 ```
 
-## Earliest next project candidate
+Accepted path re-inspects current Git/source state on resume, invalidates stale source-backed facts, preserves session/task/config/constraints, makes stale checkpoints ineligible when HEAD changes, and never treats assistant/compaction summaries as current workspace truth.
+
+Focused R4 regression: `37 passed`.
+
+Reusable R4 LoopTool lesson:
+
+- large embedded-Python probes were corrupted by command transport;
+- classify such failures as `TEST_HARNESS_TRANSPORT_FAILURE` when product execution was never reached;
+- change the method instead of mechanically retrying the same payload;
+- prefer GitHub inspection of repository-owned tests and use LoopTool only to execute the smallest local discriminator.
+
+## R5 bounded classified recovery acceptance — PASS
 
 ```text
-phase family: R5 bounded classified recovery acceptance
-classification: IMPLEMENTED_NOT_ACCEPTED
-active: NO
+phase: R5_BOUNDED_RECOVERY_ACCEPTANCE
+slice: PROVE_CLASSIFIED_BOUNDED_RECOVERY_AND_DUPLICATE_PREVENTION
+status: PASS
+next_phase_locked: true
 ```
 
-Current owners already include `recovery.py` and `SessionMemoryRuntimeBridge.run_recoverable()`.
-
-The next task should therefore ask:
+Current classification:
 
 ```text
-Does the existing R5 recovery path satisfy its roadmap exit proof for transient retry, deterministic non-retryable failure, idempotency/duplicate safety, evidence between attempts, cancellation, and persisted recovery state?
+R5 bounded classified recovery: PROVEN_COMPLETE
 ```
 
-Do not ask how to implement R5 unless evidence first disproves the existing owner.
+Accepted owner path:
 
-## Remaining dependency order
+```text
+SessionMemoryRuntimeBridge.run_recoverable
+ -> recovery.run_with_recovery
+ -> classify_failure / RetryPolicy
+ -> persist_recovery_state
+ -> WorkspaceMemoryStore
+```
 
-After R4 acceptance, select later work only from current evidence:
+Repository-owned recovery discriminator:
 
-- R5 classified recovery acceptance;
-- same-session provider-switch acceptance;
-- mode/context/authorization/tool/completion acceptance at claimed proof levels;
-- installed R7 coding/audit/resume/provider-switch/escalation flows;
-- release/package readiness.
+```text
+tests/test_runtime_recovery.py
+7 passed
+```
 
-These are candidates, not active slices.
+It proved:
+
+- transient retryable failure recovers within declared policy;
+- attempt count and terminal state persist;
+- persisted retry count survives runtime reconstruction;
+- permission denial does not retry;
+- scope conflict cannot be configured as retryable;
+- non-idempotent retryable work is rejected before retry execution;
+- missing required evidence-between-attempts stops before another attempt;
+- terminal success blocks duplicate execution under the same task/operation identity.
+
+Focused R5 regression:
+
+```text
+tests/test_runtime_recovery.py
+tests/test_session_memory_runtime.py
+30 passed
+```
+
+No runtime/test implementation source changed during R5 acceptance.
+
+### R5 cancellation evidence boundary
+
+No repository-owned direct cancellation test was found. One ad hoc cancellation LoopTool probe failed before product execution because the embedded Python payload was corrupted by command transport.
+
+```text
+classification: TEST_HARNESS_TRANSPORT_FAILURE
+product implication: none
+```
+
+The active gate explicitly permitted source-supported cancellation classification when no repository-owned direct harness existed. Canonical `run_with_recovery()` checks cancellation before another attempt, persists `FailureClass.CANCELLATION` as terminal with `succeeded=false`, and `RetryPolicy` forbids cancellation from the retryable set.
+
+```text
+cancellation acceptance level: SUPPORTED_BY_CANONICAL_SOURCE_ALLOWED_BY_GATE
+direct runtime synthesis: NOT_OBTAINED
+```
+
+Do not later rewrite this limitation as direct runtime proof.
+
+## Current roadmap position
+
+```text
+R3  PROVEN_COMPLETE
+R4  PROVEN_COMPLETE
+R5  PROVEN_COMPLETE
+R6A PARTIALLY_PROVEN
+R6B PARTIALLY_PROVEN
+R6C PARTIALLY_PROVEN
+R6D IMPLEMENTED_NOT_ACCEPTED
+R6E PARTIALLY_PROVEN
+R6F PARTIALLY_PROVEN
+CLI PARTIALLY_PROVEN
+R7  PARTIALLY_PROVEN
+release/package readiness PARTIALLY_PROVEN
+```
+
+## Next project selection
+
+No R6 slice is active.
+
+Before opening another gate, inspect current project evidence and select one dependency-appropriate R6 family:
+
+```text
+R6A provider abstraction
+R6B typed mode policy
+R6C permission/authorization
+R6D context assembly + rule/guard injection
+R6E governed tool orchestration
+R6F completion/validation
+```
+
+Do not combine the R6 families into one acceptance slice.
 
 ## Readiness boundary
 
@@ -272,12 +251,12 @@ Future agents must not:
 - treat source presence/focused tests as automatic roadmap acceptance;
 - reimplement a capability whose current owner exists before acceptance evidence disproves it;
 - patch from a hypothesis before exposing the earliest actual runtime failure;
-- assume installed provider IDs/capabilities;
 - interpret wrapper command status without inspecting internal evidence;
-- treat harness cleanup/transport errors as product defects when product behavior did not fail;
+- treat harness cleanup/transport errors as product defects when product behavior was never reached or did not fail;
 - use LoopTool for normal file transfer or patch authoring when GitHub is available;
+- silently promote source-supported cancellation evidence into direct runtime proof;
 - use GPT-Knowledge as a competing project-state database;
-- create a second session, authorization, tool, receipt, validation, or completion owner;
+- create a second session, recovery, authorization, tool, receipt, validation, or completion owner;
 - auto-activate the next phase after PASS.
 
 ## Update rule
