@@ -225,3 +225,46 @@ Do not use URL-only cleanup, title matching, first-tab assumptions, or broad “
 ### Boundary
 
 This proves removal of the Access-owned startup tab after exact provider verification. It does not authorize URL-only blank-tab cleanup and does not claim ownership of user-created tabs.
+
+
+## Current PR status and next integration gate - 2026-08-16
+
+This section supersedes earlier lines in this record that describe the recovery-readiness fix or rendered harness as local/uncommitted, R3 as still awaiting isolated rendered proof, or the blank bootstrap-tab fix as not started.
+
+### Current GitHub truth
+
+- Access draft PR #20 is open, draft, mergeable, and unmerged.
+- PR #20 base: `refactor/browser-conversation-turn-transport-20260816`.
+- Base commit: `68eff6f3708bca0198453d6ec9c25ccd862fdc61`.
+- Current PR #20 documentation head: `49c41bb734547d49ac462ab3a98654d1f832ea29`.
+- Last runtime-proven implementation head: `80cc5735f074fdff54ccec230539851d0e09cdd5`.
+- GitHub reports 40 commits and 40 changed files on PR #20 after the current status-document commit.
+- The branch is zero commits behind its stacked base.
+- R3 classification: `RUNTIME_PROVEN_ISOLATED_FIXTURE`.
+- Managed Chrome bootstrap lifecycle: `VISIBLE_ACCEPTANCE_PASSED`.
+- Issue #21 is closed as completed.
+- PR #20's body has been updated to remove the obsolete pending-rendered-proof/provider-capacity status.
+
+### Scope finding
+
+PR #20 is broader than its title. It currently carries R3, managed-browser bootstrap ownership, browser capability/subagent work, terminal re-entry work, browser-state lifecycle work, and supporting governance/tests/docs.
+
+Green regression and acceptance results prove behavior on the tested head; they do not prove this enlarged branch is the correct integration unit.
+
+### Next bounded step
+
+`PR_SCOPE_AND_STACK_INTEGRATION_AUDIT`
+
+1. Enumerate every commit between the PR #18 base and PR #20 head.
+2. Bind each commit and changed file to its registered change intent and feature owner.
+3. Classify scope as R3-required, bootstrap-lifecycle-required, prerequisite, or independent.
+4. Decide `KEEP_STACKED` or `SPLIT_REQUIRED` before rebase, retarget, or merge.
+5. Revalidate PR #18's live head and merge state.
+6. After the branch shape is accepted, rerun focused checks, full `npm run check`, R3 isolated acceptance, and bootstrap visible acceptance.
+
+### Prohibited next actions
+
+- Do not reconcile or mutate the production journal.
+- Do not run live ChatGPT content mutation merely to increase the R3 label.
+- Do not merge PR #20 based only on green tests.
+- Do not perform broad cleanup while commit/file ownership remains unclassified.
