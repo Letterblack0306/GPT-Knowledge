@@ -25,46 +25,62 @@ R6B PROVEN_COMPLETE
 R6C PROVEN_COMPLETE
 R6D PROVEN_COMPLETE
 R6E PROVEN_COMPLETE
+R6F PROVEN_COMPLETE
 ```
 
-Final synchronized R6E closure:
+## R6F completion/validation acceptance — PASS
 
-```text
-project HEAD: fdb256c09f331610e596f12fdca008785b9518a4
-origin/main: fdb256c09f331610e596f12fdca008785b9518a4
-LoopTool closure hash: 90D0F4EE9255B968DB413A62D67AFA9363AB998EF9D7BED9349F8E26C5408E5D
-```
-
-## Active R6F completion/validation acceptance
-
-The user explicitly authorized proceeding toward release. Project authority correctly does not skip prerequisites: R6F is active acceptance-only before CLI normal-path, R7 installed E2E, and release/package readiness.
+Project authority accepted the evidence-owned terminal completion path without runtime/test implementation changes.
 
 ```text
 phase: R6F_COMPLETION_VALIDATION_ACCEPTANCE
 slice: PROVE_EVIDENCE_OWNED_TERMINAL_COMPLETION_THROUGH_PERSISTENT_CODING_RUNTIME
-status: OPEN
+status: PASS
 implementation_allowed: false
 architecture_changes_allowed: false
 next_phase_locked: true
-base_sha: fdb256c09f331610e596f12fdca008785b9518a4
+acceptance_head: baeeea97d272a6575320605f26995a2732e1205c
 release_path_authorized: true
 publish_allowed_now: false
 ```
 
-Existing owners:
+Accepted lifecycle:
 
 ```text
-evaluate_completion
-CodingCompletionRuntime
-TaskCompletionContractPersistence
-TaskCompletionEvidencePersistence
-completion_evidence_producers
-SessionMemoryRuntimeBridge
+provider/reasoning COMPLETED
+ -> running / AWAITING_VALIDATION
+ -> persisted completion contract
+ -> producer-bound persisted evidence
+ -> stale evidence BLOCKED
+ -> all required PASS evidence + explicit completion claim
+ -> READY
+ -> canonical persisted completed / VALIDATED_COMPLETION
 ```
 
-Reuse decision: `REUSE`.
+Accepted evidence:
 
-Current source/tests establish separately that provider/model completion claims cannot establish terminal truth, stale/missing evidence blocks, failed required evidence fails, all required PASS evidence plus an explicit claim yields READY, reasoning COMPLETED remains provisional pending validation, and READY persists canonical COMPLETED/VALIDATED_COMPLETION state.
+```text
+repository completion baseline: 34 passed
+hash: 413212958DF86E82F1E8E3503E8DD4462802E876FD05608C8C6056EDDB92C885
+
+provisional completion: PASS
+hash: 1F770F3046BAAA87AA7A69D1C38C24F8D7AE044FC357B0172FE5103CB6B0F604
+
+stale evidence stop: PASS
+hash: 3DC9440BF70342DD52A5F0C7E1E34CC43718A3F46E47230C6D1CF585FC251870
+
+terminal evidence-owned completion: PASS
+hash: F76048961D3079065D3C7F71949783AB4D266F4130154731AD0AC6B45D34BB13
+
+focused regression: 91 passed
+hash: 87BA55ECE0EED9BCE6732FF548C102AE5BD87CC324066CE11F2F33D26904313A
+
+runtime/test source unchanged: PASS
+diff check: PASS
+worktree clean: PASS
+acceptance scope: PASS
+observed falsifier: NONE
+```
 
 ## Current roadmap
 
@@ -77,7 +93,7 @@ R6B PROVEN_COMPLETE
 R6C PROVEN_COMPLETE
 R6D PROVEN_COMPLETE
 R6E PROVEN_COMPLETE
-R6F PARTIALLY_PROVEN — ACTIVE ACCEPTANCE
+R6F PROVEN_COMPLETE
 CLI PARTIALLY_PROVEN
 R7  PARTIALLY_PROVEN
 release/package readiness PARTIALLY_PROVEN
@@ -86,11 +102,10 @@ release/package readiness PARTIALLY_PROVEN
 ## Release progression
 
 ```text
-R6F PASS
- -> CLI normal-path PASS
- -> R7 installed E2E PASS
- -> release/package readiness PASS
+CLI normal-path acceptance
+ -> R7 installed E2E acceptance
+ -> release/package readiness acceptance
  -> version/tag/publish
 ```
 
-Release publication is not yet allowed. Do not infer release readiness from package metadata or lower-layer tests.
+Release publication is not yet allowed. Do not infer release readiness from package metadata or lower-layer tests, and do not auto-activate later gates without project-authoritative activation.
