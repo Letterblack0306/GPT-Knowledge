@@ -10,9 +10,12 @@
 ## Mandatory route
 
 ```text
+GPT-Knowledge -> method/routing only
 GitHub -> canonical remote source/docs/patches/gates/checkpoints/status
 LoopTool -> local test/debug/runtime evidence only
 ```
+
+Do not patch the project from this reference page. Re-read the project-owned current gate and exact source revision before any engineering action.
 
 ## Accepted baseline
 
@@ -29,63 +32,128 @@ R6F PROVEN_COMPLETE
 CLI PROVEN_COMPLETE
 ```
 
-## CLI normal-path acceptance — PASS
+These are accepted constituent contracts. They do not by themselves prove that an installed entry point composes every accepted authority in one user/runtime path.
 
-Project authority accepted the existing `lbe` CLI as a thin persistent control surface over established LBE runtime owners with no CLI/runtime/test/package source changes.
+## Current project-owned R7 position — FAIL
+
+Project authority now records:
 
 ```text
-phase: CLI_NORMAL_PATH_ACCEPTANCE
-slice: PROVE_THIN_NONINTERACTIVE_CLI_OVER_ACCEPTED_PERSISTENT_RUNTIME_AUTHORITIES
-status: PASS
+phase: R7_INSTALLED_END_TO_END_ACCEPTANCE
+slice: PROVE_INSTALLED_PERSISTENT_AGENT_NORMAL_PATH_OVER_ACCEPTED_AUTHORITIES
+status: FAIL
 implementation_allowed: false
 architecture_changes_allowed: false
 next_phase_locked: true
-acceptance_head: 0cdd2fa025878f591334409237d0dca8bb615a32
 release_path_authorized: true
 publish_allowed_now: false
 ```
 
-Accepted lifecycle:
+Project R7 acceptance proved:
 
 ```text
-separate-process session create
- -> status/inspect persistent identity
- -> provider switch with policy stable
- -> continue/rehydrate same authority
- -> persisted R6F completion contract/evidence
- -> CLI validate READY
- -> persisted COMPLETED / VALIDATED_COMPLETION
+exact-head isolated installation: PASS
+installed lbe identity without checkout leakage: PASS
+persistent installed session creation: PASS
+fresh-process session identity persistence: PASS
+normal installed governed coding execution + ToolReceipt: FAIL
 ```
 
-Accepted boundaries:
-
-- missing completion contract fails closed with structured exit 2;
-- CLI validation exposes only database/session/task identity inputs;
-- CLI exposes no completion evidence/status/verdict/proof injection surface;
-- completion truth remains owned by the R6F runtime;
-- observed diagnostic failures were harness-only and did not justify product patches.
-
-Accepted evidence:
+Decisive installed-runtime evidence recorded by the project:
 
 ```text
-repository baseline: 78 passed
-hash: F99F0C0A9857AA1322E51D60488A42A6FD0D74FB511C47A88EDE154B022486C0
-separate-process persistence: PASS
-hash: 9FFA8D1A831C394B836DC09CA5D7B15F501D5F141F5499BD7A3CAEA3D766E8FB
-provider-policy stability + continue: PASS
-hash: C0FCE90E0449A2063EE195634F182D42EAB7BC0646CB291BCC15CE8470DA3437
-persisted completion validation: PASS
-hash: 313468EAD033D330FA260E1A5A50B54A445E8139CE6E2534BD78B51E2B98342B
-missing-contract fail closed: PASS
-hash: E136BE394882256738CCAADF905E034BBA251416F5085C963591ABF47B029CE5
-no evidence-injection surface: PASS
-hash: 8D13866680263DCE566E737BA1E28D5D70115EE95C76C0F5BC1FA93819665CE4
-focused regression: 115 passed
-hash: 7E0351B681A14F14264C066EF7809C4092817ABE10D5794B8AE97AB0EB2C85D2
-runtime/test/package source unchanged: PASS
-diff check: PASS
-worktree clean: PASS
-observed product falsifier: NONE
+lbe code exit: 0
+outcome: INSUFFICIENT_EVIDENCE
+task status: blocked
+response.read_only: true
+provider stage: planning
+provider approved_tools: workspace.read
+R7_CODE_PROVIDER_AUTHORITY_READ_ONLY=PROVEN
+```
+
+The failed acceptance gate is the project authority. Exact command hashes, temporary fixture paths, current project HEADs, and full evidence remain in the project repository rather than this routing reference.
+
+## Current durable interpretation
+
+The live source/runtime reconciliation currently supports this architecture reading:
+
+```text
+installed lbe code
+ -> thin CLI control plane
+ -> SessionMemoryRuntimeBridge
+ -> GovernedAgentGateway
+ -> LBERequestController
+ -> read-only reasoning / deterministic inspection
+ -> approved_tools=[workspace.read]
+ -> read_only response
+```
+
+while the accepted governed coding authorities exist separately:
+
+```text
+R6C authorization_resolver
+R6E GovernedToolOrchestrator / ToolRegistry / ToolReceipt
+provider_continuation consuming an existing ToolReceipt
+CodingCompletionRuntime / deterministic completion evidence
+```
+
+Therefore the current defect is classified as an **installed normal-path integration/composition gap**, not as proof that the accepted R6C/R6E/completion owners are invalid.
+
+## Evidence classification
+
+```text
+PROVEN
+- installed code path exposes only workspace.read to provider reasoning in the failed R7 probe
+- installed response is read_only and does not reach governed coding receipt execution
+- R6C/R6E/receipt-continuation authorities exist as separate accepted owners
+- release progression is blocked by R7
+
+SUPPORTED
+- the smallest correct repair should reuse those authorities and repair composition/wiring
+
+HYPOTHESIS
+- a provider tool-call/execution continuation seam exists but is not composed into installed code, or the intended seam has not yet been wired to the CLI/gateway normal path
+
+UNKNOWN
+- exact active-owner function/file that should be edited until the bounded repair investigation traces every current ToolRequest/orchestrator/receipt/provider-turn consumer
+```
+
+## Next admissible project work — not activated
+
+The project machine gate remains failed and implementation remains forbidden.
+
+The next project gate, if explicitly activated, should be an investigation-only repair slice asking:
+
+> What existing active-owner seam should connect installed `lbe code` / `GovernedAgentGateway` reasoning to the accepted R6C/R6E governed tool execution and receipt-continuation path, and what is the smallest correction that restores that composition without creating parallel authority?
+
+Required investigation order:
+
+```text
+current CLI/gateway/reasoning call path
+ -> all ToolRequest producers/consumers
+ -> all GovernedToolOrchestrator construction/consumers
+ -> ToolReceipt persistence/correlation
+ -> provider tool-call / provider-turn continuation paths
+ -> earliest incorrect/missing composition state
+ -> alternate/legacy path scan
+ -> repair hypothesis + falsifier
+ -> validation plan
+ -> only then separately authorize implementation
+```
+
+## Repair invariants
+
+```text
+reuse SessionMemoryRuntimeBridge
+reuse R6C authorization_resolver
+reuse R6E GovernedToolOrchestrator / ToolRegistry / ToolReceipt
+reuse receipt-backed provider continuation
+reuse CodingCompletionRuntime
+no second tool dispatcher
+no second authorization owner
+no second session/provider/completion authority
+no provider-direct workspace mutation
+no release progression until repaired installed evidence passes
 ```
 
 ## Current roadmap
@@ -101,16 +169,23 @@ R6D PROVEN_COMPLETE
 R6E PROVEN_COMPLETE
 R6F PROVEN_COMPLETE
 CLI PROVEN_COMPLETE
-R7  PARTIALLY_PROVEN
-release/package readiness PARTIALLY_PROVEN
+R7  FAIL — INSTALLED NORMAL-PATH CODING COMPOSITION GAP
+repair investigation NOT YET ACTIVATED
+release/package readiness BLOCKED_BY_R7
 ```
 
 ## Release progression
 
 ```text
-R7 installed E2E acceptance
+activate bounded repair investigation
+ -> prove exact composition seam
+ -> separately authorize smallest repair
+ -> rebuild/install exact repair head
+ -> rerun R7 observable 3
+ -> finish remaining R7 observables
+ -> R7 PASS
  -> release/package readiness acceptance
  -> version/tag/publish
 ```
 
-Release publication is not yet allowed. Do not infer installed/release readiness from CLI acceptance or package metadata, and do not auto-activate R7 without project-authoritative activation.
+Publication is not allowed. Do not infer release readiness from lower-layer tests, CLI acceptance, package metadata, or existence of R6E classes alone.
