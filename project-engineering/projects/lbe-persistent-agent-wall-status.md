@@ -37,8 +37,8 @@ R7.7 PASS
 R7.8 PASS
 R7.9 PASS
 R7.10 provider completion remains provisional: PASS
-R7.11 validated terminal completion survives fresh process: LOCKED_PENDING_EXPLICIT_ADVANCE
-R7.12 credential/secret non-leakage: NOT RUN
+R7.11 validated terminal completion survives fresh process: PASS
+R7.12 credential/secret non-leakage: LOCKED_PENDING_EXPLICIT_ADVANCE
 R7.13 installed/runtime regression: NOT RUN
 R7.14 no source changes absent a real falsifier: NOT RUN
 R7.15 final clean worktree + limitations/falsifiers: NOT RUN
@@ -48,7 +48,7 @@ Project boundary:
 
 ```text
 active_phase: R7_INSTALLED_END_TO_END_ACCEPTANCE
-current_observable: 10
+current_observable: 11
 status: PASS
 implementation_allowed: false
 architecture_changes_allowed: false
@@ -56,50 +56,27 @@ next_phase_locked: true
 publish_allowed_now: false
 ```
 
-## Observable 10 — completion authority
+## Observable 11 — durable validated completion
 
 Decisive command hash:
-`3C5DCA411AF217AE301344B803B6D9BD1753CE52B66A5C746129C05BC889B946`
+`6234EA61F2A2E8A8FE962515278B3ED8229EC5B2CD4AB92FFBAABCEAC6D2DA6D`
 
 Proven:
 
 ```text
-normal registered completion contract established
-provider/Cline turn completed successfully
-provider explicitly claimed completion
-lbe_completion_truth remained false
-task persisted running / AWAITING_VALIDATION
-deterministic validation rejected the unsatisfied contract
-no premature COMPLETED / VALIDATED_COMPLETION
-workspace unchanged
-source checkout clean
+normal governed mutation executed
+registered source_change / focused_test / git_status contract established
+all trusted completion evidence passed
+provider lbe_completion_truth remained false
+pre-validation task remained running / AWAITING_VALIDATION
+session validate returned READY
+task persisted completed / VALIDATED_COMPLETION
+fresh installed process recovered the same terminal task/session authority
+persisted completion evidence survived restart
+source checkout remained clean
 ```
 
-Interpretation: provider/model prose and provider terminal success remain non-authoritative. LBE completion truth belongs only to the persisted deterministic completion contract/evidence gate.
-
-Two failed observable-10 invocations were harness failures, not product evidence:
-
-```text
-D366A3... TEST_HARNESS_COMPLETION_CONTRACT_INTERFERENCE
-4CD543... TEST_HARNESS_WINDOWS_LOCKED_TEMP_GIT_DIRECTORY
-```
-
-The first injected a partial synthetic contract that conflicted with the normal producer set. The second failed during Windows cleanup of a prior disposable Git directory. Neither justified a runtime/source patch.
-
-## Synchronization checkpoint
-
-```text
-checkpoint_date: 2026-08-17
-project_state: R7.1-R7.10 accepted
-latest_decisive_runtime_proof: 3C5DCA411AF217AE301344B803B6D9BD1753CE52B66A5C746129C05BC889B946
-project_status_commit: 6580977c3e40ac180c77f9a9b5769c54c5f8dae0
-next_observable: R7.11
-next_observable_state: LOCKED_PENDING_EXPLICIT_ADVANCE
-implementation_allowed: false
-publish_allowed_now: false
-```
-
-This page mirrors the project checkpoint for continuity only. It does not outrank the live project gate and does not activate R7.11.
+Interpretation: provider prose remains non-authoritative, while fully satisfied LBE-owned deterministic evidence is sufficient to establish completion truth. The resulting terminal completion state is durable across installed-process restart.
 
 ## Evidence classification
 
@@ -114,27 +91,43 @@ PROVEN
 - forbidden/out-of-authority actions fail closed
 - receipt/provider continuation correlation is exact
 - provider/Cline completion cannot bypass deterministic LBE completion authority
+- fully satisfied deterministic completion persists as COMPLETED / VALIDATED_COMPLETION across a fresh installed process
 
 SUPPORTED
 - remaining R7 work is acceptance closure, not architectural redesign
 
 NOT YET PROVEN
-- positive validated-completion persistence across a fresh installed process
-- final secret-leakage, regression, no-source-change, and cleanliness closure
+- credential/secret non-leakage across all required surfaces
+- focused installed/runtime regression closure
+- no-source-change and final cleanliness/limitations closure
 ```
+
+## Synchronization checkpoint
+
+```text
+checkpoint_date: 2026-08-17
+project_state: R7.1-R7.11 accepted
+latest_decisive_runtime_proof: 6234EA61F2A2E8A8FE962515278B3ED8229EC5B2CD4AB92FFBAABCEAC6D2DA6D
+project_status_commit: e67658828207fb6a94085c16868c46becfbb5264
+next_observable: R7.12
+next_observable_state: LOCKED_PENDING_EXPLICIT_ADVANCE
+implementation_allowed: false
+publish_allowed_now: false
+```
+
+This page mirrors the project checkpoint for continuity only. It does not outrank the live project gate and does not activate R7.12.
 
 ## Next admissible project work
 
-Observable 11 requires explicit activation in the project machine/current gate:
+Observable 12 requires explicit activation in the project machine/current gate:
 
-> Prove that once the registered deterministic completion contract is fully satisfied, LBE persists `COMPLETED / VALIDATED_COMPLETION`, and a fresh installed process observes that same terminal state and task/session identity.
+> Prove that credentials/secrets do not leak into repository files, runtime logs, persisted receipts/evidence, provider continuation payloads, or acceptance artifacts during installed governed operation.
 
 No implementation change is authorized unless a real product falsifier is proven and a separate repair slice is activated.
 
 ## Remaining roadmap
 
 ```text
-R7.11 validated completion persists across fresh process
 R7.12 secret/credential non-leakage
 R7.13 installed/runtime regression
 R7.14 no source changes absent a real falsifier
@@ -144,7 +137,7 @@ R7.15 final clean worktree + limitations/falsifiers
 ## Release progression
 
 ```text
-finish R7.11-R7.15
+finish R7.12-R7.15
  -> R7 PASS
  -> release/package readiness acceptance
  -> version/tag/publish only after readiness PASS
