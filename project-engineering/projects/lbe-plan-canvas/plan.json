@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "project": "LBE Persistent Agent",
+  "purpose": "Shared visual roadmap. This is navigation state, not runtime authority.",
+  "authority_rule": "Live project source, Git state, machine gates, acceptance records and runtime evidence outrank this canvas.",
+  "updated": "2026-08-19",
+  "active_node": "release-2.0.3",
+  "nodes": [
+    {"id":"vision","lane":"Foundation","title":"Vision & architecture","status":"proven","summary":"Persistent governed agent runtime; LBE owns authority, providers reason."},
+    {"id":"r3-r6","lane":"Core Runtime","title":"R3–R6F core contracts","status":"proven","summary":"Accepted constituent runtime, authorization, governed execution and receipt contracts."},
+    {"id":"cli","lane":"Interface","title":"CLI control plane","status":"proven","summary":"Session/provider/code/audit/investigate/policy/permissions surfaces accepted."},
+    {"id":"r7-compose","lane":"Installed Acceptance","title":"Installed coding composition","status":"proven","summary":"Installed path connected through governed execution and receipt-backed continuation."},
+    {"id":"r7-close","lane":"Installed Acceptance","title":"R7 closure","status":"proven","summary":"Installed/runtime acceptance progression completed before release preparation."},
+    {"id":"release-harness","lane":"Release","title":"Release harness repair","status":"proven","summary":"CI installs test+tui, setuptools/build frontend; isolated PyPA build validated."},
+    {"id":"release-2.0.3","lane":"Release","title":"PyPI 2.0.3","status":"current","summary":"Published and clean-install verified from PyPI; CLI smoke passed."},
+    {"id":"public-install","lane":"Distribution","title":"Public install path","status":"next","summary":"Python >=3.11 installs lbe-guard-inspector; resolve command precedence with npm wrapper when both exist."},
+    {"id":"product-surface","lane":"Product","title":"Product surface / UI","status":"planned","summary":"Continue only from canonical product plan and current project evidence; do not infer UI completion from TUI/CLI existence."}
+  ],
+  "edges": [
+    ["vision","r3-r6"],["r3-r6","cli"],["cli","r7-compose"],["r7-compose","r7-close"],["r7-close","release-harness"],["release-harness","release-2.0.3"],["release-2.0.3","public-install"],["public-install","product-surface"]
+  ]
+}
