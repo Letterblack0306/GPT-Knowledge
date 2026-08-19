@@ -186,7 +186,7 @@ After the workflow reports success:
 
 1. Verify the exact version exists on PyPI.
 2. Confirm the published distribution name/version are correct.
-3. Preferably install the exact version into a clean environment from PyPI.
+3. Install the exact version into a clean environment from PyPI.
 4. Run a minimal import/CLI smoke test against the installed distribution.
 5. Record workflow run ID, release SHA, version, artifact names, and verification result.
 
@@ -249,16 +249,63 @@ CLEAN_INSTALL_RESULT=
 FINAL_CLASSIFICATION=
 ```
 
-## 2.0.3 recovery checkpoint
+## Proven successful release — lbe-guard-inspector 2.0.3
 
-Evidence established before final publication:
+Final publication evidence:
 
-- mirror source state was synchronized from the intended canonical 2.0.3 state;
-- validation dependency repair changed `.[test]` to `.[test,tui]`;
-- build tooling provisioning added `setuptools>=75`;
-- publication build repair explicitly installed `build` and changed artifact construction to `python -I -m build .`;
-- an isolated local build produced both 2.0.3 artifacts;
-- publication workflow failure `32282854844` occurred before PyPI publishing and did not mutate PyPI;
-- publication build repair was committed and pushed as `c911b511387e9ac675275faab903be4a97ff0a6d`.
+```text
+RELEASE_REPOSITORY=praveshjannath/lbe-ci-validation
+RELEASE_BRANCH=main
+RELEASE_SHA=c911b511387e9ac675275faab903be4a97ff0a6d
+PACKAGE=lbe-guard-inspector
+VERSION=2.0.3
+PUBLICATION_WORKFLOW=publish-python-runtime.yml
+PYPI_ENVIRONMENT=pypi
+PUBLICATION_RUN=32287537950
+PUBLICATION_JOB=96180530962
+BUILD_RESULT=PASS
+ARTIFACT_VERIFICATION_RESULT=PASS
+TRUSTED_PUBLISHING_RESULT=PASS
+PYPI_VERSION_PRESENT=PASS
+CLEAN_INSTALL_RESULT=PASS
+CLI_SMOKE_RESULT=PASS
+FINAL_CLASSIFICATION=PROVEN_SUCCESSFUL_PUBLICATION
+```
 
-The final release must still be classified from live publication and post-publication evidence. Do not treat this checkpoint itself as proof that 2.0.3 reached PyPI.
+The publication workflow completed every required stage successfully:
+
+```text
+checkout
+→ setup Python/Node
+→ canonical package metadata read
+→ build/test dependency installation
+→ full Python suite
+→ exact artifact build
+→ artifact verification
+→ Publish Python runtime to PyPI
+```
+
+The immediate visibility check performed directly after workflow completion did not yet observe `2.0.3`. That was a propagation/visibility timing condition, not a publication failure, because the publish step itself had already completed successfully.
+
+Decisive post-publication verification then proved:
+
+- PyPI release endpoint returned version `2.0.3`;
+- `pip install lbe-guard-inspector==2.0.3` downloaded and installed the public wheel from PyPI;
+- installed metadata reported exactly `2.0.3`;
+- package import resolved from the clean verification venv `site-packages`, not the repository source tree;
+- `lbe --help` executed successfully from the clean PyPI installation.
+
+The decisive local verification command result was:
+
+```text
+COMMAND_HASH=05F9E5A8F78626B5CAF9874DE1AF6681E205148563CB96B3CF336178588BC5E6
+COMMAND_STATUS=PASS
+PYPI_2_0_3_VISIBLE=PASS
+PYPI_CLEAN_INSTALL=PASS
+PYPI_INSTALLED_METADATA=PASS
+PYPI_IMPORT_ORIGIN=PASS
+PYPI_CLI_SMOKE=PASS
+LBE_GUARD_INSPECTOR_2_0_3_RELEASE=PROVEN
+```
+
+Therefore `lbe-guard-inspector==2.0.3` is a proven successful PyPI Trusted Publishing release. This recovery is closed; no further publication retry is required.
