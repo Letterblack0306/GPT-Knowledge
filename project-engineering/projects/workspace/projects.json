@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "projects": [
+    {
+      "id": "lbe",
+      "name": "LBE",
+      "subtitle": "Persistent Agent Runtime",
+      "mapped": true,
+      "active_node": null,
+      "plan_file": "../lbe-plan-canvas/plan.json",
+      "status_file": "../lbe-plan-canvas/status.json",
+      "references_file": "../lbe-plan-canvas/references.json",
+      "reference": "../lbe-persistent-agent-wall-status.md"
+    },
+    {
+      "id": "access-browser-agent",
+      "name": "Access Browser Agent",
+      "subtitle": "Browser Conversation Runtime",
+      "mapped": false,
+      "reference": "../access-browser-agent-r3-recovery-status-2026-08-16.md"
+    },
+    {
+      "id": "brew",
+      "name": "Brew",
+      "subtitle": "Creative Agent Runtime",
+      "mapped": false,
+      "reference": "../brew-runtime-status-2026-08-17.md"
+    }
+  ]
+}
