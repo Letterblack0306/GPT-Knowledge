@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
   "project": "Access Browser Agent",
-  "verified_at": "2026-08-21T03:30:00+04:00",
+  "verified_at": "2026-08-21T03:33:00+04:00",
   "source_repo": "Letterblack0306/access-browser-agent",
   "source_branch": "main",
   "source_head": "c8ed189e6ab3aaa688927246de26c8bde9c05922",
-  "overall_classification": "CANDIDATE_READINESS_REPAIR_COMMITTED_VALIDATION_PENDING",
+  "overall_classification": "CANDIDATE_READINESS_PROVEN_CONTINUATION_LIVE_ACTIVE",
   "authority_note": "This file is a GPT-Knowledge projection of verified repository/history/runtime evidence. Current repository, runtime and acceptance evidence remain authoritative.",
   "closed": [
     {
@@ -42,7 +42,13 @@
       "id": "candidate-readiness-source-map",
       "title": "Candidate readiness owner and cache boundary",
       "classification": "PROVEN_CURRENT_SOURCE",
-      "detail": "ModelReadinessRegistry is already keyed by provider selection identity. ProviderFactory can create a candidate independently, while only AgentRuntimeAdapter._installProvider mutates service.provider, service.agent.provider and providerSelection. The existing readiness probe logic can therefore be applied to a candidate object without changing active authority."
+      "detail": "ModelReadinessRegistry is keyed by provider selection identity. ProviderFactory can create a candidate independently, while only AgentRuntimeAdapter._installProvider mutates service.provider, service.agent.provider and providerSelection. The readiness algorithm can therefore probe a candidate object without changing active authority."
+    },
+    {
+      "id": "candidate-provider-readiness",
+      "title": "Candidate provider readiness without activation",
+      "classification": "PROVEN_SOURCE_AND_LOCAL_REGRESSION",
+      "detail": "Current main c8ed189 passed syntax checks plus provider-candidate-readiness-authority-smoke, Cline provider smoke and IDE preferences smoke. The regression proves candidate B can pass or fail readiness while active provider A remains service.provider, service.agent.provider and providerSelection; candidate readiness is cached under B. Production Cline Test READY now uses discoverOnly:true + probeReadiness:true, while Use remains the explicit activation path."
     },
     {
       "id": "runtime-entry",
@@ -61,8 +67,8 @@
     {
       "id": "provider-test-authority-leak",
       "title": "Inherited Cline Test READY authority leak",
-      "classification": "PROVEN_INITIAL_PROVIDER_TEST_AUTHORITY_LEAK",
-      "detail": "Before the current repair, Test READY called providerConfigure without discoverOnly, causing _installProvider() to replace the live provider while persist:false left durable preferences unchanged. This behavior existed in the first canonical Access commit 5d77a0e8 and is the defect the current candidate-probe repair addresses."
+      "classification": "PROVEN_INITIAL_PROVIDER_TEST_AUTHORITY_LEAK_REPAIRED",
+      "detail": "Before c8ed189, Test READY called providerConfigure without discoverOnly, causing _installProvider() to replace the live provider while persist:false left durable preferences unchanged. This behavior existed in the first canonical Access commit 5d77a0e8 and is now regression-protected by the candidate readiness repair."
     },
     {
       "id": "current-live-revalidation-481308",
@@ -91,18 +97,11 @@
   ],
   "pending": [
     {
-      "id": "candidate-provider-readiness",
-      "title": "Validate candidate readiness without activation",
-      "priority": "P0",
-      "classification": "ACTIVE_VALIDATION_GATE",
-      "detail": "Source repair is committed: 82cd445 extracts a provider-object readiness probe and adds discoverOnly + probeReadiness candidate testing; ca5f37a moves production Cline Test READY to that non-authoritative path; c8ed189 adds pass/fail authority regression coverage. No CI is attached to the commit, so local syntax and regression execution are required before this gate can be marked proven."
-    },
-    {
       "id": "post-result-continuation-live",
       "title": "Current-live A → result → B continuation acceptance",
       "priority": "P0",
-      "classification": "OPEN_LIVE_ACCEPTANCE",
-      "detail": "Source/regression continuation repair is proven at a553fe9. After candidate-readiness validation closes, definitive live acceptance must show result delivery, delivery_response_resolved for B, the same B as browser_relay.instruction_received, agent run with newSession:false and no duplicate execution."
+      "classification": "ACTIVE_LIVE_ACCEPTANCE_GATE",
+      "detail": "Source/regression continuation repair is proven at a553fe9 and candidate-provider authority is now proven clean at c8ed189. Run one bounded current-live cycle that shows result delivery, delivery_response_resolved for B, the same B as browser_relay.instruction_received, the B agent run with newSession:false, and no duplicate execution."
     },
     {
       "id": "cline-auth-live-persistence",
@@ -141,8 +140,8 @@
     }
   ],
   "next_acceptance": {
-    "question": "Does current main c8ed189 preserve active provider authority while candidate readiness succeeds and fails?",
-    "observable": "Syntax checks pass; provider-candidate-readiness-authority-smoke passes; the regression proves candidate B readiness is cached under B while service.provider, service.agent.provider and providerSelection remain active provider A in both pass and fail cases; rebuild-settings Cline Test uses discoverOnly:true + probeReadiness:true and does not call active providerReadiness().",
-    "falsifier": "Any syntax failure, regression failure, active-provider mutation, missing candidate cache result, or production Test READY path that still installs or probes the active provider keeps this gate open and blocks live continuation acceptance."
+    "question": "Does current main c8ed189 execute the first assistant turn after Access result delivery as the next Browser Relay instruction in the same continuing session?",
+    "observable": "One live A → result → B cycle must show browser_relay.instruction_received for A, agent-runtime run A with newSession:false, result_queued/result_sent, browser_relay.delivery_response_resolved with responseInstructionId=B, the same B subsequently emitted as browser_relay.instruction_received, agent-runtime run B with newSession:false, and no duplicate B execution.",
+    "falsifier": "If B is consumed without instruction_received, executes twice, changes session continuity, or the relay fails before normal execution for a reason not attributable to an explicit external/user action, the continuation live gate remains open and the exact observed owner must be investigated before further changes."
   }
 }
