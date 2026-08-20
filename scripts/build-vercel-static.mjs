@@ -1,15 +1,46 @@
-import { cp, mkdir, rm, writeFile } from 'node:fs/promises';
+import { cp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
+import { dirname, isAbsolute, relative, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const out = new URL('../public/', import.meta.url);
-const source = new URL('../project-engineering/', import.meta.url);
+const repoRoot = fileURLToPath(new URL('../', import.meta.url));
+const out = resolve(repoRoot, 'public');
+const projectEngineeringRoot = resolve(repoRoot, 'project-engineering');
+const workspaceRoot = resolve(projectEngineeringRoot, 'projects/workspace');
+const outProjectEngineeringRoot = resolve(out, 'project-engineering');
+const outWorkspaceRoot = resolve(outProjectEngineeringRoot, 'projects/workspace');
 
 await rm(out, { recursive: true, force: true });
 await mkdir(out, { recursive: true });
-await cp(source, new URL('./project-engineering/', out), { recursive: true });
 
-// The workspace now reads plan/status JSON directly from the deployed repository
-// projection. Do not inject the legacy repo-sync.js adapter: it depends on the
-// previous localStorage UI contract and would create a second, stale state path.
+// Publish the workspace application itself.
+await cp(workspaceRoot, outWorkspaceRoot, { recursive: true });
+
+// Publish only repository files explicitly referenced by the workspace registry.
+// This keeps Vercel a projection of workspace-relevant evidence instead of a
+// mirror of the whole project-engineering knowledge tree.
+const registry = JSON.parse(await readFile(resolve(workspaceRoot, 'projects.json'), 'utf8'));
+const referenceFields = ['plan_file', 'status_file', 'references_file', 'reference'];
+const copied = new Set();
+
+for (const project of registry.projects ?? []) {
+  for (const field of referenceFields) {
+    const value = project?.[field];
+    if (typeof value !== 'string' || !value.trim()) continue;
+
+    const source = resolve(workspaceRoot, value);
+    const rel = relative(projectEngineeringRoot, source);
+    if (!rel || rel.startsWith('..') || isAbsolute(rel)) {
+      throw new Error(`Workspace reference escapes project-engineering: ${value}`);
+    }
+    if (copied.has(rel)) continue;
+
+    const destination = resolve(outProjectEngineeringRoot, rel);
+    await mkdir(dirname(destination), { recursive: true });
+    await cp(source, destination, { recursive: true });
+    copied.add(rel);
+  }
+}
+
 const rootIndex = `<!doctype html>
 <html lang="en">
 <head>
@@ -22,4 +53,4 @@ const rootIndex = `<!doctype html>
 <body><a href="/project-engineering/projects/workspace/">Open Letterblack Project Workspace</a></body>
 </html>\n`;
 
-await writeFile(new URL('./index.html', out), rootIndex, 'utf8');
+await writeFile(resolve(out, 'index.html'), rootIndex, 'utf8');
