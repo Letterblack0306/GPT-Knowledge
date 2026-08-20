@@ -1,147 +1,42 @@
 {
   "schema_version": 1,
   "project": "Access Browser Agent",
-  "verified_at": "2026-08-21T03:33:00+04:00",
+  "verified_at": "2026-08-21T03:36:00+04:00",
   "source_repo": "Letterblack0306/access-browser-agent",
   "source_branch": "main",
   "source_head": "c8ed189e6ab3aaa688927246de26c8bde9c05922",
-  "overall_classification": "CANDIDATE_READINESS_PROVEN_CONTINUATION_LIVE_ACTIVE",
+  "overall_classification": "CANDIDATE_READINESS_PROVEN_CONTINUATION_LIVE_ACTIVE_STALE_RUNTIME_PRECONDITION",
   "authority_note": "This file is a GPT-Knowledge projection of verified repository/history/runtime evidence. Current repository, runtime and acceptance evidence remain authoritative.",
   "closed": [
-    {
-      "id": "provider-context-compaction",
-      "title": "Historical tool-result provider-context amplification",
-      "classification": "FIXED_AND_REVALIDATED_CURRENT_LIVE",
-      "detail": "Main bb00c560a5 plus regression 481308768a bounds only rehydrated historical tool-result payloads in provider-facing context. The full protected-context Browser Loop later completed live with continuing session identity and autonomous browserConversationRead."
-    },
-    {
-      "id": "r4-step-timeout-harness",
-      "title": "R4 120-second step timeout classification",
-      "classification": "PROVEN_TEST_HARNESS_FAILURE",
-      "detail": "The product path completed at about 126.2 seconds although the acceptance step timed out at 120 seconds. No provider timeout/model patch is authorized from that result."
-    },
-    {
-      "id": "cline-auth-source-repair",
-      "title": "Cline auth authority and stale preference persistence",
-      "classification": "PROVEN_SOURCE_AND_REGRESSION",
-      "detail": "Commits 11b06af, 872b61c, 57b3830, 0b7a4b5, 2680dea and syntax correction 79253b5 establish wrapper-owned auth sharing and protect durable Cline auth from stale preference saves. Live persistence acceptance remains separate because the attempted supported sign-in never completed."
-    },
-    {
-      "id": "post-result-continuation-source",
-      "title": "Post-result assistant turn continuation repair",
-      "classification": "PROVEN_SOURCE_AND_REGRESSION",
-      "detail": "Live evidence proved the first assistant turn after result delivery was detected but consumed as delivery_response. Commit fab58f2 resolves delivery ownership without returning early; a553fe9 adds regression coverage requiring immediate next-turn execution with newSession:false and preserved restart recovery guard."
-    },
-    {
-      "id": "settings-owner",
-      "title": "Production settings UI owner",
-      "classification": "PROVEN_CURRENT_SOURCE_AND_HISTORY",
-      "detail": "electron/index.html directly loads electron/rebuild-settings.js. This was already true in initial canonical commit 5d77a0e8. electron/settings-module.js is a parallel/historical implementation in the current rebuild shell and is not loaded by production index.html."
-    },
-    {
-      "id": "candidate-readiness-source-map",
-      "title": "Candidate readiness owner and cache boundary",
-      "classification": "PROVEN_CURRENT_SOURCE",
-      "detail": "ModelReadinessRegistry is keyed by provider selection identity. ProviderFactory can create a candidate independently, while only AgentRuntimeAdapter._installProvider mutates service.provider, service.agent.provider and providerSelection. The readiness algorithm can therefore probe a candidate object without changing active authority."
-    },
-    {
-      "id": "candidate-provider-readiness",
-      "title": "Candidate provider readiness without activation",
-      "classification": "PROVEN_SOURCE_AND_LOCAL_REGRESSION",
-      "detail": "Current main c8ed189 passed syntax checks plus provider-candidate-readiness-authority-smoke, Cline provider smoke and IDE preferences smoke. The regression proves candidate B can pass or fail readiness while active provider A remains service.provider, service.agent.provider and providerSelection; candidate readiness is cached under B. Production Cline Test READY now uses discoverOnly:true + probeReadiness:true, while Use remains the explicit activation path."
-    },
-    {
-      "id": "runtime-entry",
-      "title": "Runtime entry and startup provider restoration",
-      "classification": "PROVEN_CURRENT_SOURCE",
-      "detail": "package.json points to electron/rebuild-main.js; rebuild-main loads main.js. createConfiguredAgentRuntime applies persisted preferenceValues through updateProviderSettings(), so startup restores the persisted provider by design."
-    },
-    {
-      "id": "browser-readiness-gate",
-      "title": "Browser Loop active-provider readiness gate",
-      "classification": "SUPPORTED_CURRENT_ARCHITECTURE",
-      "detail": "BrowserSessionAuthority requires the active provider/model to be agent-ready, performs recovery-only preflight when needed, probes readiness and only then enters normal relay start. Current evidence does not justify weakening this gate."
-    }
+    {"id":"provider-context-compaction","title":"Historical tool-result provider-context amplification","classification":"FIXED_AND_REVALIDATED_CURRENT_LIVE","detail":"Main bb00c560a5 plus regression 481308768a bounds only rehydrated historical tool-result payloads in provider-facing context. The full protected-context Browser Loop later completed live with continuing session identity and autonomous browserConversationRead."},
+    {"id":"r4-step-timeout-harness","title":"R4 120-second step timeout classification","classification":"PROVEN_TEST_HARNESS_FAILURE","detail":"The product path completed at about 126.2 seconds although the acceptance step timed out at 120 seconds. No provider timeout/model patch is authorized from that result."},
+    {"id":"cline-auth-source-repair","title":"Cline auth authority and stale preference persistence","classification":"PROVEN_SOURCE_AND_REGRESSION","detail":"Commits 11b06af, 872b61c, 57b3830, 0b7a4b5, 2680dea and syntax correction 79253b5 establish wrapper-owned auth sharing and protect durable Cline auth from stale preference saves. Live persistence acceptance remains separate because the attempted supported sign-in never completed."},
+    {"id":"post-result-continuation-source","title":"Post-result assistant turn continuation repair","classification":"PROVEN_SOURCE_AND_REGRESSION","detail":"Live evidence proved the first assistant turn after result delivery was detected but consumed as delivery_response. Commit fab58f2 resolves delivery ownership without returning early; a553fe9 adds regression coverage requiring immediate next-turn execution with newSession:false and preserved restart recovery guard."},
+    {"id":"settings-owner","title":"Production settings UI owner","classification":"PROVEN_CURRENT_SOURCE_AND_HISTORY","detail":"electron/index.html directly loads electron/rebuild-settings.js. This was already true in initial canonical commit 5d77a0e8. electron/settings-module.js is a parallel/historical implementation in the current rebuild shell and is not loaded by production index.html."},
+    {"id":"candidate-readiness-source-map","title":"Candidate readiness owner and cache boundary","classification":"PROVEN_CURRENT_SOURCE","detail":"ModelReadinessRegistry is keyed by provider selection identity. ProviderFactory can create a candidate independently, while only AgentRuntimeAdapter._installProvider mutates service.provider, service.agent.provider and providerSelection. The readiness algorithm can therefore probe a candidate object without changing active authority."},
+    {"id":"candidate-provider-readiness","title":"Candidate provider readiness without activation","classification":"PROVEN_SOURCE_AND_LOCAL_REGRESSION","detail":"Current main c8ed189 passed syntax checks plus provider-candidate-readiness-authority-smoke, Cline provider smoke and IDE preferences smoke. The regression proves candidate B can pass or fail readiness while active provider A remains service.provider, service.agent.provider and providerSelection; candidate readiness is cached under B. Production Cline Test READY now uses discoverOnly:true + probeReadiness:true, while Use remains the explicit activation path."},
+    {"id":"runtime-entry","title":"Runtime entry and startup provider restoration","classification":"PROVEN_CURRENT_SOURCE","detail":"package.json points to electron/rebuild-main.js; rebuild-main loads main.js. createConfiguredAgentRuntime applies persisted preferenceValues through updateProviderSettings(), so startup restores the persisted provider by design."},
+    {"id":"browser-readiness-gate","title":"Browser Loop active-provider readiness gate","classification":"SUPPORTED_CURRENT_ARCHITECTURE","detail":"BrowserSessionAuthority requires the active provider/model to be agent-ready, performs recovery-only preflight when needed, probes readiness and only then enters normal relay start. Current evidence does not justify weakening this gate."}
   ],
   "supported_historical": [
-    {
-      "id": "provider-test-authority-leak",
-      "title": "Inherited Cline Test READY authority leak",
-      "classification": "PROVEN_INITIAL_PROVIDER_TEST_AUTHORITY_LEAK_REPAIRED",
-      "detail": "Before c8ed189, Test READY called providerConfigure without discoverOnly, causing _installProvider() to replace the live provider while persist:false left durable preferences unchanged. This behavior existed in the first canonical Access commit 5d77a0e8 and is now regression-protected by the candidate readiness repair."
-    },
-    {
-      "id": "current-live-revalidation-481308",
-      "title": "Earlier complete current-head Browser Loop proof",
-      "classification": "PRIOR_CURRENT_LIVE_PROOF",
-      "detail": "At 481308768a the protected-context Browser Loop completed natural ingress, continuing local session, provider reasoning, browserConversationRead, objective completion, rendered delivery and stable waiting state. Later continuation work addresses what happens when that assistant response itself contains the next instruction."
-    },
-    {
-      "id": "session-continuity",
-      "title": "Continuing local agent session",
-      "classification": "HISTORICAL_LIVE_PROOF",
-      "detail": "newSession:false and session lineage continuity were previously demonstrated and remain protected by current continuation regressions."
-    },
-    {
-      "id": "recovery",
-      "title": "Recovery/reconciliation",
-      "classification": "ISOLATED_RUNTIME_PROOF",
-      "detail": "Journal reconciliation, replay protection and fail-closed ambiguous-state handling have isolated/in-process proof. Arbitrary full live process-death recovery remains open."
-    },
-    {
-      "id": "provider-neutral-reference",
-      "title": "Provider-neutral / Cline reference contract",
-      "classification": "REFERENCE_BACKED_ARCHITECTURE",
-      "detail": "GPT-Knowledge provider-neutral and Cline reuse guidance was added on 2026-08-13 before the current canonical Access repo. Current Cline/VS Code patterns also separate explicit provider selection from provider-specific discovery/configuration."
-    }
+    {"id":"provider-test-authority-leak","title":"Inherited Cline Test READY authority leak","classification":"PROVEN_INITIAL_PROVIDER_TEST_AUTHORITY_LEAK_REPAIRED","detail":"Before c8ed189, Test READY called providerConfigure without discoverOnly, causing _installProvider() to replace the live provider while persist:false left durable preferences unchanged. This behavior existed in the first canonical Access commit 5d77a0e8 and is now regression-protected by the candidate readiness repair."},
+    {"id":"current-live-revalidation-481308","title":"Earlier complete current-head Browser Loop proof","classification":"PRIOR_CURRENT_LIVE_PROOF","detail":"At 481308768a the protected-context Browser Loop completed natural ingress, continuing local session, provider reasoning, browserConversationRead, objective completion, rendered delivery and stable waiting state. Later continuation work addresses what happens when that assistant response itself contains the next instruction."},
+    {"id":"session-continuity","title":"Continuing local agent session","classification":"HISTORICAL_LIVE_PROOF","detail":"newSession:false and session lineage continuity were previously demonstrated and remain protected by current continuation regressions."},
+    {"id":"recovery","title":"Recovery/reconciliation","classification":"ISOLATED_RUNTIME_PROOF","detail":"Journal reconciliation, replay protection and fail-closed ambiguous-state handling have isolated/in-process proof. Arbitrary full live process-death recovery remains open."},
+    {"id":"provider-neutral-reference","title":"Provider-neutral / Cline reference contract","classification":"REFERENCE_BACKED_ARCHITECTURE","detail":"GPT-Knowledge provider-neutral and Cline reuse guidance was added on 2026-08-13 before the current canonical Access repo. Current Cline/VS Code patterns also separate explicit provider selection from provider-specific discovery/configuration."}
   ],
   "pending": [
-    {
-      "id": "post-result-continuation-live",
-      "title": "Current-live A → result → B continuation acceptance",
-      "priority": "P0",
-      "classification": "ACTIVE_LIVE_ACCEPTANCE_GATE",
-      "detail": "Source/regression continuation repair is proven at a553fe9 and candidate-provider authority is now proven clean at c8ed189. Run one bounded current-live cycle that shows result delivery, delivery_response_resolved for B, the same B as browser_relay.instruction_received, the B agent run with newSession:false, and no duplicate execution."
-    },
-    {
-      "id": "cline-auth-live-persistence",
-      "title": "Cline auth durable live acceptance",
-      "priority": "P1",
-      "classification": "INCONCLUSIVE_UNTIL_SUCCESSFUL_LOGIN",
-      "detail": "The WorkOS device authorization attempt timed out before a credential existed. A valid live acceptance requires successful supported sign-in, durable credential creation, restart and authenticated reload."
-    },
-    {
-      "id": "process-death-recovery",
-      "title": "Arbitrary process-death recovery",
-      "priority": "P1",
-      "classification": "OPEN",
-      "detail": "Need acceptance at executing, delivering and delivery_unverified boundaries with evidence-preserving exactly-once recovery."
-    },
-    {
-      "id": "terminal-state-ui",
-      "title": "Non-complete terminal-state rendering",
-      "priority": "P1",
-      "classification": "OPEN_LIVE_ACCEPTANCE",
-      "detail": "Complete user-visible live acceptance for blocked, failed, stopped and delivery-unverified paths remains open."
-    },
-    {
-      "id": "governance-check-chain",
-      "title": "Governance relationship to npm run check",
-      "priority": "P1",
-      "classification": "CURRENT_SOURCE_DISTINCTION",
-      "detail": "package.json defines precheck separately; npm run check does not chain precheck. Do not imply otherwise."
-    },
-    {
-      "id": "parallel-settings-cleanup",
-      "title": "Parallel historical settings implementation",
-      "priority": "P2",
-      "classification": "SOURCE_CLEANUP_DECISION_PENDING",
-      "detail": "Before removing or consolidating electron/settings-module.js, prove whether any non-production compatibility path imports it. Production index.html uses rebuild-settings.js."
-    }
+    {"id":"current-runtime-precondition","title":"Replace stale August 18 Access runtime","priority":"P0","classification":"ACTIVE_PRECONDITION","detail":"Process authority inspection on 2026-08-21 found only Access Electron root PID 279272 created 2026-08-18 19:49:51, with child GPU/network processes. No Electron runtime loaded from current c8ed189 is alive. The stale tree must be stopped and a fresh current-main runtime started before any continuation live acceptance can be authoritative."},
+    {"id":"post-result-continuation-live","title":"Current-live A → result → B continuation acceptance","priority":"P0","classification":"ACTIVE_LIVE_ACCEPTANCE_GATE","detail":"Source/regression continuation repair is proven at a553fe9 and candidate-provider authority is proven clean at c8ed189. After the stale runtime is replaced, run one bounded current-live cycle that shows result delivery, delivery_response_resolved for B, the same B as browser_relay.instruction_received, the B agent run with newSession:false, and no duplicate execution."},
+    {"id":"cline-auth-live-persistence","title":"Cline auth durable live acceptance","priority":"P1","classification":"INCONCLUSIVE_UNTIL_SUCCESSFUL_LOGIN","detail":"The WorkOS device authorization attempt timed out before a credential existed. A valid live acceptance requires successful supported sign-in, durable credential creation, restart and authenticated reload."},
+    {"id":"process-death-recovery","title":"Arbitrary process-death recovery","priority":"P1","classification":"OPEN","detail":"Need acceptance at executing, delivering and delivery_unverified boundaries with evidence-preserving exactly-once recovery."},
+    {"id":"terminal-state-ui","title":"Non-complete terminal-state rendering","priority":"P1","classification":"OPEN_LIVE_ACCEPTANCE","detail":"Complete user-visible live acceptance for blocked, failed, stopped and delivery-unverified paths remains open."},
+    {"id":"governance-check-chain","title":"Governance relationship to npm run check","priority":"P1","classification":"CURRENT_SOURCE_DISTINCTION","detail":"package.json defines precheck separately; npm run check does not chain precheck. Do not imply otherwise."},
+    {"id":"parallel-settings-cleanup","title":"Parallel historical settings implementation","priority":"P2","classification":"SOURCE_CLEANUP_DECISION_PENDING","detail":"Before removing or consolidating electron/settings-module.js, prove whether any non-production compatibility path imports it. Production index.html uses rebuild-settings.js."}
   ],
   "next_acceptance": {
-    "question": "Does current main c8ed189 execute the first assistant turn after Access result delivery as the next Browser Relay instruction in the same continuing session?",
-    "observable": "One live A → result → B cycle must show browser_relay.instruction_received for A, agent-runtime run A with newSession:false, result_queued/result_sent, browser_relay.delivery_response_resolved with responseInstructionId=B, the same B subsequently emitted as browser_relay.instruction_received, agent-runtime run B with newSession:false, and no duplicate B execution.",
-    "falsifier": "If B is consumed without instruction_received, executes twice, changes session continuity, or the relay fails before normal execution for a reason not attributable to an explicit external/user action, the continuation live gate remains open and the exact observed owner must be investigated before further changes."
+    "question": "Can a fresh Access Electron runtime loaded from current main c8ed189 be established before the A → result → B continuation proof?",
+    "observable": "The August 18 Access Electron tree rooted at PID 279272 is no longer alive; a new Electron root from the same repository is created after the restart command; a fresh diagnostics JSONL file is created after restart; repository HEAD and origin/main remain c8ed189; section_09.md remains untracked and preserved.",
+    "falsifier": "If PID 279272 cannot be isolated as the stale Access root, a fresh current-main Electron root is not created, or repository state changes unexpectedly, do not run the continuation acceptance."
   }
 }
