@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "project": "Access Browser Agent",
+  "purpose": "Visual evidence map derived only from GPT-Knowledge project and validation records. This is navigation state, not runtime authority.",
+  "authority_rule": "Current GitHub source, local runtime evidence, acceptance results, and exact repository state outrank this map. Historical checkpoints remain historical unless revalidated.",
+  "updated": "2026-08-20",
+  "active_node": "r4-local-proof",
+  "nodes": [
+    {
+      "id": "source-identity",
+      "lane": "Authority",
+      "title": "Canonical source identity",
+      "status": "proven",
+      "summary": "R3 checkpoint identifies Letterblack0306/Accecc_Browser_Agent, PR #18, refactor/browser-conversation-turn-transport-20260816, and separates canonical source worktree from selected governed workspace."
+    },
+    {
+      "id": "evidence-method",
+      "lane": "Authority",
+      "title": "Evidence-first engineering method",
+      "status": "proven",
+      "summary": "Map flow, identify owner/source of truth, define question/observable/falsifier, run bounded test, classify, patch only proven owner, then regress and live-prove when required."
+    },
+    {
+      "id": "recovery-architecture",
+      "lane": "R3 Recovery",
+      "title": "Recovery architecture",
+      "status": "proven",
+      "summary": "Append-only instruction journal plus separate instruction_reconciliation receipts; scope-level recovery discovery occurs at {workspaceRoot, conversationId}."
+    },
+    {
+      "id": "recovery-ui-path",
+      "lane": "R3 Recovery",
+      "title": "Live recovery UI path",
+      "status": "proven",
+      "summary": "Real Start -> scope-level recovery card -> renderer recovery action -> controlled reason overlay -> Continue -> preload/IPC -> BrowserSessionAuthority -> reconciliation receipt."
+    },
+    {
+      "id": "recovery-source-fixes",
+      "lane": "R3 Recovery",
+      "title": "Recovery source fixes",
+      "status": "proven",
+      "summary": "Scope-level recovery discovery and renderer input/IPC/journal reconciliation change intents were recorded complete and live-proven on PR #18."
+    },
+    {
+      "id": "seven-reconciled",
+      "lane": "R3 Recovery",
+      "title": "7 ambiguous records reconciled",
+      "status": "proven",
+      "summary": "Seven historical ambiguous records were conservatively quarantined through the live UI path with durable receipts and no accidental new instruction execution."
+    },
+    {
+      "id": "backlog-16-checkpoint",
+      "lane": "Historical Checkpoint",
+      "title": "Recovery backlog = 16",
+      "status": "proven",
+      "summary": "Historical 2026-08-16 checkpoint: unresolved count was 16; 66cab... was next and not yet proven reconciled. This number is historical and must not be treated as current without re-query."
+    },
+    {
+      "id": "r4-gate",
+      "lane": "R4 Validation",
+      "title": "R4 browserConversationRead gate",
+      "status": "proven",
+      "summary": "R4 target required a real browserConversationRead call, protected exact-chat marker, derived final result, and zero workspace/terminal/general-browser substitution."
+    },
+    {
+      "id": "r4-local-proof",
+      "lane": "R4 Validation",
+      "title": "Bounded R4 acceptance",
+      "status": "current",
+      "summary": "Validation record dated 2026-08-17 says bounded R4 acceptance was PROVEN LOCALLY at commit f46ed1cf1175c587debcb35cde8c43775cd90321; runtime smoke, browser tool evaluations 6/6, workspace guard and sync checks passed."
+    },
+    {
+      "id": "classification-lesson",
+      "lane": "Validation Method",
+      "title": "Failure classification discipline",
+      "status": "proven",
+      "summary": "R4 validation distinguished repository defect from harness/config/stale-fixture failures; the observed wrapper-token failure was classified TEST_HARNESS_FAILURE."
+    },
+    {
+      "id": "current-revalidate",
+      "lane": "Next Evidence",
+      "title": "Revalidate current repository/runtime",
+      "status": "next",
+      "summary": "GPT-Knowledge contains local R4 proof but no later authoritative project checkpoint proving current remote branch, merged state, or current runtime status. Re-establish those before inferring further progress."
+    }
+  ],
+  "edges": [
+    ["source-identity","evidence-method"],
+    ["evidence-method","recovery-architecture"],
+    ["recovery-architecture","recovery-ui-path"],
+    ["recovery-ui-path","recovery-source-fixes"],
+    ["recovery-source-fixes","seven-reconciled"],
+    ["seven-reconciled","backlog-16-checkpoint"],
+    ["backlog-16-checkpoint","r4-gate"],
+    ["r4-gate","r4-local-proof"],
+    ["r4-local-proof","classification-lesson"],
+    ["classification-lesson","current-revalidate"]
+  ]
+}
