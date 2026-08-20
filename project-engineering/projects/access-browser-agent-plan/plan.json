@@ -5,7 +5,7 @@
   "authority_rule": "Current repository source, local runtime evidence, acceptance results, and exact repository state outrank this map. Historical checkpoints remain historical unless revalidated on the current head.",
   "updated": "2026-08-21",
   "source_head": "c8ed189e6ab3aaa688927246de26c8bde9c05922",
-  "active_node": "continuation-live-acceptance",
+  "active_node": "terminal-state-ui",
   "nodes": [
     {"id":"product-scope","lane":"Architecture","title":"Single local reasoning agent","status":"proven","summary":"Browser/provider conversation supplies instructions; AgentSessionRuntime / LiveAgentCore owns reasoning and tool selection. Bridges transport; governance constrains authority."},
     {"id":"provider-neutral-boundary","lane":"Architecture","title":"Provider-neutral authority boundary","status":"proven","summary":"Provider identity, authentication, discovery, readiness and explicit activation are separate from Access session/tool/browser/evidence authority. LM Studio remains first-class and Cline is a reusable lower-layer provider path."},
@@ -25,15 +25,16 @@
     {"id":"continuation-source-repair","lane":"Closed Gate","title":"Post-result continuation repaired","status":"proven","priority":"P0","summary":"fab58f2 resolves delivery ownership without returning early; a553fe9 regression proves immediate next-turn execution semantics with newSession:false and preserved restart fail-closed guard."},
     {"id":"candidate-provider-readiness","lane":"Closed Gate","title":"Candidate readiness without activation","status":"proven","priority":"P0","summary":"c8ed189 current main passed local syntax checks, provider-candidate-readiness-authority-smoke, Cline provider smoke and IDE preferences smoke. Candidate pass/fail probes leave active provider A unchanged and cache candidate B readiness under B. Production Cline Test READY is non-authoritative; Use remains explicit activation."},
     {"id":"candidate-readiness-regression","lane":"Closed Gate","title":"Provider-test authority regression","status":"proven","priority":"P0","summary":"Regression and source contract passed locally at c8ed189, proving candidate readiness does not mutate service.provider, service.agent.provider or providerSelection in either success or failure cases."},
+    {"id":"continuation-live-acceptance","lane":"Closed Gate","title":"A → result → B current-live proof","status":"proven","priority":"P0","summary":"PROVEN_CURRENT_LIVE on c8ed189. A turn-5b6f2c0b8e51486d executed and returned BLOCKED; B turn-f654f1aa23c0959d was automatically ingested next and completed; C turn-68937c9ad218187b was automatically ingested again and reached governed runCommand. Subsequent assistant turns are no longer swallowed as delivery_response."},
 
     {"id":"provider-test-authority-leak","lane":"Finding","title":"Test READY previously mutated active provider","status":"historical","priority":"P0","summary":"Before c8ed189, active rebuild-settings.js Test READY called providerConfigure without discoverOnly, causing _installProvider() to replace the live provider while persist:false left durable preference unchanged. Present since initial canonical commit 5d77a0e8; now repaired and regression-protected."},
     {"id":"reference-history","lane":"Finding","title":"Reference contract predates Access baseline","status":"historical","summary":"GPT-Knowledge provider-neutral/Cline reuse guidance was added 2026-08-13 before the current canonical Access repository snapshot. Current Cline/VS Code patterns also keep explicit provider selection distinct from discovery/configuration."},
 
-    {"id":"continuation-live-acceptance","lane":"Active Gate","title":"A → result → B current-live proof","status":"next","priority":"P0","summary":"Run one current-live Browser Relay cycle on c8ed189. Required sequence: instruction A received; A run newSession:false; result queued/sent; delivery_response_resolved identifies B; same B becomes instruction_received; B runs newSession:false exactly once."},
+    {"id":"terminal-state-ui","lane":"Active Gate","title":"Non-complete terminal UI truth","status":"next","priority":"P1","summary":"Validate that genuine non-complete outcomes are rendered truthfully in the live UI. Start with the already-observed BLOCKED execution turn-5b6f2c0b8e51486d rather than manufacturing another failure; then cover failed, stopped and delivery-unverified states as bounded follow-ups."},
     {"id":"cline-auth-live","lane":"Pending","title":"Cline auth restart persistence","status":"next","priority":"P1","summary":"Requires one successful supported Cline sign-in followed by durable credential verification, restart and authenticated reload."},
     {"id":"process-death-recovery","lane":"Pending","title":"Arbitrary process-death recovery","status":"next","priority":"P1","summary":"Accept exactly-once recovery across executing, delivering and delivery_unverified boundaries with durable evidence and no replay."},
-    {"id":"terminal-state-ui","lane":"Pending","title":"Non-complete terminal UI truth","status":"next","priority":"P1","summary":"Complete live user-visible acceptance remains open for blocked, failed, stopped and delivery-unverified states."},
     {"id":"governance-check-chain","lane":"Pending","title":"Governance/check distinction","status":"warning","priority":"P1","summary":"precheck contains governance; npm run check remains separate and must not be described as automatically executing precheck."},
+    {"id":"continuation-diagnostic-audit","lane":"Pending","title":"Exact continuation instrumentation audit","status":"warning","priority":"P2","summary":"Optional archival extraction of delivery_response_resolved → matching instruction_received → explicit newSession:false. Non-blocking because A→B→C live behavior already closes continuation."},
     {"id":"parallel-settings-cleanup","lane":"Pending","title":"Parallel settings cleanup decision","status":"warning","priority":"P2","summary":"Before consolidating or removing electron/settings-module.js, prove whether any compatibility/non-production path still imports it."}
   ],
   "edges": [
@@ -57,9 +58,11 @@
     {"from":"candidate-provider-readiness","to":"candidate-readiness-regression","type":"validation-gate"},
     {"from":"candidate-readiness-regression","to":"continuation-live-acceptance","type":"unblocks"},
     {"from":"continuation-source-repair","to":"continuation-live-acceptance","type":"acceptance"},
-    {"from":"cline-auth-source-repair","to":"cline-auth-live","type":"acceptance"},
-    {"from":"continuation-live-acceptance","to":"process-death-recovery","type":"next-acceptance"},
     {"from":"continuation-live-acceptance","to":"terminal-state-ui","type":"next-acceptance"},
+    {"from":"continuation-live-acceptance","to":"cline-auth-live","type":"next-p1"},
+    {"from":"continuation-live-acceptance","to":"process-death-recovery","type":"next-p1"},
+    {"from":"continuation-live-acceptance","to":"continuation-diagnostic-audit","type":"optional-audit"},
+    {"from":"cline-auth-source-repair","to":"cline-auth-live","type":"acceptance"},
     {"from":"settings-owner","to":"parallel-settings-cleanup","type":"legacy-scan"},
     {"from":"runtime-entry","to":"governance-check-chain","type":"validation-boundary"}
   ]
