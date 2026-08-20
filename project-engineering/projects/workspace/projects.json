@@ -23,6 +23,16 @@
       "reference": "../access-browser-agent-plan/plan.md"
     },
     {
+      "id": "looptool",
+      "name": "LoopTool",
+      "subtitle": "Local Execution & Evidence Bridge",
+      "mapped": true,
+      "active_node": "bounded-execution",
+      "plan_file": "../looptool/plan.json",
+      "status_file": "../looptool/status.json",
+      "reference": "../looptool/reference.md"
+    },
+    {
       "id": "brew",
       "name": "Brew",
       "subtitle": "Creative Agent Runtime",
