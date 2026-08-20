@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
   "project": "Access Browser Agent",
-  "verified_at": "2026-08-21T03:38:00+04:00",
+  "verified_at": "2026-08-21T03:39:00+04:00",
   "source_repo": "Letterblack0306/access-browser-agent",
   "source_branch": "main",
   "source_head": "c8ed189e6ab3aaa688927246de26c8bde9c05922",
-  "overall_classification": "CURRENT_MAIN_RUNTIME_READY_CONTINUATION_LIVE_ACTIVE",
+  "overall_classification": "CURRENT_MAIN_RUNTIME_READY_CONTINUATION_LIVE_WAITING_FOR_USER_START_ACTION",
   "authority_note": "This file is a GPT-Knowledge projection of verified repository/history/runtime evidence. Current repository, runtime and acceptance evidence remain authoritative.",
   "closed": [
     {"id":"provider-context-compaction","title":"Historical tool-result provider-context amplification","classification":"FIXED_AND_REVALIDATED_CURRENT_LIVE","detail":"Main bb00c560a5 plus regression 481308768a bounds only rehydrated historical tool-result payloads in provider-facing context. The full protected-context Browser Loop later completed live with continuing session identity and autonomous browserConversationRead."},
@@ -27,7 +27,8 @@
     {"id":"provider-neutral-reference","title":"Provider-neutral / Cline reference contract","classification":"REFERENCE_BACKED_ARCHITECTURE","detail":"GPT-Knowledge provider-neutral and Cline reuse guidance was added on 2026-08-13 before the current canonical Access repo. Current Cline/VS Code patterns also separate explicit provider selection from provider-specific discovery/configuration."}
   ],
   "pending": [
-    {"id":"post-result-continuation-live","title":"Current-live A → result → B continuation acceptance","priority":"P0","classification":"ACTIVE_LIVE_ACCEPTANCE_GATE","detail":"Fresh current-main runtime is now established on c8ed189. Run one bounded current-live cycle that shows result delivery, delivery_response_resolved for B, the same B as browser_relay.instruction_received, the B agent run with newSession:false, and no duplicate execution."},
+    {"id":"relay-start-user-action","title":"Select current chat and click Start Loop","priority":"P0","classification":"USER_ACTION_NOT_EXECUTED","detail":"Fresh-runtime relay-start proof found TARGET_SELECTION_SEEN=false, AGENT_READY_SEEN=false, RELAY_STARTED_SEEN=false and RELAY_FAILURE_SEEN=false. This is not a product failure: no target-selection or relay-start attempt was observed. User action is required before another relay-start proof is meaningful."},
+    {"id":"post-result-continuation-live","title":"Current-live A → result → B continuation acceptance","priority":"P0","classification":"ACTIVE_LIVE_ACCEPTANCE_GATE","detail":"Fresh current-main runtime is established on c8ed189. After the current chat is selected and Start Loop is clicked once, prove relay start and then run one bounded current-live cycle showing delivery_response_resolved for B, the same B as instruction_received, B run newSession:false, and no duplicate execution."},
     {"id":"cline-auth-live-persistence","title":"Cline auth durable live acceptance","priority":"P1","classification":"INCONCLUSIVE_UNTIL_SUCCESSFUL_LOGIN","detail":"The WorkOS device authorization attempt timed out before a credential existed. A valid live acceptance requires successful supported sign-in, durable credential creation, restart and authenticated reload."},
     {"id":"process-death-recovery","title":"Arbitrary process-death recovery","priority":"P1","classification":"OPEN","detail":"Need acceptance at executing, delivering and delivery_unverified boundaries with evidence-preserving exactly-once recovery."},
     {"id":"terminal-state-ui","title":"Non-complete terminal-state rendering","priority":"P1","classification":"OPEN_LIVE_ACCEPTANCE","detail":"Complete user-visible live acceptance for blocked, failed, stopped and delivery-unverified paths remains open."},
@@ -35,8 +36,8 @@
     {"id":"parallel-settings-cleanup","title":"Parallel historical settings implementation","priority":"P2","classification":"SOURCE_CLEANUP_DECISION_PENDING","detail":"Before removing or consolidating electron/settings-module.js, prove whether any non-production compatibility path imports it. Production index.html uses rebuild-settings.js."}
   ],
   "next_acceptance": {
-    "question": "Does current main c8ed189 execute the first assistant turn after Access result delivery as the next Browser Relay instruction in the same continuing session?",
-    "observable": "One live A → result → B cycle must show browser_relay.instruction_received for A, agent-runtime run A with newSession:false, result_queued/result_sent, browser_relay.delivery_response_resolved with responseInstructionId=B, the same B subsequently emitted as browser_relay.instruction_received, agent-runtime run B with newSession:false, and no duplicate B execution.",
-    "falsifier": "If B is consumed without instruction_received, executes twice, changes session continuity, or the relay fails before normal execution for a reason not attributable to an explicit external/user action, the continuation live gate remains open and the exact observed owner must be investigated before further changes."
+    "question": "After the user selects this current ChatGPT conversation and clicks Start Loop once, does the fresh c8ed189 runtime establish Browser Relay without failure?",
+    "observable": "Diagnostics show a target-selection event for the current chat and browser_relay.started or start_relay success. If provider readiness is required, a capability_probe success may appear before relay start.",
+    "falsifier": "A real start attempt followed by start_relay/browser_relay failure is a product/runtime observation requiring classification. Absence of all selection/readiness/start/failure events remains USER_ACTION_NOT_EXECUTED, not a defect."
   }
 }
