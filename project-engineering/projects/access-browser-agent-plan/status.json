@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "project": "Access Browser Agent",
+  "verified_at": "2026-08-20T23:00:00+04:00",
+  "source_repo": "Letterblack0306/access-browser-agent",
+  "source_branch": "main",
+  "source_head": "f4d56aabfa08983a666f4223490dd3c2ad72bb3c",
+  "overall_classification": "END_TO_END_NOT_CURRENTLY_REVALIDATED",
+  "authority_note": "This file is a GPT-Knowledge projection of verified repository/history evidence. Current repository, runtime and acceptance evidence remain authoritative.",
+  "closed": [
+    {
+      "id": "chain-break-audit",
+      "title": "Chain-break audit integrity",
+      "classification": "PROVEN_CURRENT_SOURCE_AND_REPORTED_RUN",
+      "detail": "Current main is f4d56aab. The latest commit restores doesNotMatch absence-context detection. Reported validation: chain-break-audit 4 checks / 0 failed and governance check PASS."
+    },
+    {
+      "id": "ui-tool-failure",
+      "title": "Tool failure UI path",
+      "classification": "PROVEN_CURRENT_SOURCE",
+      "detail": "electron/agent-workflow-view.js defines failToolCall(), normalizes object/string failures, and execution.tool.failed invokes it."
+    },
+    {
+      "id": "runtime-entry",
+      "title": "Runtime entry point",
+      "classification": "PROVEN_CURRENT_SOURCE",
+      "detail": "package.json main is electron/rebuild-main.js."
+    },
+    {
+      "id": "module-registry",
+      "title": "Module ownership registry",
+      "classification": "PROVEN_CURRENT_SOURCE",
+      "detail": "Current package scripts include module:status and check:module-registry. Registry is ownership/composition metadata, not a second reasoning authority."
+    }
+  ],
+  "supported_historical": [
+    {
+      "id": "natural-ingress",
+      "title": "Natural assistant-turn ingress",
+      "classification": "HISTORICAL_LIVE_PROOF",
+      "detail": "Ordinary natural-language conversation ingress was live-proven in earlier acceptance work; it must not be promoted to current-live proof without revalidation on the present head."
+    },
+    {
+      "id": "session-continuity",
+      "title": "Continuing local agent session",
+      "classification": "HISTORICAL_LIVE_PROOF",
+      "detail": "newSession:false/session lineage continuity was previously demonstrated across the bounded restart acceptance."
+    },
+    {
+      "id": "feedback-ownership",
+      "title": "Same-chat delivery and no-self-trigger",
+      "classification": "HISTORICAL_LIVE_PROOF",
+      "detail": "R1 previously proved one local result rendered to the same conversation and the provider response was consumed as delivery_response without second local execution."
+    },
+    {
+      "id": "recovery",
+      "title": "Recovery/reconciliation",
+      "classification": "ISOLATED_RUNTIME_PROOF",
+      "detail": "Journal reconciliation, replay protection and fail-closed ambiguous-state handling have isolated/in-process proof. Arbitrary full live process-death recovery remains outside that proof."
+    }
+  ],
+  "pending": [
+    {
+      "id": "current-live-revalidation",
+      "title": "Revalidate complete live Browser Loop on current main",
+      "priority": "P0",
+      "classification": "OPEN_ACCEPTANCE_GATE",
+      "detail": "Historical R1-R4 evidence spans earlier heads. Current main f4d56aab has not been revalidated as one complete real ChatGPT + provider + local-agent composition in the evidence available here."
+    },
+    {
+      "id": "browser-conversation-read-current",
+      "title": "Current-head browserConversationRead autonomous use",
+      "priority": "P0",
+      "classification": "NOT_CURRENTLY_REVALIDATED",
+      "detail": "Source/registration and historical bounded R4 evidence exist, but current-head autonomous selection, marker read, derivation and delivery require fresh live acceptance evidence before being labeled current-live proven."
+    },
+    {
+      "id": "process-death-recovery",
+      "title": "Arbitrary process-death recovery",
+      "priority": "P1",
+      "classification": "OPEN",
+      "detail": "Need acceptance at executing, delivering and delivery_unverified boundaries with evidence-preserving, exactly-once recovery."
+    },
+    {
+      "id": "terminal-state-ui",
+      "title": "Non-complete terminal-state rendering",
+      "priority": "P1",
+      "classification": "OPEN_LIVE_ACCEPTANCE",
+      "detail": "Current source contains runtime-backed status handling, but complete user-visible live acceptance for blocked/failed/stopped/delivery-unverified paths is not established by current-head evidence."
+    },
+    {
+      "id": "governance-check-chain",
+      "title": "Governance relationship to npm run check",
+      "priority": "P1",
+      "classification": "CURRENT_SOURCE_DISTINCTION",
+      "detail": "package.json defines precheck separately; npm run check does not chain precheck. Do not state that running npm run check automatically executes ChangeGovernanceGuard."
+    },
+    {
+      "id": "stale-ui-tests",
+      "title": "Stale/standalone UI test alignment",
+      "priority": "P2",
+      "classification": "NEEDS_CURRENT_RECHECK",
+      "detail": "Earlier audit identified stale runtime-controls/workbench/trace UI smoke assumptions. Re-run against current main and classify stale fixture vs product defect before changing implementation."
+    }
+  ],
+  "next_acceptance": {
+    "question": "Does current main f4d56aab complete one real natural-language Browser Loop turn end-to-end, including protected-context use when required, governed local reasoning/tool execution, exact same-chat rendered delivery, no self-trigger, and stable waiting state?",
+    "observable": "One bounded live acceptance record tied to current HEAD showing exact conversation identity, local session identity, browserConversationRead call when the task requires historical context, one local submission, rendered verification, zero forbidden substitution, zero duplicate execution, and terminal waiting_for_instruction.",
+    "falsifier": "Any missing required protected-context call, wrong-chat delivery, unverified render, duplicate local submission, provider-response self-trigger, ambiguous unreconciled terminal state, or evidence tied to a different HEAD."
+  }
+}
