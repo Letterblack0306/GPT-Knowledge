@@ -1,0 +1,7 @@
+{
+  "name": "gpt-knowledge-static",
+  "private": true,
+  "scripts": {
+    "build": "node scripts/build-vercel-static.mjs"
+  }
+}
