@@ -1,99 +1,171 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "project": "Access Browser Agent",
-  "purpose": "Visual evidence map derived only from GPT-Knowledge project and validation records. This is navigation state, not runtime authority.",
-  "authority_rule": "Current GitHub source, local runtime evidence, acceptance results, and exact repository state outrank this map. Historical checkpoints remain historical unless revalidated.",
+  "purpose": "Visual evidence and dependency map derived from GPT-Knowledge plus explicitly verified current GitHub evidence. This is navigation state, not runtime authority.",
+  "authority_rule": "Current repository source, local runtime evidence, acceptance results, and exact repository state outrank this map. Historical checkpoints remain historical unless revalidated on the current head.",
   "updated": "2026-08-20",
-  "active_node": "r4-local-proof",
+  "source_head": "f4d56aabfa08983a666f4223490dd3c2ad72bb3c",
+  "active_node": "current-live-revalidation",
   "nodes": [
     {
-      "id": "source-identity",
-      "lane": "Authority",
-      "title": "Canonical source identity",
+      "id": "product-scope",
+      "lane": "Architecture",
+      "title": "Single local reasoning agent",
       "status": "proven",
-      "summary": "R3 checkpoint identifies Letterblack0306/Accecc_Browser_Agent, PR #18, refactor/browser-conversation-turn-transport-20260816, and separates canonical source worktree from selected governed workspace."
+      "summary": "Browser/provider conversation supplies instructions; AgentSessionRuntime / LiveAgentCore owns reasoning, coding/development decisions and tool selection. Bridges transport; governance constrains authority."
     },
     {
-      "id": "evidence-method",
-      "lane": "Authority",
-      "title": "Evidence-first engineering method",
+      "id": "browser-authority",
+      "lane": "Architecture",
+      "title": "Managed browser authority",
       "status": "proven",
-      "summary": "Map flow, identify owner/source of truth, define question/observable/falsifier, run bounded test, classify, patch only proven owner, then regress and live-prove when required."
+      "summary": "Managed Chrome/CDP owns browser lifecycle, target identity, isolation, reconnect and browser capability boundaries."
     },
     {
-      "id": "recovery-architecture",
-      "lane": "R3 Recovery",
-      "title": "Recovery architecture",
+      "id": "conversation-transport",
+      "lane": "Architecture",
+      "title": "Exact-chat transport",
       "status": "proven",
-      "summary": "Append-only instruction journal plus separate instruction_reconciliation receipts; scope-level recovery discovery occurs at {workspaceRoot, conversationId}."
+      "summary": "Transport owns identity, ordering, deduplication, journaling, same-conversation delivery and causal ownership; it is not a second reasoning loop."
     },
     {
-      "id": "recovery-ui-path",
-      "lane": "R3 Recovery",
-      "title": "Live recovery UI path",
+      "id": "protected-context",
+      "lane": "Architecture",
+      "title": "Protected conversation context",
       "status": "proven",
-      "summary": "Real Start -> scope-level recovery card -> renderer recovery action -> controlled reason overlay -> Continue -> preload/IPC -> BrowserSessionAuthority -> reconciliation receipt."
+      "summary": "browserConversationRead is the dedicated bounded read-only capability for protected exact-chat context. Current live autonomous use is tracked separately as an acceptance boundary."
     },
     {
-      "id": "recovery-source-fixes",
-      "lane": "R3 Recovery",
-      "title": "Recovery source fixes",
+      "id": "tool-governance",
+      "lane": "Architecture",
+      "title": "Governed tools and evidence",
       "status": "proven",
-      "summary": "Scope-level recovery discovery and renderer input/IPC/journal reconciliation change intents were recorded complete and live-proven on PR #18."
+      "summary": "ToolRegistry / LiveToolContext expose governed capabilities with workspace/path boundaries, execution observations and receipts."
     },
     {
-      "id": "seven-reconciled",
-      "lane": "R3 Recovery",
-      "title": "7 ambiguous records reconciled",
+      "id": "module-registry",
+      "lane": "Current Source",
+      "title": "Module ownership registry",
       "status": "proven",
-      "summary": "Seven historical ambiguous records were conservatively quarantined through the live UI path with durable receipts and no accidental new instruction execution."
+      "summary": "Current package scripts expose module status/check validation. The registry maps ownership/composition; it is not agent reasoning state."
     },
     {
-      "id": "backlog-16-checkpoint",
-      "lane": "Historical Checkpoint",
-      "title": "Recovery backlog = 16",
+      "id": "runtime-entry",
+      "lane": "Current Source",
+      "title": "rebuild-main runtime entry",
       "status": "proven",
-      "summary": "Historical 2026-08-16 checkpoint: unresolved count was 16; 66cab... was next and not yet proven reconciled. This number is historical and must not be treated as current without re-query."
+      "summary": "Current package.json defines electron/rebuild-main.js as the application entry point."
     },
     {
-      "id": "r4-gate",
-      "lane": "R4 Validation",
-      "title": "R4 browserConversationRead gate",
+      "id": "ui-tool-failure",
+      "lane": "Current Source",
+      "title": "Tool failure UI fixed",
       "status": "proven",
-      "summary": "R4 target required a real browserConversationRead call, protected exact-chat marker, derived final result, and zero workspace/terminal/general-browser substitution."
+      "summary": "Current main defines failToolCall(), normalizes object/string errors and wires execution.tool.failed to the renderer path."
+    },
+    {
+      "id": "chain-break-audit",
+      "lane": "Current Source",
+      "title": "Chain-break audit stable",
+      "status": "proven",
+      "summary": "Current main f4d56aab restores absence-context detection; reported validation is 4 checks / 0 failed with governance check PASS."
+    },
+    {
+      "id": "r1-feedback",
+      "lane": "Historical Proof",
+      "title": "R1 feedback ownership",
+      "status": "historical",
+      "summary": "Historical live proof: one result rendered in the same conversation and the provider response was consumed as delivery_response with no second local execution."
+    },
+    {
+      "id": "r2-session",
+      "lane": "Historical Proof",
+      "title": "R2 session continuity",
+      "status": "historical",
+      "summary": "Historical bounded proof: local session lineage survived managed-browser target replacement/restart and completed same-chat rendered delivery."
+    },
+    {
+      "id": "r3-recovery",
+      "lane": "Historical Proof",
+      "title": "R3 recovery reconciliation",
+      "status": "historical",
+      "summary": "Historical/isolated runtime proof covers journal reconciliation, replay protection and fail-closed ambiguous-state handling. It is not arbitrary full process-death live proof."
     },
     {
       "id": "r4-local-proof",
-      "lane": "R4 Validation",
-      "title": "Bounded R4 acceptance",
+      "lane": "Historical Proof",
+      "title": "Bounded R4 local proof",
+      "status": "historical",
+      "summary": "GPT-Knowledge records bounded R4 proof on an earlier head. Preserve it as historical evidence; do not label current main live-proven from that result alone."
+    },
+    {
+      "id": "current-live-revalidation",
+      "lane": "Current Gate",
+      "title": "Revalidate complete live Browser Loop",
       "status": "current",
-      "summary": "Validation record dated 2026-08-17 says bounded R4 acceptance was PROVEN LOCALLY at commit f46ed1cf1175c587debcb35cde8c43775cd90321; runtime smoke, browser tool evaluations 6/6, workspace guard and sync checks passed."
+      "priority": "P0",
+      "summary": "Current main is f4d56aab. Revalidate one complete real ChatGPT + provider + local-agent composition and bind every observable to this head."
     },
     {
-      "id": "classification-lesson",
-      "lane": "Validation Method",
-      "title": "Failure classification discipline",
-      "status": "proven",
-      "summary": "R4 validation distinguished repository defect from harness/config/stale-fixture failures; the observed wrapper-token failure was classified TEST_HARNESS_FAILURE."
-    },
-    {
-      "id": "current-revalidate",
-      "lane": "Next Evidence",
-      "title": "Revalidate current repository/runtime",
+      "id": "browser-conversation-read-current",
+      "lane": "Pending",
+      "title": "Current-head protected context use",
       "status": "next",
-      "summary": "GPT-Knowledge contains local R4 proof but no later authoritative project checkpoint proving current remote branch, merged state, or current runtime status. Re-establish those before inferring further progress."
+      "priority": "P0",
+      "summary": "Fresh live evidence must show autonomous browserConversationRead selection/use when the task requires historical exact-chat context, marker derivation and final-result dependence."
+    },
+    {
+      "id": "process-death-recovery",
+      "lane": "Pending",
+      "title": "Arbitrary process-death recovery",
+      "status": "next",
+      "priority": "P1",
+      "summary": "Accept exactly-once recovery across executing, delivering and delivery_unverified boundaries with durable evidence and no replay."
+    },
+    {
+      "id": "terminal-state-ui",
+      "lane": "Pending",
+      "title": "Non-complete terminal UI truth",
+      "status": "next",
+      "priority": "P1",
+      "summary": "Current source maps blocked/failed/stopped states, but complete current-head live user-visible acceptance remains open."
+    },
+    {
+      "id": "governance-check-chain",
+      "lane": "Pending",
+      "title": "Governance/check distinction",
+      "status": "warning",
+      "priority": "P1",
+      "summary": "Current package.json defines precheck separately. npm run check does not automatically chain precheck; the UI/docs must not imply otherwise."
+    },
+    {
+      "id": "stale-ui-tests",
+      "lane": "Pending",
+      "title": "Recheck stale UI tests",
+      "status": "warning",
+      "priority": "P2",
+      "summary": "Earlier audits identified stale standalone UI assertions. Re-run against current main and classify fixture drift versus product defect before implementation changes."
     }
   ],
   "edges": [
-    ["source-identity","evidence-method"],
-    ["evidence-method","recovery-architecture"],
-    ["recovery-architecture","recovery-ui-path"],
-    ["recovery-ui-path","recovery-source-fixes"],
-    ["recovery-source-fixes","seven-reconciled"],
-    ["seven-reconciled","backlog-16-checkpoint"],
-    ["backlog-16-checkpoint","r4-gate"],
-    ["r4-gate","r4-local-proof"],
-    ["r4-local-proof","classification-lesson"],
-    ["classification-lesson","current-revalidate"]
+    {"from":"product-scope","to":"browser-authority","type":"capability"},
+    {"from":"product-scope","to":"conversation-transport","type":"transport"},
+    {"from":"product-scope","to":"tool-governance","type":"capability"},
+    {"from":"conversation-transport","to":"protected-context","type":"context"},
+    {"from":"tool-governance","to":"module-registry","type":"ownership"},
+    {"from":"browser-authority","to":"runtime-entry","type":"composition"},
+    {"from":"runtime-entry","to":"ui-tool-failure","type":"ui"},
+    {"from":"runtime-entry","to":"chain-break-audit","type":"validation"},
+    {"from":"conversation-transport","to":"r1-feedback","type":"historical-proof"},
+    {"from":"r1-feedback","to":"r2-session","type":"historical-proof"},
+    {"from":"r2-session","to":"r3-recovery","type":"historical-proof"},
+    {"from":"r3-recovery","to":"r4-local-proof","type":"historical-proof"},
+    {"from":"r4-local-proof","to":"current-live-revalidation","type":"requires-revalidation"},
+    {"from":"protected-context","to":"browser-conversation-read-current","type":"acceptance"},
+    {"from":"current-live-revalidation","to":"browser-conversation-read-current","type":"acceptance"},
+    {"from":"current-live-revalidation","to":"process-death-recovery","type":"acceptance"},
+    {"from":"current-live-revalidation","to":"terminal-state-ui","type":"acceptance"},
+    {"from":"module-registry","to":"governance-check-chain","type":"validation-boundary"},
+    {"from":"ui-tool-failure","to":"stale-ui-tests","type":"test-recheck"}
   ]
 }
