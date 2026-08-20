@@ -40,7 +40,7 @@ The project builds the capabilities around that single local agent in stages:
 4. **Evidence and artifacts** — connect browser results to the existing evidence/receipt system.
 5. **Provider adapters** — connect supported web AI providers as protocol/data adapters, not as separate agents.
 6. **Provider-driven conversation loop** — transport provider conversation turns into the existing local agent lifecycle and return the result to the same conversation.
-7. **Browser UI** — build the user-facing browser UI only after the runtime contracts are established.
+7. **Browser UI** — expose runtime-backed state without turning the UI into a second state authority.
 
 ## What stays separate
 
@@ -49,13 +49,22 @@ The project builds the capabilities around that single local agent in stages:
 - Browser access is a capability used by the local agent.
 - Governance limits authority and side effects; it does not replace agent reasoning.
 - Provider adapters translate provider protocols; they are not additional reasoning agents.
+- The workspace website is a projection of repository/project evidence; it is not runtime authority.
+
+## Current status files
+
+For current Access Browser Agent status use:
+
+- `current-state.md` — human-readable current checkpoint and pending acceptance work.
+- `status.json` — machine-readable current/closed/historical/pending state used by the workspace UI.
+- `plan.json` — architecture/evidence/dependency graph used by the workspace UI.
+
+The current status projection is tied to verified remote `main` HEAD `f4d56aabfa08983a666f4223490dd3c2ad72bb3c` as of 2026-08-20. Historical R1-R4 evidence is preserved as historical evidence unless revalidated on the current head.
 
 ## Important scope rule
 
 This file describes the **project concept and build direction in simple terms**.
 
-It does not replace the detailed implementation plan, transport contract, acceptance records, or current repository/runtime evidence.
+It does not replace the detailed implementation plan, transport contract, acceptance records, current-state checkpoint, or current repository/runtime evidence.
 
-For current status, always check the live Access Browser Agent repository and its current project documentation.
-
-The browser UI design is documented separately in GPT-Knowledge and is intentionally not duplicated here.
+For actual implementation/runtime claims, current repository and runtime evidence outrank this plan.
