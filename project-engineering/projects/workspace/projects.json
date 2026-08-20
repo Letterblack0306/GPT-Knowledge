@@ -17,9 +17,10 @@
       "name": "Access Browser Agent",
       "subtitle": "Browser Conversation Runtime",
       "mapped": true,
-      "active_node": "r4-local-proof",
+      "active_node": "current-live-revalidation",
       "plan_file": "../access-browser-agent-plan/plan.json",
-      "reference": "../access-browser-agent-r3-recovery-status-2026-08-16.md"
+      "status_file": "../access-browser-agent-plan/status.json",
+      "reference": "../access-browser-agent-plan/plan.md"
     },
     {
       "id": "brew",
