@@ -17,7 +17,7 @@
       "name": "Access Browser Agent",
       "subtitle": "Browser Conversation Runtime",
       "mapped": true,
-      "active_node": "continuation-live-acceptance",
+      "active_node": "terminal-state-ui",
       "plan_file": "../access-browser-agent-plan/plan.json",
       "status_file": "../access-browser-agent-plan/status.json",
       "reference": "../access-browser-agent-plan/plan.md"
