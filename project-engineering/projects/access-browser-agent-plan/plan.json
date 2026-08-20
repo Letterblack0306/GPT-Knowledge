@@ -4,185 +4,59 @@
   "purpose": "Visual evidence and dependency map derived from GPT-Knowledge plus explicitly verified current GitHub and runtime evidence. This is navigation state, not runtime authority.",
   "authority_rule": "Current repository source, local runtime evidence, acceptance results, and exact repository state outrank this map. Historical checkpoints remain historical unless revalidated on the current head.",
   "updated": "2026-08-21",
-  "source_head": "481308768a5991c392e4b4ec1641d37971740911",
-  "active_node": "process-death-recovery",
+  "source_head": "a553fe9e2da78ae2154c5a7b174ccacc7e12cc07",
+  "active_node": "candidate-provider-readiness",
   "nodes": [
-    {
-      "id": "product-scope",
-      "lane": "Architecture",
-      "title": "Single local reasoning agent",
-      "status": "proven",
-      "summary": "Browser/provider conversation supplies instructions; AgentSessionRuntime / LiveAgentCore owns reasoning, coding/development decisions and tool selection. Bridges transport; governance constrains authority."
-    },
-    {
-      "id": "browser-authority",
-      "lane": "Architecture",
-      "title": "Managed browser authority",
-      "status": "proven",
-      "summary": "Managed Chrome/CDP owns browser lifecycle, target identity, isolation, reconnect and browser capability boundaries."
-    },
-    {
-      "id": "conversation-transport",
-      "lane": "Architecture",
-      "title": "Exact-chat transport",
-      "status": "proven",
-      "summary": "Transport owns identity, ordering, deduplication, journaling, same-conversation delivery and causal ownership; it is not a second reasoning loop."
-    },
-    {
-      "id": "protected-context",
-      "lane": "Architecture",
-      "title": "Protected conversation context",
-      "status": "proven",
-      "summary": "browserConversationRead is the dedicated bounded read-only capability for protected exact-chat context. Current-head autonomous use is live-proven."
-    },
-    {
-      "id": "tool-governance",
-      "lane": "Architecture",
-      "title": "Governed tools and evidence",
-      "status": "proven",
-      "summary": "ToolRegistry / LiveToolContext expose governed capabilities with workspace/path boundaries, execution observations and receipts."
-    },
-    {
-      "id": "module-registry",
-      "lane": "Current Source",
-      "title": "Module ownership registry",
-      "status": "proven",
-      "summary": "Current package scripts expose module status/check validation. The registry maps ownership/composition; it is not agent reasoning state."
-    },
-    {
-      "id": "runtime-entry",
-      "lane": "Current Source",
-      "title": "rebuild-main runtime entry",
-      "status": "proven",
-      "summary": "Current package.json defines electron/rebuild-main.js as the application entry point."
-    },
-    {
-      "id": "ui-tool-failure",
-      "lane": "Current Source",
-      "title": "Tool failure UI fixed",
-      "status": "proven",
-      "summary": "Current main defines failToolCall(), normalizes object/string errors and wires execution.tool.failed to the renderer path."
-    },
-    {
-      "id": "chain-break-audit",
-      "lane": "Current Source",
-      "title": "Chain-break audit stable",
-      "status": "proven",
-      "summary": "The negative-context chain-break audit repair remains present in current history; reported validation was 4 checks / 0 failed with governance PASS."
-    },
-    {
-      "id": "provider-context-compaction",
-      "lane": "Current Source",
-      "title": "Provider-facing historical evidence bounded",
-      "status": "proven",
-      "summary": "Current main 481308768a bounds oversized rehydrated historical tool-result payloads only in the provider-facing projection, preserving durable evidence, session continuity and current-turn outputs. Focused compaction and resilience smoke tests pass."
-    },
-    {
-      "id": "r1-feedback",
-      "lane": "Historical Proof",
-      "title": "R1 feedback ownership",
-      "status": "historical",
-      "summary": "Historical live proof: one result rendered in the same conversation and the provider response was consumed as delivery_response with no second local execution."
-    },
-    {
-      "id": "r2-session",
-      "lane": "Historical Proof",
-      "title": "R2 session continuity",
-      "status": "historical",
-      "summary": "Historical bounded proof: local session lineage survived managed-browser target replacement/restart and completed same-chat rendered delivery."
-    },
-    {
-      "id": "r3-recovery",
-      "lane": "Historical Proof",
-      "title": "R3 recovery reconciliation",
-      "status": "historical",
-      "summary": "Historical/isolated runtime proof covers journal reconciliation, replay protection and fail-closed ambiguous-state handling. It is not arbitrary full process-death live proof."
-    },
-    {
-      "id": "r4-local-proof",
-      "lane": "Historical Proof",
-      "title": "Bounded R4 local proof",
-      "status": "historical",
-      "summary": "Earlier bounded R4 proof is retained as historical evidence and is now supplemented by current-head live P0 proof."
-    },
-    {
-      "id": "current-live-revalidation",
-      "lane": "Closed Gate",
-      "title": "Complete live Browser Loop",
-      "status": "proven",
-      "priority": "P0",
-      "summary": "Current main 481308768a completed one real ChatGPT + provider + continuing local-agent composition with objective completion, rendered same-chat delivery, causal delivery-response consumption and no local re-execution."
-    },
-    {
-      "id": "browser-conversation-read-current",
-      "lane": "Closed Gate",
-      "title": "Current-head protected context use",
-      "status": "proven",
-      "priority": "P0",
-      "summary": "Fresh current-head evidence shows autonomous browserConversationRead selection, successful exact-chat read containing the seeded protected marker, and completion of the protected-context objective."
-    },
-    {
-      "id": "r4-step-timeout-harness",
-      "lane": "Harness",
-      "title": "R4 120-second timeout assumption",
-      "status": "harness_failure",
-      "priority": "P2",
-      "summary": "The script reported R4_STEP_TIMEOUT at 120 seconds, but runtime evidence shows the full product chain completed and delivery response was consumed at about 126.2 seconds. Treat as stale harness timing, not a product P0 failure."
-    },
-    {
-      "id": "process-death-recovery",
-      "lane": "Pending",
-      "title": "Arbitrary process-death recovery",
-      "status": "next",
-      "priority": "P1",
-      "summary": "Accept exactly-once recovery across executing, delivering and delivery_unverified boundaries with durable evidence and no replay."
-    },
-    {
-      "id": "terminal-state-ui",
-      "lane": "Pending",
-      "title": "Non-complete terminal UI truth",
-      "status": "next",
-      "priority": "P1",
-      "summary": "Current source maps blocked/failed/stopped states, but complete current-head live user-visible acceptance remains open."
-    },
-    {
-      "id": "governance-check-chain",
-      "lane": "Pending",
-      "title": "Governance/check distinction",
-      "status": "warning",
-      "priority": "P1",
-      "summary": "Current package.json defines precheck separately. npm run check does not automatically chain precheck; the UI/docs must not imply otherwise."
-    },
-    {
-      "id": "stale-ui-tests",
-      "lane": "Pending",
-      "title": "Recheck stale UI tests",
-      "status": "warning",
-      "priority": "P2",
-      "summary": "Earlier audits identified stale standalone UI assertions. Re-run against current main and classify fixture drift versus product defect before implementation changes."
-    }
+    {"id":"product-scope","lane":"Architecture","title":"Single local reasoning agent","status":"proven","summary":"Browser/provider conversation supplies instructions; AgentSessionRuntime / LiveAgentCore owns reasoning and tool selection. Bridges transport; governance constrains authority."},
+    {"id":"provider-neutral-boundary","lane":"Architecture","title":"Provider-neutral authority boundary","status":"proven","summary":"Provider identity, authentication, discovery, readiness and explicit activation are separate from Access session/tool/browser/evidence authority. LM Studio remains first-class and Cline is a reusable lower-layer provider path."},
+    {"id":"browser-authority","lane":"Architecture","title":"Managed browser authority","status":"proven","summary":"Managed Chrome/CDP and BrowserSessionAuthority own browser lifecycle, target identity, exact-chat selection, reconnect and Browser Loop readiness gating."},
+    {"id":"conversation-transport","lane":"Architecture","title":"Exact-chat transport","status":"proven","summary":"Transport owns identity, ordering, deduplication, journaling and same-conversation delivery; it is not a second reasoning loop."},
+    {"id":"tool-governance","lane":"Architecture","title":"Governed tools and evidence","status":"proven","summary":"ToolRegistry / LiveToolContext own governed workspace and execution capabilities with evidence and receipts."},
+
+    {"id":"runtime-entry","lane":"Current Source","title":"rebuild-main → main runtime","status":"proven","summary":"package.json points to electron/rebuild-main.js, which wraps and loads electron/main.js. createConfiguredAgentRuntime restores persisted provider settings into the runtime."},
+    {"id":"settings-owner","lane":"Current Source","title":"Production settings owner","status":"proven","summary":"electron/index.html directly loads electron/rebuild-settings.js. This was already true in initial canonical commit 5d77a0e8. electron/settings-module.js is parallel/historical in the current rebuild shell."},
+    {"id":"provider-state-owner","lane":"Current Source","title":"Active provider state owner","status":"proven","summary":"AgentRuntimeAdapter _installProvider() changes service.provider, service.agent.provider and providerSelection. discoverOnly creates a candidate without installing it."},
+    {"id":"browser-readiness-gate","lane":"Current Source","title":"Browser Loop readiness gate","status":"proven","summary":"BrowserSessionAuthority validates the active provider/model, performs recovery-only preflight when required, probes readiness, then enters normal relay operation. No evidence supports weakening this gate."},
+
+    {"id":"provider-context-compaction","lane":"Closed Gate","title":"Historical provider context bounded","status":"proven","priority":"P0","summary":"bb00c560 plus 48130876 bounds only rehydrated historical tool-result content in provider-facing context. Current-live protected-context Browser Loop revalidation succeeded."},
+    {"id":"cline-auth-source-repair","lane":"Closed Gate","title":"Cline auth source authority repaired","status":"proven","priority":"P0","summary":"Auth persistence/source ownership repair series 11b06af through 79253b5 passed focused source/regression checks. Live OAuth persistence remains separate because no successful sign-in credential was created."},
+    {"id":"continuation-defect-proof","lane":"Closed Gate","title":"Next assistant turn misclassified","status":"proven","priority":"P0","summary":"Live diagnostics proved the first assistant turn after result delivery was detected but consumed as delivery_response rather than submitted as the next instruction."},
+    {"id":"continuation-source-repair","lane":"Closed Gate","title":"Post-result continuation repaired","status":"proven","priority":"P0","summary":"fab58f2 resolves delivery ownership without returning early; a553fe9 regression proves immediate next-turn execution semantics with newSession:false and preserved restart fail-closed guard."},
+    {"id":"provider-test-authority-leak","lane":"Finding","title":"Test READY mutates active provider","status":"warning","priority":"P0","summary":"Active rebuild-settings.js Test READY calls providerConfigure without discoverOnly, causing _installProvider() to replace the live provider while persist:false leaves durable preference unchanged. Present since initial canonical commit 5d77a0e8."},
+    {"id":"reference-history","lane":"Finding","title":"Reference contract predates Access baseline","status":"historical","summary":"GPT-Knowledge provider-neutral/Cline reuse guidance was added 2026-08-13 before the current canonical Access repository snapshot. Current Cline/VS Code patterns also keep explicit provider selection distinct from discovery/configuration."},
+
+    {"id":"candidate-provider-readiness","lane":"Active Gate","title":"Candidate readiness without activation","status":"next","priority":"P0","summary":"Map AgentRuntimeAdapter, ProviderFactory, ModelReadinessRegistry, ClineLlmsProvider, OpenAICompatibleProvider and providerReadiness() to find the smallest authoritative primitive that probes candidate B without changing active provider A."},
+    {"id":"candidate-readiness-regression","lane":"Planned","title":"Provider-test authority regression","status":"next","priority":"P0","summary":"Require that candidate Test READY leaves the active provider unchanged before, during and after both successful and failed candidate probes; activation remains explicit through Use/selection semantics."},
+    {"id":"continuation-live-acceptance","lane":"Planned","title":"A → result → B current-live proof","status":"next","priority":"P0","summary":"After provider authority is clean, prove result delivery, delivery_response_resolved for B, same B instruction_received, run with newSession:false and zero duplicate execution."},
+    {"id":"cline-auth-live","lane":"Pending","title":"Cline auth restart persistence","status":"next","priority":"P1","summary":"Requires one successful supported Cline sign-in followed by durable credential verification, restart and authenticated reload."},
+    {"id":"process-death-recovery","lane":"Pending","title":"Arbitrary process-death recovery","status":"next","priority":"P1","summary":"Accept exactly-once recovery across executing, delivering and delivery_unverified boundaries with durable evidence and no replay."},
+    {"id":"terminal-state-ui","lane":"Pending","title":"Non-complete terminal UI truth","status":"next","priority":"P1","summary":"Complete live user-visible acceptance remains open for blocked, failed, stopped and delivery-unverified states."},
+    {"id":"governance-check-chain","lane":"Pending","title":"Governance/check distinction","status":"warning","priority":"P1","summary":"precheck contains governance; npm run check remains separate and must not be described as automatically executing precheck."},
+    {"id":"parallel-settings-cleanup","lane":"Pending","title":"Parallel settings cleanup decision","status":"warning","priority":"P2","summary":"Before consolidating or removing electron/settings-module.js, prove whether any compatibility/non-production path still imports it."}
   ],
   "edges": [
+    {"from":"product-scope","to":"provider-neutral-boundary","type":"capability"},
     {"from":"product-scope","to":"browser-authority","type":"capability"},
     {"from":"product-scope","to":"conversation-transport","type":"transport"},
     {"from":"product-scope","to":"tool-governance","type":"capability"},
-    {"from":"conversation-transport","to":"protected-context","type":"context"},
-    {"from":"tool-governance","to":"module-registry","type":"ownership"},
-    {"from":"browser-authority","to":"runtime-entry","type":"composition"},
-    {"from":"runtime-entry","to":"ui-tool-failure","type":"ui"},
-    {"from":"runtime-entry","to":"chain-break-audit","type":"validation"},
-    {"from":"runtime-entry","to":"provider-context-compaction","type":"runtime-context"},
-    {"from":"conversation-transport","to":"r1-feedback","type":"historical-proof"},
-    {"from":"r1-feedback","to":"r2-session","type":"historical-proof"},
-    {"from":"r2-session","to":"r3-recovery","type":"historical-proof"},
-    {"from":"r3-recovery","to":"r4-local-proof","type":"historical-proof"},
-    {"from":"provider-context-compaction","to":"current-live-revalidation","type":"revalidated-by"},
-    {"from":"protected-context","to":"browser-conversation-read-current","type":"acceptance"},
-    {"from":"current-live-revalidation","to":"browser-conversation-read-current","type":"acceptance"},
-    {"from":"current-live-revalidation","to":"r4-step-timeout-harness","type":"harness-classification"},
-    {"from":"current-live-revalidation","to":"process-death-recovery","type":"next-acceptance"},
-    {"from":"current-live-revalidation","to":"terminal-state-ui","type":"next-acceptance"},
-    {"from":"module-registry","to":"governance-check-chain","type":"validation-boundary"},
-    {"from":"ui-tool-failure","to":"stale-ui-tests","type":"test-recheck"}
+    {"from":"provider-neutral-boundary","to":"runtime-entry","type":"composition"},
+    {"from":"runtime-entry","to":"settings-owner","type":"ui"},
+    {"from":"runtime-entry","to":"provider-state-owner","type":"provider"},
+    {"from":"provider-state-owner","to":"browser-readiness-gate","type":"readiness"},
+    {"from":"provider-context-compaction","to":"continuation-defect-proof","type":"later-live-evidence"},
+    {"from":"continuation-defect-proof","to":"continuation-source-repair","type":"repair"},
+    {"from":"settings-owner","to":"provider-test-authority-leak","type":"source-defect"},
+    {"from":"provider-state-owner","to":"provider-test-authority-leak","type":"authority-side-effect"},
+    {"from":"reference-history","to":"provider-test-authority-leak","type":"architecture-comparison"},
+    {"from":"provider-test-authority-leak","to":"candidate-provider-readiness","type":"active-question"},
+    {"from":"provider-neutral-boundary","to":"candidate-provider-readiness","type":"required-contract"},
+    {"from":"candidate-provider-readiness","to":"candidate-readiness-regression","type":"implementation-gate"},
+    {"from":"candidate-readiness-regression","to":"continuation-live-acceptance","type":"unblocks"},
+    {"from":"continuation-source-repair","to":"continuation-live-acceptance","type":"acceptance"},
+    {"from":"cline-auth-source-repair","to":"cline-auth-live","type":"acceptance"},
+    {"from":"continuation-live-acceptance","to":"process-death-recovery","type":"next-acceptance"},
+    {"from":"continuation-live-acceptance","to":"terminal-state-ui","type":"next-acceptance"},
+    {"from":"settings-owner","to":"parallel-settings-cleanup","type":"legacy-scan"},
+    {"from":"runtime-entry","to":"governance-check-chain","type":"validation-boundary"}
   ]
 }
