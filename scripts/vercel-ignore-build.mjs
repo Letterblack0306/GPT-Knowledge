@@ -1,4 +1,4 @@
-// Deployment marker: force one fresh Git-triggered Vercel build after environment configuration refresh.
+// Deployment marker: force one fresh Git-triggered Vercel build after GitHub token refresh.
 import { readFile } from 'node:fs/promises';
 import { relative, resolve } from 'node:path';
 import { execFileSync } from 'node:child_process';
