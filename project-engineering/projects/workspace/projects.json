@@ -16,7 +16,9 @@
       "id": "access-browser-agent",
       "name": "Access Browser Agent",
       "subtitle": "Browser Conversation Runtime",
-      "mapped": false,
+      "mapped": true,
+      "active_node": "r4-local-proof",
+      "plan_file": "../access-browser-agent-plan/plan.json",
       "reference": "../access-browser-agent-r3-recovery-status-2026-08-16.md"
     },
     {
