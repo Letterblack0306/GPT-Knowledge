@@ -218,184 +218,87 @@ capture succeeded
 → verify image exists, dimensions are valid, and target identity matches
 ```
 
-The verification method should be chosen before the action when possible.
+## 9. Access Browser Agent: local reasoning agent + browser/provider instruction boundary
 
-## 9. Screenshots are evidence and memory inputs
+For the Access Browser Agent project, the documented concept is a **single authoritative local agent lifecycle** for coding and development work.
 
-Agent Zero keeps browser history screenshots of important steps. A robust browser agent should treat screenshots as first-class artifacts with metadata:
-
-```text
-artifactId
-sha256
-path or object reference
-capturedAt
-browserInstanceId
-targetId
-url
-viewport
-fullPage
-source operationId
-source toolCallId
-redaction state
-content summary
-```
-
-Screenshots should not be pushed into Git by default. The storage policy may use a local object store, indexed path, or explicit artifact repository. Hashing enables deduplication and stable references.
-
-## 10. Visual and DOM evidence should complement each other
-
-DOM-only proof misses visual overlap, clipping, colors, and rendering failures. Screenshot-only proof misses semantics, hidden state, and exact element identity.
-
-For important browser actions, collect both:
+The local agent is the reasoning and development authority:
 
 ```text
-structured state
-  DOM/accessibility snapshot
-  URL
-  selected target
-  console/network result
-
-visual state
-  screenshot
-  element crop when relevant
+Browser / instruction provider
+        ↓
+transport
+        ↓
+Local AgentSessionRuntime / LiveAgentCore
+        ↓
+reasoning + coding / development
+        ↓
+controlled capabilities
 ```
 
-## 11. Browser history must be tied to session identity
+The browser/provider conversation is the **instruction source and delivery surface**. It supplies the natural-language turn/context to the local reasoning agent and receives the resulting work/output back through the transport boundary.
 
-Do not store a loose sequence of screenshots without provenance.
+The browser/provider side is not a second reasoning agent and must not become a second autonomous BrowserLoop with its own reasoning, retries, semantic interpretation, or completion authority.
 
-Each browser event should carry:
+The governing architectural rule is:
+
+> **Agents reason; bridges transport. Governance constrains authority without becoming a second reasoning engine.**
+
+For this project, that means:
+
+- the local `AgentSessionRuntime` / `LiveAgentCore` remains the single reasoning lifecycle;
+- the browser/provider channel observes, transports, preserves identity/order, journals, deduplicates, and delivers;
+- browser access remains a capability available to the local agent rather than the agent brain;
+- governance limits authority and side effects without replacing agent reasoning;
+- ordinary natural-language assistant turns are transported without requiring a semantic instruction envelope;
+- any structured transport path remains an explicit protocol rather than a substitute for general agent reasoning.
+
+The Browser Loop is therefore a transport/integration boundary around the local agent, not a second agent architecture.
+
+## 10. Access Browser Agent phased capability model
+
+The Access Browser Agent project documents a phased development order. The project plan is the authority for project-specific scope and acceptance; this section records the reusable knowledge needed to reason about that architecture.
+
+The documented sequence is:
 
 ```text
-conversationId
-sessionId
-turnId
-operationId
-toolCallId
-browserInstanceId
-targetId
+Phase 0 → clean-baseline re-audit
+Phase 1 → browser capability authority
+Phase 2 → read-only browser tools
+Phase 3 → verified browser actions
+Phase 4 → evidence/artifact integration
+Phase 5 → provider adapters
+Phase 6 → provider-driven loop
+Phase 7 → browser UI
+Skills   → procedural inspection/recovery knowledge, not new runtime authorities
 ```
 
-This enables replay, audit, and rejection of stale results.
+The architecture remains one local reasoning lifecycle throughout these phases. Capability scope grows around the agent; it does not create additional reasoning lifecycles inside browser tabs, provider adapters, or transport bridges.
 
-## 12. Browser lifecycle must be configurable and recoverable
+Project-specific implementation and current-status claims must be verified against the Access Browser Agent repository and its current project documentation. This GPT-Knowledge section does not replace live repository or runtime evidence.
 
-Browser configuration should support:
+## 11. Browser-agent evidence rule
+
+For Access Browser Agent work, distinguish clearly between:
 
 ```text
-backend type
-endpoint or discovery mode
-browser executable
-profile path
-start URL
-headless setting
-fallback policy
-connection timeout
-poll interval
-reconnect limit
-capture directory
+instruction source
+→ transport
+→ local agent reasoning
+→ selected capability
+→ real observation
+→ result/evidence
+→ delivery
 ```
 
-Do not hardcode ports or machine-specific paths. A fallback backend must be explicit and visible, not automatic and silent.
+Do not infer that a browser capability is implemented merely because a provider adapter, endpoint, UI panel, class, or tool schema exists.
 
-Lifecycle states should include:
+A capability is considered implemented only when it is:
 
-```text
-unconfigured
-discovering
-connecting
-ready
-degraded
-unavailable
-reconnecting
-stopping
-stopped
-```
+- registered;
+- reachable;
+- executable;
+- validated;
+- evidenced.
 
-## 13. Browser controls need one authoritative owner
-
-A UI may expose proxy controls, but there should be one authoritative implementation for checking browser health, listing pages, selecting targets, and capturing pages.
-
-Duplicate control trees create:
-
-- duplicate IDs;
-- conflicting state;
-- inconsistent disabled logic;
-- multiple event handlers;
-- false health indicators.
-
-Proxy UI controls should invoke the authoritative control or runtime API and subscribe to the same state store.
-
-## 14. Browser tools should be capability-scoped
-
-A useful permission model separates:
-
-```text
-read page
-navigate
-interact
-upload local file
-download file
-execute script
-access host browser
-access authenticated session
-access camera or screen
-persist browser profile
-```
-
-Granting “browser access” should not imply every capability.
-
-## 15. Validation matrix
-
-A browser-agent implementation is not complete until it proves:
-
-| Area | Required proof |
-| --- | --- |
-| Backend | connection and health evidence |
-| Discovery | target list with stable IDs |
-| Selection | selected target shown and enforced |
-| Navigation | final URL and readiness verified |
-| Inspection | DOM/accessibility result tied to target |
-| Action | postcondition verified |
-| Screenshot | artifact exists with hash and provenance |
-| Failure | bounded retry and explicit reason |
-| Stop | active browser work terminates promptly |
-| Security | sensitive action reaches approval boundary |
-| UI | controls remain clickable and status is truthful |
-
-## Source-derived strengths
-
-### Agent Zero
-
-- built-in browser with live Canvas surface;
-- DOM annotation for change, inspect, lift, and comment;
-- browser history screenshots;
-- host-browser access through a connector;
-- support for Chromium-family host browsers;
-- visible user intervention.
-
-### Hermes
-
-- cloud-browser access through a tool gateway;
-- broad tool configuration and provider flexibility;
-- gateway continuity across CLI and messaging;
-- explicit security, command approval, and container isolation documentation.
-
-### OpenClaw
-
-- gateway control plane;
-- tools and nodes as distributed capabilities;
-- camera, screen, and device-local actions;
-- pairing and sandboxing concerns;
-- untrusted inbound input model.
-
-### Codex
-
-- local-first agent execution;
-- terminal, IDE, app, and cloud surfaces;
-- skills and repository-scoped workflows;
-- a focused pattern for keeping execution visible to the user.
-
-## Design rule
-
-A browser agent should never claim success because a command returned without error. Success requires a verified page-level outcome and attributable evidence.
+End-to-end claims require a correlated real user/runtime path and must not be inferred from disconnected component tests.
