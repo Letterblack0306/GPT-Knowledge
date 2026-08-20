@@ -2,7 +2,6 @@
   const API = '/api/save-workspace-state';
   const REMOTE_STATE = id => `../workspace-state/${id}.json`;
   const originalSelect = window.select;
-  const originalPutState = window.putState;
   let saveButton;
   let syncBadge;
 
@@ -34,14 +33,14 @@
     try { local = JSON.parse(localStorage.getItem(localKey) || 'null'); } catch {}
     if (local?._dirty) {
       setSync('LOCAL CHANGES', '');
-      return;
+      return false;
     }
 
     try {
       const r = await fetch(`${REMOTE_STATE(id)}?v=${Date.now()}`);
       if (r.status === 404) {
         setSync('NOT SAVED', '');
-        return;
+        return false;
       }
       if (!r.ok) throw new Error(`state ${r.status}`);
       const remote = await r.json();
@@ -57,9 +56,11 @@
       };
       localStorage.setItem(localKey, JSON.stringify(next));
       setSync(remote.saved_at ? 'REPO SYNCED' : 'REPO STATE', 'ok');
+      return true;
     } catch (error) {
       console.warn('[workspace repo sync] hydrate failed', error);
       setSync('SYNC UNKNOWN', 'error');
+      return false;
     }
   }
 
@@ -135,12 +136,18 @@
 
   installUi();
 
-  // load() has already been declared by the workspace script but normally has not
-  // completed network work by the time this script executes. If a project is already
-  // active, preserve local edits and only report their state; next project selection
-  // will hydrate from the committed JSON before rendering.
-  if (active) {
-    const s = getState();
-    setSync(s?._dirty ? 'LOCAL CHANGES' : (s?._repoSavedAt ? 'REPO SYNCED' : 'LOCAL ONLY'), s?._repoSavedAt && !s?._dirty ? 'ok' : '');
+  async function initialHydrate() {
+    if (!active) {
+      await new Promise(resolve => setTimeout(resolve, 0));
+    }
+    if (!active) return;
+    const changed = await hydrateFromRepo(active);
+    if (changed && currentPlan) renderPlan();
+    if (!changed) {
+      const s = getState();
+      setSync(s?._dirty ? 'LOCAL CHANGES' : (s?._repoSavedAt ? 'REPO SYNCED' : 'LOCAL ONLY'), s?._repoSavedAt && !s?._dirty ? 'ok' : '');
+    }
   }
+
+  initialHydrate();
 })();
