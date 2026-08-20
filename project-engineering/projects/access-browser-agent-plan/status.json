@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
   "project": "Access Browser Agent",
-  "verified_at": "2026-08-21T03:39:00+04:00",
+  "verified_at": "2026-08-21T03:41:00+04:00",
   "source_repo": "Letterblack0306/access-browser-agent",
   "source_branch": "main",
   "source_head": "c8ed189e6ab3aaa688927246de26c8bde9c05922",
-  "overall_classification": "CURRENT_MAIN_RUNTIME_READY_CONTINUATION_LIVE_WAITING_FOR_USER_START_ACTION",
+  "overall_classification": "CURRENT_MAIN_RUNTIME_EXITED_BEFORE_RELAY_START_CONTINUATION_PENDING",
   "authority_note": "This file is a GPT-Knowledge projection of verified repository/history/runtime evidence. Current repository, runtime and acceptance evidence remain authoritative.",
   "closed": [
     {"id":"provider-context-compaction","title":"Historical tool-result provider-context amplification","classification":"FIXED_AND_REVALIDATED_CURRENT_LIVE","detail":"Main bb00c560a5 plus regression 481308768a bounds only rehydrated historical tool-result payloads in provider-facing context. The full protected-context Browser Loop later completed live with continuing session identity and autonomous browserConversationRead."},
@@ -15,7 +15,7 @@
     {"id":"settings-owner","title":"Production settings UI owner","classification":"PROVEN_CURRENT_SOURCE_AND_HISTORY","detail":"electron/index.html directly loads electron/rebuild-settings.js. This was already true in initial canonical commit 5d77a0e8. electron/settings-module.js is a parallel/historical implementation in the current rebuild shell and is not loaded by production index.html."},
     {"id":"candidate-readiness-source-map","title":"Candidate readiness owner and cache boundary","classification":"PROVEN_CURRENT_SOURCE","detail":"ModelReadinessRegistry is keyed by provider selection identity. ProviderFactory can create a candidate independently, while only AgentRuntimeAdapter._installProvider mutates service.provider, service.agent.provider and providerSelection. The readiness algorithm can therefore probe a candidate object without changing active authority."},
     {"id":"candidate-provider-readiness","title":"Candidate provider readiness without activation","classification":"PROVEN_SOURCE_AND_LOCAL_REGRESSION","detail":"Current main c8ed189 passed syntax checks plus provider-candidate-readiness-authority-smoke, Cline provider smoke and IDE preferences smoke. The regression proves candidate B can pass or fail readiness while active provider A remains service.provider, service.agent.provider and providerSelection; candidate readiness is cached under B. Production Cline Test READY now uses discoverOnly:true + probeReadiness:true, while Use remains the explicit activation path."},
-    {"id":"current-runtime-precondition","title":"Fresh current-main Access runtime","classification":"PROVEN_CURRENT_RUNTIME","detail":"The stale August 18 Electron tree rooted at PID 279272 was terminated. A fresh Access Electron root PID 612096 was created on 2026-08-21 03:37:31 from current main c8ed189, with new diagnostic access-agent-2026-08-20T23-37-32-509Z-436c3adc.jsonl. Repository remained clean except preserved untracked section_09.md."},
+    {"id":"fresh-runtime-established","title":"Fresh current-main Access runtime established","classification":"PROVEN_CURRENT_RUNTIME","detail":"The stale August 18 Electron tree rooted at PID 279272 was terminated. A fresh Access Electron root PID 612096 was created on 2026-08-21 03:37:31 from current main c8ed189 with diagnostic access-agent-2026-08-20T23-37-32-509Z-436c3adc.jsonl."},
     {"id":"runtime-entry","title":"Runtime entry and startup provider restoration","classification":"PROVEN_CURRENT_SOURCE","detail":"package.json points to electron/rebuild-main.js; rebuild-main loads main.js. createConfiguredAgentRuntime applies persisted preferenceValues through updateProviderSettings(), so startup restores the persisted provider by design."},
     {"id":"browser-readiness-gate","title":"Browser Loop active-provider readiness gate","classification":"SUPPORTED_CURRENT_ARCHITECTURE","detail":"BrowserSessionAuthority requires the active provider/model to be agent-ready, performs recovery-only preflight when needed, probes readiness and only then enters normal relay start. Current evidence does not justify weakening this gate."}
   ],
@@ -27,8 +27,8 @@
     {"id":"provider-neutral-reference","title":"Provider-neutral / Cline reference contract","classification":"REFERENCE_BACKED_ARCHITECTURE","detail":"GPT-Knowledge provider-neutral and Cline reuse guidance was added on 2026-08-13 before the current canonical Access repo. Current Cline/VS Code patterns also separate explicit provider selection from provider-specific discovery/configuration."}
   ],
   "pending": [
-    {"id":"relay-start-user-action","title":"Select current chat and click Start Loop","priority":"P0","classification":"USER_ACTION_NOT_EXECUTED","detail":"Fresh-runtime relay-start proof found TARGET_SELECTION_SEEN=false, AGENT_READY_SEEN=false, RELAY_STARTED_SEEN=false and RELAY_FAILURE_SEEN=false. This is not a product failure: no target-selection or relay-start attempt was observed. User action is required before another relay-start proof is meaningful."},
-    {"id":"post-result-continuation-live","title":"Current-live A → result → B continuation acceptance","priority":"P0","classification":"ACTIVE_LIVE_ACCEPTANCE_GATE","detail":"Fresh current-main runtime is established on c8ed189. After the current chat is selected and Start Loop is clicked once, prove relay start and then run one bounded current-live cycle showing delivery_response_resolved for B, the same B as instruction_received, B run newSession:false, and no duplicate execution."},
+    {"id":"runtime-relaunch-before-relay","title":"Relaunch current-main Access runtime","priority":"P0","classification":"USER_ACTION_INTERRUPTED","detail":"Fresh diagnostic seq 43-50 shows renderer_unload, terminal kill, before_quit, managed Chrome stop and will_quit at 23:38:59-23:39:00. No target-selection, readiness, relay-start or relay-failure event occurred before exit. The app must be relaunched and kept open before the continuation gate can proceed."},
+    {"id":"post-result-continuation-live","title":"Current-live A → result → B continuation acceptance","priority":"P0","classification":"ACTIVE_LIVE_ACCEPTANCE_GATE","detail":"Source/regression continuation repair and candidate-provider authority are proven. After relaunch, select the current chat and click Start Loop once, then prove the relay starts before sending controlled instruction A."},
     {"id":"cline-auth-live-persistence","title":"Cline auth durable live acceptance","priority":"P1","classification":"INCONCLUSIVE_UNTIL_SUCCESSFUL_LOGIN","detail":"The WorkOS device authorization attempt timed out before a credential existed. A valid live acceptance requires successful supported sign-in, durable credential creation, restart and authenticated reload."},
     {"id":"process-death-recovery","title":"Arbitrary process-death recovery","priority":"P1","classification":"OPEN","detail":"Need acceptance at executing, delivering and delivery_unverified boundaries with evidence-preserving exactly-once recovery."},
     {"id":"terminal-state-ui","title":"Non-complete terminal-state rendering","priority":"P1","classification":"OPEN_LIVE_ACCEPTANCE","detail":"Complete user-visible live acceptance for blocked, failed, stopped and delivery-unverified paths remains open."},
@@ -36,8 +36,8 @@
     {"id":"parallel-settings-cleanup","title":"Parallel historical settings implementation","priority":"P2","classification":"SOURCE_CLEANUP_DECISION_PENDING","detail":"Before removing or consolidating electron/settings-module.js, prove whether any non-production compatibility path imports it. Production index.html uses rebuild-settings.js."}
   ],
   "next_acceptance": {
-    "question": "After the user selects this current ChatGPT conversation and clicks Start Loop once, does the fresh c8ed189 runtime establish Browser Relay without failure?",
-    "observable": "Diagnostics show a target-selection event for the current chat and browser_relay.started or start_relay success. If provider readiness is required, a capability_probe success may appear before relay start.",
-    "falsifier": "A real start attempt followed by start_relay/browser_relay failure is a product/runtime observation requiring classification. Absence of all selection/readiness/start/failure events remains USER_ACTION_NOT_EXECUTED, not a defect."
+    "question": "Can current main c8ed189 be relaunched and kept alive long enough for the user to select this chat and click Start Loop once?",
+    "observable": "A new Electron root and fresh diagnostic are created after relaunch; no immediate before_quit/will_quit follows; after user selection/start, diagnostics show a real target-selection/start attempt.",
+    "falsifier": "If a freshly relaunched current-main runtime exits on its own without user closure, classify that lifecycle behavior separately before testing Browser Relay."
   }
 }
