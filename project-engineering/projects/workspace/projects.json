@@ -17,7 +17,7 @@
       "name": "Access Browser Agent",
       "subtitle": "Browser Conversation Runtime",
       "mapped": true,
-      "active_node": "candidate-provider-readiness",
+      "active_node": "continuation-live-acceptance",
       "plan_file": "../access-browser-agent-plan/plan.json",
       "status_file": "../access-browser-agent-plan/status.json",
       "reference": "../access-browser-agent-plan/plan.md"
