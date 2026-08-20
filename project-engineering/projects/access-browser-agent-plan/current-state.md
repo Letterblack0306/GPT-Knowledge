@@ -1,98 +1,105 @@
 # Access Browser Agent — Current State
 
-Date: 2026-08-20
+Date: 2026-08-21
 
 ## Current source authority
 
 - Repository: `Letterblack0306/access-browser-agent`
 - Branch: `main`
-- Verified remote HEAD: `f4d56aabfa08983a666f4223490dd3c2ad72bb3c`
+- Verified remote HEAD: `481308768a5991c392e4b4ec1641d37971740911`
 - Application entry: `electron/rebuild-main.js`
 
-This checkpoint separates **current source truth**, **historical acceptance evidence**, and **current live proof**. Historical evidence remains useful but is not promoted to current-live proof without revalidation on the present HEAD.
+This checkpoint separates **current source truth**, **historical acceptance evidence**, **current live proof**, and **test-harness behavior**. Current repository/runtime evidence remains authoritative over this projection.
 
-## Current-source findings
+## Current P0 status
 
-### Closed / present in current source
+**P0 current-head Browser Loop revalidation is proven on `481308768a...`.**
+
+The live protected-context run established:
+
+- natural assistant-turn ingress from the exact ChatGPT conversation;
+- continuing local-agent session identity;
+- configured provider availability and reasoning;
+- autonomous `browserConversationRead` selection with `limit:100`;
+- successful protected exact-chat read containing the seeded `R4_HISTORY_MARKER_1787256672587_571604`;
+- objective completion after the protected read;
+- result queueing and provider submission;
+- rendered same-chat delivery;
+- causal delivery-response consumption without a second local execution;
+- relay returning to its waiting state.
+
+## P0 defect fixed on current main
+
+The prior current-head R4 failure was caused by **provider-context amplification from accumulated historical tool-result payloads** in the continuing durable session, dominated by repeated `readFile` results.
+
+Evidence before repair:
+
+- clean current runtime-shaped system + skills + 20-tool request completed successfully;
+- full reused provider context stalled;
+- a recent tool-heavy tail also stalled;
+- exact duplicate compaction alone remained too large and stalled;
+- preserving the full message/tool-call structure while bounding historical tool results reduced the request enough for the provider to respond and autonomously select `browserConversationRead`.
+
+Current `LiveAgentCore` therefore bounds only **rehydrated historical tool-result content in the provider-facing projection**. It does not erase durable evidence, reset session identity, or truncate current-turn tool outputs. Focused provider-context and runtime-resilience smoke tests pass.
+
+## R4 harness classification
+
+The live script itself reported `R4_STEP_TIMEOUT`, but subsequent runtime diagnostics prove the complete product chain succeeded.
+
+Relevant timing:
+
+- instruction received: `20:11:53.591`;
+- autonomous `browserConversationRead` provider response: `20:13:09.308`;
+- protected read completed immediately afterward;
+- second provider completion: `20:13:42.774`;
+- rendered delivery: `20:13:45.864`;
+- delivery response causally consumed without re-execution: `20:13:59.826`.
+
+End-to-end instruction-to-consumed-response time was about **126.2 seconds**. The R4 step timeout is **120 seconds**, so this run crossed the harness deadline roughly six seconds before successful completion.
+
+Classification: **TEST_HARNESS_FAILURE / stale timeout assumption**, not a product P0 failure.
+
+## Current-source findings retained
 
 - `failToolCall()` exists in `electron/agent-workflow-view.js`, normalizes tool failure objects/strings, and is invoked by `execution.tool.failed`.
 - `package.json` uses `electron/rebuild-main.js` as the runtime entry.
-- Module registry status/check scripts are present and remain an ownership/composition boundary rather than agent reasoning state.
-- Current HEAD is the chain-break audit negative-context fix; reported validation for that change is `4 checks, 0 failed` plus governance PASS.
+- Module registry status/check scripts are ownership/composition metadata, not agent reasoning state.
+- The chain-break audit negative-context repair remains in current history with reported `4 checks, 0 failed` plus governance PASS.
 
-### Important current distinction
+### Governance distinction
 
-`npm run precheck` includes the workspace governance guard. `npm run check` is a separate script and does **not** chain `precheck` in the current `package.json`.
-
-Do not report `npm run check` as automatically running ChangeGovernanceGuard.
+`npm run precheck` includes the workspace governance guard. `npm run check` remains separate and does **not** automatically chain `precheck`.
 
 ## Historical proof retained
 
-The project history contains bounded evidence for:
+Earlier R1-R4 evidence remains useful historical context for:
 
 - ordinary natural-language ingress;
-- continuing local-agent session identity;
-- R1 same-chat result-feedback ownership / no-self-trigger;
-- R2 restart/session continuity;
-- R3 recovery/reconciliation and replay protection;
-- bounded R4 protected-context acceptance on an earlier revision.
+- session lineage continuity;
+- same-chat result-feedback ownership and no-self-trigger;
+- restart/recovery/reconciliation behavior.
 
-These remain **historical evidence** until the corresponding composition is revalidated on current main.
+The current P0 live run now independently proves the complete Browser Loop composition on the current head.
 
-## Pending acceptance work
+## Remaining acceptance work
 
-1. **P0 — Complete current-head live Browser Loop revalidation**
-   - Real ChatGPT conversation.
-   - Configured provider.
-   - Continuing local reasoning agent.
-   - Governed tools.
-   - Exact same-chat rendered delivery.
-   - No provider-response self-trigger.
-   - Stable terminal waiting state.
-   - Evidence tied to `f4d56aab...`.
+1. **P1 — Arbitrary process-death recovery**
+   - Validate exactly-once recovery at `executing`, `delivering`, and `delivery_unverified` boundaries.
 
-2. **P0 — Current-head autonomous `browserConversationRead` use**
-   - For a task that genuinely requires protected historical chat context, prove selection, invocation, marker retrieval, result derivation, and absence of forbidden substitution.
+2. **P1 — Non-complete terminal-state UI acceptance**
+   - Verify blocked, failed, stopped, and delivery-unverified states truthfully render in a live current-head run.
 
-3. **P1 — Arbitrary process-death recovery**
-   - Validate exactly-once behavior at `executing`, `delivering`, and `delivery_unverified` boundaries.
+3. **P1 — Governance/check wording**
+   - Keep documentation/UI explicit that `precheck` and `check` are distinct unless the source is intentionally changed.
 
-4. **P1 — Non-complete terminal-state UI acceptance**
-   - Verify blocked, failed, stopped, and delivery-unverified states are truthfully projected to the user in a live current-head run.
-
-5. **P1 — Governance/check wording**
-   - Keep documentation/UI explicit that `precheck` and `check` are distinct unless the source is intentionally changed later.
-
-6. **P2 — Stale standalone UI tests**
-   - Re-run previously stale runtime-controls/workbench/trace UI tests on current main and classify each result as product defect, stale fixture, or harness failure before modifying production code.
-
-## Next acceptance question
-
-Does current main `f4d56aab...` complete one real natural-language Browser Loop turn end-to-end, including protected-context use when required, governed local reasoning/tool execution, exact same-chat rendered delivery, no self-trigger, and a stable waiting state?
-
-### Authoritative observable
-
-One bounded live acceptance record tied to the current HEAD showing:
-
-- exact conversation identity;
-- local session identity;
-- `browserConversationRead` call when required by the task;
-- expected protected marker in the tool result and derived final result;
-- exactly one local submission;
-- rendered-delivery verification;
-- zero forbidden substitutions;
-- zero duplicate execution;
-- final `waiting_for_instruction` state.
-
-### Falsifier
-
-Any missing required protected-context call, wrong-chat delivery, unverified rendering, duplicate local submission, provider-response self-trigger, ambiguous unreconciled terminal state, or evidence produced from a different HEAD.
+4. **P2 — Stale standalone UI tests**
+   - Re-run previously stale runtime-controls/workbench/trace UI tests and classify fixture drift versus product defect before changing implementation.
 
 ## Workspace UI connection
 
 The visual workspace reads:
 
 - `plan.json` for architecture, evidence nodes, pending gates, and graph edges;
-- `status.json` for current source/head, pending items, closed items, historical proof, and the next acceptance question.
+- `status.json` for source/head, closed items, historical proof, remaining work, and acceptance classification.
 
 The UI is a repository-driven projection. It is not an independent project-state authority.
