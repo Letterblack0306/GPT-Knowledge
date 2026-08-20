@@ -1,11 +1,11 @@
 {
   "schema_version": 2,
   "project": "Access Browser Agent",
-  "purpose": "Visual evidence and dependency map derived from GPT-Knowledge plus explicitly verified current GitHub evidence. This is navigation state, not runtime authority.",
+  "purpose": "Visual evidence and dependency map derived from GPT-Knowledge plus explicitly verified current GitHub and runtime evidence. This is navigation state, not runtime authority.",
   "authority_rule": "Current repository source, local runtime evidence, acceptance results, and exact repository state outrank this map. Historical checkpoints remain historical unless revalidated on the current head.",
-  "updated": "2026-08-20",
-  "source_head": "f4d56aabfa08983a666f4223490dd3c2ad72bb3c",
-  "active_node": "current-live-revalidation",
+  "updated": "2026-08-21",
+  "source_head": "481308768a5991c392e4b4ec1641d37971740911",
+  "active_node": "process-death-recovery",
   "nodes": [
     {
       "id": "product-scope",
@@ -33,7 +33,7 @@
       "lane": "Architecture",
       "title": "Protected conversation context",
       "status": "proven",
-      "summary": "browserConversationRead is the dedicated bounded read-only capability for protected exact-chat context. Current live autonomous use is tracked separately as an acceptance boundary."
+      "summary": "browserConversationRead is the dedicated bounded read-only capability for protected exact-chat context. Current-head autonomous use is live-proven."
     },
     {
       "id": "tool-governance",
@@ -68,7 +68,14 @@
       "lane": "Current Source",
       "title": "Chain-break audit stable",
       "status": "proven",
-      "summary": "Current main f4d56aab restores absence-context detection; reported validation is 4 checks / 0 failed with governance check PASS."
+      "summary": "The negative-context chain-break audit repair remains present in current history; reported validation was 4 checks / 0 failed with governance PASS."
+    },
+    {
+      "id": "provider-context-compaction",
+      "lane": "Current Source",
+      "title": "Provider-facing historical evidence bounded",
+      "status": "proven",
+      "summary": "Current main 481308768a bounds oversized rehydrated historical tool-result payloads only in the provider-facing projection, preserving durable evidence, session continuity and current-turn outputs. Focused compaction and resilience smoke tests pass."
     },
     {
       "id": "r1-feedback",
@@ -96,23 +103,31 @@
       "lane": "Historical Proof",
       "title": "Bounded R4 local proof",
       "status": "historical",
-      "summary": "GPT-Knowledge records bounded R4 proof on an earlier head. Preserve it as historical evidence; do not label current main live-proven from that result alone."
+      "summary": "Earlier bounded R4 proof is retained as historical evidence and is now supplemented by current-head live P0 proof."
     },
     {
       "id": "current-live-revalidation",
-      "lane": "Current Gate",
-      "title": "Revalidate complete live Browser Loop",
-      "status": "current",
+      "lane": "Closed Gate",
+      "title": "Complete live Browser Loop",
+      "status": "proven",
       "priority": "P0",
-      "summary": "Current main is f4d56aab. Revalidate one complete real ChatGPT + provider + local-agent composition and bind every observable to this head."
+      "summary": "Current main 481308768a completed one real ChatGPT + provider + continuing local-agent composition with objective completion, rendered same-chat delivery, causal delivery-response consumption and no local re-execution."
     },
     {
       "id": "browser-conversation-read-current",
-      "lane": "Pending",
+      "lane": "Closed Gate",
       "title": "Current-head protected context use",
-      "status": "next",
+      "status": "proven",
       "priority": "P0",
-      "summary": "Fresh live evidence must show autonomous browserConversationRead selection/use when the task requires historical exact-chat context, marker derivation and final-result dependence."
+      "summary": "Fresh current-head evidence shows autonomous browserConversationRead selection, successful exact-chat read containing the seeded protected marker, and completion of the protected-context objective."
+    },
+    {
+      "id": "r4-step-timeout-harness",
+      "lane": "Harness",
+      "title": "R4 120-second timeout assumption",
+      "status": "harness_failure",
+      "priority": "P2",
+      "summary": "The script reported R4_STEP_TIMEOUT at 120 seconds, but runtime evidence shows the full product chain completed and delivery response was consumed at about 126.2 seconds. Treat as stale harness timing, not a product P0 failure."
     },
     {
       "id": "process-death-recovery",
@@ -156,15 +171,17 @@
     {"from":"browser-authority","to":"runtime-entry","type":"composition"},
     {"from":"runtime-entry","to":"ui-tool-failure","type":"ui"},
     {"from":"runtime-entry","to":"chain-break-audit","type":"validation"},
+    {"from":"runtime-entry","to":"provider-context-compaction","type":"runtime-context"},
     {"from":"conversation-transport","to":"r1-feedback","type":"historical-proof"},
     {"from":"r1-feedback","to":"r2-session","type":"historical-proof"},
     {"from":"r2-session","to":"r3-recovery","type":"historical-proof"},
     {"from":"r3-recovery","to":"r4-local-proof","type":"historical-proof"},
-    {"from":"r4-local-proof","to":"current-live-revalidation","type":"requires-revalidation"},
+    {"from":"provider-context-compaction","to":"current-live-revalidation","type":"revalidated-by"},
     {"from":"protected-context","to":"browser-conversation-read-current","type":"acceptance"},
     {"from":"current-live-revalidation","to":"browser-conversation-read-current","type":"acceptance"},
-    {"from":"current-live-revalidation","to":"process-death-recovery","type":"acceptance"},
-    {"from":"current-live-revalidation","to":"terminal-state-ui","type":"acceptance"},
+    {"from":"current-live-revalidation","to":"r4-step-timeout-harness","type":"harness-classification"},
+    {"from":"current-live-revalidation","to":"process-death-recovery","type":"next-acceptance"},
+    {"from":"current-live-revalidation","to":"terminal-state-ui","type":"next-acceptance"},
     {"from":"module-registry","to":"governance-check-chain","type":"validation-boundary"},
     {"from":"ui-tool-failure","to":"stale-ui-tests","type":"test-recheck"}
   ]
