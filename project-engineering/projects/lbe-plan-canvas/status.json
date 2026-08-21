@@ -1,12 +1,13 @@
 {
   "schema_version": 1,
-  "updated": "2026-08-19",
-  "you_are_here": "release-2.0.3",
-  "confirmed": ["vision","r3-r6","cli","r7-compose","r7-close","release-harness","release-2.0.3"],
-  "next": "public-install",
+  "updated": "2026-08-21",
+  "you_are_here": "release-2.0.3-preparation",
+  "confirmed": ["vision","r3-r6","cli","r7","release-readiness"],
+  "next": "release-2.0.3-preparation",
   "notes": [
-    {"node":"release-2.0.3","text":"PyPI lbe-guard-inspector==2.0.3 visibility, clean install, metadata, site-packages origin and lbe CLI smoke were proven."},
-    {"node":"public-install","text":"On a machine with both packages, PowerShell currently resolves lbe to the global @letterblack/lbe npm shim before the Python Scripts executable. Treat package installation and command precedence as separate facts."}
+    {"node":"release-2.0.3-preparation","text":"main carries lbe-guard-inspector 2.0.3. Exact wheel, isolated installed runtime, and immediate PyPI absence evidence are still required before workflow dispatch."},
+    {"node":"publish-2.0.3","text":"Publication is locked. Do not infer publication from a target version, a prior readiness check, or this canvas."},
+    {"node":"product-surface","text":"The terminal workspace is not accepted product UI. A future slice must use the persisted LBE event/receipt contract and keep policy-covered work automatic."}
   ],
   "rule": "A node may be marked confirmed only from current project-owned evidence. Canvas state never promotes itself to product authority."
 }
