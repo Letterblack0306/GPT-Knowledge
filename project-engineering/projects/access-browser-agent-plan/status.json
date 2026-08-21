@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "project": "Access Browser Agent",
-  "verified_at": "2026-08-21T11:52:00+04:00",
+  "verified_at": "2026-08-21T11:56:00+04:00",
   "source_repo": "Letterblack0306/access-browser-agent",
   "source_branch": "main",
   "source_head": "0048d0dceb062fbabb06423dfa419a6050a4713e",
@@ -22,39 +22,64 @@
     {"id":"terminal-state-ui-source","classification":"PROVEN_SOURCE_AND_LOCAL_REGRESSION"},
     {"id":"agent-ui-event-dispatch","classification":"PROVEN_CURRENT_LIVE"},
     {"id":"instruction-recovery-turn-1f8","classification":"QUARANTINED_AND_CLEARED"},
-    {"id":"runtime-progress-reentry","classification":"PROVEN_SOURCE_AND_LOCAL_REGRESSION","detail":"At 741d208, syntax check, agent-runtime-no-progress-smoke, and agent-runtime-resilience-smoke all pass."},
-    {"id":"browser-settlement","classification":"PROVEN_SOURCE_AND_LOCAL_REGRESSION","detail":"At 0048d0d, node --check src/browser/browser-tool-runtime.js and test/browser-tool-runtime-smoke.js both pass. The existing smoke harness includes the delayed 150 ms mutation settlement regression. main remains aligned with origin/main and section_09.md remains protected/untracked.","command_hash":"11876582E03956B429C5CEE03DF25FB2AFF045B155F0751340FC817E1E3E8F09"}
+    {"id":"runtime-progress-reentry","classification":"PROVEN_SOURCE_AND_LOCAL_REGRESSION"},
+    {"id":"browser-settlement","classification":"PROVEN_SOURCE_AND_LOCAL_REGRESSION","command_hash":"11876582E03956B429C5CEE03DF25FB2AFF045B155F0751340FC817E1E3E8F09"}
   ],
   "active": {
     "id": "stop-durable-terminal",
     "title": "P1 Durable Stop terminal receipt",
-    "classification": "OWNER_MAP_REQUIRED_BEFORE_ACCEPTANCE",
-    "question": "Which existing runtime owner emits, persists, and reconciles the durable terminal receipt for Stop, and what exact observable proves terminal completion without reopening the already-closed settlement gate?",
-    "method": "BirdEye-first proof workflow: inspect existing GPT-Knowledge findings and authoritative source owners first; define observable and falsifier before any source change.",
-    "latest_inspection": {
-      "command_hash": "F86DDB7073CCE2A0C07E39655D43E8FBD0EBF35328689B4BA76843513E3F4320",
-      "classification": "TEST_HARNESS_FAILURE",
-      "head": "0048d0dceb062fbabb06423dfa419a6050a4713e",
-      "detail": "Owner-map inspection did not execute because ripgrep (rg) is not installed/available in the local PowerShell environment. This is not evidence about Stop or terminal-receipt product behavior. Retry with native PowerShell discovery only."
+    "classification": "SOURCE_OWNER_MAPPED_DURABLE_ACCEPTANCE_PENDING",
+    "question": "Does an actual Stop return only after the authoritative session.stopped event and stopped checkpoint/snapshot are durably persisted and visible through the receipt surface?",
+    "method": "Reuse existing owners and tests before adding any new harness. No source patch until a focused persistence acceptance proves a gap.",
+    "owner_map": {
+      "ui_dispatch": "electron/renderer.js runRuntimeControl('stop') -> window.accessIde.runtimeStop()",
+      "preload_ipc": "electron/preload.js runtimeStop -> ide:runtime-stop",
+      "runtime_stop": "electron/main.js stopOwnedRuntime() -> agentRuntime.stop(current turn/session)",
+      "adapter": "electron/agent-runtime-adapter.js AgentRuntimeAdapter.stop() preserves completed sessions and delegates running sessions to UnifiedAgentService.stop()",
+      "service": "src/agent/executive/UnifiedAgentService.js stop() aborts LiveAgentCore and delegates terminal-state ownership to AgentSessionRuntime.stop()",
+      "session_router": "src/agent/executive/AgentSessionRuntime.js stop() resolves the session and delegates to AgentExecutive.stop()",
+      "terminal_authority": "src/agent/executive/AgentExecutive.js stop() appends session.stop_requested, aborts the active attempt, waits for the run loop, then ensures session.stopped plus _checkpoint('stopped') before returning",
+      "durable_store": "src/agent/executive/AgentEventStore.js append() writes events.jsonl; checkpoint() atomically writes checkpoints/<id>.json and snapshot.json; writes are awaited/serialized",
+      "receipt_projection": "UnifiedAgentService.receipts() projects persisted executive events with eventId as receiptId and lists checkpoints"
+    },
+    "existing_test_owner": {
+      "path": "test/agent-runtime-adapter-stop-lifecycle-smoke.js",
+      "classification": "PROVEN_SOURCE_PARTIAL",
+      "proves": [
+        "completed durable sessions are preserved rather than terminalized again",
+        "an in-flight session delegates to the authoritative stop path exactly once"
+      ],
+      "does_not_yet_prove": [
+        "session.stopped exists in persisted events.jsonl after Stop",
+        "a stopped checkpoint exists",
+        "snapshot.json reflects stopped terminal state",
+        "receipt projection exposes the durable terminal receipt after Stop"
+      ]
+    },
+    "inspection_evidence": {
+      "native_search_command_hash": "90FC9DFD5853C9F53F133969BC04CCE8005B7847D94A27956E73A00A102E789A",
+      "focused_owner_command_hash": "5D492FF5468909154388483161224D976BE8C927A391B1BECECB8B1F9D8175E9",
+      "head": "0048d0dceb062fbabb06423dfa419a6050a4713e"
     }
   },
   "proven_findings": [
-    {"id":"progress-reentry","classification":"PROVEN_SOURCE_AND_LOCAL_REGRESSION","detail":"741d208 modifies only src/agent/executive/LiveAgentCore.js (+53/-5) and passes focused regressions."},
-    {"id":"browser-settlement","classification":"PROVEN_SOURCE_AND_LOCAL_REGRESSION","detail":"0048d0d is three commits ahead of 741d208 and changes only src/browser/browser-tool-runtime.js and test/browser-tool-runtime-smoke.js. Syntax and browser-tool-runtime-smoke pass locally at the exact head."},
-    {"id":"browser-runtime-test-owner","classification":"PROVEN_SOURCE","detail":"test/browser-tool-runtime-smoke.js remains the sole BrowserToolRuntime behavioral harness; no parallel harness was created."},
-    {"id":"persistent-browser-profile","classification":"PROVEN_SOURCE","detail":"Managed Chrome uses a reusable Access-owned profile; task-isolated general browsing remains pending."},
-    {"id":"accessibility-layer","classification":"PARTIAL_SOURCE","detail":"Current semantics are DOM-derived; native Chromium AX and screenshot dual perception remain pending."}
+    {"id":"progress-reentry","classification":"PROVEN_SOURCE_AND_LOCAL_REGRESSION"},
+    {"id":"browser-settlement","classification":"PROVEN_SOURCE_AND_LOCAL_REGRESSION"},
+    {"id":"stop-terminal-owner","classification":"PROVEN_SOURCE","detail":"AgentExecutive.stop is the terminal-state authority. AgentEventStore is the durable persistence owner. UnifiedAgentService.receipts projects stored event IDs as receipts and lists checkpoints."},
+    {"id":"stop-adapter-test-owner","classification":"PROVEN_SOURCE_PARTIAL","detail":"test/agent-runtime-adapter-stop-lifecycle-smoke.js proves exactly-once delegation for running sessions and preservation of completed sessions, but not durable event/checkpoint persistence."},
+    {"id":"persistent-browser-profile","classification":"PROVEN_SOURCE"},
+    {"id":"accessibility-layer","classification":"PARTIAL_SOURCE"}
   ],
   "hardening_plan": [
-    {"order":1,"id":"progress-reentry","priority":"P1 CRITICAL","state":"PROVEN_SOURCE_AND_LOCAL_REGRESSION","target":"src/agent/executive/LiveAgentCore.js"},
-    {"order":2,"id":"page-settlement","priority":"P1 CRITICAL","state":"PROVEN_SOURCE_AND_LOCAL_REGRESSION","target":"src/browser/browser-tool-runtime.js","test_owner":"test/browser-tool-runtime-smoke.js","implementation_head":"0048d0dceb062fbabb06423dfa419a6050a4713e"},
-    {"order":3,"id":"stop-durable-terminal","priority":"P1","state":"OWNER_MAP_REQUIRED_BEFORE_ACCEPTANCE"},
+    {"order":1,"id":"progress-reentry","priority":"P1 CRITICAL","state":"PROVEN_SOURCE_AND_LOCAL_REGRESSION"},
+    {"order":2,"id":"page-settlement","priority":"P1 CRITICAL","state":"PROVEN_SOURCE_AND_LOCAL_REGRESSION","implementation_head":"0048d0dceb062fbabb06423dfa419a6050a4713e"},
+    {"order":3,"id":"stop-durable-terminal","priority":"P1","state":"SOURCE_OWNER_MAPPED_DURABLE_ACCEPTANCE_PENDING"},
     {"order":4,"id":"turn-37c-recovery","priority":"P1","state":"RECOVERY_REQUIRED_UNRESOLVED"},
     {"order":5,"id":"browser-context-isolation","priority":"P1/P2","state":"PENDING"},
     {"order":6,"id":"ax-visual-perception","priority":"P2","state":"PENDING"}
   ],
   "pending": [
-    {"id":"stop-durable-terminal","priority":"P1","classification":"OWNER_MAP_REQUIRED_BEFORE_ACCEPTANCE"},
+    {"id":"stop-durable-terminal","priority":"P1","classification":"DURABLE_PERSISTENCE_ACCEPTANCE_REQUIRED"},
     {"id":"turn-37c-recovery","priority":"P1","classification":"RECOVERY_REQUIRED_UNRESOLVED"},
     {"id":"terminal-state-ui","priority":"P1","classification":"SOURCE_PROVEN_LIVE_ACCEPTANCE_BLOCKED"},
     {"id":"node-pty-attachconsole","priority":"P1","classification":"OBSERVED_NEEDS_OWNER_MAP"},
@@ -64,8 +89,8 @@
     {"id":"ax-visual-perception","priority":"P2","classification":"ARCHITECTURE_HARDENING_PENDING"}
   ],
   "next_acceptance": {
-    "question": "Which existing source/runtime owner is authoritative for durable Stop completion and terminal receipt?",
-    "observable": "Map the current Stop request-to-terminal flow using native PowerShell file/content inspection and identify the persisted/reconciled terminal receipt owner before any code change or live acceptance.",
-    "falsifier": "If no single authoritative terminal receipt owner can be identified from current source/runtime evidence, classify the gate inconclusive and do not patch."
+    "question": "Is durable Stop persistence already covered by an existing lower-level AgentExecutive/AgentEventStore regression?",
+    "observable": "Inspect existing tests for AgentExecutive, AgentSessionRuntime, AgentEventStore, session.stopped, checkpoint('stopped'), events.jsonl and snapshot.json before adding any test or changing source.",
+    "falsifier": "If an existing regression already proves the durable Stop event/checkpoint/snapshot/receipt path, reuse and run it. Only if no such regression exists may a focused test extension be planned."
   }
 }
