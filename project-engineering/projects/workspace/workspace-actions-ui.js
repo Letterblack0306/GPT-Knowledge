@@ -24,7 +24,7 @@
   backdrop.className = 'wa-backdrop';
   backdrop.innerHTML = `
     <section class="wa-panel" role="dialog" aria-modal="true" aria-label="Governed local evidence actions">
-      <header class="wa-head"><div><b>Governed Actions</b><span>Browser intent → durable request → LoopTool local evidence → explicit result</span></div><button class="wa-close" id="waClose" aria-label="Close">×</button></header>
+      <header class="wa-head"><div><b>Governed Actions</b><span>Browser intent → durable request → GPT-K Local Runtime evidence → explicit result</span></div><button class="wa-close" id="waClose" aria-label="Close">×</button></header>
       <div class="wa-body">
         <aside class="wa-left">
           <button class="wa-guide-button" id="waGuide" data-ai-control="read-operating-contract">AI README / OPERATING CONTRACT</button>
@@ -37,7 +37,7 @@ RULES FOR ANY BROWSER AI
 1. Read the current project state before requesting local evidence.
 2. Use only the structured capabilities shown here. Do not invent a command or claim terminal access.
 3. A REQUEST is intent only. It does not prove execution.
-4. Wait for a RESULT from LoopTool before claiming anything was inspected locally.
+4. Wait for a RESULT from the GPT-K Local Runtime before claiming anything was inspected locally.
 5. Compare requested_capability/objective with resolved_operations in the result.
 6. If they differ materially, report ACTION_MISMATCH and do not treat the result as satisfying the request.
 7. Evidence-only actions do not authorize fixes, edits, reset, merge, rebase, delete, clean, or push.
@@ -52,7 +52,7 @@ project.report-evidence — broader read-only evidence bundle for a report.
 issue.inspect — bounded source/history search for one stated issue.
 
 EXECUTION BOUNDARY
-LoopTool resolves these capabilities into predetermined read-only collectors. This UI never grants arbitrary shell execution.</div>
+The GPT-K Local Runtime resolves these capabilities into predetermined read-only collectors. This UI never grants arbitrary shell execution.</div>
           </div>
           <div class="wa-section">
             <h3>Request local evidence</h3>
@@ -199,7 +199,7 @@ LoopTool resolves these capabilities into predetermined read-only collectors. Th
       button.id = 'workspaceActionsBtn';
       button.className = 'workspace-action-btn';
       button.textContent = 'ACTIONS';
-      button.title = 'Create governed LoopTool local evidence requests';
+      button.title = 'Create governed GPT-K Local Runtime evidence requests';
       button.dataset.aiTool = 'governed-local-actions';
       button.onclick = openActions;
       badges.prepend(button);
