@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "project": "Access Browser Agent",
-  "verified_at": "2026-08-21T11:49:00+04:00",
+  "verified_at": "2026-08-21T11:52:00+04:00",
   "source_repo": "Letterblack0306/access-browser-agent",
   "source_branch": "main",
   "source_head": "0048d0dceb062fbabb06423dfa419a6050a4713e",
@@ -30,7 +30,13 @@
     "title": "P1 Durable Stop terminal receipt",
     "classification": "OWNER_MAP_REQUIRED_BEFORE_ACCEPTANCE",
     "question": "Which existing runtime owner emits, persists, and reconciles the durable terminal receipt for Stop, and what exact observable proves terminal completion without reopening the already-closed settlement gate?",
-    "method": "BirdEye-first proof workflow: inspect existing GPT-Knowledge findings and authoritative source owners first; define observable and falsifier before any source change."
+    "method": "BirdEye-first proof workflow: inspect existing GPT-Knowledge findings and authoritative source owners first; define observable and falsifier before any source change.",
+    "latest_inspection": {
+      "command_hash": "F86DDB7073CCE2A0C07E39655D43E8FBD0EBF35328689B4BA76843513E3F4320",
+      "classification": "TEST_HARNESS_FAILURE",
+      "head": "0048d0dceb062fbabb06423dfa419a6050a4713e",
+      "detail": "Owner-map inspection did not execute because ripgrep (rg) is not installed/available in the local PowerShell environment. This is not evidence about Stop or terminal-receipt product behavior. Retry with native PowerShell discovery only."
+    }
   },
   "proven_findings": [
     {"id":"progress-reentry","classification":"PROVEN_SOURCE_AND_LOCAL_REGRESSION","detail":"741d208 modifies only src/agent/executive/LiveAgentCore.js (+53/-5) and passes focused regressions."},
@@ -59,7 +65,7 @@
   ],
   "next_acceptance": {
     "question": "Which existing source/runtime owner is authoritative for durable Stop completion and terminal receipt?",
-    "observable": "Map the current Stop request-to-terminal flow and identify the persisted/reconciled terminal receipt owner before any code change or live acceptance.",
+    "observable": "Map the current Stop request-to-terminal flow using native PowerShell file/content inspection and identify the persisted/reconciled terminal receipt owner before any code change or live acceptance.",
     "falsifier": "If no single authoritative terminal receipt owner can be identified from current source/runtime evidence, classify the gate inconclusive and do not patch."
   }
 }
