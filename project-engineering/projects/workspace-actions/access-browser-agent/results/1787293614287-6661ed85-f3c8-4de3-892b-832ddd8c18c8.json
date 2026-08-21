@@ -1,0 +1,48 @@
+{
+  "contract": "lb-workspace-action-result/v1",
+  "request_id": "1787293614287-6661ed85-f3c8-4de3-892b-832ddd8c18c8",
+  "project": "access-browser-agent",
+  "requested_capability": "project.audit",
+  "resolved_capability": "project.audit",
+  "status": "completed",
+  "classification": "LOCAL_AUDIT_COLLECTED",
+  "executor": "gptk-local-runtime",
+  "executor_instance": "LetterBlack_Dev:656196",
+  "workspace_identity": {
+    "project": "access-browser-agent",
+    "workspace": "G:\\Developments\\46_Accecc_Browser_Agent\\Browser Agent",
+    "hostname": "LetterBlack_Dev",
+    "runtime": "gptk-local-agent/1.0.0"
+  },
+  "resolved_operations": [
+    "git branch --show-current",
+    "git rev-parse HEAD",
+    "git status --porcelain=v1 -b",
+    "git log -5 --oneline --decorate",
+    "git rev-parse origin/main"
+  ],
+  "evidence": {
+    "audit": {
+      "branch": "main",
+      "head": "b2b6ff31f781c1299e916d52ab3122f0c0ac3507",
+      "remote_ref": "origin/main",
+      "remote_head": "b2b6ff31f781c1299e916d52ab3122f0c0ac3507",
+      "aligned_with_remote": true,
+      "status_header": "## main...origin/main",
+      "changed": [],
+      "untracked": [
+        "section_09.md"
+      ],
+      "recent_commits": [
+        "b2b6ff3 (HEAD -> main, origin/main, origin/HEAD) test: define repeated observation stagnation contract",
+        "fcb533d fix: normalize agent event dispatch at preload boundary",
+        "21f5296 revert: restore bounded agent workflow renderer",
+        "e82aab4 test: protect agent UI event type dispatch",
+        "e0cd4ba fix: dispatch agent UI events by type before phase"
+      ]
+    }
+  },
+  "error": null,
+  "started_at": "2026-08-21T06:26:57Z",
+  "completed_at": "2026-08-21T06:26:58.712Z"
+}
