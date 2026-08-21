@@ -1,37 +1,36 @@
 {
   "schema_version": 1,
   "project": "Access Browser Agent",
-  "verified_at": "2026-08-21T03:51:00+04:00",
+  "verified_at": "2026-08-21T04:15:00+04:00",
   "source_repo": "Letterblack0306/access-browser-agent",
   "source_branch": "main",
-  "source_head": "c8ed189e6ab3aaa688927246de26c8bde9c05922",
-  "overall_classification": "POST_RESULT_CONTINUATION_PROVEN_CURRENT_LIVE",
+  "source_head": "6459bdc844883c1a9916733e4b3909aae4c25979",
+  "overall_classification": "TERMINAL_STATE_UI_SOURCE_REGRESSION_PROVEN_LIVE_ACCEPTANCE_ACTIVE",
   "authority_note": "This file is a GPT-Knowledge projection of verified repository/history/runtime evidence. Current repository, runtime and acceptance evidence remain authoritative.",
   "closed": [
     {"id":"provider-context-compaction","title":"Historical provider context bounded","classification":"FIXED_AND_REVALIDATED_CURRENT_LIVE","detail":"Historical tool-result amplification is bounded in provider-facing context; protected-context live Browser Loop proof exists."},
     {"id":"cline-auth-source-repair","title":"Cline auth source authority repaired","classification":"PROVEN_SOURCE_AND_REGRESSION","detail":"Wrapper-owned durable auth and stale-preference protections passed focused regression. Live sign-in persistence remains separately open."},
     {"id":"post-result-continuation-source","title":"Post-result continuation source repair","classification":"PROVEN_SOURCE_AND_REGRESSION","detail":"fab58f2 + a553fe9 preserve the first assistant turn after result delivery and protect same-session execution with newSession:false."},
-    {"id":"candidate-provider-readiness","title":"Candidate readiness without activation","classification":"PROVEN_SOURCE_AND_LOCAL_REGRESSION","detail":"Current main c8ed189 passed syntax, candidate-readiness authority regression, Cline provider smoke and preferences smoke. Candidate testing leaves active provider authority unchanged."},
-    {"id":"current-live-relay-start","title":"Current-main Browser Relay start","classification":"PROVEN_CURRENT_LIVE","detail":"Fresh current-main runtime accepted Browser Relay instruction turn-5b6f2c0b8e51486d and executed the local agent, proving target selection, relay start, instruction ingress and runtime dispatch are live on c8ed189."},
-    {"id":"current-live-instruction-a","title":"First live instruction A executed","classification":"PROVEN_CURRENT_LIVE_BLOCKED_OUTCOME","detail":"Instruction turn-5b6f2c0b8e51486d executed tools and returned a BLOCKED result through Access. The blocked terminal outcome was a tool/governance result, not a relay failure."},
-    {"id":"post-result-continuation-live","title":"Post-result assistant continuation","classification":"PROVEN_CURRENT_LIVE","detail":"After A returned its Access result, the next assistant turn was independently ingested as instruction turn-f654f1aa23c0959d, executed browserConversationRead only, completed successfully, and produced result SHA256 a7a757d27f5ff485c8f446976dfc6fb1e06f24ef72be724fe67474b4a0a91a77. The following assistant diagnostic turn was also independently ingested as turn-68937c9ad218187b and reached runCommand before governance blocked it. This A→B→C behavioral sequence proves the historical delivery_response consumption defect is no longer preventing subsequent assistant turns from becoming relay instructions on current main."},
+    {"id":"candidate-provider-readiness","title":"Candidate readiness without activation","classification":"PROVEN_SOURCE_AND_LOCAL_REGRESSION","detail":"Candidate testing leaves active provider authority unchanged and is regression-protected."},
+    {"id":"current-live-relay-start","title":"Current-main Browser Relay start","classification":"PROVEN_CURRENT_LIVE","detail":"Fresh current-main runtime accepted Browser Relay work and executed the local agent, proving target selection, relay start, instruction ingress and runtime dispatch."},
+    {"id":"post-result-continuation-live","title":"Post-result assistant continuation","classification":"PROVEN_CURRENT_LIVE","detail":"A→B→C live behavior proved subsequent assistant turns are independently ingested and no longer swallowed as delivery_response."},
+    {"id":"terminal-state-ui-source","title":"Blocked terminal-state rendering source repair","classification":"PROVEN_SOURCE_AND_LOCAL_REGRESSION","detail":"GitHub main commits 0083e708 and 6459bdc preserve BLOCKED truth at the renderer boundary. Local workspace fast-forwarded to 6459bdc; node syntax check and agent-workflow-view-patch-smoke passed; local main matches origin/main with only protected untracked section_09.md."},
     {"id":"browser-readiness-gate","title":"Browser Loop active-provider readiness gate","classification":"SUPPORTED_CURRENT_ARCHITECTURE","detail":"Current evidence continues to support fail-closed agent readiness before normal relay execution."}
   ],
   "supported_historical": [
     {"id":"provider-test-authority-leak","title":"Inherited Cline Test READY authority leak","classification":"PROVEN_INITIAL_DEFECT_REPAIRED","detail":"Initial Test READY mutated live provider authority while persist:false left durable selection unchanged. Current candidate-readiness repair removes that side effect."},
-    {"id":"session-continuity","title":"Continuing local agent session","classification":"HISTORICAL_PLUS_REGRESSION_PROOF","detail":"newSession:false continuity is historically proven and protected by current continuation regressions."},
-    {"id":"provider-neutral-reference","title":"Provider-neutral/Cline reference contract","classification":"REFERENCE_BACKED_ARCHITECTURE","detail":"GPT-Knowledge provider-neutral/Cline guidance predates the Access canonical baseline and supports explicit activation separate from discovery/readiness testing."}
+    {"id":"session-continuity","title":"Continuing local agent session","classification":"HISTORICAL_PLUS_REGRESSION_PROOF","detail":"newSession:false continuity is historically proven and protected by current continuation regressions."}
   ],
   "pending": [
-    {"id":"continuation-diagnostic-audit","title":"Optional exact continuation diagnostic audit","priority":"P2","classification":"NON_BLOCKING_INSTRUMENTATION_AUDIT","detail":"A direct diagnostic extraction of delivery_response_resolved, matching instruction_received and explicit newSession:false remains useful for archival precision, but it is no longer a blocker for the live continuation gate because A→B→C behavior has been demonstrated directly. Do not send terminal diagnostic commands through an active Browser Relay conversation; stop the loop first or inspect externally."},
+    {"id":"terminal-state-ui","title":"Non-complete terminal-state rendering","priority":"P1","classification":"ACTIVE_LIVE_ACCEPTANCE_GATE","detail":"Source/regression repair is proven at 6459bdc. Restart Access on this head, then verify a genuine BLOCKED terminal outcome is visibly labeled as blocked rather than complete or generic failed. Failed, stopped and delivery-unverified remain bounded follow-ups after BLOCKED is accepted."},
     {"id":"cline-auth-live-persistence","title":"Cline auth durable live acceptance","priority":"P1","classification":"INCONCLUSIVE_UNTIL_SUCCESSFUL_LOGIN","detail":"Requires successful supported sign-in, durable credential creation, restart and authenticated reload."},
     {"id":"process-death-recovery","title":"Arbitrary process-death recovery","priority":"P1","classification":"OPEN","detail":"Need exactly-once acceptance across executing, delivering and delivery_unverified boundaries."},
-    {"id":"terminal-state-ui","title":"Non-complete terminal-state rendering","priority":"P1","classification":"OPEN_LIVE_ACCEPTANCE","detail":"Blocked, failed, stopped and delivery-unverified user-visible states still need live acceptance."},
+    {"id":"continuation-diagnostic-audit","title":"Optional exact continuation diagnostic audit","priority":"P2","classification":"NON_BLOCKING_INSTRUMENTATION_AUDIT","detail":"Exact delivery_response_resolved → instruction_received → newSession:false extraction remains archival only."},
     {"id":"parallel-settings-cleanup","title":"Parallel historical settings implementation","priority":"P2","classification":"SOURCE_CLEANUP_DECISION_PENDING","detail":"Prove whether any compatibility path still imports electron/settings-module.js before consolidation/removal."}
   ],
   "next_acceptance": {
-    "question": "Which remaining P1 acceptance should run next after closing current-live post-result continuation?",
-    "observable": "Choose one bounded gate: Cline auth restart persistence, arbitrary process-death recovery, or non-complete terminal-state UI truth. Keep the Browser Relay stopped before external diagnostic commands so assistant text is not unintentionally consumed as new work.",
-    "falsifier": "Do not reopen the continuation gate unless a later live assistant turn is again consumed without becoming a relay instruction, duplicated, or breaks session continuity."
+    "question": "On a fresh Access runtime loaded from 6459bdc, does a genuine BLOCKED terminal outcome render visibly as BLOCKED rather than Plan complete or generic Task failed?",
+    "observable": "Fresh runtime is loaded from 6459bdc, then a genuine blocked execution reaches the renderer and the UI/status text preserves blocked wording while the plan card remains blocked.",
+    "falsifier": "If the live UI still shows Plan complete, Done, or generic Task failed for the blocked execution, the terminal-state UI gate remains open and the exact later event overriding the label becomes the next owner to inspect."
   }
 }
