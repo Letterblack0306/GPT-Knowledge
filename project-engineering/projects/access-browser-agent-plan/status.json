@@ -1,19 +1,18 @@
 {
   "schema_version": 2,
   "project": "Access Browser Agent",
-  "verified_at": "2026-08-21T11:12:00+04:00",
+  "verified_at": "2026-08-21T11:31:00+04:00",
   "source_repo": "Letterblack0306/access-browser-agent",
   "source_branch": "main",
-  "source_head": "741d20815858ccf829c283709d504f6e0bd0f6e1",
-  "overall_classification": "P1_1_RUNTIME_PROGRESS_REENTRY_PROVEN_SOURCE_AND_LOCAL_REGRESSION",
+  "source_head": "0048d0dceb062fbabb06423dfa419a6050a4713e",
+  "overall_classification": "P1_2_BROWSER_SETTLEMENT_SOURCE_IMPLEMENTED_REGRESSION_PENDING",
   "authority_note": "GPT-Knowledge is a projection of verified repository/runtime evidence. Current repository source, local runtime evidence and acceptance results remain authoritative.",
   "local_validation": {
-    "command_hash": "7DF5420CB2BB58ED745B58933DBAA4A382443A5F64758FC765EB149FE8067E60",
-    "head": "741d20815858ccf829c283709d504f6e0bd0f6e1",
-    "syntax": "PASS",
-    "agent_runtime_no_progress_smoke": "PASS",
-    "agent_runtime_resilience_smoke": "PASS",
-    "git_status": "main aligned with origin/main; protected untracked section_09.md preserved"
+    "previous_proven_head": "741d20815858ccf829c283709d504f6e0bd0f6e1",
+    "previous_command_hash": "7DF5420CB2BB58ED745B58933DBAA4A382443A5F64758FC765EB149FE8067E60",
+    "current_head_local": "NOT_YET_VERIFIED",
+    "current_browser_tool_runtime_smoke": "NOT_YET_RUN_AT_0048d0d",
+    "git_status": "local pull/validation pending; protected untracked section_09.md must remain preserved"
   },
   "closed": [
     {"id":"provider-context-compaction","classification":"FIXED_AND_REVALIDATED_CURRENT_LIVE"},
@@ -23,38 +22,48 @@
     {"id":"terminal-state-ui-source","classification":"PROVEN_SOURCE_AND_LOCAL_REGRESSION"},
     {"id":"agent-ui-event-dispatch","classification":"PROVEN_CURRENT_LIVE"},
     {"id":"instruction-recovery-turn-1f8","classification":"QUARANTINED_AND_CLEARED"},
-    {"id":"runtime-progress-reentry","classification":"PROVEN_SOURCE_AND_LOCAL_REGRESSION","detail":"At 741d208, syntax check, agent-runtime-no-progress-smoke, and agent-runtime-resilience-smoke all pass. The focused contract proves second duplicate observation blocks before another provider completion while the transient warning remains non-durable."}
+    {"id":"runtime-progress-reentry","classification":"PROVEN_SOURCE_AND_LOCAL_REGRESSION","detail":"At 741d208, syntax check, agent-runtime-no-progress-smoke, and agent-runtime-resilience-smoke all pass."}
   ],
   "active": {
     "id": "browser-settlement",
     "title": "P1 Bounded Page Settlement",
-    "classification": "SOURCE_FLOW_MAPPED_REGRESSION_NOT_YET_ADDED",
-    "question": "Can browser actions wait for a bounded observable transition rather than document.readyState plus fixed wait(100), without over-waiting permanently active pages or weakening protected-target and URL safety?",
+    "classification": "SOURCE_IMPLEMENTED_REGRESSION_PENDING",
+    "implementation_head": "0048d0dceb062fbabb06423dfa419a6050a4713e",
+    "baseline_head": "741d20815858ccf829c283709d504f6e0bd0f6e1",
     "target": "src/browser/browser-tool-runtime.js",
     "test_owner": "test/browser-tool-runtime-smoke.js",
-    "source_flow": {
-      "open": "createTarget -> _waitReady -> return; _waitReady returns at readyState interactive|complete",
-      "navigate": "Page.navigate -> _waitReady -> return; _waitReady returns at readyState interactive|complete",
-      "anchor_click": "DOM inspection -> Page.navigate -> _waitReady -> one observed state read -> downstreamOutcome UNVERIFIED",
-      "dom_click": "e.click() -> fixed wait(100) -> one observed state read -> downstreamOutcome UNVERIFIED"
+    "source_transition": {
+      "commits_ahead": 3,
+      "files_changed": 2,
+      "runtime": "+61 -11",
+      "test": "+49 -5"
     },
-    "falsifier": "A settlement regression must fail at 741d208 because an ordinary DOM click can return before a delayed observable page mutation settles. If the test passes without replacing that fixed-sleep behavior with a bounded transition observable, the regression is not testing the real gap."
+    "implementation": [
+      "adds a bounded MutationObserver-backed settlement tracker",
+      "adds configurable settlementQuietMs and settlementTimeoutMs",
+      "adds BROWSER_SETTLEMENT_TIMEOUT classification",
+      "open/navigate wait for readiness then bounded settlement",
+      "DOM click starts settlement observation before dispatch",
+      "anchor click navigates then waits for readiness plus settlement",
+      "successful click evidence now reports downstreamOutcome SETTLED with settlement metadata"
+    ],
+    "falsifier": "P1.2 is not proven until the local workspace is at 0048d0d and test/browser-tool-runtime-smoke.js passes while preserving protected-target and URL-safety assertions."
   },
   "proven_findings": [
-    {"id":"progress-reentry","classification":"PROVEN_SOURCE_AND_LOCAL_REGRESSION","detail":"741d208 modifies only src/agent/executive/LiveAgentCore.js (+53/-5) and passes the focused no-progress and neighboring resilience regressions."},
-    {"id":"browser-readiness-weak","classification":"PROVEN_SOURCE_FLOW","detail":"At 741d208, _waitReady returns when readyState is interactive or complete. open and navigate use _waitReady. Anchor click uses Page.navigate then _waitReady. Ordinary DOM click executes e.click(), waits exactly 100 ms, performs one URL/title/readyState read, and always reports downstreamOutcome UNVERIFIED."},
-    {"id":"browser-runtime-test-owner","classification":"PROVEN_SOURCE","detail":"test/browser-tool-runtime-smoke.js is the existing BrowserToolRuntime behavioral harness. It covers protected transport isolation, URL safety, open/navigate/snapshot/click/type/scroll/close and currently asserts downstreamOutcome UNVERIFIED after click. P1.2 should extend this owner rather than create an independent duplicate browser harness."},
+    {"id":"progress-reentry","classification":"PROVEN_SOURCE_AND_LOCAL_REGRESSION","detail":"741d208 modifies only src/agent/executive/LiveAgentCore.js (+53/-5) and passes focused regressions."},
+    {"id":"browser-settlement-source","classification":"SOURCE_IMPLEMENTED_REGRESSION_PENDING","detail":"0048d0d is three commits ahead of 741d208 and changes only src/browser/browser-tool-runtime.js and test/browser-tool-runtime-smoke.js. Local execution at this head is not yet proven."},
+    {"id":"browser-runtime-test-owner","classification":"PROVEN_SOURCE","detail":"test/browser-tool-runtime-smoke.js remains the sole BrowserToolRuntime behavioral harness; no parallel harness was created."},
     {"id":"persistent-browser-profile","classification":"PROVEN_SOURCE","detail":"Managed Chrome uses a reusable Access-owned profile; task-isolated general browsing remains pending."},
     {"id":"accessibility-layer","classification":"PARTIAL_SOURCE","detail":"Current semantics are DOM-derived; native Chromium AX and screenshot dual perception remain pending."}
   ],
   "hardening_plan": [
     {"order":1,"id":"progress-reentry","priority":"P1 CRITICAL","state":"PROVEN_SOURCE_AND_LOCAL_REGRESSION","target":"src/agent/executive/LiveAgentCore.js"},
-    {"order":2,"id":"page-settlement","priority":"P1 CRITICAL","state":"SOURCE_FLOW_MAPPED_REGRESSION_NOT_YET_ADDED","target":"src/browser/browser-tool-runtime.js","test_owner":"test/browser-tool-runtime-smoke.js","add":["bounded transition settlement observable for post-action DOM/navigation change","DOM quiet window that can terminate without requiring permanent network inactivity","bounded activity/network signal only where it is reliable","settlement metadata in returned browser action evidence","explicit settlement timeout classification"],"change":["replace fixed post-click wait(100) as primary settlement mechanism","strengthen readiness/re-entry beyond document.readyState-only semantics after action"],"remove":["arbitrary sleep as downstream-success proxy"],"do_not_touch":["protected ChatGPT transport target ownership","HTTP/HTTPS URL safety rules","persistent relay login/profile","P1.1 progress guard"]},
+    {"order":2,"id":"page-settlement","priority":"P1 CRITICAL","state":"SOURCE_IMPLEMENTED_REGRESSION_PENDING","target":"src/browser/browser-tool-runtime.js","test_owner":"test/browser-tool-runtime-smoke.js","implementation_head":"0048d0dceb062fbabb06423dfa419a6050a4713e"},
     {"order":3,"id":"browser-context-isolation","priority":"P1/P2","state":"PENDING"},
     {"order":4,"id":"ax-visual-perception","priority":"P2","state":"PENDING"}
   ],
   "pending": [
-    {"id":"browser-settlement","priority":"P1","classification":"ACTIVE_REGRESSION_DEFINITION_GATE"},
+    {"id":"browser-settlement-local-proof","priority":"P1","classification":"LOCAL_PULL_AND_REGRESSION_REQUIRED"},
     {"id":"turn-37c-recovery","priority":"P1","classification":"RECOVERY_REQUIRED_UNRESOLVED"},
     {"id":"stop-durable-terminal","priority":"P1","classification":"LIVE_ACCEPTANCE_OPEN"},
     {"id":"terminal-state-ui","priority":"P1","classification":"SOURCE_PROVEN_LIVE_ACCEPTANCE_BLOCKED"},
@@ -62,13 +71,11 @@
     {"id":"cline-auth-live-persistence","priority":"P1","classification":"INCONCLUSIVE_UNTIL_SUCCESSFUL_LOGIN"},
     {"id":"process-death-recovery","priority":"P1","classification":"OPEN"},
     {"id":"browser-context-isolation","priority":"P1/P2","classification":"ARCHITECTURE_HARDENING_PENDING"},
-    {"id":"ax-visual-perception","priority":"P2","classification":"ARCHITECTURE_HARDENING_PENDING"},
-    {"id":"csp-inline-style","priority":"P2","classification":"OBSERVED_NON_BLOCKING_UI_ISSUE"},
-    {"id":"parallel-settings-cleanup","priority":"P2","classification":"SOURCE_CLEANUP_DECISION_PENDING"}
+    {"id":"ax-visual-perception","priority":"P2","classification":"ARCHITECTURE_HARDENING_PENDING"}
   ],
   "next_acceptance": {
-    "question": "Can the existing BrowserToolRuntime harness prove that a DOM click returning after a fixed 100 ms misses a page mutation that occurs later but still within a bounded settlement window?",
-    "observable": "Extend test/browser-tool-runtime-smoke.js with a deterministic delayed post-click mutation/state change greater than 100 ms and assert click does not return until the changed state is observable and settlement is classified as verified/settled.",
-    "falsifier": "If the new regression does not fail on 741d208 specifically because click returned before the delayed mutation/state change, it does not establish the settlement gap and no source patch is authorized."
+    "question": "Does the local workspace at 0048d0d pass syntax and the existing browser-tool-runtime smoke with the delayed 150 ms mutation observed before browserClick returns?",
+    "observable": "Pull main to 0048d0d, run node --check src/browser/browser-tool-runtime.js and node test/browser-tool-runtime-smoke.js, then confirm main aligns with origin/main and section_09.md remains untouched.",
+    "falsifier": "Any syntax/test failure, wrong HEAD, broader local drift, or mutation of section_09.md keeps P1.2 unproven."
   }
 }
