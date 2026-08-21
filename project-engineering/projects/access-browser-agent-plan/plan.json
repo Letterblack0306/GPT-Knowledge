@@ -5,7 +5,7 @@
   "authority_rule": "Current repository source, local runtime evidence, acceptance results and exact repository state outrank this map.",
   "updated": "2026-08-21",
   "source_head": "0048d0dceb062fbabb06423dfa419a6050a4713e",
-  "active_node": "turn-37c-recovery",
+  "active_node": "terminal-state-ui",
   "nodes": [
     {"id":"product-scope","lane":"Architecture","title":"Single reasoning agent","status":"proven","summary":"Agent owns strategy and tool choice. Runtime owns governed execution and lifecycle truth."},
     {"id":"structured-tool-loop","lane":"Architecture","title":"Structured provider/tool loop","status":"proven","summary":"LiveAgentCore executes typed tools, records observations/evidence and re-enters reasoning under bounded runtime controls."},
@@ -14,8 +14,8 @@
     {"id":"runtime-progress-reentry","lane":"Closed Gate","title":"P1 Runtime Progress / Re-entry Contract","status":"proven","priority":"P1","summary":"741d208 is source and local-regression proven."},
     {"id":"browser-settlement","lane":"Closed Gate","title":"P1 Bounded Page Settlement","status":"proven","priority":"P1","summary":"At 0048d0d, syntax and browser-tool-runtime smoke PASS; delayed mutation settlement regression is proven."},
     {"id":"stop-durable-terminal","lane":"Closed Gate","title":"P1 Durable Stop terminal receipt","status":"proven","priority":"P1","summary":"At exact head 0048d0d, LoopTool durable Stop acceptance PASS: one persisted session.stopped receipt, one stopped checkpoint, snapshot status stopped, receipt projection visible, main aligned with origin/main, section_09.md preserved untracked. Command A4EFEC8974180EDCAAEAE072EC0B6FCAB27FAE506A59F9E1137E7A6BBCCC079A."},
-    {"id":"turn-37c-recovery","lane":"Active Gate","title":"P1 turn-37c recovery","status":"next","priority":"P1","summary":"Historical turn-37c remains RECOVERY_REQUIRED_UNRESOLVED. Inspect existing persisted/project evidence and current owners before any mutation; reconcile only through one bounded observable/falsifier."},
-    {"id":"terminal-state-ui","lane":"Pending","title":"P1 Terminal-state UI live acceptance","status":"warning","priority":"P1"},
+    {"id":"turn-37c-recovery","lane":"Closed Gate","title":"P1 turn-37c recovery","status":"proven","priority":"P1","summary":"Production BrowserTransportJournal proved historical turn-37c observed then executing with no terminal receipt. Existing recovery API durably quarantined it with receipt f9fb582417869ad55a4e9d110f1302e6f48bfc3939261a9f738dd661f61c2791; ambiguous recovery is now false and replay is blocked. Command 901E6FB855E71CE8C5FDB72E01F608D54366F0BA875A78C66D4CFD09EC5D807E."},
+    {"id":"terminal-state-ui","lane":"Active Gate","title":"P1 Terminal-state UI live acceptance","status":"next","priority":"P1","summary":"Source path was previously proven; remaining work is one bounded live/rendered acceptance against current authoritative stopped/reconciled state before any UI patch."},
     {"id":"node-pty-attachconsole","lane":"Pending","title":"P1 AttachConsole owner map","status":"warning","priority":"P1"},
     {"id":"browser-isolation-gap","lane":"Finding","title":"Task browsing shares persistent profile","status":"warning","priority":"P1/P2","summary":"Persistent profile is correct for relay identity; isolated task context remains pending."},
     {"id":"browser-context-isolation","lane":"Pending","title":"P1/P2 Isolated task browser contexts","status":"next","priority":"P1/P2"},
@@ -25,11 +25,11 @@
     {"id":"process-death-recovery","lane":"Pending","title":"P1 Arbitrary process-death recovery","status":"next","priority":"P1"}
   ],
   "edges": [
-    {"from":"birdeye-first-method","to":"turn-37c-recovery","type":"governs"},
+    {"from":"birdeye-first-method","to":"terminal-state-ui","type":"governs"},
     {"from":"runtime-progress-reentry","to":"browser-settlement","type":"closed-hardening"},
     {"from":"browser-settlement","to":"stop-durable-terminal","type":"closed-next"},
-    {"from":"stop-durable-terminal","to":"turn-37c-recovery","type":"next-acceptance"},
-    {"from":"turn-37c-recovery","to":"terminal-state-ui","type":"later-acceptance"},
+    {"from":"stop-durable-terminal","to":"turn-37c-recovery","type":"closed-next"},
+    {"from":"turn-37c-recovery","to":"terminal-state-ui","type":"next-acceptance"},
     {"from":"browser-isolation-gap","to":"browser-context-isolation","type":"hardening"},
     {"from":"ax-perception-gap","to":"ax-visual-perception","type":"hardening"}
   ]
