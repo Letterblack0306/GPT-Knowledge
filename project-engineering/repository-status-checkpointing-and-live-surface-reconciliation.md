@@ -3,180 +3,444 @@
 ## Knowledge metadata
 
 - Recorded: 2026-08-18
-- Scope: reusable method for long-running repository work involving dirty worktrees, remote/local drift, duplicate UI surfaces, regression tests, recovery stashes, and completion claims
-- Source: Access Browser Agent reconciliation and validation work
-- Status: reusable lesson derived from observed engineering evidence
-- Authority: method guidance only; never substitutes for current repository or runtime inspection
+- Expanded: 2026-08-21
+- Scope: reusable method for every mapped engineering project involving repository/runtime truth, local/remote drift, regression proof, project-status projections, deployment/live surfaces, and completion claims
+- Source: Access Browser Agent reconciliation and validation work generalized into a cross-project workflow
+- Status: canonical reusable project-state reconciliation method
+- Authority: method guidance only; never substitutes for current repository, local workspace, runtime evidence, deployment state, or project-specific instructions
 
-## Problem pattern
+## Core rule
 
-Long-running agent work can converge on a false completion state when several boundaries are mixed:
-
-```text
-local dirty implementation
-    + remote branch advances
-    + untracked regression test
-    + duplicate/unwired UI surface
-    + recovery stash
-    ↓
-partial validation
-    ↓
-ambiguous “complete” claim
-```
-
-The corrective sequence is:
+Before making the next engineering change, reconcile all relevant truth surfaces and make the current state easy to audit.
 
 ```text
-remote baseline
-→ local status
-→ identify active runtime owner
-→ reconcile remote/local state
-→ compare duplicate artifacts
-→ validate exact active path
-→ record remote/local boundary
-→ commit bounded change set
+project source truth
+→ local workspace truth
+→ baseline → head diff
+→ focused validation/runtime evidence
+→ GPT-Knowledge project projection
+→ live/deployed UI verification when applicable
+→ synchronization check
+→ only then next change
 ```
 
-## 1. Separate remote truth from local validated truth
+If these surfaces disagree, the next task is **synchronization**, not new implementation.
 
-Always record both:
+---
+
+# 1. Trust order
+
+Use the strongest current evidence first:
+
+```text
+user instruction
+→ fresh live/runtime evidence
+→ active local workspace
+→ authoritative project repository / target branch
+→ project-specific knowledge/status
+→ reusable GPT-Knowledge methods
+→ official external documentation
+→ model prior
+```
+
+A status page, dashboard, plan file, prior chat summary, or deployment label must never override contradictory source/runtime evidence.
+
+---
+
+# 2. Establish project identity before work
+
+For every project, record:
+
+```text
+project name
+repository
+workspace root when local execution matters
+authoritative branch
+remote HEAD
+local HEAD if available
+runtime/deployment surface
+active owner/module for the current gate
+```
+
+Do not assume a similarly named folder, branch, worktree, deployment, UI file, or status document is authoritative.
+
+If the project uses a single-branch authority policy, do not create branches/worktrees merely for convenience.
+
+---
+
+# 3. Separate remote truth from local validated truth
+
+Always keep these claims separate:
 
 ```text
 REMOTE
 branch + HEAD + committed files
 
 LOCAL
-branch + HEAD + dirty files + untracked files + validated behavior
+branch + HEAD + dirty/untracked files + validated behavior
 ```
 
-A locally validated change is not a repository change until it is committed and pushed.
+A local PASS is not a remote repository PASS until the relevant code is committed/pushed.
 
-Use explicit wording:
+Use explicit classifications such as:
 
 ```text
-PROVEN LOCALLY, NOT YET REMOTE
+SOURCE_IMPLEMENTED / LOCAL_REGRESSION_PENDING
+PROVEN_LOCAL_NOT_REMOTE
+PROVEN_SOURCE_AND_LOCAL_REGRESSION
+PROVEN_CURRENT_LIVE
 ```
 
-rather than silently promoting the local result into repository status.
+Do not collapse them into generic `done`.
 
-## 2. Prove the active runtime owner before changing a matching duplicate
+---
 
-A visually or structurally matching file is not necessarily the live implementation.
+# 4. Mandatory SHA + diff checkpoint
 
-Before changing UI code, establish:
+Before any meaningful implementation step and after any source commit, record the exact source transition.
+
+Minimum checkpoint:
 
 ```text
-entrypoint
-→ active DOM owner
-→ event subscription
-→ render/update function
-→ live validation guard
+BASE SHA: <previous proven or failing-regression baseline>
+HEAD SHA: <current authoritative head>
+COMMITS AHEAD: <n>
+FILES CHANGED: <n>
 ```
 
-A repository guard that explicitly keeps a candidate view unwired is strong evidence that the candidate is not the live owner.
-
-Do not patch an unwired duplicate merely because it resembles a demo.
-
-## 3. Regression tests must be part of the validation chain
-
-A new focused regression test can pass locally while remaining invisible to normal validation if it is only an untracked file or not referenced by the repository check script.
-
-Required reconciliation:
+Then include a per-file diff summary:
 
 ```text
-new regression test
-→ tracked file
-→ validation script registration
-→ exact test execution
-→ repository commit
+path/to/fileA
++12 -3
+
+path/to/fileB
++40 -8
 ```
 
-Do not call the implementation fully protected until all four are true.
+For bounded repairs, also state what did **not** change.
 
-## 4. Recovery stashes are temporary evidence-preservation tools
-
-When reconciling a dirty worktree with a remote fast-forward:
-
-1. create a uniquely named recovery stash;
-2. fast-forward remote baseline;
-3. restore local changes;
-4. validate the merged state;
-5. compare stash contents against the restored worktree;
-6. only then remove the stash.
-
-Do not repeatedly pop a stash after a tracked/untracked collision. First prove whether the stash contains information that is absent from the reconciled worktree.
-
-## 5. Untracked files require identity comparison
-
-When a file becomes tracked remotely while an older local copy remains in a stash or worktree:
+Example:
 
 ```text
-remote version
-vs
-local/stash version
+Changed:
+- LiveAgentCore.js
+
+Not changed:
+- Browser Relay
+- session continuity
+- renderer
+- provider selection
 ```
 
-must be compared by actual content or object hash.
+This diff boundary is required because a test can pass while an implementation patch is unexpectedly broad.
 
-Do not assume “same filename” means “same test”. Stronger coverage can exist only in the older local copy.
+If the diff exceeds the intended owner/scope, classify the patch as broad before accepting it, even if tests pass.
 
-## 6. Status records are checkpoints, not authorities
+---
 
-A dated status file should explicitly state:
+# 5. Prove the active runtime owner before editing
 
-- branch;
-- HEAD;
-- what is committed remotely;
-- what is only locally validated;
-- remaining dirty/untracked state;
-- validation performed;
-- explicit limitations.
+A matching file is not necessarily the live implementation.
 
-The status file must never imply that local dirty changes are part of remote history.
-
-Current repository state and runtime evidence outrank the status document.
-
-## 7. Knowledge repositories should store the reusable method, not a project snapshot
-
-A reusable engineering knowledge base should not become a second project-status authority.
-
-Store the durable lesson:
+Trace:
 
 ```text
-how to reconcile
-how to verify
-how to prevent drift
-how to classify evidence
+entry point
+→ router/factory/registry if present
+→ state/authority owner
+→ execution owner
+→ UI/view owner if applicable
+→ persistence/config owner if applicable
+→ validation/runtime surface
 ```
 
-Keep project-specific status in the project repository.
+For defects, state one bounded question and one falsifier before patching.
 
-This prevents the knowledge base from becoming stale implementation truth while still preserving the method learned from the project.
+Preferred method:
 
-## 8. Claim vocabulary
+```text
+map connecting flow
+→ identify source of truth
+→ state one question
+→ define falsifier
+→ run one bounded test
+→ classify
+→ only then change code
+```
 
-Use bounded classifications:
+Avoid:
+
+```text
+test
+→ see next failure
+→ random patch
+→ test again
+```
+
+---
+
+# 6. Regression contract before repair when appropriate
+
+When a deterministic defect can be represented by a focused regression:
+
+```text
+reproduce current behavior
+→ add focused failing regression
+→ prove failure is for the expected reason
+→ implement smallest repair
+→ rerun focused regression
+→ rerun neighboring resilience/regression coverage
+```
+
+A failing regression proves the contract is absent only when the failure matches the intended falsifier.
+
+A source patch is not `PROVEN_SOURCE_AND_LOCAL_REGRESSION` until matching local validation is returned.
+
+Do not broaden into later P1/P2 items while the active regression gate is still open.
+
+---
+
+# 7. Project projection in GPT-Knowledge
+
+For mapped projects, GPT-Knowledge should project current verified state using project-specific files such as:
+
+```text
+plan.json
+status.json
+current-state.md / plan.md
+workspace/projects.json
+```
+
+Equivalent project-specific structures are acceptable.
+
+The projection should expose:
+
+- authoritative source repository/branch;
+- source HEAD;
+- current classification;
+- proven/closed findings;
+- historical findings clearly marked historical;
+- active gate;
+- pending gates by priority;
+- next acceptance question;
+- observable;
+- falsifier;
+- exact implementation scope when known.
+
+For implementation plans, explicitly separate:
+
+```text
+ADD
+CHANGE
+REMOVE
+DO NOT TOUCH
+```
+
+This prevents future agents from reinterpreting a bounded repair as permission for a redesign.
+
+---
+
+# 8. Synchronize GPT-Knowledge after source changes
+
+After the project repository changes, check whether GPT-Knowledge still points to the previous source HEAD or classification.
+
+Example drift:
+
+```text
+actual project HEAD:
+741d208...
+
+GPT-K source_head:
+b2b6ff3...
+```
+
+Required classification:
+
+```text
+PROJECT SOURCE = CURRENT
+GPT-K PROJECTION = STALE
+```
+
+The next operation is a **projection synchronization update**, not another product change.
+
+A source commit awaiting validation should be represented truthfully:
+
+```text
+SOURCE_IMPLEMENTED / LOCAL_REGRESSION_PENDING
+```
+
+not:
+
+```text
+IMPLEMENTATION_PENDING
+```
+
+and not prematurely:
+
+```text
+PROVEN_SOURCE_AND_LOCAL_REGRESSION
+```
+
+---
+
+# 9. Verify the live/deployed surface
+
+When GPT-Knowledge or another project has a live UI/deployment, repository updates alone are not enough.
+
+Verify:
+
+```text
+deployment ID
+source commit SHA
+target/environment
+READY / failed / canceled state
+production alias/domain if relevant
+```
+
+Then fetch the actual deployed project data or page when possible and verify critical fields directly.
+
+For a mapped GPT-Knowledge project, check at minimum:
+
+```text
+workspace active_node
+project plan active_node
+status source_head
+status classification
+pending/closed state required by the current gate
+```
+
+Do not claim the website is current merely because GitHub auto-deployment started.
+
+A superseded/canceled intermediate deployment is not a failure if a newer deployment from the intended consolidated commit is READY.
+
+---
+
+# 10. Mandatory synchronization matrix
+
+Before the next engineering change, produce a compact matrix like:
+
+| Surface | Expected/current state | Aligned? |
+| --- | --- | --- |
+| Project remote `main` | `<sha>` | yes/no |
+| Local workspace | `<sha>` + dirty/untracked summary | yes/no/unknown |
+| Focused regression | PASS/FAIL/not run | yes/no |
+| GPT-Knowledge `source_head` | `<sha>` | yes/no |
+| GPT-K active gate | `<node>` | yes/no |
+| Production deployment | `<deployment id>` from `<sha>` | yes/no |
+| Live project data/UI | verified fields | yes/no |
+
+If any required row is `no`, synchronize it before moving forward unless the mismatch is intentionally documented.
+
+---
+
+# 11. One bounded next step
+
+After every evidence result:
+
+1. classify only the gate just tested;
+2. update project/GPT-K state if the evidence materially changed truth;
+3. provide exactly one bounded next step when operating in a one-step execution workflow.
+
+Do not jump from a failing regression directly into several architectural phases.
+
+Recommended sequence:
+
+```text
+failing regression proven
+→ smallest source patch
+→ local focused + neighboring regression
+→ projection sync
+→ live/deployment sync if applicable
+→ next gate
+```
+
+---
+
+# 12. Claim vocabulary
 
 | Claim | Meaning |
 | --- | --- |
-| PROVEN REMOTE | committed and present on the target repository/branch |
-| PROVEN LOCAL | validated in the current local workspace but not committed/pushed |
-| UNVERIFIED | implementation exists but matching validation was not run |
+| PROVEN_REMOTE | committed and present on authoritative target branch |
+| SOURCE_IMPLEMENTED_REGRESSION_PENDING | source patch committed but matching local regression proof not yet returned |
+| PROVEN_LOCAL | validated in current local workspace |
+| PROVEN_SOURCE_AND_LOCAL_REGRESSION | authoritative source plus matching focused/local regression proof |
+| PROVEN_CURRENT_LIVE | actual current runtime/user path proves the bounded claim |
+| UNVERIFIED | implementation or projection exists but required validation not run |
 | DISPROVEN | current evidence contradicts the claim |
-| BLOCKED_CONFIGURATION | required repository/runtime condition unavailable |
-| STALE_TEST_OR_FIXTURE | validation target no longer matches the active implementation |
+| INCONCLUSIVE | evidence did not reach the required observable/falsifier |
+| BLOCKED_CONFIGURATION | required environment/configuration unavailable |
+| STALE_TEST_OR_FIXTURE | validation target does not match active implementation |
+| TEST_HARNESS_FAILURE | harness failed while product claim remains separately evidenced |
+| PROJECTION_STALE | GPT-Knowledge/live status surface trails authoritative source/runtime truth |
+| BROAD_PATCH_NOT_ACCEPTABLE | diff exceeds bounded repair scope even if tests pass |
 
-Never collapse these into generic “done”.
+Never translate these automatically into generic `PASS`, `FAIL`, or `DONE` when the finer classification matters.
 
-## Reusable rule
+---
 
-When a long-running coding session reaches a checkpoint, answer four separate questions:
+# 13. Recovery stashes and untracked files
+
+Recovery stashes are temporary evidence-preservation tools, not project authority.
+
+When reconciling dirty state:
+
+1. preserve evidence safely;
+2. reconcile authoritative branch/root;
+3. restore bounded changes;
+4. compare identities/hashes for conflicting tracked/untracked files;
+5. validate;
+6. remove recovery artifacts only when their unique information is proven unnecessary.
+
+Never overwrite a known protected untracked file just to obtain a clean status.
+
+---
+
+# 14. Reusable pre-change checklist for every project
+
+Before editing:
 
 ```text
-What is committed remotely?
-What is validated locally?
-What is still dirty/untracked?
-What is the actual live runtime owner?
+[ ] authoritative repository/branch identified
+[ ] remote HEAD recorded
+[ ] local HEAD/status checked when local evidence matters
+[ ] active owner mapped
+[ ] current gate/question/falsifier stated
+[ ] previous baseline → current HEAD diff understood
+[ ] GPT-K projection checked for source-head/classification drift
+[ ] live/deployed surface checked when applicable
+[ ] required surfaces synchronized or mismatch explicitly classified
 ```
 
-Only after those four answers agree should a task be treated as repository-aligned.
+After editing:
+
+```text
+[ ] new source HEAD recorded
+[ ] exact commit diff reviewed for scope
+[ ] focused regression run
+[ ] neighboring regression run when relevant
+[ ] runtime/user-visible proof run only at the appropriate layer
+[ ] GPT-K source_head/classification updated
+[ ] active/pending gates updated
+[ ] production/live UI deployment verified when applicable
+[ ] synchronization matrix reported
+[ ] exactly one next bounded gate selected
+```
+
+---
+
+## Final reusable rule
+
+For every engineering project:
+
+```text
+VERIFY
+→ DIFF
+→ TEST
+→ CLASSIFY
+→ SYNCHRONIZE PROJECT KNOWLEDGE
+→ VERIFY LIVE SURFACE
+→ ONLY THEN CONTINUE
+```
+
+The repository/runtime remains authoritative. GPT-Knowledge must stay synchronized enough to guide the next session without pretending to be the source of truth.
