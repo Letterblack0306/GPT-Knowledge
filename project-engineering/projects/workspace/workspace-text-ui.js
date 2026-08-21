@@ -190,4 +190,9 @@
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && backdrop.classList.contains('open')) backdrop.classList.remove('open'); });
 
   installButton();
+
+  const actionsScript = document.createElement('script');
+  actionsScript.src = './workspace-actions-ui.js';
+  actionsScript.dataset.workspaceExtension = 'governed-actions';
+  document.body.appendChild(actionsScript);
 })();
