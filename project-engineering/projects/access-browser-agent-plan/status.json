@@ -1,17 +1,18 @@
 {
   "schema_version": 2,
   "project": "Access Browser Agent",
-  "verified_at": "2026-08-21T12:00:00+04:00",
+  "verified_at": "2026-08-21T12:25:00+04:00",
   "source_repo": "Letterblack0306/access-browser-agent",
   "source_branch": "main",
   "source_head": "0048d0dceb062fbabb06423dfa419a6050a4713e",
-  "overall_classification": "P1_2_BROWSER_SETTLEMENT_PROVEN_SOURCE_AND_LOCAL_REGRESSION",
+  "overall_classification": "P1_DURABLE_STOP_PROVEN_SOURCE_AND_LOCAL_ACCEPTANCE",
   "authority_note": "GPT-Knowledge is a projection of verified repository/runtime evidence. Current repository source, local runtime evidence and acceptance results remain authoritative.",
   "local_validation": {
     "settlement_command_hash": "11876582E03956B429C5CEE03DF25FB2AFF045B155F0751340FC817E1E3E8F09",
+    "durable_stop_command_hash": "A4EFEC8974180EDCAAEAE072EC0B6FCAB27FAE506A59F9E1137E7A6BBCCC079A",
     "head": "0048d0dceb062fbabb06423dfa419a6050a4713e",
-    "syntax": "PASS",
     "browser_tool_runtime_smoke": "PASS",
+    "durable_stop_acceptance": "PASS",
     "git_status": "main aligned with origin/main; protected untracked section_09.md preserved"
   },
   "closed": [
@@ -23,69 +24,33 @@
     {"id":"agent-ui-event-dispatch","classification":"PROVEN_CURRENT_LIVE"},
     {"id":"instruction-recovery-turn-1f8","classification":"QUARANTINED_AND_CLEARED"},
     {"id":"runtime-progress-reentry","classification":"PROVEN_SOURCE_AND_LOCAL_REGRESSION"},
-    {"id":"browser-settlement","classification":"PROVEN_SOURCE_AND_LOCAL_REGRESSION","command_hash":"11876582E03956B429C5CEE03DF25FB2AFF045B155F0751340FC817E1E3E8F09"}
+    {"id":"browser-settlement","classification":"PROVEN_SOURCE_AND_LOCAL_REGRESSION","command_hash":"11876582E03956B429C5CEE03DF25FB2AFF045B155F0751340FC817E1E3E8F09"},
+    {"id":"stop-durable-terminal","classification":"PROVEN_SOURCE_AND_LOCAL_ACCEPTANCE","command_hash":"A4EFEC8974180EDCAAEAE072EC0B6FCAB27FAE506A59F9E1137E7A6BBCCC079A","detail":"At exact Access head 0048d0d, a real in-flight AgentSessionRuntime Stop persisted exactly one session.stopped event, wrote a stopped checkpoint and snapshot.json, exposed the terminal receipt through UnifiedAgentService.receipts(), and returned stopped. Receipt e249f7a0-62a3-4573-abd6-97af386d1ff3; checkpoints=1; snapshot status=stopped."}
   ],
   "active": {
-    "id": "stop-durable-terminal",
-    "title": "P1 Durable Stop terminal receipt",
-    "classification": "SOURCE_OWNER_MAPPED_EXISTING_TESTS_PARTIAL_ACCEPTANCE_REQUIRED",
-    "question": "Does an actual Stop return only after the authoritative session.stopped event and stopped checkpoint/snapshot are durably persisted and visible through the receipt surface?",
-    "method": "Reuse existing owners and tests. No runtime source patch is authorized. Run one bounded persistence acceptance against current code; only if that fails may a repair be planned.",
-    "owner_map": {
-      "ui_dispatch": "electron/renderer.js runRuntimeControl('stop') -> window.accessIde.runtimeStop()",
-      "preload_ipc": "electron/preload.js runtimeStop -> ide:runtime-stop",
-      "runtime_stop": "electron/main.js stopOwnedRuntime() -> agentRuntime.stop(current turn/session)",
-      "adapter": "electron/agent-runtime-adapter.js AgentRuntimeAdapter.stop() preserves completed sessions and delegates running sessions to UnifiedAgentService.stop()",
-      "service": "src/agent/executive/UnifiedAgentService.js stop() aborts LiveAgentCore and delegates terminal-state ownership to AgentSessionRuntime.stop()",
-      "session_router": "src/agent/executive/AgentSessionRuntime.js stop() resolves the session and delegates to AgentExecutive.stop()",
-      "terminal_authority": "src/agent/executive/AgentExecutive.js stop() appends session.stop_requested, aborts the active attempt, waits for the run loop, then ensures session.stopped plus _checkpoint('stopped') before returning",
-      "durable_store": "src/agent/executive/AgentEventStore.js append() writes events.jsonl; checkpoint() atomically writes checkpoints/<id>.json and snapshot.json; writes are awaited/serialized",
-      "receipt_projection": "UnifiedAgentService.receipts() projects persisted executive events with eventId as receiptId and lists checkpoints"
-    },
-    "test_inventory": {
-      "inspection_command_hash": "D952601F87D5722B18B79305B63B8213B6C8D72150B5B2C3AE0B25FC6284BA02",
-      "agent_runtime_adapter_stop_lifecycle_smoke": {
-        "classification": "PROVEN_SOURCE_PARTIAL",
-        "proves": ["completed sessions are preserved", "running sessions delegate to service.stop exactly once"],
-        "missing": ["disk-persisted session.stopped", "stopped checkpoint/snapshot", "receipt projection after Stop"]
-      },
-      "agent_runtime_resilience_smoke": {
-        "classification": "PROVEN_SOURCE_PARTIAL",
-        "proves": ["real AgentSessionRuntime -> AgentExecutive in-flight Stop aborts a blocking provider and returns status stopped"],
-        "missing": ["assert events.jsonl contains session.stopped", "assert stopped checkpoint exists", "assert snapshot.json is stopped", "assert receipt projection exposes terminal receipt"]
-      },
-      "integration_smoke": {
-        "classification": "PROVEN_SOURCE_PARTIAL",
-        "proves": ["session state is written to configured stateRoot", "event/receipt infrastructure contains durable session events"],
-        "missing": ["Stop-specific durable persistence"]
-      },
-      "execution_trace_smoke": {
-        "classification": "PROVEN_SOURCE_PARTIAL",
-        "proves": ["AgentEventStore persists and reloads execution events"],
-        "missing": ["Stop terminal persistence"]
-      },
-      "combined_stop_persistence_regression": "ABSENT"
-    },
-    "falsifier": "If a bounded current-code acceptance cannot observe session.stopped in events.jsonl, a stopped checkpoint/snapshot, and a projected receipt after stop() returns, classify the product gap and only then authorize a runtime repair."
+    "id": "turn-37c-recovery",
+    "title": "P1 turn-37c recovery",
+    "classification": "RECOVERY_REQUIRED_UNRESOLVED",
+    "question": "What exact durable/runtime state remains from historical turn-37c, and can current authoritative evidence reconcile it without reopening already-closed gates?",
+    "method": "Inspect existing GPT-Knowledge evidence and current source/runtime owners first; define one bounded recovery observable and falsifier before mutation."
   },
   "proven_findings": [
     {"id":"progress-reentry","classification":"PROVEN_SOURCE_AND_LOCAL_REGRESSION"},
     {"id":"browser-settlement","classification":"PROVEN_SOURCE_AND_LOCAL_REGRESSION"},
-    {"id":"stop-terminal-owner","classification":"PROVEN_SOURCE","detail":"AgentExecutive.stop is the terminal-state authority. AgentEventStore is the durable persistence owner. UnifiedAgentService.receipts projects stored event IDs as receipts and lists checkpoints."},
-    {"id":"stop-existing-tests","classification":"PROVEN_SOURCE_PARTIAL","detail":"Existing adapter/resilience/integration/trace tests collectively cover delegation, stopped state, state-root persistence, receipts infrastructure and event-store persistence, but no existing regression asserts the full durable Stop persistence contract."},
+    {"id":"stop-terminal-owner","classification":"PROVEN_SOURCE","detail":"AgentExecutive.stop is terminal-state authority; AgentEventStore is durable persistence owner; UnifiedAgentService.receipts projects stored event IDs and checkpoints."},
+    {"id":"stop-durable-terminal","classification":"PROVEN_SOURCE_AND_LOCAL_ACCEPTANCE","detail":"LoopTool command A4EFEC8974180EDCAAEAE072EC0B6FCAB27FAE506A59F9E1137E7A6BBCCC079A passed at 0048d0d with DURABLE_STOP_ACCEPTANCE: PASS, one terminal receipt, one stopped checkpoint and snapshot status stopped."},
     {"id":"persistent-browser-profile","classification":"PROVEN_SOURCE"},
     {"id":"accessibility-layer","classification":"PARTIAL_SOURCE"}
   ],
   "hardening_plan": [
     {"order":1,"id":"progress-reentry","priority":"P1 CRITICAL","state":"PROVEN_SOURCE_AND_LOCAL_REGRESSION"},
     {"order":2,"id":"page-settlement","priority":"P1 CRITICAL","state":"PROVEN_SOURCE_AND_LOCAL_REGRESSION","implementation_head":"0048d0dceb062fbabb06423dfa419a6050a4713e"},
-    {"order":3,"id":"stop-durable-terminal","priority":"P1","state":"SOURCE_OWNER_MAPPED_EXISTING_TESTS_PARTIAL_ACCEPTANCE_REQUIRED"},
+    {"order":3,"id":"stop-durable-terminal","priority":"P1","state":"PROVEN_SOURCE_AND_LOCAL_ACCEPTANCE"},
     {"order":4,"id":"turn-37c-recovery","priority":"P1","state":"RECOVERY_REQUIRED_UNRESOLVED"},
     {"order":5,"id":"browser-context-isolation","priority":"P1/P2","state":"PENDING"},
     {"order":6,"id":"ax-visual-perception","priority":"P2","state":"PENDING"}
   ],
   "pending": [
-    {"id":"stop-durable-terminal","priority":"P1","classification":"BOUNDED_DURABLE_PERSISTENCE_ACCEPTANCE_REQUIRED"},
     {"id":"turn-37c-recovery","priority":"P1","classification":"RECOVERY_REQUIRED_UNRESOLVED"},
     {"id":"terminal-state-ui","priority":"P1","classification":"SOURCE_PROVEN_LIVE_ACCEPTANCE_BLOCKED"},
     {"id":"node-pty-attachconsole","priority":"P1","classification":"OBSERVED_NEEDS_OWNER_MAP"},
@@ -95,8 +60,8 @@
     {"id":"ax-visual-perception","priority":"P2","classification":"ARCHITECTURE_HARDENING_PENDING"}
   ],
   "next_acceptance": {
-    "question": "Does the current implementation already satisfy the full durable Stop persistence contract?",
-    "observable": "Create one temporary in-flight AgentSessionRuntime session, stop it through the current runtime owner, then verify returned status stopped, events.jsonl contains exactly one session.stopped terminal event, a stopped checkpoint and snapshot.json exist, and UnifiedAgentService.receipts projects the session.stopped event plus checkpoint.",
-    "falsifier": "Any missing terminal event, checkpoint, snapshot state or projected receipt after stop() returns proves the current implementation is not durably terminal and authorizes a focused repair."
+    "question": "What exact durable/runtime state remains unresolved for historical turn-37c, and which current owner is authoritative for reconciliation?",
+    "observable": "Inspect existing turn-37c project evidence and current persisted/runtime owners, then identify one bounded reconciliation proof before any code change.",
+    "falsifier": "If the historical turn cannot be tied to current authoritative persisted/runtime state, keep RECOVERY_REQUIRED_UNRESOLVED and do not patch by inference."
   }
 }
