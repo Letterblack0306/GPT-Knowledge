@@ -3,7 +3,7 @@ import { createSign } from 'node:crypto';
 const REPO = 'Letterblack0306/GPT-Knowledge';
 const BRANCH = 'main';
 const APP_ID = '4665407';
-const INSTALLATION_ID = '155292453';
+const INSTALLATION_ID = '155308247';
 const ALLOWED_PROJECTS = new Set(['lbe', 'access-browser-agent', 'brew', 'looptool']);
 const ALLOWED_KINDS = new Set(['notes', 'documents']);
 const ALLOWED_EXTENSIONS = new Set(['.md', '.txt', '.json']);
