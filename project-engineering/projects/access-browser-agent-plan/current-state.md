@@ -12,6 +12,35 @@ Date: 2026-08-21
 
 Current repository source, local runtime evidence and acceptance results remain authoritative over this projection.
 
+## Preserved engineering method
+
+Canonical BirdEye-first workflow:
+
+`project-engineering/projects/access-browser-agent-plan/birdeye-first-engineering-workflow.md`
+
+Mandatory order before planning or mutation:
+
+```text
+GPT-Knowledge current gate/method
+→ inspect existing BirdEye MCP/index/workspace/validation capability
+→ verify GitHub main SHA + diff
+→ reuse BirdEye validation profiles for local proof where proven
+→ classify only the tested gate
+→ sync GPT-Knowledge
+→ verify Vercel/live projection
+→ only then next change
+```
+
+Every future plan must distinguish:
+
+```text
+EXISTING + PROVEN
+EXISTING BUT NOT YET VERIFIED LIVE
+MISSING — IMPLEMENTATION REQUIRED
+```
+
+Only `MISSING — IMPLEMENTATION REQUIRED` authorizes designing a new capability. LoopTool is fallback or explicit LoopTool/relay testing only, not the default local execution path.
+
 ## P1.1 Runtime Progress / Re-entry — CLOSED
 
 Baseline:
@@ -67,19 +96,31 @@ This does not prove:
 - bounded network/activity settlement;
 - settled snapshot/state revision.
 
-### Required method before source changes
+### Source/test owner map — PROVEN
 
 ```text
-map browser-tool-runtime action flow
-→ identify navigation and non-navigation branches
-→ identify current readiness owner
-→ define one bounded settlement observable
-→ define falsifier
-→ add focused regression
-→ only then patch source
+source owner: src/browser/browser-tool-runtime.js
+test owner: test/browser-tool-runtime-smoke.js
 ```
 
-### Intended scope
+The existing harness already owns protected-target isolation, URL safety, open/navigate/snapshot/click/type/scroll/close behavior. Do not create a duplicate browser-runtime harness.
+
+### Required proof before the regression change
+
+Before deciding how to run the P1.2 regression, inspect the **active BirdEye installation/configuration** for the exact Access workspace and prove:
+
+```text
+workspace root mapping
+watcher coverage
+existing validation profiles
+whether browser-tool-runtime-smoke.js is already covered
+active request bridge runtime branch/path
+polling vs webhook/trigger live behavior
+```
+
+Then reuse or minimally extend what exists. Do not design another local execution mechanism unless BirdEye capability is proven missing.
+
+### Intended scope after that proof
 
 ADD:
 - navigation transition detection;
