@@ -6,32 +6,52 @@ Date: 2026-08-21
 
 - Repository: `Letterblack0306/access-browser-agent`
 - Branch: `main`
-- Verified HEAD used for this checkpoint: `b2b6ff31f781c1299e916d52ab3122f0c0ac3507`
+- Verified HEAD used for this checkpoint: `741d20815858ccf829c283709d504f6e0bd0f6e1`
+- Baseline regression HEAD: `b2b6ff31f781c1299e916d52ab3122f0c0ac3507`
 - Active engineering gate: **P1 Runtime Progress / Re-entry Contract**
 
 Current repository source, local runtime evidence and acceptance results remain authoritative over this projection.
 
+## Current source transition
+
+```text
+BASE: b2b6ff31f781c1299e916d52ab3122f0c0ac3507
+HEAD: 741d20815858ccf829c283709d504f6e0bd0f6e1
+COMMITS AHEAD: 1
+FILES CHANGED: 1
+```
+
+Diff boundary:
+
+```text
+src/agent/executive/LiveAgentCore.js
++53
+-5
+```
+
+Commit:
+
+`741d20815858ccf829c283709d504f6e0bd0f6e1` — `fix: stop repeated identical tool observations`
+
+No Browser Relay, renderer, browser settlement, browser context isolation, provider selection, or session-continuity code changed in this source transition.
+
 ## Overall classification
 
-**RUNTIME_NO_PROGRESS_CONTRACT_PROVEN_ABSENT_IMPLEMENTATION_PENDING**
+**RUNTIME_PROGRESS_REENTRY_SOURCE_IMPLEMENTED_REGRESSION_PENDING**
 
-Access is already a structured asynchronous agent/tool runtime with explicit durable lifecycle state, typed governed tools, execution evidence, bounded provider context and browser ownership. The missing invariant is deterministic **material-progress reconciliation** between a completed tool observation and the next provider reasoning call.
+The pre-fix defect remains proven at `b2b6ff3`: repeated identical successful tool observations could re-enter the provider loop without deterministic material-progress reconciliation.
 
-## Newly proven live failure
+The bounded P1.1 source implementation is now committed at `741d208`. It is **not yet accepted as proven** because matching local regression evidence has not yet been returned for the current head.
 
-Current-head live turn `turn-37c41f6e450f190f` repeatedly completed `browserConversationRead`, returned to provider reasoning and requested another `browserConversationRead` without reaching terminal progress.
+## Proven baseline defect
 
-This was not the earlier renderer event-dispatch defect: semantic `execution.tool.started` and `execution.tool.completed` were visibly flowing, so UI event dispatch remains **PROVEN_CURRENT_LIVE**.
+Live turn `turn-37c41f6e450f190f` repeatedly completed `browserConversationRead`, returned to provider reasoning and requested another `browserConversationRead` without terminal progress.
 
-The turn later remained durably recorded as `executing`, creating a new recovery-required record.
-
-## Newly proven regression gap
-
-A focused regression was added:
+Focused regression:
 
 `test/agent-runtime-no-progress-smoke.js`
 
-Commit:
+Baseline commit:
 
 `b2b6ff31f781c1299e916d52ab3122f0c0ac3507`
 
@@ -44,62 +64,80 @@ initial successful observation
 → no fourth provider completion
 ```
 
-Actual current behavior:
+Baseline result:
 
 ```text
 actual   = completed
 expected = blocked
 ```
 
-Classification:
+Classification at baseline:
 
 **RUNTIME_NO_PROGRESS_CONTRACT = PROVEN_ABSENT**
 
-This proves the current runtime can continue provider-driven repetition until the model eventually stops or the global tool-call budget is exhausted.
+## P1.1 source implementation now present
 
-## Exact active fix scope
+`741d208` adds only the deterministic reconciliation primitives in `LiveAgentCore.js`:
 
-### Add
+### Added
 
-- stable normalized tool arguments;
-- stable normalized bounded observation output;
+- stable normalized argument/output fingerprinting;
 - SHA-256 observation fingerprint;
-- consecutive duplicate counter scoped to the active step;
-- transient provider-facing `RUNTIME_NO_STATE_CHANGE` notice after the first duplicate;
-- `runtime.no_progress` event/evidence;
-- `no_progress_stagnation` blocker after the second duplicate.
+- consecutive duplicate count scoped to the active step;
+- transient provider-facing `RUNTIME_NO_STATE_CHANGE` notice after first duplicate;
+- `runtime.no_progress` event;
+- `no_progress_stagnation` blocker after second duplicate.
 
-### Change
+### Changed
 
-- provider re-entry should use a transient warning on the first duplicate;
-- the second duplicate should intercept before another `provider.complete()`;
-- the 40-call budget remains a final safety fuse, not progress detection.
+- provider re-entry may receive one transient system notice on first duplicate;
+- second duplicate intercepts before another `provider.complete()`;
+- global 40-tool budget remains the final safety fuse.
 
-### Remove
-
-- reliance on the provider/model to notice identical observations without runtime help.
-
-### Do not touch
+### Preserved
 
 - reasoning ownership;
 - `newSession:false` continuation;
-- Browser Relay exact-chat transport;
-- provider selection/readiness semantics;
+- Browser Relay transport semantics;
+- provider selection/readiness;
 - durable tool evidence;
-- terminal-state renderer source;
-- browser settlement/profile/perception code during this Phase-1 patch.
+- browser settlement/profile/perception implementation.
 
-## Browser architecture findings
+## Current gate classification
 
-### DOM/context extraction — good
+**SOURCE_IMPLEMENTED_REGRESSION_PENDING**
 
-`browserSnapshot` does not send raw HTML. It returns bounded visible text and a bounded visible interactive inventory using temporary `aa-N` refs for links, buttons, inputs, textareas, selects, role-based controls, contenteditable nodes and tabindex elements.
+This does not yet mean:
 
-### Page readiness/settlement — insufficient
+`PROVEN_SOURCE_AND_LOCAL_REGRESSION`
 
-Navigation currently waits for `document.readyState` to become `interactive` or `complete`. Ordinary DOM click then uses a fixed `100 ms` delay before observing URL/title/readyState and explicitly reports downstream outcome as unverified.
+The active gate remains open until current-head validation proves the implementation contract.
 
-No source proof currently establishes:
+## Required P1.1 acceptance
+
+The next validation must prove:
+
+- `node --check src/agent/executive/LiveAgentCore.js` passes;
+- `test/agent-runtime-no-progress-smoke.js` passes;
+- initial observation + two identical duplicates yields `blocked / no_progress_stagnation`;
+- no fourth provider completion occurs;
+- `RUNTIME_NO_STATE_CHANGE` remains transient and absent from durable conversation history;
+- existing `agent-runtime-resilience-smoke.js` still passes;
+- existing failed-tool adaptation remains intact.
+
+If any of these fail, P1.1 remains open.
+
+## Browser architecture findings retained
+
+### DOM/context extraction — proven bounded
+
+`browserSnapshot` avoids raw HTML. It returns bounded visible text plus a bounded visible interactive inventory using temporary `aa-N` refs.
+
+### Page readiness/settlement — still insufficient
+
+Navigation waits for `document.readyState` to become `interactive` or `complete`. Ordinary DOM click uses a fixed `100 ms` delay before observing URL/title/readyState and reports downstream outcome as unverified.
+
+No current source proof establishes:
 
 - SPA router completion;
 - hydration completion;
@@ -107,23 +145,21 @@ No source proof currently establishes:
 - bounded network/activity settlement;
 - automatic settled snapshot revision.
 
-This is the next P1 browser hardening gate after progress reconciliation.
+This remains the next P1 browser hardening gate **after** progress reconciliation is proven.
 
 ### Browser state isolation — partial
 
-Managed Chrome uses a reusable Access-owned `--user-data-dir`. Persistent identity is correct for ChatGPT/provider transport login, but general browser-tool tasks currently lack a separate ephemeral task-context lifecycle.
-
-Target architecture should preserve the relay profile while isolating task cookies/storage/cache.
+Managed Chrome uses a reusable Access-owned `--user-data-dir`. Persistent identity remains correct for ChatGPT/provider transport login, while general browser-tool tasks still lack a separate ephemeral task-context lifecycle.
 
 ### Accessibility/visual perception — partial
 
-Current semantics are DOM-derived from aria-label/title/innerText/value/placeholder plus element metadata and rectangles. This is not a native Chromium Accessibility tree. Native bounded AX extraction and optional screenshots remain P2 hardening.
+Current semantics are DOM-derived, not a native Chromium Accessibility tree. Native bounded AX extraction and optional screenshot perception remain P2 hardening.
 
 ## Pending P1/P2 work
 
-1. **P1 Runtime Progress / Re-entry Contract** — active.
-2. **P1 Bounded Page Settlement** — replace readyState + fixed sleep as primary settlement.
-3. **P1 Durable Stop terminal receipt** — prove Stop writes durable stopped/cancelled state and clears executing ambiguity.
+1. **P1 Runtime Progress / Re-entry Contract** — source implemented at `741d208`, local regression pending.
+2. **P1 Bounded Page Settlement** — implementation not started.
+3. **P1 Durable Stop terminal receipt** — live acceptance open.
 4. **P1 turn-37c recovery** — unresolved until explicit recovery receipt.
 5. **P1 Terminal-state UI live acceptance** — source proven, live terminal outcome still blocked by runtime termination control.
 6. **P1 node-pty AttachConsole owner map** — occurrence proven, causality unproven.
@@ -143,16 +179,6 @@ Current semantics are DOM-derived from aria-label/title/innerText/value/placehol
 - terminal-state renderer source repair — source/regression proven;
 - preload semantic event normalization — current-live proven;
 - earlier `turn-1f8...` ambiguous recovery — quarantined/cleared.
-
-## Current acceptance criterion
-
-The next implementation gate passes only when:
-
-- `agent-runtime-no-progress-smoke.js` passes;
-- initial + two duplicate observations yield `blocked / no_progress_stagnation`;
-- no fourth provider completion occurs;
-- runtime warning is transient and absent from durable conversation history;
-- existing failed-tool adaptation and agent runtime resilience tests still pass.
 
 ## Explicit non-goals
 
