@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "updated": "2026-08-21",
-  "you_are_here": "release-2.0.3-preparation",
+  "updated": "2026-08-22",
+  "you_are_here": "terminal-workspace-foundation",
   "confirmed": ["vision","r3-r6","cli","r7","release-readiness"],
-  "next": "release-2.0.3-preparation",
+  "next": "terminal-workspace-foundation",
   "notes": [
-    {"node":"release-2.0.3-preparation","text":"main carries lbe-guard-inspector 2.0.3. Exact wheel, isolated installed runtime, and immediate PyPI absence evidence are still required before workflow dispatch."},
-    {"node":"publish-2.0.3","text":"Publication is locked. Do not infer publication from a target version, a prior readiness check, or this canvas."},
-    {"node":"product-surface","text":"The terminal workspace is not accepted product UI. A future slice must use the persisted LBE event/receipt contract and keep policy-covered work automatic."}
+    {"node":"terminal-workspace-foundation","text":"Active authorized slice. Build only over existing persisted LBE owners; every visible terminal control must have a truthful supported outcome."},
+    {"node":"release-2.0.3-preparation","text":"Paused. main carries lbe-guard-inspector 2.0.3, but exact wheel/install proof and immediate PyPI absence evidence remain required before workflow dispatch."},
+    {"node":"publish-2.0.3","text":"Publication is locked. Do not infer publication from a target version, a prior readiness check, or this canvas."}
   ],
   "rule": "A node may be marked confirmed only from current project-owned evidence. Canvas state never promotes itself to product authority."
 }
