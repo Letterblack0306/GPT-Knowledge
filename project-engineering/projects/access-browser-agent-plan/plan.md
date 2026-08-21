@@ -10,6 +10,37 @@
 
 This page is a GPT-Knowledge projection. Current source, local runtime evidence and acceptance results remain authoritative.
 
+## Engineering workflow authority — BirdEye first
+
+Canonical project method:
+
+`project-engineering/projects/access-browser-agent-plan/birdeye-first-engineering-workflow.md`
+
+Before any plan or source mutation:
+
+```text
+GPT-Knowledge route/current gate
+→ inspect existing BirdEye MCP/index/workspace capabilities
+→ verify GitHub main SHA + exact diff
+→ use existing BirdEye validation profile for local behavioral proof when available
+→ classify only the tested gate
+→ synchronize GPT-Knowledge
+→ verify Vercel/live projection
+→ only then continue
+```
+
+Planning must classify capabilities as:
+
+```text
+EXISTING + PROVEN
+EXISTING BUT NOT YET VERIFIED LIVE
+MISSING — IMPLEMENTATION REQUIRED
+```
+
+Only the third category authorizes a new capability plan. BirdEye's MCP surface, incremental watcher/shared SQLite index, configured local validation bridge and GitHub polling bridge are already proven from current BirdEye source. A webhook/trigger is **not yet proven from current BirdEye remote main** and must be checked in the active installation before relying on it or declaring it missing.
+
+LoopTool is not the default local evidence path. Use it only when BirdEye cannot provide the required configured validation, or when explicitly testing LoopTool/its relay transport.
+
 ## Closed P1.1 — Runtime Progress / Re-entry Contract
 
 Source transition:
@@ -63,13 +94,31 @@ If ordinary action success still depends primarily on a fixed sleep, or if the r
 
 ### Required workflow before implementation
 
+The source/test owners are already mapped. The next proof is **not** to invent another execution mechanism. First inspect the active BirdEye installation/configuration for the exact Access workspace:
+
 ```text
-map connecting browser-tool-runtime flow
-→ identify action owner
-→ identify navigation vs non-navigation branches
-→ identify current readiness/settlement owner
-→ define one bounded observable
-→ define focused regression + falsifier
+1. exact configured workspace root
+2. watcher coverage for that root
+3. existing validation profiles
+4. whether browser-tool-runtime-smoke.js is already included
+5. active request bridge runtime branch/path
+6. whether the active installation uses polling only, webhook/trigger, or both
+```
+
+Then choose only:
+
+```text
+REUSE EXISTING PROFILE
+or
+MINIMALLY EXTEND EXISTING PROFILE
+or
+MISSING CAPABILITY — only if evidence proves it absent
+```
+
+After that:
+
+```text
+define focused settlement regression + falsifier
 → prove baseline failure
 → only then change source
 ```
