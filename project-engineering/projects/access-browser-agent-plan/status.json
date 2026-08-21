@@ -1,12 +1,12 @@
 {
   "schema_version": 2,
   "project": "Access Browser Agent",
-  "verified_at": "2026-08-21T13:11:00+04:00",
+  "verified_at": "2026-08-21T13:14:00+04:00",
   "source_repo": "Letterblack0306/access-browser-agent",
   "source_branch": "main",
   "source_head": "0048d0dceb062fbabb06423dfa419a6050a4713e",
   "overall_classification": "P1_TERMINAL_UI_SOURCE_AND_RENDERED_REGRESSION_PROVEN_LIVE_ACCEPTANCE_BLOCKED_BY_NON_IDLE_TARGET",
-  "authority_note": "GPT-Knowledge is a projection of verified repository/runtime evidence. Current repository source, local runtime evidence and acceptance results remain authoritative.",
+  "authority_note": "GPT-Knowledge is a projection of verified repository/runtime evidence. Current repository source, local runtime evidence and acceptance results remain authoritative. Material browser/Electron acceptance evidence must be synchronized here and in plan.json so the GPT-Knowledge browser view stays current.",
   "local_validation": {
     "settlement_command_hash": "11876582E03956B429C5CEE03DF25FB2AFF045B155F0751340FC817E1E3E8F09",
     "durable_stop_command_hash": "A4EFEC8974180EDCAAEAE072EC0B6FCAB27FAE506A59F9E1137E7A6BBCCC079A",
@@ -14,6 +14,7 @@
     "terminal_ui_rendered_command_hash": "47B2955CFB3BB187BAC970A015E00701FC06977CD4E9C4644DEB7C486F870501",
     "live_ui_acceptance_command_hash": "3553B9B5526F670F161BDF7CA1332B84905F9B7C7EF2B36E527D7EA7043057DF",
     "acceptance_cleanup_command_hash": "23132554E7FF4A613DF21AB15EDA7813FA131C5B5AB53EF775F72EDB6BFD0804",
+    "acceptance_target_config_inventory_hash": "D154B793B163370D71690645CE50D18A7F5A82F4BA31C7AFF4843C153A81F9E8",
     "head": "0048d0dceb062fbabb06423dfa419a6050a4713e",
     "browser_tool_runtime_smoke": "PASS",
     "durable_stop_acceptance": "PASS",
@@ -21,6 +22,7 @@
     "terminal_ui_rendered_regressions": "PASS",
     "live_ui_acceptance": "INCONCLUSIVE_NON_IDLE_CHAT_TARGET",
     "acceptance_created_recovery_cleanup": "PASS",
+    "acceptance_target_configuration": "EXISTING_ACCESS_AGENT_ACCEPTANCE_CHAT_URL_AND_SAVED_EXACT_TARGET",
     "git_status": "main aligned with origin/main; protected untracked section_09.md preserved"
   },
   "closed": [
@@ -35,19 +37,21 @@
     {"id":"browser-settlement","classification":"PROVEN_SOURCE_AND_LOCAL_REGRESSION","command_hash":"11876582E03956B429C5CEE03DF25FB2AFF045B155F0751340FC817E1E3E8F09"},
     {"id":"stop-durable-terminal","classification":"PROVEN_SOURCE_AND_LOCAL_ACCEPTANCE","command_hash":"A4EFEC8974180EDCAAEAE072EC0B6FCAB27FAE506A59F9E1137E7A6BBCCC079A"},
     {"id":"turn-37c-recovery","classification":"QUARANTINED_AND_RECONCILED","command_hash":"901E6FB855E71CE8C5FDB72E01F608D54366F0BA875A78C66D4CFD09EC5D807E"},
-    {"id":"acceptance-created-turn-99a7","classification":"QUARANTINED_AND_CLEARED","command_hash":"23132554E7FF4A613DF21AB15EDA7813FA131C5B5AB53EF775F72EDB6BFD0804","detail":"Live Electron acceptance timed out while turn-99a7ca39d3f063e5 was executing because the selected ChatGPT target was not idle. The bounded acceptance process ended before a terminal receipt was written, so the resulting ambiguous executing journal record was durably quarantined with receipt 724f0eef66c51892733afe6b9cea3cd460420c1743f75029eb0004a505254a24. Unresolved recoveries are now zero."}
+    {"id":"acceptance-created-turn-99a7","classification":"QUARANTINED_AND_CLEARED","command_hash":"23132554E7FF4A613DF21AB15EDA7813FA131C5B5AB53EF775F72EDB6BFD0804","detail":"Live Electron acceptance timed out while turn-99a7ca39d3f063e5 was executing because the selected ChatGPT target was not idle. The bounded acceptance process ended before a terminal receipt was written, so the ambiguous executing record was durably quarantined with receipt 724f0eef66c51892733afe6b9cea3cd460420c1743f75029eb0004a505254a24. Unresolved recoveries are zero."}
   ],
   "active": {
     "id": "terminal-state-ui",
     "title": "P1 Terminal-state UI live acceptance",
     "classification": "SOURCE_AND_RENDERED_REGRESSION_PROVEN_LIVE_ACCEPTANCE_BLOCKED_BY_NON_IDLE_TARGET",
     "question": "Does a running Electron UI render the authoritative stopped/reconciled terminal state correctly on the actual application path?",
-    "method": "Existing source/rendered owners are proven. The first real Electron/CDP acceptance booted renderer/runtime/browser/relay successfully but its selected ChatGPT conversation immediately produced an executable assistant turn, preventing the harness from observing its required idle waiting_for_instruction checkpoint. Treat this as an acceptance-environment precondition issue, not a product/UI defect. Re-run only against an explicitly idle/baselined target or an existing harness mode that guarantees such a target; do not patch product source.",
+    "method": "Existing source/rendered owners are proven. The real Electron/CDP acceptance booted renderer/runtime/browser/relay successfully but its selected ChatGPT conversation immediately produced an executable assistant turn. Existing acceptance configuration already supports ACCESS_AGENT_ACCEPTANCE_CHAT_URL and saved exact browserChatUrl/browserProviderTarget selection, while relay baseline semantics include first_start_historical_baseline and known_historical_baseline. Re-run only against an explicitly idle/baselined target; do not patch product source to satisfy the harness.",
     "evidence": {
       "rendered_command_hash": "47B2955CFB3BB187BAC970A015E00701FC06977CD4E9C4644DEB7C486F870501",
       "live_command_hash": "3553B9B5526F670F161BDF7CA1332B84905F9B7C7EF2B36E527D7EA7043057DF",
       "cleanup_command_hash": "23132554E7FF4A613DF21AB15EDA7813FA131C5B5AB53EF775F72EDB6BFD0804",
+      "target_inventory_hash": "D154B793B163370D71690645CE50D18A7F5A82F4BA31C7AFF4843C153A81F9E8",
       "live_steps": ["renderer-cdp-ready PASS", "renderer-runtime-api-ready PASS", "chat-target-configured PASS", "click-loop-start-and-wait INCONCLUSIVE because relay lifecycle=executing on an active assistant turn"],
+      "target_controls": ["ACCESS_AGENT_ACCEPTANCE_CHAT_URL", "saved browserChatUrl", "saved browserProviderTarget.url"],
       "cleanup": "turn-99a7ca39d3f063e5 quarantined; receipt 724f0eef66c51892733afe6b9cea3cd460420c1743f75029eb0004a505254a24; unresolved recoveries=0"
     }
   },
@@ -57,7 +61,8 @@
     {"id":"stop-durable-terminal","classification":"PROVEN_SOURCE_AND_LOCAL_ACCEPTANCE"},
     {"id":"turn-37c-recovery","classification":"QUARANTINED_AND_RECONCILED"},
     {"id":"terminal-state-ui-rendered","classification":"PROVEN_SOURCE_AND_LOCAL_REGRESSION"},
-    {"id":"live-electron-harness-boot","classification":"PROVEN_LIVE_PARTIAL","detail":"The existing ui-state-driven-acceptance-v2 harness successfully launched Electron, attached over CDP, confirmed renderer/runtime API readiness, configured the chat target, and brought runtime/browser/relay live. It did not reach idle waiting_for_instruction because the selected conversation produced a new executable assistant turn."},
+    {"id":"live-electron-harness-boot","classification":"PROVEN_LIVE_PARTIAL","detail":"The existing ui-state-driven-acceptance-v2 harness launched Electron, attached over CDP, confirmed renderer/runtime API readiness, configured the chat target and brought runtime/browser/relay live. It did not reach idle waiting_for_instruction because the selected conversation produced a new executable assistant turn."},
+    {"id":"live-acceptance-target-configuration","classification":"PROVEN_SOURCE","detail":"Existing acceptance scripts support ACCESS_AGENT_ACCEPTANCE_CHAT_URL and saved exact ChatGPT target preferences. BrowserInstructionRelay already owns baseline semantics; no product behavior addition is authorized for target setup."},
     {"id":"persistent-browser-profile","classification":"PROVEN_SOURCE"},
     {"id":"accessibility-layer","classification":"PARTIAL_SOURCE"}
   ],
@@ -71,7 +76,7 @@
     {"order":7,"id":"ax-visual-perception","priority":"P2","state":"PENDING"}
   ],
   "pending": [
-    {"id":"terminal-state-ui","priority":"P1","classification":"LIVE_ELECTRON_ACCEPTANCE_REQUIRES_IDLE_TARGET"},
+    {"id":"terminal-state-ui","priority":"P1","classification":"LIVE_ELECTRON_ACCEPTANCE_REQUIRES_IDLE_BASELINED_TARGET"},
     {"id":"node-pty-attachconsole","priority":"P1","classification":"OBSERVED_NEEDS_OWNER_MAP"},
     {"id":"cline-auth-live-persistence","priority":"P1","classification":"INCONCLUSIVE_UNTIL_SUCCESSFUL_LOGIN"},
     {"id":"process-death-recovery","priority":"P1","classification":"OPEN"},
@@ -80,7 +85,7 @@
   ],
   "next_acceptance": {
     "question": "Can the existing live Electron acceptance be run against an explicitly idle/baselined ChatGPT target so waiting_for_instruction is observable before testing terminal UI state?",
-    "observable": "Inspect existing acceptance configuration, saved target preferences and harness options for a target-selection or baseline mechanism that guarantees an idle/baselined conversation without product source mutation.",
-    "falsifier": "If no existing harness/configuration path can guarantee a safe idle target, classify the acceptance harness as incomplete; do not infer a UI defect and do not patch runtime behavior to satisfy the harness."
+    "observable": "Use the existing ACCESS_AGENT_ACCEPTANCE_CHAT_URL or saved exact-target configuration with an idle/baselined conversation; run the existing live Electron/CDP acceptance without product source mutation and observe terminal-state presentation.",
+    "falsifier": "If an explicitly idle/baselined target still fails to reach the expected state or the running UI misrepresents authoritative stopped/reconciled truth, classify the exact harness/UI gap. A failure caused only by an active target does not authorize a product patch."
   }
 }
