@@ -1,4 +1,5 @@
 import { createSign } from 'node:crypto';
+import { WORKSPACE_SAVE_KEY as REPO_WORKSPACE_SAVE_KEY } from './workspace-config.js';
 
 const REPO = 'Letterblack0306/GPT-Knowledge';
 const BRANCH = 'main';
@@ -143,7 +144,7 @@ export default async function handler(req, res) {
     return send(res, 405, { ok: false, error: 'METHOD_NOT_ALLOWED' });
   }
 
-  const saveKey = String(process.env.WORKSPACE_SAVE_KEY || '');
+  const saveKey = String(process.env.WORKSPACE_SAVE_KEY || REPO_WORKSPACE_SAVE_KEY || '');
   if (!saveKey) return send(res, 503, { ok: false, error: 'SAVE_NOT_CONFIGURED' });
   if (req.headers['x-workspace-save-key'] !== saveKey) return send(res, 401, { ok: false, error: 'UNAUTHORIZED' });
 
