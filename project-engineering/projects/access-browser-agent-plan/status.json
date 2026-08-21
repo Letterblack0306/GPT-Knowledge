@@ -1,28 +1,20 @@
 {
   "schema_version": 2,
   "project": "Access Browser Agent",
-  "verified_at": "2026-08-21T11:04:00+04:00",
+  "verified_at": "2026-08-21T11:09:00+04:00",
   "source_repo": "Letterblack0306/access-browser-agent",
   "source_branch": "main",
   "source_head": "741d20815858ccf829c283709d504f6e0bd0f6e1",
-  "overall_classification": "RUNTIME_PROGRESS_REENTRY_SOURCE_IMPLEMENTED_REGRESSION_PENDING",
+  "overall_classification": "P1_1_RUNTIME_PROGRESS_REENTRY_PROVEN_SOURCE_AND_LOCAL_REGRESSION",
   "authority_note": "GPT-Knowledge is a projection of verified repository/runtime evidence. Current repository source, local runtime evidence and acceptance results remain authoritative.",
-  "current_architecture": {
-    "classification": "STRUCTURED_AGENT_LOOP_PARTIAL_CLOSED_LOOP",
-    "reasoning_owner": "LiveAgentCore / provider remains responsible for strategy and tool choice.",
-    "runtime_owner": "Runtime owns lifecycle, governed execution, evidence and terminal truth. At 741d208 it also contains a bounded deterministic duplicate-observation reconciliation guard, pending local regression proof.",
-    "key_gap": "The Phase-1 no-progress guard is now source-implemented but has not yet been locally regression-proven on the current head."
+  "local_validation": {
+    "command_hash": "7DF5420CB2BB58ED745B58933DBAA4A382443A5F64758FC765EB149FE8067E60",
+    "head": "741d20815858ccf829c283709d504f6e0bd0f6e1",
+    "syntax": "PASS",
+    "agent_runtime_no_progress_smoke": "PASS",
+    "agent_runtime_resilience_smoke": "PASS",
+    "git_status": "main aligned with origin/main; protected untracked section_09.md preserved"
   },
-  "proven_findings": [
-    {"id":"event-dispatch-live","classification":"PROVEN_CURRENT_LIVE","detail":"fcb533d preload normalization restored semantic execution.tool.started/execution.tool.completed delivery to the legacy renderer."},
-    {"id":"repeated-browser-read-live","classification":"PROVEN_CURRENT_LIVE_DEFECT","detail":"turn-37c41f6e450f190f repeatedly completed browserConversationRead without reaching terminal progress and later remained durable state executing."},
-    {"id":"no-progress-contract-absent","classification":"PROVEN_BY_FAILING_REGRESSION_AT_BASELINE","detail":"At b2b6ff3, test/agent-runtime-no-progress-smoke.js expected second duplicate observation to block but runtime returned completed. This remains the proven pre-fix baseline."},
-    {"id":"progress-reentry-source","classification":"SOURCE_IMPLEMENTED_REGRESSION_PENDING","detail":"741d208 modifies only src/agent/executive/LiveAgentCore.js (+53/-5): step-local observation fingerprinting, transient first-duplicate RUNTIME_NO_STATE_CHANGE notice, runtime.no_progress emission, and second-duplicate no_progress_stagnation interception before another provider completion."},
-    {"id":"browser-dom-map","classification":"PROVEN_SOURCE","detail":"browserSnapshot does not send raw HTML. It returns bounded visible text plus visible interactive nodes with temporary aa-N refs and metadata."},
-    {"id":"browser-readiness-weak","classification":"PROVEN_SOURCE_GAP","detail":"Browser navigation readiness currently relies on document.readyState interactive/complete. Non-navigation DOM click waits a fixed 100 ms before returning downstreamOutcome UNVERIFIED; no network/mutation/hydration settlement contract is proven."},
-    {"id":"persistent-browser-profile","classification":"PROVEN_SOURCE","detail":"Managed Chrome launches with a reusable Access-owned --user-data-dir profile. This preserves transport login state but does not isolate general browsing state per task."},
-    {"id":"accessibility-layer","classification":"PARTIAL_SOURCE","detail":"Current snapshot derives semantics from DOM selectors/aria-label/title/innerText/value/placeholder. Native Chromium Accessibility.getFullAXTree and screenshot dual perception are not current declared capabilities."}
-  ],
   "closed": [
     {"id":"provider-context-compaction","classification":"FIXED_AND_REVALIDATED_CURRENT_LIVE"},
     {"id":"cline-auth-source-repair","classification":"PROVEN_SOURCE_AND_REGRESSION"},
@@ -30,31 +22,35 @@
     {"id":"post-result-continuation-live","classification":"PROVEN_CURRENT_LIVE"},
     {"id":"terminal-state-ui-source","classification":"PROVEN_SOURCE_AND_LOCAL_REGRESSION"},
     {"id":"agent-ui-event-dispatch","classification":"PROVEN_CURRENT_LIVE"},
-    {"id":"instruction-recovery-turn-1f8","classification":"QUARANTINED_AND_CLEARED"}
+    {"id":"instruction-recovery-turn-1f8","classification":"QUARANTINED_AND_CLEARED"},
+    {"id":"runtime-progress-reentry","classification":"PROVEN_SOURCE_AND_LOCAL_REGRESSION","detail":"At 741d208, syntax check, agent-runtime-no-progress-smoke, and agent-runtime-resilience-smoke all pass. The focused contract proves second duplicate observation blocks before another provider completion while the transient warning remains non-durable."}
   ],
   "active": {
-    "id": "runtime-progress-reentry",
-    "title": "P1 Runtime Progress / Re-entry Contract",
-    "classification": "SOURCE_IMPLEMENTED_REGRESSION_PENDING",
-    "question": "Does the 741d208 progress guard stop initial observation plus two identical duplicates before a fourth provider.complete() while preserving model reasoning ownership and durable conversation purity?",
-    "failing_regression": "test/agent-runtime-no-progress-smoke.js",
-    "regression_commit": "b2b6ff31f781c1299e916d52ab3122f0c0ac3507",
-    "implementation_commit": "741d20815858ccf829c283709d504f6e0bd0f6e1",
-    "falsifier": "Any fourth provider completion, durable RUNTIME_NO_STATE_CHANGE message, or loss of existing failed-tool adaptation means the source implementation is not accepted."
+    "id": "browser-settlement",
+    "title": "P1 Bounded Page Settlement",
+    "classification": "SOURCE_GAP_MAPPED_IMPLEMENTATION_NOT_STARTED",
+    "question": "Can browser actions wait for a bounded, observable page transition instead of relying on document.readyState plus fixed wait(100), while preserving protected transport ownership and URL safety?",
+    "target": "src/browser/browser-tool-runtime.js",
+    "falsifier": "If ordinary interaction success still depends primarily on a fixed sleep or returns before a bounded DOM/navigation/activity settlement observable, the settlement contract is not implemented."
   },
+  "proven_findings": [
+    {"id":"progress-reentry","classification":"PROVEN_SOURCE_AND_LOCAL_REGRESSION","detail":"741d208 modifies only src/agent/executive/LiveAgentCore.js (+53/-5) and passes the focused no-progress and neighboring resilience regressions."},
+    {"id":"browser-readiness-weak","classification":"PROVEN_SOURCE_GAP","detail":"Navigation readiness currently relies on document.readyState interactive/complete. Non-navigation DOM click waits a fixed 100 ms before returning downstreamOutcome UNVERIFIED; no bounded network/mutation/hydration settlement contract is proven."},
+    {"id":"persistent-browser-profile","classification":"PROVEN_SOURCE","detail":"Managed Chrome uses a reusable Access-owned profile; task-isolated general browsing remains pending."},
+    {"id":"accessibility-layer","classification":"PARTIAL_SOURCE","detail":"Current semantics are DOM-derived; native Chromium AX and screenshot dual perception remain pending."}
+  ],
   "hardening_plan": [
-    {"order":1,"id":"progress-reentry","priority":"P1 CRITICAL","title":"Deterministic progress/re-entry guard","target":"LiveAgentCore between execution.tool.completed and next provider.complete()","state":"SOURCE_IMPLEMENTED_REGRESSION_PENDING","add":["stable normalized argument/output fingerprint","SHA-256 observation fingerprint","consecutive duplicate counter scoped to active step","transient provider-facing RUNTIME_NO_STATE_CHANGE notice on first duplicate","runtime.no_progress event/evidence","no_progress_stagnation blocker on second duplicate"],"change":["provider.complete() input may include one transient runtime notice without persisting it","global 40-call budget remains final fuse, not progress detection"],"remove":["dependence on provider self-detecting identical observation loops"],"do_not_touch":["reasoning ownership","newSession:false continuity","Browser Relay transport semantics","durable tool evidence"]},
-    {"order":2,"id":"page-settlement","priority":"P1 CRITICAL","title":"Bounded browser settlement contract","target":"src/browser/browser-tool-runtime.js","add":["navigation detection","bounded DOM mutation quiet window","bounded network/activity settlement where meaningful","snapshot/state revision after settled transition","explicit timeout classification"],"change":["replace fixed post-click wait(100) as the primary settlement mechanism","strengthen _waitReady beyond document.readyState-only semantics"],"remove":["arbitrary sleep as downstream-success proxy"],"do_not_touch":["protected ChatGPT transport target ownership","HTTP/HTTPS URL safety rules"]},
-    {"order":3,"id":"browser-context-isolation","priority":"P1/P2","title":"Persistent relay identity + isolated task contexts","target":"Managed Chrome / BrowserToolRuntime ownership boundary","add":["ephemeral task browser context lifecycle","browserContextCreate/reset/close or equivalent deterministic lifecycle","task-scoped cookies/storage/cache reset"],"change":["general browser tools should not automatically inherit all persistent transport state"],"remove":["implicit assumption that one persistent profile is suitable for both relay identity and arbitrary task browsing"],"do_not_touch":["persistent ChatGPT login/profile required by Browser Relay"]},
-    {"order":4,"id":"ax-visual-perception","priority":"P2","title":"Native AX tree + optional visual perception","target":"browserSnapshot perception layer","add":["CDP Accessibility.getFullAXTree or bounded AX equivalent","stable semantic refs mapped to actionable DOM targets","optional browserScreenshot capability for layout/CSS/canvas verification"],"change":["custom DOM semantic approximation becomes fallback/supporting projection rather than sole semantic source"],"remove":["claim that current aa-N DOM map is a native accessibility tree"],"do_not_touch":["bounded context limits","fresh-snapshot requirement after interaction"]}
+    {"order":1,"id":"progress-reentry","priority":"P1 CRITICAL","state":"PROVEN_SOURCE_AND_LOCAL_REGRESSION","target":"src/agent/executive/LiveAgentCore.js"},
+    {"order":2,"id":"page-settlement","priority":"P1 CRITICAL","state":"ACTIVE_SOURCE_GAP","target":"src/browser/browser-tool-runtime.js","add":["navigation detection","bounded DOM mutation quiet window","bounded network/activity settlement where meaningful","snapshot/state revision after settled transition","explicit timeout classification"],"change":["replace fixed post-click wait(100) as primary settlement mechanism","strengthen _waitReady beyond document.readyState-only semantics"],"remove":["arbitrary sleep as downstream-success proxy"],"do_not_touch":["protected ChatGPT transport target ownership","HTTP/HTTPS URL safety rules"]},
+    {"order":3,"id":"browser-context-isolation","priority":"P1/P2","state":"PENDING"},
+    {"order":4,"id":"ax-visual-perception","priority":"P2","state":"PENDING"}
   ],
   "pending": [
-    {"id":"runtime-progress-reentry","priority":"P1","classification":"SOURCE_IMPLEMENTED_REGRESSION_PENDING","detail":"741d208 contains the bounded progress guard. Run the focused no-progress regression plus existing resilience regression before any live Browser Loop revalidation or next architecture gate."},
-    {"id":"browser-settlement","priority":"P1","classification":"SOURCE_GAP_MAPPED_IMPLEMENTATION_NOT_STARTED","detail":"Replace readyState + fixed 100ms interaction delay with bounded transition settlement and fresh state revision."},
-    {"id":"turn-37c-recovery","priority":"P1","classification":"RECOVERY_REQUIRED_UNRESOLVED","detail":"turn-37c41f6e450f190f remains an evidence-backed recovery item until explicit reconciliation receipt is observed."},
-    {"id":"stop-durable-terminal","priority":"P1","classification":"LIVE_ACCEPTANCE_OPEN","detail":"Prove Agent Stop produces durable stopped/cancelled state and does not leave Browser Relay instruction journal executing."},
-    {"id":"terminal-state-ui","priority":"P1","classification":"SOURCE_PROVEN_LIVE_ACCEPTANCE_BLOCKED","detail":"Resume BLOCKED/FAILED/STOPPED UI truth acceptance once runtime termination/reconciliation is controlled."},
-    {"id":"node-pty-attachconsole","priority":"P1","classification":"OBSERVED_NEEDS_OWNER_MAP","detail":"AttachConsole failed after prolonged runtime. Keep separate until causal ownership is proven."},
+    {"id":"browser-settlement","priority":"P1","classification":"ACTIVE_SOURCE_GAP"},
+    {"id":"turn-37c-recovery","priority":"P1","classification":"RECOVERY_REQUIRED_UNRESOLVED"},
+    {"id":"stop-durable-terminal","priority":"P1","classification":"LIVE_ACCEPTANCE_OPEN"},
+    {"id":"terminal-state-ui","priority":"P1","classification":"SOURCE_PROVEN_LIVE_ACCEPTANCE_BLOCKED"},
+    {"id":"node-pty-attachconsole","priority":"P1","classification":"OBSERVED_NEEDS_OWNER_MAP"},
     {"id":"cline-auth-live-persistence","priority":"P1","classification":"INCONCLUSIVE_UNTIL_SUCCESSFUL_LOGIN"},
     {"id":"process-death-recovery","priority":"P1","classification":"OPEN"},
     {"id":"browser-context-isolation","priority":"P1/P2","classification":"ARCHITECTURE_HARDENING_PENDING"},
@@ -63,8 +59,8 @@
     {"id":"parallel-settings-cleanup","priority":"P2","classification":"SOURCE_CLEANUP_DECISION_PENDING"}
   ],
   "next_acceptance": {
-    "question": "Does the Phase-1 progress guard at 741d208 stop initial observation plus two identical duplicates before a fourth provider completion while keeping the runtime warning transient?",
-    "observable": "node --check LiveAgentCore PASS, agent-runtime-no-progress-smoke PASS, existing agent-runtime-resilience-smoke PASS, no durable RUNTIME_NO_STATE_CHANGE message, and no regression to failed-tool adaptation.",
-    "falsifier": "Any fourth provider completion, durable injected runtime notice, syntax failure, or loss of normal failed-tool recovery keeps the gate open."
+    "question": "What exact source-owned transition observable should replace fixed post-click wait(100) without over-waiting on permanently active pages?",
+    "observable": "Map browser-tool-runtime action/readiness flow, identify current navigation and non-navigation branches, define one bounded settlement regression and falsifier before changing source.",
+    "falsifier": "Any implementation proposal made before mapping the active browser-tool-runtime flow and defining a bounded observable keeps the gate at SOURCE_GAP_MAPPED_IMPLEMENTATION_NOT_STARTED."
   }
 }
