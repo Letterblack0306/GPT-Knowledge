@@ -1,18 +1,17 @@
 {
   "schema_version": 2,
   "project": "Access Browser Agent",
-  "verified_at": "2026-08-21T11:48:00+04:00",
+  "verified_at": "2026-08-21T11:49:00+04:00",
   "source_repo": "Letterblack0306/access-browser-agent",
   "source_branch": "main",
   "source_head": "0048d0dceb062fbabb06423dfa419a6050a4713e",
-  "overall_classification": "P1_2_BROWSER_SETTLEMENT_SOURCE_IMPLEMENTED_LOCAL_SYNC_PROVEN_REGRESSION_PENDING",
+  "overall_classification": "P1_2_BROWSER_SETTLEMENT_PROVEN_SOURCE_AND_LOCAL_REGRESSION",
   "authority_note": "GPT-Knowledge is a projection of verified repository/runtime evidence. Current repository source, local runtime evidence and acceptance results remain authoritative.",
   "local_validation": {
-    "previous_proven_head": "741d20815858ccf829c283709d504f6e0bd0f6e1",
-    "previous_command_hash": "7DF5420CB2BB58ED745B58933DBAA4A382443A5F64758FC765EB149FE8067E60",
-    "sync_command_hash": "DC72DBCB5DA5AA60C754AA2C6DDACDD8D4866D5A60545656507E7FA6D971E71C",
-    "current_head_local": "0048d0dceb062fbabb06423dfa419a6050a4713e",
-    "current_browser_tool_runtime_smoke": "NOT_YET_RUN_AT_0048d0d",
+    "settlement_command_hash": "11876582E03956B429C5CEE03DF25FB2AFF045B155F0751340FC817E1E3E8F09",
+    "head": "0048d0dceb062fbabb06423dfa419a6050a4713e",
+    "syntax": "PASS",
+    "browser_tool_runtime_smoke": "PASS",
     "git_status": "main aligned with origin/main; protected untracked section_09.md preserved"
   },
   "closed": [
@@ -23,57 +22,34 @@
     {"id":"terminal-state-ui-source","classification":"PROVEN_SOURCE_AND_LOCAL_REGRESSION"},
     {"id":"agent-ui-event-dispatch","classification":"PROVEN_CURRENT_LIVE"},
     {"id":"instruction-recovery-turn-1f8","classification":"QUARANTINED_AND_CLEARED"},
-    {"id":"runtime-progress-reentry","classification":"PROVEN_SOURCE_AND_LOCAL_REGRESSION","detail":"At 741d208, syntax check, agent-runtime-no-progress-smoke, and agent-runtime-resilience-smoke all pass."}
+    {"id":"runtime-progress-reentry","classification":"PROVEN_SOURCE_AND_LOCAL_REGRESSION","detail":"At 741d208, syntax check, agent-runtime-no-progress-smoke, and agent-runtime-resilience-smoke all pass."},
+    {"id":"browser-settlement","classification":"PROVEN_SOURCE_AND_LOCAL_REGRESSION","detail":"At 0048d0d, node --check src/browser/browser-tool-runtime.js and test/browser-tool-runtime-smoke.js both pass. The existing smoke harness includes the delayed 150 ms mutation settlement regression. main remains aligned with origin/main and section_09.md remains protected/untracked.","command_hash":"11876582E03956B429C5CEE03DF25FB2AFF045B155F0751340FC817E1E3E8F09"}
   ],
   "active": {
-    "id": "browser-settlement",
-    "title": "P1 Bounded Page Settlement",
-    "classification": "SOURCE_IMPLEMENTED_LOCAL_SYNC_PROVEN_REGRESSION_PENDING",
-    "implementation_head": "0048d0dceb062fbabb06423dfa419a6050a4713e",
-    "baseline_head": "741d20815858ccf829c283709d504f6e0bd0f6e1",
-    "target": "src/browser/browser-tool-runtime.js",
-    "test_owner": "test/browser-tool-runtime-smoke.js",
-    "source_transition": {
-      "commits_ahead": 3,
-      "files_changed": 2,
-      "runtime": "+61 -11",
-      "test": "+49 -5"
-    },
-    "implementation": [
-      "adds a bounded MutationObserver-backed settlement tracker",
-      "adds configurable settlementQuietMs and settlementTimeoutMs",
-      "adds BROWSER_SETTLEMENT_TIMEOUT classification",
-      "open/navigate wait for readiness then bounded settlement",
-      "DOM click starts settlement observation before dispatch",
-      "anchor click navigates then waits for readiness plus settlement",
-      "successful click evidence now reports downstreamOutcome SETTLED with settlement metadata"
-    ],
-    "local_sync_proof": {
-      "command_hash": "DC72DBCB5DA5AA60C754AA2C6DDACDD8D4866D5A60545656507E7FA6D971E71C",
-      "transition": "741d208..0048d0d fast-forward",
-      "head": "0048d0dceb062fbabb06423dfa419a6050a4713e",
-      "branch_state": "main aligned with origin/main",
-      "protected_untracked": "section_09.md preserved"
-    },
-    "falsifier": "P1.2 is not proven until node --check src/browser/browser-tool-runtime.js and test/browser-tool-runtime-smoke.js pass locally at 0048d0d while protected-target/URL-safety behavior and section_09.md remain preserved."
+    "id": "stop-durable-terminal",
+    "title": "P1 Durable Stop terminal receipt",
+    "classification": "OWNER_MAP_REQUIRED_BEFORE_ACCEPTANCE",
+    "question": "Which existing runtime owner emits, persists, and reconciles the durable terminal receipt for Stop, and what exact observable proves terminal completion without reopening the already-closed settlement gate?",
+    "method": "BirdEye-first proof workflow: inspect existing GPT-Knowledge findings and authoritative source owners first; define observable and falsifier before any source change."
   },
   "proven_findings": [
     {"id":"progress-reentry","classification":"PROVEN_SOURCE_AND_LOCAL_REGRESSION","detail":"741d208 modifies only src/agent/executive/LiveAgentCore.js (+53/-5) and passes focused regressions."},
-    {"id":"browser-settlement-source","classification":"SOURCE_IMPLEMENTED_LOCAL_SYNC_PROVEN_REGRESSION_PENDING","detail":"0048d0d is three commits ahead of 741d208 and changes only src/browser/browser-tool-runtime.js and test/browser-tool-runtime-smoke.js. Local workspace fast-forward to 0048d0d is proven; focused syntax/regression execution remains pending."},
+    {"id":"browser-settlement","classification":"PROVEN_SOURCE_AND_LOCAL_REGRESSION","detail":"0048d0d is three commits ahead of 741d208 and changes only src/browser/browser-tool-runtime.js and test/browser-tool-runtime-smoke.js. Syntax and browser-tool-runtime-smoke pass locally at the exact head."},
     {"id":"browser-runtime-test-owner","classification":"PROVEN_SOURCE","detail":"test/browser-tool-runtime-smoke.js remains the sole BrowserToolRuntime behavioral harness; no parallel harness was created."},
     {"id":"persistent-browser-profile","classification":"PROVEN_SOURCE","detail":"Managed Chrome uses a reusable Access-owned profile; task-isolated general browsing remains pending."},
     {"id":"accessibility-layer","classification":"PARTIAL_SOURCE","detail":"Current semantics are DOM-derived; native Chromium AX and screenshot dual perception remain pending."}
   ],
   "hardening_plan": [
     {"order":1,"id":"progress-reentry","priority":"P1 CRITICAL","state":"PROVEN_SOURCE_AND_LOCAL_REGRESSION","target":"src/agent/executive/LiveAgentCore.js"},
-    {"order":2,"id":"page-settlement","priority":"P1 CRITICAL","state":"SOURCE_IMPLEMENTED_LOCAL_SYNC_PROVEN_REGRESSION_PENDING","target":"src/browser/browser-tool-runtime.js","test_owner":"test/browser-tool-runtime-smoke.js","implementation_head":"0048d0dceb062fbabb06423dfa419a6050a4713e"},
-    {"order":3,"id":"browser-context-isolation","priority":"P1/P2","state":"PENDING"},
-    {"order":4,"id":"ax-visual-perception","priority":"P2","state":"PENDING"}
+    {"order":2,"id":"page-settlement","priority":"P1 CRITICAL","state":"PROVEN_SOURCE_AND_LOCAL_REGRESSION","target":"src/browser/browser-tool-runtime.js","test_owner":"test/browser-tool-runtime-smoke.js","implementation_head":"0048d0dceb062fbabb06423dfa419a6050a4713e"},
+    {"order":3,"id":"stop-durable-terminal","priority":"P1","state":"OWNER_MAP_REQUIRED_BEFORE_ACCEPTANCE"},
+    {"order":4,"id":"turn-37c-recovery","priority":"P1","state":"RECOVERY_REQUIRED_UNRESOLVED"},
+    {"order":5,"id":"browser-context-isolation","priority":"P1/P2","state":"PENDING"},
+    {"order":6,"id":"ax-visual-perception","priority":"P2","state":"PENDING"}
   ],
   "pending": [
-    {"id":"browser-settlement-local-proof","priority":"P1","classification":"FOCUSED_REGRESSION_REQUIRED"},
+    {"id":"stop-durable-terminal","priority":"P1","classification":"OWNER_MAP_REQUIRED_BEFORE_ACCEPTANCE"},
     {"id":"turn-37c-recovery","priority":"P1","classification":"RECOVERY_REQUIRED_UNRESOLVED"},
-    {"id":"stop-durable-terminal","priority":"P1","classification":"LIVE_ACCEPTANCE_OPEN"},
     {"id":"terminal-state-ui","priority":"P1","classification":"SOURCE_PROVEN_LIVE_ACCEPTANCE_BLOCKED"},
     {"id":"node-pty-attachconsole","priority":"P1","classification":"OBSERVED_NEEDS_OWNER_MAP"},
     {"id":"cline-auth-live-persistence","priority":"P1","classification":"INCONCLUSIVE_UNTIL_SUCCESSFUL_LOGIN"},
@@ -82,8 +58,8 @@
     {"id":"ax-visual-perception","priority":"P2","classification":"ARCHITECTURE_HARDENING_PENDING"}
   ],
   "next_acceptance": {
-    "question": "Does the local workspace at 0048d0d pass syntax and the existing browser-tool-runtime smoke with the delayed 150 ms mutation observed before browserClick returns?",
-    "observable": "Run node --check src/browser/browser-tool-runtime.js and node test/browser-tool-runtime-smoke.js at exact HEAD 0048d0d, then confirm main remains aligned with origin/main and section_09.md remains untouched.",
-    "falsifier": "Any syntax/test failure, wrong HEAD, broader local drift, or mutation of section_09.md keeps P1.2 unproven."
+    "question": "Which existing source/runtime owner is authoritative for durable Stop completion and terminal receipt?",
+    "observable": "Map the current Stop request-to-terminal flow and identify the persisted/reconciled terminal receipt owner before any code change or live acceptance.",
+    "falsifier": "If no single authoritative terminal receipt owner can be identified from current source/runtime evidence, classify the gate inconclusive and do not patch."
   }
 }
