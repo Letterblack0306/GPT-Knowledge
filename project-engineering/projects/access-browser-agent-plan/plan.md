@@ -4,16 +4,33 @@
 
 - Repository: `Letterblack0306/access-browser-agent`
 - Branch: `main`
-- Verified current HEAD used for this plan: `b2b6ff31f781c1299e916d52ab3122f0c0ac3507`
+- Verified current HEAD used for this plan: `741d20815858ccf829c283709d504f6e0bd0f6e1`
+- Regression baseline: `b2b6ff31f781c1299e916d52ab3122f0c0ac3507`
 - Active P1 gate: **Runtime Progress / Re-entry Contract**
+- Current gate classification: **SOURCE_IMPLEMENTED_REGRESSION_PENDING**
 
 This page is a GPT-Knowledge projection. Current source, local runtime evidence and acceptance results remain authoritative.
+
+## Source transition
+
+```text
+b2b6ff31f781c1299e916d52ab3122f0c0ac3507
+→ 741d20815858ccf829c283709d504f6e0bd0f6e1
+
+1 commit ahead
+1 file changed
+src/agent/executive/LiveAgentCore.js  +53 -5
+```
+
+Commit:
+
+`fix: stop repeated identical tool observations`
+
+The P1.1 patch does not modify Browser Relay, renderer, browser settlement, browser profile/context isolation, provider selection, or session continuity.
 
 ## Current architecture classification
 
 **STRUCTURED_AGENT_LOOP / PARTIAL_CLOSED_LOOP**
-
-Access already has the correct separation of responsibilities:
 
 ```text
 Browser/provider instruction
@@ -28,18 +45,18 @@ typed governed tool execution
         ↓
 durable tool observation + execution evidence
         ↓
-provider reasoning re-entry
+runtime reconciliation
+        ↓
+provider reasoning re-entry or bounded block
 ```
 
-The reasoning model owns strategy and tool choice. The runtime owns governed execution, lifecycle and completion truth.
+The reasoning model owns strategy and tool choice. Runtime owns governed execution, lifecycle, completion truth, and now a bounded exact-duplicate observation reconciliation guard.
 
-The missing production invariant is **material progress reconciliation** between a completed tool observation and the next provider reasoning call.
+The guard is source-implemented but not yet locally regression-proven on the current head.
 
-## Newly proven defect
+## Proven baseline defect
 
-### Repeated successful observations can loop without material progress
-
-A current-head live turn repeatedly executed:
+At `b2b6ff3`, repeated successful observations could loop:
 
 ```text
 browserConversationRead
@@ -51,63 +68,40 @@ browserConversationRead
 → ...
 ```
 
-The runtime had no deterministic rule asking whether the new observation materially differed from the previous observation.
-
-A regression was added at:
+Focused regression:
 
 `test/agent-runtime-no-progress-smoke.js`
 
-Commit:
+Baseline classification:
 
-`b2b6ff31f781c1299e916d52ab3122f0c0ac3507`
+**RUNTIME_NO_PROGRESS_CONTRACT = PROVEN_ABSENT**
 
-The regression expected:
+## P1.1 — Runtime Progress / Re-entry Contract
 
-```text
-initial observation
-→ first identical duplicate: warning/re-entry
-→ second identical duplicate: BLOCKED / no_progress_stagnation
-```
+### Source state
 
-Current source instead returned `completed`, proving the no-progress contract is absent.
+**IMPLEMENTED AT `741d208`; REGRESSION PENDING**
 
-Classification: **RUNTIME_NO_PROGRESS_CONTRACT = PROVEN_ABSENT**.
+### Implemented ADD
 
-## P1 — Runtime Progress / Re-entry Contract
-
-### Exact question
-
-> Can identical tool observations be detected between `execution.tool.completed` and the next `provider.complete()` without taking reasoning ownership away from the model or polluting durable conversation history?
-
-### ADD
-
-Add only the deterministic progress primitives required for that contract:
-
-- stable normalization of tool arguments;
-- stable normalization of bounded tool output;
+- stable normalization of tool arguments/output;
 - SHA-256 observation fingerprint;
-- consecutive duplicate-observation counter scoped to the active step;
-- transient provider-facing `RUNTIME_NO_STATE_CHANGE` notice after the first duplicate;
-- `runtime.no_progress` event/evidence;
-- `no_progress_stagnation` blocker after the second duplicate.
+- active-step consecutive duplicate counter;
+- transient provider-facing `RUNTIME_NO_STATE_CHANGE` notice after first duplicate;
+- `runtime.no_progress` event;
+- `no_progress_stagnation` blocker after second duplicate.
 
-### CHANGE
+### Implemented CHANGE
 
-Change only the provider re-entry boundary:
+- first duplicate may re-enter provider reasoning with one transient runtime notice;
+- second duplicate intercepts before another `provider.complete()`;
+- 40-tool budget remains final safety fuse.
 
-- first duplicate may re-enter reasoning with one transient runtime notice;
-- second duplicate must stop before another `provider.complete()`;
-- the existing 40-tool budget remains a final safety fuse, not the primary progress detector.
+### Implemented REMOVE
 
-### REMOVE
+- sole dependence on the model noticing exact repeated observations by itself.
 
-Remove the architectural dependency on:
-
-> “the model will notice that the observation is identical and stop itself.”
-
-Do **not** remove reasoning autonomy.
-
-### DO NOT TOUCH in this phase
+### DO NOT TOUCH preserved
 
 - `newSession:false` continuation semantics;
 - Browser Relay exact-chat transport;
@@ -122,55 +116,43 @@ Do **not** remove reasoning autonomy.
 
 The gate passes only when:
 
-1. `agent-runtime-no-progress-smoke.js` passes;
-2. initial observation + two identical duplicates results in `blocked / no_progress_stagnation`;
-3. no fourth provider completion occurs;
-4. the first duplicate warning is provider-facing but **not durable conversation history**;
-5. existing failed-tool adaptation still works;
-6. existing runtime resilience regression still passes.
+1. `node --check src/agent/executive/LiveAgentCore.js` passes;
+2. `agent-runtime-no-progress-smoke.js` passes;
+3. initial observation + two identical duplicates results in `blocked / no_progress_stagnation`;
+4. no fourth provider completion occurs;
+5. the first duplicate warning is provider-facing but not durable conversation history;
+6. existing failed-tool adaptation still works;
+7. `agent-runtime-resilience-smoke.js` still passes.
+
+Until those results exist, classification remains:
+
+**SOURCE_IMPLEMENTED_REGRESSION_PENDING**
 
 ## P1 — Bounded Page Settlement
 
-### Proven current weakness
+This is the next architecture gate only after P1.1 validation.
 
-`browser-tool-runtime.js` currently:
+Current weakness remains:
 
-- waits for `document.readyState === interactive|complete` on navigation;
-- uses a fixed `100 ms` wait after ordinary DOM click;
-- returns downstream action outcome as `UNVERIFIED`.
+- `document.readyState === interactive|complete` for navigation readiness;
+- fixed `100 ms` wait after ordinary DOM click;
+- downstream outcome remains `UNVERIFIED`.
 
-This does not prove SPA hydration, async fetch completion or DOM stability.
-
-### ADD
+Target additions:
 
 - navigation transition detection;
 - bounded DOM mutation quiet window;
 - bounded network/activity settlement where meaningful;
 - page/snapshot revision after settled transition;
-- explicit settlement timeout classification.
+- explicit settlement-timeout classification.
 
-### CHANGE
-
-- strengthen `_waitReady()` beyond document-ready-state-only semantics;
-- replace fixed `wait(100)` as the primary downstream settlement mechanism.
-
-### REMOVE
-
-- arbitrary sleep as a proxy for downstream success.
-
-### DO NOT TOUCH
-
-- protected ChatGPT transport target isolation;
-- HTTP/HTTPS safety restrictions;
-- fresh-snapshot-after-action requirement.
+Do not touch protected ChatGPT transport ownership or HTTP/HTTPS safety restrictions.
 
 ## P1/P2 — Browser Context Isolation
 
-### Proven current state
+Managed Chrome uses a reusable Access-owned `--user-data-dir`, which is correct for persistent ChatGPT transport identity but also shares browser storage across general task browsing.
 
-Managed Chrome uses a reusable Access-owned `--user-data-dir` profile. That is useful and necessary for persistent ChatGPT transport login, but it also means general browser tools can inherit cookies/storage/cache across unrelated agent tasks.
-
-### Target architecture
+Target architecture:
 
 ```text
 Managed Chrome
@@ -183,69 +165,22 @@ Managed Chrome
    └─ deterministic reset/close
 ```
 
-### ADD
-
-- task-context create/reset/close lifecycle or equivalent;
-- task-scoped cookie/storage/cache isolation;
-- explicit task context identity in browser evidence.
-
-### CHANGE
-
-General browser-tool tabs should use task isolation instead of implicitly sharing all persistent relay profile state.
-
-### REMOVE
-
-The assumption that one persistent browser state domain is appropriate for both transport identity and arbitrary browsing.
-
-### DO NOT TOUCH
-
-Persistent relay login/profile continuity.
+This remains pending and must not be mixed into P1.1 validation.
 
 ## P2 — Accessibility + Visual Dual Perception
 
-### Proven current state
+Current `browserSnapshot` already avoids raw HTML and provides bounded DOM-derived semantic refs. Native CDP AX extraction and optional screenshots remain future hardening.
 
-`browserSnapshot` already avoids raw HTML. It emits:
-
-- bounded visible text;
-- visible actionable elements;
-- temporary `aa-N` refs;
-- tag/role/name/href/input metadata;
-- bounding rectangles.
-
-The current semantic name is DOM-derived from aria-label/title/innerText/value/placeholder. It is not a native Chromium accessibility tree.
-
-### ADD
-
-- bounded CDP AX tree / `Accessibility.getFullAXTree` equivalent;
-- mapping from AX semantics to safe actionable refs;
-- optional `browserScreenshot` for CSS/layout/canvas verification.
-
-### CHANGE
-
-The current custom DOM semantic projection should become a supporting/fallback representation, not the only semantic source.
-
-### REMOVE
-
-Do not describe current `aa-N` DOM extraction as a native accessibility tree.
+Do not describe current `aa-N` extraction as a native accessibility tree.
 
 ## Other current P1 items
 
-### Durable Stop terminal receipt
-
-Live acceptance still needs to prove Agent Stop produces a durable `stopped/cancelled` terminal state and does not leave the Browser Relay journal in `executing`.
-
-### turn-37c recovery
-
-`turn-37c41f6e450f190f` remains unresolved until an explicit recovery-reconciliation receipt is observed.
-
-### Terminal-state UI live acceptance
-
-Source/regression is already proven. Resume BLOCKED / FAILED / STOPPED live rendering acceptance only after runtime termination/reconciliation is controlled.
-
-### node-pty AttachConsole failure
-
-Observed after a prolonged runtime. Occurrence is proven; causal ownership is not. Keep separate until source/runtime evidence establishes ownership.
+- Durable Stop terminal receipt — live acceptance open.
+- `turn-37c41f6e450f190f` recovery — unresolved until explicit recovery receipt.
+- Terminal-state UI live acceptance — source/regression proven, live acceptance pending controlled terminal behavior.
+- node-pty AttachConsole failure — occurrence proven, causal owner not yet mapped.
+- Cline successful-login restart persistence — pending.
+- Arbitrary process-death exactly-once recovery — pending.
 
 ## Existing closed proof
 
@@ -259,19 +194,19 @@ Observed after a prolonged runtime. Occurrence is proven; causal ownership is no
 
 ## Work order
 
-1. **P1 — Runtime Progress / Re-entry Contract** — active now.
-2. **P1 — Bounded Page Settlement**.
-3. **P1 — Durable Stop + current recovery acceptance**.
-4. **P1 — Terminal-state UI live acceptance**.
-5. **P1/P2 — Isolated browser task contexts**.
-6. **P1 — Cline auth successful-login restart persistence**.
-7. **P1 — Arbitrary process-death exactly-once recovery**.
-8. **P2 — Native AX + optional screenshot perception**.
-9. **P2 — CSP cleanup / parallel settings cleanup after active runtime gates**.
+1. **P1.1 Runtime Progress / Re-entry validation** — active now.
+2. **P1 Bounded Page Settlement**.
+3. **P1 Durable Stop + current recovery acceptance**.
+4. **P1 Terminal-state UI live acceptance**.
+5. **P1/P2 Isolated browser task contexts**.
+6. **P1 Cline auth successful-login restart persistence**.
+7. **P1 Arbitrary process-death exactly-once recovery**.
+8. **P2 Native AX + optional screenshot perception**.
+9. **P2 CSP / parallel settings cleanup after active runtime gates**.
 
 ## Non-goals
 
-Do not solve the current problem by:
+Do not solve the current gate by:
 
 - adding semantic objective classifiers;
 - reintroducing rigid Plan → Approve → Execute orchestration;
