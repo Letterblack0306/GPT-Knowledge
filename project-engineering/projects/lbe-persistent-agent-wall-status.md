@@ -4,7 +4,6 @@
 
 - Last reconciled: 2026-08-22
 - Project repository: `Letterblack0306/LBE_Presistent_Agent_wall`
-- Canonical ref checked: `main` at `5250efa97a85a2a12978acb86593d086189b0b63`
 - Authority: this is a short navigation mirror. Live LBE source, Git state, machine gates,
   acceptance records, and runtime evidence are authoritative.
 
@@ -23,18 +22,18 @@ R7_INSTALLED_END_TO_END_ACCEPTANCE: PASS
 RELEASE_PACKAGE_READINESS_ACCEPTANCE: PASS
 PUBLICATION_PRECHECK: PASS
 
-active_phase: PUBLICATION_VERSION_PREPARATION
-active_slice: SET_AND_VALIDATE_CANONICAL_VERSION_2_0_3
+active_phase: TERMINAL_WORKSPACE_PRODUCT_IMPLEMENTATION
+active_slice: VISIBLE_TRUTHFUL_TERMINAL_WORKSPACE_FOUNDATION
 status: OPEN
-target_version: 2.0.3
-implementation_allowed: version-preparation scope only
-architecture_changes_allowed: false
+implementation_allowed: terminal-workspace foundation scope only
+architecture_changes_allowed: true (explicit user authorization)
 publish_allowed: false
+publication version preparation: PAUSED (target retained: 2.0.3)
 ```
 
-`2.0.3` is the canonical committed project version. It is **not** recorded here as published.
-The exact wheel, isolated install/runtime proof, immediate PyPI absence check, observed trusted
-publish workflow, and post-publish verification remain required before that claim can be made.
+The active work is a visible, truthful terminal-workspace foundation over existing persisted LBE
+owners. It does not authorize publication, a second runtime, or a second execution/authorization/
+completion owner.
 
 ## Product direction retained from GPT-Knowledge
 
@@ -44,14 +43,15 @@ publish workflow, and post-publish verification remain required before that clai
   commands do not become approval queues.
 - CLI is the primary integration surface; a TUI is a projection of the same persisted contract,
   never a second authority.
-- The terminal workspace remains a partially verified product gap, not an accepted interactive
-  terminal-IDE claim.
+- The terminal workspace foundation has initial title/state and command/help work, but is not an
+  accepted complete terminal-IDE claim.
 
 ## Canonical LBE documents
 
 Read these in the LBE repository before planning or implementation:
 
 ```text
+docs/README.md
 .agent/PROJECT_CONTEXT.md
 .lbe/governance/implementation-gates.json
 docs/acceptance/CURRENT_IMPLEMENTATION_GATE.md
