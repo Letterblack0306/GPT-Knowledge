@@ -113,7 +113,7 @@ idempotent response handling
 bounded/redacted output
 ```
 
-This validation-profile mechanism is the preferred local behavioral-proof path when the required test already exists in a configured profile or can be minimally added to one.
+This validation-profile mechanism remains available for deterministic configured validation where already proven and appropriate.
 
 ### EXISTING + PROVEN — GitHub polling bridge
 
@@ -134,20 +134,17 @@ GPT-Knowledge
     ↓
 route current gate / method
     ↓
-BirdEye MCP
+BirdEye MCP / existing source inspection
     ↓
-workspace identity + revision status + indexed source inspection
-    ↓
-BirdEye watcher/shared SQLite index
-(already keeps indexed state current)
+workspace identity + revision status + indexed evidence
     ↓
 GitHub main
 verify authoritative remote SHA + exact diff
     ↓
-BirdEye validation profile
-when local behavioral proof is required
+choose execution surface by change size and purpose
     ↓
-exitCode + stdout + stderr + bounded verdict
+GitHub for implementation / large or multi-file source changes
+LoopTool for local pull / focused tests / debugging / inspection / small local changes
     ↓
 classify only the tested gate
     ↓
@@ -166,28 +163,69 @@ only then next engineering mutation
 | --- | --- | --- |
 | Engineering method / current gate | GPT-Knowledge | Route/read before source mutation |
 | Live workspace search/index | BirdEye MCP + watcher | Reuse shared SQLite index |
-| Local Git identity/status | BirdEye `workspace_identity` / `revision_status` | Prefer exact observed HEAD evidence |
-| Local configured behavioral validation | BirdEye request bridge validation profile | Use deterministic configured commands |
-| Authoritative committed source | GitHub `main` | Record SHA and diff |
+| Local Git identity/status | BirdEye `workspace_identity` / `revision_status` or focused local evidence | Prefer exact observed HEAD evidence |
+| Large implementation / multi-file source changes | GitHub `main` | Implement and commit through GitHub; record exact SHA and diff |
+| Large file edits / durable repository changes | GitHub `main` | Prefer repository-native mutation rather than local ad-hoc editing |
+| Local pull / synchronization | LoopTool | Pull the exact GitHub `main` commit before local proof |
+| Focused tests / debugging / inspection | LoopTool | Use bounded local commands and preserve command hash/evidence |
+| Small local debugging changes | LoopTool | Allowed when narrowly scoped to diagnosis/test iteration; do not let local drift become hidden authority |
+| Existing configured validation | BirdEye validation profile | Reuse when it already provides the required deterministic proof |
 | Persistent project projection | GPT-Knowledge project files | Update only after evidence changes truth |
 | Deployed projection | Vercel/live GPT-K website | Verify production commit and visible project state |
-| LoopTool | Fallback / explicit LoopTool or relay test | Not default local evidence path |
 
-## LoopTool boundary
+## GitHub / LoopTool execution boundary
 
-Do not request a LoopTool run merely because local validation is needed.
+Use the following standing rule for Access Browser Agent engineering work.
 
-Use LoopTool only when one of these is true:
+### GitHub — implementation authority
+
+Use GitHub for:
 
 ```text
-BirdEye cannot perform the required configured validation
-OR
-the task explicitly tests LoopTool itself
-OR
-the task explicitly tests a Browser/chat transport path owned by LoopTool
+large file changes
+multi-file implementation
+new production behavior
+substantial refactors
+persistent source changes that should become repository authority
+commits that other local sessions/machines must consume
 ```
 
-Do not duplicate evidence by running the same test through BirdEye and LoopTool without a specific falsifier that requires both.
+Expected flow:
+
+```text
+inspect/prove owner
+→ implement on GitHub main
+→ record commit SHA + exact diff
+→ LoopTool pulls exact main commit locally
+→ LoopTool runs focused validation/debugging
+```
+
+Do not perform a substantial implementation locally first and then treat the unpushed workspace as authority.
+
+### LoopTool — local execution and bounded iteration
+
+Use LoopTool for:
+
+```text
+git pull --ff-only origin main
+local HEAD/status verification
+focused smoke/regression execution
+syntax checks
+debugging commands
+bounded source inspection
+small diagnostic/test changes
+small local fixes when the purpose is test/debug iteration
+```
+
+If a small LoopTool change becomes the accepted product fix, it must be reconciled back to GitHub `main` before it is treated as durable project truth.
+
+LoopTool must not create random branches, worktrees, duplicate roots, or competing source authority.
+
+### BirdEye — evidence and routing infrastructure
+
+BirdEye remains the preferred evidence/index/routing layer where its capability is proven. It does not replace GitHub for source implementation or LoopTool for local pull/debug/test execution.
+
+Do not duplicate the same test through BirdEye and LoopTool unless a specific falsifier requires both surfaces.
 
 ## Mandatory pre-plan proof categories
 
@@ -205,7 +243,7 @@ Do not turn an unverified live capability into a missing capability until its ac
 
 ## Access-specific P1.2 application
 
-Current Access source authority:
+Current Access source authority at the time this gate was opened:
 
 ```text
 Repository: Letterblack0306/access-browser-agent
@@ -213,40 +251,23 @@ Branch: main
 HEAD: 741d20815858ccf829c283709d504f6e0bd0f6e1
 ```
 
-Current gate:
+P1 Bounded Page Settlement was subsequently implemented on GitHub and locally proven at:
 
 ```text
-P1 Bounded Page Settlement
-classification: SOURCE_FLOW_MAPPED_REGRESSION_NOT_YET_ADDED
-source owner: src/browser/browser-tool-runtime.js
-test owner: test/browser-tool-runtime-smoke.js
+0048d0dceb062fbabb06423dfa419a6050a4713e
 ```
 
-Before deciding how P1.2 validation executes, prove the active BirdEye installation/configuration for the exact Access workspace:
+The durable lesson from P1.2 is the execution sequence now codified above:
 
 ```text
-1. Which configured BirdEye workspace root maps the active Access workspace?
-2. Which validation profiles exist for that exact workspace?
-3. Does an existing profile already run test/browser-tool-runtime-smoke.js or an equivalent project check that includes it?
-4. Which request bridge runtime branch/path is active?
-5. Is the active bridge using polling only, webhook/trigger, or both?
-6. Does the watcher include the exact active Access workspace root?
+GitHub implementation
+→ LoopTool pull
+→ LoopTool focused regression
+→ GPT-Knowledge classification
+→ live website verification
 ```
 
-Then choose only one of these outcomes:
-
-```text
-A. REUSE EXISTING PROFILE
-   if current BirdEye configuration already provides the required focused proof.
-
-B. MINIMALLY EXTEND EXISTING PROFILE
-   if BirdEye is present and correct but the focused settlement regression is not yet included.
-
-C. MISSING CAPABILITY
-   only if evidence proves the active BirdEye installation cannot provide the required bounded local proof.
-```
-
-Do not design a new execution channel before this check.
+Do not reopen P1.2 without contradictory evidence.
 
 ## Synchronization rule
 
@@ -255,7 +276,7 @@ Before any next product mutation, report and reconcile:
 ```text
 Access remote main SHA
 Access local HEAD + dirty/untracked state
-BirdEye workspace/index identity
+BirdEye workspace/index identity when applicable
 focused validation state
 GPT-K source_head + active gate
 Vercel production deployment SHA
@@ -273,4 +294,4 @@ After each evidence result:
 3. verify live projection when applicable;
 4. select exactly one bounded next step.
 
-Do not broaden from settlement into browser isolation, AX/screenshot perception, terminal-state UI, recovery, or other pending gates without closing the active gate first.
+Do not broaden from the active gate into browser isolation, AX/screenshot perception, terminal-state UI, recovery, or other pending gates without closing the active gate first.
