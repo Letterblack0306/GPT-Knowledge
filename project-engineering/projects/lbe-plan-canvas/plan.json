@@ -3,19 +3,19 @@
   "project": "LBE Persistent Agent",
   "purpose": "Shared visual roadmap. This is navigation state, not runtime authority.",
   "authority_rule": "Live project source, Git state, machine gates, acceptance records and runtime evidence outrank this canvas.",
-  "updated": "2026-08-21",
-  "active_node": "release-2.0.3-preparation",
+  "updated": "2026-08-22",
+  "active_node": "terminal-workspace-foundation",
   "nodes": [
     {"id":"vision","lane":"Foundation","title":"Vision & architecture","status":"proven","summary":"Persistent governed agent runtime; providers reason and LBE owns authority."},
     {"id":"r3-r6","lane":"Core Runtime","title":"R3–R6F core contracts","status":"proven","summary":"Accepted runtime, authorization, governed execution, receipts, and completion contracts."},
     {"id":"cli","lane":"Interface","title":"CLI control plane","status":"proven","summary":"Accepted persistent control and projection surface; no duplicate authority."},
     {"id":"r7","lane":"Installed Acceptance","title":"R7 installed end-to-end acceptance","status":"proven","summary":"PASS; repaired composition evidence is historical, not an active failure."},
     {"id":"release-readiness","lane":"Release","title":"Release/package readiness","status":"proven","summary":"Package readiness and publication precheck are accepted for their bounded claims."},
-    {"id":"release-2.0.3-preparation","lane":"Release","title":"Prepare PyPI 2.0.3","status":"current","summary":"Canonical version is 2.0.3; exact wheel/install proof and immediate PyPI absence proof remain before dispatch."},
-    {"id":"publish-2.0.3","lane":"Release","title":"Trusted publish and verify","status":"blocked","summary":"Locked until exact-version preparation passes; no published claim yet."},
-    {"id":"product-surface","lane":"Product","title":"Interactive terminal workspace","status":"blocked","summary":"Future authorized product slice: one persisted runtime contract, truthful event/evidence projection, no ordinary approval queue."}
+    {"id":"terminal-workspace-foundation","lane":"Product","title":"Visible terminal workspace foundation","status":"current","summary":"Build title/state chrome, functional command/help entry, and truthful event/control projection over existing persisted owners."},
+    {"id":"release-2.0.3-preparation","lane":"Release","title":"Prepare PyPI 2.0.3","status":"paused","summary":"Target retained; exact wheel/install proof and immediate PyPI absence proof are deferred until the active product slice passes."},
+    {"id":"publish-2.0.3","lane":"Release","title":"Trusted publish and verify","status":"blocked","summary":"Locked until 2.0.3 preparation passes; no published claim yet."}
   ],
   "edges": [
-    ["vision","r3-r6"],["r3-r6","cli"],["cli","r7"],["r7","release-readiness"],["release-readiness","release-2.0.3-preparation"],["release-2.0.3-preparation","publish-2.0.3"],["publish-2.0.3","product-surface"]
+    ["vision","r3-r6"],["r3-r6","cli"],["cli","r7"],["r7","release-readiness"],["release-readiness","terminal-workspace-foundation"],["terminal-workspace-foundation","release-2.0.3-preparation"],["release-2.0.3-preparation","publish-2.0.3"]
   ]
 }
