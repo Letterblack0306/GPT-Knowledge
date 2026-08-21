@@ -2,175 +2,167 @@
 
 Date: 2026-08-21
 
-## Current source authority
+## Source authority
 
 - Repository: `Letterblack0306/access-browser-agent`
 - Branch: `main`
-- Verified remote HEAD: `a553fe9e2da78ae2154c5a7b174ccacc7e12cc07`
-- Application entry: `electron/rebuild-main.js`
-- Active production settings UI: `electron/rebuild-settings.js`
-- Browser Loop readiness owner: `electron/browser-session-authority.js`
-- Active provider state owner: `electron/agent-runtime-adapter.js`
+- Verified HEAD used for this checkpoint: `b2b6ff31f781c1299e916d52ab3122f0c0ac3507`
+- Active engineering gate: **P1 Runtime Progress / Re-entry Contract**
 
-This checkpoint separates **current source truth**, **historical evidence**, **current live proof**, **source/regression proof**, and **acceptance not yet reached**. Current repository/runtime evidence remains authoritative over this projection.
+Current repository source, local runtime evidence and acceptance results remain authoritative over this projection.
 
-## Current overall status
+## Overall classification
 
-The current main contains two important completed repairs after the earlier P0 provider-context repair:
+**RUNTIME_NO_PROGRESS_CONTRACT_PROVEN_ABSENT_IMPLEMENTATION_PENDING**
 
-1. **Cline authentication persistence/source ownership repair** — source and regression proof complete; live OAuth persistence acceptance remains inconclusive because no successful Cline credential was established during the attempted live sign-in.
-2. **Post-result Browser Relay continuation repair** — source and regression proof complete on current main; definitive current-live A → result → next instruction B acceptance remains open because provider-state contamination prevented the relay from reaching the intended live test boundary.
+Access is already a structured asynchronous agent/tool runtime with explicit durable lifecycle state, typed governed tools, execution evidence, bounded provider context and browser ownership. The missing invariant is deterministic **material-progress reconciliation** between a completed tool observation and the next provider reasoning call.
 
-The current active engineering gate is therefore **provider candidate-readiness authority**, not arbitrary Browser Loop modification.
+## Newly proven live failure
 
-## Previously closed P0: provider context amplification
+Current-head live turn `turn-37c41f6e450f190f` repeatedly completed `browserConversationRead`, returned to provider reasoning and requested another `browserConversationRead` without reaching terminal progress.
 
-The earlier current-head R4 failure was caused by provider-context amplification from accumulated historical tool-result payloads in the continuing durable session, dominated by repeated `readFile` results.
+This was not the earlier renderer event-dispatch defect: semantic `execution.tool.started` and `execution.tool.completed` were visibly flowing, so UI event dispatch remains **PROVEN_CURRENT_LIVE**.
 
-Repair commit:
+The turn later remained durably recorded as `executing`, creating a new recovery-required record.
 
-- `bb00c560a561ddb44584689846830ebdcdc124f6` — bounds rehydrated historical tool evidence only in the provider-facing projection.
-- `481308768a5991c392e4b4ec1641d37971740911` — regression coverage for historical provider compaction.
+## Newly proven regression gap
 
-The successful live revalidation established natural instruction ingress, continuing local session identity, configured provider reasoning, autonomous `browserConversationRead`, successful protected exact-chat read, objective completion, result queueing/submission, rendered same-chat delivery, causal delivery-response consumption, and stable waiting state.
+A focused regression was added:
 
-The earlier `R4_STEP_TIMEOUT` remained classified as **TEST_HARNESS_FAILURE** because the product path completed at about 126.2 seconds while the harness assumed 120 seconds.
+`test/agent-runtime-no-progress-smoke.js`
 
-## Cline auth persistence repair
+Commit:
 
-The source investigation proved duplicate auth authority and stale preference-save risk. The repair series on main is:
+`b2b6ff31f781c1299e916d52ab3122f0c0ac3507`
 
-- `11b06af67408e1049895b74a8167d4d8691e602b` — expose durable Cline auth persistence updates.
-- `872b61c5e863cecbc466221823d42b5d3d4ff2d3` — preserve durable Cline auth across stale preference saves.
-- `57b3830466e516c1d2c2d221d3cd0e6d6f4f369d` — make Cline auth writes explicitly authoritative.
-- `0b7a4b5eb644109e7dc5e90e65baace1ed7197f2` — share wrapper-owned Cline auth with the agent runtime.
-- `2680deaddf625d9bb80567a903343a8ecacf46b4` — protect persisted Cline auth from stale settings saves.
-- `79253b52b5d1dd7681a6e4fa6da94994ec2cc831` — syntax correction after the auth-sharing change.
-
-Focused syntax/provider/preferences checks passed. Live OAuth persistence acceptance remains **INCONCLUSIVE**, because WorkOS device authorization timed out before a successful durable credential could be created and then reloaded.
-
-## Post-result continuation defect and repair
-
-A real live continuation failure was reproduced after an Access result was delivered to ChatGPT. The next ChatGPT assistant turn was detected but was classified as `delivery_response` and consumed instead of being executed as the next instruction.
-
-Authoritative live evidence showed:
-
-- result delivery succeeded;
-- `browser_relay.delivery_response_consumed` recorded the next assistant turn;
-- `responseInstructionId` existed for that next turn;
-- the relay returned without submitting that turn to the local agent.
-
-Classification before repair: **PROVEN_LIVE_CONTINUATION_CLASSIFICATION_DEFECT**.
-
-Repair commits:
-
-- `fab58f222de36fe6d9e59516da3ebc1ef9156845` — preserve the next assistant turn after result delivery; resolve delivery ownership without returning early.
-- `a553fe9e2da78ae2154c5a7b174ccacc7e12cc07` — regression coverage protecting immediate post-result assistant instruction execution.
-
-Focused continuation/restart/recovery smoke tests passed, preserving `newSession:false` and the restart fail-closed pending-delivery guard.
-
-Current classification: **PROVEN_SOURCE + PROVEN_REGRESSION; CURRENT-LIVE ACCEPTANCE OPEN**.
-
-## Provider-state investigation: inherited Test READY authority leak
-
-The failed live continuation acceptance exposed a separate provider-state problem. Durable preferences remained LM Studio, but using the Cline **Test READY** control changed the live runtime provider to Cline.
-
-The source/history investigation established:
-
-- `electron/rebuild-settings.js` is the active production settings implementation because `electron/index.html` loads it directly.
-- `electron/settings-module.js` is a parallel/historical implementation in the current rebuild shell; it is not loaded by the production `index.html`.
-- `rebuild-settings.js` has carried the same `clineTest` behavior since the initial canonical Access repository commit `5d77a0e8a145231dec40f389cf2d5a274a9aa7a0`.
-- `clineTest` calls `providerConfigure(... persist:false)` **without** `discoverOnly:true`.
-- `AgentRuntimeAdapter.updateProviderSettings()` therefore calls `_installProvider()`.
-- `_installProvider()` changes `service.provider`, `service.agent.provider`, and `providerSelection`.
-- `persist:false` prevents durable preference persistence, but does not prevent active runtime provider mutation.
-
-Observable consequence:
+Expected contract:
 
 ```text
-persisted selected provider = LM Studio
-live runtime provider       = Cline
+initial successful observation
+→ first identical duplicate: transient runtime warning
+→ second identical duplicate: blocked / no_progress_stagnation
+→ no fourth provider completion
 ```
 
-until an explicit provider activation or restart occurs.
+Actual current behavior:
 
-Classification: **PROVEN_INITIAL_PROVIDER_TEST_AUTHORITY_LEAK** — an inherited design defect present in the first canonical repository snapshot, not a recent regression from the auth or continuation repairs.
+```text
+actual   = completed
+expected = blocked
+```
 
-## Reference-backed architecture finding
+Classification:
 
-GPT-Knowledge established provider-neutral/Cline integration guidance on 2026-08-13, before the current Access canonical repository baseline. The intended contract separates:
+**RUNTIME_NO_PROGRESS_CONTRACT = PROVEN_ABSENT**
 
-- provider identity;
-- authentication;
-- model discovery;
-- candidate readiness;
-- active provider selection;
-- host session/tool/browser/evidence authority.
+This proves the current runtime can continue provider-driven repetition until the model eventually stops or the global tool-call budget is exhausted.
 
-Current Cline/VS Code implementation provides a useful comparison: provider selection is explicit persisted API configuration, while LM Studio model discovery is a separate operation. Candidate inspection is not implicitly equivalent to active-provider selection.
+## Exact active fix scope
 
-Access currently respects that distinction for **Discover** but not for **Test READY**.
+### Add
 
-## Active engineering question
+- stable normalized tool arguments;
+- stable normalized bounded observation output;
+- SHA-256 observation fingerprint;
+- consecutive duplicate counter scoped to the active step;
+- transient provider-facing `RUNTIME_NO_STATE_CHANGE` notice after the first duplicate;
+- `runtime.no_progress` event/evidence;
+- `no_progress_stagnation` blocker after the second duplicate.
 
-The next implementation question is now exact and source-bounded:
+### Change
 
-> How should Access test a candidate provider/model for real agent readiness without installing that candidate as the active runtime provider?
+- provider re-entry should use a transient warning on the first duplicate;
+- the second duplicate should intercept before another `provider.complete()`;
+- the 40-call budget remains a final safety fuse, not progress detection.
 
-Candidate design must be mapped against the current:
+### Remove
 
-- `electron/agent-runtime-adapter.js`
-- `src/llm/ProviderFactory.js`
-- `src/llm/ModelReadinessRegistry.js`
-- `src/llm/ClineLlmsProvider.js`
-- `src/llm/OpenAICompatibleProvider.js`
-- existing `providerReadiness()` path
+- reliance on the provider/model to notice identical observations without runtime help.
 
-No patch should be made until source mapping proves whether the correct primitive is a candidate-aware readiness probe, a dedicated `testProviderSettings()` boundary, or an existing abstraction already present in the provider layer.
+### Do not touch
 
-## Do not change from current evidence
+- reasoning ownership;
+- `newSession:false` continuation;
+- Browser Relay exact-chat transport;
+- provider selection/readiness semantics;
+- durable tool evidence;
+- terminal-state renderer source;
+- browser settlement/profile/perception code during this Phase-1 patch.
 
-The following are not established defects and should not be modified merely to unblock testing:
+## Browser architecture findings
 
-- Browser Loop agent-readiness gate;
-- LM Studio startup restoration;
-- Cline authentication mechanism;
-- LM Studio endpoint/model selection;
-- provider timeout values;
-- session continuity or `newSession:false`;
-- automatic provider fallback.
+### DOM/context extraction — good
 
-## Remaining acceptance and engineering work
+`browserSnapshot` does not send raw HTML. It returns bounded visible text and a bounded visible interactive inventory using temporary `aa-N` refs for links, buttons, inputs, textareas, selects, role-based controls, contenteditable nodes and tabindex elements.
 
-1. **P0 — Candidate provider-readiness authority contract**
-   - Prove the correct non-authoritative candidate test primitive from active provider source and reference implementations.
-   - Add a regression that Test READY cannot mutate the active provider unless activation is explicitly requested.
+### Page readiness/settlement — insufficient
 
-2. **P0 — Current-live post-result continuation acceptance**
-   - After provider-state authority is corrected or otherwise proven clean, run one bounded A → result → B continuation cycle.
-   - Require `delivery_response_resolved` for B followed by the same B as `instruction_received`, `newSession:false`, and no duplicate execution.
+Navigation currently waits for `document.readyState` to become `interactive` or `complete`. Ordinary DOM click then uses a fixed `100 ms` delay before observing URL/title/readyState and explicitly reports downstream outcome as unverified.
 
-3. **P1 — Cline auth live persistence acceptance**
-   - Requires one successful supported Cline sign-in, durable credential creation, runtime restart, and authenticated reload.
+No source proof currently establishes:
 
-4. **P1 — Arbitrary process-death recovery**
-   - Validate exactly-once recovery at `executing`, `delivering`, and `delivery_unverified` boundaries.
+- SPA router completion;
+- hydration completion;
+- DOM mutation quiet period;
+- bounded network/activity settlement;
+- automatic settled snapshot revision.
 
-5. **P1 — Non-complete terminal-state UI acceptance**
-   - Verify blocked, failed, stopped, and delivery-unverified states truthfully render in a live current-head run.
+This is the next P1 browser hardening gate after progress reconciliation.
 
-6. **P1 — Governance/check wording**
-   - Keep documentation/UI explicit that `precheck` and `check` are distinct unless source intentionally changes.
+### Browser state isolation — partial
 
-7. **P2 — Parallel/legacy settings cleanup decision**
-   - Determine whether any active path still imports `electron/settings-module.js` before removing, consolidating, or leaving it as historical compatibility code.
+Managed Chrome uses a reusable Access-owned `--user-data-dir`. Persistent identity is correct for ChatGPT/provider transport login, but general browser-tool tasks currently lack a separate ephemeral task-context lifecycle.
 
-## Workspace UI connection
+Target architecture should preserve the relay profile while isolating task cookies/storage/cache.
 
-The visual workspace reads:
+### Accessibility/visual perception — partial
 
-- `plan.json` for architecture, evidence nodes, current gate, pending gates, and graph edges;
-- `status.json` for current head, classifications, closed proof, historical proof, open engineering work, and the next acceptance question;
-- `projects.json` for the active visual node.
+Current semantics are DOM-derived from aria-label/title/innerText/value/placeholder plus element metadata and rectangles. This is not a native Chromium Accessibility tree. Native bounded AX extraction and optional screenshots remain P2 hardening.
 
-The UI is a repository-driven projection. It is not an independent project-state authority.
+## Pending P1/P2 work
+
+1. **P1 Runtime Progress / Re-entry Contract** — active.
+2. **P1 Bounded Page Settlement** — replace readyState + fixed sleep as primary settlement.
+3. **P1 Durable Stop terminal receipt** — prove Stop writes durable stopped/cancelled state and clears executing ambiguity.
+4. **P1 turn-37c recovery** — unresolved until explicit recovery receipt.
+5. **P1 Terminal-state UI live acceptance** — source proven, live terminal outcome still blocked by runtime termination control.
+6. **P1 node-pty AttachConsole owner map** — occurrence proven, causality unproven.
+7. **P1 Cline successful-login restart persistence**.
+8. **P1 Arbitrary process-death exactly-once recovery**.
+9. **P1/P2 Isolated task browser contexts**.
+10. **P2 Native AX + optional screenshot perception**.
+11. **P2 CSP inline-style cleanup**.
+12. **P2 Parallel settings cleanup after compatibility scan**.
+
+## Closed/proven work retained
+
+- provider-context amplification repair — live revalidated;
+- Cline auth source authority repair — source/regression proven;
+- candidate readiness without provider activation — proven;
+- post-result continuation A→B→C — current-live proven;
+- terminal-state renderer source repair — source/regression proven;
+- preload semantic event normalization — current-live proven;
+- earlier `turn-1f8...` ambiguous recovery — quarantined/cleared.
+
+## Current acceptance criterion
+
+The next implementation gate passes only when:
+
+- `agent-runtime-no-progress-smoke.js` passes;
+- initial + two duplicate observations yield `blocked / no_progress_stagnation`;
+- no fourth provider completion occurs;
+- runtime warning is transient and absent from durable conversation history;
+- existing failed-tool adaptation and agent runtime resilience tests still pass.
+
+## Explicit non-goals
+
+Do not:
+
+- increase the tool budget as a stagnation fix;
+- replace reasoning with a deterministic workflow machine;
+- add semantic objective envelopes/classifiers;
+- weaken Browser Loop provider readiness;
+- alter provider timeout values to force acceptance;
+- switch providers automatically;
+- reset the persistent ChatGPT transport login per task;
+- perform broad renderer rewrites.
