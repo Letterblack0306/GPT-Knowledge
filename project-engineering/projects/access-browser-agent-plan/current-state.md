@@ -6,189 +6,109 @@ Date: 2026-08-21
 
 - Repository: `Letterblack0306/access-browser-agent`
 - Branch: `main`
-- Verified HEAD used for this checkpoint: `741d20815858ccf829c283709d504f6e0bd0f6e1`
-- Baseline regression HEAD: `b2b6ff31f781c1299e916d52ab3122f0c0ac3507`
-- Active engineering gate: **P1 Runtime Progress / Re-entry Contract**
+- Verified HEAD: `741d20815858ccf829c283709d504f6e0bd0f6e1`
+- Protected local untracked file: `section_09.md` — preserved, not modified
+- Active engineering gate: **P1 Bounded Page Settlement**
 
 Current repository source, local runtime evidence and acceptance results remain authoritative over this projection.
 
-## Current source transition
+## P1.1 Runtime Progress / Re-entry — CLOSED
 
-```text
-BASE: b2b6ff31f781c1299e916d52ab3122f0c0ac3507
-HEAD: 741d20815858ccf829c283709d504f6e0bd0f6e1
-COMMITS AHEAD: 1
-FILES CHANGED: 1
-```
-
-Diff boundary:
-
-```text
-src/agent/executive/LiveAgentCore.js
-+53
--5
-```
-
-Commit:
-
-`741d20815858ccf829c283709d504f6e0bd0f6e1` — `fix: stop repeated identical tool observations`
-
-No Browser Relay, renderer, browser settlement, browser context isolation, provider selection, or session-continuity code changed in this source transition.
-
-## Overall classification
-
-**RUNTIME_PROGRESS_REENTRY_SOURCE_IMPLEMENTED_REGRESSION_PENDING**
-
-The pre-fix defect remains proven at `b2b6ff3`: repeated identical successful tool observations could re-enter the provider loop without deterministic material-progress reconciliation.
-
-The bounded P1.1 source implementation is now committed at `741d208`. It is **not yet accepted as proven** because matching local regression evidence has not yet been returned for the current head.
-
-## Proven baseline defect
-
-Live turn `turn-37c41f6e450f190f` repeatedly completed `browserConversationRead`, returned to provider reasoning and requested another `browserConversationRead` without terminal progress.
-
-Focused regression:
-
-`test/agent-runtime-no-progress-smoke.js`
-
-Baseline commit:
+Baseline:
 
 `b2b6ff31f781c1299e916d52ab3122f0c0ac3507`
 
-Expected contract:
+Implementation:
+
+`741d20815858ccf829c283709d504f6e0bd0f6e1`
+
+Exact source diff:
 
 ```text
-initial successful observation
-→ first identical duplicate: transient runtime warning
-→ second identical duplicate: blocked / no_progress_stagnation
-→ no fourth provider completion
+1 commit ahead
+1 file changed
+src/agent/executive/LiveAgentCore.js  +53 -5
 ```
 
-Baseline result:
+Local acceptance command hash:
+
+`7DF5420CB2BB58ED745B58933DBAA4A382443A5F64758FC765EB149FE8067E60`
+
+Observed result:
 
 ```text
-actual   = completed
-expected = blocked
+HEAD = 741d20815858ccf829c283709d504f6e0bd0f6e1
+node --check LiveAgentCore.js = PASS
+agent-runtime-no-progress-smoke = PASS
+agent-runtime-resilience-smoke = PASS
+git status = main aligned with origin/main; section_09.md remains untracked
 ```
 
-Classification at baseline:
+Classification:
 
-**RUNTIME_NO_PROGRESS_CONTRACT = PROVEN_ABSENT**
+**P1_1_RUNTIME_PROGRESS_REENTRY = PROVEN_SOURCE_AND_LOCAL_REGRESSION**
 
-## P1.1 source implementation now present
+This proves the bounded runtime contract for the focused regression: exact repeated observations are intercepted on the second duplicate before another provider completion, the first warning remains transient, and the neighboring failed-tool/resilience behavior still passes.
 
-`741d208` adds only the deterministic reconciliation primitives in `LiveAgentCore.js`:
+## Active gate — P1 Bounded Page Settlement
 
-### Added
+### Proven current weakness
 
-- stable normalized argument/output fingerprinting;
-- SHA-256 observation fingerprint;
-- consecutive duplicate count scoped to the active step;
-- transient provider-facing `RUNTIME_NO_STATE_CHANGE` notice after first duplicate;
-- `runtime.no_progress` event;
-- `no_progress_stagnation` blocker after second duplicate.
+`src/browser/browser-tool-runtime.js` currently has two weak downstream-settlement paths:
 
-### Changed
+- navigation waits for `document.readyState` to become `interactive` or `complete`;
+- ordinary DOM click uses a fixed `100 ms` delay and reports downstream outcome as unverified.
 
-- provider re-entry may receive one transient system notice on first duplicate;
-- second duplicate intercepts before another `provider.complete()`;
-- global 40-tool budget remains the final safety fuse.
+This does not prove:
 
-### Preserved
-
-- reasoning ownership;
-- `newSession:false` continuation;
-- Browser Relay transport semantics;
-- provider selection/readiness;
-- durable tool evidence;
-- browser settlement/profile/perception implementation.
-
-## Current gate classification
-
-**SOURCE_IMPLEMENTED_REGRESSION_PENDING**
-
-This does not yet mean:
-
-`PROVEN_SOURCE_AND_LOCAL_REGRESSION`
-
-The active gate remains open until current-head validation proves the implementation contract.
-
-## Required P1.1 acceptance
-
-The next validation must prove:
-
-- `node --check src/agent/executive/LiveAgentCore.js` passes;
-- `test/agent-runtime-no-progress-smoke.js` passes;
-- initial observation + two identical duplicates yields `blocked / no_progress_stagnation`;
-- no fourth provider completion occurs;
-- `RUNTIME_NO_STATE_CHANGE` remains transient and absent from durable conversation history;
-- existing `agent-runtime-resilience-smoke.js` still passes;
-- existing failed-tool adaptation remains intact.
-
-If any of these fail, P1.1 remains open.
-
-## Browser architecture findings retained
-
-### DOM/context extraction — proven bounded
-
-`browserSnapshot` avoids raw HTML. It returns bounded visible text plus a bounded visible interactive inventory using temporary `aa-N` refs.
-
-### Page readiness/settlement — still insufficient
-
-Navigation waits for `document.readyState` to become `interactive` or `complete`. Ordinary DOM click uses a fixed `100 ms` delay before observing URL/title/readyState and reports downstream outcome as unverified.
-
-No current source proof establishes:
-
-- SPA router completion;
+- SPA route completion;
 - hydration completion;
-- DOM mutation quiet period;
+- DOM mutation stability;
 - bounded network/activity settlement;
-- automatic settled snapshot revision.
+- settled snapshot/state revision.
 
-This remains the next P1 browser hardening gate **after** progress reconciliation is proven.
+### Required method before source changes
 
-### Browser state isolation — partial
+```text
+map browser-tool-runtime action flow
+→ identify navigation and non-navigation branches
+→ identify current readiness owner
+→ define one bounded settlement observable
+→ define falsifier
+→ add focused regression
+→ only then patch source
+```
 
-Managed Chrome uses a reusable Access-owned `--user-data-dir`. Persistent identity remains correct for ChatGPT/provider transport login, while general browser-tool tasks still lack a separate ephemeral task-context lifecycle.
+### Intended scope
 
-### Accessibility/visual perception — partial
+ADD:
+- navigation transition detection;
+- bounded DOM mutation quiet window;
+- bounded network/activity settlement where meaningful;
+- snapshot/state revision after settled transition;
+- explicit timeout classification.
 
-Current semantics are DOM-derived, not a native Chromium Accessibility tree. Native bounded AX extraction and optional screenshot perception remain P2 hardening.
+CHANGE:
+- replace fixed `wait(100)` as primary downstream settlement;
+- strengthen `_waitReady()` beyond document-ready-state-only semantics.
 
-## Pending P1/P2 work
+REMOVE:
+- arbitrary fixed sleep as downstream-success proxy.
 
-1. **P1 Runtime Progress / Re-entry Contract** — source implemented at `741d208`, local regression pending.
-2. **P1 Bounded Page Settlement** — implementation not started.
-3. **P1 Durable Stop terminal receipt** — live acceptance open.
-4. **P1 turn-37c recovery** — unresolved until explicit recovery receipt.
-5. **P1 Terminal-state UI live acceptance** — source proven, live terminal outcome still blocked by runtime termination control.
-6. **P1 node-pty AttachConsole owner map** — occurrence proven, causality unproven.
-7. **P1 Cline successful-login restart persistence**.
-8. **P1 Arbitrary process-death exactly-once recovery**.
-9. **P1/P2 Isolated task browser contexts**.
-10. **P2 Native AX + optional screenshot perception**.
-11. **P2 CSP inline-style cleanup**.
-12. **P2 Parallel settings cleanup after compatibility scan**.
+DO NOT TOUCH:
+- protected ChatGPT transport target ownership;
+- HTTP/HTTPS URL safety rules;
+- persistent relay login/profile continuity;
+- P1.1 progress guard.
 
-## Closed/proven work retained
+## Pending after settlement
 
-- provider-context amplification repair — live revalidated;
-- Cline auth source authority repair — source/regression proven;
-- candidate readiness without provider activation — proven;
-- post-result continuation A→B→C — current-live proven;
-- terminal-state renderer source repair — source/regression proven;
-- preload semantic event normalization — current-live proven;
-- earlier `turn-1f8...` ambiguous recovery — quarantined/cleared.
-
-## Explicit non-goals
-
-Do not:
-
-- increase the tool budget as a stagnation fix;
-- replace reasoning with a deterministic workflow machine;
-- add semantic objective envelopes/classifiers;
-- weaken Browser Loop provider readiness;
-- alter provider timeout values to force acceptance;
-- switch providers automatically;
-- reset the persistent ChatGPT transport login per task;
-- perform broad renderer rewrites.
+- Durable Stop terminal receipt acceptance;
+- `turn-37c...` recovery reconciliation;
+- terminal-state UI live acceptance;
+- node-pty `AttachConsole` owner mapping;
+- Cline successful-login restart persistence;
+- arbitrary process-death exactly-once recovery;
+- isolated browser task contexts;
+- native AX + optional screenshot perception;
+- CSP and parallel-settings cleanup.
