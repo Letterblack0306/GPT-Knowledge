@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
   "project": "Access Browser Agent",
-  "verified_at": "2026-08-21T04:15:00+04:00",
+  "verified_at": "2026-08-21T05:29:00+04:00",
   "source_repo": "Letterblack0306/access-browser-agent",
   "source_branch": "main",
-  "source_head": "6459bdc844883c1a9916733e4b3909aae4c25979",
-  "overall_classification": "TERMINAL_STATE_UI_SOURCE_REGRESSION_PROVEN_LIVE_ACCEPTANCE_ACTIVE",
+  "source_head": "fcb533d08ee837cc4a936c849efb6414dee29190",
+  "overall_classification": "AGENT_UI_EVENT_DISPATCH_LIVE_PROVEN_RUNTIME_TERMINATION_ACTIVE",
   "authority_note": "This file is a GPT-Knowledge projection of verified repository/history/runtime evidence. Current repository, runtime and acceptance evidence remain authoritative.",
   "closed": [
     {"id":"provider-context-compaction","title":"Historical provider context bounded","classification":"FIXED_AND_REVALIDATED_CURRENT_LIVE","detail":"Historical tool-result amplification is bounded in provider-facing context; protected-context live Browser Loop proof exists."},
@@ -14,23 +14,30 @@
     {"id":"candidate-provider-readiness","title":"Candidate readiness without activation","classification":"PROVEN_SOURCE_AND_LOCAL_REGRESSION","detail":"Candidate testing leaves active provider authority unchanged and is regression-protected."},
     {"id":"current-live-relay-start","title":"Current-main Browser Relay start","classification":"PROVEN_CURRENT_LIVE","detail":"Fresh current-main runtime accepted Browser Relay work and executed the local agent, proving target selection, relay start, instruction ingress and runtime dispatch."},
     {"id":"post-result-continuation-live","title":"Post-result assistant continuation","classification":"PROVEN_CURRENT_LIVE","detail":"A→B→C live behavior proved subsequent assistant turns are independently ingested and no longer swallowed as delivery_response."},
-    {"id":"terminal-state-ui-source","title":"Blocked terminal-state rendering source repair","classification":"PROVEN_SOURCE_AND_LOCAL_REGRESSION","detail":"GitHub main commits 0083e708 and 6459bdc preserve BLOCKED truth at the renderer boundary. Local workspace fast-forwarded to 6459bdc; node syntax check and agent-workflow-view-patch-smoke passed; local main matches origin/main with only protected untracked section_09.md."},
+    {"id":"terminal-state-ui-source","title":"Blocked terminal-state rendering source repair","classification":"PROVEN_SOURCE_AND_LOCAL_REGRESSION","detail":"0083e708 + 6459bdc preserve blocked terminal wording. Restored baseline at 21f5296 passed syntax and focused renderer smoke with local main matching origin/main and protected section_09.md untouched."},
+    {"id":"agent-ui-event-dispatch","title":"Semantic agent UI event dispatch","classification":"PROVEN_CURRENT_LIVE","detail":"Current main fcb533d normalizes agent events at electron/preload.js so semantic event type reaches the legacy renderer while original lifecycle phase is preserved as lifecyclePhase. Fresh runtime repeatedly showed execution.tool.started followed by execution.tool.completed for browserConversationRead."},
+    {"id":"instruction-recovery-turn-1f8","title":"Ambiguous turn turn-1f8a7c12 recovery","classification":"QUARANTINED_AND_CLEARED","detail":"Recovery UI reconciliation succeeded for the earlier ambiguous executing turn. Historical problem rows may remain visible but are not current authority."},
     {"id":"browser-readiness-gate","title":"Browser Loop active-provider readiness gate","classification":"SUPPORTED_CURRENT_ARCHITECTURE","detail":"Current evidence continues to support fail-closed agent readiness before normal relay execution."}
   ],
   "supported_historical": [
     {"id":"provider-test-authority-leak","title":"Inherited Cline Test READY authority leak","classification":"PROVEN_INITIAL_DEFECT_REPAIRED","detail":"Initial Test READY mutated live provider authority while persist:false left durable selection unchanged. Current candidate-readiness repair removes that side effect."},
-    {"id":"session-continuity","title":"Continuing local agent session","classification":"HISTORICAL_PLUS_REGRESSION_PROOF","detail":"newSession:false continuity is historically proven and protected by current continuation regressions."}
+    {"id":"session-continuity","title":"Continuing local agent session","classification":"HISTORICAL_PLUS_REGRESSION_PROOF","detail":"newSession:false continuity is historically proven and protected by current continuation regressions."},
+    {"id":"oversized-renderer-rewrite","title":"Oversized renderer rewrite attempt","classification":"REVERTED","detail":"The broad e0cd4ba/e82aab renderer replacement was rejected for scope and reverted. 21f5296 restored the proven 6459 renderer baseline before the bounded preload fix was applied."}
   ],
   "pending": [
-    {"id":"terminal-state-ui","title":"Non-complete terminal-state rendering","priority":"P1","classification":"ACTIVE_LIVE_ACCEPTANCE_GATE","detail":"Source/regression repair is proven at 6459bdc. Restart Access on this head, then verify a genuine BLOCKED terminal outcome is visibly labeled as blocked rather than complete or generic failed. Failed, stopped and delivery-unverified remain bounded follow-ups after BLOCKED is accepted."},
+    {"id":"runtime-turn-termination","title":"Repeated browserConversationRead without terminal progress","priority":"P1","classification":"ACTIVE_LIVE_RUNTIME_GATE","detail":"Fresh current-head turn turn-37c41f6e450f190f repeatedly completed browserConversationRead calls for several minutes without reaching a durable terminal state. The turn later remained durably executing and required recovery. Determine why the reasoning/runtime loop does not terminate and whether Agent Stop writes a durable stopped/cancelled receipt."},
+    {"id":"turn-37c-recovery","title":"Ambiguous turn turn-37c41f6e recovery","priority":"P1","classification":"RECOVERY_REQUIRED_UNRESOLVED","detail":"Restart evidence still reports turn-37c41f6e450f190f in durable executing state with no durable completion or abandonment receipt. Do not claim completion. Reconcile only with explicit evidence-backed recovery action."},
+    {"id":"terminal-state-ui","title":"Non-complete terminal-state rendering","priority":"P1","classification":"SOURCE_PROVEN_LIVE_ACCEPTANCE_BLOCKED_BY_RUNTIME_TERMINATION","detail":"Blocked terminal renderer source/regression remains proven, but the current live turn did not reach a terminal outcome. Resume blocked/failed/stopped UI acceptance after runtime termination is controlled."},
+    {"id":"node-pty-attachconsole","title":"node-pty AttachConsole failure after prolonged run","priority":"P1","classification":"OBSERVED_CURRENT_RUNTIME_FAILURE_NEEDS_OWNER_MAP","detail":"The prolonged npm start run eventually emitted node_modules/node-pty/lib/conpty_console_list_agent.js AttachConsole failed. This is current evidence but is not yet classified as the cause of the repeated browser-read loop or recovery state."},
     {"id":"cline-auth-live-persistence","title":"Cline auth durable live acceptance","priority":"P1","classification":"INCONCLUSIVE_UNTIL_SUCCESSFUL_LOGIN","detail":"Requires successful supported sign-in, durable credential creation, restart and authenticated reload."},
     {"id":"process-death-recovery","title":"Arbitrary process-death recovery","priority":"P1","classification":"OPEN","detail":"Need exactly-once acceptance across executing, delivering and delivery_unverified boundaries."},
+    {"id":"csp-inline-style","title":"Renderer CSP inline-style violations","priority":"P2","classification":"OBSERVED_NON_BLOCKING_UI_ISSUE","detail":"Fresh runtime emits style-src self inline-style violations while renderer_boot still succeeds. Keep separate from the current runtime termination gate."},
     {"id":"continuation-diagnostic-audit","title":"Optional exact continuation diagnostic audit","priority":"P2","classification":"NON_BLOCKING_INSTRUMENTATION_AUDIT","detail":"Exact delivery_response_resolved → instruction_received → newSession:false extraction remains archival only."},
     {"id":"parallel-settings-cleanup","title":"Parallel historical settings implementation","priority":"P2","classification":"SOURCE_CLEANUP_DECISION_PENDING","detail":"Prove whether any compatibility path still imports electron/settings-module.js before consolidation/removal."}
   ],
   "next_acceptance": {
-    "question": "On a fresh Access runtime loaded from 6459bdc, does a genuine BLOCKED terminal outcome render visibly as BLOCKED rather than Plan complete or generic Task failed?",
-    "observable": "Fresh runtime is loaded from 6459bdc, then a genuine blocked execution reaches the renderer and the UI/status text preserves blocked wording while the plan card remains blocked.",
-    "falsifier": "If the live UI still shows Plan complete, Done, or generic Task failed for the blocked execution, the terminal-state UI gate remains open and the exact later event overriding the label becomes the next owner to inspect."
+    "question": "Why does current-head turn turn-37c41f6e450f190f repeatedly call browserConversationRead without reaching a durable terminal state, and does Agent Stop produce a durable stopped/cancelled receipt?",
+    "observable": "One bounded live turn either reaches a terminal receipt on its own or, after one Agent Stop action, emits a durable stopped/cancelled terminal state that survives relay restart without INSTRUCTION_RECOVERY_REQUIRED.",
+    "falsifier": "If the same turn continues repeated browserConversationRead calls or restart still reports durable executing after Stop, runtime termination remains open and the exact stop/receipt owner becomes the next source owner to inspect."
   }
 }
