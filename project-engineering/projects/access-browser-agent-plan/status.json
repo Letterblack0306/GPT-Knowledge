@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "project": "Access Browser Agent",
-  "verified_at": "2026-08-21T11:56:00+04:00",
+  "verified_at": "2026-08-21T12:00:00+04:00",
   "source_repo": "Letterblack0306/access-browser-agent",
   "source_branch": "main",
   "source_head": "0048d0dceb062fbabb06423dfa419a6050a4713e",
@@ -28,9 +28,9 @@
   "active": {
     "id": "stop-durable-terminal",
     "title": "P1 Durable Stop terminal receipt",
-    "classification": "SOURCE_OWNER_MAPPED_DURABLE_ACCEPTANCE_PENDING",
+    "classification": "SOURCE_OWNER_MAPPED_EXISTING_TESTS_PARTIAL_ACCEPTANCE_REQUIRED",
     "question": "Does an actual Stop return only after the authoritative session.stopped event and stopped checkpoint/snapshot are durably persisted and visible through the receipt surface?",
-    "method": "Reuse existing owners and tests before adding any new harness. No source patch until a focused persistence acceptance proves a gap.",
+    "method": "Reuse existing owners and tests. No runtime source patch is authorized. Run one bounded persistence acceptance against current code; only if that fails may a repair be planned.",
     "owner_map": {
       "ui_dispatch": "electron/renderer.js runRuntimeControl('stop') -> window.accessIde.runtimeStop()",
       "preload_ipc": "electron/preload.js runtimeStop -> ide:runtime-stop",
@@ -42,44 +42,50 @@
       "durable_store": "src/agent/executive/AgentEventStore.js append() writes events.jsonl; checkpoint() atomically writes checkpoints/<id>.json and snapshot.json; writes are awaited/serialized",
       "receipt_projection": "UnifiedAgentService.receipts() projects persisted executive events with eventId as receiptId and lists checkpoints"
     },
-    "existing_test_owner": {
-      "path": "test/agent-runtime-adapter-stop-lifecycle-smoke.js",
-      "classification": "PROVEN_SOURCE_PARTIAL",
-      "proves": [
-        "completed durable sessions are preserved rather than terminalized again",
-        "an in-flight session delegates to the authoritative stop path exactly once"
-      ],
-      "does_not_yet_prove": [
-        "session.stopped exists in persisted events.jsonl after Stop",
-        "a stopped checkpoint exists",
-        "snapshot.json reflects stopped terminal state",
-        "receipt projection exposes the durable terminal receipt after Stop"
-      ]
+    "test_inventory": {
+      "inspection_command_hash": "D952601F87D5722B18B79305B63B8213B6C8D72150B5B2C3AE0B25FC6284BA02",
+      "agent_runtime_adapter_stop_lifecycle_smoke": {
+        "classification": "PROVEN_SOURCE_PARTIAL",
+        "proves": ["completed sessions are preserved", "running sessions delegate to service.stop exactly once"],
+        "missing": ["disk-persisted session.stopped", "stopped checkpoint/snapshot", "receipt projection after Stop"]
+      },
+      "agent_runtime_resilience_smoke": {
+        "classification": "PROVEN_SOURCE_PARTIAL",
+        "proves": ["real AgentSessionRuntime -> AgentExecutive in-flight Stop aborts a blocking provider and returns status stopped"],
+        "missing": ["assert events.jsonl contains session.stopped", "assert stopped checkpoint exists", "assert snapshot.json is stopped", "assert receipt projection exposes terminal receipt"]
+      },
+      "integration_smoke": {
+        "classification": "PROVEN_SOURCE_PARTIAL",
+        "proves": ["session state is written to configured stateRoot", "event/receipt infrastructure contains durable session events"],
+        "missing": ["Stop-specific durable persistence"]
+      },
+      "execution_trace_smoke": {
+        "classification": "PROVEN_SOURCE_PARTIAL",
+        "proves": ["AgentEventStore persists and reloads execution events"],
+        "missing": ["Stop terminal persistence"]
+      },
+      "combined_stop_persistence_regression": "ABSENT"
     },
-    "inspection_evidence": {
-      "native_search_command_hash": "90FC9DFD5853C9F53F133969BC04CCE8005B7847D94A27956E73A00A102E789A",
-      "focused_owner_command_hash": "5D492FF5468909154388483161224D976BE8C927A391B1BECECB8B1F9D8175E9",
-      "head": "0048d0dceb062fbabb06423dfa419a6050a4713e"
-    }
+    "falsifier": "If a bounded current-code acceptance cannot observe session.stopped in events.jsonl, a stopped checkpoint/snapshot, and a projected receipt after stop() returns, classify the product gap and only then authorize a runtime repair."
   },
   "proven_findings": [
     {"id":"progress-reentry","classification":"PROVEN_SOURCE_AND_LOCAL_REGRESSION"},
     {"id":"browser-settlement","classification":"PROVEN_SOURCE_AND_LOCAL_REGRESSION"},
     {"id":"stop-terminal-owner","classification":"PROVEN_SOURCE","detail":"AgentExecutive.stop is the terminal-state authority. AgentEventStore is the durable persistence owner. UnifiedAgentService.receipts projects stored event IDs as receipts and lists checkpoints."},
-    {"id":"stop-adapter-test-owner","classification":"PROVEN_SOURCE_PARTIAL","detail":"test/agent-runtime-adapter-stop-lifecycle-smoke.js proves exactly-once delegation for running sessions and preservation of completed sessions, but not durable event/checkpoint persistence."},
+    {"id":"stop-existing-tests","classification":"PROVEN_SOURCE_PARTIAL","detail":"Existing adapter/resilience/integration/trace tests collectively cover delegation, stopped state, state-root persistence, receipts infrastructure and event-store persistence, but no existing regression asserts the full durable Stop persistence contract."},
     {"id":"persistent-browser-profile","classification":"PROVEN_SOURCE"},
     {"id":"accessibility-layer","classification":"PARTIAL_SOURCE"}
   ],
   "hardening_plan": [
     {"order":1,"id":"progress-reentry","priority":"P1 CRITICAL","state":"PROVEN_SOURCE_AND_LOCAL_REGRESSION"},
     {"order":2,"id":"page-settlement","priority":"P1 CRITICAL","state":"PROVEN_SOURCE_AND_LOCAL_REGRESSION","implementation_head":"0048d0dceb062fbabb06423dfa419a6050a4713e"},
-    {"order":3,"id":"stop-durable-terminal","priority":"P1","state":"SOURCE_OWNER_MAPPED_DURABLE_ACCEPTANCE_PENDING"},
+    {"order":3,"id":"stop-durable-terminal","priority":"P1","state":"SOURCE_OWNER_MAPPED_EXISTING_TESTS_PARTIAL_ACCEPTANCE_REQUIRED"},
     {"order":4,"id":"turn-37c-recovery","priority":"P1","state":"RECOVERY_REQUIRED_UNRESOLVED"},
     {"order":5,"id":"browser-context-isolation","priority":"P1/P2","state":"PENDING"},
     {"order":6,"id":"ax-visual-perception","priority":"P2","state":"PENDING"}
   ],
   "pending": [
-    {"id":"stop-durable-terminal","priority":"P1","classification":"DURABLE_PERSISTENCE_ACCEPTANCE_REQUIRED"},
+    {"id":"stop-durable-terminal","priority":"P1","classification":"BOUNDED_DURABLE_PERSISTENCE_ACCEPTANCE_REQUIRED"},
     {"id":"turn-37c-recovery","priority":"P1","classification":"RECOVERY_REQUIRED_UNRESOLVED"},
     {"id":"terminal-state-ui","priority":"P1","classification":"SOURCE_PROVEN_LIVE_ACCEPTANCE_BLOCKED"},
     {"id":"node-pty-attachconsole","priority":"P1","classification":"OBSERVED_NEEDS_OWNER_MAP"},
@@ -89,8 +95,8 @@
     {"id":"ax-visual-perception","priority":"P2","classification":"ARCHITECTURE_HARDENING_PENDING"}
   ],
   "next_acceptance": {
-    "question": "Is durable Stop persistence already covered by an existing lower-level AgentExecutive/AgentEventStore regression?",
-    "observable": "Inspect existing tests for AgentExecutive, AgentSessionRuntime, AgentEventStore, session.stopped, checkpoint('stopped'), events.jsonl and snapshot.json before adding any test or changing source.",
-    "falsifier": "If an existing regression already proves the durable Stop event/checkpoint/snapshot/receipt path, reuse and run it. Only if no such regression exists may a focused test extension be planned."
+    "question": "Does the current implementation already satisfy the full durable Stop persistence contract?",
+    "observable": "Create one temporary in-flight AgentSessionRuntime session, stop it through the current runtime owner, then verify returned status stopped, events.jsonl contains exactly one session.stopped terminal event, a stopped checkpoint and snapshot.json exist, and UnifiedAgentService.receipts projects the session.stopped event plus checkpoint.",
+    "falsifier": "Any missing terminal event, checkpoint, snapshot state or projected receipt after stop() returns proves the current implementation is not durably terminal and authorizes a focused repair."
   }
 }
