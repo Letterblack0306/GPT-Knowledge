@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated": "2026-08-19",
+  "updated": "2026-08-21",
   "references": [
-    {"id":"status","label":"LBE workspace status mirror","path":"../lbe-persistent-agent-wall-status.md","kind":"reference"},
-    {"id":"routing","label":"C5/R7 acceptance routing","path":"../lbe-persistent-agent-c5-r7-acceptance-routing.md","kind":"routing"},
+    {"id":"status","label":"LBE current project mirror","path":"../lbe-persistent-agent-wall-status.md","kind":"reference"},
+    {"id":"routing","label":"LBE acceptance and implementation routing","path":"../lbe-persistent-agent-c5-r7-acceptance-routing.md","kind":"routing"},
     {"id":"plan-method","label":"Project feature implementation plan method","path":"../../project-feature-implementation-plan.md","kind":"method"},
     {"id":"release-method","label":"Python/PyPI trusted publication workflow","path":"../../python-pypi-trusted-publication-release-workflow.md","kind":"method"},
     {"id":"project","label":"Canonical LBE project repository","url":"https://github.com/Letterblack0306/LBE_Presistent_Agent_wall","kind":"project"},
-    {"id":"release-run","label":"Successful PyPI 2.0.3 publication run","url":"https://github.com/praveshjannath/lbe-ci-validation/actions/runs/32287537950","kind":"evidence"}
+    {"id":"current-gate","label":"Current LBE machine gate and acceptance records","url":"https://github.com/Letterblack0306/LBE_Presistent_Agent_wall/tree/main/docs/acceptance","kind":"project-authority"}
   ]
 }
