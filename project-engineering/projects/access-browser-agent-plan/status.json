@@ -1,43 +1,68 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "project": "Access Browser Agent",
-  "verified_at": "2026-08-21T05:29:00+04:00",
+  "verified_at": "2026-08-21T05:57:00+04:00",
   "source_repo": "Letterblack0306/access-browser-agent",
   "source_branch": "main",
-  "source_head": "fcb533d08ee837cc4a936c849efb6414dee29190",
-  "overall_classification": "AGENT_UI_EVENT_DISPATCH_LIVE_PROVEN_RUNTIME_TERMINATION_ACTIVE",
-  "authority_note": "This file is a GPT-Knowledge projection of verified repository/history/runtime evidence. Current repository, runtime and acceptance evidence remain authoritative.",
-  "closed": [
-    {"id":"provider-context-compaction","title":"Historical provider context bounded","classification":"FIXED_AND_REVALIDATED_CURRENT_LIVE","detail":"Historical tool-result amplification is bounded in provider-facing context; protected-context live Browser Loop proof exists."},
-    {"id":"cline-auth-source-repair","title":"Cline auth source authority repaired","classification":"PROVEN_SOURCE_AND_REGRESSION","detail":"Wrapper-owned durable auth and stale-preference protections passed focused regression. Live sign-in persistence remains separately open."},
-    {"id":"post-result-continuation-source","title":"Post-result continuation source repair","classification":"PROVEN_SOURCE_AND_REGRESSION","detail":"fab58f2 + a553fe9 preserve the first assistant turn after result delivery and protect same-session execution with newSession:false."},
-    {"id":"candidate-provider-readiness","title":"Candidate readiness without activation","classification":"PROVEN_SOURCE_AND_LOCAL_REGRESSION","detail":"Candidate testing leaves active provider authority unchanged and is regression-protected."},
-    {"id":"current-live-relay-start","title":"Current-main Browser Relay start","classification":"PROVEN_CURRENT_LIVE","detail":"Fresh current-main runtime accepted Browser Relay work and executed the local agent, proving target selection, relay start, instruction ingress and runtime dispatch."},
-    {"id":"post-result-continuation-live","title":"Post-result assistant continuation","classification":"PROVEN_CURRENT_LIVE","detail":"A→B→C live behavior proved subsequent assistant turns are independently ingested and no longer swallowed as delivery_response."},
-    {"id":"terminal-state-ui-source","title":"Blocked terminal-state rendering source repair","classification":"PROVEN_SOURCE_AND_LOCAL_REGRESSION","detail":"0083e708 + 6459bdc preserve blocked terminal wording. Restored baseline at 21f5296 passed syntax and focused renderer smoke with local main matching origin/main and protected section_09.md untouched."},
-    {"id":"agent-ui-event-dispatch","title":"Semantic agent UI event dispatch","classification":"PROVEN_CURRENT_LIVE","detail":"Current main fcb533d normalizes agent events at electron/preload.js so semantic event type reaches the legacy renderer while original lifecycle phase is preserved as lifecyclePhase. Fresh runtime repeatedly showed execution.tool.started followed by execution.tool.completed for browserConversationRead."},
-    {"id":"instruction-recovery-turn-1f8","title":"Ambiguous turn turn-1f8a7c12 recovery","classification":"QUARANTINED_AND_CLEARED","detail":"Recovery UI reconciliation succeeded for the earlier ambiguous executing turn. Historical problem rows may remain visible but are not current authority."},
-    {"id":"browser-readiness-gate","title":"Browser Loop active-provider readiness gate","classification":"SUPPORTED_CURRENT_ARCHITECTURE","detail":"Current evidence continues to support fail-closed agent readiness before normal relay execution."}
+  "source_head": "b2b6ff31f781c1299e916d52ab3122f0c0ac3507",
+  "overall_classification": "RUNTIME_NO_PROGRESS_CONTRACT_PROVEN_ABSENT_IMPLEMENTATION_PENDING",
+  "authority_note": "GPT-Knowledge is a projection of verified repository/runtime evidence. Current repository source, local runtime evidence and acceptance results remain authoritative.",
+  "current_architecture": {
+    "classification": "STRUCTURED_AGENT_LOOP_PARTIAL_CLOSED_LOOP",
+    "reasoning_owner": "LiveAgentCore / provider remains responsible for strategy and tool choice.",
+    "runtime_owner": "Runtime owns lifecycle, governed execution, evidence and terminal truth, but does not yet own material-progress reconciliation.",
+    "key_gap": "After a successful tool result the provider may request the same action again without a deterministic state-delta/no-progress interlock."
+  },
+  "proven_findings": [
+    {"id":"event-dispatch-live","classification":"PROVEN_CURRENT_LIVE","detail":"fcb533d preload normalization restored semantic execution.tool.started/execution.tool.completed delivery to the legacy renderer."},
+    {"id":"repeated-browser-read-live","classification":"PROVEN_CURRENT_LIVE_DEFECT","detail":"turn-37c41f6e450f190f repeatedly completed browserConversationRead without reaching terminal progress and later remained durable state executing."},
+    {"id":"no-progress-contract-absent","classification":"PROVEN_BY_FAILING_REGRESSION","detail":"test/agent-runtime-no-progress-smoke.js at b2b6ff3 expects second duplicate observation to block, but current runtime returned completed. This proves the reconciliation contract is absent before implementation."},
+    {"id":"browser-dom-map","classification":"PROVEN_SOURCE","detail":"browserSnapshot does not send raw HTML. It returns bounded visible text plus visible interactive nodes with temporary aa-N refs and metadata."},
+    {"id":"browser-readiness-weak","classification":"PROVEN_SOURCE_GAP","detail":"Browser navigation readiness currently relies on document.readyState interactive/complete. Non-navigation DOM click waits a fixed 100 ms before returning downstreamOutcome UNVERIFIED; no network/mutation/hydration settlement contract is proven."},
+    {"id":"persistent-browser-profile","classification":"PROVEN_SOURCE","detail":"Managed Chrome launches with a reusable Access-owned --user-data-dir profile. This preserves transport login state but does not isolate general browsing state per task."},
+    {"id":"accessibility-layer","classification":"PARTIAL_SOURCE","detail":"Current snapshot derives semantics from DOM selectors/aria-label/title/innerText/value/placeholder. Native Chromium Accessibility.getFullAXTree and screenshot dual perception are not current declared capabilities."}
   ],
-  "supported_historical": [
-    {"id":"provider-test-authority-leak","title":"Inherited Cline Test READY authority leak","classification":"PROVEN_INITIAL_DEFECT_REPAIRED","detail":"Initial Test READY mutated live provider authority while persist:false left durable selection unchanged. Current candidate-readiness repair removes that side effect."},
-    {"id":"session-continuity","title":"Continuing local agent session","classification":"HISTORICAL_PLUS_REGRESSION_PROOF","detail":"newSession:false continuity is historically proven and protected by current continuation regressions."},
-    {"id":"oversized-renderer-rewrite","title":"Oversized renderer rewrite attempt","classification":"REVERTED","detail":"The broad e0cd4ba/e82aab renderer replacement was rejected for scope and reverted. 21f5296 restored the proven 6459 renderer baseline before the bounded preload fix was applied."}
+  "closed": [
+    {"id":"provider-context-compaction","classification":"FIXED_AND_REVALIDATED_CURRENT_LIVE"},
+    {"id":"cline-auth-source-repair","classification":"PROVEN_SOURCE_AND_REGRESSION"},
+    {"id":"candidate-provider-readiness","classification":"PROVEN_SOURCE_AND_LOCAL_REGRESSION"},
+    {"id":"post-result-continuation-live","classification":"PROVEN_CURRENT_LIVE"},
+    {"id":"terminal-state-ui-source","classification":"PROVEN_SOURCE_AND_LOCAL_REGRESSION"},
+    {"id":"agent-ui-event-dispatch","classification":"PROVEN_CURRENT_LIVE"},
+    {"id":"instruction-recovery-turn-1f8","classification":"QUARANTINED_AND_CLEARED"}
+  ],
+  "active": {
+    "id": "runtime-progress-reentry",
+    "title": "P1 Runtime Progress / Re-entry Contract",
+    "classification": "PROVEN_GAP_FAILING_REGRESSION_READY",
+    "question": "Can identical tool observations be detected between tool completion and the next provider.complete() without taking reasoning ownership away from the model or polluting durable conversation history?",
+    "failing_regression": "test/agent-runtime-no-progress-smoke.js",
+    "regression_commit": "b2b6ff31f781c1299e916d52ab3122f0c0ac3507",
+    "falsifier": "If the runtime still invokes a fourth provider completion after initial observation plus two identical duplicates, the progress guard is not implemented."
+  },
+  "hardening_plan": [
+    {"order":1,"id":"progress-reentry","priority":"P1 CRITICAL","title":"Deterministic progress/re-entry guard","target":"LiveAgentCore between execution.tool.completed and next provider.complete()","add":["stable normalized argument/output fingerprint","SHA-256 observation fingerprint","consecutive duplicate counter scoped to active step","transient provider-facing RUNTIME_NO_STATE_CHANGE notice on first duplicate","runtime.no_progress event/evidence","no_progress_stagnation blocker on second duplicate"],"change":["provider.complete() input may include one transient runtime notice without persisting it","global 40-call budget remains final fuse, not progress detection"],"remove":["dependence on provider self-detecting identical observation loops"],"do_not_touch":["reasoning ownership","newSession:false continuity","Browser Relay transport semantics","durable tool evidence"]},
+    {"order":2,"id":"page-settlement","priority":"P1 CRITICAL","title":"Bounded browser settlement contract","target":"src/browser/browser-tool-runtime.js","add":["navigation detection","bounded DOM mutation quiet window","bounded network/activity settlement where meaningful","snapshot/state revision after settled transition","explicit timeout classification"],"change":["replace fixed post-click wait(100) as the primary settlement mechanism","strengthen _waitReady beyond document.readyState-only semantics"],"remove":["arbitrary sleep as downstream-success proxy"],"do_not_touch":["protected ChatGPT transport target ownership","HTTP/HTTPS URL safety rules"]},
+    {"order":3,"id":"browser-context-isolation","priority":"P1/P2","title":"Persistent relay identity + isolated task contexts","target":"Managed Chrome / BrowserToolRuntime ownership boundary","add":["ephemeral task browser context lifecycle","browserContextCreate/reset/close or equivalent deterministic lifecycle","task-scoped cookies/storage/cache reset"],"change":["general browser tools should not automatically inherit all persistent transport state"],"remove":["implicit assumption that one persistent profile is suitable for both relay identity and arbitrary task browsing"],"do_not_touch":["persistent ChatGPT login/profile required by Browser Relay"]},
+    {"order":4,"id":"ax-visual-perception","priority":"P2","title":"Native AX tree + optional visual perception","target":"browserSnapshot perception layer","add":["CDP Accessibility.getFullAXTree or bounded AX equivalent","stable semantic refs mapped to actionable DOM targets","optional browserScreenshot capability for layout/CSS/canvas verification"],"change":["custom DOM semantic approximation becomes fallback/supporting projection rather than sole semantic source"],"remove":["claim that current aa-N DOM map is a native accessibility tree"],"do_not_touch":["bounded context limits","fresh-snapshot requirement after interaction"]}
   ],
   "pending": [
-    {"id":"runtime-turn-termination","title":"Repeated browserConversationRead without terminal progress","priority":"P1","classification":"ACTIVE_LIVE_RUNTIME_GATE","detail":"Fresh current-head turn turn-37c41f6e450f190f repeatedly completed browserConversationRead calls for several minutes without reaching a durable terminal state. The turn later remained durably executing and required recovery. Determine why the reasoning/runtime loop does not terminate and whether Agent Stop writes a durable stopped/cancelled receipt."},
-    {"id":"turn-37c-recovery","title":"Ambiguous turn turn-37c41f6e recovery","priority":"P1","classification":"RECOVERY_REQUIRED_UNRESOLVED","detail":"Restart evidence still reports turn-37c41f6e450f190f in durable executing state with no durable completion or abandonment receipt. Do not claim completion. Reconcile only with explicit evidence-backed recovery action."},
-    {"id":"terminal-state-ui","title":"Non-complete terminal-state rendering","priority":"P1","classification":"SOURCE_PROVEN_LIVE_ACCEPTANCE_BLOCKED_BY_RUNTIME_TERMINATION","detail":"Blocked terminal renderer source/regression remains proven, but the current live turn did not reach a terminal outcome. Resume blocked/failed/stopped UI acceptance after runtime termination is controlled."},
-    {"id":"node-pty-attachconsole","title":"node-pty AttachConsole failure after prolonged run","priority":"P1","classification":"OBSERVED_CURRENT_RUNTIME_FAILURE_NEEDS_OWNER_MAP","detail":"The prolonged npm start run eventually emitted node_modules/node-pty/lib/conpty_console_list_agent.js AttachConsole failed. This is current evidence but is not yet classified as the cause of the repeated browser-read loop or recovery state."},
-    {"id":"cline-auth-live-persistence","title":"Cline auth durable live acceptance","priority":"P1","classification":"INCONCLUSIVE_UNTIL_SUCCESSFUL_LOGIN","detail":"Requires successful supported sign-in, durable credential creation, restart and authenticated reload."},
-    {"id":"process-death-recovery","title":"Arbitrary process-death recovery","priority":"P1","classification":"OPEN","detail":"Need exactly-once acceptance across executing, delivering and delivery_unverified boundaries."},
-    {"id":"csp-inline-style","title":"Renderer CSP inline-style violations","priority":"P2","classification":"OBSERVED_NON_BLOCKING_UI_ISSUE","detail":"Fresh runtime emits style-src self inline-style violations while renderer_boot still succeeds. Keep separate from the current runtime termination gate."},
-    {"id":"continuation-diagnostic-audit","title":"Optional exact continuation diagnostic audit","priority":"P2","classification":"NON_BLOCKING_INSTRUMENTATION_AUDIT","detail":"Exact delivery_response_resolved → instruction_received → newSession:false extraction remains archival only."},
-    {"id":"parallel-settings-cleanup","title":"Parallel historical settings implementation","priority":"P2","classification":"SOURCE_CLEANUP_DECISION_PENDING","detail":"Prove whether any compatibility path still imports electron/settings-module.js before consolidation/removal."}
+    {"id":"runtime-progress-reentry","priority":"P1","classification":"ACTIVE_IMPLEMENTATION_GATE","detail":"Failing regression proves the no-progress contract is absent. Implement smallest kernel and make this regression pass before live Browser Loop revalidation."},
+    {"id":"browser-settlement","priority":"P1","classification":"SOURCE_GAP_MAPPED_IMPLEMENTATION_NOT_STARTED","detail":"Replace readyState + fixed 100ms interaction delay with bounded transition settlement and fresh state revision."},
+    {"id":"turn-37c-recovery","priority":"P1","classification":"RECOVERY_REQUIRED_UNRESOLVED","detail":"turn-37c41f6e450f190f remains an evidence-backed recovery item until explicit reconciliation receipt is observed."},
+    {"id":"stop-durable-terminal","priority":"P1","classification":"LIVE_ACCEPTANCE_OPEN","detail":"Prove Agent Stop produces durable stopped/cancelled state and does not leave Browser Relay instruction journal executing."},
+    {"id":"terminal-state-ui","priority":"P1","classification":"SOURCE_PROVEN_LIVE_ACCEPTANCE_BLOCKED","detail":"Resume BLOCKED/FAILED/STOPPED UI truth acceptance once runtime termination/reconciliation is controlled."},
+    {"id":"node-pty-attachconsole","priority":"P1","classification":"OBSERVED_NEEDS_OWNER_MAP","detail":"AttachConsole failed after prolonged runtime. Keep separate until causal ownership is proven."},
+    {"id":"cline-auth-live-persistence","priority":"P1","classification":"INCONCLUSIVE_UNTIL_SUCCESSFUL_LOGIN"},
+    {"id":"process-death-recovery","priority":"P1","classification":"OPEN"},
+    {"id":"browser-context-isolation","priority":"P1/P2","classification":"ARCHITECTURE_HARDENING_PENDING"},
+    {"id":"ax-visual-perception","priority":"P2","classification":"ARCHITECTURE_HARDENING_PENDING"},
+    {"id":"csp-inline-style","priority":"P2","classification":"OBSERVED_NON_BLOCKING_UI_ISSUE"},
+    {"id":"parallel-settings-cleanup","priority":"P2","classification":"SOURCE_CLEANUP_DECISION_PENDING"}
   ],
   "next_acceptance": {
-    "question": "Why does current-head turn turn-37c41f6e450f190f repeatedly call browserConversationRead without reaching a durable terminal state, and does Agent Stop produce a durable stopped/cancelled receipt?",
-    "observable": "One bounded live turn either reaches a terminal receipt on its own or, after one Agent Stop action, emits a durable stopped/cancelled terminal state that survives relay restart without INSTRUCTION_RECOVERY_REQUIRED.",
-    "falsifier": "If the same turn continues repeated browserConversationRead calls or restart still reports durable executing after Stop, runtime termination remains open and the exact stop/receipt owner becomes the next source owner to inspect."
+    "question": "Does the Phase-1 progress guard stop initial observation + two identical duplicates before a fourth provider completion while keeping the runtime warning transient?",
+    "observable": "agent-runtime-no-progress-smoke PASS, existing agent-runtime-resilience-smoke PASS, no durable RUNTIME_NO_STATE_CHANGE message, and no regression to failed-tool adaptation.",
+    "falsifier": "Any fourth provider completion, durable injected runtime notice, or loss of normal failed-tool recovery keeps the gate open."
   }
 }
