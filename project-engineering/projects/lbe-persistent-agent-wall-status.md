@@ -2,7 +2,7 @@
 
 ## Authority and routing
 
-- Last reconciled: 2026-08-21
+- Last reconciled: 2026-08-22
 - Project repository: `Letterblack0306/LBE_Presistent_Agent_wall`
 - Canonical ref checked: `main` at `5250efa97a85a2a12978acb86593d086189b0b63`
 - Authority: this is a short navigation mirror. Live LBE source, Git state, machine gates,
