@@ -1,0 +1,11 @@
+{
+  "contract": "lb-workspace-action/v1",
+  "request_id": "1787293614287-6661ed85-f3c8-4de3-892b-832ddd8c18c8",
+  "project": "access-browser-agent",
+  "capability": "project.audit",
+  "objective": "",
+  "scope": "current-workspace",
+  "requested_by": "lb-workspace-browser-ai-or-user",
+  "execution_policy": "read-only-evidence",
+  "created_at": "2026-08-21T06:26:54.287Z"
+}
