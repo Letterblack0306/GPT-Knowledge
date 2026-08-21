@@ -1,18 +1,20 @@
 {
   "schema_version": 2,
   "project": "Access Browser Agent",
-  "verified_at": "2026-08-21T12:25:00+04:00",
+  "verified_at": "2026-08-21T12:40:00+04:00",
   "source_repo": "Letterblack0306/access-browser-agent",
   "source_branch": "main",
   "source_head": "0048d0dceb062fbabb06423dfa419a6050a4713e",
-  "overall_classification": "P1_DURABLE_STOP_PROVEN_SOURCE_AND_LOCAL_ACCEPTANCE",
+  "overall_classification": "P1_TURN_37C_QUARANTINED_AND_RECONCILED",
   "authority_note": "GPT-Knowledge is a projection of verified repository/runtime evidence. Current repository source, local runtime evidence and acceptance results remain authoritative.",
   "local_validation": {
     "settlement_command_hash": "11876582E03956B429C5CEE03DF25FB2AFF045B155F0751340FC817E1E3E8F09",
     "durable_stop_command_hash": "A4EFEC8974180EDCAAEAE072EC0B6FCAB27FAE506A59F9E1137E7A6BBCCC079A",
+    "turn_37c_reconciliation_command_hash": "901E6FB855E71CE8C5FDB72E01F608D54366F0BA875A78C66D4CFD09EC5D807E",
     "head": "0048d0dceb062fbabb06423dfa419a6050a4713e",
     "browser_tool_runtime_smoke": "PASS",
     "durable_stop_acceptance": "PASS",
+    "turn_37c_reconciliation": "PASS",
     "git_status": "main aligned with origin/main; protected untracked section_09.md preserved"
   },
   "closed": [
@@ -25,20 +27,22 @@
     {"id":"instruction-recovery-turn-1f8","classification":"QUARANTINED_AND_CLEARED"},
     {"id":"runtime-progress-reentry","classification":"PROVEN_SOURCE_AND_LOCAL_REGRESSION"},
     {"id":"browser-settlement","classification":"PROVEN_SOURCE_AND_LOCAL_REGRESSION","command_hash":"11876582E03956B429C5CEE03DF25FB2AFF045B155F0751340FC817E1E3E8F09"},
-    {"id":"stop-durable-terminal","classification":"PROVEN_SOURCE_AND_LOCAL_ACCEPTANCE","command_hash":"A4EFEC8974180EDCAAEAE072EC0B6FCAB27FAE506A59F9E1137E7A6BBCCC079A","detail":"At exact Access head 0048d0d, a real in-flight AgentSessionRuntime Stop persisted exactly one session.stopped event, wrote a stopped checkpoint and snapshot.json, exposed the terminal receipt through UnifiedAgentService.receipts(), and returned stopped. Receipt e249f7a0-62a3-4573-abd6-97af386d1ff3; checkpoints=1; snapshot status=stopped."}
+    {"id":"stop-durable-terminal","classification":"PROVEN_SOURCE_AND_LOCAL_ACCEPTANCE","command_hash":"A4EFEC8974180EDCAAEAE072EC0B6FCAB27FAE506A59F9E1137E7A6BBCCC079A","detail":"At exact Access head 0048d0d, a real in-flight AgentSessionRuntime Stop persisted exactly one session.stopped event, wrote a stopped checkpoint and snapshot.json, exposed the terminal receipt through UnifiedAgentService.receipts(), and returned stopped. Receipt e249f7a0-62a3-4573-abd6-97af386d1ff3; checkpoints=1; snapshot status=stopped."},
+    {"id":"turn-37c-recovery","classification":"QUARANTINED_AND_RECONCILED","command_hash":"901E6FB855E71CE8C5FDB72E01F608D54366F0BA875A78C66D4CFD09EC5D807E","detail":"Production browser transport journal contained turn-37c41f6e450f190f in observed then executing state with no terminal completion/failure receipt. Existing BrowserTransportJournal recovery API was used to append a durable quarantined reconciliation receipt f9fb582417869ad55a4e9d110f1302e6f48bfc3939261a9f738dd661f61c2791. Before ambiguous=true/state=executing; after ambiguous=false/reconciliation=quarantined. Historical turn must not replay."}
   ],
   "active": {
-    "id": "turn-37c-recovery",
-    "title": "P1 turn-37c recovery",
-    "classification": "RECOVERY_REQUIRED_UNRESOLVED",
-    "question": "What exact durable/runtime state remains from historical turn-37c, and can current authoritative evidence reconcile it without reopening already-closed gates?",
-    "method": "Inspect existing GPT-Knowledge evidence and current source/runtime owners first; define one bounded recovery observable and falsifier before mutation."
+    "id": "terminal-state-ui",
+    "title": "P1 Terminal-state UI live acceptance",
+    "classification": "SOURCE_PROVEN_LIVE_ACCEPTANCE_BLOCKED",
+    "question": "Does the current rendered UI show authoritative terminal/recovery state correctly in a live acceptance without reopening closed runtime gates?",
+    "method": "Inspect the existing renderer/projection/IPC owners and existing acceptance tests first. Use LoopTool for focused local/live validation; do not patch unless a bounded live acceptance proves a UI gap."
   },
   "proven_findings": [
     {"id":"progress-reentry","classification":"PROVEN_SOURCE_AND_LOCAL_REGRESSION"},
     {"id":"browser-settlement","classification":"PROVEN_SOURCE_AND_LOCAL_REGRESSION"},
     {"id":"stop-terminal-owner","classification":"PROVEN_SOURCE","detail":"AgentExecutive.stop is terminal-state authority; AgentEventStore is durable persistence owner; UnifiedAgentService.receipts projects stored event IDs and checkpoints."},
     {"id":"stop-durable-terminal","classification":"PROVEN_SOURCE_AND_LOCAL_ACCEPTANCE","detail":"LoopTool command A4EFEC8974180EDCAAEAE072EC0B6FCAB27FAE506A59F9E1137E7A6BBCCC079A passed at 0048d0d with DURABLE_STOP_ACCEPTANCE: PASS, one terminal receipt, one stopped checkpoint and snapshot status stopped."},
+    {"id":"turn-37c-recovery","classification":"QUARANTINED_AND_RECONCILED","detail":"Production BrowserTransportJournal record key 8d926332178bba7e3cbd9855e6bbcf2bc69fbf97998a6a1a52906fe554d13484 was executing without terminal evidence. LoopTool command 901E6F... durably reconciled it as quarantined with receipt f9fb582417869ad55a4e9d110f1302e6f48bfc3939261a9f738dd661f61c2791; ambiguous state is now false."},
     {"id":"persistent-browser-profile","classification":"PROVEN_SOURCE"},
     {"id":"accessibility-layer","classification":"PARTIAL_SOURCE"}
   ],
@@ -46,12 +50,12 @@
     {"order":1,"id":"progress-reentry","priority":"P1 CRITICAL","state":"PROVEN_SOURCE_AND_LOCAL_REGRESSION"},
     {"order":2,"id":"page-settlement","priority":"P1 CRITICAL","state":"PROVEN_SOURCE_AND_LOCAL_REGRESSION","implementation_head":"0048d0dceb062fbabb06423dfa419a6050a4713e"},
     {"order":3,"id":"stop-durable-terminal","priority":"P1","state":"PROVEN_SOURCE_AND_LOCAL_ACCEPTANCE"},
-    {"order":4,"id":"turn-37c-recovery","priority":"P1","state":"RECOVERY_REQUIRED_UNRESOLVED"},
-    {"order":5,"id":"browser-context-isolation","priority":"P1/P2","state":"PENDING"},
-    {"order":6,"id":"ax-visual-perception","priority":"P2","state":"PENDING"}
+    {"order":4,"id":"turn-37c-recovery","priority":"P1","state":"QUARANTINED_AND_RECONCILED"},
+    {"order":5,"id":"terminal-state-ui","priority":"P1","state":"SOURCE_PROVEN_LIVE_ACCEPTANCE_BLOCKED"},
+    {"order":6,"id":"browser-context-isolation","priority":"P1/P2","state":"PENDING"},
+    {"order":7,"id":"ax-visual-perception","priority":"P2","state":"PENDING"}
   ],
   "pending": [
-    {"id":"turn-37c-recovery","priority":"P1","classification":"RECOVERY_REQUIRED_UNRESOLVED"},
     {"id":"terminal-state-ui","priority":"P1","classification":"SOURCE_PROVEN_LIVE_ACCEPTANCE_BLOCKED"},
     {"id":"node-pty-attachconsole","priority":"P1","classification":"OBSERVED_NEEDS_OWNER_MAP"},
     {"id":"cline-auth-live-persistence","priority":"P1","classification":"INCONCLUSIVE_UNTIL_SUCCESSFUL_LOGIN"},
@@ -60,8 +64,8 @@
     {"id":"ax-visual-perception","priority":"P2","classification":"ARCHITECTURE_HARDENING_PENDING"}
   ],
   "next_acceptance": {
-    "question": "What exact durable/runtime state remains unresolved for historical turn-37c, and which current owner is authoritative for reconciliation?",
-    "observable": "Inspect existing turn-37c project evidence and current persisted/runtime owners, then identify one bounded reconciliation proof before any code change.",
-    "falsifier": "If the historical turn cannot be tied to current authoritative persisted/runtime state, keep RECOVERY_REQUIRED_UNRESOLVED and do not patch by inference."
+    "question": "Does the current terminal/recovery UI render authoritative stopped/reconciled state correctly on the existing live path?",
+    "observable": "Inspect existing renderer/projection/IPC owners and focused UI acceptance coverage, then run one bounded acceptance using current source before any code change.",
+    "falsifier": "If the authoritative terminal/recovery state is not represented correctly in the rendered UI, classify the exact UI projection gap and only then authorize a focused repair."
   }
 }
