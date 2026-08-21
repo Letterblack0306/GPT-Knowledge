@@ -10,11 +10,12 @@
     {"id":"product-scope","lane":"Architecture","title":"Single reasoning agent","status":"proven","summary":"Agent owns strategy and tool choice. Runtime owns governed execution and lifecycle truth."},
     {"id":"structured-tool-loop","lane":"Architecture","title":"Structured provider/tool loop","status":"proven","summary":"LiveAgentCore executes typed tools, records observations/evidence and re-enters reasoning under bounded runtime controls."},
     {"id":"browser-dom-map","lane":"Architecture","title":"Bounded DOM interaction map","status":"proven","summary":"browserSnapshot returns bounded visible text and interactive aa-N refs; raw HTML is not sent."},
+    {"id":"birdeye-first-method","lane":"Engineering Method","title":"BirdEye-first proof workflow","status":"proven","priority":"P1","summary":"Before any plan or mutation: route via GPT-Knowledge, inspect current BirdEye MCP/index/workspace capabilities, verify GitHub main SHA/diff, use existing BirdEye validation profiles for local behavioral proof, then sync GPT-K/Vercel. LoopTool is fallback or explicit LoopTool/relay testing only. Canonical: birdeye-first-engineering-workflow.md"},
     {"id":"runtime-progress-reentry","lane":"Closed Gate","title":"P1 Runtime Progress / Re-entry Contract","status":"proven","priority":"P1","summary":"741d208 is source and local-regression proven. Syntax, focused no-progress smoke and runtime resilience smoke all PASS."},
     {"id":"runtime-progress-add","lane":"Closed Scope","title":"ADD — progress truth primitives","status":"proven","priority":"P1","summary":"Stable normalized observation hashing, step-local duplicate counter, transient first-duplicate warning, runtime.no_progress and no_progress_stagnation are proven by focused regression."},
     {"id":"runtime-progress-change","lane":"Closed Scope","title":"CHANGE — provider re-entry boundary","status":"proven","priority":"P1","summary":"Second exact duplicate intercepts before another provider completion; global tool budget remains final fuse."},
     {"id":"browser-settle-gap","lane":"Finding","title":"Browser settlement too weak","status":"issue","priority":"P1","summary":"Navigation readiness is document.readyState interactive/complete; non-navigation click uses fixed 100 ms and reports downstreamOutcome UNVERIFIED."},
-    {"id":"browser-settlement","lane":"Active Gate","title":"P1 Bounded Page Settlement","status":"next","priority":"P1","summary":"Map the active browser-tool-runtime transition flow and define one bounded settlement observable/falsifier before changing source."},
+    {"id":"browser-settlement","lane":"Active Gate","title":"P1 Bounded Page Settlement","status":"next","priority":"P1","summary":"Source/test owners are mapped. Before adding the settlement regression, inspect the active BirdEye workspace/configuration and reuse an existing validation profile where proven; only add missing execution capability if evidence proves it absent."},
     {"id":"browser-isolation-gap","lane":"Finding","title":"Task browsing shares persistent profile","status":"warning","priority":"P1/P2","summary":"Persistent profile is correct for relay identity; isolated task context remains pending."},
     {"id":"ax-perception-gap","lane":"Finding","title":"Native AX + screenshot not implemented","status":"warning","priority":"P2","summary":"Current semantics are DOM-derived; native AX and optional visual perception remain pending."},
     {"id":"stop-durable-terminal","lane":"Pending","title":"P1 Durable Stop terminal receipt","status":"warning","priority":"P1"},
@@ -29,6 +30,7 @@
     {"id":"parallel-settings-cleanup","lane":"Pending","title":"P2 Parallel settings cleanup","status":"warning","priority":"P2"}
   ],
   "edges": [
+    {"from":"birdeye-first-method","to":"browser-settlement","type":"governs"},
     {"from":"structured-tool-loop","to":"runtime-progress-reentry","type":"closed-hardening"},
     {"from":"runtime-progress-reentry","to":"browser-settlement","type":"next-hardening"},
     {"from":"browser-settle-gap","to":"browser-settlement","type":"active-repair"},
