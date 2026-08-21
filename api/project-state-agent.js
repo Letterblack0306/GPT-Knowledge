@@ -6,5 +6,9 @@ export default async function handler(req, res) {
     process.env.GITHUB_APP_PRIVATE_KEY = process.env.GITHUB_TOKEN;
   }
   const module = await import('./project-state.js');
-  return module.default(req, res);
+  const core = module.default?.default || module.default || module.handler;
+  if (typeof core !== 'function') {
+    throw new TypeError('PROJECT_STATE_HANDLER_NOT_RESOLVED');
+  }
+  return core(req, res);
 }
