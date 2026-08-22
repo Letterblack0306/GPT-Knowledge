@@ -28,23 +28,29 @@
       "title": "Brew structured workspace mapping",
       "classification": "CURRENT_REMOTE_POSITION_MAPPED",
       "detail": "Brew now has a structured plan/status UI view using current PR #442 remote evidence; local workspace and live runtime were not independently rerun."
+    },
+    {
+      "id": "brew-local-identity",
+      "title": "Brew local workspace identity",
+      "classification": "PROVEN_ALIGNED_FEATURE_UPSTREAM",
+      "detail": "LoopTool AE1C8619… proves branch/head/upstream alignment 0/0, origin/main a6342ff3, and one worktree. The working tree is dirty."
     }
   ],
   "supported_historical": [],
   "pending": [
     {
-      "id": "brew-p2",
-      "title": "Brew canonical Session / Turn / Item lifecycle",
+      "id": "brew-p2-repair",
+      "title": "Brew CLI SessionService repair",
       "priority": "P2 ACTIVE",
-      "classification": "INVESTIGATION_REQUIRED",
-      "detail": "P1 operation correlation is recorded closed. P2 must map and trace the single lifecycle authority before any patch."
+      "classification": "DIRTY_IMPLEMENTATION_IN_PROGRESS",
+      "detail": "Feature branch is aligned with its upstream at 486a9b43 with one worktree, but local repair and test/evidence files are modified or untracked."
     },
     {
-      "id": "brew-branch",
-      "title": "Brew draft PR divergence and release proof",
-      "priority": "BEFORE MERGE",
-      "classification": "DIVERGED_78_AHEAD_2_BEHIND",
-      "detail": "PR #442 remains draft at 486a9b43. Branch reconciliation, installed runtime, full current-head CI, merge, and release acceptance remain unproven."
+      "id": "brew-p2-acceptance",
+      "title": "Brew P2 acceptance and main reconciliation",
+      "priority": "REQUIRED",
+      "classification": "UNPROVEN",
+      "detail": "Exact-revision focused/composition/runtime/regression evidence, canonical query/correlation preservation, clean accepted revision, and feature-to-main reconciliation remain open."
     },
     {
       "id": "adobe-execution",
