@@ -4,9 +4,9 @@
 
 - Repository: `Letterblack0306/access-browser-agent`
 - Branch: `main`
-- Verified current HEAD: `4e852646944a2b4096a760ab1212a9ecaa535be3`
+- Verified current HEAD: `b8edf1314c222652483974cf13eb00f6b790330d`
 - Regression baseline: `b2b6ff31f781c1299e916d52ab3122f0c0ac3507`
-- Active P1 gate: **Terminal-state UI live acceptance**
+- Current gate: **Terminal-state UI live acceptance — proven**
 
 This page is a GPT-Knowledge projection. Current source, local runtime evidence and acceptance results remain authoritative.
 
@@ -148,7 +148,7 @@ define focused settlement regression + falsifier
 
 ## Source UI update — IDE reference shell alignment
 
-GitHub `main` is now at product head `4e85264`, ahead of the historical validation head `0048d0d`:
+GitHub `main` is now at product head `b8edf13`, ahead of the historical validation head `0048d0d`:
 
 - `1880e402` — IDE reference styling;
 - `0ca41939` — activity rail adapter;
@@ -157,15 +157,15 @@ GitHub `main` is now at product head `4e85264`, ahead of the historical validati
 
 Changed source files include the IDE reference shell files plus the external-surface removal and current UI smoke-contract files: `electron/index.html`, `electron/main.js`, `electron/preload.js`, `electron/rebuild-renderer.js`, `electron/renderer.js`, `electron/rebuild-ide-reference.css`, `electron/rebuild-ide-reference.js`, `electron/rebuild-ui-stability.css`, `src/system/ui-id-registry.js`, and the focused UI smoke tests.
 
-The IDE shell/activity-rail UI source is present, external BirdEye/workspace-handoff UI surfaces are removed, and the settled-turn delivery ownership fix is integrated. The focused UI smoke suite, `npm run check:rebuild`, and `npm run check` pass at product head `4e85264`. Existing live acceptance remains blocked only by the non-idle ChatGPT target, not by a source-check failure.
+The IDE shell/activity-rail UI source is present, external BirdEye/workspace-handoff UI surfaces are removed, and the settled-turn delivery ownership fix is integrated. The focused UI smoke suite, `npm run check:rebuild`, `npm run check`, and the bounded Electron/CDP acceptance pass at product head `b8edf13`.
 
-## Active P1 — Terminal-state UI live acceptance
+## Closed P1 — Terminal-state UI live acceptance
 
-The product source is now at `4e85264`, integrating the IDE shell/activity-rail UI changes through `26c72b45`, the settled-turn delivery ownership fix at `5fcda7d`, and removal of external BirdEye/workspace-handoff UI surfaces. Full local checks and focused UI smoke tests pass at the current product head. The previous live Electron/CDP acceptance booted the renderer, runtime, browser and relay, but the saved ChatGPT target was non-idle and immediately entered `lifecycle=executing`. The required `waiting_for_instruction` checkpoint was therefore not observable.
+The product source is now at `b8edf13`, integrating the IDE shell/activity-rail UI changes through `26c72b45`, the settled-turn delivery ownership fix at `5fcda7d`, and removal of external BirdEye/workspace-handoff UI surfaces. Full local checks and focused UI smoke tests pass at the current product head. The bounded Electron/CDP acceptance passed all eight steps against the saved exact ChatGPT target after LM Studio `qwen/qwen3-vl-8b` passed its capability probe with a 120-second step budget.
 
-Classification: **CURRENT_HEAD_SOURCE_AND_LOCAL_CHECKS_PROVEN_LIVE_ACCEPTANCE_BLOCKED_BY_NON_IDLE_TARGET**
+Classification: **CURRENT_HEAD_SOURCE_LOCAL_CHECKS_AND_LIVE_ACCEPTANCE_PROVEN**
 
-Next acceptance question: can the existing acceptance at current product head `4e85264` run against an explicitly idle/baselined ChatGPT target so `waiting_for_instruction` and current-head terminal UI presentation are observable?
+Acceptance result: `npm run acceptance:ui` with `ACCESS_AGENT_ACCEPTANCE_STEP_TIMEOUT_MS=120000` passed `renderer-cdp-ready`, `renderer-runtime-api-ready`, `chat-target-configured`, `click-loop-start-and-wait`, `click-check-target-and-preserve-identity`, `click-loop-stop-and-wait`, `click-stop-all-and-wait`, and `final-clean-state`.
 
 The current-head acceptance configured the saved target and reached renderer/runtime/browser readiness, but relay start was blocked by durable `executing` state on non-idle turn `turn-9590b53b5c1a3a8f`. The existing recovery path quarantined it successfully with receipt `41329076dd7257bf609064d84f3852e7083a41ebf48cddb5f0b7db673ff2cd71` and cleared ambiguity. Do not patch product source to satisfy a contaminated target. Use the existing `ACCESS_AGENT_ACCEPTANCE_CHAT_URL` or saved exact browser target configuration when a clean idle/baselined target is available.
 

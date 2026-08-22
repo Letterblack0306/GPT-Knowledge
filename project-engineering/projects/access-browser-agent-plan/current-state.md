@@ -6,9 +6,9 @@ Date: 2026-08-22
 
 - Repository: `Letterblack0306/access-browser-agent`
 - Branch: `main`
-- Verified HEAD: `4e852646944a2b4096a760ab1212a9ecaa535be3`
+- Verified HEAD: `b8edf1314c222652483974cf13eb00f6b790330d`
 - Protected local untracked file: `section_09.md` — preserved, not modified
-- Active engineering gate: **P1 Terminal-state UI live acceptance**
+- Active engineering gate: **P1 Terminal-state UI live acceptance — proven**
 
 Current repository source, local runtime evidence and acceptance results remain authoritative over this projection.
 

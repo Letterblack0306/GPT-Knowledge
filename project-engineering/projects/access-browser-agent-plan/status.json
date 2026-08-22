@@ -4,8 +4,8 @@
   "verified_at": "2026-08-22T18:22:00+04:00",
   "source_repo": "Letterblack0306/access-browser-agent",
   "source_branch": "main",
-  "source_head": "4e852646944a2b4096a760ab1212a9ecaa535be3",
-  "overall_classification": "P1_PRODUCT_UI_AND_RELAY_FIXES_CURRENT_HEAD_CHECKS_PASS_LIVE_ACCEPTANCE_BLOCKED_BY_NON_IDLE_TARGET",
+  "source_head": "b8edf1314c222652483974cf13eb00f6b790330d",
+  "overall_classification": "P1_PRODUCT_UI_AND_RELAY_FIXES_CURRENT_HEAD_CHECKS_PASS_LIVE_ACCEPTANCE_PASS",
   "authority_note": "GPT-Knowledge is a projection of verified repository/runtime evidence. Current repository source, local runtime evidence and acceptance results remain authoritative. Material browser/Electron acceptance evidence must be synchronized here and in plan.json so the GPT-Knowledge browser view stays current.",
   "local_validation": {
     "settlement_command_hash": "11876582E03956B429C5CEE03DF25FB2AFF045B155F0751340FC817E1E3E8F09",
@@ -16,12 +16,12 @@
     "acceptance_cleanup_command_hash": "23132554E7FF4A613DF21AB15EDA7813FA131C5B5AB53EF775F72EDB6BFD0804",
     "acceptance_target_config_inventory_hash": "D154B793B163370D71690645CE50D18A7F5A82F4BA31C7AFF4843C153A81F9E8",
     "head": "0048d0dceb062fbabb06423dfa419a6050a4713e",
-    "evidence_scope": "Historical validation evidence below is explicitly labeled at 0048d0d; current product source head is 4e85264 and current full checks are recorded in source_update.validation.",
+    "evidence_scope": "Historical validation evidence below is explicitly labeled at 0048d0d; current product source head is b8edf13 and current full checks plus live acceptance are recorded in source_update.validation.",
     "browser_tool_runtime_smoke": "PASS",
     "durable_stop_acceptance": "PASS",
     "turn_37c_reconciliation": "PASS",
     "terminal_ui_rendered_regressions": "PASS",
-    "live_ui_acceptance": "INCONCLUSIVE_NON_IDLE_CHAT_TARGET",
+    "live_ui_acceptance": "PASS_CURRENT_HEAD_ELECTRON_CDP_8_STEPS",
     "acceptance_created_recovery_cleanup": "PASS",
     "acceptance_target_configuration": "EXISTING_ACCESS_AGENT_ACCEPTANCE_CHAT_URL_AND_SAVED_EXACT_TARGET",
     "git_status": "main aligned with origin/main; protected untracked section_09.md preserved"
@@ -42,8 +42,8 @@
     {"id":"acceptance-created-turn-9590","classification":"QUARANTINED_AND_RECONCILED","detail":"Current-head acceptance at 26c72b45 reached renderer/runtime/browser readiness and configured the saved ChatGPT target, but relay start was blocked by durable executing state on non-idle target turn-9590b53b5c1a3a8f. Existing recovery reconciliation quarantined the record with receipt 41329076dd7257bf609064d84f3852e7083a41ebf48cddb5f0b7db673ff2cd71; ambiguous=false; instruction execution count remained zero."}
   ],
   "source_update": {
-    "head": "4e852646944a2b4096a760ab1212a9ecaa535be3",
-    "classification": "PROVEN_GITHUB_SOURCE_CURRENT_HEAD_CHECKS_PASS_LIVE_REVALIDATION_REQUIRED",
+    "head": "b8edf1314c222652483974cf13eb00f6b790330d",
+    "classification": "PROVEN_GITHUB_SOURCE_CURRENT_HEAD_CHECKS_AND_LIVE_ACCEPTANCE_PASS",
     "commits": [
       "5fcda7df8b5ae828608698ec8126646ac0a948fd",
       "1880e4024f209a52d31f268129eae74ed097da74",
@@ -75,31 +75,32 @@
       "docs/change-intents/2026-08-22-local-ui-external-surface-removal.md"
     ],
     "validation": {
-      "new_ui_js_syntax": "PASS at 4e85264",
+      "new_ui_js_syntax": "PASS at b8edf13",
       "historical_check_rebuild": "PASS at local 0048d0d checkout",
       "historical_check": "PASS at local 0048d0d checkout",
-      "current_head_check_rebuild": "PASS at 4e85264 after external UI surface removal and UI smoke-contract alignment",
-      "current_head_check": "PASS at 4e85264 after external UI surface removal and UI smoke-contract alignment",
-      "current_head_ui_js_syntax": "PASS at 4e85264",
+      "current_head_check_rebuild": "PASS at b8edf13 after external UI surface removal and UI smoke-contract alignment",
+      "current_head_check": "PASS at b8edf13 after external UI surface removal and UI smoke-contract alignment",
+      "current_head_ui_js_syntax": "PASS at b8edf13",
       "current_head_ui_smoke_suite": "PASS: runtime-controls, trace, electron-shell, workbench-ux and birdeye-surface absence",
-      "current_head_rendered_live_acceptance": "BLOCKED_CONFIGURATION_INSTRUCTION_RECOVERY_REQUIRED_NON_IDLE_TARGET",
-      "current_head_recovery_reconciliation": "PASS; receipt 41329076dd7257bf609064d84f3852e7083a41ebf48cddb5f0b7db673ff2cd71; ambiguous=false"
+      "current_head_rendered_live_acceptance": "PASS: npm run acceptance:ui with ACCESS_AGENT_ACCEPTANCE_STEP_TIMEOUT_MS=120000; all 8 steps passed",
+      "current_head_provider_capability_probe": "PASS: LM Studio qwen/qwen3-vl-8b",
+      "current_head_recovery_reconciliation": "PASS; prior receipt 41329076dd7257bf609064d84f3852e7083a41ebf48cddb5f0b7db673ff2cd71; ambiguous=false"
     }
   },
   "active": {
     "id": "terminal-state-ui",
     "title": "P1 Terminal-state UI live acceptance",
-    "classification": "CURRENT_HEAD_SOURCE_AND_LOCAL_CHECKS_PROVEN_LIVE_ACCEPTANCE_BLOCKED_BY_NON_IDLE_TARGET",
+    "classification": "CURRENT_HEAD_SOURCE_LOCAL_CHECKS_AND_LIVE_ACCEPTANCE_PROVEN",
     "question": "Does a running Electron UI render the authoritative stopped/reconciled terminal state correctly on the actual application path?",
-    "method": "Current product source is 4e85264 with IDE shell/activity-rail integration, settled-turn delivery ownership fixes, and external BirdEye/workspace-handoff UI surfaces removed. Full local checks and the focused UI smoke suite pass at this head. Re-run the existing Electron/CDP acceptance against an explicitly idle/baselined target; do not patch product source to satisfy a contaminated target.",
+    "method": "Current product source is b8edf13 with IDE shell/activity-rail integration, settled-turn delivery ownership fixes, and external BirdEye/workspace-handoff UI surfaces removed. Full local checks, the focused UI smoke suite, and the bounded Electron/CDP acceptance pass at this head. The saved exact ChatGPT target was verified and the LM Studio capability probe passed with an extended 120-second step budget.",
     "evidence": {
       "rendered_command_hash": "47B2955CFB3BB187BAC970A015E00701FC06977CD4E9C4644DEB7C486F870501",
       "live_command_hash": "3553B9B5526F670F161BDF7CA1332B84905F9B7C7EF2B36E527D7EA7043057DF",
       "cleanup_command_hash": "23132554E7FF4A613DF21AB15EDA7813FA131C5B5AB53EF775F72EDB6BFD0804",
       "target_inventory_hash": "D154B793B163370D71690645CE50D18A7F5A82F4BA31C7AFF4843C153A81F9E8",
-      "live_steps": ["renderer-cdp-ready PASS", "renderer-runtime-api-ready PASS", "chat-target-configured PASS", "click-loop-start-and-wait BLOCKED_CONFIGURATION because durable executing state required instruction recovery"],
+      "live_steps": ["renderer-cdp-ready PASS", "renderer-runtime-api-ready PASS", "chat-target-configured PASS", "click-loop-start-and-wait PASS", "click-check-target-and-preserve-identity PASS", "click-loop-stop-and-wait PASS", "click-stop-all-and-wait PASS", "final-clean-state PASS"],
       "target_controls": ["ACCESS_AGENT_ACCEPTANCE_CHAT_URL", "saved browserChatUrl", "saved browserProviderTarget.url"],
-      "cleanup": "turn-9590b53b5c1a3a8f quarantined; journal key ad2467638b3eb1c70bb5e443ed35db91807e38535e41457a5db94acba91aa69f; receipt 41329076dd7257bf609064d84f3852e7083a41ebf48cddb5f0b7db673ff2cd71; ambiguous=false"
+      "cleanup": "Acceptance final-clean-state PASS; runtime, relay and managed browser stopped cleanly. Prior turn-9590b53b5c1a3a8f recovery remains quarantined with receipt 41329076dd7257bf609064d84f3852e7083a41ebf48cddb5f0b7db673ff2cd71; ambiguous=false"
     }
   },
   "proven_findings": [
@@ -119,8 +120,8 @@
     {"order":2,"id":"page-settlement","priority":"P1 CRITICAL","state":"PROVEN_SOURCE_AND_LOCAL_REGRESSION","implementation_head":"0048d0dceb062fbabb06423dfa419a6050a4713e"},
     {"order":3,"id":"stop-durable-terminal","priority":"P1","state":"PROVEN_SOURCE_AND_LOCAL_ACCEPTANCE"},
     {"order":4,"id":"turn-37c-recovery","priority":"P1","state":"QUARANTINED_AND_RECONCILED"},
-    {"order":5,"id":"ide-shell-reference","priority":"P1","state":"SOURCE_IMPLEMENTED_CURRENT_HEAD_CHECKS_PASS_LIVE_REVALIDATION_REQUIRED","implementation_head":"4e852646944a2b4096a760ab1212a9ecaa535be3"},
-    {"order":6,"id":"terminal-state-ui","priority":"P1","state":"HISTORICAL_RENDERED_PROOF_CURRENT_HEAD_REVALIDATION_REQUIRED_LIVE_ACCEPTANCE_BLOCKED_BY_NON_IDLE_TARGET"},
+    {"order":5,"id":"ide-shell-reference","priority":"P1","state":"SOURCE_IMPLEMENTED_CURRENT_HEAD_CHECKS_AND_LIVE_ACCEPTANCE_PASS","implementation_head":"b8edf1314c222652483974cf13eb00f6b790330d"},
+    {"order":6,"id":"terminal-state-ui","priority":"P1","state":"CURRENT_HEAD_RENDERED_PROOF_AND_LIVE_ACCEPTANCE_PASS"},
     {"order":7,"id":"browser-context-isolation","priority":"P1/P2","state":"PENDING"},
     {"order":8,"id":"ax-visual-perception","priority":"P2","state":"PENDING"}
   ],
@@ -134,8 +135,8 @@
     {"id":"ax-visual-perception","priority":"P2","classification":"ARCHITECTURE_HARDENING_PENDING"}
   ],
   "next_acceptance": {
-    "question": "Can the existing live Electron acceptance at current product head 4e85264 be run against an explicitly idle/baselined ChatGPT target so waiting_for_instruction and current-head terminal UI presentation are observable?",
-    "observable": "Use the existing ACCESS_AGENT_ACCEPTANCE_CHAT_URL or saved exact-target configuration with an idle/baselined conversation; run the existing live Electron/CDP acceptance at 4e85264 without product source mutation and observe terminal-state presentation.",
-    "falsifier": "If an explicitly idle/baselined target still fails to reach the expected state or the running UI misrepresents authoritative stopped/reconciled truth, classify the exact harness/UI gap. A failure caused only by an active target does not authorize a product patch."
+    "question": "Does the current-head Electron/CDP acceptance remain repeatable after provider startup and target lifecycle changes?",
+    "observable": "Repeat the existing ACCESS_AGENT_ACCEPTANCE_CHAT_URL or saved exact-target acceptance with the configured provider available; require all eight steps and final-clean-state PASS without product source mutation.",
+    "falsifier": "If a repeat run fails with the provider available and an exact target, classify the concrete provider, browser, relay, or UI lifecycle regression before changing source."
   }
 }
