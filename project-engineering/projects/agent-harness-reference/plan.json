@@ -1,53 +1,69 @@
 {
   "schema_version": 1,
   "project_id": "agent-harness-references",
-  "active_node": "deepseek-config-driven-harness",
+  "active_node": "harness-compatibility-audit",
   "nodes": [
     {
-      "id": "standard-agent-loop",
-      "title": "Standard Agent Loop",
-      "lane": "Reference Model",
+      "id": "official-harness-capabilities",
+      "title": "DeepSeek Harness Service Model",
+      "lane": "External Reference",
       "status": "proven",
       "priority": "REFERENCE",
-      "summary": "Harness owns context serialization and tool execution; the reasoning model decides when to call tools and when to answer."
+      "summary": "Official sources describe plugin-based models, tools, sessions, sandboxes, storage, loops and UI. This proves reference capabilities, not Brew compatibility."
     },
     {
-      "id": "deepseek-config-driven-harness",
-      "title": "DeepSeek Config-Driven Harness",
-      "lane": "Reference Model",
+      "id": "harness-compatibility-audit",
+      "title": "Brew Compatibility Audit",
+      "lane": "Current Gate",
       "status": "current",
-      "priority": "CURRENT REFERENCE",
-      "summary": "External reference for live configuration, validated tool registration and hot-reload patterns."
+      "priority": "AUDIT COMPLETE",
+      "summary": "Provider, tools, sessions, receipts and UI all require adapters. Workspace confinement must remain Brew-owned; equivalent approval governance was not verified."
     },
     {
-      "id": "brew-existing-registry",
-      "title": "Brew Existing Tool Registry",
-      "lane": "Brew Mapping",
+      "id": "brew-governance-boundary",
+      "title": "Preserve Brew Runtime Authority",
+      "lane": "Required Boundary",
       "status": "proven",
-      "priority": "PROVEN EXISTING",
-      "summary": "Brew already owns source-contained tool.json manifests, validation, dynamic imports and explicit registration through one capability registry."
+      "priority": "DO NOT REPLACE",
+      "summary": "Brew remains authority for workspace identity, confinement, policy, approvals, governed execution and chained receipts."
     },
     {
-      "id": "brew-live-tool-reload",
-      "title": "Live Local-Tool Reload",
-      "lane": "Brew Mapping",
-      "status": "next",
-      "priority": "ADOPT",
-      "summary": "Extend the existing Brew registry so validated local-tool source changes can be reloaded without restarting the runtime."
+      "id": "governed-harness-proof",
+      "title": "Governed Brew-Style Harness Task",
+      "lane": "Acceptance",
+      "status": "blocked",
+      "priority": "REQUIRED",
+      "summary": "Harness was not installed locally and no governed Brew-style task was run. Adoption cannot advance without executable integration evidence."
     },
     {
-      "id": "config-owned-reasoning",
-      "title": "Config-Owned Reasoning / Policy",
-      "lane": "Rejected Boundary",
-      "status": "warning",
-      "priority": "REJECT",
-      "summary": "Do not move reasoning, approval, safety policy or canonical execution authority into live configuration."
+      "id": "harness-adoption",
+      "title": "Harness Adoption",
+      "lane": "Decision",
+      "status": "blocked",
+      "priority": "ADOPTION UNPROVEN",
+      "summary": "Do not adopt or replace Brew runtime yet. Approval enforcement, confinement, receipt compatibility, restart identity and truthful UI projection remain unproven."
     }
   ],
   "edges": [
-    { "from": "standard-agent-loop", "to": "deepseek-config-driven-harness", "type": "flow" },
-    { "from": "deepseek-config-driven-harness", "to": "brew-existing-registry", "type": "requires-revalidation" },
-    { "from": "brew-existing-registry", "to": "brew-live-tool-reload", "type": "flow" },
-    { "from": "deepseek-config-driven-harness", "to": "config-owned-reasoning", "type": "validation-boundary" }
+    {
+      "from": "official-harness-capabilities",
+      "to": "harness-compatibility-audit",
+      "type": "requires-revalidation"
+    },
+    {
+      "from": "harness-compatibility-audit",
+      "to": "brew-governance-boundary",
+      "type": "validation-boundary"
+    },
+    {
+      "from": "brew-governance-boundary",
+      "to": "governed-harness-proof",
+      "type": "acceptance"
+    },
+    {
+      "from": "governed-harness-proof",
+      "to": "harness-adoption",
+      "type": "blocked"
+    }
   ]
 }
