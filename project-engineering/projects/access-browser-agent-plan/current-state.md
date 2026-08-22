@@ -144,8 +144,8 @@ DO NOT TOUCH:
 - Durable Stop terminal receipt acceptance;
 - `turn-37c...` recovery reconciliation;
 - terminal-state UI live acceptance;
-- node-pty `AttachConsole` owner mapping;
-- arbitrary process-death exactly-once recovery;
-- isolated browser task contexts;
-- native AX + optional screenshot perception;
+- node-pty `AttachConsole` owner mapping (host PTY probe timed out);
+- arbitrary process-death exactly-once recovery (not proven);
+- isolated browser task contexts (host CDP `Not allowed` blocker);
+- native AX + optional screenshot perception (live target creation host blocker; bounded AX source projection implemented);
 - CSP and parallel-settings cleanup.

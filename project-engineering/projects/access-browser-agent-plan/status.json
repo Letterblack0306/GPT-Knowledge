@@ -4,7 +4,7 @@
   "verified_at": "2026-08-22T20:05:00+04:00",
   "source_repo": "Letterblack0306/access-browser-agent",
   "source_branch": "main",
-  "source_head": "5b17f51639479f8290c186a07ccfef24ef8167da",
+  "source_head": "4319eda9e6988768217b6994a355d46bc9a1224c",
   "overall_classification": "P1_PRODUCT_UI_AND_RELAY_FIXES_CURRENT_HEAD_CHECKS_PASS_LIVE_ACCEPTANCE_PASS",
   "authority_note": "GPT-Knowledge is a projection of verified repository/runtime evidence. Current repository source, local runtime evidence and acceptance results remain authoritative. Material browser/Electron acceptance evidence must be synchronized here and in plan.json so the GPT-Knowledge browser view stays current.",
   "local_validation": {
@@ -130,10 +130,10 @@
     {"order":8,"id":"ax-visual-perception","priority":"P2","state":"PENDING"}
   ],
   "pending": [
-    {"id":"node-pty-attachconsole","priority":"P1","classification":"OBSERVED_NEEDS_OWNER_MAP"},
-    {"id":"process-death-recovery","priority":"P1","classification":"OPEN"},
-    {"id":"browser-context-isolation","priority":"P1/P2","classification":"ARCHITECTURE_HARDENING_PENDING"},
-    {"id":"ax-visual-perception","priority":"P2","classification":"ARCHITECTURE_HARDENING_PENDING"}
+    {"id":"node-pty-attachconsole","priority":"P1","classification":"HOST_RUNTIME_BLOCKED_PTY_PROBE_TIMEOUT"},
+    {"id":"process-death-recovery","priority":"P1","classification":"UNPROVEN_ARBITRARY_PROCESS_DEATH_EXACTLY_ONCE"},
+    {"id":"browser-context-isolation","priority":"P1/P2","classification":"HOST_BLOCKED_CDP_CONTEXT_NOT_ALLOWED","detail":"Strict isolation path and regression coverage are implemented, but the active managed Chrome host rejects Target.createBrowserContext and Target.createTarget with Not allowed. Normal browsing remains logically owned with strict isolation disabled by default on unsupported hosts."},
+    {"id":"ax-visual-perception","priority":"P2","classification":"HOST_BLOCKED_LIVE_CDP_TARGET_NOT_ALLOWED","detail":"Bounded AX projection is implemented and fake-CDP regression passes, but live managed Chrome target creation is rejected by the host with Not allowed."}
   ],
   "next_acceptance": {
     "question": "Can the P1 node-pty AttachConsole owner map be proven on the current Windows runtime without weakening terminal ownership boundaries?",
