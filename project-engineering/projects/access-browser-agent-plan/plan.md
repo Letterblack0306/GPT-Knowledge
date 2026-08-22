@@ -4,7 +4,7 @@
 
 - Repository: `Letterblack0306/access-browser-agent`
 - Branch: `main`
-- Verified current HEAD: `5ea7fef98cbc06f547b36f1516a408ad45f7b428`
+- Verified current HEAD: `b9abac124c0e5036d19bfa902e36fb898ed3c2e6`
 - Regression baseline: `b2b6ff31f781c1299e916d52ab3122f0c0ac3507`
 - Current gate: **Terminal-state UI live acceptance — proven**
 
@@ -148,7 +148,7 @@ define focused settlement regression + falsifier
 
 ## Source UI update — IDE reference shell alignment
 
-GitHub `main` is now at product head `5ea7fef`, ahead of the historical validation head `0048d0d`:
+GitHub `main` is now at product head `b9abac1`, ahead of the historical validation head `0048d0d`:
 
 - `1880e402` — IDE reference styling;
 - `0ca41939` — activity rail adapter;
@@ -157,7 +157,7 @@ GitHub `main` is now at product head `5ea7fef`, ahead of the historical validati
 
 Changed source files include the IDE reference shell files plus the external-surface removal and current UI smoke-contract files: `electron/index.html`, `electron/main.js`, `electron/preload.js`, `electron/rebuild-renderer.js`, `electron/renderer.js`, `electron/rebuild-ide-reference.css`, `electron/rebuild-ide-reference.js`, `electron/rebuild-ui-stability.css`, `src/system/ui-id-registry.js`, and the focused UI smoke tests.
 
-The IDE shell/activity-rail UI source is present, external BirdEye/workspace-handoff UI surfaces are removed, and the settled-turn delivery ownership fix is integrated. Monitor-aware pane reconciliation responds to window, visual-viewport, and display-resolution changes. The focused UI smoke suite, `npm run check:rebuild`, `npm run check`, and the bounded Electron/CDP acceptance pass at product head `5ea7fef`.
+The IDE shell/activity-rail UI source is present, external BirdEye/workspace-handoff UI surfaces are removed, and the settled-turn delivery ownership fix is integrated. Monitor-aware pane reconciliation responds to window, visual-viewport, and display-resolution changes. The focused UI smoke suite, `npm run check:rebuild`, `npm run check`, and the bounded Electron/CDP acceptance pass at product head `b9abac1`.
 
 ## Closed P1 — Terminal-state UI live acceptance
 
