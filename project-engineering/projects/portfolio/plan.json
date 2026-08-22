@@ -11,7 +11,23 @@
       "lane": "Overall",
       "title": "Portfolio alignment review",
       "status": "current",
-      "summary": "Mapped plans are internally aligned. Remaining gaps are Brew freshness/mapping, Access live UI acceptance, LBE release proof, Memory remote identity, and claim-time LoopTool runtime verification."
+      "summary": "Mapped plans are aligned. Adobe AI Generations now has a consolidated CEP/runtime/release plan; its active gate is execution single-lane proof and its release remains blocked by Windows trust/provenance issues."
+    },
+    {
+      "id": "adobe-cep-runtime",
+      "lane": "Adobe AI Generations",
+      "title": "CEP execution consolidation",
+      "status": "next",
+      "priority": "P0 ACTIVE",
+      "summary": "PR #330 must establish one live AE/CEP execution lane before dependent ToolRouter, Settings, salvage and Generation Graph work advances."
+    },
+    {
+      "id": "adobe-release-security",
+      "lane": "Adobe AI Generations",
+      "title": "Windows release hardening",
+      "status": "blocked",
+      "priority": "P0 RELEASE BLOCKER",
+      "summary": "After runtime consolidation, fix inner/final Authenticode signing, hidden PowerShell elevation, artifact provenance, clean-machine acceptance and AV review before replacing the distributed package."
     },
     {
       "id": "lbe-terminal",
@@ -35,7 +51,7 @@
       "title": "Current-head live UI acceptance",
       "status": "blocked",
       "priority": "P1",
-      "summary": "Source and local checks pass at d73b7d5. Re-run Electron/CDP acceptance against an explicitly idle or baselined ChatGPT target."
+      "summary": "Source and local checks pass at recorded head; re-run Electron/CDP acceptance against an explicitly idle or baselined ChatGPT target."
     },
     {
       "id": "access-hardening",
@@ -81,54 +97,20 @@
       "title": "Operation-correlation trace",
       "status": "next",
       "priority": "P1",
-      "summary": "Trace the first active boundary where non-null operationId becomes absent before selecting any patch owner. Live tool-call, receipt, continuation, recovery, install, and release proofs remain open."
+      "summary": "Trace the first active boundary where non-null operationId becomes absent before selecting any patch owner."
     }
   ],
   "edges": [
-    {
-      "from": "portfolio-alignment",
-      "to": "lbe-terminal",
-      "type": "flow"
-    },
-    {
-      "from": "lbe-terminal",
-      "to": "lbe-publish",
-      "type": "acceptance"
-    },
-    {
-      "from": "portfolio-alignment",
-      "to": "access-live-ui",
-      "type": "flow"
-    },
-    {
-      "from": "access-live-ui",
-      "to": "access-hardening",
-      "type": "acceptance"
-    },
-    {
-      "from": "portfolio-alignment",
-      "to": "loop-bounded",
-      "type": "flow"
-    },
-    {
-      "from": "portfolio-alignment",
-      "to": "memory-complete",
-      "type": "flow"
-    },
-    {
-      "from": "memory-complete",
-      "to": "memory-remote",
-      "type": "flow"
-    },
-    {
-      "from": "portfolio-alignment",
-      "to": "brew-refresh",
-      "type": "flow"
-    },
-    {
-      "from": "brew-refresh",
-      "to": "brew-correlation",
-      "type": "requires-revalidation"
-    }
+    {"from":"portfolio-alignment","to":"adobe-cep-runtime","type":"flow"},
+    {"from":"adobe-cep-runtime","to":"adobe-release-security","type":"acceptance"},
+    {"from":"portfolio-alignment","to":"lbe-terminal","type":"flow"},
+    {"from":"lbe-terminal","to":"lbe-publish","type":"acceptance"},
+    {"from":"portfolio-alignment","to":"access-live-ui","type":"flow"},
+    {"from":"access-live-ui","to":"access-hardening","type":"acceptance"},
+    {"from":"portfolio-alignment","to":"loop-bounded","type":"flow"},
+    {"from":"portfolio-alignment","to":"memory-complete","type":"flow"},
+    {"from":"memory-complete","to":"memory-remote","type":"flow"},
+    {"from":"portfolio-alignment","to":"brew-refresh","type":"flow"},
+    {"from":"brew-refresh","to":"brew-correlation","type":"requires-revalidation"}
   ]
 }
