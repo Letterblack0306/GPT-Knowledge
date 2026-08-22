@@ -1,10 +1,10 @@
 {
   "schema_version": 2,
   "project": "Access Browser Agent",
-  "verified_at": "2026-08-22T18:22:00+04:00",
+  "verified_at": "2026-08-22T20:05:00+04:00",
   "source_repo": "Letterblack0306/access-browser-agent",
   "source_branch": "main",
-  "source_head": "b9abac124c0e5036d19bfa902e36fb898ed3c2e6",
+  "source_head": "47f673cc611dccc82e5fbdb04cc99db1e6ec2611",
   "overall_classification": "P1_PRODUCT_UI_AND_RELAY_FIXES_CURRENT_HEAD_CHECKS_PASS_LIVE_ACCEPTANCE_PASS",
   "authority_note": "GPT-Knowledge is a projection of verified repository/runtime evidence. Current repository source, local runtime evidence and acceptance results remain authoritative. Material browser/Electron acceptance evidence must be synchronized here and in plan.json so the GPT-Knowledge browser view stays current.",
   "local_validation": {
@@ -42,7 +42,7 @@
     {"id":"acceptance-created-turn-9590","classification":"QUARANTINED_AND_RECONCILED","detail":"Current-head acceptance at 26c72b45 reached renderer/runtime/browser readiness and configured the saved ChatGPT target, but relay start was blocked by durable executing state on non-idle target turn-9590b53b5c1a3a8f. Existing recovery reconciliation quarantined the record with receipt 41329076dd7257bf609064d84f3852e7083a41ebf48cddb5f0b7db673ff2cd71; ambiguous=false; instruction execution count remained zero."}
   ],
   "source_update": {
-    "head": "b8edf1314c222652483974cf13eb00f6b790330d",
+    "head": "47f673cc611dccc82e5fbdb04cc99db1e6ec2611",
     "classification": "PROVEN_GITHUB_SOURCE_CURRENT_HEAD_CHECKS_AND_LIVE_ACCEPTANCE_PASS",
     "commits": [
       "5fcda7df8b5ae828608698ec8126646ac0a948fd",
@@ -81,9 +81,9 @@
       "new_ui_js_syntax": "PASS at b8edf13",
       "historical_check_rebuild": "PASS at local 0048d0d checkout",
       "historical_check": "PASS at local 0048d0d checkout",
-      "current_head_check_rebuild": "PASS at b9abac1 after external UI surface removal and monitor-aware layout reconciliation",
-      "current_head_check": "PASS at b9abac1 after external UI surface removal and monitor-aware layout reconciliation",
-      "current_head_ui_js_syntax": "PASS at b9abac1",
+      "current_head_check_rebuild": "PASS at 47f673c after Cline provider-store import",
+      "current_head_check": "PASS at 47f673c after Cline provider-store import",
+      "current_head_ui_js_syntax": "PASS at 47f673c",
       "current_head_ui_smoke_suite": "PASS: runtime-controls, trace, electron-shell, workbench-ux and birdeye-surface absence",
       "current_head_rendered_live_acceptance": "PASS: npm run acceptance:ui with ACCESS_AGENT_ACCEPTANCE_STEP_TIMEOUT_MS=120000; all 8 steps passed",
       "current_head_provider_capability_probe": "PASS: LM Studio qwen/qwen3-vl-8b",
@@ -130,7 +130,7 @@
   ],
   "pending": [
     {"id":"node-pty-attachconsole","priority":"P1","classification":"OBSERVED_NEEDS_OWNER_MAP"},
-    {"id":"cline-auth-live-persistence","priority":"P1","classification":"INCONCLUSIVE_UNTIL_SUCCESSFUL_LOGIN"},
+    {"id":"cline-auth-live-persistence","priority":"P1","classification":"SOURCE_FALLBACK_IMPLEMENTED_LIVE_MODEL_USE_UNPROVEN","detail":"Current source reads providers.cline.settings.auth from the standard Cline providers.json path as a read-only fallback, with CLINE_PROVIDERS_PATH override. Access Agent OAuth persistence and logout remain app-owned. Live authenticated model readiness still requires an actual provider-backed check."},
     {"id":"process-death-recovery","priority":"P1","classification":"OPEN"},
     {"id":"browser-context-isolation","priority":"P1/P2","classification":"ARCHITECTURE_HARDENING_PENDING"},
     {"id":"ax-visual-perception","priority":"P2","classification":"ARCHITECTURE_HARDENING_PENDING"}

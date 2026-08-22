@@ -4,7 +4,7 @@
   "purpose": "Visual architecture, verified findings, implementation scope, active gate and hardening roadmap. This is navigation state, not runtime authority.",
   "authority_rule": "Current repository source, local runtime evidence, acceptance results and exact repository state outrank this map.",
   "updated": "2026-08-22",
-  "source_head": "b9abac124c0e5036d19bfa902e36fb898ed3c2e6",
+  "source_head": "47f673cc611dccc82e5fbdb04cc99db1e6ec2611",
   "active_node": "terminal-state-ui",
   "browser_projection_policy": "Keep this plan and status.json synchronized with material live-browser, Electron/CDP acceptance, durable recovery and source-regression evidence so the GPT-Knowledge browser view reflects the current engineering gate rather than stale chat state.",
   "nodes": [
@@ -24,7 +24,7 @@
     {"id":"browser-context-isolation","lane":"Pending","title":"P1/P2 Isolated task browser contexts","status":"next","priority":"P1/P2"},
     {"id":"ax-perception-gap","lane":"Finding","title":"Native AX + screenshot not implemented","status":"warning","priority":"P2","summary":"Current semantics are DOM-derived; native AX and optional visual perception remain pending."},
     {"id":"ax-visual-perception","lane":"Pending","title":"P2 AX tree + visual perception","status":"next","priority":"P2"},
-    {"id":"cline-auth-live","lane":"Pending","title":"P1 Cline auth live persistence","status":"warning","priority":"P1"},
+    {"id":"cline-auth-live","lane":"Source Update","title":"P1 Cline provider-store import","status":"proven","priority":"P1","summary":"Access Agent now reads providers.cline.settings.auth from the standard user Cline providers.json path as a read-only fallback, with CLINE_PROVIDERS_PATH override. External Cline storage is never written or cleared; live provider-backed model readiness remains a separate acceptance requirement."},
     {"id":"process-death-recovery","lane":"Pending","title":"P1 Arbitrary process-death recovery","status":"next","priority":"P1"}
   ],
   "edges": [

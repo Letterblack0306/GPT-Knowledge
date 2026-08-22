@@ -145,7 +145,7 @@ DO NOT TOUCH:
 - `turn-37c...` recovery reconciliation;
 - terminal-state UI live acceptance;
 - node-pty `AttachConsole` owner mapping;
-- Cline successful-login restart persistence;
+- Cline live model readiness after provider-store import;
 - arbitrary process-death exactly-once recovery;
 - isolated browser task contexts;
 - native AX + optional screenshot perception;
