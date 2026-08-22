@@ -6,8 +6,8 @@
   "updated": "2026-08-22",
   "source_repo": "LOCAL_WORKSPACE:C:\\MCP Local\\Memory",
   "source_branch": "master",
-  "source_head": "82c683a",
-  "active_node": "stage-12",
+  "source_head": "f11fd89",
+  "active_node": null,
   "nodes": [
     {"id":"stage-0","lane":"Foundation","title":"Discovery + source contract","status":"proven","summary":"ChatGPT export structure, manifest relationships, conversation tree, attachments, timestamps and immutable-source boundary proven against the real archive."},
     {"id":"stage-1","lane":"Foundation","title":"Canonical import model","status":"proven","summary":"Immutable canonical entities, stable composite message identity, idempotent import and missing-object preservation proven."},
@@ -21,7 +21,7 @@
     {"id":"stage-9","lane":"MCP","title":"Global MCP Local integration","status":"proven","summary":"Memory registered under C:\\MCP Local, stdio handshake/tools/list/tools/call proven, and external client discovery with historical recall proven."},
     {"id":"stage-10","lane":"Agent Experience","title":"Agent memory experience","status":"proven","summary":"Evidence guidance, provenance descent, evidence-vs-derived distinction and agent autonomy proven. Corrected authority chain: runtime > workspace > session > project docs > historical evidence > derived memory > inference."},
     {"id":"stage-11","lane":"Acceptance","title":"Scale / failure validation","status":"proven","summary":"Real ~3.7 GB corpus validated: repeat/restart/interruption, duplicate prevention, malformed/missing objects, latency, size, vector rebuild, canonical survival and provenance round-trip. 91 tests passed."},
-    {"id":"stage-12","lane":"Acceptance","title":"End-to-end acceptance","status":"current","priority":"ACTIVE","summary":"Authorized next acceptance slice. Must prove cases A-G across GPT_Data -> canonical import/storage -> retrieval -> durable memory -> MCP -> reasoning agent -> exact source provenance before final completion can be claimed."}
+    {"id":"stage-12","lane":"Acceptance","title":"End-to-end acceptance","status":"proven","summary":"Cases A-G passed against the real GPT_Data archive: recall, exact descent, stale-history separation, two MCP tool paths, missing-memory no-invention, restart survival, and zero-duplication re-index with canonical identity and provenance preserved."}
   ],
   "edges": [
     {"from":"stage-0","to":"stage-1","type":"sequence"},

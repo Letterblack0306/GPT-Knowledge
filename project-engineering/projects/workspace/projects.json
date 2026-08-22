@@ -37,7 +37,7 @@
       "name": "Historical Memory",
       "subtitle": "ChatGPT Archive → Agent Memory MCP",
       "mapped": true,
-      "active_node": "stage-12",
+      "active_node": null,
       "plan_file": "../memory/plan.json",
       "status_file": "../memory/status.json",
       "reference": "../memory/reference.md"

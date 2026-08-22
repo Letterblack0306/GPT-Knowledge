@@ -17,7 +17,7 @@ This document is a GPT-Knowledge projection of the canonical local implementatio
 
 ## Current proven implementation
 
-Stages 0 through 11 are proven complete. Current canonical Memory HEAD reported for this projection is `82c683a` on `master`.
+Stages 0 through 12 are proven complete. Current canonical Memory HEAD reported for this projection is `f11fd89` on `master`.
 
 Implemented layers:
 
@@ -33,6 +33,7 @@ Implemented layers:
 10. Global `C:\MCP Local` MCP registration and external-client discovery.
 11. Agent-memory authority/provenance contract.
 12. Real-corpus scale/failure validation.
+13. End-to-end acceptance across cases A-G.
 
 ## Agent-facing capabilities
 
@@ -86,9 +87,9 @@ Commit `82c683a` changed only `tests/test_stage11.py`; no product-source defect 
 - semantic rebuild: 68,097 documents;
 - GPT_Data unchanged.
 
-## Current active acceptance
+## Stage 12 end-to-end acceptance — COMPLETE
 
-Stage 12 — End-to-End Acceptance is authorized but not yet proven complete.
+Stage 12 — End-to-End Acceptance is proven complete by commit `f11fd89`.
 
 Required cases:
 
@@ -104,4 +105,8 @@ Final completion must prove the full chain:
 
 `GPT_Data → canonical importer → canonical storage → exact retrieval → semantic/hybrid retrieval → durable memory → Memory MCP → reasoning agent → exact source provenance`
 
-Do not mark the project complete until all Stage-12 cases pass.
+Acceptance result: **7/7 cases passed**; full suite: **98 passed**; working tree clean; `GPT_Data` unchanged; restart and re-index preserved canonical identity; exact provenance descended to the canonical conversation, message node, source shard and source index; reasoning/workflow logic added: **none**.
+
+The complete chain was exercised:
+
+`GPT_Data → canonical importer → canonical storage → exact retrieval → semantic/hybrid retrieval → durable memory → Memory MCP → reasoning agent tool paths → exact source provenance`
