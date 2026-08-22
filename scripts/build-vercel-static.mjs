@@ -1,4 +1,4 @@
-import { cp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
+import { cp, mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import { dirname, isAbsolute, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -14,6 +14,16 @@ await mkdir(out, { recursive: true });
 
 // Publish the workspace application itself.
 await cp(workspaceRoot, outWorkspaceRoot, { recursive: true });
+
+// Publish the BirdEye projection snapshots fetched by birdeye-ui.js via
+// `../birdeye/projections/<projectId>.json` relative to the workspace root.
+const birdeyeProjectionsSource = resolve(projectEngineeringRoot, 'projects/birdeye/projections');
+const birdeyeProjectionsOut = resolve(outProjectEngineeringRoot, 'projects/birdeye/projections');
+await mkdir(birdeyeProjectionsOut, { recursive: true });
+for (const entry of await readdir(birdeyeProjectionsSource)) {
+  if (!entry.endsWith('.json')) continue;
+  await cp(resolve(birdeyeProjectionsSource, entry), resolve(birdeyeProjectionsOut, entry));
+}
 
 // Publish only repository files explicitly referenced by the workspace registry.
 // This keeps Vercel a projection of workspace-relevant evidence instead of a

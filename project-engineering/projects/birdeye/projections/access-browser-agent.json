@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "gateway": "bird-projection-projection",
+      "owner": "Letterblack0306/Letterblack_BirdEye (feat/workspace-diagnostic-bridge)",
+      "authority": "feat/local-workspace-change-bridge request/response contract",
+      "noWebhook": true,
+      "readOnly": true
+    }
+  ],
+  "attribution": {
+    "projectId": "access-browser-agent",
+    "projectName": "Access Browser Agent",
+    "workspaceId": "access-browser-agent",
+    "repository": "Letterblack0306/access-browser-agent",
+    "workspaceRoot": "G:\\Developments\\46_Accecc_Browser_Agent\\Browser Agent",
+    "branch": "main",
+    "head": "0048d0dceb062fbabb06423dfa419a6050a4713e",
+    "observedAt": "2026-08-22T14:10:57.078719+00:00",
+    "requestId": null,
+    "operation": null
+  },
+  "git": {
+    "workspaceRoot": "G:\\Developments\\46_Accecc_Browser_Agent\\Browser Agent",
+    "repositoryRoot": "G:/Developments/46_Accecc_Browser_Agent/Browser Agent",
+    "isRepository": true,
+    "branch": "main",
+    "head": "0048d0dceb062fbabb06423dfa419a6050a4713e",
+    "detachedHead": false,
+    "tracked": true,
+    "upstreamRef": "origin/main",
+    "ahead": 0,
+    "behind": 4,
+    "dirty": true,
+    "stagedPaths": [],
+    "modifiedPaths": [
+      "src/agent/executive/BrowserInstructionRelay.js",
+      "src/browser/observable-browser-runtime.js",
+      "test/browser-instruction-relay-smoke.js",
+      "test/browser-tool-evals.js",
+      "test/rebuild-agent-truth-observability-smoke.js"
+    ],
+    "untrackedPaths": [
+      "section_09.md"
+    ],
+    "changedPaths": [
+      "section_09.md",
+      "src/agent/executive/BrowserInstructionRelay.js",
+      "src/browser/observable-browser-runtime.js",
+      "test/browser-instruction-relay-smoke.js",
+      "test/browser-tool-evals.js",
+      "test/rebuild-agent-truth-observability-smoke.js"
+    ],
+    "changedPathCount": 6,
+    "evidenceLevel": "PROVEN",
+    "observedAt": "2026-08-22T14:10:57.078719+00:00"
+  },
+  "planStatus": {
+    "planState": "DOCUMENTED_CURRENT",
+    "planDocument": "C:\\MCP Local\\GPT-Knowledge\\project-engineering\\projects\\access-browser-agent-plan\\plan.json",
+    "statusDocument": "C:\\MCP Local\\GPT-Knowledge\\project-engineering\\projects\\access-browser-agent-plan\\status.json",
+    "documentRevision": "2430758",
+    "statusRevision": "2430758",
+    "lastVerified": "2026-08-22T14:10:57.078719+00:00",
+    "activeGate": "terminal-state-ui",
+    "nextSingleQuestion": "Can the existing live Electron acceptance at current head 26c72b45 be run against an explicitly idle/baselined ChatGPT target so waiting_for_instruction and current-head terminal UI presentation are observable?",
+    "authoritative": true,
+    "evidenceLevel": "PROVEN"
+  },
+  "runtime": {
+    "source": "C:\\Users\\prave\\.gpt-knowledge\\runtime\\access-browser-agent\\state.json",
+    "evidenceLevel": "PROVEN",
+    "value": {
+      "config": {
+        "project": "access-browser-agent",
+        "workspace": "G:\\Developments\\46_Accecc_Browser_Agent\\Browser Agent",
+        "target_url": "",
+        "cdp_url": "http://127.0.0.1:7430",
+        "action_api": "https://gpt-knowledge.vercel.app/api/workspace-actions",
+        "save_key": "gpt",
+        "poll_seconds": 5.0
+      }
+    },
+    "observedAt": "2026-08-22T14:10:57.078719+00:00"
+  },
+  "alignment": {
+    "state": "DIVERGED",
+    "documentedSourceHead": "26c72b455de71d6ff5d8505888c6dfd6304bec65",
+    "observedHead": "0048d0dceb062fbabb06423dfa419a6050a4713e",
+    "reason": "documented source_head differs from observed workspace HEAD",
+    "evidenceLevel": "PROVEN",
+    "observedAt": "2026-08-22T14:10:57.078719+00:00"
+  },
+  "comparison": null,
+  "verdict": "REVIEW",
+  "syncState": "LOCAL_ONLY"
+}

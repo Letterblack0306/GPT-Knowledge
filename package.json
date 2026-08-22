@@ -2,7 +2,8 @@
   "name": "gpt-knowledge-static",
   "private": true,
   "scripts": {
-    "build": "node scripts/build-vercel-static.mjs"
+    "build": "node scripts/build-vercel-static.mjs",
+    "test": "node scripts/test-birdeye-projections.mjs"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.30.0",
