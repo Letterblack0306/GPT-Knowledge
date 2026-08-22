@@ -165,7 +165,8 @@
   }
 
   async function refresh() {
-    const id = window.active || activeProjectId;
+    const id = window.active || activeProjectId
+      || (document.querySelector('.project.active') ? location.hash.slice(1) : null);
     if (!id) { renderPanel(null); return; }
     activeProjectId = id;
     setSync('LOADING…', '');
@@ -197,14 +198,15 @@
 
     renderPanel(null);
 
-    if (typeof window.select === 'function') {
-      const original = window.select;
-      window.select = function patchedSelect(id) {
+    if (typeof window.selectProject === 'function' || typeof window.select === 'function') {
+      const original = window.selectProject || window.select;
+      const patched = function patchedSelect(id) {
         activeProjectId = id;
         const result = original(id);
         Promise.resolve(result).finally(refresh);
         return result;
       };
+      if (window.selectProject) window.selectProject = patched; else window.select = patched;
     }
     refresh();
   }
