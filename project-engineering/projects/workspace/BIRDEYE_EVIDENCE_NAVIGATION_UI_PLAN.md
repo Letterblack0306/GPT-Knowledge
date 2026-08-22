@@ -1,8 +1,8 @@
 # BirdEye Evidence Navigation UI Plan
 
-Status: IN_PROGRESS_SOURCE
+Status: SOURCE_IMPLEMENTED_ACCEPTANCE_OPEN
 Authority: GPT-Knowledge UI implementation plan; repository snapshots and live/runtime evidence remain authoritative.
-Active slice: EVIDENCE_GRAPH_AND_NODE_INSPECTOR
+Active slice: EVIDENCE_GRAPH_AND_NODE_INSPECTOR_BROWSER_ACCEPTANCE
 Last updated: 2026-08-22
 
 ## Objective
@@ -43,7 +43,7 @@ UNKNOWN
 
 ## Phase 1 — Current projection navigation
 
-Status: IN_PROGRESS
+Status: SOURCE_IMPLEMENTED_ACCEPTANCE_OPEN
 
 ### Slice 1A — File audit truth boundary
 
@@ -55,7 +55,7 @@ Status: SOURCE_IMPLEMENTED; LIVE_UNVERIFIED
 
 ### Slice 1B — Evidence graph
 
-Status: ACTIVE
+Status: SOURCE_IMPLEMENTED; BROWSER_ACCEPTANCE_UNVERIFIED
 
 Build a compact clickable graph from existing fields only:
 
@@ -69,7 +69,7 @@ Each edge must display its evidence classification.
 
 ### Slice 1C — Node inspector
 
-Status: ACTIVE
+Status: SOURCE_IMPLEMENTED; BROWSER_ACCEPTANCE_UNVERIFIED
 
 Selecting a graph node shows its exact source, observation time, evidence level and available details.
 
@@ -123,4 +123,4 @@ Phase 1 is accepted only when:
 
 ## Next single question
 
-Does the current projection-only evidence graph and node inspector render correctly for Access Browser Agent, LBE and LoopTool without adding mutations or fabricating missing relationships?
+Does the focused real-Chrome integration test pass for Access Browser Agent, LBE and LoopTool at GPT-Knowledge HEAD c1da3289, with graph-node selection, zero mutations and zero JavaScript exceptions?
