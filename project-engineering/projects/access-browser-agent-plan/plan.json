@@ -4,7 +4,7 @@
   "purpose": "Visual architecture, verified findings, implementation scope, active gate and hardening roadmap. This is navigation state, not runtime authority.",
   "authority_rule": "Current repository source, local runtime evidence, acceptance results and exact repository state outrank this map.",
   "updated": "2026-08-22",
-  "source_head": "626bf406ba7a251e38b94e4534729bb3b8724c77",
+  "source_head": "749fdeb4919c43dcadca356fff8ec2e752009c6a",
   "active_node": "terminal-state-ui",
   "browser_projection_policy": "Keep this plan and status.json synchronized with material live-browser, Electron/CDP acceptance, durable recovery and source-regression evidence so the GPT-Knowledge browser view reflects the current engineering gate rather than stale chat state.",
   "nodes": [
@@ -99,7 +99,7 @@
       "title": "P1 AttachConsole owner map",
       "status": "proven",
       "priority": "P1",
-      "summary": "Live native node-pty pwsh create/write/exit round-trip passes through PtyTerminalManager; no AttachConsole timeout reproduced in the bounded host probe."
+      "summary": "Live native node-pty pwsh create/write/exit round-trip passes through PtyTerminalManager."
     },
     {
       "id": "browser-isolation-gap",
@@ -111,11 +111,11 @@
     },
     {
       "id": "browser-context-isolation",
-      "lane": "Blocked",
+      "lane": "Closed Gate",
       "title": "P1/P2 Isolated task browser contexts",
-      "status": "warning",
+      "status": "proven",
       "priority": "P1/P2",
-      "summary": "Strict context creation remains host-blocked by Not allowed; optional isolation now falls back explicitly and general HTTPS browsing is live-proven."
+      "summary": "General browser tools now use a separate Access-owned Managed Chrome process/profile from the persistent provider relay. Strict CDP context creation remains optional host-dependent hardening."
     },
     {
       "id": "ax-perception-gap",
@@ -131,7 +131,7 @@
       "title": "P2 AX tree + visual perception",
       "status": "warning",
       "priority": "P2",
-      "summary": "Bounded AX projection is live-proven through Managed Chrome; visual-model/screenshot perception remains outside this implementation."
+      "summary": "Bounded AX projection is live-proven; screenshot/visual-model perception remains unimplemented in the active text-only provider adapters."
     },
     {
       "id": "cline-auth-live",
@@ -147,7 +147,15 @@
       "title": "P1 Arbitrary process-death recovery",
       "status": "warning",
       "priority": "P1",
-      "summary": "Runtime now reconstructs interrupted steps as recovery_required and blocks new work until explicit reconciliation; arbitrary external side-effect exactly-once remains unproven."
+      "summary": "Runtime fails closed on ambiguous interrupted steps until explicit reconciliation; arbitrary external side-effect exactly-once remains unproven."
+    },
+    {
+      "id": "general-browser-process-isolation",
+      "lane": "Closed Gate",
+      "title": "General browser process/profile isolation",
+      "status": "proven",
+      "priority": "P1/P2",
+      "summary": "Live general-browser HTTPS/AX acceptance used a distinct Managed Chrome endpoint/profile from the persistent provider relay."
     }
   ],
   "edges": [
