@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "project": "Project Portfolio",
+  "verified_at": "2026-08-22",
+  "overall_classification": "MAPPED_PROJECTS_ALIGNED_BREW_STALE_AND_UNMAPPED",
+  "authority_note": "This is an overall GPT-Knowledge UI projection. Project repositories, local workspace/runtime evidence, and project-owned status records remain authoritative.",
+  "closed": [
+    {
+      "id": "mapped-alignment",
+      "title": "LBE, Access, LoopTool and Memory plan/status pairs",
+      "classification": "INTERNALLY_ALIGNED",
+      "detail": "Their registered plan and status records agree on their current project position at the recorded revisions and dates."
+    },
+    {
+      "id": "memory-acceptance",
+      "title": "Memory Stage 12",
+      "classification": "PROVEN_COMPLETE_IN_RECORDED_LOCAL_EVIDENCE",
+      "detail": "Stages 0–12 and real-corpus acceptance are recorded complete at local f11fd89; remote repository identity is a separate low-priority gap."
+    },
+    {
+      "id": "registry-active-node",
+      "title": "LBE workspace active-node registry",
+      "classification": "CORRECTED_IN_THIS_PROJECTION",
+      "detail": "The workspace registry now points to terminal-workspace-foundation, matching the LBE plan and status."
+    }
+  ],
+  "supported_historical": [],
+  "pending": [
+    {
+      "id": "brew-stale",
+      "title": "Brew status is stale and unmapped",
+      "priority": "P1",
+      "classification": "STALE_PROJECTION_REQUIRES_REVALIDATION",
+      "detail": "The Brew record is dated 2026-08-17 and references an old PR/branch/head position. Revalidate live repository and runtime evidence before creating its structured UI map."
+    },
+    {
+      "id": "access-live",
+      "title": "Access Browser Agent live UI acceptance",
+      "priority": "P1",
+      "classification": "BLOCKED_CONFIGURATION",
+      "detail": "Current source and full local checks are recorded passing at d73b7d5, but rendered current-head acceptance requires an explicitly idle or baselined ChatGPT target."
+    },
+    {
+      "id": "lbe-release",
+      "title": "LBE 2.0.3 publication",
+      "priority": "AFTER ACTIVE PRODUCT SLICE",
+      "classification": "PAUSED_AND_LOCKED",
+      "detail": "Finish terminal workspace foundation, then prove exact wheel/install and immediate PyPI state before publication."
+    },
+    {
+      "id": "memory-remote",
+      "title": "Memory remote repository identity",
+      "priority": "LOW",
+      "classification": "LOCAL_ONLY_UNVERIFIED_REMOTE",
+      "detail": "Memory is complete for its recorded local acceptance claim; a separate remote repository identity is not verified."
+    },
+    {
+      "id": "loop-runtime",
+      "title": "LoopTool implementation-specific behavior",
+      "priority": "WHEN CLAIMED",
+      "classification": "VERIFY_AT_TIME_OF_USE",
+      "detail": "Parser, readiness, cancellation, duplicate suppression, result delivery, and user-visible behavior require current source/runtime observables when claimed."
+    }
+  ],
+  "next_acceptance": {
+    "question": "Which portfolio blocker should be closed next using current project-owned evidence?",
+    "observable": "A refreshed exact repository/workspace identity and claim-matched runtime or UI acceptance record for the selected project.",
+    "falsifier": "A projection is updated from documentation or remembered chat state without current repository/runtime evidence."
+  }
+}
