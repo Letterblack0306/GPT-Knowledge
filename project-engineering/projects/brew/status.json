@@ -8,8 +8,8 @@
   "base_branch": "main",
   "base_head": "a6342ff3fc0943ade2cc8bde62d79f94952f24ce",
   "pull_request": 442,
-  "overall_classification": "DRAFT_PR_P1_RUNTIME_PROVEN_P2_INVESTIGATION_REQUIRED_BRANCH_DIVERGED",
-  "authority_note": "GitHub proves current remote PR/revision state. The P1 runtime proof is recorded by the PR and project checkpoints; it was not independently rerun in this session. Local workspace alignment and live runtime state remain unverified.",
+  "overall_classification": "LOCAL_UPSTREAM_ALIGNED_DIRTY_P2_CLI_SESSION_REPAIR_IN_PROGRESS_VALIDATION_UNPROVEN",
+  "authority_note": "LoopTool command AE1C8619D58E17AD16E7BFFC55100AA8A1DE1BD2F243FAE61C202C6A105D29CA proves the local workspace identity, upstream alignment, one-worktree state, dirty repair surface, and continuation-gate position. Product/runtime success is not inferred from the command PASS.",
   "closed": [
     {
       "id": "architecture",
@@ -34,6 +34,12 @@
       "title": "P1 operation correlation",
       "classification": "RUNTIME_PROVEN_RECORDED",
       "detail": "At accepted runtime revision 1d74031d, all four model lifecycle events carried the exact /query operationId; WRONG_OPERATION_ID_COUNT=0."
+    },
+    {
+      "id": "p2-lifecycle-map",
+      "title": "P2 CLI session authority boundary",
+      "classification": "PROVEN_LOCAL_BOUNDARY",
+      "detail": "The obsolete SessionStore and canonical thread-state/sessions namespace have incompatible lifecycle semantics; the smallest active conflicting owner is the CLI SessionService adapter boundary."
     }
   ],
   "supported_historical": [
@@ -46,11 +52,25 @@
   ],
   "pending": [
     {
-      "id": "p2",
-      "title": "Canonical Session / Turn / Item lifecycle",
+      "id": "p2-repair",
+      "title": "CLI SessionService authority repair",
       "priority": "P2 ACTIVE",
-      "classification": "INVESTIGATION_REQUIRED",
-      "detail": "Map all active lifecycle producers, stores, callers, consumers, persistence roots, and duplicate/compatibility paths; trace one real /query into persisted conversation state before patching."
+      "classification": "DIRTY_IMPLEMENTATION_IN_PROGRESS",
+      "detail": "Local modifications exist in .ai/continuation-gate.json, brew/cli/services/session-service.mjs, docs/status/ACTIVE_CHANGELOG.md and focused test files, with additional untracked evidence/audit/test files. Nothing is yet committed or promoted as accepted."
+    },
+    {
+      "id": "p2-validation",
+      "title": "P2 repair acceptance",
+      "priority": "REQUIRED BEFORE ADVANCE",
+      "classification": "UNPROVEN",
+      "detail": "Prove canonical session reads, no legacy status/resumedAt/active-session.json writes, truthful Brew status, canonical /query persistence, unchanged operation/message correlation, focused/composition/runtime/regression evidence, and exact revision."
+    },
+    {
+      "id": "branch-main-divergence",
+      "title": "Feature branch versus main",
+      "priority": "BEFORE MERGE",
+      "classification": "UPSTREAM_ALIGNED_MAIN_DIVERGED",
+      "detail": "Local branch is exactly aligned with its feature upstream (0 ahead/0 behind) at 486a9b43. origin/main is a6342ff3; feature-to-main reconciliation and merge readiness remain unproven."
     },
     {
       "id": "turn-id",
@@ -81,13 +101,6 @@
       "detail": "Dynamic tool lifecycle/reuse, browser E2E, and Telegram account delivery E2E remain open."
     },
     {
-      "id": "branch",
-      "title": "Draft PR branch divergence",
-      "priority": "BEFORE MERGE",
-      "classification": "DIVERGED_78_AHEAD_2_BEHIND",
-      "detail": "PR #442 remains draft. Its branch is 78 commits ahead and 2 commits behind current main; mergeability and reconciliation are not proven."
-    },
-    {
       "id": "release",
       "title": "Installed runtime, CI and release readiness",
       "priority": "LOCKED",
@@ -96,8 +109,20 @@
     }
   ],
   "next_acceptance": {
-    "question": "Where is the single active Session / Turn / Item lifecycle authority on the canonical /query path?",
-    "observable": "A bounded producer/store/caller/consumer map plus one correlated real /query trace into persisted conversation state at the exact current revision.",
-    "falsifier": "Multiple active lifecycle authorities remain unresolved, the trace does not reach persistence, or a patch owner is selected before the earliest incorrect lifecycle state is proven."
+    "question": "Does the bounded CLI SessionService repair remove the legacy session authority without regressing canonical query persistence or operation/message correlation?",
+    "observable": "Focused CLI session tests plus Brew status, canonical /query persistence, operation/message correlation, composition, runtime, regression, clean diff review, and exact-revision evidence.",
+    "falsifier": "Legacy status/resumedAt/active-session.json state is still written, canonical records are mutated incompatibly, Brew status fabricates an active session, query correlation regresses, or evidence is not tied to the exact accepted revision."
+  },
+  "local_evidence": {
+    "command_hash": "AE1C8619D58E17AD16E7BFFC55100AA8A1DE1BD2F243FAE61C202C6A105D29CA",
+    "workspace": "G:\\Developments\\38_Brew_Creative_Agent\\brew",
+    "branch": "agent/canonical-runtime-operation-authority-20260812",
+    "head": "486a9b433ead59a470e511236139e8201ed292ba",
+    "upstream": "origin/agent/canonical-runtime-operation-authority-20260812",
+    "ahead": 0,
+    "behind": 0,
+    "origin_main": "a6342ff3fc0943ade2cc8bde62d79f94952f24ce",
+    "worktrees": 1,
+    "working_tree": "DIRTY"
   }
 }
