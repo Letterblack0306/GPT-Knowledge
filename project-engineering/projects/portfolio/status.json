@@ -34,10 +34,37 @@
       "title": "Brew local workspace identity",
       "classification": "PROVEN_ALIGNED_FEATURE_UPSTREAM",
       "detail": "LoopTool AE1C8619… proves branch/head/upstream alignment 0/0, origin/main a6342ff3, and one worktree. The working tree is dirty."
+    },
+    {
+      "id": "lbe-projection-correction",
+      "title": "LBE repository-to-UI identity",
+      "classification": "CORRECTED_TO_CURRENT_MAIN",
+      "detail": "The workspace and portfolio now point to repository main 942e494d and the exact active TUI projection slice."
     }
   ],
   "supported_historical": [],
   "pending": [
+    {
+      "id": "lbe-active-slice",
+      "title": "LBE typed TUI projection slice",
+      "priority": "ACTIVE OPEN",
+      "classification": "SOURCE_PRESENT_EXECUTION_PROOF_UNVERIFIED",
+      "detail": "Exact current gate is TUI_PROJECTION_CONTRACT_AND_VIEW_MODELS at repository main 942e494d, not the prior generic terminal-workspace-foundation label."
+    },
+    {
+      "id": "lbe-tui-acceptance",
+      "title": "LBE complete installed TUI acceptance",
+      "priority": "REQUIRED",
+      "classification": "NOT_YET_PROVEN",
+      "detail": "Remaining command, session, provider, detail, capability and installed interactive acceptance layers remain open."
+    },
+    {
+      "id": "lbe-release-conflict",
+      "title": "LBE 2.0.3 gate reconciliation",
+      "priority": "PAUSED",
+      "classification": "DOCUMENT_CONFLICT",
+      "detail": "pyproject.toml is already 2.0.3 but the machine gate still lists setting 2.0.3 as remaining; publication is blocked by the active TUI phase."
+    },
     {
       "id": "brew-p2-repair",
       "title": "Brew CLI SessionService repair",
@@ -72,13 +99,6 @@
       "priority": "P1",
       "classification": "BLOCKED_CONFIGURATION",
       "detail": "Rendered current-head acceptance requires an explicitly idle or baselined ChatGPT target."
-    },
-    {
-      "id": "lbe-release",
-      "title": "LBE 2.0.3 publication",
-      "priority": "AFTER ACTIVE PRODUCT SLICE",
-      "classification": "PAUSED_AND_LOCKED",
-      "detail": "Finish terminal workspace foundation, then prove exact wheel/install and immediate PyPI state before publication."
     },
     {
       "id": "memory-remote",
