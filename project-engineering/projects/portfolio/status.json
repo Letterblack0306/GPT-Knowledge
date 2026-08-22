@@ -2,7 +2,7 @@
   "schema_version": 1,
   "project": "Project Portfolio",
   "verified_at": "2026-08-22T19:26:00+04:00",
-  "overall_classification": "PORTFOLIO_ALIGNED_ADOBE_CEP_RELEASE_BLOCKED",
+  "overall_classification": "ALL_PROJECTS_MAPPED_OPEN_ACCEPTANCE_GATES_REMAIN",
   "authority_note": "This is an overall GPT-Knowledge UI projection. Project repositories, local workspace/runtime evidence, and project-owned status records remain authoritative.",
   "closed": [
     {
@@ -22,10 +22,30 @@
       "title": "Memory Stage 12",
       "classification": "PROVEN_COMPLETE_IN_RECORDED_LOCAL_EVIDENCE",
       "detail": "Stages 0–12 and real-corpus acceptance are recorded complete at local f11fd89; remote repository identity remains separate."
+    },
+    {
+      "id": "brew-mapping",
+      "title": "Brew structured workspace mapping",
+      "classification": "CURRENT_REMOTE_POSITION_MAPPED",
+      "detail": "Brew now has a structured plan/status UI view using current PR #442 remote evidence; local workspace and live runtime were not independently rerun."
     }
   ],
   "supported_historical": [],
   "pending": [
+    {
+      "id": "brew-p2",
+      "title": "Brew canonical Session / Turn / Item lifecycle",
+      "priority": "P2 ACTIVE",
+      "classification": "INVESTIGATION_REQUIRED",
+      "detail": "P1 operation correlation is recorded closed. P2 must map and trace the single lifecycle authority before any patch."
+    },
+    {
+      "id": "brew-branch",
+      "title": "Brew draft PR divergence and release proof",
+      "priority": "BEFORE MERGE",
+      "classification": "DIVERGED_78_AHEAD_2_BEHIND",
+      "detail": "PR #442 remains draft at 486a9b43. Branch reconciliation, installed runtime, full current-head CI, merge, and release acceptance remain unproven."
+    },
     {
       "id": "adobe-execution",
       "title": "Adobe CEP execution single-lane proof",
@@ -39,13 +59,6 @@
       "priority": "P0 RELEASE BLOCKER",
       "classification": "BLOCKED",
       "detail": "Inner/final Authenticode signing, fail-closed verification, hidden-PowerShell remediation, exact artifact provenance, clean-machine smoke and AV/reputation review remain required before a replacement distribution release."
-    },
-    {
-      "id": "brew-stale",
-      "title": "Brew status is stale and unmapped",
-      "priority": "P1",
-      "classification": "STALE_PROJECTION_REQUIRES_REVALIDATION",
-      "detail": "The Brew record is dated 2026-08-17 and needs current repository/runtime revalidation before structured UI mapping."
     },
     {
       "id": "access-live",
