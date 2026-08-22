@@ -7,7 +7,7 @@
   "source_repo": "Letterblack0306/brew",
   "source_branch": "agent/canonical-runtime-operation-authority-20260812",
   "source_head": "486a9b433ead59a470e511236139e8201ed292ba",
-  "active_node": "p2-session-turn-item",
+  "active_node": "p2-cli-session-boundary",
   "nodes": [
     {
       "id": "architecture",
@@ -36,14 +36,6 @@
       "title": "P1 operation correlation",
       "status": "proven",
       "summary": "Fresh canonical runtime evidence showed all model lifecycle events carried the exact /query operationId with WRONG_OPERATION_ID_COUNT=0."
-    },
-    {
-      "id": "p2-session-turn-item",
-      "lane": "Active Gate",
-      "title": "P2 canonical Session / Turn / Item lifecycle",
-      "status": "current",
-      "priority": "P2",
-      "summary": "Investigation only: map active producers, stores, callers, consumers, persistence roots, duplicate authorities, and one real /query persistence path before mutation."
     },
     {
       "id": "turn-id",
@@ -84,6 +76,30 @@
       "status": "blocked",
       "priority": "LOCKED",
       "summary": "PR #442 remains draft and diverged from main. Installed-runtime acceptance and full current-head CI/release acceptance are not proven."
+    },
+    {
+      "id": "p2-lifecycle-map",
+      "lane": "P2 Evidence",
+      "title": "Session lifecycle authority map",
+      "status": "proven",
+      "priority": "P2",
+      "summary": "Local continuation-gate evidence proves CLI SessionService consumes the obsolete runtime-memory SessionStore and conflicts with the canonical thread-state/sessions persistence namespace."
+    },
+    {
+      "id": "p2-cli-session-boundary",
+      "lane": "Active Gate",
+      "title": "Repair CLI SessionService authority boundary",
+      "status": "current",
+      "priority": "P2 ACTIVE",
+      "summary": "Dirty local implementation is in progress in brew/cli/services/session-service.mjs with focused tests. Use the canonical session store for reads; do not create active-session authority or invent turnId/itemId."
+    },
+    {
+      "id": "p2-validation",
+      "lane": "Acceptance",
+      "title": "P2 focused and composition validation",
+      "status": "blocked",
+      "priority": "REQUIRED",
+      "summary": "Focused CLI tests, Brew status truth, canonical /query regression, operation/message correlation, exact-revision runtime proof, and broader regressions remain unproven for the dirty repair."
     }
   ],
   "edges": [
@@ -103,21 +119,6 @@
       "type": "flow"
     },
     {
-      "from": "p1-correlation",
-      "to": "p2-session-turn-item",
-      "type": "flow"
-    },
-    {
-      "from": "p2-session-turn-item",
-      "to": "turn-id",
-      "type": "requires-revalidation"
-    },
-    {
-      "from": "p2-session-turn-item",
-      "to": "live-tool-loop",
-      "type": "acceptance"
-    },
-    {
       "from": "live-tool-loop",
       "to": "recovery",
       "type": "acceptance"
@@ -130,6 +131,31 @@
     {
       "from": "integrations",
       "to": "release",
+      "type": "acceptance"
+    },
+    {
+      "from": "p1-correlation",
+      "to": "p2-lifecycle-map",
+      "type": "flow"
+    },
+    {
+      "from": "p2-lifecycle-map",
+      "to": "p2-cli-session-boundary",
+      "type": "flow"
+    },
+    {
+      "from": "p2-cli-session-boundary",
+      "to": "p2-validation",
+      "type": "acceptance"
+    },
+    {
+      "from": "p2-validation",
+      "to": "turn-id",
+      "type": "requires-revalidation"
+    },
+    {
+      "from": "p2-validation",
+      "to": "live-tool-loop",
       "type": "acceptance"
     }
   ]
