@@ -4,9 +4,9 @@
 
 - Repository: `Letterblack0306/access-browser-agent`
 - Branch: `main`
-- Verified current HEAD: `741d20815858ccf829c283709d504f6e0bd0f6e1`
+- Verified current HEAD: `26c72b455de71d6ff5d8505888c6dfd6304bec65`
 - Regression baseline: `b2b6ff31f781c1299e916d52ab3122f0c0ac3507`
-- Active P1 gate: **Bounded Page Settlement**
+- Active P1 gate: **Terminal-state UI live acceptance**
 
 This page is a GPT-Knowledge projection. Current source, local runtime evidence and acceptance results remain authoritative.
 
@@ -72,7 +72,9 @@ Classification:
 
 The implementation preserves reasoning ownership, `newSession:false`, Browser Relay transport semantics, durable tool evidence and provider authority.
 
-## Active P1 — Bounded Page Settlement
+## Closed P1.2 — Bounded Page Settlement
+
+Source and browser-tool-runtime regression proof is current at `0048d0dceb062fbabb06423dfa419a6050a4713e`.
 
 ### Current source gap
 
@@ -148,13 +150,34 @@ define focused settlement regression + falsifier
 - P1.1 progress/re-entry behavior;
 - renderer/event-dispatch source.
 
+## Source UI update — IDE reference shell alignment
+
+GitHub `main` is four commits ahead of the historical validation head `0048d0d`, ending at `26c72b45`:
+
+- `1880e402` — IDE reference styling;
+- `0ca41939` — activity rail adapter;
+- `f78821d6` — IDE shell reference structure styles;
+- `26c72b45` — activity rail and stylesheet wiring in `electron/index.html`.
+
+Changed source files are `electron/index.html`, `electron/rebuild-ide-reference.css`, `electron/rebuild-ide-reference.js`, and `electron/rebuild-ui-stability.css`.
+
+The UI source implementation is present and the new activity-rail JavaScript syntax check passes. Existing rendered/live evidence remains tied to `0048d0d`; current-head rendered and live acceptance are not yet proven.
+
+## Active P1 — Terminal-state UI live acceptance
+
+Historical source and rendered regressions are proven at `0048d0d`. Current UI source is at `26c72b45`, so rendered and live acceptance must be revalidated at the current head. The previous live Electron/CDP acceptance booted the renderer, runtime, browser and relay, but the saved ChatGPT target was non-idle and immediately entered `lifecycle=executing`. The required `waiting_for_instruction` checkpoint was therefore not observable.
+
+Classification: **HISTORICAL_SOURCE_AND_RENDERED_REGRESSION_PROVEN_CURRENT_HEAD_UI_REVALIDATION_REQUIRED_LIVE_ACCEPTANCE_BLOCKED_BY_NON_IDLE_TARGET**
+
+Next acceptance question: can the existing acceptance at current head `26c72b45` run against an explicitly idle/baselined ChatGPT target so `waiting_for_instruction` and current-head terminal UI presentation are observable?
+
+Do not patch product source to satisfy a contaminated target. Use the existing `ACCESS_AGENT_ACCEPTANCE_CHAT_URL` or saved exact browser target configuration, then preserve the acceptance and cleanup receipts.
+
 ## Later gates
 
-1. Durable Stop terminal receipt and `turn-37c...` recovery reconciliation.
-2. Terminal-state UI live acceptance.
-3. node-pty AttachConsole owner mapping.
-4. Cline successful-login restart persistence.
-5. Arbitrary process-death exactly-once recovery.
-6. Isolated browser task contexts while retaining persistent relay identity.
-7. Native Chromium AX + optional screenshot perception.
-8. CSP and parallel-settings cleanup.
+1. node-pty AttachConsole owner mapping.
+2. Cline successful-login restart persistence.
+3. Arbitrary process-death exactly-once recovery.
+4. Isolated browser task contexts while retaining persistent relay identity.
+5. Native Chromium AX + optional screenshot perception.
+6. CSP and parallel-settings cleanup.

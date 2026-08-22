@@ -1,11 +1,11 @@
 {
   "schema_version": 2,
   "project": "Access Browser Agent",
-  "verified_at": "2026-08-21T13:14:00+04:00",
+  "verified_at": "2026-08-22T17:57:25+04:00",
   "source_repo": "Letterblack0306/access-browser-agent",
   "source_branch": "main",
-  "source_head": "0048d0dceb062fbabb06423dfa419a6050a4713e",
-  "overall_classification": "P1_TERMINAL_UI_SOURCE_AND_RENDERED_REGRESSION_PROVEN_LIVE_ACCEPTANCE_BLOCKED_BY_NON_IDLE_TARGET",
+  "source_head": "26c72b455de71d6ff5d8505888c6dfd6304bec65",
+  "overall_classification": "P1_UI_SOURCE_IMPLEMENTED_CURRENT_HEAD_RENDERED_LIVE_REVALIDATION_REQUIRED_TERMINAL_ACCEPTANCE_BLOCKED_BY_NON_IDLE_TARGET",
   "authority_note": "GPT-Knowledge is a projection of verified repository/runtime evidence. Current repository source, local runtime evidence and acceptance results remain authoritative. Material browser/Electron acceptance evidence must be synchronized here and in plan.json so the GPT-Knowledge browser view stays current.",
   "local_validation": {
     "settlement_command_hash": "11876582E03956B429C5CEE03DF25FB2AFF045B155F0751340FC817E1E3E8F09",
@@ -16,6 +16,7 @@
     "acceptance_cleanup_command_hash": "23132554E7FF4A613DF21AB15EDA7813FA131C5B5AB53EF775F72EDB6BFD0804",
     "acceptance_target_config_inventory_hash": "D154B793B163370D71690645CE50D18A7F5A82F4BA31C7AFF4843C153A81F9E8",
     "head": "0048d0dceb062fbabb06423dfa419a6050a4713e",
+    "evidence_scope": "Historical validation evidence below was produced at 0048d0d; current source head is 26c72b45 and requires revalidation.",
     "browser_tool_runtime_smoke": "PASS",
     "durable_stop_acceptance": "PASS",
     "turn_37c_reconciliation": "PASS",
@@ -39,12 +40,34 @@
     {"id":"turn-37c-recovery","classification":"QUARANTINED_AND_RECONCILED","command_hash":"901E6FB855E71CE8C5FDB72E01F608D54366F0BA875A78C66D4CFD09EC5D807E"},
     {"id":"acceptance-created-turn-99a7","classification":"QUARANTINED_AND_CLEARED","command_hash":"23132554E7FF4A613DF21AB15EDA7813FA131C5B5AB53EF775F72EDB6BFD0804","detail":"Live Electron acceptance timed out while turn-99a7ca39d3f063e5 was executing because the selected ChatGPT target was not idle. The bounded acceptance process ended before a terminal receipt was written, so the ambiguous executing record was durably quarantined with receipt 724f0eef66c51892733afe6b9cea3cd460420c1743f75029eb0004a505254a24. Unresolved recoveries are zero."}
   ],
+  "source_update": {
+    "head": "26c72b455de71d6ff5d8505888c6dfd6304bec65",
+    "classification": "PROVEN_GITHUB_SOURCE_CURRENT_HEAD_RENDERED_LIVE_REVALIDATION_REQUIRED",
+    "commits": [
+      "1880e4024f209a52d31f268129eae74ed097da74",
+      "0ca41939fe33f894c85f4c3cf9645002932bb47f",
+      "f78821d6bcbb143a935ee42a680edf8e04021fc5",
+      "26c72b455de71d6ff5d8505888c6dfd6304bec65"
+    ],
+    "files": [
+      "electron/index.html",
+      "electron/rebuild-ide-reference.css",
+      "electron/rebuild-ide-reference.js",
+      "electron/rebuild-ui-stability.css"
+    ],
+    "validation": {
+      "new_ui_js_syntax": "PASS at 26c72b45",
+      "check_rebuild": "PASS at local 0048d0d checkout",
+      "check": "PASS at local 0048d0d checkout",
+      "current_head_rendered_live_acceptance": "PENDING"
+    }
+  },
   "active": {
     "id": "terminal-state-ui",
     "title": "P1 Terminal-state UI live acceptance",
-    "classification": "SOURCE_AND_RENDERED_REGRESSION_PROVEN_LIVE_ACCEPTANCE_BLOCKED_BY_NON_IDLE_TARGET",
+    "classification": "HISTORICAL_SOURCE_AND_RENDERED_REGRESSION_PROVEN_CURRENT_HEAD_UI_REVALIDATION_REQUIRED_LIVE_ACCEPTANCE_BLOCKED_BY_NON_IDLE_TARGET",
     "question": "Does a running Electron UI render the authoritative stopped/reconciled terminal state correctly on the actual application path?",
-    "method": "Existing source/rendered owners are proven. The real Electron/CDP acceptance booted renderer/runtime/browser/relay successfully but its selected ChatGPT conversation immediately produced an executable assistant turn. Existing acceptance configuration already supports ACCESS_AGENT_ACCEPTANCE_CHAT_URL and saved exact browserChatUrl/browserProviderTarget selection, while relay baseline semantics include first_start_historical_baseline and known_historical_baseline. Re-run only against an explicitly idle/baselined target; do not patch product source to satisfy the harness.",
+    "method": "Historical source/rendered owners were proven at 0048d0d. Current UI source is 26c72b45 after IDE shell/activity-rail changes. Re-run the existing Electron/CDP acceptance at the current head against an explicitly idle/baselined target; do not patch product source to satisfy a contaminated target.",
     "evidence": {
       "rendered_command_hash": "47B2955CFB3BB187BAC970A015E00701FC06977CD4E9C4644DEB7C486F870501",
       "live_command_hash": "3553B9B5526F670F161BDF7CA1332B84905F9B7C7EF2B36E527D7EA7043057DF",
@@ -60,7 +83,8 @@
     {"id":"browser-settlement","classification":"PROVEN_SOURCE_AND_LOCAL_REGRESSION"},
     {"id":"stop-durable-terminal","classification":"PROVEN_SOURCE_AND_LOCAL_ACCEPTANCE"},
     {"id":"turn-37c-recovery","classification":"QUARANTINED_AND_RECONCILED"},
-    {"id":"terminal-state-ui-rendered","classification":"PROVEN_SOURCE_AND_LOCAL_REGRESSION"},
+    {"id":"terminal-state-ui-rendered","classification":"PROVEN_SOURCE_AND_LOCAL_REGRESSION_AT_0048D0D_CURRENT_HEAD_REVALIDATION_REQUIRED"},
+    {"id":"ide-shell-reference-source","classification":"PROVEN_GITHUB_SOURCE_AT_26C72B45_RENDERED_LIVE_REVALIDATION_REQUIRED"},
     {"id":"live-electron-harness-boot","classification":"PROVEN_LIVE_PARTIAL","detail":"The existing ui-state-driven-acceptance-v2 harness launched Electron, attached over CDP, confirmed renderer/runtime API readiness, configured the chat target and brought runtime/browser/relay live. It did not reach idle waiting_for_instruction because the selected conversation produced a new executable assistant turn."},
     {"id":"live-acceptance-target-configuration","classification":"PROVEN_SOURCE","detail":"Existing acceptance scripts support ACCESS_AGENT_ACCEPTANCE_CHAT_URL and saved exact ChatGPT target preferences. BrowserInstructionRelay already owns baseline semantics; no product behavior addition is authorized for target setup."},
     {"id":"persistent-browser-profile","classification":"PROVEN_SOURCE"},
@@ -71,12 +95,14 @@
     {"order":2,"id":"page-settlement","priority":"P1 CRITICAL","state":"PROVEN_SOURCE_AND_LOCAL_REGRESSION","implementation_head":"0048d0dceb062fbabb06423dfa419a6050a4713e"},
     {"order":3,"id":"stop-durable-terminal","priority":"P1","state":"PROVEN_SOURCE_AND_LOCAL_ACCEPTANCE"},
     {"order":4,"id":"turn-37c-recovery","priority":"P1","state":"QUARANTINED_AND_RECONCILED"},
-    {"order":5,"id":"terminal-state-ui","priority":"P1","state":"SOURCE_AND_RENDERED_REGRESSION_PROVEN_LIVE_ACCEPTANCE_BLOCKED_BY_NON_IDLE_TARGET"},
-    {"order":6,"id":"browser-context-isolation","priority":"P1/P2","state":"PENDING"},
-    {"order":7,"id":"ax-visual-perception","priority":"P2","state":"PENDING"}
+    {"order":5,"id":"ide-shell-reference","priority":"P1","state":"SOURCE_IMPLEMENTED_CURRENT_HEAD_RENDERED_LIVE_REVALIDATION_REQUIRED","implementation_head":"26c72b455de71d6ff5d8505888c6dfd6304bec65"},
+    {"order":6,"id":"terminal-state-ui","priority":"P1","state":"HISTORICAL_RENDERED_PROOF_CURRENT_HEAD_REVALIDATION_REQUIRED_LIVE_ACCEPTANCE_BLOCKED_BY_NON_IDLE_TARGET"},
+    {"order":7,"id":"browser-context-isolation","priority":"P1/P2","state":"PENDING"},
+    {"order":8,"id":"ax-visual-perception","priority":"P2","state":"PENDING"}
   ],
   "pending": [
-    {"id":"terminal-state-ui","priority":"P1","classification":"LIVE_ELECTRON_ACCEPTANCE_REQUIRES_IDLE_BASELINED_TARGET"},
+    {"id":"ide-shell-reference","priority":"P1","classification":"CURRENT_HEAD_RENDERED_AND_LIVE_REVALIDATION_REQUIRED"},
+    {"id":"terminal-state-ui","priority":"P1","classification":"LIVE_ELECTRON_ACCEPTANCE_REQUIRES_IDLE_BASELINED_TARGET_AND_CURRENT_HEAD_UI_REVALIDATION"},
     {"id":"node-pty-attachconsole","priority":"P1","classification":"OBSERVED_NEEDS_OWNER_MAP"},
     {"id":"cline-auth-live-persistence","priority":"P1","classification":"INCONCLUSIVE_UNTIL_SUCCESSFUL_LOGIN"},
     {"id":"process-death-recovery","priority":"P1","classification":"OPEN"},
@@ -84,8 +110,8 @@
     {"id":"ax-visual-perception","priority":"P2","classification":"ARCHITECTURE_HARDENING_PENDING"}
   ],
   "next_acceptance": {
-    "question": "Can the existing live Electron acceptance be run against an explicitly idle/baselined ChatGPT target so waiting_for_instruction is observable before testing terminal UI state?",
-    "observable": "Use the existing ACCESS_AGENT_ACCEPTANCE_CHAT_URL or saved exact-target configuration with an idle/baselined conversation; run the existing live Electron/CDP acceptance without product source mutation and observe terminal-state presentation.",
+    "question": "Can the existing live Electron acceptance at current head 26c72b45 be run against an explicitly idle/baselined ChatGPT target so waiting_for_instruction and current-head terminal UI presentation are observable?",
+    "observable": "Use the existing ACCESS_AGENT_ACCEPTANCE_CHAT_URL or saved exact-target configuration with an idle/baselined conversation; run the existing live Electron/CDP acceptance at 26c72b45 without product source mutation and observe terminal-state presentation.",
     "falsifier": "If an explicitly idle/baselined target still fails to reach the expected state or the running UI misrepresents authoritative stopped/reconciled truth, classify the exact harness/UI gap. A failure caused only by an active target does not authorize a product patch."
   }
 }
