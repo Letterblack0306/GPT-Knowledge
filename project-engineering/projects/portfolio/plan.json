@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "project": "Project Portfolio",
+  "purpose": "Overall navigation view of current GPT-Knowledge project plans, open issues, and next evidence gates. This is a projection for later reference, not implementation or runtime authority.",
+  "authority_rule": "Each project’s current repository, local workspace, runtime evidence, and project-owned status outrank this portfolio summary.",
+  "updated": "2026-08-22",
+  "active_node": "portfolio-alignment",
+  "nodes": [
+    {
+      "id": "portfolio-alignment",
+      "lane": "Overall",
+      "title": "Portfolio alignment review",
+      "status": "current",
+      "summary": "Mapped plans are internally aligned. Remaining gaps are Brew freshness/mapping, Access live UI acceptance, LBE release proof, Memory remote identity, and claim-time LoopTool runtime verification."
+    },
+    {
+      "id": "lbe-terminal",
+      "lane": "LBE",
+      "title": "Terminal workspace foundation",
+      "status": "next",
+      "priority": "ACTIVE",
+      "summary": "Finish the visible terminal workspace foundation over existing persisted owners. PyPI 2.0.3 preparation remains paused until this slice passes."
+    },
+    {
+      "id": "lbe-publish",
+      "lane": "LBE",
+      "title": "2.0.3 publish proof",
+      "status": "blocked",
+      "priority": "LOCKED",
+      "summary": "Exact wheel/install and immediate PyPI evidence are still required; publication is not proven."
+    },
+    {
+      "id": "access-live-ui",
+      "lane": "Access Browser Agent",
+      "title": "Current-head live UI acceptance",
+      "status": "blocked",
+      "priority": "P1",
+      "summary": "Source and local checks pass at d73b7d5. Re-run Electron/CDP acceptance against an explicitly idle or baselined ChatGPT target."
+    },
+    {
+      "id": "access-hardening",
+      "lane": "Access Browser Agent",
+      "title": "Post-acceptance hardening",
+      "status": "next",
+      "priority": "P1/P2",
+      "summary": "After the active UI gate: isolated task browser contexts, AttachConsole ownership, Cline auth persistence, process-death recovery, and AX/visual perception remain pending."
+    },
+    {
+      "id": "loop-bounded",
+      "lane": "LoopTool",
+      "title": "Bounded evidence execution",
+      "status": "proven",
+      "summary": "Operating contract and repository identity are recorded. Implementation-specific behavior must be verified at time of use."
+    },
+    {
+      "id": "memory-complete",
+      "lane": "Memory",
+      "title": "Stages 0–12 complete",
+      "status": "proven",
+      "summary": "Real-corpus end-to-end acceptance is recorded complete at local f11fd89 with 98 tests."
+    },
+    {
+      "id": "memory-remote",
+      "lane": "Memory",
+      "title": "Remote repository identity",
+      "status": "warning",
+      "priority": "LOW",
+      "summary": "Canonical Memory implementation remains verified locally; no separate remote repository identity is asserted."
+    },
+    {
+      "id": "brew-refresh",
+      "lane": "Brew",
+      "title": "Refresh and map current position",
+      "status": "blocked",
+      "priority": "P1",
+      "summary": "The only portfolio record is dated 2026-08-17 and is not a structured UI plan/status. Revalidate current PR, branch, head, runtime, and then map Brew."
+    },
+    {
+      "id": "brew-correlation",
+      "lane": "Brew",
+      "title": "Operation-correlation trace",
+      "status": "next",
+      "priority": "P1",
+      "summary": "Trace the first active boundary where non-null operationId becomes absent before selecting any patch owner. Live tool-call, receipt, continuation, recovery, install, and release proofs remain open."
+    }
+  ],
+  "edges": [
+    {
+      "from": "portfolio-alignment",
+      "to": "lbe-terminal",
+      "type": "flow"
+    },
+    {
+      "from": "lbe-terminal",
+      "to": "lbe-publish",
+      "type": "acceptance"
+    },
+    {
+      "from": "portfolio-alignment",
+      "to": "access-live-ui",
+      "type": "flow"
+    },
+    {
+      "from": "access-live-ui",
+      "to": "access-hardening",
+      "type": "acceptance"
+    },
+    {
+      "from": "portfolio-alignment",
+      "to": "loop-bounded",
+      "type": "flow"
+    },
+    {
+      "from": "portfolio-alignment",
+      "to": "memory-complete",
+      "type": "flow"
+    },
+    {
+      "from": "memory-complete",
+      "to": "memory-remote",
+      "type": "flow"
+    },
+    {
+      "from": "portfolio-alignment",
+      "to": "brew-refresh",
+      "type": "flow"
+    },
+    {
+      "from": "brew-refresh",
+      "to": "brew-correlation",
+      "type": "requires-revalidation"
+    }
+  ]
+}
