@@ -69,7 +69,7 @@
       "subtitle": "Creative Agent Runtime",
       "mapped": true,
       "reference": "../brew-runtime-status-2026-08-17.md",
-      "active_node": "p2-session-turn-item",
+      "active_node": "p2-cli-session-boundary",
       "plan_file": "../brew/plan.json",
       "status_file": "../brew/status.json"
     }
