@@ -1,0 +1,160 @@
+{
+  "schema_version": 1,
+  "project": "Adobe AI Generations Release Security Hardening",
+  "purpose": "Canonical remediation plan for the Windows installer trust, signing, provenance, AV-heuristic and release-lane issues verified in Adobe_AI_Generations-04. This plan governs distribution hardening; live repository state and built artifacts remain higher authority.",
+  "authority_rule": "Adobe_AI_Generations-04 source, tagged release workflows, built artifacts, signatures, hashes, runtime/install tests and external scan evidence outrank this projection.",
+  "updated": "2026-08-22",
+  "active_node": "windows-signing-architecture",
+  "plan_truth": {
+    "state": "DOCUMENTED_CURRENT",
+    "document": "project-engineering/projects/adobe-ai-generations-release-hardening/plan.json",
+    "active_gate": "windows-signing-architecture",
+    "next_single_question": "Which Windows code-signing identity/provider will be used for Authenticode signing in CI?"
+  },
+  "nodes": [
+    {
+      "id": "incident-evidence",
+      "lane": "Evidence",
+      "title": "Preserve customer / VirusTotal evidence",
+      "status": "proven",
+      "summary": "Customer reported heavy VirusTotal behavioral flags. Treat as valid release feedback; do not dismiss as a simple false positive without exact artifact/hash/report evidence."
+    },
+    {
+      "id": "v2352-baseline",
+      "lane": "Evidence",
+      "title": "v2.3.52 installer baseline",
+      "status": "proven",
+      "summary": "Latest verified tag remains affected: Windows Electron signing discovery is disabled, signing failure is tolerated, final Inno EXE has no proven Authenticode signing gate, and hidden PowerShell UAC relaunch remains present."
+    },
+    {
+      "id": "windows-signing-architecture",
+      "lane": "Windows Trust",
+      "title": "Define Authenticode signing architecture",
+      "status": "current",
+      "priority": "P0 RELEASE BLOCKER",
+      "summary": "Choose and configure a trusted Windows code-signing identity/provider. Remove the current signing bypass contract and make signing mandatory for every executable shipped."
+    },
+    {
+      "id": "sign-inner-electron",
+      "lane": "Windows Trust",
+      "title": "Sign inner Electron executable",
+      "status": "next",
+      "priority": "P0",
+      "summary": "The packaged Electron runtime must be Authenticode-signed before it is embedded into the Inno wrapper. Signing failure must fail the build."
+    },
+    {
+      "id": "sign-final-inno",
+      "lane": "Windows Trust",
+      "title": "Sign final Inno installer",
+      "status": "planned",
+      "priority": "P0",
+      "summary": "Sign the final Letterblack-GenAI-Windows-vX.Y.Z.exe after Inno compilation with timestamping and a trusted Windows certificate."
+    },
+    {
+      "id": "verify-signatures-ci",
+      "lane": "Windows Trust",
+      "title": "Fail-closed signature verification gates",
+      "status": "planned",
+      "priority": "P0",
+      "summary": "CI must verify both inner Electron and final installer signatures using Windows-native Authenticode verification. Missing, invalid, expired-untrusted or wrong-publisher signatures block release."
+    },
+    {
+      "id": "elevation-refactor",
+      "lane": "Behavior Hardening",
+      "title": "Remove hidden PowerShell elevation path",
+      "status": "planned",
+      "priority": "P1",
+      "summary": "Replace hidden powershell.exe + Start-Process -Verb RunAs self-elevation where possible with a conventional installer/elevation mechanism. If retained, document and test necessity explicitly."
+    },
+    {
+      "id": "installer-behavior-audit",
+      "lane": "Behavior Hardening",
+      "title": "Audit suspicious installer behaviors",
+      "status": "planned",
+      "priority": "P1",
+      "summary": "Review process enumeration, elevation, temp/staging writes, stale-copy removal, executable launch, filesystem replacement and any shell invocation. Keep only required behaviors and classify each one."
+    },
+    {
+      "id": "process-injection-negative-proof",
+      "lane": "Behavior Hardening",
+      "title": "Prove no process-injection implementation",
+      "status": "planned",
+      "priority": "P1",
+      "summary": "Add static/search and behavioral evidence showing the installer does not implement classic remote-process injection. Do not equate CEP evalScript with OS process injection."
+    },
+    {
+      "id": "release-workflow-contract",
+      "lane": "Release Lane",
+      "title": "Change release pattern",
+      "status": "planned",
+      "priority": "P0",
+      "summary": "Development → hardened installer changes → full validation → PR main → pre-tag gate → tag → release workflow → signature/hash/provenance validation → AV/reputation review → distribution. No Gumroad upload before the release evidence gate passes."
+    },
+    {
+      "id": "secret-contract-correction",
+      "lane": "Release Lane",
+      "title": "Correct signing-secret contract",
+      "status": "planned",
+      "priority": "P0",
+      "summary": "Current workflow requires CSC_LINK/CSC_KEY_PASSWORD while Windows packaging disables signing discovery. Secrets and actual artifact signing must be made consistent and independently verified."
+    },
+    {
+      "id": "artifact-provenance",
+      "lane": "Supply Chain",
+      "title": "Artifact provenance and hash chain",
+      "status": "planned",
+      "priority": "P0",
+      "summary": "Generate SHA-256 for Windows EXE, DMG, ZXP and canonical ZIP; bind them to source tag/commit and publish checksums. Compare the exact Gumroad artifact hash with the release artifact before distribution."
+    },
+    {
+      "id": "mac-zxp-regression",
+      "lane": "Cross Platform",
+      "title": "Preserve macOS and ZXP trust contracts",
+      "status": "planned",
+      "priority": "P1",
+      "summary": "Retain Developer ID signing, hardened runtime, notarization/stapling checks and ZXP signature proof while changing the Windows lane. Do not weaken existing Mac/ZXP gates."
+    },
+    {
+      "id": "install-smoke",
+      "lane": "Acceptance",
+      "title": "Clean-machine install/uninstall smoke",
+      "status": "planned",
+      "priority": "P0",
+      "summary": "Test Windows installer on clean supported Windows hosts: signature trust, SmartScreen experience, user-scope install, elevation fallback, AE detection, CEP/ScriptUI install, upgrade/downgrade behavior and cleanup."
+    },
+    {
+      "id": "av-reputation-check",
+      "lane": "Acceptance",
+      "title": "AV / reputation review",
+      "status": "planned",
+      "priority": "P0",
+      "summary": "After the final signed artifact is built, review Microsoft Defender/SmartScreen and VirusTotal detections. Investigate behavioral detections individually; do not set an arbitrary zero-detection requirement."
+    },
+    {
+      "id": "new-security-release",
+      "lane": "Distribution",
+      "title": "Publish security/distribution release",
+      "status": "blocked",
+      "priority": "RELEASE LOCKED",
+      "summary": "Publish only after Windows signatures, provenance, install smoke, existing macOS/ZXP gates and AV review pass. Replace affected Gumroad package and publish updated checksums/release notes."
+    }
+  ],
+  "edges": [
+    ["incident-evidence", "v2352-baseline"],
+    ["v2352-baseline", "windows-signing-architecture"],
+    ["windows-signing-architecture", "sign-inner-electron"],
+    ["sign-inner-electron", "sign-final-inno"],
+    ["sign-final-inno", "verify-signatures-ci"],
+    ["verify-signatures-ci", "release-workflow-contract"],
+    ["v2352-baseline", "elevation-refactor"],
+    ["elevation-refactor", "installer-behavior-audit"],
+    ["installer-behavior-audit", "process-injection-negative-proof"],
+    ["release-workflow-contract", "secret-contract-correction"],
+    ["secret-contract-correction", "artifact-provenance"],
+    ["artifact-provenance", "mac-zxp-regression"],
+    ["mac-zxp-regression", "install-smoke"],
+    ["process-injection-negative-proof", "install-smoke"],
+    ["install-smoke", "av-reputation-check"],
+    ["av-reputation-check", "new-security-release"]
+  ]
+}
