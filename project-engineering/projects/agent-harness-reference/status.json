@@ -1,31 +1,36 @@
 {
   "schema_version": 1,
   "project_id": "agent-harness-references",
-  "classification": "REFERENCE_WITH_BOUNDED_ADOPTION",
-  "verified_at": "2026-08-23T00:40:00+04:00",
+  "classification": "ADOPTION_UNPROVEN",
+  "verified_at": "2026-08-23",
   "head": "GPT-Knowledge main",
-  "active_gate": "deepseek-config-driven-harness",
-  "summary": "DeepSeek Agent Harness is tracked as an external architecture reference. Brew adopts validated live local-tool reload patterns only; reasoning and policy remain runtime/model authority.",
+  "active_gate": "harness-compatibility-audit",
+  "summary": "Compatibility audit is complete. DeepSeek Harness is a usable external reference, but Brew adoption is blocked until required adapters and governance equivalence are proven in a governed local execution.",
   "items": [
     {
       "kind": "closed",
-      "title": "Existing Brew dynamic-tool foundation",
-      "detail": "Source-owned manifests, validation, containment, registration and cache-busted module imports are already present in Brew."
+      "title": "Official capability reference",
+      "detail": "Harness officially documents plugin-based models, tools, sessions, sandboxes, storage, loops and UI; it remains a developer preview with evolving APIs."
     },
     {
-      "kind": "pending",
-      "title": "Live reload integration",
-      "detail": "Wire and validate watch/reload behavior around the existing Brew local-tool registry without adding a second registry."
-    },
-    {
-      "kind": "history",
-      "title": "External source",
-      "detail": "Stephen G. Pope — DeepSeek Agent Harness architecture video: https://www.youtube.com/watch?v=Hpw4fAHlHDw"
+      "kind": "closed",
+      "title": "Brew compatibility mapping",
+      "detail": "Provider routing, tools, sessions, receipts and UI projection require adapters. Raw tool dispatch is not equivalent to Brew policy and chained receipts."
     },
     {
       "kind": "issue",
-      "title": "Rejected authority expansion",
-      "detail": "Config files must not become reasoning, approval, safety-policy or execution authority."
+      "title": "Missing or unverified governance equivalence",
+      "detail": "No verified equivalent was established for Brew approval enforcement. Workspace identity and confinement must remain Brew-owned."
+    },
+    {
+      "kind": "pending",
+      "title": "Governed executable proof",
+      "detail": "Harness package/executable was absent locally and no governed Brew-style Harness task ran. Runtime adoption remains unproven."
+    },
+    {
+      "kind": "history",
+      "title": "Regression evidence retained",
+      "detail": "Existing Brew resource-policy tests passed 13, autonomy tests passed 10, and memory/session tests passed 18. These protect Brew boundaries but do not prove Harness integration."
     }
   ]
 }
