@@ -4,7 +4,7 @@
   "verified_at": "2026-08-22T20:05:00+04:00",
   "source_repo": "Letterblack0306/access-browser-agent",
   "source_branch": "main",
-  "source_head": "47f673cc611dccc82e5fbdb04cc99db1e6ec2611",
+  "source_head": "5b17f51639479f8290c186a07ccfef24ef8167da",
   "overall_classification": "P1_PRODUCT_UI_AND_RELAY_FIXES_CURRENT_HEAD_CHECKS_PASS_LIVE_ACCEPTANCE_PASS",
   "authority_note": "GPT-Knowledge is a projection of verified repository/runtime evidence. Current repository source, local runtime evidence and acceptance results remain authoritative. Material browser/Electron acceptance evidence must be synchronized here and in plan.json so the GPT-Knowledge browser view stays current.",
   "local_validation": {
@@ -107,6 +107,7 @@
     }
   },
   "proven_findings": [
+    {"id":"cline-auth-live-persistence","classification":"PROVEN_CURRENT_LIVE_PROVIDER_READINESS","detail":"Read-only Cline provider-store import plus authenticated completion, tool-calling, and structured-output readiness all passed."},
     {"id":"progress-reentry","classification":"PROVEN_SOURCE_AND_LOCAL_REGRESSION"},
     {"id":"browser-settlement","classification":"PROVEN_SOURCE_AND_LOCAL_REGRESSION"},
     {"id":"stop-durable-terminal","classification":"PROVEN_SOURCE_AND_LOCAL_ACCEPTANCE"},
@@ -130,7 +131,6 @@
   ],
   "pending": [
     {"id":"node-pty-attachconsole","priority":"P1","classification":"OBSERVED_NEEDS_OWNER_MAP"},
-    {"id":"cline-auth-live-persistence","priority":"P1","classification":"SOURCE_FALLBACK_IMPLEMENTED_LIVE_MODEL_USE_UNPROVEN","detail":"Current source reads providers.cline.settings.auth from the standard Cline providers.json path as a read-only fallback, with CLINE_PROVIDERS_PATH override. Access Agent OAuth persistence and logout remain app-owned. Live authenticated model readiness still requires an actual provider-backed check."},
     {"id":"process-death-recovery","priority":"P1","classification":"OPEN"},
     {"id":"browser-context-isolation","priority":"P1/P2","classification":"ARCHITECTURE_HARDENING_PENDING"},
     {"id":"ax-visual-perception","priority":"P2","classification":"ARCHITECTURE_HARDENING_PENDING"}
