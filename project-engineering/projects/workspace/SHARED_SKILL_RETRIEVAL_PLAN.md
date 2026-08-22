@@ -1,24 +1,44 @@
 # Shared Skill Retrieval Layer — Implementation Plan
 
+## Scope clarification
+
+This plan covers the shared local-agent skill corpus, not Browser Agent-specific skills.
+
+The canonical Browser Agent skill:
+
+```text
+C:\MCP Local\GPT-Knowledge\skills\evidence-driven-engineering\SKILL.md
+```
+
+remains authoritative for that project workflow and is explicitly excluded from shared local-agent retrieval. It must not be copied, moved, rewritten, reclassified, or made a dependency of this system.
+
+The shared local-agent collection is centered on:
+
+```text
+C:\MCP Local\Skills\
+```
+
+subject to source discovery and curation.
+
 ## Objective
 
-Create one shared, local skill-discovery/retrieval capability that can be used by all agents in the system.
+Create one shared local skill-discovery/retrieval capability usable by all local agents.
 
 The system must:
 
-- discover skills from existing authoritative sources;
+- discover skills from authoritative or intentionally curated sources;
 - classify source authority;
-- index skills for fast deterministic retrieval;
 - retrieve only relevant skills/sections;
+- use deterministic retrieval first;
 - expose retrieval through the existing local MCP;
 - leave the existing local agent as the only reasoning authority.
 
-SQLite is an index/projection/cache, not the canonical skill store. Canonical skill files remain authoritative.
+SQLite is a disposable index/projection/cache, not the canonical skill store. Canonical/curated skill files remain authoritative.
 
 ## Architecture
 
 ```text
-Authoritative skill sources
+Authoritative / curated skill sources
         ↓
 Source discovery
         ↓
@@ -26,42 +46,42 @@ Authority classification
         ↓
 Skill parsing
         ↓
-SQLite projection + FTS5
+SQLite projection + FTS5   [only after GO gate]
         ↓
-Shared Skill Retrieval MCP
+Skill Retrieval MCP
         ↓
 Local AgentSessionRuntime / LiveAgentCore
         ↓
-existing reasoning + existing tools
+existing reasoning + governed capabilities
 ```
 
 Roles:
 
 - Skill source = procedural authority
-- BirdEye = workspace/file discovery and current-file evidence where applicable
+- BirdEye = existing workspace/file discovery and current-file evidence substrate
+- Skill layer = skill-specific parsing, classification, hashing, and retrieval semantics
 - SQLite = disposable retrieval projection
 - MCP = retrieval interface
 - Local agent = reasoning and decision authority
 
 Do not create a second reasoning system.
 
-## Phase 0 — Go / No-Go Discovery
+## Phase 0 — GO / NO-GO Discovery
 
-Before changing code, discover the real current skill landscape.
-
-Inspect:
+Before implementation, inspect the real shared skill landscape:
 
 - global skills;
-- project-local skills;
+- project/local skills;
 - repository-local skills;
 - MCP-provided procedural skills;
-- GPT-Knowledge skill/procedural sources;
+- shared local skill sources;
+- external candidate repositories selected for collection;
 - existing skill catalogs/manifests;
-- existing skill parsing/indexing/search implementations;
-- existing SQLite indexes related to skills or memory;
-- BirdEye workspace/file discovery capabilities.
+- existing skill search/index infrastructure;
+- existing SQLite indexes;
+- BirdEye discovery/search/read capabilities.
 
-Do not assume the number of skills. Do not assume every `SKILL.md` is canonical.
+Do not assume every `SKILL.md` is canonical.
 
 Return:
 
@@ -78,18 +98,18 @@ OWNER
 AUTHORITY
 ```
 
-Build only when:
+The SQLite build gate is OPEN only when:
 
-- skills exist across at least two meaningful source roots;
-- current discovery is duplicated, slow, noisy, or context-heavy;
+- a meaningful shared/curated corpus exists;
 - authority can be classified;
-- existing BirdEye/search is insufficient for skill-aware retrieval.
+- deterministic retrieval is justified by actual scale/noise/latency or scope needs;
+- BirdEye's existing general search is insufficient for skill-aware retrieval.
 
-If all useful skills are already in one small canonical source and existing retrieval is sufficiently precise and fast, do not build a parallel index. If GO is not proven, stop after discovery.
+If the shared corpus remains small and BirdEye is sufficient, do not build a parallel index.
 
 ## Phase 1 — Source Authority Model
 
-Every discovered source receives exactly one authority class:
+Every source gets one authority class:
 
 ```text
 CANONICAL
@@ -105,38 +125,83 @@ Definitions:
 
 - CANONICAL = authoritative procedural source
 - SECONDARY = usable derivative/reference source
-- REFERENCE = useful documentation but not itself authoritative skill content
+- REFERENCE = useful material but not authoritative skill content
 - GENERATED = produced from another authority
-- DUPLICATE = content duplicated from another source
+- DUPLICATE = materially duplicated content
 - LEGACY = retained historical material
 - UNKNOWN = unresolved authority
 
-UNKNOWN and lower-authority sources must never outrank CANONICAL solely because of FTS relevance.
+Authority constrains ranking. UNKNOWN/lower-authority content must not outrank CANONICAL solely through FTS relevance.
 
-Preserve source identity separately from skill identity. Do not deduplicate skills merely because names match.
+Preserve source identity separately from skill identity. Do not deduplicate by name alone.
 
-## Phase 2 — Discovery / BirdEye Integration
+## Phase 2 — BirdEye Reuse
 
-Determine whether BirdEye can provide the general filesystem/workspace discovery needed.
-
-Preferred design:
+Prefer:
 
 ```text
 BirdEye
-→ discover current files / workspace facts
+→ current workspace/file discovery
+→ current file facts / hashes
 
 Skill layer
-→ identify skill sources
+→ identify actual skills
 → parse skill semantics
 → classify authority
-→ hash and index
+→ hash/index
 ```
 
-Do not create multiple overlapping generic filesystem crawlers unless BirdEye is proven insufficient. The new component specializes in skill semantics.
+Do not add another generic filesystem crawler unless BirdEye is proven insufficient.
 
-## Phase 3 — Canonical Skill Identity
+## Phase 3 — Shared Skill Collection / Curation
 
-Define stable source and skill identities.
+Shared root:
+
+```text
+C:\MCP Local\Skills\
+```
+
+Use audited external repositories as source/reference material, not architecture authority.
+
+Known candidate references:
+
+- `anthropics/skills`
+- `cline/skills`
+- `lobehub/skills`
+- `erichare/skillroute`
+- `JayCheng113/skill-retrieval-mcp`
+- MCP experimental Skills/Resources work
+
+Collection model:
+
+```text
+external source
+→ audit repository structure
+→ identify real skills
+→ preserve upstream provenance
+→ classify authority
+→ C:\MCP Local\Skills\sources\
+→ curate selected skills into C:\MCP Local\Skills\curated\
+```
+
+Do not import repositories wholesale without inspection.
+
+For each imported source preserve:
+
+- repository;
+- commit SHA/ref;
+- original skill path;
+- source URL;
+- import timestamp;
+- SHA-256.
+
+Default imported upstream material to `REFERENCE` until deliberately curated.
+
+Do not turn arbitrary READMEs, project plans, examples, benchmarks, changelogs, blog posts, or implementation source into skills.
+
+## Phase 4 — Canonical Skill Identity
+
+Use stable source and skill identities.
 
 Example source fields:
 
@@ -167,7 +232,7 @@ updated_at
 status
 ```
 
-Example chunk fields:
+Example chunks:
 
 ```text
 skill_id
@@ -178,42 +243,41 @@ content
 content_sha256
 ```
 
-Example tag fields:
+Example tags:
 
 ```text
 skill_id
 tag
 ```
 
-Retain physical paths internally for indexing and invalidation; do not expose them through MCP results unless explicitly required for provenance.
+Keep physical paths internally for provenance/invalidation. Do not expose machine paths through MCP results unless explicitly required.
 
-## Phase 4 — SQLite Projection
+## Phase 5 — SQLite Projection (Conditional)
 
-Create a disposable local SQLite database.
+Only after the GO gate is proven:
 
-SQLite must be reconstructible entirely from canonical sources.
+- create a disposable local SQLite database;
+- make it fully reconstructible from canonical/curated sources;
+- use SQLite FTS5 for the initial retrieval layer;
+- keep the source corpus independent from the database.
 
-Required properties:
+Required invariants:
 
-- deleting the database does not delete skills;
+- deleting SQLite does not delete skills;
 - indexing is deterministic;
-- source hashes determine updates;
+- source hashes determine changes;
 - unchanged skills are not rewritten unnecessarily.
 
-Use SQLite FTS5 for initial retrieval.
+Do not introduce embeddings or a vector service initially.
 
-Do not introduce embeddings or a separate vector service yet.
-
-## Phase 5 — Incremental Indexing
-
-Index flow:
+## Phase 6 — Incremental Indexing
 
 ```text
 discover source
-→ resolve canonical skill
+→ resolve canonical/curated skill
 → read source
 → SHA-256
-→ compare indexed hash
+→ compare index
 → parse if changed
 → update changed records
 → remove deleted records
@@ -228,34 +292,33 @@ Track:
 - content hash;
 - parser version.
 
-If parsing rules change, provide a deterministic re-index mechanism.
+Provide deterministic re-indexing when parser rules change.
 
-## Phase 6 — Skill Parser
+## Phase 7 — Skill Parser
 
-Parse only actual procedural skill content.
+Only actual procedural skill content qualifies.
 
-A document qualifies as a skill only when:
+Qualification requires:
 
-- explicitly registered as a skill; or
-- the source authority explicitly classifies it as procedural skill material.
+- explicit skill registration; or
+- explicit source authority classification as procedural skill material.
 
-Do not infer that a document is a skill merely because it contains instructions.
+Do not infer skill status from the presence of instructions alone.
 
 Capture:
 
 - name;
 - description;
-- sections;
-- headings;
+- sections/headings;
 - tags;
 - capability scope;
 - project scope;
-- source authority;
+- authority;
 - revision/hash.
 
-## Phase 7 — Retrieval Engine
+## Phase 8 — Deterministic Retrieval
 
-Initial retrieval is deterministic:
+Initial retrieval:
 
 ```text
 query
@@ -266,7 +329,7 @@ query
 + FTS5
 ```
 
-Ranking order:
+Ranking:
 
 1. eligibility / authority;
 2. project scope;
@@ -275,13 +338,13 @@ Ranking order:
 5. explicit tags;
 6. freshness.
 
-Authority is a constraint, not merely another score.
+Authority is a constraint, not just a score.
 
-Do not load complete skill catalogs into agent context.
+Do not inject the full catalog into agent context.
 
-## Phase 8 — MCP Interface
+## Phase 9 — MCP Interface
 
-Expose retrieval-only MCP operations:
+Initial retrieval surface:
 
 ```text
 search_skills
@@ -296,7 +359,7 @@ Optional later:
 get_skill_metadata
 ```
 
-Do not expose:
+Do NOT expose:
 
 ```text
 run_skill
@@ -308,9 +371,11 @@ modify_skill
 
 The MCP retrieves procedural knowledge only.
 
-## Phase 9 — Search Result Contract
+Before permanently fixing the MCP surface, check current Skills/Resources standards or proposals and preserve the option for a standard resource/lazy-loading implementation where appropriate. Experimental proposals are references, not authority.
 
-Search returns concise metadata first.
+## Phase 10 — Search Result Contract
+
+Search returns concise metadata first and explains why it matched.
 
 Example:
 
@@ -322,50 +387,42 @@ Example:
   "capability": ["runtime-validation"],
   "authority": "CANONICAL",
   "score": 0.91,
-  "matched": [
-    "runtime validation",
-    "installed acceptance",
-    "provider"
-  ]
+  "matched": ["runtime validation", "installed acceptance", "provider"]
 }
 ```
 
-The result should explain why it matched. Do not return opaque similarity numbers without match context. Do not return entire skill bodies in search results.
+Do not return opaque scores without match evidence or entire skill bodies in search results.
 
-## Phase 10 — Section Loading
-
-After the agent selects a skill:
+## Phase 11 — Section Loading
 
 ```text
 search
 → candidate metadata
 → selected skill
-→ selected/relevant sections
-→ agent context
+→ selected sections
+→ existing agent context
 ```
 
-Do not load all sections automatically.
+Load only the selected/relevant sections and preserve their order.
 
-Support selection by section IDs or headings and preserve source section order.
+## Phase 12 — Agent Integration
 
-## Phase 11 — Agent Integration
-
-Existing reasoning remains unchanged.
+Existing reasoning remains unchanged:
 
 ```text
 agent objective
 → skill search
 → candidate selection
-→ relevant skill sections
+→ relevant sections
 → Local AgentSessionRuntime
 → LiveAgentCore
 → normal reasoning
 → governed capabilities
 ```
 
-The skill system provides context only. It does not plan independently, reason independently, execute tools, or become a second agent.
+Skill retrieval provides context only. It does not become a planner, reasoner, executor, or second agent.
 
-## Phase 12 — Project / Capability Scoping
+## Phase 13 — Project / Capability Scoping
 
 Support:
 
@@ -373,11 +430,11 @@ Support:
 - project skills;
 - capability-specific skills.
 
-Examples include Access Browser Agent, LBE, LoopTool, and other discovered projects, but projects must not be hard-coded into the retrieval engine. Use registry metadata.
+Examples can include Access Browser Agent, LBE, LoopTool, and other discovered projects, but the retrieval engine must use registry metadata rather than hard-coded project names.
 
-## Phase 13 — GPT-Knowledge Integration
+## Phase 14 — GPT-Knowledge Boundary
 
-GPT-Knowledge may be used as a source.
+GPT-Knowledge may be a reference/source for explicitly qualified shared procedural material, but the Browser Agent-specific `evidence-driven-engineering` skill remains excluded from the shared local-agent corpus.
 
 Do not copy all GPT-Knowledge documents into the skill index.
 
@@ -391,20 +448,18 @@ vs
 historical/reference material
 ```
 
-Only explicitly qualified procedural material becomes a skill.
+GPT-Knowledge remains its own authority system. The shared skill index remains a retrieval projection.
 
-GPT-Knowledge remains its own authority system. The skill index remains a retrieval projection.
+## Phase 15 — Validation
 
-## Phase 14 — Validation
-
-Unit tests must cover:
+Unit tests:
 
 - source discovery;
 - authority classification;
 - duplicate handling;
 - SHA-256 calculation;
-- changed-source detection;
-- deleted-source detection;
+- change detection;
+- deletion detection;
 - incremental update;
 - parser correctness;
 - FTS retrieval;
@@ -413,7 +468,7 @@ Unit tests must cover:
 - authority ranking;
 - section retrieval.
 
-MCP tests must cover:
+MCP tests:
 
 - search_skills;
 - get_skill;
@@ -422,22 +477,22 @@ MCP tests must cover:
 - invalid skill rejection;
 - unknown source handling.
 
-Negative tests must cover:
+Negative tests:
 
 - UNKNOWN outranking CANONICAL;
-- duplicate skills collapsing incorrectly;
-- legacy skill appearing as canonical;
-- generated copy replacing source authority;
+- incorrect duplicate collapse;
+- legacy material appearing canonical;
+- generated copy replacing authority;
 - physical path leakage;
 - arbitrary skill execution;
 - full catalog injection.
 
-## Phase 15 — Performance Measurements
+## Phase 16 — Performance Measurements
 
 Measure with real executions:
 
-- total canonical skills;
-- total indexed skills;
+- canonical/curated skill count;
+- indexed skill count;
 - database size;
 - initial index time;
 - incremental index time;
@@ -445,46 +500,46 @@ Measure with real executions:
 - section retrieval latency;
 - cache hit rate.
 
-Do not claim SQLite is faster than existing search until measured.
+Do not claim SQLite is faster until measured.
 
-## Phase 16 — Multi-Project Acceptance
+## Phase 17 — Multi-Project Acceptance
 
-Run real retrieval tasks against at least:
+Use real tasks against at least:
 
 - Access Browser Agent;
 - LBE;
 - LoopTool;
-- another discovered project if available.
+- one additional discovered project if available.
 
 For each:
 
 ```text
 request
 → search
-→ select candidates
-→ load relevant skill sections
-→ agent continues normally
+→ candidate selection
+→ relevant section loading
+→ existing agent reasoning
 ```
 
-Verify:
+Prove:
 
-- project-specific skills outrank unrelated skills;
+- relevant project skills outrank unrelated skills;
 - global skills remain available;
-- canonical sources outrank secondary/generated/legacy material;
+- CANONICAL outranks SECONDARY/GENERATED/LEGACY;
 - only selected content enters context.
 
-## Phase 17 — Source Change Acceptance
+## Phase 18 — Source Change Acceptance
 
-Change one canonical skill, run incremental indexing, and prove:
+Change one canonical/curated skill and prove:
 
 - SHA changes;
-- only that skill is reindexed;
-- unchanged skills remain untouched;
-- retrieval reflects new content.
+- only the affected skill reindexes;
+- unchanged skills remain unchanged;
+- retrieval reflects the new content.
 
-Then delete one canonical skill, run incremental indexing, and prove it disappears from retrieval while source provenance/history remains observable where applicable.
+Delete one canonical/curated skill and prove it disappears from retrieval while provenance/history remains observable where applicable.
 
-## Phase 18 — Failure / Recovery
+## Phase 19 — Failure / Recovery
 
 Handle:
 
@@ -496,18 +551,18 @@ Handle:
 - stale index;
 - SQLite corruption.
 
-Recovery model:
+Recovery:
 
 ```text
-canonical source
+canonical/curated source
 → rebuild index
 ```
 
-Do not lose canonical content when SQLite is damaged.
+SQLite corruption must never destroy the source corpus.
 
-## Phase 19 — Future Extensions
+## Phase 20 — Future Extensions
 
-Do not implement initially:
+Do not initially build:
 
 - embeddings;
 - semantic vector database;
@@ -518,30 +573,29 @@ Do not implement initially:
 - skill recommendation agent;
 - cross-agent memory blending.
 
-These remain future options after deterministic retrieval is proven insufficient.
+These remain future options only after deterministic retrieval is proven insufficient.
 
-## Phase 20 — Final Acceptance
+## Phase 21 — Final Acceptance
 
-Acceptance requires:
+Accept only when:
 
-1. canonical skill sources identified;
-2. authority classifications proven;
-3. SQLite is a disposable projection;
-4. FTS retrieval works;
-5. project/capability filtering works;
-6. canonical authority constrains ranking;
-7. incremental indexing works;
-8. section-level loading works;
-9. MCP exposes retrieval only;
-10. local agent remains reasoning authority;
-11. multiple projects successfully retrieve relevant skills;
-12. no physical paths or credentials leak;
-13. no skill execution occurs through retrieval MCP;
-14. measured retrieval performance is recorded.
+1. shared canonical/curated skill sources are identified;
+2. authority classifications are proven;
+3. Browser Agent-specific skill remains excluded from shared retrieval;
+4. SQLite is a disposable projection;
+5. FTS retrieval works;
+6. project/capability filtering works;
+7. authority constrains ranking;
+8. incremental indexing works;
+9. section-level loading works;
+10. MCP exposes retrieval only;
+11. local agent remains the reasoning authority;
+12. multiple projects successfully retrieve relevant skills;
+13. no physical paths or credentials leak;
+14. no skill execution occurs through retrieval MCP;
+15. retrieval performance is measured.
 
-## Repository / Local Layout Context
-
-Current local root:
+## Local Layout Context
 
 ```text
 C:\MCP Local\
@@ -557,20 +611,12 @@ C:\MCP Local\
 └── startup-loader.ps1
 ```
 
-The intended shared skill source area is:
-
-```text
-C:\MCP Local\Skills\
-```
-
-This directory is a candidate canonical source root, subject to Phase 0 authority discovery. Do not assume all content under it is canonical until classified.
-
-Relevant existing authorities:
+Roles:
 
 - GPT-Knowledge = documented/project/UI truth
 - Letterblack_BirdEye = workspace discovery/audit/evidence
 - Memory = historical/durable memory
-- Skills = intended shared skill source area, pending authority audit
+- Skills = shared skill source/curation area
 - Chat_Dataexported = source archive
 - servers = local service binaries/scripts
 - state/workspace = runtime state
@@ -590,6 +636,9 @@ AUTHORITY_MAP:
 <source → authority>
 
 CANONICAL_SKILL_COUNT:
+<count>
+
+CURATED_SKILL_COUNT:
 <count>
 
 SQLITE_PROJECTION:
@@ -625,9 +674,9 @@ DO_NOT_CLAIM:
 
 ## Protected Boundaries
 
-Do not modify the existing GPT-Knowledge UI/BirdEye system unless the skill retrieval work demonstrably requires an integration point.
+Do not modify the existing GPT-Knowledge UI/BirdEye system unless skill retrieval demonstrably requires an integration point.
 
-Do not disturb the Phase 9 closure.
+Do not disturb Phase 9 closure.
 
 Do not touch unrelated untracked files such as `section_09.md`.
 
