@@ -106,6 +106,13 @@
       "priority": "LOCKED",
       "classification": "NOT_YET_PROVEN",
       "detail": "Installed-runtime acceptance and full current-head CI/release acceptance remain unproven."
+    },
+    {
+      "id": "harness-adoption",
+      "title": "DeepSeek Harness compatibility and adoption",
+      "priority": "REFERENCE / BLOCKED",
+      "classification": "ADOPTION_UNPROVEN",
+      "detail": "Compatibility audit found adapter requirements for provider routing, tools/capabilities, sessions/persistence, receipts/evidence, and UI projection. Workspace identity/confinement must remain Brew-owned; no verified Harness equivalent for Brew approvals/governance was established. Resource-policy (13), autonomy (10), and memory/session (18) tests passed, but the Harness executable/package was absent and no governed Brew-style Harness task ran. Do not replace Brew runtime authority."
     }
   ],
   "next_acceptance": {
