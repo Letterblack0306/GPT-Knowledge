@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "project_id": "agent-harness-references",
+  "active_node": "deepseek-config-driven-harness",
+  "nodes": [
+    {
+      "id": "standard-agent-loop",
+      "title": "Standard Agent Loop",
+      "lane": "Reference Model",
+      "status": "proven",
+      "priority": "REFERENCE",
+      "summary": "Harness owns context serialization and tool execution; the reasoning model decides when to call tools and when to answer."
+    },
+    {
+      "id": "deepseek-config-driven-harness",
+      "title": "DeepSeek Config-Driven Harness",
+      "lane": "Reference Model",
+      "status": "current",
+      "priority": "CURRENT REFERENCE",
+      "summary": "External reference for live configuration, validated tool registration and hot-reload patterns."
+    },
+    {
+      "id": "brew-existing-registry",
+      "title": "Brew Existing Tool Registry",
+      "lane": "Brew Mapping",
+      "status": "proven",
+      "priority": "PROVEN EXISTING",
+      "summary": "Brew already owns source-contained tool.json manifests, validation, dynamic imports and explicit registration through one capability registry."
+    },
+    {
+      "id": "brew-live-tool-reload",
+      "title": "Live Local-Tool Reload",
+      "lane": "Brew Mapping",
+      "status": "next",
+      "priority": "ADOPT",
+      "summary": "Extend the existing Brew registry so validated local-tool source changes can be reloaded without restarting the runtime."
+    },
+    {
+      "id": "config-owned-reasoning",
+      "title": "Config-Owned Reasoning / Policy",
+      "lane": "Rejected Boundary",
+      "status": "warning",
+      "priority": "REJECT",
+      "summary": "Do not move reasoning, approval, safety policy or canonical execution authority into live configuration."
+    }
+  ],
+  "edges": [
+    { "from": "standard-agent-loop", "to": "deepseek-config-driven-harness", "type": "flow" },
+    { "from": "deepseek-config-driven-harness", "to": "brew-existing-registry", "type": "requires-revalidation" },
+    { "from": "brew-existing-registry", "to": "brew-live-tool-reload", "type": "flow" },
+    { "from": "deepseek-config-driven-harness", "to": "config-owned-reasoning", "type": "validation-boundary" }
+  ]
+}
