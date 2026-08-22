@@ -1,11 +1,11 @@
 {
   "schema_version": 2,
   "project": "Access Browser Agent",
-  "verified_at": "2026-08-22T20:05:00+04:00",
+  "verified_at": "2026-08-22",
   "source_repo": "Letterblack0306/access-browser-agent",
   "source_branch": "main",
-  "source_head": "4319eda9e6988768217b6994a355d46bc9a1224c",
-  "overall_classification": "P1_PRODUCT_UI_AND_RELAY_FIXES_CURRENT_HEAD_CHECKS_PASS_LIVE_ACCEPTANCE_PASS",
+  "source_head": "626bf406ba7a251e38b94e4534729bb3b8724c77",
+  "overall_classification": "P1_PRODUCT_UI_AND_RUNTIME_HARDENING_CURRENT_HEAD_CHECKS_AND_LIVE_ACCEPTANCE_PASS_WITH_STRICT_ISOLATION_HOST_BLOCKED",
   "authority_note": "GPT-Knowledge is a projection of verified repository/runtime evidence. Current repository source, local runtime evidence and acceptance results remain authoritative. Material browser/Electron acceptance evidence must be synchronized here and in plan.json so the GPT-Knowledge browser view stays current.",
   "local_validation": {
     "settlement_command_hash": "11876582E03956B429C5CEE03DF25FB2AFF045B155F0751340FC817E1E3E8F09",
@@ -15,8 +15,8 @@
     "live_ui_acceptance_command_hash": "3553B9B5526F670F161BDF7CA1332B84905F9B7C7EF2B36E527D7EA7043057DF",
     "acceptance_cleanup_command_hash": "23132554E7FF4A613DF21AB15EDA7813FA131C5B5AB53EF775F72EDB6BFD0804",
     "acceptance_target_config_inventory_hash": "D154B793B163370D71690645CE50D18A7F5A82F4BA31C7AFF4843C153A81F9E8",
-    "head": "0048d0dceb062fbabb06423dfa419a6050a4713e",
-    "evidence_scope": "Historical validation evidence below is explicitly labeled at 0048d0d; current product source head is b9abac1 and current full checks plus live acceptance are recorded in source_update.validation.",
+    "head": "626bf406ba7a251e38b94e4534729bb3b8724c77",
+    "evidence_scope": "Current-head source, full checks, 8-step Electron UI acceptance, live Managed Chrome general-browser/AX probe, live native PTY round-trip, and fail-closed recovery-boundary regression are recorded at 626bf40.",
     "browser_tool_runtime_smoke": "PASS",
     "durable_stop_acceptance": "PASS",
     "turn_37c_reconciliation": "PASS",
@@ -24,32 +24,96 @@
     "live_ui_acceptance": "PASS_CURRENT_HEAD_ELECTRON_CDP_8_STEPS",
     "acceptance_created_recovery_cleanup": "PASS",
     "acceptance_target_configuration": "EXISTING_ACCESS_AGENT_ACCEPTANCE_CHAT_URL_AND_SAVED_EXACT_TARGET",
-    "git_status": "main aligned with origin/main; protected untracked section_09.md preserved"
+    "git_status": "main aligned with origin/main; protected untracked section_09.md preserved",
+    "current_head_check": "PASS",
+    "current_head_check_rebuild": "PASS",
+    "current_head_ui_acceptance": "PASS_CURRENT_HEAD_ELECTRON_CDP_8_STEPS",
+    "live_managed_chrome_browser_open_snapshot": "PASS_HTTPS_NAVIGATION_AND_BOUNDED_AX",
+    "live_native_pty_roundtrip": "PASS_PWSH_CREATE_WRITE_EXIT",
+    "recovery_boundary_regression": "PASS_FAIL_CLOSED_RECONCILIATION"
   },
   "closed": [
-    {"id":"provider-context-compaction","classification":"FIXED_AND_REVALIDATED_CURRENT_LIVE"},
-    {"id":"cline-auth-source-repair","classification":"PROVEN_SOURCE_AND_REGRESSION"},
-    {"id":"candidate-provider-readiness","classification":"PROVEN_SOURCE_AND_LOCAL_REGRESSION"},
-    {"id":"post-result-continuation-live","classification":"PROVEN_CURRENT_LIVE"},
-    {"id":"terminal-state-ui-source","classification":"PROVEN_SOURCE_AND_LOCAL_REGRESSION"},
-    {"id":"agent-ui-event-dispatch","classification":"PROVEN_CURRENT_LIVE"},
-    {"id":"instruction-recovery-turn-1f8","classification":"QUARANTINED_AND_CLEARED"},
-    {"id":"runtime-progress-reentry","classification":"PROVEN_SOURCE_AND_LOCAL_REGRESSION"},
-    {"id":"browser-settlement","classification":"PROVEN_SOURCE_AND_LOCAL_REGRESSION","command_hash":"11876582E03956B429C5CEE03DF25FB2AFF045B155F0751340FC817E1E3E8F09"},
-    {"id":"stop-durable-terminal","classification":"PROVEN_SOURCE_AND_LOCAL_ACCEPTANCE","command_hash":"A4EFEC8974180EDCAAEAE072EC0B6FCAB27FAE506A59F9E1137E7A6BBCCC079A"},
-    {"id":"turn-37c-recovery","classification":"QUARANTINED_AND_RECONCILED","command_hash":"901E6FB855E71CE8C5FDB72E01F608D54366F0BA875A78C66D4CFD09EC5D807E"},
-    {"id":"acceptance-created-turn-99a7","classification":"QUARANTINED_AND_CLEARED","command_hash":"23132554E7FF4A613DF21AB15EDA7813FA131C5B5AB53EF775F72EDB6BFD0804","detail":"Live Electron acceptance timed out while turn-99a7ca39d3f063e5 was executing because the selected ChatGPT target was not idle. The bounded acceptance process ended before a terminal receipt was written, so the ambiguous executing record was durably quarantined with receipt 724f0eef66c51892733afe6b9cea3cd460420c1743f75029eb0004a505254a24. Unresolved recoveries are zero."},
-    {"id":"acceptance-created-turn-9590","classification":"QUARANTINED_AND_RECONCILED","detail":"Current-head acceptance at 26c72b45 reached renderer/runtime/browser readiness and configured the saved ChatGPT target, but relay start was blocked by durable executing state on non-idle target turn-9590b53b5c1a3a8f. Existing recovery reconciliation quarantined the record with receipt 41329076dd7257bf609064d84f3852e7083a41ebf48cddb5f0b7db673ff2cd71; ambiguous=false; instruction execution count remained zero."}
+    {
+      "id": "provider-context-compaction",
+      "classification": "FIXED_AND_REVALIDATED_CURRENT_LIVE"
+    },
+    {
+      "id": "cline-auth-source-repair",
+      "classification": "PROVEN_SOURCE_AND_REGRESSION"
+    },
+    {
+      "id": "candidate-provider-readiness",
+      "classification": "PROVEN_SOURCE_AND_LOCAL_REGRESSION"
+    },
+    {
+      "id": "post-result-continuation-live",
+      "classification": "PROVEN_CURRENT_LIVE"
+    },
+    {
+      "id": "terminal-state-ui-source",
+      "classification": "PROVEN_SOURCE_AND_LOCAL_REGRESSION"
+    },
+    {
+      "id": "agent-ui-event-dispatch",
+      "classification": "PROVEN_CURRENT_LIVE"
+    },
+    {
+      "id": "instruction-recovery-turn-1f8",
+      "classification": "QUARANTINED_AND_CLEARED"
+    },
+    {
+      "id": "runtime-progress-reentry",
+      "classification": "PROVEN_SOURCE_AND_LOCAL_REGRESSION"
+    },
+    {
+      "id": "browser-settlement",
+      "classification": "PROVEN_SOURCE_AND_LOCAL_REGRESSION",
+      "command_hash": "11876582E03956B429C5CEE03DF25FB2AFF045B155F0751340FC817E1E3E8F09"
+    },
+    {
+      "id": "stop-durable-terminal",
+      "classification": "PROVEN_SOURCE_AND_LOCAL_ACCEPTANCE",
+      "command_hash": "A4EFEC8974180EDCAAEAE072EC0B6FCAB27FAE506A59F9E1137E7A6BBCCC079A"
+    },
+    {
+      "id": "turn-37c-recovery",
+      "classification": "QUARANTINED_AND_RECONCILED",
+      "command_hash": "901E6FB855E71CE8C5FDB72E01F608D54366F0BA875A78C66D4CFD09EC5D807E"
+    },
+    {
+      "id": "acceptance-created-turn-99a7",
+      "classification": "QUARANTINED_AND_CLEARED",
+      "command_hash": "23132554E7FF4A613DF21AB15EDA7813FA131C5B5AB53EF775F72EDB6BFD0804",
+      "detail": "Live Electron acceptance timed out while turn-99a7ca39d3f063e5 was executing because the selected ChatGPT target was not idle. The bounded acceptance process ended before a terminal receipt was written, so the ambiguous executing record was durably quarantined with receipt 724f0eef66c51892733afe6b9cea3cd460420c1743f75029eb0004a505254a24. Unresolved recoveries are zero."
+    },
+    {
+      "id": "acceptance-created-turn-9590",
+      "classification": "QUARANTINED_AND_RECONCILED",
+      "detail": "Current-head acceptance at 26c72b45 reached renderer/runtime/browser readiness and configured the saved ChatGPT target, but relay start was blocked by durable executing state on non-idle target turn-9590b53b5c1a3a8f. Existing recovery reconciliation quarantined the record with receipt 41329076dd7257bf609064d84f3852e7083a41ebf48cddb5f0b7db673ff2cd71; ambiguous=false; instruction execution count remained zero."
+    },
+    {
+      "id": "node-pty-attachconsole",
+      "classification": "PROVEN_CURRENT_HOST_PTY_ROUNDTRIP"
+    },
+    {
+      "id": "browser-general-open-navigation-ax",
+      "classification": "PROVEN_CURRENT_LIVE_MANAGED_CHROME"
+    },
+    {
+      "id": "agent-recovery-boundary",
+      "classification": "PROVEN_FAIL_CLOSED_RECONCILIATION_BOUNDARY"
+    }
   ],
   "source_update": {
-    "head": "47f673cc611dccc82e5fbdb04cc99db1e6ec2611",
-    "classification": "PROVEN_GITHUB_SOURCE_CURRENT_HEAD_CHECKS_AND_LIVE_ACCEPTANCE_PASS",
+    "head": "626bf406ba7a251e38b94e4534729bb3b8724c77",
+    "classification": "PROVEN_GITHUB_SOURCE_CURRENT_HEAD_CHECKS_LIVE_UI_BROWSER_PTY_AND_RECOVERY_BOUNDARY",
     "commits": [
       "5fcda7df8b5ae828608698ec8126646ac0a948fd",
       "1880e4024f209a52d31f268129eae74ed097da74",
       "0ca41939fe33f894c85f4c3cf9645002932bb47f",
       "f78821d6bcbb143a935ee42a680edf8e04021fc5",
-      "26c72b455de71d6ff5d8505888c6dfd6304bec65"
+      "26c72b455de71d6ff5d8505888c6dfd6304bec65",
+      "626bf406ba7a251e38b94e4534729bb3b8724c77"
     ],
     "files": [
       "src/agent/executive/BrowserInstructionRelay.js",
@@ -75,19 +139,30 @@
       "docs/change-intents/2026-08-22-local-ui-external-surface-removal.md",
       "electron/rebuild-shell.js",
       "test/rebuild-shell-smoke.js",
-      "docs/change-intents/2026-08-22-monitor-aware-layout-reconciliation.md"
+      "docs/change-intents/2026-08-22-monitor-aware-layout-reconciliation.md",
+      "src/browser/browser-tool-runtime.js",
+      "test/browser-tool-runtime-smoke.js",
+      "src/agent/executive/AgentSessionState.js",
+      "src/agent/executive/AgentExecutive.js",
+      "src/agent/executive/AgentSessionRuntime.js",
+      "test/agent-recovery-boundary-smoke.js",
+      "electron/pty-terminal-manager.js",
+      "docs/CURRENT_STATUS.md"
     ],
     "validation": {
       "new_ui_js_syntax": "PASS at b8edf13",
       "historical_check_rebuild": "PASS at local 0048d0d checkout",
       "historical_check": "PASS at local 0048d0d checkout",
       "current_head_check_rebuild": "PASS at 47f673c after Cline provider-store import",
-      "current_head_check": "PASS at 47f673c after Cline provider-store import",
+      "current_head_check": "PASS at 626bf40",
       "current_head_ui_js_syntax": "PASS at 47f673c",
       "current_head_ui_smoke_suite": "PASS: runtime-controls, trace, electron-shell, workbench-ux and birdeye-surface absence",
-      "current_head_rendered_live_acceptance": "PASS: npm run acceptance:ui with ACCESS_AGENT_ACCEPTANCE_STEP_TIMEOUT_MS=120000; all 8 steps passed",
+      "current_head_rendered_live_acceptance": "PASS: npm run acceptance:ui; all 8 steps",
       "current_head_provider_capability_probe": "PASS: LM Studio qwen/qwen3-vl-8b",
-      "current_head_recovery_reconciliation": "PASS; prior receipt 41329076dd7257bf609064d84f3852e7083a41ebf48cddb5f0b7db673ff2cd71; ambiguous=false"
+      "current_head_recovery_reconciliation": "PASS; prior receipt 41329076dd7257bf609064d84f3852e7083a41ebf48cddb5f0b7db673ff2cd71; ambiguous=false",
+      "current_head_general_browser_live_probe": "PASS: Managed Chrome HTTPS open, explicit navigation, settlement, bounded AX snapshot",
+      "current_head_native_pty_probe": "PASS: node-pty pwsh create/write/exit round-trip",
+      "current_head_recovery_boundary": "PASS: unmatched step.started blocks new work until explicit reconciliation"
     }
   },
   "active": {
@@ -101,43 +176,159 @@
       "live_command_hash": "3553B9B5526F670F161BDF7CA1332B84905F9B7C7EF2B36E527D7EA7043057DF",
       "cleanup_command_hash": "23132554E7FF4A613DF21AB15EDA7813FA131C5B5AB53EF775F72EDB6BFD0804",
       "target_inventory_hash": "D154B793B163370D71690645CE50D18A7F5A82F4BA31C7AFF4843C153A81F9E8",
-      "live_steps": ["renderer-cdp-ready PASS", "renderer-runtime-api-ready PASS", "chat-target-configured PASS", "click-loop-start-and-wait PASS", "click-check-target-and-preserve-identity PASS", "click-loop-stop-and-wait PASS", "click-stop-all-and-wait PASS", "final-clean-state PASS"],
-      "target_controls": ["ACCESS_AGENT_ACCEPTANCE_CHAT_URL", "saved browserChatUrl", "saved browserProviderTarget.url"],
+      "live_steps": [
+        "renderer-cdp-ready PASS",
+        "renderer-runtime-api-ready PASS",
+        "chat-target-configured PASS",
+        "click-loop-start-and-wait PASS",
+        "click-check-target-and-preserve-identity PASS",
+        "click-loop-stop-and-wait PASS",
+        "click-stop-all-and-wait PASS",
+        "final-clean-state PASS"
+      ],
+      "target_controls": [
+        "ACCESS_AGENT_ACCEPTANCE_CHAT_URL",
+        "saved browserChatUrl",
+        "saved browserProviderTarget.url"
+      ],
       "cleanup": "Acceptance final-clean-state PASS; runtime, relay and managed browser stopped cleanly. Prior turn-9590b53b5c1a3a8f recovery remains quarantined with receipt 41329076dd7257bf609064d84f3852e7083a41ebf48cddb5f0b7db673ff2cd71; ambiguous=false"
     }
   },
   "proven_findings": [
-    {"id":"cline-auth-live-persistence","classification":"PROVEN_CURRENT_LIVE_PROVIDER_READINESS","detail":"Read-only Cline provider-store import plus authenticated completion, tool-calling, and structured-output readiness all passed."},
-    {"id":"progress-reentry","classification":"PROVEN_SOURCE_AND_LOCAL_REGRESSION"},
-    {"id":"browser-settlement","classification":"PROVEN_SOURCE_AND_LOCAL_REGRESSION"},
-    {"id":"stop-durable-terminal","classification":"PROVEN_SOURCE_AND_LOCAL_ACCEPTANCE"},
-    {"id":"turn-37c-recovery","classification":"QUARANTINED_AND_RECONCILED"},
-    {"id":"terminal-state-ui-rendered","classification":"PROVEN_SOURCE_AND_LOCAL_REGRESSION_AT_0048D0D_CURRENT_HEAD_REVALIDATION_REQUIRED"},
-    {"id":"ide-shell-reference-source","classification":"PROVEN_GITHUB_SOURCE_AT_26C72B45_RENDERED_LIVE_REVALIDATION_REQUIRED"},
-    {"id":"live-electron-harness-boot","classification":"PROVEN_LIVE_PARTIAL","detail":"The existing ui-state-driven-acceptance-v2 harness launched Electron, attached over CDP, confirmed renderer/runtime API readiness, configured the chat target and brought runtime/browser/relay live. It did not reach idle waiting_for_instruction because the selected conversation produced a new executable assistant turn."},
-    {"id":"live-acceptance-target-configuration","classification":"PROVEN_SOURCE","detail":"Existing acceptance scripts support ACCESS_AGENT_ACCEPTANCE_CHAT_URL and saved exact ChatGPT target preferences. BrowserInstructionRelay already owns baseline semantics; no product behavior addition is authorized for target setup."},
-    {"id":"persistent-browser-profile","classification":"PROVEN_SOURCE"},
-    {"id":"accessibility-layer","classification":"PARTIAL_SOURCE"}
+    {
+      "id": "cline-auth-live-persistence",
+      "classification": "PROVEN_CURRENT_LIVE_PROVIDER_READINESS",
+      "detail": "Read-only Cline provider-store import plus authenticated completion, tool-calling, and structured-output readiness all passed."
+    },
+    {
+      "id": "progress-reentry",
+      "classification": "PROVEN_SOURCE_AND_LOCAL_REGRESSION"
+    },
+    {
+      "id": "browser-settlement",
+      "classification": "PROVEN_SOURCE_AND_LOCAL_REGRESSION"
+    },
+    {
+      "id": "stop-durable-terminal",
+      "classification": "PROVEN_SOURCE_AND_LOCAL_ACCEPTANCE"
+    },
+    {
+      "id": "turn-37c-recovery",
+      "classification": "QUARANTINED_AND_RECONCILED"
+    },
+    {
+      "id": "terminal-state-ui-rendered",
+      "classification": "PROVEN_SOURCE_AND_LOCAL_REGRESSION_AT_0048D0D_CURRENT_HEAD_REVALIDATION_REQUIRED"
+    },
+    {
+      "id": "ide-shell-reference-source",
+      "classification": "PROVEN_GITHUB_SOURCE_AT_26C72B45_RENDERED_LIVE_REVALIDATION_REQUIRED"
+    },
+    {
+      "id": "live-electron-harness-boot",
+      "classification": "PROVEN_LIVE_PARTIAL",
+      "detail": "The existing ui-state-driven-acceptance-v2 harness launched Electron, attached over CDP, confirmed renderer/runtime API readiness, configured the chat target and brought runtime/browser/relay live. It did not reach idle waiting_for_instruction because the selected conversation produced a new executable assistant turn."
+    },
+    {
+      "id": "live-acceptance-target-configuration",
+      "classification": "PROVEN_SOURCE",
+      "detail": "Existing acceptance scripts support ACCESS_AGENT_ACCEPTANCE_CHAT_URL and saved exact ChatGPT target preferences. BrowserInstructionRelay already owns baseline semantics; no product behavior addition is authorized for target setup."
+    },
+    {
+      "id": "persistent-browser-profile",
+      "classification": "PROVEN_SOURCE"
+    },
+    {
+      "id": "general-browser-live-navigation-ax",
+      "classification": "PROVEN_CURRENT_LIVE_MANAGED_CHROME",
+      "detail": "Optional context creation is host-rejected, but general HTTPS open now explicitly navigates the owned target and returns bounded AX evidence."
+    },
+    {
+      "id": "native-pty-roundtrip",
+      "classification": "PROVEN_CURRENT_HOST_RUNTIME",
+      "detail": "The terminal manager completed a real pwsh node-pty create/write/exit round-trip."
+    },
+    {
+      "id": "agent-recovery-boundary",
+      "classification": "PROVEN_FAIL_CLOSED_RECONCILIATION",
+      "detail": "An unmatched step.started reconstructs as recovery_required and blocks new work until explicit reconciliation."
+    }
   ],
   "hardening_plan": [
-    {"order":1,"id":"progress-reentry","priority":"P1 CRITICAL","state":"PROVEN_SOURCE_AND_LOCAL_REGRESSION"},
-    {"order":2,"id":"page-settlement","priority":"P1 CRITICAL","state":"PROVEN_SOURCE_AND_LOCAL_REGRESSION","implementation_head":"0048d0dceb062fbabb06423dfa419a6050a4713e"},
-    {"order":3,"id":"stop-durable-terminal","priority":"P1","state":"PROVEN_SOURCE_AND_LOCAL_ACCEPTANCE"},
-    {"order":4,"id":"turn-37c-recovery","priority":"P1","state":"QUARANTINED_AND_RECONCILED"},
-    {"order":5,"id":"ide-shell-reference","priority":"P1","state":"SOURCE_IMPLEMENTED_CURRENT_HEAD_CHECKS_AND_LIVE_ACCEPTANCE_PASS","implementation_head":"b8edf1314c222652483974cf13eb00f6b790330d"},
-    {"order":6,"id":"terminal-state-ui","priority":"P1","state":"CURRENT_HEAD_RENDERED_PROOF_AND_LIVE_ACCEPTANCE_PASS"},
-    {"order":7,"id":"browser-context-isolation","priority":"P1/P2","state":"PENDING"},
-    {"order":8,"id":"ax-visual-perception","priority":"P2","state":"PENDING"}
+    {
+      "order": 1,
+      "id": "progress-reentry",
+      "priority": "P1 CRITICAL",
+      "state": "PROVEN_SOURCE_AND_LOCAL_REGRESSION"
+    },
+    {
+      "order": 2,
+      "id": "page-settlement",
+      "priority": "P1 CRITICAL",
+      "state": "PROVEN_SOURCE_AND_LOCAL_REGRESSION",
+      "implementation_head": "0048d0dceb062fbabb06423dfa419a6050a4713e"
+    },
+    {
+      "order": 3,
+      "id": "stop-durable-terminal",
+      "priority": "P1",
+      "state": "PROVEN_SOURCE_AND_LOCAL_ACCEPTANCE"
+    },
+    {
+      "order": 4,
+      "id": "turn-37c-recovery",
+      "priority": "P1",
+      "state": "QUARANTINED_AND_RECONCILED"
+    },
+    {
+      "order": 5,
+      "id": "ide-shell-reference",
+      "priority": "P1",
+      "state": "SOURCE_IMPLEMENTED_CURRENT_HEAD_CHECKS_AND_LIVE_ACCEPTANCE_PASS",
+      "implementation_head": "b8edf1314c222652483974cf13eb00f6b790330d"
+    },
+    {
+      "order": 6,
+      "id": "terminal-state-ui",
+      "priority": "P1",
+      "state": "CURRENT_HEAD_RENDERED_PROOF_AND_LIVE_ACCEPTANCE_PASS"
+    },
+    {
+      "order": 7,
+      "id": "browser-context-isolation",
+      "priority": "P1/P2",
+      "state": "HOST_BLOCKED_STRICT_CONTEXT_OPTIONAL_FALLBACK_LIVE_BROWSER_PROVEN"
+    },
+    {
+      "order": 8,
+      "id": "ax-visual-perception",
+      "priority": "P2",
+      "state": "PARTIAL_AX_LIVE_PROVEN_VISUAL_PERCEPTION_NOT_IMPLEMENTED"
+    }
   ],
   "pending": [
-    {"id":"node-pty-attachconsole","priority":"P1","classification":"HOST_RUNTIME_BLOCKED_PTY_PROBE_TIMEOUT"},
-    {"id":"process-death-recovery","priority":"P1","classification":"UNPROVEN_ARBITRARY_PROCESS_DEATH_EXACTLY_ONCE"},
-    {"id":"browser-context-isolation","priority":"P1/P2","classification":"HOST_BLOCKED_CDP_CONTEXT_NOT_ALLOWED","detail":"Strict isolation path and regression coverage are implemented, but the active managed Chrome host rejects Target.createBrowserContext and Target.createTarget with Not allowed. Normal browsing remains logically owned with strict isolation disabled by default on unsupported hosts."},
-    {"id":"ax-visual-perception","priority":"P2","classification":"HOST_BLOCKED_LIVE_CDP_TARGET_NOT_ALLOWED","detail":"Bounded AX projection is implemented and fake-CDP regression passes, but live managed Chrome target creation is rejected by the host with Not allowed."}
+    {
+      "id": "process-death-exactly-once-external-effects",
+      "priority": "P1",
+      "classification": "EXTERNAL_SIDE_EFFECT_IDEMPOTENCY_UNPROVEN",
+      "detail": "Runtime now fails closed on ambiguous interrupted steps; exactly-once semantics remain external-tool dependent."
+    },
+    {
+      "id": "browser-context-isolation",
+      "priority": "P1/P2",
+      "classification": "HOST_BLOCKED_CDP_CONTEXT_NOT_ALLOWED",
+      "detail": "Strict isolation remains unavailable because the active Managed Chrome host rejects Target.createBrowserContext with Not allowed; optional mode falls back explicitly and live general browsing is proven."
+    },
+    {
+      "id": "ax-visual-perception",
+      "priority": "P2",
+      "classification": "PARTIAL_AX_LIVE_VISUAL_PERCEPTION_UNIMPLEMENTED",
+      "detail": "Bounded AX retrieval is live-proven; screenshot/visual-model perception is not implemented in this change."
+    }
   ],
   "next_acceptance": {
-    "question": "Can the P1 node-pty AttachConsole owner map be proven on the current Windows runtime without weakening terminal ownership boundaries?",
-    "observable": "Exercise the existing terminal path on the current host, capture the AttachConsole/process ownership result, and classify the exact owner map or failure without changing runtime authority.",
-    "falsifier": "If terminal attachment remains ambiguous or assigns ownership to the wrong runtime, preserve the failure evidence and classify the missing owner boundary before implementing a fix."
+    "question": "Can the active Managed Chrome host permit strict Access-owned CDP browser-context isolation?",
+    "observable": "Run the strict BrowserToolRuntime path against the current host and record Target.createBrowserContext capability without weakening optional fallback.",
+    "falsifier": "If the host continues returning Not allowed, retain strict isolation as a host capability blocker while optional general browsing remains live-proven."
   }
 }
