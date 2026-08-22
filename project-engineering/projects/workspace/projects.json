@@ -14,9 +14,9 @@
     {
       "id": "adobe-ai-generations-release-hardening",
       "name": "Adobe AI Generations",
-      "subtitle": "Release Security Hardening",
+      "subtitle": "CEP Consolidation · Runtime · Release Hardening",
       "mapped": true,
-      "active_node": "windows-signing-architecture",
+      "active_node": "execution-single-lane",
       "plan_file": "../adobe-ai-generations-release-hardening/plan.json",
       "status_file": "../adobe-ai-generations-release-hardening/status.json",
       "references_file": "../adobe-ai-generations-release-hardening/references.json",
