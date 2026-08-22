@@ -4,7 +4,7 @@
 
 - Repository: `Letterblack0306/access-browser-agent`
 - Branch: `main`
-- Verified current HEAD: `26c72b455de71d6ff5d8505888c6dfd6304bec65`
+- Verified current HEAD: `d73b7d5bf17caa0e011b6c4a9471e0b8f343a29e`
 - Regression baseline: `b2b6ff31f781c1299e916d52ab3122f0c0ac3507`
 - Active P1 gate: **Terminal-state UI live acceptance**
 
@@ -152,7 +152,7 @@ define focused settlement regression + falsifier
 
 ## Source UI update — IDE reference shell alignment
 
-GitHub `main` is four commits ahead of the historical validation head `0048d0d`, ending at `26c72b45`:
+GitHub `main` is now at product head `d73b7d5`, ahead of the historical validation head `0048d0d`:
 
 - `1880e402` — IDE reference styling;
 - `0ca41939` — activity rail adapter;
@@ -161,15 +161,15 @@ GitHub `main` is four commits ahead of the historical validation head `0048d0d`,
 
 Changed source files are `electron/index.html`, `electron/rebuild-ide-reference.css`, `electron/rebuild-ide-reference.js`, and `electron/rebuild-ui-stability.css`.
 
-The UI source implementation is present and the new activity-rail JavaScript syntax check passes. At current head, `npm run check:rebuild` fails in `rebuild-agent-truth-observability-smoke.js`, while `npm run check` fails in `browser-tool-evals` (`expected UNVERIFIED`, received `SETTLED`). Existing rendered/live evidence remains tied to `0048d0d`; current-head rendered and live acceptance are not yet proven.
+The IDE shell/activity-rail UI source is present, and the settled-turn delivery ownership fix is integrated. `npm run check:rebuild` and `npm run check` pass at product head `d73b7d5`. Existing live acceptance remains blocked only by the non-idle ChatGPT target, not by a source-check failure.
 
 ## Active P1 — Terminal-state UI live acceptance
 
-Historical source and rendered regressions are proven at `0048d0d`. Current UI source is at `26c72b45`, so rendered and live acceptance must be revalidated at the current head. The previous live Electron/CDP acceptance booted the renderer, runtime, browser and relay, but the saved ChatGPT target was non-idle and immediately entered `lifecycle=executing`. The required `waiting_for_instruction` checkpoint was therefore not observable.
+The product source is now at `d73b7d5`, integrating the IDE shell/activity-rail UI changes through `26c72b45` and the settled-turn delivery ownership fix at `5fcda7d`. Full local checks pass at the current product head. The previous live Electron/CDP acceptance booted the renderer, runtime, browser and relay, but the saved ChatGPT target was non-idle and immediately entered `lifecycle=executing`. The required `waiting_for_instruction` checkpoint was therefore not observable.
 
-Classification: **HISTORICAL_SOURCE_AND_RENDERED_REGRESSION_PROVEN_CURRENT_HEAD_UI_REVALIDATION_REQUIRED_LIVE_ACCEPTANCE_BLOCKED_BY_NON_IDLE_TARGET**
+Classification: **CURRENT_HEAD_SOURCE_AND_LOCAL_CHECKS_PROVEN_LIVE_ACCEPTANCE_BLOCKED_BY_NON_IDLE_TARGET**
 
-Next acceptance question: can the existing acceptance at current head `26c72b45` run against an explicitly idle/baselined ChatGPT target so `waiting_for_instruction` and current-head terminal UI presentation are observable?
+Next acceptance question: can the existing acceptance at current product head `d73b7d5` run against an explicitly idle/baselined ChatGPT target so `waiting_for_instruction` and current-head terminal UI presentation are observable?
 
 The current-head acceptance configured the saved target and reached renderer/runtime/browser readiness, but relay start was blocked by durable `executing` state on non-idle turn `turn-9590b53b5c1a3a8f`. The existing recovery path quarantined it successfully with receipt `41329076dd7257bf609064d84f3852e7083a41ebf48cddb5f0b7db673ff2cd71` and cleared ambiguity. Do not patch product source to satisfy a contaminated target. Use the existing `ACCESS_AGENT_ACCEPTANCE_CHAT_URL` or saved exact browser target configuration when a clean idle/baselined target is available.
 
