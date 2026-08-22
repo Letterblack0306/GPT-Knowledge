@@ -72,6 +72,16 @@
       "active_node": "p2-cli-session-boundary",
       "plan_file": "../brew/plan.json",
       "status_file": "../brew/status.json"
+    },
+    {
+      "id": "agent-harness-references",
+      "name": "Agent Harness References",
+      "subtitle": "DeepSeek · Config-Driven Harness Patterns",
+      "mapped": true,
+      "active_node": "deepseek-config-driven-harness",
+      "plan_file": "../agent-harness-reference/plan.json",
+      "status_file": "../agent-harness-reference/status.json",
+      "reference": "../agent-harness-reference/reference.md"
     }
   ]
 }
