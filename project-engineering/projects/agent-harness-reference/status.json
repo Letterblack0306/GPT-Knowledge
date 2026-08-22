@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "project_id": "agent-harness-references",
+  "classification": "REFERENCE_WITH_BOUNDED_ADOPTION",
+  "verified_at": "2026-08-23T00:40:00+04:00",
+  "head": "GPT-Knowledge main",
+  "active_gate": "deepseek-config-driven-harness",
+  "summary": "DeepSeek Agent Harness is tracked as an external architecture reference. Brew adopts validated live local-tool reload patterns only; reasoning and policy remain runtime/model authority.",
+  "items": [
+    {
+      "kind": "closed",
+      "title": "Existing Brew dynamic-tool foundation",
+      "detail": "Source-owned manifests, validation, containment, registration and cache-busted module imports are already present in Brew."
+    },
+    {
+      "kind": "pending",
+      "title": "Live reload integration",
+      "detail": "Wire and validate watch/reload behavior around the existing Brew local-tool registry without adding a second registry."
+    },
+    {
+      "kind": "history",
+      "title": "External source",
+      "detail": "Stephen G. Pope — DeepSeek Agent Harness architecture video: https://www.youtube.com/watch?v=Hpw4fAHlHDw"
+    },
+    {
+      "kind": "issue",
+      "title": "Rejected authority expansion",
+      "detail": "Config files must not become reasoning, approval, safety-policy or execution authority."
+    }
+  ]
+}
