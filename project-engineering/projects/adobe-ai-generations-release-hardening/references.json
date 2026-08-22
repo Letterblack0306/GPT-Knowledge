@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "references": [
+    {
+      "label": "Adobe_AI_Generations-04 v2.3.52 release workflow",
+      "kind": "source",
+      "repo": "Letterblack0306/Adobe_AI_Generations-04",
+      "ref": "v2.3.52",
+      "path": ".github/workflows/release.yml",
+      "evidence": "Windows stage builds/uploads the EXE and validates existence/integrity but the inspected stage does not show Authenticode signing or verification for the final EXE. ZXP signing is explicit."
+    },
+    {
+      "label": "Windows installer builder v2.3.52",
+      "kind": "source",
+      "repo": "Letterblack0306/Adobe_AI_Generations-04",
+      "ref": "v2.3.52",
+      "path": "scripts/installers/build-win-installer.mjs",
+      "evidence": "Electron signing auto-discovery is disabled and signing failure is tolerated before Inno Setup wraps win-unpacked."
+    },
+    {
+      "label": "Installer Electron main process v2.3.52",
+      "kind": "source",
+      "repo": "Letterblack0306/Adobe_AI_Generations-04",
+      "ref": "v2.3.52",
+      "path": "scripts/installers/LB_GenAI_Installer/main.js",
+      "evidence": "Windows self-elevation invokes hidden powershell.exe with Start-Process -Verb RunAs."
+    },
+    {
+      "label": "v2.3.52 version commit",
+      "kind": "revision",
+      "repo": "Letterblack0306/Adobe_AI_Generations-04",
+      "sha": "5816fa4442a453f77a607373aee2a691c30ca3e1",
+      "evidence": "Version bump to 2.3.52 and release ledger entry establish the inspected latest tagged baseline."
+    },
+    {
+      "label": "Customer VirusTotal complaint",
+      "kind": "external-observation",
+      "evidence": "Customer reported multiple sandbox-evasion and process-injection behaviors and declined installation. Exact VirusTotal report URL/hash is not yet recorded here."
+    }
+  ]
+}
