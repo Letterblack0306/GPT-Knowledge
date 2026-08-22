@@ -91,20 +91,27 @@
       "summary": "PR #442 records fresh canonical runtime proof that model lifecycle events preserve the exact /query operationId."
     },
     {
-      "id": "brew-p2",
+      "id": "brew-p2-boundary",
       "lane": "Brew",
-      "title": "P2 Session / Turn / Item lifecycle",
-      "status": "current",
-      "priority": "P2",
-      "summary": "Active investigation-only gate. Establish one canonical durable lifecycle owner before mutation."
+      "title": "P2 CLI session authority boundary",
+      "status": "proven",
+      "summary": "Local evidence proves the CLI SessionService adapter is the smallest active conflicting lifecycle owner."
     },
     {
-      "id": "brew-release",
+      "id": "brew-p2-repair",
       "lane": "Brew",
-      "title": "Draft PR reconciliation and release proof",
+      "title": "P2 CLI SessionService repair",
+      "status": "current",
+      "priority": "P2 ACTIVE",
+      "summary": "Dirty local repair is in progress; canonical session reads and removal of fabricated legacy active-session state require validation."
+    },
+    {
+      "id": "brew-p2-acceptance",
+      "lane": "Brew",
+      "title": "P2 exact-revision acceptance",
       "status": "blocked",
-      "priority": "LOCKED",
-      "summary": "PR #442 head 486a9b43 is 78 commits ahead and 2 behind main. Installed runtime, full CI, merge, and release acceptance remain unproven."
+      "priority": "REQUIRED",
+      "summary": "Focused, composition, runtime, regression, status-truth, query persistence, and operation/message correlation evidence remain unproven."
     }
   ],
   "edges": [
@@ -160,12 +167,17 @@
     },
     {
       "from": "brew-p1",
-      "to": "brew-p2",
+      "to": "brew-p2-boundary",
       "type": "flow"
     },
     {
-      "from": "brew-p2",
-      "to": "brew-release",
+      "from": "brew-p2-boundary",
+      "to": "brew-p2-repair",
+      "type": "flow"
+    },
+    {
+      "from": "brew-p2-repair",
+      "to": "brew-p2-acceptance",
       "type": "acceptance"
     }
   ]
