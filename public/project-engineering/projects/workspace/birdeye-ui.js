@@ -20,6 +20,7 @@
   let panel;
   let activeProjectId = null;
   let cache = new Map();
+  let inspectorNodes = new Map();
 
   function esc(s) {
     return String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -184,6 +185,116 @@
     ].join('');
   }
 
+  function edgeBadge(level) {
+    const normalized = String(level || 'UNKNOWN').toUpperCase();
+    const tones = {
+      PROVEN: 'var(--green)',
+      DOCUMENTED: 'var(--blue)',
+      INFERRED: 'var(--amber)',
+      UNKNOWN: 'var(--muted)'
+    };
+    const tone = tones[normalized] || tones.UNKNOWN;
+    return `<span class="be-edge-level" style="border-color:${tone};color:${tone}">${esc(tones[normalized] ? normalized : 'UNKNOWN')}</span>`;
+  }
+
+  function gitPathState(g, path) {
+    if ((g.stagedPaths || []).includes(path)) return 'STAGED';
+    if ((g.modifiedPaths || []).includes(path)) return 'MODIFIED';
+    if ((g.untrackedPaths || []).includes(path)) return 'UNTRACKED';
+    return 'CHANGED';
+  }
+
+  function registerNode(id, title, kind, evidence, details) {
+    const node = { id, title, kind, evidence, details };
+    inspectorNodes.set(id, node);
+    return `<button type="button" class="be-node" data-be-node="${esc(id)}">
+      <span>${esc(kind)}</span><b>${esc(title)}</b>${edgeBadge(evidence)}
+    </button>`;
+  }
+
+  function inspectorHtml(node) {
+    if (!node) return '<p class="be-note">Select an evidence node to inspect its projected facts.</p>';
+    const details = Object.entries(node.details || {})
+      .map(([label, value]) => row(label, esc(value ?? '—')))
+      .join('');
+    return `<div class="be-inspector-head"><div><span>${esc(node.kind)}</span><b>${esc(node.title)}</b></div>${edgeBadge(node.evidence)}</div>
+      ${details || '<p class="be-note">No additional projected facts are available.</p>'}`;
+  }
+
+  function renderEvidenceGraph(p) {
+    inspectorNodes = new Map();
+    const a = p.attribution || {};
+    const g = p.git || {};
+    const s = p.planStatus || {};
+    const r = p.runtime || {};
+    const projectEvidence = a.projectId && a.observedAt ? 'PROVEN' : 'UNKNOWN';
+    const planEvidence = s.authoritative === true ? 'DOCUMENTED' : 'UNKNOWN';
+    const repositoryEvidence = g.isRepository ? (g.evidenceLevel || 'UNKNOWN') : 'UNKNOWN';
+    const runtimeEvidence = r.evidenceLevel || 'UNKNOWN';
+    const fileIndex = p.fileIndex && Array.isArray(p.fileIndex.files) ? p.fileIndex.files : [];
+    const changedPaths = g.changedPaths || [];
+
+    const projectNode = registerNode('project', a.projectName || a.projectId || 'Project', 'PROJECT', projectEvidence, {
+      'Project id': a.projectId,
+      'Workspace id': a.workspaceId,
+      'Repository': a.repository,
+      'Observed at': a.observedAt,
+      'Verdict': p.verdict
+    });
+    const planNode = registerNode('plan', s.activeGate || 'Plan / status', 'PLAN', planEvidence, {
+      'Plan state': s.planState,
+      'Document': s.planDocument ? 'registered' : 'missing',
+      'Revision': s.documentRevision,
+      'Last verified': s.lastVerified,
+      'Next question': s.nextSingleQuestion
+    });
+    const repositoryNode = registerNode('repository', g.branch || 'Repository', 'GIT', repositoryEvidence, {
+      'Repository root': g.repositoryRoot || g.workspaceRoot,
+      'Branch': g.branch,
+      'HEAD': g.head,
+      'Upstream': g.upstreamRef || 'not tracked',
+      'Dirty': g.dirty === true ? 'yes' : g.dirty === false ? 'no' : 'unknown',
+      'Changed paths': g.changedPathCount,
+      'Observed at': g.observedAt
+    });
+    const runtimeNode = registerNode('runtime', r.source || 'Runtime evidence', 'RUNTIME', runtimeEvidence, {
+      'Source': r.source || 'not configured',
+      'Observed at': r.observedAt,
+      'Reason': r.reason,
+      'Evidence': runtimeEvidence
+    });
+
+    const fileNodes = changedPaths.slice(0, 20).map((path, index) => {
+      const indexed = fileIndex.find(file => file.path === path);
+      const id = `file-${index}`;
+      return `<div class="be-file-edge">${edgeBadge(repositoryEvidence)}
+        ${registerNode(id, path, gitPathState(g, path), repositoryEvidence, {
+          'Path': path,
+          'Git state': gitPathState(g, path),
+          'Current SHA-256': indexed?.contentSha256 || 'not projected',
+          'Analyzed SHA-256': indexed?.lastAnalyzedSha256 || 'not projected',
+          'Last analyzed': indexed?.lastAnalyzedAt || 'not projected',
+          'Dependencies': Array.isArray(indexed?.dependencies) ? indexed.dependencies.length : 'not projected',
+          'Invalidated conclusions': Array.isArray(indexed?.invalidatedConclusions) ? indexed.invalidatedConclusions.length : 'not projected'
+        })}
+      </div>`;
+    }).join('');
+
+    return `<div class="be-evidence-graph">
+      <div class="be-graph-root">${projectNode}</div>
+      <div class="be-graph-branches">
+        <div class="be-graph-branch">${edgeBadge(planEvidence)}${planNode}</div>
+        <div class="be-graph-branch">${edgeBadge(repositoryEvidence)}${repositoryNode}
+          ${fileNodes ? `<div class="be-file-nodes">${fileNodes}</div>` : '<p class="be-note">No changed paths projected.</p>'}
+        </div>
+        <div class="be-graph-branch">${edgeBadge(runtimeEvidence)}${runtimeNode}</div>
+      </div>
+    </div>
+    <div class="be-inspector" aria-live="polite">
+      ${inspectorHtml(inspectorNodes.get('project'))}
+    </div>`;
+  }
+
   function renderPanel(id) {
     if (!panel) return;
     if (!id) {
@@ -213,6 +324,7 @@
       </div>
       <div class="be-grid">
         <section><h3>Attribution</h3>${renderAttribution(p)}</section>
+        <section><h3>Evidence graph</h3>${renderEvidenceGraph(p)}</section>
         <section><h3>Git audit</h3>${renderGit(p)}</section>
         <section><h3>File audit index</h3>${renderFileAudit(p)}</section>
         <section><h3>Plan / status</h3>${renderPlan(p)}</section>
@@ -252,6 +364,16 @@
 
     badges.insertBefore(button, badges.firstChild);
     document.body.appendChild(panel);
+    panel.addEventListener('click', event => {
+      const target = event.target.closest('[data-be-node]');
+      if (!target || !panel.contains(target)) return;
+      const node = inspectorNodes.get(target.dataset.beNode);
+      const inspector = panel.querySelector('.be-inspector');
+      if (!node || !inspector) return;
+      panel.querySelectorAll('.be-node.selected').forEach(item => item.classList.remove('selected'));
+      target.classList.add('selected');
+      inspector.innerHTML = inspectorHtml(node);
+    });
 
     renderPanel(null);
 
@@ -301,6 +423,27 @@
 .be-file{margin-top:8px;border-top:1px solid var(--line);padding-top:8px}
 .be-file-head{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:4px}
 .be-file-head code{font-size:10px;word-break:break-all}
+.be-evidence-graph{display:flex;flex-direction:column;gap:8px}
+.be-graph-root{display:flex;justify-content:center}
+.be-graph-branches{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.be-graph-branch{position:relative;display:flex;flex-direction:column;align-items:stretch;gap:5px;border-top:1px solid var(--line);padding-top:7px;min-width:0}
+.be-edge-level{align-self:center;border:1px solid var(--line);border-radius:4px;padding:1px 5px;font-size:8px;letter-spacing:.06em}
+.be-node{width:100%;min-height:48px;border:1px solid var(--line);border-radius:6px;background:#10141b;color:var(--text);padding:7px;text-align:left;cursor:pointer;display:flex;flex-direction:column;gap:3px;overflow:hidden}
+.be-node:hover,.be-node.selected{border-color:var(--blue);background:#141b25}
+.be-node:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.be-node>span{font-size:8px;color:var(--muted);letter-spacing:.08em}
+.be-node>b{font-size:10px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.be-node .be-edge-level{align-self:flex-start}
+.be-file-nodes{display:flex;flex-direction:column;gap:5px;margin-top:3px;padding-left:8px;border-left:1px solid var(--line)}
+.be-file-edge{display:flex;flex-direction:column;gap:3px}
+.be-file-edge>.be-edge-level{align-self:flex-start}
+.be-file-edge .be-node{min-height:42px}
+.be-inspector{margin-top:10px;border-top:1px solid var(--line);padding-top:9px}
+.be-inspector-head{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:6px}
+.be-inspector-head div{display:flex;flex-direction:column;gap:2px;min-width:0}
+.be-inspector-head span{font-size:8px;color:var(--muted);letter-spacing:.08em}
+.be-inspector-head b{font-size:11px;overflow-wrap:anywhere}
+@media(max-width:760px){.be-graph-branches{grid-template-columns:1fr}}
 .be-note{color:var(--muted);font-size:10px;margin-top:12px}
 .be-note code{background:#0a0d12;border:1px solid var(--line);border-radius:6px;padding:1px 5px;font-size:10px}
 .be-card{border:1px solid var(--line);border-radius:10px;padding:12px;font-size:11px}`;
