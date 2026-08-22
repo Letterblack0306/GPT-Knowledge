@@ -1,0 +1,40 @@
+{
+  "schema_version": 2,
+  "project": "Historical Memory",
+  "purpose": "Canonical local historical/durable memory system built from the complete ChatGPT export. GPT_Data remains immutable source evidence; Memory owns canonical storage, retrieval, derived memory and MCP exposure; reasoning agents remain the reasoning authority.",
+  "authority_rule": "Live Memory workspace/runtime evidence outranks this GPT-Knowledge projection. GPT_Data is immutable source evidence. Current runtime/workspace/session/project evidence outranks historical conversation evidence; historical evidence outranks derived memory; model inference is lowest authority. Memory exposes capabilities and provenance but does not prescribe the agent's reasoning procedure.",
+  "updated": "2026-08-22",
+  "source_repo": "LOCAL_WORKSPACE:C:\\MCP Local\\Memory",
+  "source_branch": "master",
+  "source_head": "82c683a",
+  "active_node": "stage-12",
+  "nodes": [
+    {"id":"stage-0","lane":"Foundation","title":"Discovery + source contract","status":"proven","summary":"ChatGPT export structure, manifest relationships, conversation tree, attachments, timestamps and immutable-source boundary proven against the real archive."},
+    {"id":"stage-1","lane":"Foundation","title":"Canonical import model","status":"proven","summary":"Immutable canonical entities, stable composite message identity, idempotent import and missing-object preservation proven."},
+    {"id":"stage-2","lane":"Storage","title":"Canonical SQLite storage","status":"proven","summary":"Versioned transaction-safe canonical store implemented with deterministic identifiers and repeatable ingest."},
+    {"id":"stage-3","lane":"Retrieval","title":"Exact retrieval","status":"proven","summary":"Deterministic provenance-bearing exact retrieval implemented."},
+    {"id":"stage-4","lane":"Retrieval","title":"Semantic retrieval","status":"proven","summary":"Separate rebuildable semantic index implemented over canonical data."},
+    {"id":"stage-5","lane":"Retrieval","title":"Hybrid retrieval","status":"proven","summary":"Exact, semantic, temporal and conversation signals combined while preserving provenance."},
+    {"id":"stage-6","lane":"Memory","title":"Durable derived memory","status":"proven","summary":"Derived memory stored separately from canonical evidence with provenance and soft supersession."},
+    {"id":"stage-7","lane":"Capability API","title":"MemoryService capability API","status":"proven","summary":"recall, search, timeline, conversation, message, related and sources expose structured evidence/derived results without reasoning orchestration."},
+    {"id":"stage-8","lane":"MCP","title":"Memory MCP server","status":"proven","summary":"Seven Memory capabilities exposed through stdio/in-process MCP transport; canonical historical data returns with provenance."},
+    {"id":"stage-9","lane":"MCP","title":"Global MCP Local integration","status":"proven","summary":"Memory registered under C:\\MCP Local, stdio handshake/tools/list/tools/call proven, and external client discovery with historical recall proven."},
+    {"id":"stage-10","lane":"Agent Experience","title":"Agent memory experience","status":"proven","summary":"Evidence guidance, provenance descent, evidence-vs-derived distinction and agent autonomy proven. Corrected authority chain: runtime > workspace > session > project docs > historical evidence > derived memory > inference."},
+    {"id":"stage-11","lane":"Acceptance","title":"Scale / failure validation","status":"proven","summary":"Real ~3.7 GB corpus validated: repeat/restart/interruption, duplicate prevention, malformed/missing objects, latency, size, vector rebuild, canonical survival and provenance round-trip. 91 tests passed."},
+    {"id":"stage-12","lane":"Acceptance","title":"End-to-end acceptance","status":"current","priority":"ACTIVE","summary":"Authorized next acceptance slice. Must prove cases A-G across GPT_Data -> canonical import/storage -> retrieval -> durable memory -> MCP -> reasoning agent -> exact source provenance before final completion can be claimed."}
+  ],
+  "edges": [
+    {"from":"stage-0","to":"stage-1","type":"sequence"},
+    {"from":"stage-1","to":"stage-2","type":"sequence"},
+    {"from":"stage-2","to":"stage-3","type":"sequence"},
+    {"from":"stage-3","to":"stage-4","type":"sequence"},
+    {"from":"stage-4","to":"stage-5","type":"sequence"},
+    {"from":"stage-5","to":"stage-6","type":"sequence"},
+    {"from":"stage-6","to":"stage-7","type":"sequence"},
+    {"from":"stage-7","to":"stage-8","type":"sequence"},
+    {"from":"stage-8","to":"stage-9","type":"sequence"},
+    {"from":"stage-9","to":"stage-10","type":"sequence"},
+    {"from":"stage-10","to":"stage-11","type":"sequence"},
+    {"from":"stage-11","to":"stage-12","type":"sequence"}
+  ]
+}
