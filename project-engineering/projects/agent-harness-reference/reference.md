@@ -1,56 +1,65 @@
-# DeepSeek Agent Harness — Architecture Reference
+# DeepSeek Agent Harness — Compatibility Reference
 
-## Source
+## Classification
 
-- Stephen G. Pope, YouTube: `https://www.youtube.com/watch?v=Hpw4fAHlHDw`
-- Reference captured: 2026-08-23
-- Evidence class: external architecture reference supplied by the user; not Brew runtime authority.
+`ADOPTION_UNPROVEN`
 
-## Useful architecture pattern
+This record is an external implementation reference and compatibility audit. It is not Brew runtime authority and does not authorize replacing Brew's current runtime.
 
-The reference contrasts a conventional code-driven agent harness with a configuration-driven harness where selected runtime definitions can be changed without rebuilding the application.
+## Verified external capability
 
-Relevant patterns:
+Official Harness material describes plugin-based services for:
 
-1. **Agent loop ownership** — the harness owns conversation state, tool execution and API payload assembly while the model decides whether to reason, call a tool, continue, or answer.
-2. **Tools vs skills** — deterministic executable capabilities are distinct from model-followed procedural guidance.
-3. **Validated dynamic tool registration** — a tool can be created, described by a schema/manifest, registered, and made callable without creating another reasoning authority.
-4. **Live configuration** — selected definitions may be reloaded while the runtime stays active.
-5. **UI extension points** — configuration may describe optional UI affordances, provided UI configuration never becomes execution or policy authority.
+- models;
+- tools;
+- sessions;
+- sandboxes;
+- storage;
+- agent loops;
+- scheduling;
+- UI/session events.
 
-## Brew adoption boundary
+Harness remains a developer preview with evolving APIs.
 
-### Adopt
+Sources:
 
-- Reuse Brew's existing source-owned local-tool manifest and capability registry.
-- Allow validated local-tool definitions/modules to reload without restarting the Brew process.
-- Keep a single reasoning agent and canonical execution path.
-- Keep tool schemas, availability and provenance truthful and inspectable.
-- Treat UI extension metadata as presentation only.
+- https://www.deepseek.com/harness/en/
+- https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/user/develop/framework/service.md
+- https://www.youtube.com/watch?v=Hpw4fAHlHDw
 
-### Reject
+## Compatibility result
 
-- Config-driven reasoning pipelines.
-- Config-owned safety or approval policy.
-- Arbitrary executable UI configuration.
-- A second tool registry or second agent-loop authority.
-- Self-modification that bypasses source containment, validation or execution policy.
+| Brew owner | Harness match | Result |
+| --- | --- | --- |
+| Provider routing and truth | LLM service | Adapter required |
+| Tools and capabilities | Tools service | Adapter required; raw dispatch conflicts with Brew policy and receipts |
+| Sessions and persistence | Session log/storage plugins | Adapter required |
+| Workspace identity and confinement | Filesystem/sandbox plugins | Brew must remain authority |
+| Approvals and governance | No verified equivalent | Missing or unproven |
+| Receipts and evidence | Append-only trajectory | Adapter required; not equivalent to Brew chained receipts |
+| UI projection | UI/session-event plugins | Adapter required |
 
-## Brew implementation sidepoint
+## Local validation boundary
 
-Brew already had the foundational mechanism before this reference was added:
+The compatibility audit retained these Brew regression results:
 
-- `brew/capabilities/local-tool-registry.mjs`
-- source-owned `tool.json` manifests
-- manifest validation
-- module containment under the configured local-tools root
-- cache-busted dynamic imports using module modification time
-- `refreshLocalTools()` and `registerLocalTool()`
+- resource-policy: 13 passed;
+- autonomy: 10 passed;
+- memory/session: 18 passed.
 
-The implementation direction is therefore **extend the existing registry with live reload semantics**, not replace it with a new DeepSeek-style engine.
+The Harness executable/package was not present locally. No governed Brew-style Harness task was run. These tests protect existing Brew boundaries; they do not prove Harness adoption.
 
-## Evidence labels
+## Workspace implementation decision
 
-- `PROVEN_EXISTING`: Brew has validated source-owned local tool manifests and dynamic module imports.
-- `IMPLEMENTING`: live reload/watch behavior around the existing local-tool registry.
-- `REFERENCE_ONLY`: dynamic system-prompt and UI-layout mutation from the external harness. These are not automatically accepted Brew requirements.
+The GPT-Knowledge workspace may project this reference, mapping and blocked acceptance gate. It must not label Harness as implemented, adopted or runtime-proven.
+
+Before adoption can be reconsidered, evidence must prove:
+
+1. approval enforcement;
+2. workspace confinement under Brew authority;
+3. Brew receipt compatibility;
+4. restart/session identity;
+5. truthful UI projection;
+6. one governed end-to-end Brew-style Harness task.
+
+Until then, preserve Brew as the authority for workspace identity, policy, approvals, governed execution, persistence and chained receipts.
