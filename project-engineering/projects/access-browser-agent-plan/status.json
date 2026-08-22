@@ -113,6 +113,10 @@
     {
       "id": "browser-screenshot-storage",
       "classification": "PROVEN_DEFAULT_APP_OWNED_STORAGE_AND_HASHED_OPT_IN_ARTIFACT"
+    },
+    {
+      "id": "phase9-workspace-birdeye-live-acceptance",
+      "classification": "PROVEN_LIVE_BROWSER_BIRDEYE_PANEL_ALL_SECTIONS_PASS_GPTK_COMMIT_385CD97"
     }
   ],
   "source_update": {
