@@ -84,33 +84,89 @@
       "summary": "Canonical Memory implementation remains verified locally; no separate remote repository identity is asserted."
     },
     {
-      "id": "brew-refresh",
+      "id": "brew-p1",
       "lane": "Brew",
-      "title": "Refresh and map current position",
-      "status": "blocked",
-      "priority": "P1",
-      "summary": "The only portfolio record is dated 2026-08-17 and is not a structured UI plan/status. Revalidate current PR, branch, head, runtime, and then map Brew."
+      "title": "P1 operation correlation",
+      "status": "proven",
+      "summary": "PR #442 records fresh canonical runtime proof that model lifecycle events preserve the exact /query operationId."
     },
     {
-      "id": "brew-correlation",
+      "id": "brew-p2",
       "lane": "Brew",
-      "title": "Operation-correlation trace",
-      "status": "next",
-      "priority": "P1",
-      "summary": "Trace the first active boundary where non-null operationId becomes absent before selecting any patch owner."
+      "title": "P2 Session / Turn / Item lifecycle",
+      "status": "current",
+      "priority": "P2",
+      "summary": "Active investigation-only gate. Establish one canonical durable lifecycle owner before mutation."
+    },
+    {
+      "id": "brew-release",
+      "lane": "Brew",
+      "title": "Draft PR reconciliation and release proof",
+      "status": "blocked",
+      "priority": "LOCKED",
+      "summary": "PR #442 head 486a9b43 is 78 commits ahead and 2 behind main. Installed runtime, full CI, merge, and release acceptance remain unproven."
     }
   ],
   "edges": [
-    {"from":"portfolio-alignment","to":"adobe-cep-runtime","type":"flow"},
-    {"from":"adobe-cep-runtime","to":"adobe-release-security","type":"acceptance"},
-    {"from":"portfolio-alignment","to":"lbe-terminal","type":"flow"},
-    {"from":"lbe-terminal","to":"lbe-publish","type":"acceptance"},
-    {"from":"portfolio-alignment","to":"access-live-ui","type":"flow"},
-    {"from":"access-live-ui","to":"access-hardening","type":"acceptance"},
-    {"from":"portfolio-alignment","to":"loop-bounded","type":"flow"},
-    {"from":"portfolio-alignment","to":"memory-complete","type":"flow"},
-    {"from":"memory-complete","to":"memory-remote","type":"flow"},
-    {"from":"portfolio-alignment","to":"brew-refresh","type":"flow"},
-    {"from":"brew-refresh","to":"brew-correlation","type":"requires-revalidation"}
+    {
+      "from": "portfolio-alignment",
+      "to": "adobe-cep-runtime",
+      "type": "flow"
+    },
+    {
+      "from": "adobe-cep-runtime",
+      "to": "adobe-release-security",
+      "type": "acceptance"
+    },
+    {
+      "from": "portfolio-alignment",
+      "to": "lbe-terminal",
+      "type": "flow"
+    },
+    {
+      "from": "lbe-terminal",
+      "to": "lbe-publish",
+      "type": "acceptance"
+    },
+    {
+      "from": "portfolio-alignment",
+      "to": "access-live-ui",
+      "type": "flow"
+    },
+    {
+      "from": "access-live-ui",
+      "to": "access-hardening",
+      "type": "acceptance"
+    },
+    {
+      "from": "portfolio-alignment",
+      "to": "loop-bounded",
+      "type": "flow"
+    },
+    {
+      "from": "portfolio-alignment",
+      "to": "memory-complete",
+      "type": "flow"
+    },
+    {
+      "from": "memory-complete",
+      "to": "memory-remote",
+      "type": "flow"
+    },
+    {
+      "from": "portfolio-alignment",
+      "to": "brew-p1",
+      "type": "flow"
+    },
+    {
+      "from": "brew-p1",
+      "to": "brew-p2",
+      "type": "flow"
+    },
+    {
+      "from": "brew-p2",
+      "to": "brew-release",
+      "type": "acceptance"
+    }
   ]
 }
