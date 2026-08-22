@@ -12,6 +12,17 @@
       "reference": "../portfolio/status.json"
     },
     {
+      "id": "adobe-ai-generations-release-hardening",
+      "name": "Adobe AI Generations",
+      "subtitle": "Release Security Hardening",
+      "mapped": true,
+      "active_node": "windows-signing-architecture",
+      "plan_file": "../adobe-ai-generations-release-hardening/plan.json",
+      "status_file": "../adobe-ai-generations-release-hardening/status.json",
+      "references_file": "../adobe-ai-generations-release-hardening/references.json",
+      "reference": "../adobe-ai-generations-release-hardening/status.json"
+    },
+    {
       "id": "lbe",
       "name": "LBE",
       "subtitle": "Persistent Agent Runtime",
