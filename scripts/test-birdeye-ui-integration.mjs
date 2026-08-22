@@ -70,12 +70,13 @@ for (const proj of ['Access Browser Agent', 'LBE', 'LoopTool']) {
   const t = await panelText();
   const id = proj === 'Access Browser Agent' ? 'access-browser-agent' : proj === 'LBE' ? 'lbe' : 'looptool';
   expect(t.includes(proj) || t.length > 400, `${proj}: BirdEye renders content`);
-  for (const section of ['Attribution', 'Git audit', 'Plan / status', 'Runtime / validation']) {
+  for (const section of ['Attribution', 'Git audit', 'File audit index', 'Plan / status', 'Runtime / validation']) {
     expect(t.toLowerCase().includes(section.toLowerCase()), `${proj}: ${section} section renders`);
   }
   expect(/\b(PROVEN|SUPPORTED|UNKNOWN|BLOCKED)\b/.test(t), `${proj}: evidence badge renders`);
   expect(/Verdict/i.test(t) || /verdict/i.test(t) || t.length > 400, `${proj}: verdict visible`);
   expect(!/Select a mapped project/.test(t), `${proj}: placeholder replaced`);
+  expect(/NOT PROJECTED|Current SHA-256/.test(t), `${proj}: file audit truth boundary renders`);
   // close then reopen to confirm toggle still works
   await page.click('#birdEyeToggle');
   await new Promise(r => setTimeout(r, 300));
