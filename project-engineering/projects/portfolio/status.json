@@ -1,44 +1,58 @@
 {
   "schema_version": 1,
   "project": "Project Portfolio",
-  "verified_at": "2026-08-22",
-  "overall_classification": "MAPPED_PROJECTS_ALIGNED_BREW_STALE_AND_UNMAPPED",
+  "verified_at": "2026-08-22T19:26:00+04:00",
+  "overall_classification": "PORTFOLIO_ALIGNED_ADOBE_CEP_RELEASE_BLOCKED",
   "authority_note": "This is an overall GPT-Knowledge UI projection. Project repositories, local workspace/runtime evidence, and project-owned status records remain authoritative.",
   "closed": [
     {
+      "id": "adobe-plan-consolidated",
+      "title": "Adobe AI Generations CEP plan consolidated",
+      "classification": "DOCUMENTED_CURRENT",
+      "detail": "Runtime architecture, current merge train, UI/validation backlog, Generation Graph dependency chain and Windows release hardening are now represented in one mapped project plan/status pair."
+    },
+    {
       "id": "mapped-alignment",
-      "title": "LBE, Access, LoopTool and Memory plan/status pairs",
+      "title": "Mapped project plan/status pairs",
       "classification": "INTERNALLY_ALIGNED",
-      "detail": "Their registered plan and status records agree on their current project position at the recorded revisions and dates."
+      "detail": "Registered mapped projects expose repository-backed plan/status records; live project evidence still outranks the portfolio."
     },
     {
       "id": "memory-acceptance",
       "title": "Memory Stage 12",
       "classification": "PROVEN_COMPLETE_IN_RECORDED_LOCAL_EVIDENCE",
-      "detail": "Stages 0–12 and real-corpus acceptance are recorded complete at local f11fd89; remote repository identity is a separate low-priority gap."
-    },
-    {
-      "id": "registry-active-node",
-      "title": "LBE workspace active-node registry",
-      "classification": "CORRECTED_IN_THIS_PROJECTION",
-      "detail": "The workspace registry now points to terminal-workspace-foundation, matching the LBE plan and status."
+      "detail": "Stages 0–12 and real-corpus acceptance are recorded complete at local f11fd89; remote repository identity remains separate."
     }
   ],
   "supported_historical": [],
   "pending": [
     {
+      "id": "adobe-execution",
+      "title": "Adobe CEP execution single-lane proof",
+      "priority": "P0 ACTIVE",
+      "classification": "OPEN_DRAFT_RUNTIME_UNPROVEN",
+      "detail": "PR #330 is the active consolidation gate. Dependent ToolRouter, Settings, salvage and Generation Graph work should not be advanced as runtime-proven until the shared execution lane passes focused/static and live AE/CEP acceptance."
+    },
+    {
+      "id": "adobe-release-security",
+      "title": "Adobe Windows release hardening",
+      "priority": "P0 RELEASE BLOCKER",
+      "classification": "BLOCKED",
+      "detail": "Inner/final Authenticode signing, fail-closed verification, hidden-PowerShell remediation, exact artifact provenance, clean-machine smoke and AV/reputation review remain required before a replacement distribution release."
+    },
+    {
       "id": "brew-stale",
       "title": "Brew status is stale and unmapped",
       "priority": "P1",
       "classification": "STALE_PROJECTION_REQUIRES_REVALIDATION",
-      "detail": "The Brew record is dated 2026-08-17 and references an old PR/branch/head position. Revalidate live repository and runtime evidence before creating its structured UI map."
+      "detail": "The Brew record is dated 2026-08-17 and needs current repository/runtime revalidation before structured UI mapping."
     },
     {
       "id": "access-live",
       "title": "Access Browser Agent live UI acceptance",
       "priority": "P1",
       "classification": "BLOCKED_CONFIGURATION",
-      "detail": "Current source and full local checks are recorded passing at d73b7d5, but rendered current-head acceptance requires an explicitly idle or baselined ChatGPT target."
+      "detail": "Rendered current-head acceptance requires an explicitly idle or baselined ChatGPT target."
     },
     {
       "id": "lbe-release",
@@ -59,12 +73,12 @@
       "title": "LoopTool implementation-specific behavior",
       "priority": "WHEN CLAIMED",
       "classification": "VERIFY_AT_TIME_OF_USE",
-      "detail": "Parser, readiness, cancellation, duplicate suppression, result delivery, and user-visible behavior require current source/runtime observables when claimed."
+      "detail": "Runtime behavior requires current source/runtime observables when claimed."
     }
   ],
   "next_acceptance": {
-    "question": "Which portfolio blocker should be closed next using current project-owned evidence?",
-    "observable": "A refreshed exact repository/workspace identity and claim-matched runtime or UI acceptance record for the selected project.",
-    "falsifier": "A projection is updated from documentation or remembered chat state without current repository/runtime evidence."
+    "question": "Can the Adobe CEP active gate (#330) be closed with current-branch static proof plus live AE single-lane execution evidence?",
+    "observable": "One canonical execution route across Chat, Library and Script Editor with sequential Play All, released locks and no duplicate dispatch.",
+    "falsifier": "Any project projection advances Adobe dependent work from chat/source intent without current AE/CEP evidence."
   }
 }
