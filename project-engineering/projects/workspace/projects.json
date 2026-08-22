@@ -25,9 +25,9 @@
     {
       "id": "lbe",
       "name": "LBE",
-      "subtitle": "Persistent Agent Runtime",
+      "subtitle": "Complete TUI Implementation · Publication Paused",
       "mapped": true,
-      "active_node": "terminal-workspace-foundation",
+      "active_node": "tui-projection-view-models",
       "plan_file": "../lbe-plan-canvas/plan.json",
       "status_file": "../lbe-plan-canvas/status.json",
       "references_file": "../lbe-plan-canvas/references.json",
