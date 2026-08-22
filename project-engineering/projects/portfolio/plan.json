@@ -30,22 +30,6 @@
       "summary": "After runtime consolidation, fix inner/final Authenticode signing, hidden PowerShell elevation, artifact provenance, clean-machine acceptance and AV review before replacing the distributed package."
     },
     {
-      "id": "lbe-terminal",
-      "lane": "LBE",
-      "title": "Terminal workspace foundation",
-      "status": "next",
-      "priority": "ACTIVE",
-      "summary": "Finish the visible terminal workspace foundation over existing persisted owners. PyPI 2.0.3 preparation remains paused until this slice passes."
-    },
-    {
-      "id": "lbe-publish",
-      "lane": "LBE",
-      "title": "2.0.3 publish proof",
-      "status": "blocked",
-      "priority": "LOCKED",
-      "summary": "Exact wheel/install and immediate PyPI evidence are still required; publication is not proven."
-    },
-    {
       "id": "access-live-ui",
       "lane": "Access Browser Agent",
       "title": "Current-head live UI acceptance",
@@ -112,6 +96,30 @@
       "status": "blocked",
       "priority": "REQUIRED",
       "summary": "Focused, composition, runtime, regression, status-truth, query persistence, and operation/message correlation evidence remain unproven."
+    },
+    {
+      "id": "lbe-tui-slice",
+      "lane": "LBE",
+      "title": "TUI projection contract and view models",
+      "status": "current",
+      "priority": "ACTIVE OPEN",
+      "summary": "Current repository main 942e494d contains the active typed projection source and tests; executed focused proof remains unverified."
+    },
+    {
+      "id": "lbe-tui-acceptance",
+      "lane": "LBE",
+      "title": "Complete installed TUI acceptance",
+      "status": "blocked",
+      "priority": "REQUIRED",
+      "summary": "Remaining TUI sequence and installed interactive Windows Terminal acceptance are not yet proven."
+    },
+    {
+      "id": "lbe-release-conflict",
+      "lane": "LBE",
+      "title": "2.0.3 gate reconciliation and publication",
+      "status": "warning",
+      "priority": "PAUSED",
+      "summary": "Source is already 2.0.3 while gate text still lists setting 2.0.3; publication remains forbidden during the active TUI phase."
     }
   ],
   "edges": [
@@ -123,16 +131,6 @@
     {
       "from": "adobe-cep-runtime",
       "to": "adobe-release-security",
-      "type": "acceptance"
-    },
-    {
-      "from": "portfolio-alignment",
-      "to": "lbe-terminal",
-      "type": "flow"
-    },
-    {
-      "from": "lbe-terminal",
-      "to": "lbe-publish",
       "type": "acceptance"
     },
     {
@@ -179,6 +177,21 @@
       "from": "brew-p2-repair",
       "to": "brew-p2-acceptance",
       "type": "acceptance"
+    },
+    {
+      "from": "portfolio-alignment",
+      "to": "lbe-tui-slice",
+      "type": "flow"
+    },
+    {
+      "from": "lbe-tui-slice",
+      "to": "lbe-tui-acceptance",
+      "type": "acceptance"
+    },
+    {
+      "from": "lbe-tui-acceptance",
+      "to": "lbe-release-conflict",
+      "type": "requires-revalidation"
     }
   ]
 }
