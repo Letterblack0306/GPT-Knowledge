@@ -94,6 +94,62 @@
 
     window.__birdEyeInternals = { loadSnapshot, setSync, cache };
 
+  function auditStateBadge(state) {
+    const normalized = String(state || 'UNKNOWN').toUpperCase();
+    const tone = normalized === 'UNCHANGED' ? 'var(--green)'
+      : normalized === 'CHANGED' || normalized === 'INVALIDATED' ? 'var(--amber)'
+      : 'var(--muted)';
+    return `<span class="be-audit-state" style="border-color:${tone};color:${tone}">${esc(normalized)}</span>`;
+  }
+
+  function renderFileAudit(p) {
+    const index = p.fileIndex;
+    const changedPaths = (p.git || {}).changedPaths || [];
+
+    if (!index || !Array.isArray(index.files)) {
+      return [
+        row('Index state', '<span style="color:var(--amber)">NOT PROJECTED</span>'),
+        row('Git changed paths', esc(changedPaths.length)),
+        row('Content hashes', 'unavailable'),
+        row('Analysis freshness', 'unavailable'),
+        row('Dependency invalidation', 'unavailable'),
+        changedPaths.length
+          ? listBlock('Changed paths awaiting file-index evidence', changedPaths)
+          : '',
+        '<p class="be-note">BirdEye currently projects repository-level Git evidence only. No per-file hash, prior-analysis record, dependency graph, or invalidation result was supplied.</p>'
+      ].join('');
+    }
+
+    const files = index.files;
+    const counts = files.reduce((out, file) => {
+      const state = String(file.state || 'UNKNOWN').toUpperCase();
+      out[state] = (out[state] || 0) + 1;
+      return out;
+    }, {});
+    const fileCards = files.slice(0, 40).map(file => {
+      const dependencies = Array.isArray(file.dependencies) ? file.dependencies : [];
+      const invalidated = Array.isArray(file.invalidatedConclusions) ? file.invalidatedConclusions : [];
+      return `<div class="be-file">
+        <div class="be-file-head"><code>${esc(file.path ?? 'unknown path')}</code>${auditStateBadge(file.state)}</div>
+        ${row('Current SHA-256', `<code>${esc(short(file.contentSha256))}</code>`)}
+        ${row('Analyzed SHA-256', `<code>${esc(short(file.lastAnalyzedSha256))}</code>`)}
+        ${row('Last analyzed', esc(file.lastAnalyzedAt ?? '—'))}
+        ${row('Dependencies / invalidations', `${esc(dependencies.length)} / ${esc(invalidated.length)}`)}
+      </div>`;
+    }).join('');
+
+    return [
+      row('Index state', levelBadge(index.evidenceLevel)),
+      row('Source', esc(index.source ?? '—')),
+      row('Observed at', esc(index.observedAt ?? '—')),
+      row('Files', esc(files.length)),
+      row('Unchanged / changed / invalidated',
+        `${esc(counts.UNCHANGED || 0)} / ${esc(counts.CHANGED || 0)} / ${esc(counts.INVALIDATED || 0)}`),
+      fileCards || '<p class="be-note">The projected file index contains no file records.</p>',
+      '<p class="be-note">An unchanged hash permits skipping content reread only when dependency, configuration, plan, test, and runtime-evidence links remain valid.</p>'
+    ].join('');
+  }
+
   function renderPlan(p) {
     const s = p.planStatus || {};
     const authoritative = s.authoritative === true;
@@ -158,6 +214,7 @@
       <div class="be-grid">
         <section><h3>Attribution</h3>${renderAttribution(p)}</section>
         <section><h3>Git audit</h3>${renderGit(p)}</section>
+        <section><h3>File audit index</h3>${renderFileAudit(p)}</section>
         <section><h3>Plan / status</h3>${renderPlan(p)}</section>
         <section><h3>Runtime / validation</h3>${renderRuntime(p)}</section>
       </div>
@@ -240,6 +297,10 @@
 .be-list{margin-top:8px;font-size:10px}
 .be-list b{color:var(--muted);font-size:9px;text-transform:uppercase}
 .be-list ul{margin:4px 0 0;padding-left:16px;color:#aeb8c4}
+.be-audit-state{border:1px solid var(--line);border-radius:4px;padding:2px 6px;font-size:9px;white-space:nowrap}
+.be-file{margin-top:8px;border-top:1px solid var(--line);padding-top:8px}
+.be-file-head{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:4px}
+.be-file-head code{font-size:10px;word-break:break-all}
 .be-note{color:var(--muted);font-size:10px;margin-top:12px}
 .be-note code{background:#0a0d12;border:1px solid var(--line);border-radius:6px;padding:1px 5px;font-size:10px}
 .be-card{border:1px solid var(--line);border-radius:10px;padding:12px;font-size:11px}`;
