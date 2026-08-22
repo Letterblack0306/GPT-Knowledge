@@ -1,30 +1,27 @@
 # Access Browser Agent — Current State
 
-Date: 2026-08-21
+Date: 2026-08-22
 
 ## Source authority
 
 - Repository: `Letterblack0306/access-browser-agent`
 - Branch: `main`
-- Verified HEAD: `741d20815858ccf829c283709d504f6e0bd0f6e1`
+- Verified HEAD: `4e852646944a2b4096a760ab1212a9ecaa535be3`
 - Protected local untracked file: `section_09.md` — preserved, not modified
-- Active engineering gate: **P1 Bounded Page Settlement**
+- Active engineering gate: **P1 Terminal-state UI live acceptance**
 
 Current repository source, local runtime evidence and acceptance results remain authoritative over this projection.
 
-## Preserved engineering method
+## Projection boundary
 
-Canonical BirdEye-first workflow:
+GPT-Knowledge is alignment/navigation state only. The working product repository and runtime remain authoritative. The retained product UI scope is the local IDE, local agent, managed browser, provider/runtime, editor, terminal and MCP surfaces. External BirdEye/workspace-handoff UI surfaces were removed from the product.
 
-`project-engineering/projects/access-browser-agent-plan/birdeye-first-engineering-workflow.md`
-
-Mandatory order before planning or mutation:
+Source work follows this order:
 
 ```text
-GPT-Knowledge current gate/method
-→ inspect existing BirdEye MCP/index/workspace/validation capability
+inspect the live repository and runtime
 → verify GitHub main SHA + diff
-→ reuse BirdEye validation profiles for local proof where proven
+→ run focused checks, then authoritative project checks
 → classify only the tested gate
 → sync GPT-Knowledge
 → verify Vercel/live projection
@@ -39,7 +36,7 @@ EXISTING BUT NOT YET VERIFIED LIVE
 MISSING — IMPLEMENTATION REQUIRED
 ```
 
-Only `MISSING — IMPLEMENTATION REQUIRED` authorizes designing a new capability. LoopTool is fallback or explicit LoopTool/relay testing only, not the default local execution path.
+Only `MISSING — IMPLEMENTATION REQUIRED` authorizes designing a new capability. This projection does not create product authority, runtime state, or external UI requirements.
 
 ## P1.1 Runtime Progress / Re-entry — CLOSED
 

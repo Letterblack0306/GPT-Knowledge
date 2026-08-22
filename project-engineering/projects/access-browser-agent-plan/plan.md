@@ -4,29 +4,27 @@
 
 - Repository: `Letterblack0306/access-browser-agent`
 - Branch: `main`
-- Verified current HEAD: `d73b7d5bf17caa0e011b6c4a9471e0b8f343a29e`
+- Verified current HEAD: `4e852646944a2b4096a760ab1212a9ecaa535be3`
 - Regression baseline: `b2b6ff31f781c1299e916d52ab3122f0c0ac3507`
 - Active P1 gate: **Terminal-state UI live acceptance**
 
 This page is a GPT-Knowledge projection. Current source, local runtime evidence and acceptance results remain authoritative.
 
-## Engineering workflow authority — BirdEye first
+## Projection boundary
 
-Canonical project method:
+This plan is alignment/navigation state only. The working product repository and its runtime are authoritative. The product scope retained here is the local IDE, local agent, managed browser, provider/runtime, editor, terminal and MCP surfaces.
 
-`project-engineering/projects/access-browser-agent-plan/birdeye-first-engineering-workflow.md`
+External BirdEye/workspace-handoff UI nodes were removed from the product. Do not reintroduce them through this projection.
 
-Before any plan or source mutation:
+For source changes:
 
 ```text
-GPT-Knowledge route/current gate
-→ inspect existing BirdEye MCP/index/workspace capabilities
+inspect the live repository and runtime
 → verify GitHub main SHA + exact diff
-→ use existing BirdEye validation profile for local behavioral proof when available
+→ run the smallest relevant checks, then authoritative project checks
 → classify only the tested gate
-→ synchronize GPT-Knowledge
-→ verify Vercel/live projection
-→ only then continue
+→ synchronize GPT-Knowledge as a projection
+→ verify the published projection
 ```
 
 Planning must classify capabilities as:
@@ -37,9 +35,7 @@ EXISTING BUT NOT YET VERIFIED LIVE
 MISSING — IMPLEMENTATION REQUIRED
 ```
 
-Only the third category authorizes a new capability plan. BirdEye's MCP surface, incremental watcher/shared SQLite index, configured local validation bridge and GitHub polling bridge are already proven from current BirdEye source. A webhook/trigger is **not yet proven from current BirdEye remote main** and must be checked in the active installation before relying on it or declaring it missing.
-
-LoopTool is not the default local evidence path. Use it only when BirdEye cannot provide the required configured validation, or when explicitly testing LoopTool/its relay transport.
+Only the third category authorizes a new capability plan. This projection does not create product authority, runtime state, or external UI requirements.
 
 ## Closed P1.1 — Runtime Progress / Re-entry Contract
 
@@ -152,24 +148,24 @@ define focused settlement regression + falsifier
 
 ## Source UI update — IDE reference shell alignment
 
-GitHub `main` is now at product head `d73b7d5`, ahead of the historical validation head `0048d0d`:
+GitHub `main` is now at product head `4e85264`, ahead of the historical validation head `0048d0d`:
 
 - `1880e402` — IDE reference styling;
 - `0ca41939` — activity rail adapter;
 - `f78821d6` — IDE shell reference structure styles;
 - `26c72b45` — activity rail and stylesheet wiring in `electron/index.html`.
 
-Changed source files are `electron/index.html`, `electron/rebuild-ide-reference.css`, `electron/rebuild-ide-reference.js`, and `electron/rebuild-ui-stability.css`.
+Changed source files include the IDE reference shell files plus the external-surface removal and current UI smoke-contract files: `electron/index.html`, `electron/main.js`, `electron/preload.js`, `electron/rebuild-renderer.js`, `electron/renderer.js`, `electron/rebuild-ide-reference.css`, `electron/rebuild-ide-reference.js`, `electron/rebuild-ui-stability.css`, `src/system/ui-id-registry.js`, and the focused UI smoke tests.
 
-The IDE shell/activity-rail UI source is present, and the settled-turn delivery ownership fix is integrated. `npm run check:rebuild` and `npm run check` pass at product head `d73b7d5`. Existing live acceptance remains blocked only by the non-idle ChatGPT target, not by a source-check failure.
+The IDE shell/activity-rail UI source is present, external BirdEye/workspace-handoff UI surfaces are removed, and the settled-turn delivery ownership fix is integrated. The focused UI smoke suite, `npm run check:rebuild`, and `npm run check` pass at product head `4e85264`. Existing live acceptance remains blocked only by the non-idle ChatGPT target, not by a source-check failure.
 
 ## Active P1 — Terminal-state UI live acceptance
 
-The product source is now at `d73b7d5`, integrating the IDE shell/activity-rail UI changes through `26c72b45` and the settled-turn delivery ownership fix at `5fcda7d`. Full local checks pass at the current product head. The previous live Electron/CDP acceptance booted the renderer, runtime, browser and relay, but the saved ChatGPT target was non-idle and immediately entered `lifecycle=executing`. The required `waiting_for_instruction` checkpoint was therefore not observable.
+The product source is now at `4e85264`, integrating the IDE shell/activity-rail UI changes through `26c72b45`, the settled-turn delivery ownership fix at `5fcda7d`, and removal of external BirdEye/workspace-handoff UI surfaces. Full local checks and focused UI smoke tests pass at the current product head. The previous live Electron/CDP acceptance booted the renderer, runtime, browser and relay, but the saved ChatGPT target was non-idle and immediately entered `lifecycle=executing`. The required `waiting_for_instruction` checkpoint was therefore not observable.
 
 Classification: **CURRENT_HEAD_SOURCE_AND_LOCAL_CHECKS_PROVEN_LIVE_ACCEPTANCE_BLOCKED_BY_NON_IDLE_TARGET**
 
-Next acceptance question: can the existing acceptance at current product head `d73b7d5` run against an explicitly idle/baselined ChatGPT target so `waiting_for_instruction` and current-head terminal UI presentation are observable?
+Next acceptance question: can the existing acceptance at current product head `4e85264` run against an explicitly idle/baselined ChatGPT target so `waiting_for_instruction` and current-head terminal UI presentation are observable?
 
 The current-head acceptance configured the saved target and reached renderer/runtime/browser readiness, but relay start was blocked by durable `executing` state on non-idle turn `turn-9590b53b5c1a3a8f`. The existing recovery path quarantined it successfully with receipt `41329076dd7257bf609064d84f3852e7083a41ebf48cddb5f0b7db673ff2cd71` and cleared ambiguity. Do not patch product source to satisfy a contaminated target. Use the existing `ACCESS_AGENT_ACCEPTANCE_CHAT_URL` or saved exact browser target configuration when a clean idle/baselined target is available.
 
