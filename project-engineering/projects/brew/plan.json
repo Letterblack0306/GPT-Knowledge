@@ -100,6 +100,14 @@
       "status": "blocked",
       "priority": "REQUIRED",
       "summary": "Focused CLI tests, Brew status truth, canonical /query regression, operation/message correlation, exact-revision runtime proof, and broader regressions remain unproven for the dirty repair."
+    },
+    {
+      "id": "harness-adoption",
+      "lane": "Reference Audit",
+      "title": "DeepSeek Harness adoption compatibility",
+      "status": "blocked",
+      "priority": "ADOPTION UNPROVEN",
+      "summary": "Harness provides plugin services for models, tools, sessions, sandboxes, storage, loops and UI, but Brew requires adapters and must retain workspace, governance and receipt authority. Harness is not installed locally and no governed Brew-style task has been proven."
     }
   ],
   "edges": [
@@ -157,6 +165,11 @@
       "from": "p2-validation",
       "to": "live-tool-loop",
       "type": "acceptance"
+    },
+    {
+      "from": "architecture",
+      "to": "harness-adoption",
+      "type": "reference"
     }
   ]
 }
