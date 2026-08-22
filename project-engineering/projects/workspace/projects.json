@@ -2,11 +2,21 @@
   "schema_version": 1,
   "projects": [
     {
+      "id": "portfolio",
+      "name": "Overall",
+      "subtitle": "Plans, Issues & Alignment",
+      "mapped": true,
+      "active_node": "portfolio-alignment",
+      "plan_file": "../portfolio/plan.json",
+      "status_file": "../portfolio/status.json",
+      "reference": "../portfolio/status.json"
+    },
+    {
       "id": "lbe",
       "name": "LBE",
       "subtitle": "Persistent Agent Runtime",
       "mapped": true,
-      "active_node": null,
+      "active_node": "terminal-workspace-foundation",
       "plan_file": "../lbe-plan-canvas/plan.json",
       "status_file": "../lbe-plan-canvas/status.json",
       "references_file": "../lbe-plan-canvas/references.json",
