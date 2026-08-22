@@ -129,8 +129,6 @@
     {"order":8,"id":"ax-visual-perception","priority":"P2","state":"PENDING"}
   ],
   "pending": [
-    {"id":"ide-shell-reference","priority":"P1","classification":"CURRENT_HEAD_RENDERED_AND_LIVE_REVALIDATION_REQUIRED"},
-    {"id":"terminal-state-ui","priority":"P1","classification":"LIVE_ELECTRON_ACCEPTANCE_REQUIRES_IDLE_BASELINED_TARGET_AND_CURRENT_HEAD_UI_REVALIDATION"},
     {"id":"node-pty-attachconsole","priority":"P1","classification":"OBSERVED_NEEDS_OWNER_MAP"},
     {"id":"cline-auth-live-persistence","priority":"P1","classification":"INCONCLUSIVE_UNTIL_SUCCESSFUL_LOGIN"},
     {"id":"process-death-recovery","priority":"P1","classification":"OPEN"},
@@ -138,8 +136,8 @@
     {"id":"ax-visual-perception","priority":"P2","classification":"ARCHITECTURE_HARDENING_PENDING"}
   ],
   "next_acceptance": {
-    "question": "Does the current-head Electron/CDP acceptance remain repeatable after provider startup and target lifecycle changes?",
-    "observable": "Repeat the existing ACCESS_AGENT_ACCEPTANCE_CHAT_URL or saved exact-target acceptance with the configured provider available; require all eight steps and final-clean-state PASS without product source mutation.",
-    "falsifier": "If a repeat run fails with the provider available and an exact target, classify the concrete provider, browser, relay, or UI lifecycle regression before changing source."
+    "question": "Can the P1 node-pty AttachConsole owner map be proven on the current Windows runtime without weakening terminal ownership boundaries?",
+    "observable": "Exercise the existing terminal path on the current host, capture the AttachConsole/process ownership result, and classify the exact owner map or failure without changing runtime authority.",
+    "falsifier": "If terminal attachment remains ambiguous or assigns ownership to the wrong runtime, preserve the failure evidence and classify the missing owner boundary before implementing a fix."
   }
 }
