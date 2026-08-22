@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "project": "Brew",
+  "verified_at": "2026-08-22",
+  "source_repo": "Letterblack0306/brew",
+  "source_branch": "agent/canonical-runtime-operation-authority-20260812",
+  "source_head": "486a9b433ead59a470e511236139e8201ed292ba",
+  "base_branch": "main",
+  "base_head": "a6342ff3fc0943ade2cc8bde62d79f94952f24ce",
+  "pull_request": 442,
+  "overall_classification": "DRAFT_PR_P1_RUNTIME_PROVEN_P2_INVESTIGATION_REQUIRED_BRANCH_DIVERGED",
+  "authority_note": "GitHub proves current remote PR/revision state. The P1 runtime proof is recorded by the PR and project checkpoints; it was not independently rerun in this session. Local workspace alignment and live runtime state remain unverified.",
+  "closed": [
+    {
+      "id": "architecture",
+      "title": "Canonical reasoning/runtime authority direction",
+      "classification": "PROVEN_PROJECT_CONTRACT",
+      "detail": "PR #442 and its architecture authorities define one persistent reasoning agent and canonical runtime without moving deterministic execution/policy/evidence ownership into the model."
+    },
+    {
+      "id": "provider-turn",
+      "title": "Provider-backed canonical text turn",
+      "classification": "RUNTIME_PROVEN_RECORDED",
+      "detail": "The project records a real canonical /query response through LM Studio and qwen/qwen3-vl-8b for the observed interaction."
+    },
+    {
+      "id": "p0-boundary",
+      "title": "P0 operation-correlation boundary",
+      "classification": "PROVEN_BOUNDARY",
+      "detail": "The earliest identity-loss boundary was established at createProviderAdapter(generateResponse) output handoff, with brew/runner/brew-runner.mjs as the minimal owner."
+    },
+    {
+      "id": "p1-correlation",
+      "title": "P1 operation correlation",
+      "classification": "RUNTIME_PROVEN_RECORDED",
+      "detail": "At accepted runtime revision 1d74031d, all four model lifecycle events carried the exact /query operationId; WRONG_OPERATION_ID_COUNT=0."
+    }
+  ],
+  "supported_historical": [
+    {
+      "id": "old-gpt-record",
+      "title": "17 August GPT-Knowledge Brew record",
+      "classification": "SUPERSEDED_BY_CURRENT_PR_HEAD",
+      "detail": "The prior projection referenced head 169bc635 and an open correlation defect. Current PR head is 486a9b43 and records P1 correlation closed."
+    }
+  ],
+  "pending": [
+    {
+      "id": "p2",
+      "title": "Canonical Session / Turn / Item lifecycle",
+      "priority": "P2 ACTIVE",
+      "classification": "INVESTIGATION_REQUIRED",
+      "detail": "Map all active lifecycle producers, stores, callers, consumers, persistence roots, and duplicate/compatibility paths; trace one real /query into persisted conversation state before patching."
+    },
+    {
+      "id": "turn-id",
+      "title": "Canonical durable turnId ownership",
+      "priority": "P2",
+      "classification": "UNVERIFIED",
+      "detail": "No global turnId owner or semantics are proven. Do not add one from schema inference."
+    },
+    {
+      "id": "tool-loop",
+      "title": "Live provider tool execution composition",
+      "priority": "P3",
+      "classification": "NOT_YET_PROVEN",
+      "detail": "Provider-native tool call → governed host execution → receipt → provider continuation and persistent ordered item lifecycle remain open."
+    },
+    {
+      "id": "recovery",
+      "title": "Cancellation and restart recovery",
+      "priority": "P3",
+      "classification": "NOT_YET_PROVEN",
+      "detail": "Cancellation/error attribution and crash/restart/resume exactly-once behavior remain open."
+    },
+    {
+      "id": "integrations",
+      "title": "Dynamic tools, Browser and Telegram E2E",
+      "priority": "P3",
+      "classification": "NOT_YET_PROVEN",
+      "detail": "Dynamic tool lifecycle/reuse, browser E2E, and Telegram account delivery E2E remain open."
+    },
+    {
+      "id": "branch",
+      "title": "Draft PR branch divergence",
+      "priority": "BEFORE MERGE",
+      "classification": "DIVERGED_78_AHEAD_2_BEHIND",
+      "detail": "PR #442 remains draft. Its branch is 78 commits ahead and 2 commits behind current main; mergeability and reconciliation are not proven."
+    },
+    {
+      "id": "release",
+      "title": "Installed runtime, CI and release readiness",
+      "priority": "LOCKED",
+      "classification": "NOT_YET_PROVEN",
+      "detail": "Installed-runtime acceptance and full current-head CI/release acceptance remain unproven."
+    }
+  ],
+  "next_acceptance": {
+    "question": "Where is the single active Session / Turn / Item lifecycle authority on the canonical /query path?",
+    "observable": "A bounded producer/store/caller/consumer map plus one correlated real /query trace into persisted conversation state at the exact current revision.",
+    "falsifier": "Multiple active lifecycle authorities remain unresolved, the trace does not reach persistence, or a patch owner is selected before the earliest incorrect lifecycle state is proven."
+  }
+}
