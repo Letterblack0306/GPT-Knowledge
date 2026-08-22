@@ -1,0 +1,136 @@
+{
+  "schema_version": 1,
+  "project": "Brew",
+  "purpose": "Structured UI projection of Brew’s current canonical-runtime consolidation plan and evidence gates. This is navigation state, not runtime or merge authority.",
+  "authority_rule": "Current Brew repository/PR source, exact local workspace revision, runtime evidence, CI, and project-owned checkpoints outrank this projection.",
+  "updated": "2026-08-22",
+  "source_repo": "Letterblack0306/brew",
+  "source_branch": "agent/canonical-runtime-operation-authority-20260812",
+  "source_head": "486a9b433ead59a470e511236139e8201ed292ba",
+  "active_node": "p2-session-turn-item",
+  "nodes": [
+    {
+      "id": "architecture",
+      "lane": "Authority",
+      "title": "One reasoning agent and canonical runtime",
+      "status": "proven",
+      "summary": "PR #442 consolidates Brew around one persistent reasoning agent while deterministic runtime owners retain execution, policy, state, and evidence responsibilities."
+    },
+    {
+      "id": "provider-turn",
+      "lane": "Closed Evidence",
+      "title": "Canonical provider-backed text turn",
+      "status": "proven",
+      "summary": "A real /query path reached LM Studio qwen/qwen3-vl-8b and returned a model response through Brew’s canonical runtime."
+    },
+    {
+      "id": "p0-boundary",
+      "lane": "Closed Evidence",
+      "title": "P0 operation-correlation boundary",
+      "status": "proven",
+      "summary": "The earliest identity-loss boundary was traced to createProviderAdapter(generateResponse) output handoff; brew/runner/brew-runner.mjs was established as the patch owner."
+    },
+    {
+      "id": "p1-correlation",
+      "lane": "Closed Evidence",
+      "title": "P1 operation correlation",
+      "status": "proven",
+      "summary": "Fresh canonical runtime evidence showed all model lifecycle events carried the exact /query operationId with WRONG_OPERATION_ID_COUNT=0."
+    },
+    {
+      "id": "p2-session-turn-item",
+      "lane": "Active Gate",
+      "title": "P2 canonical Session / Turn / Item lifecycle",
+      "status": "current",
+      "priority": "P2",
+      "summary": "Investigation only: map active producers, stores, callers, consumers, persistence roots, duplicate authorities, and one real /query persistence path before mutation."
+    },
+    {
+      "id": "turn-id",
+      "lane": "Open Contract",
+      "title": "Canonical durable turnId semantics",
+      "status": "warning",
+      "priority": "P2",
+      "summary": "Unproven. Do not invent a global turnId merely because an event schema exposes the field."
+    },
+    {
+      "id": "live-tool-loop",
+      "lane": "Runtime Acceptance",
+      "title": "Provider tool call → host execution → continuation",
+      "status": "next",
+      "priority": "P3",
+      "summary": "Live provider-native tool call, governed host execution, receipt, provider continuation, and ordered durable item evidence remain unproven."
+    },
+    {
+      "id": "recovery",
+      "lane": "Runtime Acceptance",
+      "title": "Cancellation and restart recovery",
+      "status": "next",
+      "priority": "P3",
+      "summary": "Cancellation/error attribution and crash/restart/resume exactly-once behavior remain unproven."
+    },
+    {
+      "id": "integrations",
+      "lane": "Runtime Acceptance",
+      "title": "Dynamic tools, Browser and Telegram E2E",
+      "status": "next",
+      "priority": "P3",
+      "summary": "Dynamic tool reuse, browser E2E, and Telegram account delivery E2E remain unproven."
+    },
+    {
+      "id": "release",
+      "lane": "Release",
+      "title": "Installed runtime, CI and release acceptance",
+      "status": "blocked",
+      "priority": "LOCKED",
+      "summary": "PR #442 remains draft and diverged from main. Installed-runtime acceptance and full current-head CI/release acceptance are not proven."
+    }
+  ],
+  "edges": [
+    {
+      "from": "architecture",
+      "to": "provider-turn",
+      "type": "flow"
+    },
+    {
+      "from": "provider-turn",
+      "to": "p0-boundary",
+      "type": "flow"
+    },
+    {
+      "from": "p0-boundary",
+      "to": "p1-correlation",
+      "type": "flow"
+    },
+    {
+      "from": "p1-correlation",
+      "to": "p2-session-turn-item",
+      "type": "flow"
+    },
+    {
+      "from": "p2-session-turn-item",
+      "to": "turn-id",
+      "type": "requires-revalidation"
+    },
+    {
+      "from": "p2-session-turn-item",
+      "to": "live-tool-loop",
+      "type": "acceptance"
+    },
+    {
+      "from": "live-tool-loop",
+      "to": "recovery",
+      "type": "acceptance"
+    },
+    {
+      "from": "recovery",
+      "to": "integrations",
+      "type": "acceptance"
+    },
+    {
+      "from": "integrations",
+      "to": "release",
+      "type": "acceptance"
+    }
+  ]
+}
