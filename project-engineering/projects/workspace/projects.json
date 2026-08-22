@@ -67,8 +67,11 @@
       "id": "brew",
       "name": "Brew",
       "subtitle": "Creative Agent Runtime",
-      "mapped": false,
-      "reference": "../brew-runtime-status-2026-08-17.md"
+      "mapped": true,
+      "reference": "../brew-runtime-status-2026-08-17.md",
+      "active_node": "p2-session-turn-item",
+      "plan_file": "../brew/plan.json",
+      "status_file": "../brew/status.json"
     }
   ]
 }
