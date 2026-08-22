@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "project": "Access Browser Agent",
-  "verified_at": "2026-08-22T17:57:25+04:00",
+  "verified_at": "2026-08-22T18:08:12+04:00",
   "source_repo": "Letterblack0306/access-browser-agent",
   "source_branch": "main",
   "source_head": "26c72b455de71d6ff5d8505888c6dfd6304bec65",
@@ -38,7 +38,8 @@
     {"id":"browser-settlement","classification":"PROVEN_SOURCE_AND_LOCAL_REGRESSION","command_hash":"11876582E03956B429C5CEE03DF25FB2AFF045B155F0751340FC817E1E3E8F09"},
     {"id":"stop-durable-terminal","classification":"PROVEN_SOURCE_AND_LOCAL_ACCEPTANCE","command_hash":"A4EFEC8974180EDCAAEAE072EC0B6FCAB27FAE506A59F9E1137E7A6BBCCC079A"},
     {"id":"turn-37c-recovery","classification":"QUARANTINED_AND_RECONCILED","command_hash":"901E6FB855E71CE8C5FDB72E01F608D54366F0BA875A78C66D4CFD09EC5D807E"},
-    {"id":"acceptance-created-turn-99a7","classification":"QUARANTINED_AND_CLEARED","command_hash":"23132554E7FF4A613DF21AB15EDA7813FA131C5B5AB53EF775F72EDB6BFD0804","detail":"Live Electron acceptance timed out while turn-99a7ca39d3f063e5 was executing because the selected ChatGPT target was not idle. The bounded acceptance process ended before a terminal receipt was written, so the ambiguous executing record was durably quarantined with receipt 724f0eef66c51892733afe6b9cea3cd460420c1743f75029eb0004a505254a24. Unresolved recoveries are zero."}
+    {"id":"acceptance-created-turn-99a7","classification":"QUARANTINED_AND_CLEARED","command_hash":"23132554E7FF4A613DF21AB15EDA7813FA131C5B5AB53EF775F72EDB6BFD0804","detail":"Live Electron acceptance timed out while turn-99a7ca39d3f063e5 was executing because the selected ChatGPT target was not idle. The bounded acceptance process ended before a terminal receipt was written, so the ambiguous executing record was durably quarantined with receipt 724f0eef66c51892733afe6b9cea3cd460420c1743f75029eb0004a505254a24. Unresolved recoveries are zero."},
+    {"id":"acceptance-created-turn-9590","classification":"QUARANTINED_AND_RECONCILED","detail":"Current-head acceptance at 26c72b45 reached renderer/runtime/browser readiness and configured the saved ChatGPT target, but relay start was blocked by durable executing state on non-idle target turn-9590b53b5c1a3a8f. Existing recovery reconciliation quarantined the record with receipt 41329076dd7257bf609064d84f3852e7083a41ebf48cddb5f0b7db673ff2cd71; ambiguous=false; instruction execution count remained zero."}
   ],
   "source_update": {
     "head": "26c72b455de71d6ff5d8505888c6dfd6304bec65",
@@ -57,9 +58,13 @@
     ],
     "validation": {
       "new_ui_js_syntax": "PASS at 26c72b45",
-      "check_rebuild": "PASS at local 0048d0d checkout",
-      "check": "PASS at local 0048d0d checkout",
-      "current_head_rendered_live_acceptance": "PENDING"
+      "historical_check_rebuild": "PASS at local 0048d0d checkout",
+      "historical_check": "PASS at local 0048d0d checkout",
+      "current_head_check_rebuild": "FAIL at 26c72b45: rebuild-agent-truth-observability-smoke.js assertion that provider assistant responses are not submitted to the local reasoning agent",
+      "current_head_check": "FAIL at 26c72b45: browser-tool-evals expected UNVERIFIED but received SETTLED",
+      "current_head_ui_js_syntax": "PASS at 26c72b45",
+      "current_head_rendered_live_acceptance": "BLOCKED_CONFIGURATION_INSTRUCTION_RECOVERY_REQUIRED_NON_IDLE_TARGET",
+      "current_head_recovery_reconciliation": "PASS; receipt 41329076dd7257bf609064d84f3852e7083a41ebf48cddb5f0b7db673ff2cd71; ambiguous=false"
     }
   },
   "active": {
@@ -73,9 +78,9 @@
       "live_command_hash": "3553B9B5526F670F161BDF7CA1332B84905F9B7C7EF2B36E527D7EA7043057DF",
       "cleanup_command_hash": "23132554E7FF4A613DF21AB15EDA7813FA131C5B5AB53EF775F72EDB6BFD0804",
       "target_inventory_hash": "D154B793B163370D71690645CE50D18A7F5A82F4BA31C7AFF4843C153A81F9E8",
-      "live_steps": ["renderer-cdp-ready PASS", "renderer-runtime-api-ready PASS", "chat-target-configured PASS", "click-loop-start-and-wait INCONCLUSIVE because relay lifecycle=executing on an active assistant turn"],
+      "live_steps": ["renderer-cdp-ready PASS", "renderer-runtime-api-ready PASS", "chat-target-configured PASS", "click-loop-start-and-wait BLOCKED_CONFIGURATION because durable executing state required instruction recovery"],
       "target_controls": ["ACCESS_AGENT_ACCEPTANCE_CHAT_URL", "saved browserChatUrl", "saved browserProviderTarget.url"],
-      "cleanup": "turn-99a7ca39d3f063e5 quarantined; receipt 724f0eef66c51892733afe6b9cea3cd460420c1743f75029eb0004a505254a24; unresolved recoveries=0"
+      "cleanup": "turn-9590b53b5c1a3a8f quarantined; journal key ad2467638b3eb1c70bb5e443ed35db91807e38535e41457a5db94acba91aa69f; receipt 41329076dd7257bf609064d84f3852e7083a41ebf48cddb5f0b7db673ff2cd71; ambiguous=false"
     }
   },
   "proven_findings": [

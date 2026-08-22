@@ -161,7 +161,7 @@ GitHub `main` is four commits ahead of the historical validation head `0048d0d`,
 
 Changed source files are `electron/index.html`, `electron/rebuild-ide-reference.css`, `electron/rebuild-ide-reference.js`, and `electron/rebuild-ui-stability.css`.
 
-The UI source implementation is present and the new activity-rail JavaScript syntax check passes. Existing rendered/live evidence remains tied to `0048d0d`; current-head rendered and live acceptance are not yet proven.
+The UI source implementation is present and the new activity-rail JavaScript syntax check passes. At current head, `npm run check:rebuild` fails in `rebuild-agent-truth-observability-smoke.js`, while `npm run check` fails in `browser-tool-evals` (`expected UNVERIFIED`, received `SETTLED`). Existing rendered/live evidence remains tied to `0048d0d`; current-head rendered and live acceptance are not yet proven.
 
 ## Active P1 — Terminal-state UI live acceptance
 
@@ -171,7 +171,7 @@ Classification: **HISTORICAL_SOURCE_AND_RENDERED_REGRESSION_PROVEN_CURRENT_HEAD_
 
 Next acceptance question: can the existing acceptance at current head `26c72b45` run against an explicitly idle/baselined ChatGPT target so `waiting_for_instruction` and current-head terminal UI presentation are observable?
 
-Do not patch product source to satisfy a contaminated target. Use the existing `ACCESS_AGENT_ACCEPTANCE_CHAT_URL` or saved exact browser target configuration, then preserve the acceptance and cleanup receipts.
+The current-head acceptance configured the saved target and reached renderer/runtime/browser readiness, but relay start was blocked by durable `executing` state on non-idle turn `turn-9590b53b5c1a3a8f`. The existing recovery path quarantined it successfully with receipt `41329076dd7257bf609064d84f3852e7083a41ebf48cddb5f0b7db673ff2cd71` and cleared ambiguity. Do not patch product source to satisfy a contaminated target. Use the existing `ACCESS_AGENT_ACCEPTANCE_CHAT_URL` or saved exact browser target configuration when a clean idle/baselined target is available.
 
 ## Later gates
 
