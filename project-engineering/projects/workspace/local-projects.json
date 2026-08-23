@@ -13,6 +13,90 @@
     },
     "memory": {
       "local_path": "C:\\MCP Local\\Memory"
+    },
+    "00letterblack_genedit_1": {
+      "local_path": "G:\\Developments\\00LETTERBLACK_GenEdit_1"
+    },
+    "00_cep_developer": {
+      "local_path": "G:\\Developments\\00_CEP_Developer"
+    },
+    "03_alexa_bridge": {
+      "local_path": "G:\\Developments\\03_Alexa bridge"
+    },
+    "06_aep_window_view": {
+      "local_path": "G:\\Developments\\06_aep_window_view"
+    },
+    "11_letterblack_portal": {
+      "local_path": "G:\\Developments\\11_Letterblack_PORTAL"
+    },
+    "13_adobe_ai_extention": {
+      "local_path": "G:\\Developments\\13_Adobe AI extention"
+    },
+    "15_ai_ae": {
+      "local_path": "G:\\Developments\\15_AI_AE"
+    },
+    "16_ae_gpt_compair_dev": {
+      "local_path": "G:\\Developments\\16_AE_GPT_Compair&Dev"
+    },
+    "19_copycodepro": {
+      "local_path": "G:\\Developments\\19_Copycodepro"
+    },
+    "20_ae_vfx_visualizer": {
+      "local_path": "G:\\Developments\\20_AE VFX Visualizer"
+    },
+    "21_carscanner": {
+      "local_path": "G:\\Developments\\21_Carscanner"
+    },
+    "21_blendvisualtest": {
+      "local_path": "G:\\Developments\\21_blendvisualtest"
+    },
+    "23_whiteboard": {
+      "local_path": "G:\\Developments\\23_whiteboard"
+    },
+    "24_bodymovin_aep": {
+      "local_path": "G:\\Developments\\24_Bodymovin_AEP"
+    },
+    "25_extention_agent": {
+      "local_path": "G:\\Developments\\25_Extention agent"
+    },
+    "27_nodebased_agent": {
+      "local_path": "G:\\Developments\\27_Nodebased agent"
+    },
+    "28_folder_open": {
+      "local_path": "G:\\Developments\\28_folder open"
+    },
+    "32_veo_jason_gen_ai": {
+      "local_path": "G:\\Developments\\32_Veo_Jason_Gen_AI"
+    },
+    "33_aep_nodes": {
+      "local_path": "G:\\Developments\\33_AEP_Nodes"
+    },
+    "34_gpt": {
+      "local_path": "G:\\Developments\\34_GPT"
+    },
+    "35_macos": {
+      "local_path": "G:\\Developments\\35_MacOs"
+    },
+    "36_cardflow": {
+      "local_path": "G:\\Developments\\36_Cardflow"
+    },
+    "37_aep_phone_viewer": {
+      "local_path": "G:\\Developments\\37_AEP Phone viewer"
+    },
+    "38_brew_creative_agent": {
+      "local_path": "G:\\Developments\\38_Brew_Creative_Agent"
+    },
+    "40_aep_letterblack_genai": {
+      "local_path": "G:\\Developments\\40_AEP_Letterblack_GenAI"
+    },
+    "42_lbe_core_clean": {
+      "local_path": "G:\\Developments\\42_LBE_Core_Clean"
+    },
+    "44_workspace_command": {
+      "local_path": "G:\\Developments\\44_Workspace_command"
+    },
+    "46_accecc_browser_agent": {
+      "local_path": "G:\\Developments\\46_Accecc_Browser_Agent"
     }
   }
 }
