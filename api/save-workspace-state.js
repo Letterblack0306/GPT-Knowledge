@@ -59,14 +59,8 @@ export default async function handler(req, res) {
   }
 
   const githubToken = process.env.GITHUB_TOKEN;
-  const saveKey = process.env.WORKSPACE_SAVE_KEY;
-  if (!githubToken || !saveKey) {
+  if (!githubToken) {
     return send(res, 503, { ok: false, error: 'SAVE_NOT_CONFIGURED' });
-  }
-
-  const suppliedKey = req.headers['x-workspace-save-key'];
-  if (typeof suppliedKey !== 'string' || suppliedKey !== saveKey) {
-    return send(res, 401, { ok: false, error: 'UNAUTHORIZED' });
   }
 
   const body = typeof req.body === 'string' ? JSON.parse(req.body || '{}') : (req.body || {});
