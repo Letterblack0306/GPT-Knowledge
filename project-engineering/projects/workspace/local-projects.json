@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "purpose": "Machine-local workspace mapping for GPT-Knowledge project IDs. Paths are environment-specific and must be validated on the machine before use.",
+  "projects": {
+    "access-browser-agent": {
+      "local_path": "G:\\Developments\\46_Accecc_Browser_Agent\\Browser Agent"
+    },
+    "brew": {
+      "local_path": "G:\\Developments\\38_Brew_Creative_Agent"
+    },
+    "looptool": {
+      "local_path": "G:\\Developments\\Tools\\everydayTools"
+    },
+    "memory": {
+      "local_path": "C:\\MCP Local\\Memory"
+    }
+  }
+}
