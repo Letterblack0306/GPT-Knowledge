@@ -1,12 +1,22 @@
 {
   "schema_version": 1,
   "project": "LoopTool",
-  "verified_at": "2026-08-21T00:54:00+04:00",
+  "verified_at": "2026-08-23T08:26:00+04:00",
   "source_repo": "Letterblack0306/tools",
   "source_branch": "master",
   "source_head": "ddf1c09873599efe5f4976f7dc6456a65474b9b6",
-  "overall_classification": "OPERATING_CONTRACT_VERIFIED_IMPLEMENTATION_IDENTITY_CURRENT",
-  "authority_note": "This status is a GPT-Knowledge operating projection. Current tools source, active local workspace/revision, returned LoopTool evidence and live runtime acceptance outrank it.",
+  "overall_classification": "PROVEN_BOUNDED_EXECUTION_AND_RECALL_BRIDGE_WITH_RUNTIME_PROOF",
+  "authority_note": "This status is a GPT-Knowledge projection backed by a dated runtime proof. Current tools source, active local workspace/revision, fresh returned LoopTool evidence and live runtime acceptance outrank it.",
+  "runtime_proof": {
+    "classification": "PROVEN_BOUNDED_RUNTIME_CAPABILITY",
+    "reference": "runtime-proof-2026-08-23.md",
+    "command_hash": "FB0CF8F7A9E965E6A2BDE50BAD2AE9FFFB0E93BC53AADEA4A1A824A30C1B7F1A",
+    "session_id": "1787404643663_0sdnz",
+    "session_metadata_sha256": "0d4d29c67ea2b8236e3925dbd0b4548e214412c767f6d270143e60855dfa489d",
+    "session_messages_sha256": "c0ce4e77a4dac3dc8a76873aff989825ed2df7ce3978a1a8006f6498a703eced",
+    "scope": "LoopTool command transport successfully composed BirdEye GPT-Knowledge project resolution with Memory/Cline bounded historical-session retrieval and returned hashed evidence.",
+    "boundary": "The proof considered 50 recent sessions and did not inspect current Access Browser Agent workspace/source truth or establish current LoopTool implementation revision."
+  },
   "closed": [
     {
       "id": "purpose",
@@ -23,42 +33,61 @@
     {
       "id": "command-envelope",
       "title": "AGENT COMMAND contract",
-      "classification": "VERIFIED_SKILL_CONTRACT",
-      "detail": "Canonical execution envelope carries an absolute working directory and PowerShell command between AGENT COMMAND START/END markers."
+      "classification": "PROVEN_RUNTIME_ENVELOPE",
+      "detail": "The canonical execution envelope carries an absolute working directory and PowerShell command between AGENT COMMAND START/END markers; successful live executions returned AGENT RESULT evidence with command hash and exit status."
     },
     {
       "id": "result-envelope",
       "title": "AGENT RESULT evidence contract",
-      "classification": "VERIFIED_SKILL_CONTRACT",
-      "detail": "Documented result evidence includes command status/hash, working directory, command, exit code and runtime output. Claims must remain limited to what those observables prove."
+      "classification": "PROVEN_RUNTIME_ENVELOPE",
+      "detail": "Live LoopTool execution returned command status/hash, working directory, exact command, exit code, duration and stdout. Claims remain limited to the observable actually returned."
+    },
+    {
+      "id": "project-resolution",
+      "title": "GPT-Knowledge project resolution through BirdEye",
+      "classification": "PROVEN_RUNTIME_CAPABILITY",
+      "detail": "A live LoopTool command invoked BirdEye local_projects for access-browser-agent and resolved it through GPT-Knowledge project-engineering/projects/workspace/local-projects.json with local-path existence true at execution time."
+    },
+    {
+      "id": "historical-recall",
+      "title": "Bounded historical recall through Memory",
+      "classification": "PROVEN_RUNTIME_CAPABILITY",
+      "detail": "A live LoopTool command used the existing Memory/Cline session index and fetch owners, selected the highest-scoring matching session among 50 recent sessions, returned bounded matching messages, and returned SHA256 provenance for the session metadata and message files."
     },
     {
       "id": "implementation-identity",
-      "title": "Current implementation repository identity",
-      "classification": "VERIFIED_REMOTE_REPOSITORY",
-      "detail": "Letterblack0306/tools is the implementation repository referenced by the skill. Its default branch is master and current remote master HEAD verified for this projection is ddf1c09873599efe5f4976f7dc6456a65474b9b6."
+      "title": "Recorded implementation repository identity",
+      "classification": "VERIFIED_REMOTE_REPOSITORY_AT_PRIOR_CHECKPOINT",
+      "detail": "Letterblack0306/tools is the implementation repository referenced by the skill. The stored remote master HEAD for this projection is ddf1c09873599efe5f4976f7dc6456a65474b9b6. Reverify before claiming it is still current."
     }
   ],
   "supported_historical": [],
   "pending": [
     {
+      "id": "execution-record-persistence",
+      "title": "First-class recallable execution records",
+      "priority": "DEFERRED",
+      "classification": "DOCUMENTED_REQUIREMENT_NOT_PROVEN_IMPLEMENTED",
+      "detail": "The stronger TOOL_RECALLABLE_EXECUTION_RECORDS_REQUIREMENT remains deferred. Current runtime proof does not establish execution_record_id and execution_record_sha256 persistence for every LoopTool execution."
+    },
+    {
       "id": "implementation-drift",
       "title": "Implementation-specific behavior",
       "priority": "WHEN CLAIMED",
       "classification": "VERIFY_AT_TIME_OF_USE",
-      "detail": "Do not infer parser, readiness, duplicate suppression, timeout/cancellation, approval or result-return behavior solely from the skill. Inspect current Letterblack0306/tools source/runtime when those implementation details matter."
+      "detail": "Do not infer parser, readiness, duplicate suppression, timeout/cancellation, approval or result-return behavior beyond the proven checkpoint. Inspect current Letterblack0306/tools source/runtime when those details matter."
     },
     {
       "id": "runtime-proof",
       "title": "Behavioral acceptance",
       "priority": "WHEN REQUIRED",
       "classification": "REQUIRES_LIVE_OBSERVABLE",
-      "detail": "A PASS command or focused test does not automatically prove end-to-end or user-visible behavior. Continue to the authoritative runtime/UI observable required by the claim."
+      "detail": "A PASS command or historical recall does not automatically prove current project behavior or rendered UI state. Continue to the authoritative runtime/UI observable required by the claim."
     }
   ],
   "next_acceptance": {
-    "question": "Does the next LoopTool use answer one already-defined engineering question through the smallest bounded local execution action?",
-    "observable": "Exact workspace/revision identity plus returned AGENT RESULT and any additional authoritative runtime/UI observable required by the claim.",
-    "falsifier": "The command runs against an unverified workspace, the bridge/result evidence is incomplete, or the conclusion exceeds the layer actually observed."
+    "question": "Does the next LoopTool use answer one already-defined engineering question through the smallest bounded local execution action, with fresh evidence when current state matters?",
+    "observable": "Exact workspace/revision identity when relevant, returned AGENT RESULT, proof reference/hash identities, and any additional authoritative runtime/UI observable required by the claim.",
+    "falsifier": "The command runs against an unverified workspace, the result evidence is incomplete, a dated proof is treated as current without revalidation, or the conclusion exceeds the layer actually observed."
   }
 }
