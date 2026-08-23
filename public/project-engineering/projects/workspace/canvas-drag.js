@@ -7,7 +7,7 @@
 (() => {
   const KEY = 'lb-canvas-layout-v1:';
   const board = () => document.getElementById('board');
-  const pid = () => (window.currentProject && window.currentProject.id) || 'default';
+    const pid = () => (currentProject && currentProject.id) || 'default';
   const key = () => KEY + pid();
   const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
@@ -76,7 +76,7 @@
 const cardHTML = (x, kind) => `<div class="meta">${esc(x.priority || x.classification || kind)}</div><b>${esc(x.title || '')}</b>${x.detail ? `<p>${esc(x.detail)}</p>` : ''}`;
 
   const buildCards = (saved, ax) => {
-    const cs = window.currentStatus;
+        const cs = currentStatus;
     if (!cs) return;
     layerEl();
     if (!lay) return;
