@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "gateway": "bird-projection-projection",
+      "owner": "Letterblack0306/Letterblack_BirdEye (feat/workspace-diagnostic-bridge)",
+      "authority": "feat/local-workspace-change-bridge request/response contract",
+      "noWebhook": true,
+      "readOnly": true
+    }
+  ],
+  "attribution": {
+    "projectId": "adobe-ai-generations-release-hardening",
+    "projectName": "Adobe AI Generations",
+    "workspaceId": "adobe-ai-generations-release-hardening",
+    "repository": null,
+    "workspaceRoot": null,
+    "branch": null,
+    "head": null,
+    "observedAt": "2026-08-23T01:33:30.503992+00:00",
+    "requestId": null,
+    "operation": null
+  },
+  "git": {
+    "workspaceRoot": null,
+    "isRepository": false,
+    "evidenceLevel": "UNKNOWN",
+    "reason": "no configured workspace root",
+    "observedAt": "2026-08-23T01:33:30.503992+00:00"
+  },
+  "planStatus": {
+    "planState": "DOCUMENTED_CURRENT",
+    "planDocument": "C:\\MCP Local\\GPT-Knowledge\\project-engineering\\projects\\adobe-ai-generations-release-hardening\\plan.json",
+    "statusDocument": "C:\\MCP Local\\GPT-Knowledge\\project-engineering\\projects\\adobe-ai-generations-release-hardening\\status.json",
+    "documentRevision": "c5bf1c6",
+    "statusRevision": "c5bf1c6",
+    "lastVerified": "2026-08-23T01:33:30.503992+00:00",
+    "activeGate": "execution-single-lane",
+    "nextSingleQuestion": "Can PR #330 pass focused/static validation and live AE/CEP single-lane execution proof before the dependent capability/UI work advances?",
+    "authoritative": true,
+    "evidenceLevel": "PROVEN"
+  },
+  "runtime": {
+    "source": null,
+    "evidenceLevel": "UNKNOWN",
+    "reason": "no runtime status source configured",
+    "observedAt": "2026-08-23T01:33:30.503992+00:00"
+  },
+  "alignment": {
+    "state": "UNKNOWN",
+    "documentedSourceHead": "d6c8c8000af4673aae9cee708dce97fbc89dd8c8",
+    "observedHead": null,
+    "reason": "documented source_head or observed HEAD unavailable",
+    "evidenceLevel": "UNKNOWN",
+    "observedAt": "2026-08-23T01:33:30.503992+00:00"
+  },
+  "comparison": null,
+  "verdict": "REVIEW",
+  "syncState": "LOCAL_ONLY"
+}

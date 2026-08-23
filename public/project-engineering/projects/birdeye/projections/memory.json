@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "gateway": "bird-projection-projection",
+      "owner": "Letterblack0306/Letterblack_BirdEye (feat/workspace-diagnostic-bridge)",
+      "authority": "feat/local-workspace-change-bridge request/response contract",
+      "noWebhook": true,
+      "readOnly": true
+    }
+  ],
+  "attribution": {
+    "projectId": "memory",
+    "projectName": "Historical Memory",
+    "workspaceId": "memory",
+    "repository": null,
+    "workspaceRoot": null,
+    "branch": null,
+    "head": null,
+    "observedAt": "2026-08-23T01:33:29.905149+00:00",
+    "requestId": null,
+    "operation": null
+  },
+  "git": {
+    "workspaceRoot": null,
+    "isRepository": false,
+    "evidenceLevel": "UNKNOWN",
+    "reason": "no configured workspace root",
+    "observedAt": "2026-08-23T01:33:29.905149+00:00"
+  },
+  "planStatus": {
+    "planState": "DOCUMENTED_CURRENT",
+    "planDocument": "C:\\MCP Local\\GPT-Knowledge\\project-engineering\\projects\\memory\\plan.json",
+    "statusDocument": "C:\\MCP Local\\GPT-Knowledge\\project-engineering\\projects\\memory\\status.json",
+    "documentRevision": "c5bf1c6",
+    "statusRevision": "c5bf1c6",
+    "lastVerified": "2026-08-23T01:33:29.905149+00:00",
+    "activeGate": null,
+    "nextSingleQuestion": null,
+    "authoritative": true,
+    "evidenceLevel": "PROVEN"
+  },
+  "runtime": {
+    "source": null,
+    "evidenceLevel": "UNKNOWN",
+    "reason": "no runtime status source configured",
+    "observedAt": "2026-08-23T01:33:29.905149+00:00"
+  },
+  "alignment": {
+    "state": "UNKNOWN",
+    "documentedSourceHead": "f11fd89",
+    "observedHead": null,
+    "reason": "documented source_head or observed HEAD unavailable",
+    "evidenceLevel": "UNKNOWN",
+    "observedAt": "2026-08-23T01:33:29.905149+00:00"
+  },
+  "comparison": null,
+  "verdict": "REVIEW",
+  "syncState": "LOCAL_ONLY"
+}
