@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "project": "LoopTool",
+  "verified_at": "2026-08-21T00:54:00+04:00",
+  "source_repo": "Letterblack0306/tools",
+  "source_branch": "master",
+  "source_head": "ddf1c09873599efe5f4976f7dc6456a65474b9b6",
+  "overall_classification": "OPERATING_CONTRACT_VERIFIED_IMPLEMENTATION_IDENTITY_CURRENT",
+  "authority_note": "This status is a GPT-Knowledge operating projection. Current tools source, active local workspace/revision, returned LoopTool evidence and live runtime acceptance outrank it.",
+  "closed": [
+    {
+      "id": "purpose",
+      "title": "LoopTool role",
+      "classification": "VERIFIED_SKILL_CONTRACT",
+      "detail": "LoopTool is used for local testing, debugging, inspection, validation and bounded command execution. It is a deterministic execution/evidence bridge, not an autonomous reasoning owner."
+    },
+    {
+      "id": "gpt-route",
+      "title": "Mandatory GPT-Knowledge gate",
+      "classification": "VERIFIED_SKILL_CONTRACT",
+      "detail": "Consequential use begins after GPT-Knowledge routing, smallest relevant Skill selection, exact repository/workspace identity and one bounded question with observable/falsifier/acceptance condition."
+    },
+    {
+      "id": "command-envelope",
+      "title": "AGENT COMMAND contract",
+      "classification": "VERIFIED_SKILL_CONTRACT",
+      "detail": "Canonical execution envelope carries an absolute working directory and PowerShell command between AGENT COMMAND START/END markers."
+    },
+    {
+      "id": "result-envelope",
+      "title": "AGENT RESULT evidence contract",
+      "classification": "VERIFIED_SKILL_CONTRACT",
+      "detail": "Documented result evidence includes command status/hash, working directory, command, exit code and runtime output. Claims must remain limited to what those observables prove."
+    },
+    {
+      "id": "implementation-identity",
+      "title": "Current implementation repository identity",
+      "classification": "VERIFIED_REMOTE_REPOSITORY",
+      "detail": "Letterblack0306/tools is the implementation repository referenced by the skill. Its default branch is master and current remote master HEAD verified for this projection is ddf1c09873599efe5f4976f7dc6456a65474b9b6."
+    }
+  ],
+  "supported_historical": [],
+  "pending": [
+    {
+      "id": "implementation-drift",
+      "title": "Implementation-specific behavior",
+      "priority": "WHEN CLAIMED",
+      "classification": "VERIFY_AT_TIME_OF_USE",
+      "detail": "Do not infer parser, readiness, duplicate suppression, timeout/cancellation, approval or result-return behavior solely from the skill. Inspect current Letterblack0306/tools source/runtime when those implementation details matter."
+    },
+    {
+      "id": "runtime-proof",
+      "title": "Behavioral acceptance",
+      "priority": "WHEN REQUIRED",
+      "classification": "REQUIRES_LIVE_OBSERVABLE",
+      "detail": "A PASS command or focused test does not automatically prove end-to-end or user-visible behavior. Continue to the authoritative runtime/UI observable required by the claim."
+    }
+  ],
+  "next_acceptance": {
+    "question": "Does the next LoopTool use answer one already-defined engineering question through the smallest bounded local execution action?",
+    "observable": "Exact workspace/revision identity plus returned AGENT RESULT and any additional authoritative runtime/UI observable required by the claim.",
+    "falsifier": "The command runs against an unverified workspace, the bridge/result evidence is incomplete, or the conclusion exceeds the layer actually observed."
+  }
+}

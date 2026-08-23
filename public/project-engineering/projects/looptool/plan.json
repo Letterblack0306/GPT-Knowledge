@@ -1,0 +1,169 @@
+{
+  "schema_version": 2,
+  "project": "LoopTool",
+  "purpose": "Visual operating map for LoopTool as the bounded local execution/evidence bridge inside the GPT-Knowledge engineering workflow. This map explains when to use it, when not to use it, how command/result transport works, and what evidence it can and cannot prove.",
+  "authority_rule": "Current GPT-Knowledge routing, current Letterblack0306/tools source, active local workspace identity, returned AGENT RESULT evidence, and live runtime/rendered behavior outrank this projection. LoopTool is transport/evidence, not the investigation owner or acceptance authority.",
+  "updated": "2026-08-21",
+  "source_repo": "Letterblack0306/tools",
+  "source_branch": "master",
+  "source_head": "ddf1c09873599efe5f4976f7dc6456a65474b9b6",
+  "active_node": "bounded-execution",
+  "nodes": [
+    {
+      "id": "purpose",
+      "lane": "Role",
+      "title": "Deterministic local execution bridge",
+      "status": "proven",
+      "summary": "Use LoopTool for local testing, debugging, repository inspection, validation, reproduction and bounded command execution. The reasoning agent decides what evidence is required; LoopTool transports one selected local action and returns evidence."
+    },
+    {
+      "id": "not-agent",
+      "lane": "Role",
+      "title": "Not the reasoning agent",
+      "status": "proven",
+      "summary": "LoopTool must not interpret the whole investigation, invent the next fix, or become a blind command/fix loop. Agents reason; the bridge executes and returns evidence."
+    },
+    {
+      "id": "authority-separation",
+      "lane": "Role",
+      "title": "Keep authorities separate",
+      "status": "proven",
+      "summary": "GPT-Knowledge owns reusable method/routing; Skills own task procedures; GitHub owns remote repo truth; active workspace owns local file/revision truth; LoopTool owns command transport/evidence return; live runtime/UI owns behavioral acceptance."
+    },
+    {
+      "id": "gpt-route",
+      "lane": "Before Execution",
+      "title": "Route through GPT-Knowledge",
+      "status": "proven",
+      "summary": "Start from 000_START_HERE.md and knowledge-index.json, then load only the smallest task-relevant method/skills. Project/feature work must route through project-feature-implementation-plan.md before implementation-oriented LoopTool use."
+    },
+    {
+      "id": "identity",
+      "lane": "Before Execution",
+      "title": "Establish exact identity",
+      "status": "proven",
+      "summary": "Before consequential execution establish repository, project, branch/revision, working directory and runtime identity as applicable. Do not execute against an assumed workspace."
+    },
+    {
+      "id": "question-falsifier",
+      "lane": "Before Execution",
+      "title": "One question + observable",
+      "status": "proven",
+      "summary": "Define one bounded question, the authoritative observable, a falsifier and the acceptance condition before issuing the command. The command should answer that question rather than explore randomly."
+    },
+    {
+      "id": "use-cases",
+      "lane": "Use When",
+      "title": "Testing / debugging / inspection",
+      "status": "proven",
+      "summary": "Use when deterministic local evidence is required: reproduce a failure, inspect repo/runtime state, run focused tests, validate a fix, execute a bounded maintenance command, or collect stdout/stderr/exit-code/runtime evidence."
+    },
+    {
+      "id": "explicit-looptool",
+      "lane": "Use When",
+      "title": "Explicit LoopTool execution",
+      "status": "proven",
+      "summary": "Use when the user explicitly asks for LoopTool / Workspace Launcher Loop / local execution, or when the routed workflow selects LoopTool as the direct local evidence path."
+    },
+    {
+      "id": "do-not-general",
+      "lane": "Do Not Use",
+      "title": "No local evidence requirement",
+      "status": "warning",
+      "summary": "Do not activate LoopTool for general coding questions, architecture discussion, documentation-only review, theoretical explanation, or code suggestions when no deterministic local execution evidence is required."
+    },
+    {
+      "id": "do-not-owner",
+      "lane": "Do Not Use",
+      "title": "Never investigation owner",
+      "status": "warning",
+      "summary": "Do not use it as a run-everything mechanism, a substitute for repository reasoning, a blind retry/fix loop, or a way to claim acceptance from a successful command alone."
+    },
+    {
+      "id": "birdeye-boundary",
+      "lane": "Do Not Use",
+      "title": "Do not duplicate BirdEye blindly",
+      "status": "warning",
+      "summary": "When BirdEye is the governed evidence layer, use its workspace/revision/search/inspect/run path when appropriate. Do not run the same command through BirdEye and LoopTool without an explicit cross-validation reason."
+    },
+    {
+      "id": "command-envelope",
+      "lane": "Transport",
+      "title": "AGENT COMMAND envelope",
+      "status": "proven",
+      "summary": "Execution request format: === AGENT COMMAND START ===, WORKING DIRECTORY: <absolute project path>, COMMAND: <PowerShell command>, === AGENT COMMAND END ===. Working directory is part of the execution contract."
+    },
+    {
+      "id": "bounded-execution",
+      "lane": "Transport",
+      "title": "Execute one bounded action",
+      "status": "current",
+      "priority": "CORE",
+      "summary": "Run the smallest action that can answer the defined question. Avoid broad mutation, destructive cleanup, or unrelated commands unless explicitly justified by the routed investigation."
+    },
+    {
+      "id": "result-envelope",
+      "lane": "Transport",
+      "title": "AGENT RESULT evidence",
+      "status": "proven",
+      "summary": "The documented result channel returns evidence shaped as AGENT RESULT with command status/hash, working directory, command, exit code and runtime output such as stdout/stderr. Treat the current implementation as something to verify, not assume from documentation."
+    },
+    {
+      "id": "classify-layer",
+      "lane": "Evidence",
+      "title": "Classify only observed layer",
+      "status": "proven",
+      "summary": "Command emitted is not command executed. Exit code 0 is not feature acceptance. A focused test pass is not end-to-end proof. Classify evidence only at the layer actually observed."
+    },
+    {
+      "id": "failure-separation",
+      "lane": "Evidence",
+      "title": "Separate transport/runtime failures",
+      "status": "proven",
+      "summary": "Distinguish command failure from bridge delivery failure, session loss, dependency/configuration block, stale test/fixture, harness failure and product/runtime failure before changing code."
+    },
+    {
+      "id": "workspace-safety",
+      "lane": "Evidence",
+      "title": "Workspace containment",
+      "status": "proven",
+      "summary": "Verify the command targets the intended active workspace and remains inside allowed workspace boundaries. Local evidence is only meaningful when workspace/revision identity is known."
+    },
+    {
+      "id": "runtime-proof",
+      "lane": "Acceptance",
+      "title": "Live runtime closes behavior claims",
+      "status": "proven",
+      "summary": "When the claim is behavioral or user-visible, continue from LoopTool evidence to the required live runtime/rendered UI acceptance. LoopTool output alone does not prove behavior it did not observe."
+    },
+    {
+      "id": "implementation-drift",
+      "lane": "Acceptance",
+      "title": "Verify implementation drift",
+      "status": "next",
+      "priority": "WHEN NEEDED",
+      "summary": "Protocol documentation and Letterblack0306/tools may drift. Before implementation-specific claims, inspect current source/runtime and revalidate parser, readiness, duplicate suppression, timeout/cancellation and result-return behavior as relevant."
+    }
+  ],
+  "edges": [
+    {"from":"purpose","to":"not-agent","type":"boundary"},
+    {"from":"not-agent","to":"authority-separation","type":"authority"},
+    {"from":"authority-separation","to":"gpt-route","type":"workflow"},
+    {"from":"gpt-route","to":"identity","type":"workflow"},
+    {"from":"identity","to":"question-falsifier","type":"workflow"},
+    {"from":"question-falsifier","to":"use-cases","type":"selection"},
+    {"from":"question-falsifier","to":"explicit-looptool","type":"selection"},
+    {"from":"use-cases","to":"command-envelope","type":"transport"},
+    {"from":"explicit-looptool","to":"command-envelope","type":"transport"},
+    {"from":"command-envelope","to":"bounded-execution","type":"execution"},
+    {"from":"bounded-execution","to":"result-envelope","type":"evidence"},
+    {"from":"result-envelope","to":"classify-layer","type":"classification"},
+    {"from":"classify-layer","to":"failure-separation","type":"classification"},
+    {"from":"failure-separation","to":"workspace-safety","type":"validation"},
+    {"from":"workspace-safety","to":"runtime-proof","type":"acceptance"},
+    {"from":"runtime-proof","to":"implementation-drift","type":"revalidation"},
+    {"from":"do-not-general","to":"command-envelope","type":"guard"},
+    {"from":"do-not-owner","to":"bounded-execution","type":"guard"},
+    {"from":"birdeye-boundary","to":"bounded-execution","type":"guard"}
+  ]
+}

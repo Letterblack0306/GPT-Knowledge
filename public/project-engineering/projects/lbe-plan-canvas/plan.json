@@ -1,0 +1,182 @@
+{
+  "schema_version": 2,
+  "project": "LBE Persistent Agent",
+  "purpose": "Repository-driven visual roadmap for Letterblack0306/LBE_Presistent_Agent_wall. Navigation state only; source, machine gates, runtime and acceptance evidence remain authoritative.",
+  "authority_rule": "Current repository main, .lbe/governance/implementation-gates.json, project acceptance records, exact local revision, installed runtime and interactive evidence outrank this projection.",
+  "updated": "2026-08-22",
+  "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
+  "source_branch": "main",
+  "source_head": "942e494dbbf17550eb01f82caae31822d7ffbbbd",
+  "active_node": "tui-projection-view-models",
+  "nodes": [
+    {
+      "id": "vision",
+      "lane": "Foundation",
+      "title": "Persistent governed agent runtime",
+      "status": "proven",
+      "summary": "Providers reason; LBE owns workspace identity, policy, authorization, governed execution, receipts, evidence, persistence, recovery and deterministic completion."
+    },
+    {
+      "id": "r3-r6",
+      "lane": "Accepted Baseline",
+      "title": "R3–R6F core contracts",
+      "status": "proven",
+      "summary": "Machine gate records R3 through R6F as PROVEN_COMPLETE."
+    },
+    {
+      "id": "cli",
+      "lane": "Accepted Baseline",
+      "title": "CLI control plane",
+      "status": "proven",
+      "summary": "Machine gate records CLI as PROVEN_COMPLETE."
+    },
+    {
+      "id": "r7",
+      "lane": "Accepted Baseline",
+      "title": "R7 installed end-to-end acceptance",
+      "status": "proven",
+      "summary": "Machine gate records R7_INSTALLED_END_TO_END_ACCEPTANCE as PASS."
+    },
+    {
+      "id": "release-readiness",
+      "lane": "Accepted Baseline",
+      "title": "Release package readiness and precheck",
+      "status": "proven",
+      "summary": "Release package contract repair, readiness acceptance and publication precheck are PASS only for their bounded claims."
+    },
+    {
+      "id": "complete-tui",
+      "lane": "Active Product Phase",
+      "title": "Complete TUI implementation",
+      "status": "proven",
+      "summary": "Explicitly authorized phase. GitHub is implementation authority; LoopTool/local execution is evidence-only and must not patch source. Publication is paused."
+    },
+    {
+      "id": "tui-projection-view-models",
+      "lane": "Active Slice",
+      "title": "TUI projection contract and view models",
+      "status": "current",
+      "priority": "OPEN",
+      "summary": "Project persisted events into typed truthful TUI states without creating a second runtime or inventing unavailable evidence. Source and focused tests exist at main 942e494d; executed focused proof is not established by repository inspection alone."
+    },
+    {
+      "id": "tui-workspace",
+      "lane": "TUI Sequence",
+      "title": "Objective and activity workspace",
+      "status": "next",
+      "summary": "Build one spatially stable keyboard-first workspace with progressive disclosure over existing owners."
+    },
+    {
+      "id": "tui-commands",
+      "lane": "TUI Sequence",
+      "title": "Truthful command routing",
+      "status": "next",
+      "summary": "Implement distinct status, provider, evidence, help, interrupt and cancel behavior; no unrelated help aliases."
+    },
+    {
+      "id": "tui-sessions-provider",
+      "lane": "TUI Sequence",
+      "title": "Session and provider surfaces",
+      "status": "next",
+      "summary": "Session create/resume/navigation plus provider/model selection, configuration and health through existing owners."
+    },
+    {
+      "id": "tui-details",
+      "lane": "TUI Sequence",
+      "title": "Structured evidence and capability views",
+      "status": "next",
+      "summary": "Render tool, authorization, receipt, evidence, validation, diff, capability and integration truth with unsupported states."
+    },
+    {
+      "id": "tui-installed-acceptance",
+      "lane": "Acceptance",
+      "title": "Installed interactive runtime proof",
+      "status": "blocked",
+      "priority": "FINAL TUI GATE",
+      "summary": "Requires exact clean artifact, Windows Terminal render, six distinct commands, session/provider flows, governed local-provider tool turn, interrupt/cancel, terminal compatibility and regression evidence."
+    },
+    {
+      "id": "release-gate-conflict",
+      "lane": "Release",
+      "title": "2.0.3 gate reconciliation",
+      "status": "warning",
+      "priority": "DOCUMENT CONFLICT",
+      "summary": "pyproject.toml is already 2.0.3, but release_progression still lists setting 2.0.3 as remaining. Reconcile gate text before release preparation resumes."
+    },
+    {
+      "id": "release-2.0.3",
+      "lane": "Release",
+      "title": "Publish and verify 2.0.3",
+      "status": "blocked",
+      "priority": "PAUSED",
+      "summary": "Publication is forbidden during COMPLETE_TUI_IMPLEMENTATION. Exact artifact/install, immediate PyPI absence, trusted publishing and post-publish verification remain required."
+    }
+  ],
+  "edges": [
+    {
+      "from": "vision",
+      "to": "r3-r6",
+      "type": "flow"
+    },
+    {
+      "from": "r3-r6",
+      "to": "cli",
+      "type": "flow"
+    },
+    {
+      "from": "cli",
+      "to": "r7",
+      "type": "flow"
+    },
+    {
+      "from": "r7",
+      "to": "release-readiness",
+      "type": "flow"
+    },
+    {
+      "from": "release-readiness",
+      "to": "complete-tui",
+      "type": "flow"
+    },
+    {
+      "from": "complete-tui",
+      "to": "tui-projection-view-models",
+      "type": "flow"
+    },
+    {
+      "from": "tui-projection-view-models",
+      "to": "tui-workspace",
+      "type": "acceptance"
+    },
+    {
+      "from": "tui-workspace",
+      "to": "tui-commands",
+      "type": "flow"
+    },
+    {
+      "from": "tui-commands",
+      "to": "tui-sessions-provider",
+      "type": "flow"
+    },
+    {
+      "from": "tui-sessions-provider",
+      "to": "tui-details",
+      "type": "flow"
+    },
+    {
+      "from": "tui-details",
+      "to": "tui-installed-acceptance",
+      "type": "acceptance"
+    },
+    {
+      "from": "tui-installed-acceptance",
+      "to": "release-gate-conflict",
+      "type": "requires-revalidation"
+    },
+    {
+      "from": "release-gate-conflict",
+      "to": "release-2.0.3",
+      "type": "acceptance"
+    }
+  ]
+}

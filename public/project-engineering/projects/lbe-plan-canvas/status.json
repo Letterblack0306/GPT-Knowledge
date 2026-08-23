@@ -1,0 +1,85 @@
+{
+  "schema_version": 2,
+  "project": "LBE Persistent Agent",
+  "verified_at": "2026-08-22",
+  "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
+  "source_branch": "main",
+  "source_head": "942e494dbbf17550eb01f82caae31822d7ffbbbd",
+  "overall_classification": "COMPLETE_TUI_IMPLEMENTATION_OPEN_ACTIVE_SLICE_SOURCE_PRESENT_RUNTIME_ACCEPTANCE_UNPROVEN_PUBLICATION_PAUSED",
+  "authority_note": "This status is projected from current GitHub main, the machine gate and active acceptance document. Repository inspection proves source state, not executed local tests, installed runtime behavior or rendered acceptance.",
+  "closed": [
+    {
+      "id": "r3-r6",
+      "title": "R3–R6F accepted baseline",
+      "classification": "PROVEN_PROJECT_GATE",
+      "detail": "Current machine gate records R3 through R6F as PROVEN_COMPLETE."
+    },
+    {
+      "id": "cli",
+      "title": "CLI control plane",
+      "classification": "PROVEN_PROJECT_GATE",
+      "detail": "Current machine gate records CLI as PROVEN_COMPLETE."
+    },
+    {
+      "id": "r7",
+      "title": "R7 installed end-to-end acceptance",
+      "classification": "PASS_PROJECT_GATE",
+      "detail": "Current machine gate records R7 installed acceptance as PASS."
+    },
+    {
+      "id": "release-readiness",
+      "title": "Release package readiness and publication precheck",
+      "classification": "PASS_BOUNDED_CLAIMS",
+      "detail": "Package contract repair, readiness acceptance and publication precheck are recorded PASS; they do not authorize current publication."
+    },
+    {
+      "id": "tui-source",
+      "title": "Typed TUI projection source",
+      "classification": "PROVEN_GITHUB_SOURCE",
+      "detail": "main 942e494d contains typed truth-preserving view models, terminal projection, Textual client code and focused tests for authorization, receipts, evidence, unknown states and structured errors."
+    }
+  ],
+  "supported_historical": [],
+  "pending": [
+    {
+      "id": "active-slice",
+      "title": "TUI projection contract and view models",
+      "priority": "ACTIVE OPEN",
+      "classification": "SOURCE_PRESENT_EXECUTION_PROOF_UNVERIFIED",
+      "detail": "The exact active slice is TUI_PROJECTION_CONTRACT_AND_VIEW_MODELS. Focused tests and git diff checks required by the gate were not executed in this GitHub-only inspection."
+    },
+    {
+      "id": "tui-sequence",
+      "title": "Remaining complete TUI sequence",
+      "priority": "NEXT",
+      "classification": "NOT_YET_PROVEN",
+      "detail": "Objective workspace, six truthful commands, session/provider flows, structured details, capability inspection and unsupported-state handling remain later sequence items."
+    },
+    {
+      "id": "installed-runtime",
+      "title": "Installed interactive TUI acceptance",
+      "priority": "FINAL TUI GATE",
+      "classification": "NOT_YET_PROVEN",
+      "detail": "Windows Terminal render, exact clean artifact, distinct command behavior, governed provider/tool turn, interrupt/cancel, resize/color/NO_COLOR and regression proof remain required."
+    },
+    {
+      "id": "release-conflict",
+      "title": "2.0.3 gate text conflicts with source version",
+      "priority": "RECONCILE",
+      "classification": "DOCUMENT_CONFLICT",
+      "detail": "pyproject.toml is version 2.0.3, while release_progression still lists setting the canonical version to 2.0.3 as a remaining prerequisite."
+    },
+    {
+      "id": "publication",
+      "title": "2.0.3 publication",
+      "priority": "PAUSED",
+      "classification": "BLOCKED_BY_ACTIVE_TUI_PHASE",
+      "detail": "publish_allowed is false. Publication, tags and releases remain forbidden until the TUI phase passes and exact release prerequisites are revalidated."
+    }
+  ],
+  "next_acceptance": {
+    "question": "Does the current typed projection slice pass its focused contract without inventing authority or missing evidence?",
+    "observable": "Exact-head focused TUI/view-model tests plus git diff check, followed by the gate checkpoint required to advance.",
+    "falsifier": "Unknown or missing payloads render as success, projection code makes execution/authorization/completion decisions, focused tests fail, or evidence is not tied to exact main revision."
+  }
+}

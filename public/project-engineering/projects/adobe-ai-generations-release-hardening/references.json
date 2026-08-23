@@ -1,0 +1,94 @@
+{
+  "schema_version": 2,
+  "references": [
+    {
+      "label": "Canonical merge consolidation plan",
+      "kind": "source",
+      "repo": "Letterblack0306/Adobe_AI_Generations-04",
+      "ref": "main",
+      "path": "docs/governance/MERGE_CONSOLIDATION_PLAN.md",
+      "evidence": "Defines development as integration truth, main as release lane, evidence levels L0-L5, ordered PR train, salvage rules, Generation Graph dependency order and branch retirement policy."
+    },
+    {
+      "label": "Current main baseline",
+      "kind": "revision",
+      "repo": "Letterblack0306/Adobe_AI_Generations-04",
+      "sha": "d6c8c8000af4673aae9cee708dce97fbc89dd8c8",
+      "evidence": "Latest inspected main commit repairs nightly workflow trigger mapping. package.json remains version 2.3.52."
+    },
+    {
+      "label": "PR #330 execution single lane",
+      "kind": "pull-request",
+      "repo": "Letterblack0306/Adobe_AI_Generations-04",
+      "pr": 330,
+      "head": "b41381d21d569d58c81a3fab0de85dd51db7cb81",
+      "evidence": "Open draft/mergeable; canonical ExecutionPayloadRunner consolidation, shared 1500-line limit, Script Editor fail-closed, boot handler alignment and sequential Library Play All. Runtime proof still required."
+    },
+    {
+      "label": "PR #328 capability registry boundary",
+      "kind": "pull-request",
+      "repo": "Letterblack0306/Adobe_AI_Generations-04",
+      "pr": 328,
+      "head": "97cf28a3c2652da09715894503743e8a382548bb",
+      "evidence": "Open draft/mergeable; unifies registry/ToolRouter/model awareness and preserves mutation authority. Depends on stabilized execution ownership."
+    },
+    {
+      "label": "PR #331 Settings product-surface cleanup",
+      "kind": "pull-request",
+      "repo": "Letterblack0306/Adobe_AI_Generations-04",
+      "pr": 331,
+      "head": "473af2093920c6527d722b0d68a12118c34d3066",
+      "evidence": "Open draft/mergeable; removes duplicate/normal-user debug surface while preserving provider/security internals. CEP proof pending."
+    },
+    {
+      "label": "PR #327 icon reference integrity",
+      "kind": "pull-request",
+      "repo": "Letterblack0306/Adobe_AI_Generations-04",
+      "pr": 327,
+      "head": "b3332edefb8e8156d192eee07f965adc67af040a",
+      "evidence": "Open draft/mergeable, currently based on main; should be retargeted/rebased to development. Focused local tests reported 5/5."
+    },
+    {
+      "label": "PR #329 Generation Graph foundation",
+      "kind": "pull-request",
+      "repo": "Letterblack0306/Adobe_AI_Generations-04",
+      "pr": 329,
+      "head": "c079d7269b46ea6de92314285b3d9ed851a91b93",
+      "evidence": "Open draft/mergeable; second CEP panel foundation remains execution-disabled and depends on the approved capability/read-tool boundary."
+    },
+    {
+      "label": "v2.3.52 Windows installer builder",
+      "kind": "source",
+      "repo": "Letterblack0306/Adobe_AI_Generations-04",
+      "ref": "v2.3.52",
+      "path": "scripts/installers/build-win-installer.mjs",
+      "evidence": "Electron signing auto-discovery is disabled and signing failure is tolerated before Inno Setup wraps win-unpacked."
+    },
+    {
+      "label": "v2.3.52 Windows installer main process",
+      "kind": "source",
+      "repo": "Letterblack0306/Adobe_AI_Generations-04",
+      "ref": "v2.3.52",
+      "path": "scripts/installers/LB_GenAI_Installer/main.js",
+      "evidence": "Windows self-elevation invokes hidden powershell.exe with Start-Process -Verb RunAs; process enumeration and filesystem install behavior require heuristic review."
+    },
+    {
+      "label": "v2.3.52 release workflow",
+      "kind": "source",
+      "repo": "Letterblack0306/Adobe_AI_Generations-04",
+      "ref": "v2.3.52",
+      "path": ".github/workflows/release.yml",
+      "evidence": "ZXP signing is explicit. Windows stage builds/uploads the EXE and checks existence/no MSI, but inspected stage does not prove Authenticode signing/verification for final Windows artifacts."
+    },
+    {
+      "label": "Historical CEP runtime proof contract",
+      "kind": "project-reference",
+      "evidence": "Thin workspace-backed dev loader + localhost:8088 is the runtime validation route; STATIC_PASS and DEPLOY_PASS do not equal RUNTIME_PROVEN. Runtime-sensitive provider/editor/settings/execution/UI issues require live AE proof."
+    },
+    {
+      "label": "Customer VirusTotal complaint",
+      "kind": "external-observation",
+      "evidence": "Customer reported sandbox-evasion/process-injection behavioral flags and declined installation. Exact report/hash remains required for artifact-specific classification."
+    }
+  ]
+}

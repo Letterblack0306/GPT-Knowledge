@@ -1,0 +1,162 @@
+{
+  "schema_version": 2,
+  "project": "Adobe AI Generations CEP Consolidation",
+  "purpose": "Canonical UI plan for consolidating the active CEP architecture/merge train, runtime/UI proof backlog, Generation Graph dependency chain, and Windows release-security remediation into one evidence-driven sequence.",
+  "authority_rule": "Live Adobe_AI_Generations-04 source, PR state, current branch/HEAD, AE/CEP runtime evidence, release workflows, built artifacts, signatures and hashes outrank this projection.",
+  "updated": "2026-08-22",
+  "source_repo": "Letterblack0306/Adobe_AI_Generations-04",
+  "source_head": "d6c8c8000af4673aae9cee708dce97fbc89dd8c8",
+  "active_node": "execution-single-lane",
+  "plan_truth": {
+    "state": "DOCUMENTED_CURRENT",
+    "document": "project-engineering/projects/adobe-ai-generations-release-hardening/plan.json",
+    "active_gate": "execution-single-lane",
+    "next_single_question": "Can PR #330 pass focused/static validation and live AE/CEP single-lane execution proof before the dependent capability/UI work advances?"
+  },
+  "nodes": [
+    {
+      "id": "baseline",
+      "lane": "Evidence",
+      "title": "Current CEP baseline",
+      "status": "proven",
+      "summary": "main HEAD d6c8c800; package version 2.3.52. development remains feature-integration truth and main the release/governance lane. Static/deploy success does not equal live AE runtime proof."
+    },
+    {
+      "id": "ci-routing-repair",
+      "lane": "Integration",
+      "title": "CI routing repair",
+      "status": "proven",
+      "priority": "PHASE 0",
+      "summary": "PR #306 is closed without merge; main later received CI/nightly trigger repairs. Before any merge train is called green, prove development-targeted workflows actually create jobs and do not reopen a release path from branch aliases. Patch surface: .github/workflows/enforcement-gates.yml and workflow trigger mapping/tests."
+    },
+    {
+      "id": "execution-single-lane",
+      "lane": "Core Runtime",
+      "title": "PR #330 — one execution lane",
+      "status": "current",
+      "priority": "P0 / ACTIVE",
+      "summary": "Open draft, mergeable. Consolidate Chat Play, Library Run/Apply/Play All and Script Editor Run through ExecutionPayloadRunner → canonical codeblock consumer → governed Library/host lane. Patch files currently span 4 files on branch fix/execution-surface-single-lane-cleanup. Required fix: remove late direct CEPExec bypass/classifier/action mapping, restore 1500-line shared limit, fail Script Editor closed, align booted handler, make Play All sequential. Acceptance: one dispatch, lock release, repeat run, no overlap/duplicate execution in live AE."
+    },
+    {
+      "id": "execution-proof-salvage",
+      "lane": "Core Runtime",
+      "title": "Salvage superseded execution proof",
+      "status": "next",
+      "priority": "P1",
+      "summary": "After #330, compare old proof PRs #315/#319/#325/#326. Port only missing compatible regression assertions; reject obsolete bypass architecture. Preserve editor-shell ownership tests from #326 if still unique."
+    },
+    {
+      "id": "capability-boundary",
+      "lane": "Agent / Tools",
+      "title": "PR #328 — capability registry + ToolRouter",
+      "status": "planned",
+      "priority": "P0 AFTER #330",
+      "summary": "Open draft, mergeable. Patch branch feature/cep-capability-boundary currently changes 10 files. Fix split-brain tool authority by deriving model-visible capability snapshot from the registry, fail closed for unregistered/blocked capabilities, route public AEReadTools through ToolRouter, and leave mutation in the approval/action dispatcher. AE proof must show live read tools, CAPABILITY_UNREGISTERED, no recursion/duplicate calls, and unchanged mutation gating."
+    },
+    {
+      "id": "settings-surface",
+      "lane": "Product UI",
+      "title": "PR #331 — Settings cleanup",
+      "status": "planned",
+      "priority": "P1",
+      "summary": "Open draft, mergeable; 2 changed files on fix/settings-surface-cleanup. Fix duplicate About ownership, false no-provider state, normal-user model/preset exposure, internal File Path Memory diagnostics, and developer-only leakage. Preserve provider adapters, SecurityManager/API-key storage and boot order. CEP proof: one render, provider/key/local config work, simplified file locations, diagnostics only in Developer Mode."
+    },
+    {
+      "id": "icon-integrity",
+      "lane": "Validation",
+      "title": "PR #327 — icon reference integrity",
+      "status": "planned",
+      "priority": "P1",
+      "summary": "Open draft, mergeable, but still based on main and must be retargeted/rebased to development. Patch validator + focused tests so missing/empty/non-canonical/case-drift icon references fail deterministically while dynamic/external references are not falsely blocked. Focused local tests reported 5/5; current-branch validation still required."
+    },
+    {
+      "id": "retired-branch-salvage",
+      "lane": "Integration",
+      "title": "Retire integration/final-feature-alignment safely",
+      "status": "planned",
+      "priority": "P1",
+      "summary": "Do not merge the retired integration branch wholesale. Classify each unique item present/ported/rejected after #330/#328/#331. Candidate salvage includes Gemini registration, ChatResponse contract, token estimates, provider latency, inline hardening, Gallery/import flow, typography, image intent, CI aliases, orphan/test adjustments."
+    },
+    {
+      "id": "generation-graph",
+      "lane": "Generation Graph",
+      "title": "PR #329 — Generation Graph foundation",
+      "status": "blocked",
+      "priority": "DEPENDENCY LOCK",
+      "summary": "Open draft, mergeable; 6 changed files on feature/generation-graph-foundation. Keep graph Run disabled and no raw AE execution/provider spending. Rebase only after #328. Patch/acceptance: second CEP panel opens, approved AE read invoker feeds selected layer/comp/property/effects catalog, typed sockets reject invalid links, persisted graph contains no raw AE pointers/secrets/executable JSX."
+    },
+    {
+      "id": "runtime-ui-proof",
+      "lane": "AE Runtime",
+      "title": "Consolidated live CEP proof sweep",
+      "status": "planned",
+      "priority": "P0 BEFORE RELEASE",
+      "summary": "Revalidate known runtime-sensitive areas through the thin dev loader + localhost:8088: provider settings/API-key secrecy, script-editor rewrite/buttons, toast/debug noise, Ctrl+A scope, Local AI duplicate injection, readiness warnings, screenshot/gallery path, execution lock/duplicate dispatch, icons and user-visible developer cards. Close only with live AE/CEP evidence."
+    },
+    {
+      "id": "windows-signing-architecture",
+      "lane": "Release Security",
+      "title": "Windows Authenticode architecture",
+      "status": "planned",
+      "priority": "P0 RELEASE BLOCKER",
+      "summary": "v2.3.52 release path disables Electron signing discovery and tolerates signing failure. Fix scripts/installers/build-win-installer.mjs so the inner Electron executable is signed and signing failure aborts. Configure a trusted Windows code-signing identity/provider rather than relying on Apple credentials."
+    },
+    {
+      "id": "sign-final-inno",
+      "lane": "Release Security",
+      "title": "Sign + verify final Inno EXE",
+      "status": "planned",
+      "priority": "P0",
+      "summary": "After Inno compilation, Authenticode-sign Letterblack-GenAI-Windows-vX.Y.Z.exe with timestamping. Patch .github/workflows/release.yml to verify both the inner Electron EXE and final installer with Windows-native signature checks; absent/untrusted/wrong-publisher signatures must fail the release."
+    },
+    {
+      "id": "elevation-refactor",
+      "lane": "Release Security",
+      "title": "Remove hidden PowerShell elevation",
+      "status": "planned",
+      "priority": "P1",
+      "summary": "Current installer main.js uses hidden powershell.exe + Start-Process -Verb RunAs. Replace with a conventional elevation mechanism where possible; otherwise document necessity and prove it is bounded. Re-audit tasklist/process enumeration, staging/removal and executable-launch behavior for AV heuristic reduction."
+    },
+    {
+      "id": "provenance-chain",
+      "lane": "Supply Chain",
+      "title": "Artifact provenance + hashes",
+      "status": "planned",
+      "priority": "P0",
+      "summary": "Generate and publish SHA-256 for Windows EXE, DMG, ZXP and canonical ZIP; bind all to tag + source commit. Compare the exact Gumroad ZIP hash against the GitHub release bundle before distribution. Preserve existing macOS Developer ID/notarization/stapling and ZXP signature gates."
+    },
+    {
+      "id": "release-acceptance",
+      "lane": "Acceptance",
+      "title": "Clean-machine + AV release acceptance",
+      "status": "blocked",
+      "priority": "RELEASE LOCKED",
+      "summary": "Clean Windows install/upgrade/uninstall smoke must prove signature trust, user-scope behavior, AE/CEP + ScriptUI placement and cleanup. Then review Defender/SmartScreen/VirusTotal against the exact signed hash. Do not require arbitrary zero detections; investigate behavioral detections."
+    },
+    {
+      "id": "security-release",
+      "lane": "Distribution",
+      "title": "Publish hardened replacement release",
+      "status": "blocked",
+      "priority": "FINAL GATE",
+      "summary": "Release sequence: development consolidation → AE runtime proof → PR main → pre-tag gate → tag → release.yml → signature/hash/provenance checks → clean-machine/AV review → GitHub Release → Gumroad replacement. No distribution before all P0 gates pass."
+    }
+  ],
+  "edges": [
+    ["baseline","ci-routing-repair"],
+    ["ci-routing-repair","execution-single-lane"],
+    ["execution-single-lane","execution-proof-salvage"],
+    ["execution-single-lane","capability-boundary"],
+    ["capability-boundary","settings-surface"],
+    ["settings-surface","icon-integrity"],
+    ["icon-integrity","retired-branch-salvage"],
+    ["capability-boundary","generation-graph"],
+    ["retired-branch-salvage","runtime-ui-proof"],
+    ["runtime-ui-proof","windows-signing-architecture"],
+    ["windows-signing-architecture","sign-final-inno"],
+    ["sign-final-inno","elevation-refactor"],
+    ["elevation-refactor","provenance-chain"],
+    ["provenance-chain","release-acceptance"],
+    ["release-acceptance","security-release"]
+  ]
+}

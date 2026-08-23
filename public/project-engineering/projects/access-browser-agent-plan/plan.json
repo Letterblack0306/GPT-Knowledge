@@ -1,0 +1,208 @@
+{
+  "schema_version": 3,
+  "project": "Access Browser Agent",
+  "purpose": "Visual architecture, verified findings, implementation scope, active gate and hardening roadmap. This is navigation state, not runtime authority.",
+  "authority_rule": "Current repository source, local runtime evidence, acceptance results and exact repository state outrank this map.",
+  "updated": "2026-08-22",
+  "source_head": "749fdeb4919c43dcadca356fff8ec2e752009c6a",
+  "active_node": "terminal-state-ui",
+  "browser_projection_policy": "Keep this plan and status.json synchronized with material live-browser, Electron/CDP acceptance, durable recovery and source-regression evidence so the GPT-Knowledge browser view reflects the current engineering gate rather than stale chat state.",
+  "nodes": [
+    {
+      "id": "product-scope",
+      "lane": "Architecture",
+      "title": "Single reasoning agent",
+      "status": "proven",
+      "summary": "Agent owns strategy and tool choice. Runtime owns governed execution and lifecycle truth."
+    },
+    {
+      "id": "structured-tool-loop",
+      "lane": "Architecture",
+      "title": "Structured provider/tool loop",
+      "status": "proven",
+      "summary": "LiveAgentCore executes typed tools, records observations/evidence and re-enters reasoning under bounded runtime controls."
+    },
+    {
+      "id": "browser-dom-map",
+      "lane": "Architecture",
+      "title": "Bounded DOM interaction map",
+      "status": "proven",
+      "summary": "browserSnapshot returns bounded visible text and interactive aa-N refs; raw HTML is not sent."
+    },
+    {
+      "id": "birdeye-first-method",
+      "lane": "Engineering Method",
+      "title": "Evidence-first GitHub/LoopTool workflow",
+      "status": "proven",
+      "priority": "P1",
+      "summary": "Inspect existing GPT-K/BirdEye/source owners first. Large or multi-file implementation belongs on GitHub main; LoopTool pulls exact main and handles focused local inspection, testing, debugging, syntax checks and small diagnostics. Canonical: birdeye-first-engineering-workflow.md"
+    },
+    {
+      "id": "runtime-progress-reentry",
+      "lane": "Closed Gate",
+      "title": "P1 Runtime Progress / Re-entry Contract",
+      "status": "proven",
+      "priority": "P1",
+      "summary": "741d208 is source and local-regression proven."
+    },
+    {
+      "id": "browser-settlement",
+      "lane": "Closed Gate",
+      "title": "P1 Bounded Page Settlement",
+      "status": "proven",
+      "priority": "P1",
+      "summary": "At 0048d0d, syntax and browser-tool-runtime smoke PASS; delayed mutation settlement regression is proven."
+    },
+    {
+      "id": "stop-durable-terminal",
+      "lane": "Closed Gate",
+      "title": "P1 Durable Stop terminal receipt",
+      "status": "proven",
+      "priority": "P1",
+      "summary": "At exact head 0048d0d, LoopTool durable Stop acceptance PASS: one persisted session.stopped receipt, one stopped checkpoint, snapshot status stopped, receipt projection visible, main aligned with origin/main, section_09.md preserved untracked. Command A4EFEC8974180EDCAAEAE072EC0B6FCAB27FAE506A59F9E1137E7A6BBCCC079A."
+    },
+    {
+      "id": "turn-37c-recovery",
+      "lane": "Closed Gate",
+      "title": "P1 turn-37c recovery",
+      "status": "proven",
+      "priority": "P1",
+      "summary": "Production BrowserTransportJournal proved historical turn-37c observed then executing with no terminal receipt. Existing recovery API durably quarantined it with receipt f9fb582417869ad55a4e9d110f1302e6f48bfc3939261a9f738dd661f61c2791; ambiguous recovery is now false and replay is blocked. Command 901E6FB855E71CE8C5FDB72E01F608D54366F0BA875A78C66D4CFD09EC5D807E."
+    },
+    {
+      "id": "ide-shell-reference",
+      "lane": "Source UI Update",
+      "title": "IDE reference shell alignment",
+      "status": "proven",
+      "priority": "P1",
+      "summary": "GitHub main contains the IDE shell/activity-rail UI commits through 26c72b45 plus the settled-turn delivery ownership fix at 5fcda7d, integrated at b9abac1. External BirdEye/workspace-handoff UI surfaces were removed while the local IDE, agent, provider, managed-browser, runtime, editor, terminal and MCP surfaces were preserved. Monitor-aware pane reconciliation now responds to viewport/display changes. Source implementation, focused UI smoke tests, full local checks and current-head Electron/CDP acceptance are proven."
+    },
+    {
+      "id": "terminal-state-ui",
+      "lane": "Closed Gate",
+      "title": "P1 Terminal-state UI live acceptance",
+      "status": "proven",
+      "priority": "P1",
+      "summary": "Product source and full local checks are proven at b8edf13. The bounded Electron/CDP acceptance passed all eight steps: renderer/runtime readiness, exact ChatGPT target configuration, relay start, target identity preservation, relay stop, stop-all cleanup and final clean state. LM Studio qwen/qwen3-vl-8b passed the capability probe with the extended 120-second step budget."
+    },
+    {
+      "id": "terminal-ui-harness-target",
+      "lane": "Finding",
+      "title": "Live acceptance requires explicit idle target",
+      "status": "warning",
+      "priority": "P1",
+      "summary": "Existing acceptance scripts already support ACCESS_AGENT_ACCEPTANCE_CHAT_URL or saved exact ChatGPT targets. Baseline semantics exist in BrowserInstructionRelay (first_start_historical_baseline / known_historical_baseline). Do not patch runtime/UI to satisfy a contaminated target; provide a safe idle/baselined conversation for the live acceptance."
+    },
+    {
+      "id": "node-pty-attachconsole",
+      "lane": "Closed Gate",
+      "title": "P1 AttachConsole owner map",
+      "status": "proven",
+      "priority": "P1",
+      "summary": "Live native node-pty pwsh create/write/exit round-trip passes through PtyTerminalManager."
+    },
+    {
+      "id": "browser-isolation-gap",
+      "lane": "Finding",
+      "title": "Task browsing shares persistent profile",
+      "status": "warning",
+      "priority": "P1/P2",
+      "summary": "Persistent profile is correct for relay identity; isolated task context remains pending."
+    },
+    {
+      "id": "browser-context-isolation",
+      "lane": "Closed Gate",
+      "title": "P1/P2 Isolated task browser contexts",
+      "status": "proven",
+      "priority": "P1/P2",
+      "summary": "General browser tools now use a separate Access-owned Managed Chrome process/profile from the persistent provider relay. Strict CDP context creation remains optional host-dependent hardening."
+    },
+    {
+      "id": "ax-perception-gap",
+      "lane": "Finding",
+      "title": "Native AX + screenshot not implemented",
+      "status": "warning",
+      "priority": "P2",
+      "summary": "Current semantics are DOM-derived; native AX and optional visual perception remain pending."
+    },
+    {
+      "id": "ax-visual-perception",
+      "lane": "Blocked",
+      "title": "P2 AX tree + visual perception",
+      "status": "warning",
+      "priority": "P2",
+      "summary": "Bounded AX projection is live-proven; screenshot/visual-model perception remains unimplemented in the active text-only provider adapters."
+    },
+    {
+      "id": "cline-auth-live",
+      "lane": "Closed Gate",
+      "title": "P1 Cline provider-store import and live readiness",
+      "status": "proven",
+      "priority": "P1",
+      "summary": "Access Agent reads providers.cline.settings.auth from the standard user Cline providers.json path as a read-only fallback. Authenticated completion, tool-calling, and structured-output readiness all passed; external Cline storage is never written or cleared."
+    },
+    {
+      "id": "process-death-recovery",
+      "lane": "Hardening",
+      "title": "P1 Arbitrary process-death recovery",
+      "status": "warning",
+      "priority": "P1",
+      "summary": "Runtime fails closed on ambiguous interrupted steps until explicit reconciliation; arbitrary external side-effect exactly-once remains unproven."
+    },
+    {
+      "id": "general-browser-process-isolation",
+      "lane": "Closed Gate",
+      "title": "General browser process/profile isolation",
+      "status": "proven",
+      "priority": "P1/P2",
+      "summary": "Live general-browser HTTPS/AX acceptance used a distinct Managed Chrome endpoint/profile from the persistent provider relay."
+    }
+  ],
+  "edges": [
+    {
+      "from": "birdeye-first-method",
+      "to": "terminal-state-ui",
+      "type": "governs"
+    },
+    {
+      "from": "runtime-progress-reentry",
+      "to": "browser-settlement",
+      "type": "closed-hardening"
+    },
+    {
+      "from": "browser-settlement",
+      "to": "stop-durable-terminal",
+      "type": "closed-next"
+    },
+    {
+      "from": "stop-durable-terminal",
+      "to": "turn-37c-recovery",
+      "type": "closed-next"
+    },
+    {
+      "from": "turn-37c-recovery",
+      "to": "terminal-state-ui",
+      "type": "next-acceptance"
+    },
+    {
+      "from": "ide-shell-reference",
+      "to": "terminal-state-ui",
+      "type": "current-head-revalidation"
+    },
+    {
+      "from": "terminal-ui-harness-target",
+      "to": "terminal-state-ui",
+      "type": "acceptance-precondition"
+    },
+    {
+      "from": "browser-isolation-gap",
+      "to": "browser-context-isolation",
+      "type": "hardening"
+    },
+    {
+      "from": "ax-perception-gap",
+      "to": "ax-visual-perception",
+      "type": "hardening"
+    }
+  ]
+}

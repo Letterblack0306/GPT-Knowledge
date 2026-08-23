@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "project_id": "agent-harness-references",
+  "classification": "ADOPTION_UNPROVEN",
+  "verified_at": "2026-08-23",
+  "head": "GPT-Knowledge main",
+  "active_gate": "harness-compatibility-audit",
+  "summary": "Compatibility audit is complete. DeepSeek Harness is a usable external reference, but Brew adoption is blocked until required adapters and governance equivalence are proven in a governed local execution.",
+  "items": [
+    {
+      "kind": "closed",
+      "title": "Official capability reference",
+      "detail": "Harness officially documents plugin-based models, tools, sessions, sandboxes, storage, loops and UI; it remains a developer preview with evolving APIs."
+    },
+    {
+      "kind": "closed",
+      "title": "Brew compatibility mapping",
+      "detail": "Provider routing, tools, sessions, receipts and UI projection require adapters. Raw tool dispatch is not equivalent to Brew policy and chained receipts."
+    },
+    {
+      "kind": "issue",
+      "title": "Missing or unverified governance equivalence",
+      "detail": "No verified equivalent was established for Brew approval enforcement. Workspace identity and confinement must remain Brew-owned."
+    },
+    {
+      "kind": "pending",
+      "title": "Governed executable proof",
+      "detail": "Harness package/executable was absent locally and no governed Brew-style Harness task ran. Runtime adoption remains unproven."
+    },
+    {
+      "kind": "history",
+      "title": "Regression evidence retained",
+      "detail": "Existing Brew resource-policy tests passed 13, autonomy tests passed 10, and memory/session tests passed 18. These protect Brew boundaries but do not prove Harness integration."
+    }
+  ]
+}

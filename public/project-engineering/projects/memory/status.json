@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "project": "Historical Memory",
+  "verified_at": "2026-08-22T05:52:28+04:00",
+  "source_repo": "LOCAL_WORKSPACE:C:\\MCP Local\\Memory",
+  "source_branch": "master",
+  "source_head": "f11fd89",
+  "overall_classification": "COMPLETE",
+  "authority_note": "This is a GPT-Knowledge web projection. Live C:\\MCP Local\\Memory git/runtime evidence and the immutable GPT_Data archive outrank this status. Stage 12 is complete based on the verified local acceptance run.",
+  "closed": [
+    {
+      "id": "archive-baseline",
+      "title": "Canonical archive population",
+      "classification": "PROVEN_REAL_DATA",
+      "detail": "Full canonical population matches the established archive baseline: 898 conversations, 72,691 canonical messages and 73,589 nodes. GPT_Data remains immutable source evidence."
+    },
+    {
+      "id": "retrieval-stack",
+      "title": "Exact / semantic / hybrid retrieval",
+      "classification": "PROVEN",
+      "detail": "Exact, semantic and hybrid retrieval layers are implemented and provenance-bearing. Semantic index is rebuildable and separate from canonical storage."
+    },
+    {
+      "id": "durable-memory",
+      "title": "Durable derived memory",
+      "classification": "PROVEN",
+      "detail": "Derived memory is stored separately from canonical historical evidence and remains lower authority than exact historical evidence."
+    },
+    {
+      "id": "capabilities",
+      "title": "Agent-facing Memory capabilities",
+      "classification": "PROVEN",
+      "detail": "MemoryService exposes recall, search, timeline, conversation, message, related and sources without a fixed reasoning workflow."
+    },
+    {
+      "id": "mcp",
+      "title": "Memory MCP + global integration",
+      "classification": "PROVEN_END_TO_END_CLIENT_BOUNDARY",
+      "detail": "Memory MCP stdio transport, global MCP Local registration, external client discovery and a real historical recall with canonical provenance were proven."
+    },
+    {
+      "id": "authority-correction",
+      "title": "Stage 10 authority model correction",
+      "classification": "PROVEN_CORRECTED",
+      "detail": "Commit 70553ce restored the controlling precedence: current_runtime > current_workspace > current_session > current_project_docs > historical_evidence > derived_memory > model_inference. The invented stacklessia authority was removed."
+    },
+    {
+      "id": "scale",
+      "title": "Stage 11 scale/failure validation",
+      "classification": "PROVEN_REAL_CORPUS",
+      "detail": "Commit 82c683a added real-corpus scale/failure validation only; no product defect was found. Focused Stage-11 tests: 12 passed. Full suite: 91 passed."
+    },
+    {
+      "id": "stage-12",
+      "title": "Stage 12 end-to-end acceptance A-G",
+      "classification": "PROVEN_COMPLETE",
+      "detail": "Commit f11fd89 added the real-corpus acceptance harness and the minimal OOV semantic-noise correction. Cases A-G passed: 7 focused tests; full suite: 98 passed; GPT_Data unchanged; restart and re-index preserved canonical identity; exact provenance descended to conversation, message node, source shard and source index; reasoning/workflow logic added: none."
+    }
+  ],
+  "supported_historical": [],
+  "pending": [
+    {
+      "id": "remote-repo",
+      "title": "Remote repository identity",
+      "priority": "LOW",
+      "classification": "LOCAL_ONLY_UNVERIFIED_REMOTE",
+      "detail": "The canonical Memory implementation is verified locally; no separate remote Memory repository identity is asserted here."
+    }
+  ],
+  "next_acceptance": null
+}

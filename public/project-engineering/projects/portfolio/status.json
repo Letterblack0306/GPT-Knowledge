@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "project": "Project Portfolio",
+  "verified_at": "2026-08-22T19:26:00+04:00",
+  "overall_classification": "ALL_PROJECTS_MAPPED_OPEN_ACCEPTANCE_GATES_REMAIN",
+  "authority_note": "This is an overall GPT-Knowledge UI projection. Project repositories, local workspace/runtime evidence, and project-owned status records remain authoritative.",
+  "closed": [
+    {
+      "id": "adobe-plan-consolidated",
+      "title": "Adobe AI Generations CEP plan consolidated",
+      "classification": "DOCUMENTED_CURRENT",
+      "detail": "Runtime architecture, current merge train, UI/validation backlog, Generation Graph dependency chain and Windows release hardening are now represented in one mapped project plan/status pair."
+    },
+    {
+      "id": "mapped-alignment",
+      "title": "Mapped project plan/status pairs",
+      "classification": "INTERNALLY_ALIGNED",
+      "detail": "Registered mapped projects expose repository-backed plan/status records; live project evidence still outranks the portfolio."
+    },
+    {
+      "id": "memory-acceptance",
+      "title": "Memory Stage 12",
+      "classification": "PROVEN_COMPLETE_IN_RECORDED_LOCAL_EVIDENCE",
+      "detail": "Stages 0–12 and real-corpus acceptance are recorded complete at local f11fd89; remote repository identity remains separate."
+    },
+    {
+      "id": "brew-mapping",
+      "title": "Brew structured workspace mapping",
+      "classification": "CURRENT_REMOTE_POSITION_MAPPED",
+      "detail": "Brew now has a structured plan/status UI view using current PR #442 remote evidence; local workspace and live runtime were not independently rerun."
+    },
+    {
+      "id": "brew-local-identity",
+      "title": "Brew local workspace identity",
+      "classification": "PROVEN_ALIGNED_FEATURE_UPSTREAM",
+      "detail": "LoopTool AE1C8619… proves branch/head/upstream alignment 0/0, origin/main a6342ff3, and one worktree. The working tree is dirty."
+    },
+    {
+      "id": "lbe-projection-correction",
+      "title": "LBE repository-to-UI identity",
+      "classification": "CORRECTED_TO_CURRENT_MAIN",
+      "detail": "The workspace and portfolio now point to repository main 942e494d and the exact active TUI projection slice."
+    }
+  ],
+  "supported_historical": [],
+  "pending": [
+    {
+      "id": "lbe-active-slice",
+      "title": "LBE typed TUI projection slice",
+      "priority": "ACTIVE OPEN",
+      "classification": "SOURCE_PRESENT_EXECUTION_PROOF_UNVERIFIED",
+      "detail": "Exact current gate is TUI_PROJECTION_CONTRACT_AND_VIEW_MODELS at repository main 942e494d, not the prior generic terminal-workspace-foundation label."
+    },
+    {
+      "id": "lbe-tui-acceptance",
+      "title": "LBE complete installed TUI acceptance",
+      "priority": "REQUIRED",
+      "classification": "NOT_YET_PROVEN",
+      "detail": "Remaining command, session, provider, detail, capability and installed interactive acceptance layers remain open."
+    },
+    {
+      "id": "lbe-release-conflict",
+      "title": "LBE 2.0.3 gate reconciliation",
+      "priority": "PAUSED",
+      "classification": "DOCUMENT_CONFLICT",
+      "detail": "pyproject.toml is already 2.0.3 but the machine gate still lists setting 2.0.3 as remaining; publication is blocked by the active TUI phase."
+    },
+    {
+      "id": "brew-p2-repair",
+      "title": "Brew CLI SessionService repair",
+      "priority": "P2 ACTIVE",
+      "classification": "DIRTY_IMPLEMENTATION_IN_PROGRESS",
+      "detail": "Feature branch is aligned with its upstream at 486a9b43 with one worktree, but local repair and test/evidence files are modified or untracked."
+    },
+    {
+      "id": "brew-p2-acceptance",
+      "title": "Brew P2 acceptance and main reconciliation",
+      "priority": "REQUIRED",
+      "classification": "UNPROVEN",
+      "detail": "Exact-revision focused/composition/runtime/regression evidence, canonical query/correlation preservation, clean accepted revision, and feature-to-main reconciliation remain open."
+    },
+    {
+      "id": "adobe-execution",
+      "title": "Adobe CEP execution single-lane proof",
+      "priority": "P0 ACTIVE",
+      "classification": "OPEN_DRAFT_RUNTIME_UNPROVEN",
+      "detail": "PR #330 is the active consolidation gate. Dependent ToolRouter, Settings, salvage and Generation Graph work should not be advanced as runtime-proven until the shared execution lane passes focused/static and live AE/CEP acceptance."
+    },
+    {
+      "id": "adobe-release-security",
+      "title": "Adobe Windows release hardening",
+      "priority": "P0 RELEASE BLOCKER",
+      "classification": "BLOCKED",
+      "detail": "Inner/final Authenticode signing, fail-closed verification, hidden-PowerShell remediation, exact artifact provenance, clean-machine smoke and AV/reputation review remain required before a replacement distribution release."
+    },
+    {
+      "id": "access-live",
+      "title": "Access Browser Agent live UI acceptance",
+      "priority": "P1",
+      "classification": "BLOCKED_CONFIGURATION",
+      "detail": "Rendered current-head acceptance requires an explicitly idle or baselined ChatGPT target."
+    },
+    {
+      "id": "memory-remote",
+      "title": "Memory remote repository identity",
+      "priority": "LOW",
+      "classification": "LOCAL_ONLY_UNVERIFIED_REMOTE",
+      "detail": "Memory is complete for its recorded local acceptance claim; a separate remote repository identity is not verified."
+    },
+    {
+      "id": "loop-runtime",
+      "title": "LoopTool implementation-specific behavior",
+      "priority": "WHEN CLAIMED",
+      "classification": "VERIFY_AT_TIME_OF_USE",
+      "detail": "Runtime behavior requires current source/runtime observables when claimed."
+    }
+  ],
+  "next_acceptance": {
+    "question": "Can the Adobe CEP active gate (#330) be closed with current-branch static proof plus live AE single-lane execution evidence?",
+    "observable": "One canonical execution route across Chat, Library and Script Editor with sequential Play All, released locks and no duplicate dispatch.",
+    "falsifier": "Any project projection advances Adobe dependent work from chat/source intent without current AE/CEP evidence."
+  }
+}
