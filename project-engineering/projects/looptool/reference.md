@@ -51,6 +51,93 @@ The proof is bounded: it considered 50 recent sessions, did not inspect current 
 
 **Use rule:** when deciding whether LoopTool is a real usable execution/evidence bridge, read the runtime proof rather than relying on this description alone. When current health matters, run a fresh bounded LoopTool probe because a dated proof does not prove future runtime state.
 
+## Historical plan, decision, disagreement and truth retrieval
+
+LoopTool can be used as the bounded local execution path that composes the existing GPT-Knowledge, BirdEye and Memory owners when the task requires recovering prior work. This is not a second memory implementation inside LoopTool.
+
+Use this route when the user asks questions such as:
+
+- what plan or architecture was used before;
+- what decision was previously accepted and why;
+- what approach was rejected or corrected;
+- what an earlier agent tried and what happened;
+- what historical evidence exists for a project;
+- whether an old statement was later superseded, disproven or made stale;
+- what prior implementation/gate/governance mechanism is worth re-checking now.
+
+The intended route is:
+
+```text
+user asks about prior plan / decision / disagreement / implementation
+-> identify exact project, workspace, repository, feature or subject first
+-> use GPT-Knowledge project mapping / routing where applicable
+-> choose the historical source that actually owns the evidence
+   -> imported GPT/ChatGPT archive for broad conversation history
+   -> Cline session history for Cline/tool/runtime-session history
+   -> Memory exact/semantic/hybrid retrieval for canonical historical retrieval
+-> retrieve the smallest relevant context with source identity/provenance
+-> preserve disagreement, correction, rejection and supersession context
+-> classify the historical evidence as historical/non-truth until reconciled
+-> when the claim concerns current code/config/runtime, verify through GitHub, BirdEye/current workspace or live runtime
+-> only then state the current truth
+```
+
+### Why this matters
+
+Historical sources contain both useful decisions and statements that were later rejected, corrected, disproven or superseded. Retrieval is therefore not truth promotion.
+
+Keep these operations distinct:
+
+```text
+HASH       = identify the exact historical source
+INDEX      = make evidence discoverable
+RETRIEVE   = find context relevant to the scoped question
+RANK       = prioritize likely relevant evidence
+AUTHORITY  = identify the evidence class/source
+RECONCILE  = compare historical evidence with stronger/current evidence
+TRUTH      = conclusion justified by the highest relevant authority
+```
+
+A historical statement can remain searchable and provenance-bound even when it is stale or wrong. Do not delete or hide rejected history merely because it is no longer current; preserve it so future agents can understand why a direction changed.
+
+### Scope before ranking
+
+Do not search every historical message and then treat the highest keyword score as the answer. First establish the strongest available identity anchors:
+
+- project ID;
+- actual repository/workspace;
+- feature/subsystem;
+- session/tool/runtime when known;
+- time window when material.
+
+Then retrieve/rank inside that scope. Mixed-project sessions can otherwise create convincing false positives.
+
+### Conversation graph and chronology
+
+Imported ChatGPT history is graph-shaped and may contain branches, regenerated responses or edited paths. SQLite row adjacency is not guaranteed conversation chronology.
+
+When disagreement or correction history matters, prefer canonical conversation/node relationships and the active branch rather than assuming `rowid + 1` means the next turn.
+
+### Search normalization
+
+Obvious spelling/transcription variants may be normalized for retrieval only, for example `govenence -> governance` or similar query expansion. Never rewrite the canonical historical text. The original message, IDs and source provenance remain the evidence.
+
+### Historical evidence stop condition
+
+History can answer questions such as "what did we decide?", "what did we reject?", "what did we try?", and "why did the direction change?".
+
+History alone must not answer present-state questions such as:
+
+- what branch is current;
+- whether a gate is still wired;
+- whether a file currently exists;
+- whether a runtime is healthy now;
+- whether an old plan is still authoritative.
+
+For those claims, historical retrieval supplies context/candidates and current GitHub/BirdEye/workspace/runtime evidence resolves truth.
+
+Canonical Memory authority guidance is in `../memory/reference.md`.
+
 ## When to use
 
 Use LoopTool when deterministic local evidence is required, including:
@@ -63,6 +150,7 @@ Use LoopTool when deterministic local evidence is required, including:
 - checking branch/revision/runtime identity locally;
 - bounded command execution;
 - collecting stdout, stderr, exit code and other execution evidence;
+- recovering prior plans/decisions/disagreements by composing Memory/BirdEye/GPT-Knowledge through a bounded command;
 - explicit user requests to use LoopTool / Workspace Launcher Loop / AGENT COMMAND.
 
 ## When not to use
@@ -88,10 +176,12 @@ USER OBJECTIVE
 -> load project-engineering/chatgpt-installed-skill-routing.md when Skills are available
 -> load only task-relevant GPT-Knowledge methods / installed Skills
 -> establish repository / project / branch / revision / workspace / runtime identity
+-> if prior-work context matters: retrieve scoped historical evidence before reinventing the plan
 -> define one question + authoritative observable + falsifier + acceptance condition
 -> only then issue one bounded LoopTool execution action
 -> receive AGENT RESULT
 -> classify evidence only at the layer actually observed
+-> reconcile historical evidence against current truth when present-state claims are involved
 -> continue to live runtime/UI acceptance when the claim requires it
 ```
 
@@ -123,13 +213,13 @@ LoopTool
   = deterministic local command transport plus returned execution evidence
 
 Memory
-  = historical Cline-session index/fetch owner used by the proven recall composition
+  = canonical historical/durable-memory owner; imported GPT archive and Cline sessions remain historical evidence sources with provenance
 
 Live runtime / rendered UI
   = behavioral and user-visible acceptance truth
 ```
 
-Never collapse these authorities. Knowledge is not runtime proof. A Skill is not execution authority. A successful command does not prove behavior outside the observable it actually measured.
+Never collapse these authorities. Knowledge is not runtime proof. A Skill is not execution authority. A successful command does not prove behavior outside the observable it actually measured. Historical evidence is not automatically current truth.
 
 ## Canonical command envelope
 
@@ -167,13 +257,15 @@ Returned stdout/stderr/runtime evidence should be evaluated directly. Do not inf
 - Repository source proof ≠ runtime behavior proof.
 - Runtime behavior proof ≠ rendered user-visible acceptance unless the rendered observable was actually checked.
 - Historical recall evidence ≠ current workspace truth.
+- Historical retrieval rank ≠ authority.
+- A rejected or superseded historical statement remains useful evidence of what changed, but must not silently reappear as current guidance.
 - A dated proof ≠ proof of current health without revalidation.
 - A timeout can be product failure, dependency/configuration block, transport failure or stale harness assumption; classify before changing code.
 - Workspace and revision identity must be known before local evidence is treated as authoritative.
 
 ## BirdEye and Memory boundary
 
-Use BirdEye when the routed workflow selects it as the governed local evidence layer and its workspace/revision/search/inspect/run capabilities fit the investigation. Use Memory for historical Cline-session indexing/fetch when historical evidence is required. Use LoopTool when explicitly requested, when selected as the direct local execution bridge, or when one bounded command must compose those existing owners.
+Use BirdEye when the routed workflow selects it as the governed local evidence layer and its workspace/revision/search/inspect/run capabilities fit the investigation. Use Memory for canonical historical retrieval and provenance across imported GPT history and Cline-session evidence. Use LoopTool when explicitly requested, when selected as the direct local execution bridge, or when one bounded command must compose those existing owners.
 
 Do not duplicate authority: LoopTool does not become the project-mapping or historical-memory owner merely because it can invoke those owners through a bounded command.
 
