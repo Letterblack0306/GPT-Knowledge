@@ -17,6 +17,30 @@ This guidance applies across every workspace. It is informative operating guidan
 9. GitHub required checks are a useful live reference pattern when applicable: requirements are configured independently, producers report structured statuses/conclusions, and a final gate evaluates whether the required checks passed. Treat this as a reusable architectural pattern, not a requirement that every project copy GitHub's implementation.
 10. Keep evidence roles distinct: GPT-Knowledge supplies reusable knowledge and prior reasoning; GitHub supplies live repository/PR/check/patch truth; BirdEye supplies local workspace/revision/index evidence and policy-governed execution; runtime validation supplies behavior and user-visible execution truth.
 
+## Historical-memory retrieval route
+
+When the current task materially depends on prior discussions, old project decisions, rejected ideas, previous implementation attempts, stale/superseded architecture, or earlier tool/agent sessions, load `project-engineering/projects/memory/reference.md` before inventing a history-search method.
+
+Use historical retrieval to recover context and provenance, not to replace current truth. The normal route is:
+
+```text
+identify likely source
+→ scope by project/workspace/session/conversation
+→ retrieve the smallest relevant evidence
+→ preserve message/session/source identity and hashes
+→ recover disagreement/correction/supersession context when material
+→ classify the historical evidence
+→ verify current repository/workspace/runtime when the question is about present state
+```
+
+Source selection:
+
+- past ChatGPT discussion, broad old decision, disagreement, or rejected idea → imported GPT/ChatGPT archive first;
+- previous Cline/coding-agent run, tool call, or local agent session → Cline session history first;
+- current local branch/diff/workspace/runtime behavior → BirdEye/current workspace/runtime first; history is secondary.
+
+Historical evidence can remain indexed and retrievable while being stale, rejected, superseded, disproven, or `historical_evidence_non_truth`. Do not turn “this was said before” into “this is currently true.” Do not rank long mixed-project sessions as project truth from generic keyword overlap. For imported ChatGPT history, respect conversation/node graph structure; SQLite row adjacency alone is not proof of conversational sequence. Typo/spelling normalization may improve retrieval but must never rewrite canonical historical evidence.
+
 ## Mandatory boot rules
 
 1. Load only the minimum knowledge required for the current task.
@@ -185,6 +209,7 @@ Understand the task
   -> consult GPT-Knowledge first for major/agent/CLI decisions
   -> if installed Skills are available: route through chatgpt-installed-skill-routing.md using the smallest relevant set
   -> consult knowledge-index.json
+  -> if prior decisions/history materially matter: load the Historical Memory reference and choose the correct historical source before searching
   -> if project/feature work: load project-feature-implementation-plan.md first
   -> if agent/autonomy work: load unified-agent-engineering-methods.md
   -> verify the active repository and remote implementation through GitHub
