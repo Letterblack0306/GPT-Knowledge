@@ -444,3 +444,349 @@ VERIFY
 ```
 
 The repository/runtime remains authoritative. GPT-Knowledge must stay synchronized enough to guide the next session without pretending to be the source of truth.
+
+---
+
+# 15. Live-surface reconciliation record (2026-08-23)
+
+Date: 2026-08-23
+Scope: alignment of the GPT-Knowledge public projection with the canonical source tree, and the public-edge ownership gap that the live runtime evidence exposed.
+
+## What is now PROVEN
+
+```text
+LOCAL BUILD                       PROVEN
+  scripts/build-vercel-static.mjs exit 0; rebuilt public/ from
+  project-engineering/ in a single invocation.
+
+LOCAL PUBLIC ALIGNMENT            PROVEN
+  27 / 27 source-vs-public file pairs hash-equal after rebuild.
+  Includes the four stale-publication targets that were the
+  working-plan gap:
+    - projects/looptool/status.json          (now carries runtime_proof)
+    - projects/looptool/plan.json            (now carries the 7 new
+                                              historical-recall nodes,
+                                              Memory authority owner,
+                                              and the historical-question
+                                              Before-Execution gate)
+    - projects/looptool/reference.md         (now carries the
+                                              Current proven runtime
+                                              checkpoint and the
+                                              Historical plan, decision,
+                                              disagreement and truth
+                                              retrieval sections, plus
+                                              Memory in the authority
+                                              separation)
+    - projects/workspace/projects.json       (LoopTool subtitle updated)
+    - projects/workspace/index.html          (now loads
+                                              ./repo-branches-ui.js and
+                                              renders the new collapsible
+                                              Repo-branches panel)
+    - projects/workspace/repo-branches-ui.js (newly published)
+
+PUBLIC ROUTE REACHABILITY         PROVEN
+  https://agent.letterblack.net/project-engineering/projects/workspace/projects.json
+  -> HTTP 200, Cache-Control: no-store, nginx 1.18.0 (Ubuntu).
+  Same route for portfolio/plan.json (already PROVEN in prior session).
+
+LOCAL_PROJECTS EXCLUSION          INTENTIONALLY NOT PUBLISHED
+  workspace/local-projects.json contains machine-local Windows paths
+  (e.g. G:\Developments\...). It is canonical source-of-record inside
+  the repository and is the file referenced by the LoopTool
+  runtime_proof. The runtime proof's PROJECT_SOURCE line therefore
+  names a file the hosted UI does not fetch. That is the intended
+  state: a sanitized public projection would carry only non-sensitive
+  identifiers ({"id": {"mapped": true}}), not absolute paths.
+  The current build script (scripts/build-vercel-static.mjs) copies
+  the whole workspace/ tree recursively, so a manual Remove-Item on
+  public/project-engineering/projects/workspace/local-projects.json
+  was required for this run. The durable fix is a one-line exclusion
+  in the build script; it is recorded as a pending task and must be
+  made only after the deployment owner is proven (see below).
+```
+
+## What is now DISPROVEN
+
+```text
+LIVE CONTENT FRESHNESS            DISPROVEN
+  https://agent.letterblack.net/project-engineering/projects/looptool/status.json
+  currently returns 3572 bytes with:
+    - overall_classification = OPERATING_CONTRACT_VERIFIED_IMPLEMENTATION_IDENTITY_CURRENT
+      (old, pre-proof)
+    - verified_at            = 2026-08-21T00:54:00+04:00
+      (old, pre-proof)
+    - runtime_proof          = MISSING
+  while the rebuilt local public/ has 6113 bytes with:
+    - overall_classification = PROVEN_BOUNDED_EXECUTION_AND_RECALL_BRIDGE_WITH_RUNTIME_PROOF
+    - verified_at            = 2026-08-23T08:26:00+04:00
+    - runtime_proof          = PRESENT
+  The size mismatch (3572 vs 6113) is the live runtime evidence that
+  the public edge is serving an older deployment copy rather than the
+  rebuilt local public/.
+
+  Same pattern observed on the LoopTool subtitle and the
+  historical-question plan node. No file is provably current at the
+  agent.letterblack.net edge today.
+```
+
+## What remains UNVERIFIED
+
+```text
+DEPLOYMENT OWNER                  UNVERIFIED
+  agent.letterblack.net resolves to 193.123.91.227 (DNS verified
+  locally). knowledge.letterblack.co.ae resolves to no A record from
+  this host. The two are different IPs. The repo's only nginx config
+  is ops/nginx/knowledge.letterblack.co.ae.conf, which documents
+  84.235.251.204 -> WireGuard -> 10.10.0.4:8080. No file in the
+  repository mentions agent.letterblack.net.
+
+  Until the live-edge owner is proven, the public projection is
+  not in a "verified live" state. The next required gate is
+  read-only inspection of:
+    1. the active nginx server block for agent.letterblack.net
+    2. its root / alias / proxy_pass
+    3. the actual service or filesystem that holds the stale
+       workspace/projects.json and looptool/status.json
+    4. any existing deploy / sync / rsync / scp / git command that
+       propagates C:\MCP Local\GPT-Knowledge\public to the live edge
+  No copy, no restart, no deploy may run before this gate returns
+  LIVE_EDGE_OWNER, LIVE_CONTENT_ROOT, UPSTREAM,
+  CURRENT_DEPLOY_MECHANISM, EXPECTED_SOURCE, MISMATCH, and
+  MINIMAL_DEPLOY_STEP.
+```
+
+## Doc-vs-working-plan gap closed this run
+
+The documents that previously did not match the working plan were
+all on the publication side, not the source side. After the local
+rebuild they all align byte-for-byte with project-engineering/...
+
+```text
+ALIGNED (source == public):
+  projects/looptool/status.json
+  projects/looptool/plan.json
+  projects/looptool/reference.md
+  projects/workspace/projects.json
+  projects/workspace/index.html
+  projects/workspace/repo-branches-ui.js
+  projects/workspace/canvas-drag.js
+  projects/workspace/birdeye-ui.js
+  projects/workspace/agent-ui.js
+  projects/workspace/workspace-text-ui.js
+  projects/workspace/repo-sync.js
+  projects/workspace/{PLAN_TRUTH_UI_CONTRACT,PROJECT_STATE_WRITE_CONTRACT,
+                      BIRDEYE_EVIDENCE_NAVIGATION_UI_PLAN,
+                      SHARED_SKILL_RETRIEVAL_PLAN,
+                      TOOL_RECALLABLE_EXECUTION_RECORDS_REQUIREMENT}.md
+  projects/portfolio/{plan,status}.json
+  projects/memory/{plan,status}.json, memory/reference.md
+  projects/brew/{plan,status}.json
+  projects/agent-harness-reference/{plan,status}.json, reference.md
+  projects/lbe-plan-canvas/{plan,status}.json, references.json
+  projects/adobe-ai-generations-release-hardening/{plan,status}.json
+  projects/access-browser-agent-plan/{plan,status}.json
+```
+
+```text
+INTENTIONALLY OMITTED FROM PUBLIC:
+  projects/workspace/local-projects.json
+  Reason: machine-local Windows paths; the public edge
+  (agent.letterblack.net) is publicly reachable and the file is not
+  safe to publish. The canonical source remains the runtime
+  evidence owner.
+
+COSMETIC ONLY (not a content gap):
+  projects/memory/plan.json line endings: LF in source, CRLF after
+  build on Windows. Not normalized; does not affect rendered output.
+```
+
+## Authority precedence reaffirmed
+
+```text
+runtime > workspace > session > project docs > historical evidence > derived memory > inference
+```
+
+The current public edge is a remote runtime, not the local
+workspace. Until the live edge returns the post-rebuild content,
+do not let the live copy downrank the local canonical source.
+The local public/ is the working-plan truth today; the live edge
+is at best PROVEN_REACHABLE and at worst DISPROVEN_FRESH.
+
+## Open tasks (recorded, not in this run's scope)
+
+1. Identify the deployment owner for agent.letterblack.net.
+2. Ship the rebuilt public/ through the verified deploy mechanism.
+3. After the live edge is current, make the
+   scripts/build-vercel-static.mjs local-projects.json exclusion
+   permanent.
+4. Record the second public edge in ops/nginx/knowledge.letterblack.co.ae.conf
+   and ops/nginx/allowlist.json once its serving chain is known.
+
+## Reusable rule from this run
+
+When the working plan lives in source and a public edge is meant
+to mirror it, never declare "aligned" on the basis of the source
+tree alone. The minimum evidence set is:
+
+```text
+source == public  (hash check)
+live edge 200     (reachability)
+live edge == public  (freshness)
+deployment owner identified and owned
+```
+
+A failed freshness check is a stop condition, not a patch
+authorization. Identify the serving path, then ship.
+
+---
+
+# 16. Operator inspection packet (2026-08-23)
+
+## Purpose
+
+Section 15 recorded that the local public/ rebuild is correct
+and the live edge agent.letterblack.net is DISPROVEN_FRESH, with
+the deployment owner UNVERIFIED. That gap cannot be closed from
+the local Windows workspace because this host has no SSH, no
+WireGuard peer, and no credentials to 193.123.91.227.
+
+The next required action is a read-only inspection on the live
+edge itself. This section is the single source for the inspection
+script and the result schema. It is not a deploy recipe; it is
+the audit packet that has to be returned before any deploy is
+authorized.
+
+## Read-only inspection script (run on the live-edge host)
+
+The script is intentionally read-only. It does not modify nginx,
+does not restart any service, does not copy, rsync, scp, or git
+pull, and does not start a deploy.
+
+```bash
+# 1. Dump the full nginx configuration as the running process sees it.
+sudo nginx -T 2>/dev/null | tee /tmp/agent-edge-nginx-T.txt
+
+# 2. From the dump, isolate the server block for agent.letterblack.net.
+#    Report only these four fields per server block:
+#      server_name
+#      root
+#      alias
+#      proxy_pass
+sudo nginx -T 2>/dev/null |
+  awk '
+    /^[ \t]*server[ \t]*\{/ { in_server=1; buf="" }
+    in_server { buf = buf $0 ORS }
+    /^[ \t]*\}[ \t]*$/ && in_server {
+      if (buf ~ /server_name[ \t]+agent\.letterblack\.net/) {
+        printf "%s", buf
+      }
+      in_server=0
+    }
+  ' | tee /tmp/agent-edge-nginx-server-block.txt
+```
+
+```bash
+# 3. If the server block uses proxy_pass, walk into the upstream
+#    service until you find the directory that actually holds the
+#    stale workspace/projects.json. Identify the service unit, its
+#    working directory, and the on-disk root it serves.
+systemctl list-unit-files --type=service --state=enabled,disabled,running 2>/dev/null |
+  grep -Ei 'letterblack|gpt|workspace|deploy|sync' |
+  tee /tmp/agent-edge-services.txt
+
+systemctl list-timers --all 2>/dev/null |
+  grep -Ei 'letterblack|gpt|workspace|deploy|sync' |
+  tee /tmp/agent-edge-timers.txt
+
+# 4. If a deploy / sync mechanism is found, report its command and
+#    schedule. Do not run it. Do not dry-run it. Read the unit file
+#    or crontab entry only.
+sudo systemctl cat <unit-name> 2>/dev/null
+sudo crontab -l 2>/dev/null
+sudo cat /etc/cron.d/* 2>/dev/null | grep -Ei 'letterblack|gpt|workspace'
+```
+
+```bash
+# 5. Once the live content root is identified, hash the files the
+#    public edge is actually serving today and compare against the
+#    rebuilt local public/. This is the freshness check, server-side.
+LIVE_ROOT="<fill from step 2 or 3>"
+sha256sum "$LIVE_ROOT/project-engineering/projects/workspace/projects.json"
+sha256sum "$LIVE_ROOT/project-engineering/projects/looptool/status.json"
+sha256sum "$LIVE_ROOT/project-engineering/projects/looptool/plan.json"
+sha256sum "$LIVE_ROOT/project-engineering/projects/workspace/repo-branches-ui.js"
+test -e "$LIVE_ROOT/project-engineering/projects/workspace/local-projects.json" \
+  && echo "live HAS local-projects.json (UNEXPECTED; must be removed)" \
+  || echo "live DOES NOT have local-projects.json (expected, per Step 2a decision)"
+```
+
+## Result schema (mandatory)
+
+The operator inspection must return exactly these six values.
+Free-form prose is rejected; the next deploy step will not be
+authorized until every field is present and the freshness hashes
+are recorded alongside.
+
+```text
+LIVE_EDGE_OWNER=                 # host, account, or service unit that owns the live edge
+                                 # e.g. ubuntu@193.123.91.227 / nginx / letterblack-agent.service
+
+LIVE_CONTENT_ROOT=               # absolute path on the live host that actually holds
+                                 # the served files; may be the nginx root, an alias,
+                                 # or a proxy_pass upstream working directory
+
+UPSTREAM=                        # proxy_pass target if present, otherwise "static root"
+                                 # e.g. http://10.10.0.4:8080 OR "none (static root)"
+
+CURRENT_DEPLOY_MECHANISM=        # exact command / service / timer / cron that propagates
+                                 # the local public/ tree to LIVE_CONTENT_ROOT
+                                 # e.g. systemd:letterblack-deploy.service, cron:*/5 * * * *,
+                                 # or "none identified" if no mechanism is documented
+
+EXPECTED_SOURCE=                 # the canonical source the deploy mechanism is meant to
+                                 # pull from, e.g.
+                                 # C:\MCP Local\GPT-Knowledge\public (mounted at /srv/letterblack/public)
+                                 # or https://github.com/Letterblack0306/GPT-Knowledge
+                                 # branch GPT-Knowledge/main path public/
+
+MISMATCH=                        # one-line summary of the freshness gap, e.g.
+                                 # "live content_root SHA256 != local public/ SHA256 for
+                                 #  workspace/projects.json and looptool/status.json;
+                                 #  live missing repo-branches-ui.js; local-projects.json
+                                 #  correctly absent on both sides"
+```
+
+Plus the four SHA256 hashes from inspection step 5, recorded
+with the file they were taken from.
+
+## After the schema is filled
+
+Once the six values are known, the next step is reduced to one
+owned deploy action and a single re-run of the live checks from
+the local workspace. That re-run must show:
+
+```text
+live edge 200                       # already PROVEN
+live edge == public  (freshness)    # the four SHA256 hashes match local public/
+local-projects.json not served      # still 404 on the live edge
+```
+
+Only then does LIVE CONTENT FRESHNESS move from DISPROVEN to
+PROVEN, and only then does the build-script local-projects.json
+exclusion become safe to make permanent.
+
+## Hard prohibitions during this gate
+
+- Do not run `rsync`, `scp`, `git pull`, `git push`, `cp -r`,
+  `dd`, or any copy against 193.123.91.227 from this workspace.
+- Do not restart nginx, the agent service, the deploy service,
+  or any timer.
+- Do not edit `ops/nginx/knowledge.letterblack.co.ae.conf`,
+  `ops/nginx/allowlist.json`, or `scripts/build-vercel-static.mjs`
+  until the live-edge owner is proven and the deploy mechanism
+  is identified.
+- Do not edit the LoopTool / project documents. The local public/
+  is the working-plan truth; the live edge is the only thing
+  stale, and that is a deploy-side problem, not a doc problem.
+- Do not invent a deploy command. The current_deploy_mechanism
+  field exists so the real mechanism is recorded, not guessed.
