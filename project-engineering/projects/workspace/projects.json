@@ -46,7 +46,7 @@
     {
       "id": "looptool",
       "name": "LoopTool",
-      "subtitle": "Local Execution & Evidence Bridge",
+      "subtitle": "Local Execution · Evidence · Prior Plan/Decision Recall",
       "mapped": true,
       "active_node": "bounded-execution",
       "plan_file": "../looptool/plan.json",
