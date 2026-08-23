@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "projects": [
     {
       "id": "portfolio",
@@ -41,7 +41,75 @@
       "active_node": "terminal-state-ui",
       "plan_file": "../access-browser-agent-plan/plan.json",
       "status_file": "../access-browser-agent-plan/status.json",
-      "reference": "../access-browser-agent-plan/plan.md"
+      "reference": "../access-browser-agent-plan/plan.md",
+      "features": [
+        {
+          "id": "single-reasoning-agent",
+          "title": "Single reasoning agent",
+          "classification": "PROVEN",
+          "detail": "One reasoning agent owns strategy and tool choice while the runtime owns governed execution and lifecycle truth."
+        },
+        {
+          "id": "structured-provider-tool-loop",
+          "title": "Structured provider/tool loop",
+          "classification": "PROVEN",
+          "detail": "Typed tool calls, runtime observations and bounded re-entry are part of the current agent architecture."
+        },
+        {
+          "id": "browser-conversation-runtime",
+          "title": "Browser conversation instruction ownership",
+          "classification": "PROVEN",
+          "detail": "The browser conversation is the instruction surface and the relay submits detected assistant turns into the governed agent runtime."
+        },
+        {
+          "id": "provider-readiness-preflight",
+          "title": "Non-terminal provider readiness preflight",
+          "classification": "PROVEN_SOURCE",
+          "detail": "Recovery-only readiness checks retain startup ownership with checking_provider instead of projecting a terminal stopped state."
+        },
+        {
+          "id": "fresh-session-isolation",
+          "title": "Fresh app-session isolation",
+          "classification": "PROVEN_SOURCE_REGRESSION",
+          "detail": "Fresh runtime reset clears only active current-session ownership while preserving historical session evidence; the first fresh instruction receives a new session."
+        },
+        {
+          "id": "governed-browser-tools",
+          "title": "Governed browser tools",
+          "classification": "PROVEN",
+          "detail": "Managed browser open, navigation, bounded DOM/AX snapshot and interaction paths are represented in current source and acceptance evidence."
+        },
+        {
+          "id": "browser-process-isolation",
+          "title": "Browser process/profile isolation",
+          "classification": "PROVEN_LIVE",
+          "detail": "General browser tools use a distinct Access-owned Managed Chrome process/profile from the persistent provider relay."
+        },
+        {
+          "id": "native-terminal-pty",
+          "title": "Native PTY terminal",
+          "classification": "PROVEN_LIVE",
+          "detail": "The terminal manager has completed a real node-pty PowerShell create/write/exit round-trip."
+        },
+        {
+          "id": "durable-recovery",
+          "title": "Durable recovery and reconciliation",
+          "classification": "PROVEN",
+          "detail": "Ambiguous interrupted work fails closed and explicit reconciliation/quarantine preserves durable recovery evidence."
+        },
+        {
+          "id": "visual-evidence",
+          "title": "Screenshot evidence capture/storage",
+          "classification": "PROVEN_SOURCE_AND_LOCAL_REGRESSION",
+          "detail": "Opt-in browser screenshots are hashed and stored as local diagnostics evidence; visual-model reasoning remains a separate capability boundary."
+        },
+        {
+          "id": "ide-workbench-shell",
+          "title": "IDE/workbench shell",
+          "classification": "PROVEN",
+          "detail": "The retained product UI includes local IDE, agent, provider/runtime, managed-browser, editor, terminal and MCP surfaces."
+        }
+      ]
     },
     {
       "id": "looptool",
