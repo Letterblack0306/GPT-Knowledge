@@ -4,67 +4,68 @@
   "verified_at": "2026-08-25",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "source_branch": "main",
-  "source_head": "d2afb646065fb64ad8b9d2103602c74a37166149",
+  "source_head": "6b44c624834523725fde1297c9f714b0a75a144f",
   "local_workspace": "C:/Agents-Memory-Tool-v6-integration",
-  "overall_classification": "STAGE_2_IN_PROGRESS_TWO_RELOCATION_GROUPS_CANONICAL_PASS",
-  "authority_note": "GitHub verification proves LBE main points to d2afb646065fb64ad8b9d2103602c74a37166149. The commit contains the three reviewed target files with exactly the approved path-reference changes. Local index cleanliness, 0/0 alignment, target-byte preservation, remaining dirty count and protected-scope non-mutation are user-supplied live workspace evidence.",
+  "overall_classification": "STAGE_2_CANONICAL_PASS_STAGE_3_READY",
+  "authority_note": "GitHub verification proves canonical LBE main points to 6b44c624834523725fde1297c9f714b0a75a144f and that the commit contains only docs/acceptance/STAGE_2_FINAL_CHECKPOINT.md. The checkpoint itself records the bounded Stage 2 support commits, canonical boot-path PASS, one-fact/one-live-owner PASS, no EOL policy creation, and preserved protected-scope boundaries. Local 0/0 alignment, clean index and remaining dirty inventory are user-supplied live workspace evidence.",
   "current_stage": {
-    "id": "stage-2-document-reallocation",
-    "title": "Document reallocation and navigation alignment",
-    "status": "IN_PROGRESS",
-    "active_group": "stage-2-next-work",
-    "reason": "Stage 2 Group 1 and the reviewed three-pair relocation group are canonically complete. Stage 2 itself is not complete; remaining Stage 1-approved archive/move work, navigation repair, one-live-owner validation and final Stage 2 checkpoint remain.",
-    "next_valid_action": "Continue deterministically through the remaining Stage 1-approved Stage 2 work one group at a time. Do not stop for routine confirmations. Stop only for a genuine blocker, contradiction, scope-crossing issue, unresolved authority decision, or failed validation that makes the safe next action unclear."
+    "id": "stage-3-governance-alignment",
+    "title": "Governance and current-state alignment",
+    "status": "UNLOCKED_READY",
+    "reason": "Stage 2 is canonically complete and present at the tip of LBE main. Stage 3 may begin, but no Stage 3 mutation has yet been recorded.",
+    "next_valid_action": "Start Stage 3 with read-first governance reconciliation: inspect the current machine gate, then align human-readable current-state and acceptance projections to that machine state. Preserve runtime B2/B3, B5 quarantine and unrelated dirty work."
   },
   "stage_0": {"classification":"CANONICAL_PASS","commit_sha":"2abca625cd277733aabfff2e79dbc168fa62d254"},
   "stage_1": {"classification":"CANONICAL_PASS","commit_sha":"7e8dbf95b01b663c5e9f3a616123b298dd3af9db"},
   "stage_2": {
-    "classification": "IN_PROGRESS",
-    "group_1": {"classification":"CANONICAL_PASS","commit_sha":"58c2bdf2e23f9cc8ea6be26bea8e399555bd431b"},
-    "reviewed_nonpure_group": {
-      "classification": "CANONICAL_PASS",
-      "commit_sha": "d2afb646065fb64ad8b9d2103602c74a37166149",
-      "commit_message": "docs: relocate reviewed historical records",
-      "github_main_verified": true,
-      "canonical_targets": [
-        "docs/contracts/VALIDATED_WORKSPACE_MEMORY.md",
-        "docs/history/PHASE12_END_TO_END_PROOF.md",
-        "docs/history/PHASE_13_CALLBACK_VERTICAL_SLICE.md"
-      ],
-      "verified_semantic_changes": [
-        "VALIDATED_WORKSPACE_MEMORY reference updated from docs/PRIORITY_MODULE_REGISTRY.md to docs/contracts/PRIORITY_MODULE_REGISTRY.md",
-        "PHASE12 reference updated from docs/PHASE12_END_TO_END_PROOF.md to docs/history/PHASE12_END_TO_END_PROOF.md",
-        "PHASE_13 reference updated from docs/PHASE_13_CALLBACK_VERTICAL_SLICE.md to docs/history/PHASE_13_CALLBACK_VERTICAL_SLICE.md"
-      ],
-      "reported_local_verification": {
-        "local_head": "d2afb646065fb64ad8b9d2103602c74a37166149",
-        "origin_main": "d2afb646065fb64ad8b9d2103602c74a37166149",
-        "ahead_behind": "0/0",
-        "index": "empty",
-        "remaining_dirty_paths": 49,
-        "protected_scope": "B2/B3/B5/governance untouched",
-        "classification": "USER_SUPPLIED_LIVE_EVIDENCE"
-      }
+    "classification": "CANONICAL_PASS",
+    "final_checkpoint_commit": "6b44c624834523725fde1297c9f714b0a75a144f",
+    "checkpoint_path": "docs/acceptance/STAGE_2_FINAL_CHECKPOINT.md",
+    "github_main_verified": true,
+    "single_file_checkpoint_commit": "PROVEN_GITHUB",
+    "recorded_supporting_commits": [
+      {"scope":"Group 1 verified history/contract relocation","commit":"58c2bdf2e23f9cc8ea6be26bea8e399555bd431b"},
+      {"scope":"Reviewed non-pure B4 relocation","commit":"d2afb646065fb64ad8b9d2103602c74a37166149"},
+      {"scope":"Legacy reference blueprints","commit":"b74cd4ff7431d07879ab5877078151b3ec82ec91"},
+      {"scope":"Legacy acceptance fixtures","commit":"4f1a1cfbb64aef23cb11f103b134ecd11a1a8d03"},
+      {"scope":"Historical validation archive","commit":"c44e0e5e920979920241a9fc60287bb150c1d5f2"},
+      {"scope":"Navigation/reference repair","commit":"470d27d28cf0e4e2d63ff7a6df5ba385e0e50f98"},
+      {"scope":"Archived acceptance fixture path repair","commit":"a00cb2dd2696c9e9f36cdd42c369457b4feb4243"}
+    ],
+    "validation": {
+      "canonical_boot_path": "PASS_RECORDED_IN_CANONICAL_CHECKPOINT",
+      "one_fact_one_live_owner": "PASS_RECORDED_IN_CANONICAL_CHECKPOINT",
+      "git_diff_check": "PASS_REPORTED",
+      "no_eol_policy_created": true,
+      "governance_touched_by_stage_2": false,
+      "b2_b3_b5_touched_by_stage_2": false
     },
-    "remaining": [
-      "Stage 1-approved archive/move groups not yet canonicalized",
-      "navigation/reference repair",
-      "canonical boot-path validation",
-      "one-live-owner validation",
-      "Stage 2 PASS/FAIL checkpoint",
-      "Stage 2 checkpoint commit/push/remote verification"
-    ]
+    "reported_local_verification": {
+      "local_head": "6b44c624834523725fde1297c9f714b0a75a144f",
+      "origin_main": "6b44c624834523725fde1297c9f714b0a75a144f",
+      "ahead_behind": "0/0",
+      "index": "empty",
+      "remaining_worktree_changes": "PRESERVED_PRE_EXISTING_DIRTY_INVENTORY",
+      "classification": "USER_SUPPLIED_LIVE_EVIDENCE"
+    }
+  },
+  "preservation_state": {
+    "b2": "PRESERVED_UNTOUCHED_BY_STAGE_2",
+    "b3": "PRESERVED_HELD",
+    "b5": "PRESERVED_QUARANTINE",
+    "governance": "PRESERVED_FOR_STAGE_3",
+    "other_dirty_work": "PRESERVED"
   },
   "stage_sequence": [
     {"id":"stage-0-baseline-freeze","status":"CANONICAL_PASS","evidence":"2abca625cd277733aabfff2e79dbc168fa62d254"},
     {"id":"stage-1-document-authority-map","status":"CANONICAL_PASS","evidence":"7e8dbf95b01b663c5e9f3a616123b298dd3af9db"},
-    {"id":"stage-2-document-reallocation","status":"IN_PROGRESS","group_1":"CANONICAL_PASS","reviewed_nonpure_group":"CANONICAL_PASS","latest_evidence":"d2afb646065fb64ad8b9d2103602c74a37166149"},
-    {"id":"stage-3-governance-alignment","status":"LOCKED","unlock":"Stage 2 canonical PASS"},
+    {"id":"stage-2-document-reallocation","status":"CANONICAL_PASS","evidence":"6b44c624834523725fde1297c9f714b0a75a144f"},
+    {"id":"stage-3-governance-alignment","status":"UNLOCKED_READY","unlock":"Stage 2 canonical PASS verified"},
     {"id":"stage-4-active-runtime-slice","status":"LOCKED","unlock":"Stage 3 canonical PASS"},
     {"id":"stage-5-next-slice","status":"LOCKED","unlock":"Stage 4 canonical PASS and new machine gate verified"}
   ],
   "continuation_policy": {
-    "continue_without_stopping_for": ["routine PASS results","deterministic read-only checks","validation already required by the active group","multiple commands needed for the same authorized objective"],
-    "stop_only_for": ["real blocker","evidence contradiction","scope crossing","material ambiguity that could change repository state","missing required evidence requiring guessing","unrelated dirty-work risk","failed validation with unclear safe continuation","new destructive/policy/authority decision requiring authorization"]
+    "continue_without_stopping_for": ["routine PASS results","deterministic read-only checks","validation already required by the active stage","multiple commands required for the same authorized objective"],
+    "stop_only_for": ["real blocker","evidence contradiction","scope crossing","material ambiguity that could change repository authority/state","missing required evidence requiring guessing","unrelated dirty-work risk","failed validation with unclear safe continuation","new destructive/policy/authority decision requiring authorization"]
   }
 }
