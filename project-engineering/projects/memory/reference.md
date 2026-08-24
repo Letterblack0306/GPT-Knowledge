@@ -1,6 +1,6 @@
 # Historical Memory — Current Implementation Reference
 
-Updated: 2026-08-23
+Updated: 2026-08-25
 
 ## Authority
 
@@ -10,7 +10,7 @@ This document is a GPT-Knowledge projection of the canonical local implementatio
 
 - `GPT_Data` — immutable ChatGPT export/source evidence.
 - `C:\MCP Local\Memory` — canonical historical/durable-memory implementation.
-- BirdEye — separate current workspace/runtime authority.
+- BirdEye — separate current workspace/runtime authority. BirdEye may index the Memory workspace files for current local/file evidence, but this does not transfer ownership of GPT/ChatGPT or Cline historical retrieval to BirdEye.
 - GPT-Knowledge — separate reusable project/method/status projection.
 - Reasoning agent — owns interpretation, planning, tool selection, reconciliation and conclusions.
 - Memory — exposes evidence/memory capabilities and provenance; it does not prescribe a reasoning procedure.
@@ -48,6 +48,114 @@ The Memory MCP exposes:
 - `sources`
 
 The server is registered globally under `C:\MCP Local\config\mcp-registry.json`. External-client discovery, MCP initialization, tool listing and a real historical recall returning canonical provenance have been proven.
+
+## Current BirdEye interoperability checkpoint — 2026-08-25
+
+Fresh LoopTool execution established the current boundary between BirdEye and Memory.
+
+BirdEye `local_projects("memory")` resolved:
+
+```text
+C:\MCP Local\Memory
+exists = true
+root_class = workspace
+authority = current_workspace_mapping
+source = GPT-Knowledge:project-engineering/projects/workspace/local-projects.json
+```
+
+BirdEye was then configured with a governed `memory` workspace root and a fresh trace indexed that workspace. Observed trace/index evidence included:
+
+```text
+memory root registered = yes
+memory trace files seen = 571
+memory trace hashed = 46
+memory trace cached = 519
+memory trace large = 6
+memory trace unreadable = 0
+BirdEye total indexed files = 82456
+BirdEye total hashed records = 82316
+BirdEye indexed total = 3.84 GB
+```
+
+This proves that BirdEye can provide current workspace/file evidence for the Memory implementation directory.
+
+It does **not** mean BirdEye owns or replaces Memory historical retrieval.
+
+A test search for historical Cline session ID `1787404643663_0sdnz` returned no workspace-file match from `birdeye_search`. That result is correctly interpreted as:
+
+```text
+BirdEye workspace search executed = PASS
+historical Cline session found in BirdEye workspace-file index = NO_MATCH
+Memory historical source absence = NOT PROVEN
+BirdEye failure = NO
+```
+
+The historical session had previously been proven through the Memory/Cline owners with message-file SHA256:
+
+```text
+c0ce4e77a4dac3dc8a76873aff989825ed2df7ce3978a1a8006f6498a703eced
+```
+
+Therefore use the authority-specific path:
+
+```text
+current Memory workspace/file truth
+-> BirdEye
+
+past GPT/ChatGPT conversation
+-> Memory MCP imported GPT archive
+
+past Cline coding-agent/tool/runtime session
+-> Memory MCP Cline history
+
+need deterministic local execution of either path
+-> LoopTool as bounded command transport
+```
+
+Do not make a combined command's overall failure status redefine the owner-specific evidence. A no-match in the wrong historical source is not failure of a successful BirdEye workspace trace.
+
+## Why and when to use each source
+
+### Memory MCP — use for historical evidence
+
+Use Memory when the user asks what happened before, including:
+
+- past ChatGPT discussions;
+- previous decisions and rationale;
+- explicit user corrections or rejected directions;
+- old architecture/implementation attempts;
+- prior Cline sessions;
+- previous tool/runtime evidence;
+- exact historical conversation/message/source provenance;
+- historical SHA/source identity.
+
+Why: Memory owns durable historical retrieval and provenance. It preserves history even when that history later becomes stale, rejected, superseded or disproven.
+
+### BirdEye — use for current local truth
+
+Use BirdEye when the claim concerns the current machine-local state, including:
+
+- whether the Memory workspace exists;
+- current workspace files;
+- indexed file presence/search;
+- local file metadata/hash evidence;
+- repository/workspace identity;
+- current revision/status;
+- governed workspace-local inspection or execution.
+
+Why: historical evidence cannot prove what currently exists or runs on the machine.
+
+### GPT-Knowledge — use for routing/mapping/project context
+
+Use GPT-Knowledge to identify the project, canonical method/status/reference records, and machine-local mapping metadata. Then call the evidence owner appropriate to the question.
+
+Why: GPT-Knowledge is a routing and project-knowledge layer; it is not a substitute for live local evidence or historical source retrieval.
+
+### LoopTool — use for deterministic local execution
+
+Use LoopTool when an agent needs one bounded local command to prove the selected observable or compose BirdEye/Memory/GPT-Knowledge owners.
+
+Why: LoopTool provides execution evidence and command identity without becoming the owner of the data it invokes.
 
 ## Canonical archive evidence
 
