@@ -34,8 +34,8 @@
       "lane": "Stage 0",
       "title": "Baseline freeze and preservation matrix",
       "status": "current",
-      "priority": "PASS LOCAL — PUSH REQUIRED",
-      "summary": "Stage 0 acceptance record reports PASS: exact repository identity captured, 65 dirty paths frozen and classified exactly once, and the new Stage 0 record itself classified as B1, producing a live dirty count of 66. No staging or mutation beyond the documentation record occurred. Stage 1 remains locked until this PASS checkpoint is committed and pushed to canonical LBE main.",
+      "priority": "AUTHORIZED — CANONICALIZATION EXECUTION PENDING",
+      "summary": "Stage 0 acceptance record reports PASS locally. Explicit authorization now exists to stage only docs/acceptance/STAGE_0_BASELINE_FREEZE.md, commit it on existing main, push main, verify the remote single-file commit and 0/0 alignment, then classify Stage 0 canonical PASS. No other dirty path is authorized. Stage 1 remains locked until remote verification succeeds.",
       "pass_requires": [
         "Every frozen dirty path maps exactly once — reported PASS",
         "Stage 0 acceptance record exists — proven from uploaded record",
@@ -43,7 +43,10 @@
         "B3 remains held",
         "Governance remains independently excluded",
         "B4 hash and modified-relocation review remains deferred to Stage 2",
-        "Stage-0 PASS checkpoint is committed and pushed to canonical main — NOT YET PROVEN"
+        "Explicit Stage 0 canonicalization authorization — GRANTED",
+        "Commit contains only docs/acceptance/STAGE_0_BASELINE_FREEZE.md — PENDING PROOF",
+        "Push to canonical origin/main and verify local HEAD equals remote — PENDING PROOF",
+        "Stage-0 canonical PASS — NOT YET PROVEN"
       ]
     },
     {
@@ -52,7 +55,7 @@
       "lane": "Stage 1",
       "title": "Document authority map",
       "status": "locked",
-      "summary": "Define canonical document classes and fact owners before moving anything: boot-path docs, governance, acceptance, contracts, design, reference, research and history. Identify duplicates, stale owners and modified historical documents. Unlock only after Stage 0 PASS is pushed.",
+      "summary": "Define canonical document classes and fact owners before moving anything: boot-path docs, governance, acceptance, contracts, design, reference, research and history. Identify duplicates, stale owners and modified historical documents. Unlock only after Stage 0 PASS is pushed and remotely verified.",
       "pass_requires": [
         "One fact has one live owner",
         "Every document class has a deterministic destination",
