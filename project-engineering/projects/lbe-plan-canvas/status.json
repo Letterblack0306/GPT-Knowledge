@@ -1,85 +1,80 @@
 {
-  "schema_version": 2,
+  "schema_version": 3,
   "project": "LBE Persistent Agent",
-  "verified_at": "2026-08-22",
+  "verified_at": "2026-08-24",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "source_branch": "main",
-  "source_head": "942e494dbbf17550eb01f82caae31822d7ffbbbd",
-  "overall_classification": "COMPLETE_TUI_IMPLEMENTATION_OPEN_ACTIVE_SLICE_SOURCE_PRESENT_RUNTIME_ACCEPTANCE_UNPROVEN_PUBLICATION_PAUSED",
-  "authority_note": "This status is projected from current GitHub main, the machine gate and active acceptance document. Repository inspection proves source state, not executed local tests, installed runtime behavior or rendered acceptance.",
-  "closed": [
+  "source_head": "090a53f4847279e2515dc84677efdaa995b9c809",
+  "local_workspace": "C:/Agents-Memory-Tool-v6-integration",
+  "overall_classification": "WORKSPACE_RECONCILIATION_STAGE_0_BLOCKED_MATRIX_CORRECTION_REQUIRED",
+  "authority_note": "Committed GitHub main proves repository history. Current local dirty-state details below are user-supplied live workspace evidence and remain local until the corresponding stage is committed and pushed. The UI is a projection only and cannot advance a stage by itself.",
+  "current_stage": {
+    "id": "stage-0-baseline-freeze",
+    "title": "Baseline freeze and preservation matrix",
+    "status": "BLOCKED",
+    "reason": "The preservation matrix does not yet satisfy its own complete-mapping invariant: the matrix itself is unclassified and three B4 relocation pairs are content-modified rather than hash-identical pure moves.",
+    "next_valid_action": "Documentation-only correction of docs/acceptance/WORKSPACE_PRESERVATION_BOUNDARY_MATRIX.md. Include the matrix itself exactly once and classify the three non-matching B4 pairs as modified historical relocations requiring individual review.",
+    "forbidden_until_pass": [
+      "Random file-by-file reconciliation",
+      "Staging unrelated dirty paths",
+      "Destructive cleanup or reset",
+      "Governance mutation outside its later stage",
+      "Runtime implementation work before preservation/document stages pass",
+      "Advancing the UI to a later stage without a pushed PASS checkpoint"
+    ]
+  },
+  "observed_local_state": {
+    "classification": "USER_SUPPLIED_LIVE_EVIDENCE",
+    "branch": "main",
+    "head": "090a53f",
+    "origin_main_alignment": "0 ahead / 0 behind against local origin/main ref",
+    "dirty_entries": 54,
+    "modified_files": 27,
+    "deleted_tracked_files": 8,
+    "untracked_entries": 19,
+    "git_diff_check": "PASS with existing LF-to-CRLF notice",
+    "pytest_collection": "686 tests collected",
+    "full_test_suite": "NOT_RUN"
+  },
+  "preservation_findings": [
     {
-      "id": "r3-r6",
-      "title": "R3–R6F accepted baseline",
-      "classification": "PROVEN_PROJECT_GATE",
-      "detail": "Current machine gate records R3 through R6F as PROVEN_COMPLETE."
+      "id": "matrix-self",
+      "classification": "FAIL",
+      "detail": "WORKSPACE_PRESERVATION_BOUNDARY_MATRIX.md is itself an untracked dirty path but is not mapped in B1-B5."
     },
     {
-      "id": "cli",
-      "title": "CLI control plane",
-      "classification": "PROVEN_PROJECT_GATE",
-      "detail": "Current machine gate records CLI as PROVEN_COMPLETE."
+      "id": "b4-pure-moves",
+      "classification": "PARTIAL_PASS",
+      "detail": "PRIORITY_MODULE_REGISTRY and four transcript relocation pairs are hash-matched pure moves."
     },
     {
-      "id": "r7",
-      "title": "R7 installed end-to-end acceptance",
-      "classification": "PASS_PROJECT_GATE",
-      "detail": "Current machine gate records R7 installed acceptance as PASS."
+      "id": "b4-modified-relocations",
+      "classification": "REVIEW_REQUIRED",
+      "detail": "PHASE12_END_TO_END_PROOF, PHASE_13_CALLBACK_VERTICAL_SLICE and VALIDATED_WORKSPACE_MEMORY relocation pairs do not hash-match and must be reviewed as modified historical relocations."
     },
     {
-      "id": "release-readiness",
-      "title": "Release package readiness and publication precheck",
-      "classification": "PASS_BOUNDED_CLAIMS",
-      "detail": "Package contract repair, readiness acceptance and publication precheck are recorded PASS; they do not authorize current publication."
+      "id": "b3",
+      "classification": "HELD",
+      "detail": "B3 remains held. No authorization is inferred."
     },
     {
-      "id": "tui-source",
-      "title": "Typed TUI projection source",
-      "classification": "PROVEN_GITHUB_SOURCE",
-      "detail": "main 942e494d contains typed truth-preserving view models, terminal projection, Textual client code and focused tests for authorization, receipts, evidence, unknown states and structured errors."
+      "id": "governance",
+      "classification": "EXCLUDED",
+      "detail": "Governance remains excluded from this preservation correction stage."
     }
   ],
-  "supported_historical": [],
-  "pending": [
-    {
-      "id": "active-slice",
-      "title": "TUI projection contract and view models",
-      "priority": "ACTIVE OPEN",
-      "classification": "SOURCE_PRESENT_EXECUTION_PROOF_UNVERIFIED",
-      "detail": "The exact active slice is TUI_PROJECTION_CONTRACT_AND_VIEW_MODELS. Focused tests and git diff checks required by the gate were not executed in this GitHub-only inspection."
-    },
-    {
-      "id": "tui-sequence",
-      "title": "Remaining complete TUI sequence",
-      "priority": "NEXT",
-      "classification": "NOT_YET_PROVEN",
-      "detail": "Objective workspace, six truthful commands, session/provider flows, structured details, capability inspection and unsupported-state handling remain later sequence items."
-    },
-    {
-      "id": "installed-runtime",
-      "title": "Installed interactive TUI acceptance",
-      "priority": "FINAL TUI GATE",
-      "classification": "NOT_YET_PROVEN",
-      "detail": "Windows Terminal render, exact clean artifact, distinct command behavior, governed provider/tool turn, interrupt/cancel, resize/color/NO_COLOR and regression proof remain required."
-    },
-    {
-      "id": "release-conflict",
-      "title": "2.0.3 gate text conflicts with source version",
-      "priority": "RECONCILE",
-      "classification": "DOCUMENT_CONFLICT",
-      "detail": "pyproject.toml is version 2.0.3, while release_progression still lists setting the canonical version to 2.0.3 as a remaining prerequisite."
-    },
-    {
-      "id": "publication",
-      "title": "2.0.3 publication",
-      "priority": "PAUSED",
-      "classification": "BLOCKED_BY_ACTIVE_TUI_PHASE",
-      "detail": "publish_allowed is false. Publication, tags and releases remain forbidden until the TUI phase passes and exact release prerequisites are revalidated."
-    }
+  "stage_sequence": [
+    {"id": "stage-0-baseline-freeze", "status": "BLOCKED", "unlock": "correct matrix and document PASS"},
+    {"id": "stage-1-document-authority-map", "status": "LOCKED", "unlock": "Stage 0 PASS pushed"},
+    {"id": "stage-2-document-reallocation", "status": "LOCKED", "unlock": "Stage 1 PASS pushed"},
+    {"id": "stage-3-governance-alignment", "status": "LOCKED", "unlock": "Stage 2 PASS pushed"},
+    {"id": "stage-4-active-runtime-slice", "status": "LOCKED", "unlock": "Stage 3 PASS pushed"},
+    {"id": "stage-5-next-slice", "status": "LOCKED", "unlock": "Stage 4 PASS pushed and new machine gate verified"}
   ],
-  "next_acceptance": {
-    "question": "Does the current typed projection slice pass its focused contract without inventing authority or missing evidence?",
-    "observable": "Exact-head focused TUI/view-model tests plus git diff check, followed by the gate checkpoint required to advance.",
-    "falsifier": "Unknown or missing payloads render as success, projection code makes execution/authorization/completion decisions, focused tests fail, or evidence is not tied to exact main revision."
+  "update_contract": {
+    "on_stage_start": "Set exactly one active stage and preserve all later stages as locked.",
+    "on_stage_fail": "Record FAIL/BLOCKED evidence on the same node; do not activate another node.",
+    "on_stage_pass": "Record validation, exact touched paths, checkpoint document and source commit SHA; push main; only then unlock the next node.",
+    "ui_rule": "Tree state mirrors plan/status data. UI state never becomes authority and never marks PASS from narrative alone."
   }
 }
