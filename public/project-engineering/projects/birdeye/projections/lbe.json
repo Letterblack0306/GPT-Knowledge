@@ -17,7 +17,7 @@
     "workspaceRoot": "C:\\Users\\prave\\source-repo",
     "branch": "main",
     "head": "ff7d08c54ed82ea990fb8bac903d5005a559faba",
-    "observedAt": "2026-08-22T14:10:58.054871+00:00",
+    "observedAt": "2026-08-24T18:05:02.668616+00:00",
     "requestId": null,
     "operation": null
   },
@@ -47,17 +47,17 @@
     ],
     "changedPathCount": 3,
     "evidenceLevel": "PROVEN",
-    "observedAt": "2026-08-22T14:10:58.054871+00:00"
+    "observedAt": "2026-08-24T18:05:02.668616+00:00"
   },
   "planStatus": {
     "planState": "DOCUMENTED_CURRENT",
     "planDocument": "C:\\MCP Local\\GPT-Knowledge\\project-engineering\\projects\\lbe-plan-canvas\\plan.json",
     "statusDocument": "C:\\MCP Local\\GPT-Knowledge\\project-engineering\\projects\\lbe-plan-canvas\\status.json",
-    "documentRevision": "2430758",
-    "statusRevision": "2430758",
-    "lastVerified": "2026-08-22T14:10:58.054871+00:00",
-    "activeGate": "terminal-workspace-foundation",
-    "nextSingleQuestion": null,
+    "documentRevision": "10d9979",
+    "statusRevision": "10d9979",
+    "lastVerified": "2026-08-24T18:05:02.668616+00:00",
+    "activeGate": "tui-projection-view-models",
+    "nextSingleQuestion": "Does the current typed projection slice pass its focused contract without inventing authority or missing evidence?",
     "authoritative": true,
     "evidenceLevel": "PROVEN"
   },
@@ -65,15 +65,15 @@
     "source": null,
     "evidenceLevel": "UNKNOWN",
     "reason": "no runtime status source configured",
-    "observedAt": "2026-08-22T14:10:58.054871+00:00"
+    "observedAt": "2026-08-24T18:05:02.668616+00:00"
   },
   "alignment": {
-    "state": "UNKNOWN",
-    "documentedSourceHead": null,
+    "state": "DIVERGED",
+    "documentedSourceHead": "942e494dbbf17550eb01f82caae31822d7ffbbbd",
     "observedHead": "ff7d08c54ed82ea990fb8bac903d5005a559faba",
-    "reason": "documented source_head or observed HEAD unavailable",
-    "evidenceLevel": "UNKNOWN",
-    "observedAt": "2026-08-22T14:10:58.054871+00:00"
+    "reason": "documented source_head differs from observed workspace HEAD",
+    "evidenceLevel": "PROVEN",
+    "observedAt": "2026-08-24T18:05:02.668616+00:00"
   },
   "comparison": null,
   "verdict": "REVIEW",
