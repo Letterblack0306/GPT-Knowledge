@@ -6,22 +6,33 @@
   "source_branch": "main",
   "source_head": "090a53f4847279e2515dc84677efdaa995b9c809",
   "local_workspace": "C:/Agents-Memory-Tool-v6-integration",
-  "overall_classification": "WORKSPACE_RECONCILIATION_STAGE_0_PASS_LOCAL_AWAITING_CANONICAL_PUSH",
-  "authority_note": "The uploaded Stage 0 acceptance record supports the local PASS classification. Canonical completion remains unproven until the Stage 0 checkpoint is committed and pushed to Letterblack0306/LBE_Presistent_Agent_wall main. The UI is projection-only and does not unlock Stage 1 from local narrative alone.",
+  "overall_classification": "WORKSPACE_RECONCILIATION_STAGE_0_PASS_LOCAL_PUSH_AUTHORIZED_EXECUTION_PENDING",
+  "authority_note": "Stage 0 local PASS is supported by the uploaded acceptance record. Explicit authorization now exists only for Stage 0 canonicalization: stage docs/acceptance/STAGE_0_BASELINE_FREEZE.md, commit that single path on existing main, push main, verify the remote commit and alignment, then classify canonical PASS. Stage 1 remains locked until those execution proofs exist.",
   "current_stage": {
     "id": "stage-0-baseline-freeze",
     "title": "Baseline freeze and preservation matrix",
-    "status": "PASS_LOCAL_AWAITING_PUSH",
-    "reason": "Stage 0 records exact repository identity, an empty staged inventory, a frozen 65-path dirty inventory classified exactly once, and no code changes. The newly created Stage 0 record is itself classified as B1, making the post-record live dirty count 66.",
-    "next_valid_action": "Commit and push the Stage 0 PASS checkpoint to canonical LBE main without absorbing unrelated dirty paths. After remote verification of that checkpoint, unlock Stage 1 document-authority-map work.",
-    "forbidden_until_push": [
-      "Starting Stage 1 before Stage 0 PASS is present on pushed canonical main",
-      "Random file-by-file reconciliation",
-      "Staging unrelated dirty paths",
-      "Destructive cleanup or reset",
-      "Governance mutation outside its later stage",
-      "Runtime implementation work before preservation/document/governance stages pass"
-    ]
+    "status": "PASS_LOCAL_PUSH_AUTHORIZED_EXECUTION_PENDING",
+    "reason": "The local Stage 0 record reports a valid baseline freeze and exact one-time dirty-path classification. The transition to canonical PASS has been explicitly authorized but has not yet been proven executed.",
+    "authorization": {
+      "classification": "EXPLICIT_USER_AUTHORIZATION",
+      "scope": "STAGE_0_CANONICALIZATION_ONLY",
+      "allowed_actions": [
+        "Stage only docs/acceptance/STAGE_0_BASELINE_FREEZE.md",
+        "Commit that single path on existing main",
+        "Push main to origin/main",
+        "Verify local HEAD, origin/main, ahead/behind 0/0 and single-file commit contents",
+        "Classify Stage 0 canonical PASS only after successful remote verification"
+      ],
+      "forbidden_actions": [
+        "Stage any other dirty path",
+        "Modify any other file",
+        "Clean, reset, stash, delete, move or restore unrelated work",
+        "Touch B2, B3, B4, B5 or governance",
+        "Start Stage 1 in the same operation",
+        "Infer authorization for later stages"
+      ]
+    },
+    "next_valid_action": "Execute the authorized single-file Stage 0 commit/push on the LBE workspace and return exact commit SHA plus remote verification evidence. Until then Stage 1 remains locked."
   },
   "observed_local_state": {
     "classification": "UPLOADED_STAGE_0_ACCEPTANCE_RECORD",
@@ -51,7 +62,7 @@
     {
       "id": "b4-review",
       "classification": "DEFERRED_TO_STAGE_2",
-      "detail": "B4 hash/move validation and modified-relocation review are intentionally deferred. Known non-pure pairs: PHASE12_END_TO_END_PROOF, PHASE_13_CALLBACK_VERTICAL_SLICE and VALIDATED_WORKSPACE_MEMORY."
+      "detail": "B4 hash/move validation and modified-relocation review remain deferred. Known non-pure pairs: PHASE12_END_TO_END_PROOF, PHASE_13_CALLBACK_VERTICAL_SLICE and VALIDATED_WORKSPACE_MEMORY."
     },
     {
       "id": "b3",
@@ -61,12 +72,12 @@
     {
       "id": "governance",
       "classification": "EXCLUDED",
-      "detail": ".lbe/governance/implementation-gates.json remains independently classified and excluded from documentation-only staging."
+      "detail": ".lbe/governance/implementation-gates.json remains independently classified and excluded from Stage 0 canonicalization."
     }
   ],
   "stage_sequence": [
-    {"id": "stage-0-baseline-freeze", "status": "PASS_LOCAL_AWAITING_PUSH", "unlock": "commit and push Stage 0 checkpoint; verify canonical main"},
-    {"id": "stage-1-document-authority-map", "status": "LOCKED", "unlock": "Stage 0 PASS verified on pushed canonical main"},
+    {"id": "stage-0-baseline-freeze", "status": "PASS_LOCAL_PUSH_AUTHORIZED_EXECUTION_PENDING", "unlock": "execute authorized single-file commit/push and verify canonical main"},
+    {"id": "stage-1-document-authority-map", "status": "LOCKED", "unlock": "Stage 0 canonical PASS verified on pushed main"},
     {"id": "stage-2-document-reallocation", "status": "LOCKED", "unlock": "Stage 1 PASS pushed"},
     {"id": "stage-3-governance-alignment", "status": "LOCKED", "unlock": "Stage 2 PASS pushed"},
     {"id": "stage-4-active-runtime-slice", "status": "LOCKED", "unlock": "Stage 3 PASS pushed"},
@@ -76,7 +87,8 @@
     "on_stage_start": "Set exactly one active stage and preserve all later stages as locked.",
     "on_stage_fail": "Record FAIL/BLOCKED evidence on the same node; do not activate another node.",
     "on_local_stage_pass": "Record PASS_LOCAL and keep the next node locked until canonical push is verified.",
+    "on_authorization": "Record the exact authorized action scope without treating authorization as execution proof.",
     "on_stage_pass_pushed": "Record validation, exact touched paths, checkpoint document and source commit SHA; verify pushed main; only then unlock the next node.",
-    "ui_rule": "Tree state mirrors plan/status data. UI state never becomes authority and never marks canonical PASS from narrative alone."
+    "ui_rule": "Tree state mirrors plan/status data. UI state never becomes authority and never marks canonical PASS from authorization or narrative alone."
   }
 }
