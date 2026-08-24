@@ -4,70 +4,67 @@
   "verified_at": "2026-08-25",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "source_branch": "main",
-  "source_head": "58c2bdf2e23f9cc8ea6be26bea8e399555bd431b",
+  "source_head": "d2afb646065fb64ad8b9d2103602c74a37166149",
   "local_workspace": "C:/Agents-Memory-Tool-v6-integration",
-  "overall_classification": "STAGE_2_IN_PROGRESS_GROUP_1_CANONICAL_PASS",
-  "authority_note": "GitHub verification proves LBE main points to 58c2bdf2e23f9cc8ea6be26bea8e399555bd431b with the five authorized Stage 2 Group 1 target paths in the commit. User-supplied live evidence reports local/remote 0/0 alignment, clean index, preserved target bytes, logical equivalence, no EOL policy creation, and no protected-scope changes.",
+  "overall_classification": "STAGE_2_IN_PROGRESS_TWO_RELOCATION_GROUPS_CANONICAL_PASS",
+  "authority_note": "GitHub verification proves LBE main points to d2afb646065fb64ad8b9d2103602c74a37166149. The commit contains the three reviewed target files with exactly the approved path-reference changes. Local index cleanliness, 0/0 alignment, target-byte preservation, remaining dirty count and protected-scope non-mutation are user-supplied live workspace evidence.",
   "current_stage": {
     "id": "stage-2-document-reallocation",
     "title": "Document reallocation and navigation alignment",
     "status": "IN_PROGRESS",
-    "active_group": "stage-2-next-group",
-    "reason": "Stage 2 Group 1 is canonically complete. Stage 2 itself is not complete because additional approved relocation/review groups and navigation validation remain.",
-    "next_valid_action": "Select and execute the next Stage 1-approved Stage 2 group under the one-group-at-a-time boundary. The three known non-pure B4 pairs require separate review before mutation. Stage 3 remains locked."
+    "active_group": "stage-2-next-work",
+    "reason": "Stage 2 Group 1 and the reviewed three-pair relocation group are canonically complete. Stage 2 itself is not complete; remaining Stage 1-approved archive/move work, navigation repair, one-live-owner validation and final Stage 2 checkpoint remain.",
+    "next_valid_action": "Continue deterministically through the remaining Stage 1-approved Stage 2 work one group at a time. Do not stop for routine confirmations. Stop only for a genuine blocker, contradiction, scope-crossing issue, unresolved authority decision, or failed validation that makes the safe next action unclear."
   },
   "stage_0": {"classification":"CANONICAL_PASS","commit_sha":"2abca625cd277733aabfff2e79dbc168fa62d254"},
   "stage_1": {"classification":"CANONICAL_PASS","commit_sha":"7e8dbf95b01b663c5e9f3a616123b298dd3af9db"},
   "stage_2": {
     "classification": "IN_PROGRESS",
-    "group_1": {
+    "group_1": {"classification":"CANONICAL_PASS","commit_sha":"58c2bdf2e23f9cc8ea6be26bea8e399555bd431b"},
+    "reviewed_nonpure_group": {
       "classification": "CANONICAL_PASS",
-      "commit_sha": "58c2bdf2e23f9cc8ea6be26bea8e399555bd431b",
-      "commit_message": "docs: relocate verified history and contract records",
+      "commit_sha": "d2afb646065fb64ad8b9d2103602c74a37166149",
+      "commit_message": "docs: relocate reviewed historical records",
       "github_main_verified": true,
-      "mutation_semantics": {
-        "keep_existing_target_bytes": "PASS_REPORTED",
-        "remove_obsolete_source_path": "PASS_REPORTED",
-        "no_eol_policy_created": "PASS_REPORTED"
-      },
       "canonical_targets": [
-        "docs/contracts/PRIORITY_MODULE_REGISTRY.md",
-        "docs/history/agent-evaluations/test-differfence-transcripts/1785460319869_yl0hf/1785460319869_yl0hf.json",
-        "docs/history/agent-evaluations/test-differfence-transcripts/1785460319869_yl0hf/1785460319869_yl0hf.messages.json",
-        "docs/history/agent-evaluations/test-differfence-transcripts/1785461332072_pt9mp/1785461332072_pt9mp.json",
-        "docs/history/agent-evaluations/test-differfence-transcripts/1785461332072_pt9mp/1785461332072_pt9mp.messages.json"
+        "docs/contracts/VALIDATED_WORKSPACE_MEMORY.md",
+        "docs/history/PHASE12_END_TO_END_PROOF.md",
+        "docs/history/PHASE_13_CALLBACK_VERTICAL_SLICE.md"
+      ],
+      "verified_semantic_changes": [
+        "VALIDATED_WORKSPACE_MEMORY reference updated from docs/PRIORITY_MODULE_REGISTRY.md to docs/contracts/PRIORITY_MODULE_REGISTRY.md",
+        "PHASE12 reference updated from docs/PHASE12_END_TO_END_PROOF.md to docs/history/PHASE12_END_TO_END_PROOF.md",
+        "PHASE_13 reference updated from docs/PHASE_13_CALLBACK_VERTICAL_SLICE.md to docs/history/PHASE_13_CALLBACK_VERTICAL_SLICE.md"
       ],
       "reported_local_verification": {
-        "local_head": "58c2bdf2e23f9cc8ea6be26bea8e399555bd431b",
-        "origin_main": "58c2bdf2e23f9cc8ea6be26bea8e399555bd431b",
+        "local_head": "d2afb646065fb64ad8b9d2103602c74a37166149",
+        "origin_main": "d2afb646065fb64ad8b9d2103602c74a37166149",
         "ahead_behind": "0/0",
         "index": "empty",
-        "remaining_dirty_paths": 55,
+        "remaining_dirty_paths": 49,
+        "protected_scope": "B2/B3/B5/governance untouched",
         "classification": "USER_SUPPLIED_LIVE_EVIDENCE"
       }
     },
-    "known_non_pure_pairs_pending_review": [
-      "docs/PHASE12_END_TO_END_PROOF.md -> docs/history/PHASE12_END_TO_END_PROOF.md",
-      "docs/PHASE_13_CALLBACK_VERTICAL_SLICE.md -> docs/history/PHASE_13_CALLBACK_VERTICAL_SLICE.md",
-      "docs/VALIDATED_WORKSPACE_MEMORY.md -> docs/contracts/VALIDATED_WORKSPACE_MEMORY.md"
+    "remaining": [
+      "Stage 1-approved archive/move groups not yet canonicalized",
+      "navigation/reference repair",
+      "canonical boot-path validation",
+      "one-live-owner validation",
+      "Stage 2 PASS/FAIL checkpoint",
+      "Stage 2 checkpoint commit/push/remote verification"
     ]
-  },
-  "preservation_state": {
-    "b2": "UNTOUCHED_REPORTED",
-    "b3": "HELD_REPORTED",
-    "b5": "QUARANTINED_REPORTED",
-    "governance": "UNTOUCHED_REPORTED_EXCLUDED_UNTIL_STAGE_3"
   },
   "stage_sequence": [
     {"id":"stage-0-baseline-freeze","status":"CANONICAL_PASS","evidence":"2abca625cd277733aabfff2e79dbc168fa62d254"},
     {"id":"stage-1-document-authority-map","status":"CANONICAL_PASS","evidence":"7e8dbf95b01b663c5e9f3a616123b298dd3af9db"},
-    {"id":"stage-2-document-reallocation","status":"IN_PROGRESS","group_1":"CANONICAL_PASS","evidence":"58c2bdf2e23f9cc8ea6be26bea8e399555bd431b"},
+    {"id":"stage-2-document-reallocation","status":"IN_PROGRESS","group_1":"CANONICAL_PASS","reviewed_nonpure_group":"CANONICAL_PASS","latest_evidence":"d2afb646065fb64ad8b9d2103602c74a37166149"},
     {"id":"stage-3-governance-alignment","status":"LOCKED","unlock":"Stage 2 canonical PASS"},
     {"id":"stage-4-active-runtime-slice","status":"LOCKED","unlock":"Stage 3 canonical PASS"},
     {"id":"stage-5-next-slice","status":"LOCKED","unlock":"Stage 4 canonical PASS and new machine gate verified"}
   ],
-  "update_contract": {
-    "stage_2_rule": "Continue one approved relocation/review group at a time. Do not mark Stage 2 complete until all approved groups, navigation repair, one-live-owner validation, Stage 2 checkpoint, commit, push and remote verification pass.",
-    "ui_rule": "Tree state mirrors plan/status data. UI state never becomes authority."
+  "continuation_policy": {
+    "continue_without_stopping_for": ["routine PASS results","deterministic read-only checks","validation already required by the active group","multiple commands needed for the same authorized objective"],
+    "stop_only_for": ["real blocker","evidence contradiction","scope crossing","material ambiguity that could change repository state","missing required evidence requiring guessing","unrelated dirty-work risk","failed validation with unclear safe continuation","new destructive/policy/authority decision requiring authorization"]
   }
 }
