@@ -6,66 +6,67 @@
   "source_branch": "main",
   "source_head": "090a53f4847279e2515dc84677efdaa995b9c809",
   "local_workspace": "C:/Agents-Memory-Tool-v6-integration",
-  "overall_classification": "WORKSPACE_RECONCILIATION_STAGE_0_BLOCKED_MATRIX_CORRECTION_REQUIRED",
-  "authority_note": "Committed GitHub main proves repository history. Current local dirty-state details below are user-supplied live workspace evidence and remain local until the corresponding stage is committed and pushed. The UI is a projection only and cannot advance a stage by itself.",
+  "overall_classification": "WORKSPACE_RECONCILIATION_STAGE_0_PASS_LOCAL_AWAITING_CANONICAL_PUSH",
+  "authority_note": "The uploaded Stage 0 acceptance record supports the local PASS classification. Canonical completion remains unproven until the Stage 0 checkpoint is committed and pushed to Letterblack0306/LBE_Presistent_Agent_wall main. The UI is projection-only and does not unlock Stage 1 from local narrative alone.",
   "current_stage": {
     "id": "stage-0-baseline-freeze",
     "title": "Baseline freeze and preservation matrix",
-    "status": "BLOCKED",
-    "reason": "The preservation matrix does not yet satisfy its own complete-mapping invariant: the matrix itself is unclassified and three B4 relocation pairs are content-modified rather than hash-identical pure moves.",
-    "next_valid_action": "Documentation-only correction of docs/acceptance/WORKSPACE_PRESERVATION_BOUNDARY_MATRIX.md. Include the matrix itself exactly once and classify the three non-matching B4 pairs as modified historical relocations requiring individual review.",
-    "forbidden_until_pass": [
+    "status": "PASS_LOCAL_AWAITING_PUSH",
+    "reason": "Stage 0 records exact repository identity, an empty staged inventory, a frozen 65-path dirty inventory classified exactly once, and no code changes. The newly created Stage 0 record is itself classified as B1, making the post-record live dirty count 66.",
+    "next_valid_action": "Commit and push the Stage 0 PASS checkpoint to canonical LBE main without absorbing unrelated dirty paths. After remote verification of that checkpoint, unlock Stage 1 document-authority-map work.",
+    "forbidden_until_push": [
+      "Starting Stage 1 before Stage 0 PASS is present on pushed canonical main",
       "Random file-by-file reconciliation",
       "Staging unrelated dirty paths",
       "Destructive cleanup or reset",
       "Governance mutation outside its later stage",
-      "Runtime implementation work before preservation/document stages pass",
-      "Advancing the UI to a later stage without a pushed PASS checkpoint"
+      "Runtime implementation work before preservation/document/governance stages pass"
     ]
   },
   "observed_local_state": {
-    "classification": "USER_SUPPLIED_LIVE_EVIDENCE",
+    "classification": "UPLOADED_STAGE_0_ACCEPTANCE_RECORD",
     "branch": "main",
-    "head": "090a53f",
-    "origin_main_alignment": "0 ahead / 0 behind against local origin/main ref",
-    "dirty_entries": 54,
-    "modified_files": 27,
-    "deleted_tracked_files": 8,
-    "untracked_entries": 19,
-    "git_diff_check": "PASS with existing LF-to-CRLF notice",
-    "pytest_collection": "686 tests collected",
+    "head": "090a53f4847279e2515dc84677efdaa995b9c809",
+    "origin_main": "090a53f4847279e2515dc84677efdaa995b9c809",
+    "upstream": "origin/main",
+    "ahead_behind": "0/0",
+    "staged_paths_at_capture": 0,
+    "dirty_paths_at_capture": 65,
+    "live_dirty_paths_after_stage_record": 66,
+    "code_changes_by_stage_0": "none",
+    "git_diff_check": "PASS",
     "full_test_suite": "NOT_RUN"
   },
   "preservation_findings": [
     {
-      "id": "matrix-self",
-      "classification": "FAIL",
-      "detail": "WORKSPACE_PRESERVATION_BOUNDARY_MATRIX.md is itself an untracked dirty path but is not mapped in B1-B5."
+      "id": "exact-one-time-classification",
+      "classification": "PASS_LOCAL",
+      "detail": "The Stage 0 record classifies every frozen dirty path exactly once across B1-B5 plus an independent governance exclusion."
     },
     {
-      "id": "b4-pure-moves",
-      "classification": "PARTIAL_PASS",
-      "detail": "PRIORITY_MODULE_REGISTRY and four transcript relocation pairs are hash-matched pure moves."
+      "id": "stage-record-self",
+      "classification": "PASS_LOCAL",
+      "detail": "docs/acceptance/STAGE_0_BASELINE_FREEZE.md is classified as a B1 documentation path; the record states the live dirty count becomes 66 after its creation."
     },
     {
-      "id": "b4-modified-relocations",
-      "classification": "REVIEW_REQUIRED",
-      "detail": "PHASE12_END_TO_END_PROOF, PHASE_13_CALLBACK_VERTICAL_SLICE and VALIDATED_WORKSPACE_MEMORY relocation pairs do not hash-match and must be reviewed as modified historical relocations."
+      "id": "b4-review",
+      "classification": "DEFERRED_TO_STAGE_2",
+      "detail": "B4 hash/move validation and modified-relocation review are intentionally deferred. Known non-pure pairs: PHASE12_END_TO_END_PROOF, PHASE_13_CALLBACK_VERTICAL_SLICE and VALIDATED_WORKSPACE_MEMORY."
     },
     {
       "id": "b3",
       "classification": "HELD",
-      "detail": "B3 remains held. No authorization is inferred."
+      "detail": "TUI/projection paths remain held."
     },
     {
       "id": "governance",
       "classification": "EXCLUDED",
-      "detail": "Governance remains excluded from this preservation correction stage."
+      "detail": ".lbe/governance/implementation-gates.json remains independently classified and excluded from documentation-only staging."
     }
   ],
   "stage_sequence": [
-    {"id": "stage-0-baseline-freeze", "status": "BLOCKED", "unlock": "correct matrix and document PASS"},
-    {"id": "stage-1-document-authority-map", "status": "LOCKED", "unlock": "Stage 0 PASS pushed"},
+    {"id": "stage-0-baseline-freeze", "status": "PASS_LOCAL_AWAITING_PUSH", "unlock": "commit and push Stage 0 checkpoint; verify canonical main"},
+    {"id": "stage-1-document-authority-map", "status": "LOCKED", "unlock": "Stage 0 PASS verified on pushed canonical main"},
     {"id": "stage-2-document-reallocation", "status": "LOCKED", "unlock": "Stage 1 PASS pushed"},
     {"id": "stage-3-governance-alignment", "status": "LOCKED", "unlock": "Stage 2 PASS pushed"},
     {"id": "stage-4-active-runtime-slice", "status": "LOCKED", "unlock": "Stage 3 PASS pushed"},
@@ -74,7 +75,8 @@
   "update_contract": {
     "on_stage_start": "Set exactly one active stage and preserve all later stages as locked.",
     "on_stage_fail": "Record FAIL/BLOCKED evidence on the same node; do not activate another node.",
-    "on_stage_pass": "Record validation, exact touched paths, checkpoint document and source commit SHA; push main; only then unlock the next node.",
-    "ui_rule": "Tree state mirrors plan/status data. UI state never becomes authority and never marks PASS from narrative alone."
+    "on_local_stage_pass": "Record PASS_LOCAL and keep the next node locked until canonical push is verified.",
+    "on_stage_pass_pushed": "Record validation, exact touched paths, checkpoint document and source commit SHA; verify pushed main; only then unlock the next node.",
+    "ui_rule": "Tree state mirrors plan/status data. UI state never becomes authority and never marks canonical PASS from narrative alone."
   }
 }
