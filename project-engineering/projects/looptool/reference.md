@@ -15,9 +15,11 @@ Recorded remote repository identity for this projection:
 
 Do not assume this document and runtime implementation remain synchronized. Reinspect current source/runtime before implementation-specific claims.
 
-## Current proven runtime checkpoint
+## Current proven runtime checkpoints
 
-LoopTool is not represented here only as a documented concept. A bounded live execution proof is preserved at:
+### Historical recall checkpoint — 2026-08-23
+
+A bounded live execution proof is preserved at:
 
 `runtime-proof-2026-08-23.md`
 
@@ -49,7 +51,176 @@ SESSION MESSAGES SHA256: c0ce4e77a4dac3dc8a76873aff989825ed2df7ce3978a1a8006f649
 
 The proof is bounded: it considered 50 recent sessions, did not inspect current Access Browser Agent source truth, and did not establish first-class `execution_record_id` / `execution_record_sha256` persistence for every LoopTool run.
 
-**Use rule:** when deciding whether LoopTool is a real usable execution/evidence bridge, read the runtime proof rather than relying on this description alone. When current health matters, run a fresh bounded LoopTool probe because a dated proof does not prove future runtime state.
+### BirdEye MCP local-truth checkpoint — 2026-08-25
+
+Fresh LoopTool execution proved the current local BirdEye MCP path and its authority boundary.
+
+Observed local repository identity:
+
+```text
+WORKSPACE: C:\MCP Local\Letterblack_BirdEye
+BRANCH: main
+LOCAL HEAD: 6a14d4846f036c0cbf34c9bba5e93421706901ac
+ORIGIN/MAIN: 6a14d4846f036c0cbf34c9bba5e93421706901ac
+AHEAD/BEHIND: 0/0
+LOCAL EXCEPTION: ?? config.json.bak-preskills
+```
+
+Observed MCP roots:
+
+```text
+access-browser-agent -> G:\Developments\46_Accecc_Browser_Agent\Browser Agent [workspace]
+gpt-knowledge        -> C:\MCP Local\GPT-Knowledge [knowledge]
+memory               -> C:\MCP Local\Memory [workspace]
+```
+
+Observed BirdEye index status after adding and tracing the Memory root:
+
+```text
+DATABASE: C:\MCP Local\Letterblack_BirdEye\state\workspace.db
+FILE COUNT: 82456
+HASHED COUNT: 82316
+TOTAL: 3.84 GB
+MEMORY TRACE FILES SEEN: 571
+MEMORY TRACE HASHED: 46
+MEMORY TRACE CACHED: 519
+MEMORY TRACE LARGE: 6
+MEMORY TRACE UNREADABLE: 0
+```
+
+Observed project-resolution authority:
+
+```text
+source: GPT-Knowledge:project-engineering/projects/workspace/local-projects.json
+authority: current_workspace_mapping
+```
+
+The current local project resolver proved machine-local existence for the mapped `memory`, `looptool`, `access-browser-agent`, `brew`, and other recorded project paths.
+
+Important interpretation:
+
+```text
+BirdEye workspace trace/search/index success = current workspace/file evidence
+BirdEye search returning no historical Cline-session match = not a BirdEye failure
+Memory MCP = owner for GPT/ChatGPT archive and Cline historical-session retrieval
+```
+
+A combined multi-step LoopTool command must not mark BirdEye acceptance as failed merely because a downstream historical-memory lookup returns no match. Classify each authority-layer result independently.
+
+Current bookkeeping anomaly observed in BirdEye status:
+
+```text
+last_run.status = root_completed:memory
+last_run.completed_at = null
+last_run.error = null
+```
+
+The trace itself printed `Trace completed successfully`; therefore indexing completion is proven for the observed run, while the null completion timestamp is an inconsistent status field that should be inspected separately rather than treated as indexing failure.
+
+**Use rule:** when current health matters, run a fresh bounded LoopTool probe because a dated proof does not prove future runtime state.
+
+## Local-truth workflow: when, why and how
+
+### Use BirdEye through LoopTool when
+
+Use BirdEye when the question is about current machine-local workspace evidence, including:
+
+- whether a configured project path exists on this machine;
+- current repository/workspace identity;
+- current Git revision/status evidence;
+- whether a file is present in a governed workspace;
+- indexed workspace search;
+- local file inspection;
+- current BirdEye root/index health;
+- workspace-scoped command execution when BirdEye policy permits it;
+- SHA/integrity evidence for workspace files;
+- reconciling GPT-Knowledge project mapping against actual local paths.
+
+Why: BirdEye is the governed current-workspace/local-evidence layer. It is stronger than historical documentation for present-state filesystem/repository claims.
+
+Typical route:
+
+```text
+user asks current-local question
+-> LoopTool bounded command transport
+-> BirdEye MCP diagnostic/tool
+-> current local observable
+-> classify only what was actually observed
+```
+
+Useful BirdEye MCP tools currently exposed include:
+
+```text
+local_projects
+birdeye_roots
+birdeye_status
+birdeye_search
+birdeye_inspect
+workspace_identity
+revision_status
+workspace_run
+workspace_run_sequence
+workspace_command_history
+```
+
+Diagnostic-harness shape:
+
+```text
+py -3 mcp_server.py <tool> --args '<JSON object>'
+```
+
+Examples:
+
+```text
+py -3 mcp_server.py local_projects --args '{"project":"memory"}'
+py -3 mcp_server.py birdeye_roots --args '{}'
+py -3 mcp_server.py birdeye_status --args '{}'
+py -3 mcp_server.py birdeye_search --args '{"query":"term","roots":"memory","max_results":25}'
+```
+
+BirdEye's index is populated through its supported trace command:
+
+```text
+py -3 agent.py trace
+```
+
+Use a fresh trace when the configured root set changes. Do not assume adding a root to config means it has already been indexed.
+
+### Use Memory MCP when
+
+Use Memory MCP when the question is historical rather than current-workspace truth, including:
+
+- past ChatGPT discussions;
+- old decisions or disagreements;
+- prior rejected/superseded approaches;
+- Cline coding-agent sessions;
+- historical tool/runtime traces;
+- prior session/source provenance;
+- historical conversation/message SHA identity.
+
+Why: Memory owns canonical historical retrieval and provenance. BirdEye may index the Memory **workspace files**, but that does not make BirdEye the owner of the historical corpus stored/retrieved through Memory.
+
+### Use GitHub when
+
+Use GitHub for live remote repository truth:
+
+- current remote branch/commit;
+- PR/issue state;
+- remote source files;
+- checks and remote history.
+
+Why: BirdEye local state and GitHub remote state can diverge. Neither should silently substitute for the other.
+
+### Use GPT-Knowledge when
+
+Use GPT-Knowledge for:
+
+- project IDs and machine-local mapping metadata;
+- reusable engineering methods;
+- current projected plans/status/reference records;
+- routing to the correct owner/tool.
+
+Why: GPT-Knowledge describes and routes authority; it is not itself proof that the local runtime or workspace is currently healthy.
 
 ## Historical plan, decision, disagreement and truth retrieval
 
@@ -262,10 +433,15 @@ Returned stdout/stderr/runtime evidence should be evaluated directly. Do not inf
 - A dated proof ≠ proof of current health without revalidation.
 - A timeout can be product failure, dependency/configuration block, transport failure or stale harness assumption; classify before changing code.
 - Workspace and revision identity must be known before local evidence is treated as authoritative.
+- A multi-step LoopTool command can contain mixed outcomes; do not convert a downstream `NO_MATCH` from a different authority into failure of an earlier successful BirdEye workspace check.
 
 ## BirdEye and Memory boundary
 
-Use BirdEye when the routed workflow selects it as the governed local evidence layer and its workspace/revision/search/inspect/run capabilities fit the investigation. Use Memory for canonical historical retrieval and provenance across imported GPT history and Cline-session evidence. Use LoopTool when explicitly requested, when selected as the direct local execution bridge, or when one bounded command must compose those existing owners.
+Use BirdEye when the routed workflow selects it as the governed local evidence layer and its workspace/revision/search/inspect/run capabilities fit the investigation. BirdEye can index the `C:\MCP Local\Memory` workspace for current file/workspace evidence, but it does not become the historical-memory owner by doing so.
+
+Use Memory for canonical historical retrieval and provenance across imported GPT history and Cline-session evidence. A historical Cline session ID returning no match from `birdeye_search` is not evidence that Memory lacks the session and is not a BirdEye failure; query the Memory MCP historical source instead.
+
+Use LoopTool when explicitly requested, when selected as the direct local execution bridge, or when one bounded command must compose those existing owners.
 
 Do not duplicate authority: LoopTool does not become the project-mapping or historical-memory owner merely because it can invoke those owners through a bounded command.
 
