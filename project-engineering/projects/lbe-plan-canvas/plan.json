@@ -1,32 +1,30 @@
 {
   "schema_version": 3,
   "project": "LBE Persistent Agent",
-  "purpose": "Evidence-gated reconciliation plan for C:/Agents-Memory-Tool-v6-integration. This projection shows only the ordered stages; source, local workspace evidence, machine gates, acceptance records and pushed commits remain authoritative.",
-  "authority_rule": "Current local workspace evidence outranks this projection for dirty-state claims. Canonical GitHub main, .lbe/governance/implementation-gates.json, acceptance records and exact pushed commits prove completed stages. A later stage cannot become active until the previous stage is documented PASS and pushed.",
+  "purpose": "Evidence-gated reconciliation plan for C:/Agents-Memory-Tool-v6-integration. Source, local workspace evidence, machine gates, acceptance records and pushed commits remain authoritative.",
+  "authority_rule": "A later stage cannot become active until the previous stage is documented PASS and pushed. Stage 2 proceeds one approved group at a time.",
   "updated": "2026-08-25",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "source_branch": "main",
-  "source_head": "58c2bdf2e23f9cc8ea6be26bea8e399555bd431b",
+  "source_head": "d2afb646065fb64ad8b9d2103602c74a37166149",
   "local_workspace": "C:/Agents-Memory-Tool-v6-integration",
-  "local_state_source": "user-supplied live workspace evidence plus canonical GitHub verification",
   "active_node": "stage-2-document-reallocation",
   "execution_policy": {
     "one_stage_at_a_time": true,
     "one_group_at_a_time": true,
     "pass_required_before_next_stage": true,
     "commit_and_push_after_each_pass": true,
-    "no_random_file_checks": true,
     "no_unrelated_dirty_file_absorption": true,
-    "no_destructive_cleanup_without_explicit_authorization": true,
-    "stage_record_required": true
+    "no_destructive_cleanup_without_explicit_authorization": true
   },
   "nodes": [
-    {"id":"authority","parent":null,"lane":"Authority","title":"Workspace reconciliation authority","status":"proven","summary":"Canonical LBE main is 58c2bdf2e23f9cc8ea6be26bea8e399555bd431b. Stage 0 and Stage 1 are canonical PASS; Stage 2 Group 1 is now canonical PASS."},
-    {"id":"stage-0-baseline-freeze","parent":"authority","lane":"Stage 0","title":"Baseline freeze and preservation matrix","status":"proven","priority":"CANONICAL PASS","summary":"Stage 0 complete at 2abca625cd277733aabfff2e79dbc168fa62d254."},
-    {"id":"stage-1-document-authority-map","parent":"stage-0-baseline-freeze","lane":"Stage 1","title":"Document authority map","status":"proven","priority":"CANONICAL PASS","summary":"Stage 1 complete at 7e8dbf95b01b663c5e9f3a616123b298dd3af9db."},
-    {"id":"stage-2-document-reallocation","parent":"stage-1-document-authority-map","lane":"Stage 2","title":"Document reallocation and navigation alignment","status":"current","priority":"IN PROGRESS","summary":"Stage 2 remains active. Group 1 relocation is canonically complete at 58c2bdf2e23f9cc8ea6be26bea8e399555bd431b. Stage 3 remains locked until the remaining Stage 2 groups, navigation repair, validation, and final Stage 2 checkpoint are completed and pushed."},
-    {"id":"stage-2-group-1-relocation","parent":"stage-2-document-reallocation","lane":"Stage 2 · Group 1","title":"Verified history and contract relocation","status":"proven","priority":"CANONICAL PASS","summary":"Five approved source/target pairs were committed as R100 relocations while retaining the existing target bytes and without introducing an EOL policy. Canonical commit: 58c2bdf2e23f9cc8ea6be26bea8e399555bd431b."},
-    {"id":"stage-2-next-group","parent":"stage-2-document-reallocation","lane":"Stage 2 · Next","title":"Next approved relocation/review group","status":"current","priority":"SELECT FROM STAGE 1 MATRIX","summary":"Continue one approved Stage 2 group at a time. The three known non-pure B4 pairs still require separate content review before any mutation. Do not touch B2, B3, B5 or governance."},
+    {"id":"authority","parent":null,"lane":"Authority","title":"Workspace reconciliation authority","status":"proven","summary":"Canonical LBE main is d2afb646065fb64ad8b9d2103602c74a37166149."},
+    {"id":"stage-0-baseline-freeze","parent":"authority","lane":"Stage 0","title":"Baseline freeze and preservation matrix","status":"proven","priority":"CANONICAL PASS","summary":"Complete at 2abca625cd277733aabfff2e79dbc168fa62d254."},
+    {"id":"stage-1-document-authority-map","parent":"stage-0-baseline-freeze","lane":"Stage 1","title":"Document authority map","status":"proven","priority":"CANONICAL PASS","summary":"Complete at 7e8dbf95b01b663c5e9f3a616123b298dd3af9db."},
+    {"id":"stage-2-document-reallocation","parent":"stage-1-document-authority-map","lane":"Stage 2","title":"Document reallocation and navigation alignment","status":"current","priority":"IN PROGRESS","summary":"Group 1 and the reviewed three-pair relocation group are canonically complete. Stage 2 remains active for remaining Stage 1-approved archive/move work, navigation repair, one-live-owner validation and final Stage 2 checkpoint."},
+    {"id":"stage-2-group-1-relocation","parent":"stage-2-document-reallocation","lane":"Stage 2 · Group 1","title":"Verified history and contract relocation","status":"proven","priority":"CANONICAL PASS","summary":"Five approved relocations complete at 58c2bdf2e23f9cc8ea6be26bea8e399555bd431b."},
+    {"id":"stage-2-reviewed-nonpure-relocations","parent":"stage-2-document-reallocation","lane":"Stage 2 · Reviewed Group","title":"Reviewed non-pure B4 relocations","status":"proven","priority":"CANONICAL PASS","summary":"Three reviewed relocations are complete at d2afb646065fb64ad8b9d2103602c74a37166149. GitHub proves the target files contain only the approved path-reference updates; user-supplied live evidence reports preserved target bytes, clean index and 0/0 alignment."},
+    {"id":"stage-2-next-work","parent":"stage-2-document-reallocation","lane":"Stage 2 · Next","title":"Remaining approved Stage 2 work","status":"current","priority":"CONTINUE WITHOUT UNNECESSARY STOPS","summary":"Continue through remaining Stage 1-approved relocation/archive groups, then repair navigation and validate the canonical boot path. Stop only on a genuine blocker, contradiction, scope crossing, unresolved authority question or failed validation."},
     {"id":"stage-3-governance-alignment","parent":"stage-2-document-reallocation","lane":"Stage 3","title":"Governance and current-state alignment","status":"locked","summary":"Locked until Stage 2 canonical PASS."},
     {"id":"stage-4-active-runtime-slice","parent":"stage-3-governance-alignment","lane":"Stage 4","title":"Authorized runtime slice","status":"locked","summary":"Locked until Stage 3 canonical PASS."},
     {"id":"stage-5-next-slice","parent":"stage-4-active-runtime-slice","lane":"Stage 5","title":"Advance to next authorized slice","status":"locked","summary":"Locked until Stage 4 canonical PASS and newly verified machine state."}
@@ -36,9 +34,8 @@
     {"from":"stage-0-baseline-freeze","to":"stage-1-document-authority-map","type":"pass-unlocked"},
     {"from":"stage-1-document-authority-map","to":"stage-2-document-reallocation","type":"pass-unlocked"},
     {"from":"stage-2-document-reallocation","to":"stage-2-group-1-relocation","type":"group-pass"},
-    {"from":"stage-2-group-1-relocation","to":"stage-2-next-group","type":"continue-stage"},
-    {"from":"stage-2-document-reallocation","to":"stage-3-governance-alignment","type":"pass-unlocks"},
-    {"from":"stage-3-governance-alignment","to":"stage-4-active-runtime-slice","type":"pass-unlocks"},
-    {"from":"stage-4-active-runtime-slice","to":"stage-5-next-slice","type":"pass-unlocks"}
+    {"from":"stage-2-group-1-relocation","to":"stage-2-reviewed-nonpure-relocations","type":"group-pass"},
+    {"from":"stage-2-reviewed-nonpure-relocations","to":"stage-2-next-work","type":"continue-stage"},
+    {"from":"stage-2-document-reallocation","to":"stage-3-governance-alignment","type":"pass-unlocks"}
   ]
 }
