@@ -2,13 +2,13 @@
   "schema_version": 3,
   "project": "LBE Persistent Agent",
   "purpose": "Evidence-gated reconciliation plan for C:/Agents-Memory-Tool-v6-integration. Source, local workspace evidence, machine gates, acceptance records and pushed commits remain authoritative.",
-  "authority_rule": "A later stage becomes active only after the previous stage is documented PASS, committed, pushed and remotely verified. Stage 3 is governance/current-state alignment only; it does not authorize runtime implementation.",
+  "authority_rule": "A later stage becomes active only after the previous stage is documented PASS, committed, pushed and remotely verified. Stage 4 runtime work must be bounded to the machine-selected active slice and may not widen authority beyond the current governance gate.",
   "updated": "2026-08-25",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "source_branch": "main",
-  "source_head": "6b44c624834523725fde1297c9f714b0a75a144f",
+  "source_head": "12a4b565b4691f71c66f075ea1e208fffa854004",
   "local_workspace": "C:/Agents-Memory-Tool-v6-integration",
-  "active_node": "stage-3-governance-alignment",
+  "active_node": "stage-4-active-runtime-slice",
   "execution_policy": {
     "one_stage_at_a_time": true,
     "pass_required_before_next_stage": true,
@@ -18,26 +18,20 @@
     "continue_without_unnecessary_stops": true
   },
   "nodes": [
-    {"id":"authority","parent":null,"lane":"Authority","title":"Workspace reconciliation authority","status":"proven","summary":"Canonical LBE main is 6b44c624834523725fde1297c9f714b0a75a144f. Stage 0, Stage 1 and Stage 2 are canonical PASS."},
+    {"id":"authority","parent":null,"lane":"Authority","title":"Workspace reconciliation authority","status":"proven","summary":"Canonical LBE main is 12a4b565b4691f71c66f075ea1e208fffa854004. Stages 0-3 are canonical PASS."},
     {"id":"stage-0-baseline-freeze","parent":"authority","lane":"Stage 0","title":"Baseline freeze and preservation matrix","status":"proven","priority":"CANONICAL PASS","summary":"Complete at 2abca625cd277733aabfff2e79dbc168fa62d254."},
     {"id":"stage-1-document-authority-map","parent":"stage-0-baseline-freeze","lane":"Stage 1","title":"Document authority map","status":"proven","priority":"CANONICAL PASS","summary":"Complete at 7e8dbf95b01b663c5e9f3a616123b298dd3af9db."},
-    {"id":"stage-2-document-reallocation","parent":"stage-1-document-authority-map","lane":"Stage 2","title":"Document reallocation and navigation alignment","status":"proven","priority":"CANONICAL PASS","summary":"Stage 2 final checkpoint is canonical at 6b44c624834523725fde1297c9f714b0a75a144f. The checkpoint records completed approved relocation/archive groups, navigation/reference repair, archived acceptance path repair, canonical boot-path PASS, one-fact/one-live-owner PASS, no EOL policy creation and preserved protected dirty boundaries."},
-    {"id":"stage-2-group-1-relocation","parent":"stage-2-document-reallocation","lane":"Stage 2 · Group 1","title":"Verified history and contract relocation","status":"proven","priority":"CANONICAL PASS","summary":"Five approved relocations complete at 58c2bdf2e23f9cc8ea6be26bea8e399555bd431b."},
-    {"id":"stage-2-reviewed-nonpure-relocations","parent":"stage-2-document-reallocation","lane":"Stage 2 · Reviewed Group","title":"Reviewed non-pure B4 relocations","status":"proven","priority":"CANONICAL PASS","summary":"Three reviewed relocations complete at d2afb646065fb64ad8b9d2103602c74a37166149."},
-    {"id":"stage-2-final-validation","parent":"stage-2-document-reallocation","lane":"Stage 2 · Final","title":"Navigation and authority validation","status":"proven","priority":"CANONICAL PASS","summary":"Final checkpoint records navigation/reference repair commit 470d27d28cf0e4e2d63ff7a6df5ba385e0e50f98, archived acceptance fixture repair a00cb2dd2696c9e9f36cdd42c369457b4feb4243, boot-path PASS, one-live-owner PASS and bounded scope."},
-    {"id":"stage-3-governance-alignment","parent":"stage-2-document-reallocation","lane":"Stage 3","title":"Governance and current-state alignment","status":"current","priority":"UNLOCKED / READY","summary":"Reconcile the machine governance gate, docs/CURRENT_STATUS.md, docs/acceptance/CURRENT_IMPLEMENTATION_GATE.md and the machine-selected active acceptance gate so they describe one current phase/slice without competing active claims. Stage 3 has not started yet.","pass_requires":["Inspect current .lbe/governance/implementation-gates.json first","Identify exactly one machine-authoritative active phase, slice and active plan","Align CURRENT_STATUS to machine state without making it the authorization owner","Align CURRENT_IMPLEMENTATION_GATE as a projection, not authority","Verify the machine-selected active acceptance gate is the only active human gate","Ensure publication/next-phase locks agree across owners","Do not touch runtime B2/B3 or B5 quarantine","Create Stage 3 PASS/FAIL checkpoint","Commit and push only the validated Stage 3 scope","Remote-verify Stage 3 checkpoint before unlocking Stage 4"]},
-    {"id":"stage-4-active-runtime-slice","parent":"stage-3-governance-alignment","lane":"Stage 4","title":"Authorized runtime slice","status":"locked","summary":"Locked until Stage 3 canonical PASS. Runtime work must then be selected from newly verified machine governance state."},
+    {"id":"stage-2-document-reallocation","parent":"stage-1-document-authority-map","lane":"Stage 2","title":"Document reallocation and navigation alignment","status":"proven","priority":"CANONICAL PASS","summary":"Complete at 6b44c624834523725fde1297c9f714b0a75a144f."},
+    {"id":"stage-3-governance-alignment","parent":"stage-2-document-reallocation","lane":"Stage 3","title":"Governance and current-state alignment","status":"proven","priority":"CANONICAL PASS","summary":"Governance/current-state alignment is canonical across commits 6d844c820706a474631f60728d9b8446e349e645 and 12a4b565b4691f71c66f075ea1e208fffa854004. Machine authority now selects COMPLETE_LBE_AGENT_RUNTIME_GATE / COMPLETE_LBE_AGENT_RUNTIME_IMPLEMENTATION / DOCTRINE_TO_PROVIDER_CONTEXT_BRIDGE. Publication remains locked through nested governance records."},
+    {"id":"stage-4-active-runtime-slice","parent":"stage-3-governance-alignment","lane":"Stage 4","title":"Authorized runtime slice","status":"current","priority":"UNLOCKED / READY","summary":"Stage 4 is unlocked but has not started. The only authorized runtime slice is DOCTRINE_TO_PROVIDER_CONTEXT_BRIDGE under docs/acceptance/COMPLETE_LBE_AGENT_RUNTIME_GATE.md. Preserve unrelated B2/B3/B5 dirty work and do not widen beyond the machine gate.","pass_requires":["Read .lbe/governance/implementation-gates.json and the active acceptance gate before mutation","Implement only DOCTRINE_TO_PROVIDER_CONTEXT_BRIDGE","Reuse existing owners/adapters where required by governance","Run focused configuration/provider/profile/persistence evidence required by the active gate","Run credential non-leakage validation where required","Do not reactivate publication work","Do not absorb unrelated dirty paths","Create Stage 4 PASS/FAIL checkpoint","Commit and push only the validated Stage 4 scope","Remote-verify Stage 4 before unlocking Stage 5"]},
     {"id":"stage-5-next-slice","parent":"stage-4-active-runtime-slice","lane":"Stage 5","title":"Advance to next authorized slice","status":"locked","summary":"Locked until Stage 4 canonical PASS and newly verified machine state."}
   ],
   "edges": [
     {"from":"authority","to":"stage-0-baseline-freeze","type":"authority"},
     {"from":"stage-0-baseline-freeze","to":"stage-1-document-authority-map","type":"pass-unlocked"},
     {"from":"stage-1-document-authority-map","to":"stage-2-document-reallocation","type":"pass-unlocked"},
-    {"from":"stage-2-document-reallocation","to":"stage-2-group-1-relocation","type":"group-pass"},
-    {"from":"stage-2-document-reallocation","to":"stage-2-reviewed-nonpure-relocations","type":"group-pass"},
-    {"from":"stage-2-document-reallocation","to":"stage-2-final-validation","type":"validation-pass"},
     {"from":"stage-2-document-reallocation","to":"stage-3-governance-alignment","type":"pass-unlocked"},
-    {"from":"stage-3-governance-alignment","to":"stage-4-active-runtime-slice","type":"pass-unlocks"},
+    {"from":"stage-3-governance-alignment","to":"stage-4-active-runtime-slice","type":"pass-unlocked"},
     {"from":"stage-4-active-runtime-slice","to":"stage-5-next-slice","type":"pass-unlocks"}
   ]
 }
