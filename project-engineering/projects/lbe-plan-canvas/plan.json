@@ -8,7 +8,7 @@
   "source_branch": "main",
   "source_head": "090a53f4847279e2515dc84677efdaa995b9c809",
   "local_workspace": "C:/Agents-Memory-Tool-v6-integration",
-  "local_state_source": "user-supplied live workspace evidence",
+  "local_state_source": "user-supplied live workspace evidence plus uploaded Stage 0 acceptance record",
   "active_node": "stage-0-baseline-freeze",
   "execution_policy": {
     "one_stage_at_a_time": true,
@@ -34,16 +34,16 @@
       "lane": "Stage 0",
       "title": "Baseline freeze and preservation matrix",
       "status": "current",
-      "priority": "BLOCKED — MATRIX CORRECTION REQUIRED",
-      "summary": "Record exact HEAD/origin, classify every dirty path exactly once, include the preservation matrix itself, and reclassify the three non-hash-matching B4 relocations as modified historical relocations requiring individual review.",
+      "priority": "PASS LOCAL — PUSH REQUIRED",
+      "summary": "Stage 0 acceptance record reports PASS: exact repository identity captured, 65 dirty paths frozen and classified exactly once, and the new Stage 0 record itself classified as B1, producing a live dirty count of 66. No staging or mutation beyond the documentation record occurred. Stage 1 remains locked until this PASS checkpoint is committed and pushed to canonical LBE main.",
       "pass_requires": [
-        "Every dirty path maps exactly once",
-        "No path appears in multiple preservation buckets",
-        "Pure moves are hash-proven",
-        "Modified relocations are explicitly separated from pure moves",
-        "B3 remains held unless separately authorized",
-        "Governance remains excluded from accidental reconciliation",
-        "Stage-0 checkpoint records PASS/FAIL and exact evidence"
+        "Every frozen dirty path maps exactly once — reported PASS",
+        "Stage 0 acceptance record exists — proven from uploaded record",
+        "No code changes by Stage 0 — reported PASS",
+        "B3 remains held",
+        "Governance remains independently excluded",
+        "B4 hash and modified-relocation review remains deferred to Stage 2",
+        "Stage-0 PASS checkpoint is committed and pushed to canonical main — NOT YET PROVEN"
       ]
     },
     {
@@ -52,7 +52,7 @@
       "lane": "Stage 1",
       "title": "Document authority map",
       "status": "locked",
-      "summary": "Define canonical document classes and fact owners before moving anything: boot-path docs, governance, acceptance, contracts, design, reference, research and history. Identify duplicates, stale owners and modified historical documents.",
+      "summary": "Define canonical document classes and fact owners before moving anything: boot-path docs, governance, acceptance, contracts, design, reference, research and history. Identify duplicates, stale owners and modified historical documents. Unlock only after Stage 0 PASS is pushed.",
       "pass_requires": [
         "One fact has one live owner",
         "Every document class has a deterministic destination",
@@ -124,7 +124,7 @@
   ],
   "edges": [
     {"from": "authority", "to": "stage-0-baseline-freeze", "type": "authority"},
-    {"from": "stage-0-baseline-freeze", "to": "stage-1-document-authority-map", "type": "pass-unlocks"},
+    {"from": "stage-0-baseline-freeze", "to": "stage-1-document-authority-map", "type": "pass-unlocks-after-push"},
     {"from": "stage-1-document-authority-map", "to": "stage-2-document-reallocation", "type": "pass-unlocks"},
     {"from": "stage-2-document-reallocation", "to": "stage-3-governance-alignment", "type": "pass-unlocks"},
     {"from": "stage-3-governance-alignment", "to": "stage-4-active-runtime-slice", "type": "pass-unlocks"},
