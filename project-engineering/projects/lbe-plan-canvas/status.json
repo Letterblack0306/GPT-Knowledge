@@ -6,69 +6,58 @@
   "source_branch": "main",
   "source_head": "7e8dbf95b01b663c5e9f3a616123b298dd3af9db",
   "local_workspace": "C:/Agents-Memory-Tool-v6-integration",
-  "overall_classification": "WORKSPACE_RECONCILIATION_STAGE_1_CANONICAL_PASS_STAGE_2_READY",
-  "authority_note": "GitHub verification proves canonical main points to Stage 1 commit 7e8dbf95b01b663c5e9f3a616123b298dd3af9db. The commit adds the Stage 1 authority-map checkpoint, which records one-fact/one-owner rules and Stage 2 relocation proposals without moving documents. Local ahead/behind, empty index, and remaining dirty count remain user-supplied live workspace evidence.",
+  "overall_classification": "STAGE_2_IN_PROGRESS_GROUP_1_PURE_RELOCATION_BLOCKED_DIVERGENCE_REVIEW_REQUIRED",
+  "authority_note": "Canonical LBE main still proves Stage 0 and Stage 1 PASS. The Stage 2 Group 1 hash results below are user-supplied live workspace evidence. They disprove the earlier pure-move assumption for all five pairs. No Stage 2 commit exists yet.",
   "current_stage": {
     "id": "stage-2-document-reallocation",
     "title": "Document reallocation and navigation alignment",
-    "status": "UNLOCKED_READY",
-    "reason": "Stage 1 is canonically committed and present at the tip of LBE main. Stage 2 may begin, but no Stage 2 mutation has yet been recorded.",
-    "next_valid_action": "Execute the Stage 1 relocation matrix one approved classification group at a time. Start with a bounded group, prove pure moves by hash, review modified relocations separately, update affected navigation, validate, checkpoint, then proceed. Do not touch governance, B2, B3 or B5 unless a later explicit stage authorizes them."
+    "status": "IN_PROGRESS",
+    "active_group": "stage-2-group-1-divergence-review",
+    "reason": "All five Group 1 candidate pure relocations failed the required raw SHA-256 equality check. The operation correctly stopped before staging.",
+    "next_valid_action": "Perform a read-only divergence review of exactly the five failed Group 1 source/target pairs. Record differences, provenance/authority decision and proposed later action for each pair. Do not stage, move, delete, rewrite or commit during this review."
   },
-  "stage_0": {
-    "classification": "CANONICAL_PASS",
-    "commit_sha": "2abca625cd277733aabfff2e79dbc168fa62d254"
-  },
-  "stage_1": {
-    "classification": "CANONICAL_PASS",
-    "commit_sha": "7e8dbf95b01b663c5e9f3a616123b298dd3af9db",
-    "commit_message": "docs: add stage 1 authority map",
-    "github_main_verified": true,
-    "changed_files": ["docs/acceptance/STAGE_1_DOCUMENT_AUTHORITY_MAP.md"],
-    "scope": "B1 documentation analysis only",
-    "document_moves_performed": false,
-    "historical_text_rewritten": false,
-    "runtime_touched": false,
-    "governance_touched": false,
-    "b2_b3_b4_b5_touched": false,
-    "authority_map": {
-      "one_fact_one_live_owner": "PASS",
-      "relocation_matrix": "PASS",
-      "duplicate_stale_conflict_register": "PASS",
-      "stage_2_actions_defined": ["KEEP","MOVE_IN_STAGE_2","ARCHIVE_IN_STAGE_2","MERGE_REVIEW_REQUIRED","QUARANTINE"]
+  "stage_0": {"classification":"CANONICAL_PASS","commit_sha":"2abca625cd277733aabfff2e79dbc168fa62d254"},
+  "stage_1": {"classification":"CANONICAL_PASS","commit_sha":"7e8dbf95b01b663c5e9f3a616123b298dd3af9db"},
+  "stage_2": {
+    "classification": "IN_PROGRESS",
+    "group_1": {
+      "classification": "BLOCKED_RAW_SHA256_DIVERGENCE",
+      "staging_performed": false,
+      "commit_performed": false,
+      "push_performed": false,
+      "index_reported_empty": true,
+      "pairs": [
+        {"source":"docs/PRIORITY_MODULE_REGISTRY.md","target":"docs/contracts/PRIORITY_MODULE_REGISTRY.md","source_bytes":9287,"source_sha256":"da8b272f6a302eb7b627580d47796ba49bf76f37c1a6b55cfaf7500449268ba2","target_bytes":9655,"target_sha256":"dab33ec200acbdf2211d070d0d5eec55f8f8680f75339ee528134e25fe55829a","result":"FAIL"},
+        {"source":"tests/test differfence/1785460319869_yl0hf/1785460319869_yl0hf.json","target":"docs/history/agent-evaluations/test-differfence-transcripts/1785460319869_yl0hf/1785460319869_yl0hf.json","source_bytes":8891,"source_sha256":"819e362e256c912ee6cebfcad9c2b069fc51d0d35f62084907c5a78c0c4d6e09","target_bytes":9038,"target_sha256":"4d06ad8d78ae02443309bce7e493da1272c62c53c37ad0454562f0e91308323e","result":"FAIL"},
+        {"source":"tests/test differfence/1785460319869_yl0hf/1785460319869_yl0hf.messages.json","target":"docs/history/agent-evaluations/test-differfence-transcripts/1785460319869_yl0hf/1785460319869_yl0hf.messages.json","source_bytes":36178,"source_sha256":"0bc99e9e0948914bd8c345036cd1bf048bbfdc2da251f2cd913dd4882c8a0e7c","target_bytes":36635,"target_sha256":"475a71d6fb52249e3e8603cf1be0b604a2adae323e860b0dfce16aba6979b0b7","result":"FAIL"},
+        {"source":"tests/test differfence/1785461332072_pt9mp/1785461332072_pt9mp.json","target":"docs/history/agent-evaluations/test-differfence-transcripts/1785461332072_pt9mp/1785461332072_pt9mp.json","source_bytes":6836,"source_sha256":"ab94f28d597c4ef66738057edd941da092ad96f29af82259c558cbcf0efe12ba","target_bytes":6905,"target_sha256":"308c315119f3f6f8ecd07d85f2b6688a32984dc8f0db24c43e8abb9c700d310a","result":"FAIL"},
+        {"source":"tests/test differfence/1785461332072_pt9mp/1785461332072_pt9mp.messages.json","target":"docs/history/agent-evaluations/test-differfence-transcripts/1785461332072_pt9mp/1785461332072_pt9mp.messages.json","source_bytes":531602,"source_sha256":"de03cd3e5653e9fbf6d5259a1685e8bbe81d4e3e7e4b5c75a83c359bdc6e0049","target_bytes":532681,"target_sha256":"97da3704c6407429a1563d3d6f457dad4eea3c34f743d66b24207b7291","result":"FAIL_REPORTED_HASH_LENGTH_SUSPECT"}
+      ],
+      "note": "The fifth target hash is recorded exactly as supplied and appears shorter than a normal SHA-256 hex digest. This does not change the block because size already differs, but the divergence review should recompute and record the full target SHA-256."
     },
-    "reported_local_verification": {
-      "local_head": "7e8dbf95b01b663c5e9f3a616123b298dd3af9db",
-      "origin_main": "7e8dbf95b01b663c5e9f3a616123b298dd3af9db",
-      "ahead_behind": "0/0",
-      "index": "empty",
-      "remaining_dirty_paths": 65,
-      "classification": "USER_SUPPLIED_LIVE_EVIDENCE"
-    }
-  },
-  "preservation_state": {
-    "b3": "HELD",
-    "b5": "QUARANTINED",
-    "governance": "EXCLUDED_UNTIL_STAGE_3",
-    "known_modified_relocations_for_stage_2": [
+    "known_non_pure_pairs_not_touched": [
       "docs/PHASE12_END_TO_END_PROOF.md -> docs/history/PHASE12_END_TO_END_PROOF.md",
       "docs/PHASE_13_CALLBACK_VERTICAL_SLICE.md -> docs/history/PHASE_13_CALLBACK_VERTICAL_SLICE.md",
       "docs/VALIDATED_WORKSPACE_MEMORY.md -> docs/contracts/VALIDATED_WORKSPACE_MEMORY.md"
     ]
   },
+  "preservation_state": {
+    "b2": "UNTOUCHED",
+    "b3": "HELD",
+    "b5": "QUARANTINED",
+    "governance": "EXCLUDED_UNTIL_STAGE_3"
+  },
   "stage_sequence": [
     {"id":"stage-0-baseline-freeze","status":"CANONICAL_PASS","evidence":"2abca625cd277733aabfff2e79dbc168fa62d254"},
     {"id":"stage-1-document-authority-map","status":"CANONICAL_PASS","evidence":"7e8dbf95b01b663c5e9f3a616123b298dd3af9db"},
-    {"id":"stage-2-document-reallocation","status":"UNLOCKED_READY","unlock":"Stage 1 canonical PASS verified"},
-    {"id":"stage-3-governance-alignment","status":"LOCKED","unlock":"Stage 2 PASS pushed"},
-    {"id":"stage-4-active-runtime-slice","status":"LOCKED","unlock":"Stage 3 PASS pushed"},
-    {"id":"stage-5-next-slice","status":"LOCKED","unlock":"Stage 4 PASS pushed and new machine gate verified"}
+    {"id":"stage-2-document-reallocation","status":"IN_PROGRESS","active_group":"stage-2-group-1-divergence-review"},
+    {"id":"stage-3-governance-alignment","status":"LOCKED","unlock":"Stage 2 canonical PASS"},
+    {"id":"stage-4-active-runtime-slice","status":"LOCKED","unlock":"Stage 3 canonical PASS"},
+    {"id":"stage-5-next-slice","status":"LOCKED","unlock":"Stage 4 canonical PASS and new machine gate verified"}
   ],
   "update_contract": {
-    "on_stage_start": "Set exactly one active stage and preserve all later stages as locked.",
-    "on_stage_fail": "Record FAIL/BLOCKED evidence on the same node; do not activate another node.",
-    "on_stage_pass_pushed": "Record validation, exact touched paths, checkpoint document and source commit SHA; verify pushed main; only then unlock the next node.",
-    "stage_2_rule": "Execute one approved relocation group at a time; pure moves require hash proof; modified relocations require individual review; repair navigation before checkpointing.",
-    "ui_rule": "Tree state mirrors plan/status data. UI state never becomes authority and never marks canonical PASS from narrative alone."
+    "failed_pure_move_rule": "Any raw SHA-256 or byte-size mismatch disproves pure relocation. Stop before staging and require read-only divergence review.",
+    "divergence_review_rule": "Do not choose source or target by path, size, age or apparent completeness alone; establish content provenance and authority from the actual diff/evidence.",
+    "ui_rule": "Tree state mirrors plan/status data. UI state never becomes authority and never marks Stage 2 PASS until a validated Stage 2 checkpoint is committed and pushed."
   }
 }
