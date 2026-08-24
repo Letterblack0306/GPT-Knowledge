@@ -4,65 +4,68 @@
   "verified_at": "2026-08-25",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "source_branch": "main",
-  "source_head": "6b44c624834523725fde1297c9f714b0a75a144f",
+  "source_head": "12a4b565b4691f71c66f075ea1e208fffa854004",
   "local_workspace": "C:/Agents-Memory-Tool-v6-integration",
-  "overall_classification": "STAGE_2_CANONICAL_PASS_STAGE_3_READY",
-  "authority_note": "GitHub verification proves canonical LBE main points to 6b44c624834523725fde1297c9f714b0a75a144f and that the commit contains only docs/acceptance/STAGE_2_FINAL_CHECKPOINT.md. The checkpoint itself records the bounded Stage 2 support commits, canonical boot-path PASS, one-fact/one-live-owner PASS, no EOL policy creation, and preserved protected-scope boundaries. Local 0/0 alignment, clean index and remaining dirty inventory are user-supplied live workspace evidence.",
+  "overall_classification": "STAGE_3_CANONICAL_PASS_STAGE_4_READY",
+  "authority_note": "GitHub verification proves canonical LBE main points to 12a4b565b4691f71c66f075ea1e208fffa854004. Commit 6d844c820706a474631f60728d9b8446e349e645 aligns machine governance and human current-state projections to COMPLETE_LBE_AGENT_RUNTIME_GATE / COMPLETE_LBE_AGENT_RUNTIME_IMPLEMENTATION / DOCTRINE_TO_PROVIDER_CONTEXT_BRIDGE. Commit 12a4b565b4691f71c66f075ea1e208fffa854004 corrects publication projection wording to nested publication controls. The live machine gate confirms implementation_allowed=true, architecture_changes_allowed=true, next_phase_locked=true, and one active slice. Local 0/0 alignment, clean index, remaining dirty count and protected-scope preservation are user-supplied live workspace evidence.",
   "current_stage": {
-    "id": "stage-3-governance-alignment",
-    "title": "Governance and current-state alignment",
+    "id": "stage-4-active-runtime-slice",
+    "title": "Authorized runtime slice",
     "status": "UNLOCKED_READY",
-    "reason": "Stage 2 is canonically complete and present at the tip of LBE main. Stage 3 may begin, but no Stage 3 mutation has yet been recorded.",
-    "next_valid_action": "Start Stage 3 with read-first governance reconciliation: inspect the current machine gate, then align human-readable current-state and acceptance projections to that machine state. Preserve runtime B2/B3, B5 quarantine and unrelated dirty work."
+    "active_plan": "docs/acceptance/COMPLETE_LBE_AGENT_RUNTIME_GATE.md",
+    "active_phase": "COMPLETE_LBE_AGENT_RUNTIME_IMPLEMENTATION",
+    "active_slice": "DOCTRINE_TO_PROVIDER_CONTEXT_BRIDGE",
+    "reason": "Stage 3 governance/current-state alignment is canonical and the machine authority now exposes exactly one implementation slice. Stage 4 may begin, but no Stage 4 runtime mutation is recorded yet.",
+    "next_valid_action": "Read the active acceptance gate and exact owner/runtime surfaces, then implement only DOCTRINE_TO_PROVIDER_CONTEXT_BRIDGE with focused evidence. Preserve unrelated B2/B3/B5 dirty work and keep publication paused."
   },
   "stage_0": {"classification":"CANONICAL_PASS","commit_sha":"2abca625cd277733aabfff2e79dbc168fa62d254"},
   "stage_1": {"classification":"CANONICAL_PASS","commit_sha":"7e8dbf95b01b663c5e9f3a616123b298dd3af9db"},
-  "stage_2": {
+  "stage_2": {"classification":"CANONICAL_PASS","final_checkpoint_commit":"6b44c624834523725fde1297c9f714b0a75a144f"},
+  "stage_3": {
     "classification": "CANONICAL_PASS",
-    "final_checkpoint_commit": "6b44c624834523725fde1297c9f714b0a75a144f",
-    "checkpoint_path": "docs/acceptance/STAGE_2_FINAL_CHECKPOINT.md",
+    "alignment_commit": "6d844c820706a474631f60728d9b8446e349e645",
+    "publication_projection_commit": "12a4b565b4691f71c66f075ea1e208fffa854004",
     "github_main_verified": true,
-    "single_file_checkpoint_commit": "PROVEN_GITHUB",
-    "recorded_supporting_commits": [
-      {"scope":"Group 1 verified history/contract relocation","commit":"58c2bdf2e23f9cc8ea6be26bea8e399555bd431b"},
-      {"scope":"Reviewed non-pure B4 relocation","commit":"d2afb646065fb64ad8b9d2103602c74a37166149"},
-      {"scope":"Legacy reference blueprints","commit":"b74cd4ff7431d07879ab5877078151b3ec82ec91"},
-      {"scope":"Legacy acceptance fixtures","commit":"4f1a1cfbb64aef23cb11f103b134ecd11a1a8d03"},
-      {"scope":"Historical validation archive","commit":"c44e0e5e920979920241a9fc60287bb150c1d5f2"},
-      {"scope":"Navigation/reference repair","commit":"470d27d28cf0e4e2d63ff7a6df5ba385e0e50f98"},
-      {"scope":"Archived acceptance fixture path repair","commit":"a00cb2dd2696c9e9f36cdd42c369457b4feb4243"}
-    ],
+    "machine_state": {
+      "active_plan": "docs/acceptance/COMPLETE_LBE_AGENT_RUNTIME_GATE.md",
+      "active_phase": "COMPLETE_LBE_AGENT_RUNTIME_IMPLEMENTATION",
+      "active_slice": "DOCTRINE_TO_PROVIDER_CONTEXT_BRIDGE",
+      "status": "OPEN",
+      "implementation_allowed": true,
+      "architecture_changes_allowed": true,
+      "next_phase_locked": true,
+      "one_active_slice": true,
+      "publication_controls": "LOCKED_BY_NESTED_GOVERNANCE_RECORDS"
+    },
     "validation": {
-      "canonical_boot_path": "PASS_RECORDED_IN_CANONICAL_CHECKPOINT",
-      "one_fact_one_live_owner": "PASS_RECORDED_IN_CANONICAL_CHECKPOINT",
-      "git_diff_check": "PASS_REPORTED",
-      "no_eol_policy_created": true,
-      "governance_touched_by_stage_2": false,
-      "b2_b3_b5_touched_by_stage_2": false
+      "governance_json_parse": "PASS_REPORTED",
+      "machine_human_gate_alignment": "PASS_REPORTED",
+      "git_diff_cached_check": "PASS_REPORTED",
+      "runtime_tests": "NOT_RUN_DOCUMENTATION_GOVERNANCE_ONLY"
     },
     "reported_local_verification": {
-      "local_head": "6b44c624834523725fde1297c9f714b0a75a144f",
-      "origin_main": "6b44c624834523725fde1297c9f714b0a75a144f",
+      "local_head": "12a4b565b4691f71c66f075ea1e208fffa854004",
+      "origin_main": "12a4b565b4691f71c66f075ea1e208fffa854004",
       "ahead_behind": "0/0",
       "index": "empty",
-      "remaining_worktree_changes": "PRESERVED_PRE_EXISTING_DIRTY_INVENTORY",
+      "remaining_dirty_paths": 44,
+      "protected_scope": "B2/B3/B5 and unrelated dirty work preserved",
       "classification": "USER_SUPPLIED_LIVE_EVIDENCE"
     }
   },
   "preservation_state": {
-    "b2": "PRESERVED_UNTOUCHED_BY_STAGE_2",
-    "b3": "PRESERVED_HELD",
+    "b2": "PRESERVED_UNTOUCHED_BY_STAGE_3",
+    "b3": "PRESERVED_UNTOUCHED_BY_STAGE_3",
     "b5": "PRESERVED_QUARANTINE",
-    "governance": "PRESERVED_FOR_STAGE_3",
     "other_dirty_work": "PRESERVED"
   },
   "stage_sequence": [
     {"id":"stage-0-baseline-freeze","status":"CANONICAL_PASS","evidence":"2abca625cd277733aabfff2e79dbc168fa62d254"},
     {"id":"stage-1-document-authority-map","status":"CANONICAL_PASS","evidence":"7e8dbf95b01b663c5e9f3a616123b298dd3af9db"},
     {"id":"stage-2-document-reallocation","status":"CANONICAL_PASS","evidence":"6b44c624834523725fde1297c9f714b0a75a144f"},
-    {"id":"stage-3-governance-alignment","status":"UNLOCKED_READY","unlock":"Stage 2 canonical PASS verified"},
-    {"id":"stage-4-active-runtime-slice","status":"LOCKED","unlock":"Stage 3 canonical PASS"},
-    {"id":"stage-5-next-slice","status":"LOCKED","unlock":"Stage 4 canonical PASS and new machine gate verified"}
+    {"id":"stage-3-governance-alignment","status":"CANONICAL_PASS","evidence":"12a4b565b4691f71c66f075ea1e208fffa854004"},
+    {"id":"stage-4-active-runtime-slice","status":"UNLOCKED_READY","active_slice":"DOCTRINE_TO_PROVIDER_CONTEXT_BRIDGE"},
+    {"id":"stage-5-next-slice","status":"LOCKED","unlock":"Stage 4 canonical PASS and newly verified machine state"}
   ],
   "continuation_policy": {
     "continue_without_stopping_for": ["routine PASS results","deterministic read-only checks","validation already required by the active stage","multiple commands required for the same authorized objective"],
