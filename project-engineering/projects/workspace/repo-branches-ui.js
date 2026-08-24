@@ -41,7 +41,6 @@
       '.app.status-collapsed .status-head{justify-content:center;padding:8px 0}',
       '.app.status-collapsed .status-head h2,.app.status-collapsed .status>.sub,.app.status-collapsed #statusContent{display:none}',
       '.app.status-collapsed #branchToggle{writing-mode:vertical-lr;transform:rotate(180deg);padding:8px 4px;letter-spacing:.12em;border-radius:6px}',
-
       '.rp-section{margin-bottom:14px}',
       '.rp-title{font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:#59687a;font-weight:900;margin:0 2px 7px}',
       '.rp-card{border:1px solid #202a36;border-radius:12px;background:#0d1219;padding:11px;margin-bottom:8px}',
@@ -60,7 +59,6 @@
       '.rp-grid code{font-size:8px;color:#b7c5d6}',
       '.rp-list{margin:8px 0 0;padding:8px 0 0 16px;border-top:1px solid #202a36;color:#8695a7;font-size:8.5px;line-height:1.45}',
       '.rp-list li{margin:3px 0}',
-
       '.rp-file{border:1px solid #2a3441;border-radius:10px;background:#0b1016;padding:9px;margin-bottom:7px}',
       '.rp-file.fail{border-color:#693d40;background:#161012}',
       '.rp-file-top{display:flex;gap:7px;align-items:flex-start;justify-content:space-between}',
@@ -68,7 +66,6 @@
       '.rp-arrow{color:#536276;font-size:10px;margin:4px 0}',
       '.rp-file-meta{display:grid;grid-template-columns:1fr 1fr;gap:4px 8px;font-size:7.5px;color:#6f7d8e}',
       '.rp-file-meta code{color:#98a7b9;font-size:7.5px}',
-
       '.branch{border:1px solid var(--line);border-radius:10px;background:var(--panel2);padding:9px 11px;margin-bottom:8px;box-shadow:0 4px 14px #0004}',
       '.branch.active{border-color:var(--blue);box-shadow:0 0 0 2px #7da9ff22}',
       '.branch-top{display:flex;justify-content:space-between;align-items:baseline;gap:8px}',
@@ -78,7 +75,6 @@
       '.branch-meta code,.branch-meta span{font-size:8px;color:var(--muted)}',
       '.branch-class{font-size:7.5px;color:var(--amber);margin-top:6px;line-height:1.35;overflow-wrap:anywhere}',
       '.branch-missing{color:var(--muted);font-size:9px;border:1px dashed var(--line);border-radius:10px;padding:12px;text-align:center}',
-
       '.node{width:168px!important;min-height:136px!important;padding:12px!important}',
       '.node .name{font-size:11px!important;line-height:1.35}',
       '.node .priority{margin-top:6px!important}',
@@ -135,15 +131,10 @@
 
   function edgesFor(id) {
     const all = (plan()?.edges || []).map(e => Array.isArray(e) ? { from:e[0], to:e[1], type:'flow' } : e);
-    return {
-      incoming: all.filter(e => e.to === id),
-      outgoing: all.filter(e => e.from === id)
-    };
+    return { incoming: all.filter(e => e.to === id), outgoing: all.filter(e => e.from === id) };
   }
 
-  function currentNodeId() {
-    return plan()?.active_node || currentProject?.active_node || null;
-  }
+  function currentNodeId() { return plan()?.active_node || currentProject?.active_node || null; }
 
   function nodeDetailHtml(node) {
     if (!node) return '<div class="branch-missing">Select a node to inspect its projected evidence.</div>';
@@ -213,23 +204,11 @@
     const root = statusContent();
     if (!root) return null;
     let truth = document.getElementById('projectTruthPanel');
-    if (!truth) {
-      truth = document.createElement('div');
-      truth.id = 'projectTruthPanel';
-      root.prepend(truth);
-    }
+    if (!truth) { truth = document.createElement('div'); truth.id = 'projectTruthPanel'; root.prepend(truth); }
     let selected = document.getElementById('selectedNodePanel');
-    if (!selected) {
-      selected = document.createElement('div');
-      selected.id = 'selectedNodePanel';
-      truth.insertAdjacentElement('afterend', selected);
-    }
+    if (!selected) { selected = document.createElement('div'); selected.id = 'selectedNodePanel'; truth.insertAdjacentElement('afterend', selected); }
     let files = document.getElementById('fileEvidencePanel');
-    if (!files) {
-      files = document.createElement('div');
-      files.id = 'fileEvidencePanel';
-      selected.insertAdjacentElement('afterend', files);
-    }
+    if (!files) { files = document.createElement('div'); files.id = 'fileEvidencePanel'; selected.insertAdjacentElement('afterend', files); }
     return { truth, selected, files };
   }
 
@@ -252,24 +231,22 @@
       const n = nodeById(id);
       if (!n) return;
       let extra = card.querySelector('.lb-node-extra');
-      if (!extra) {
-        extra = document.createElement('div');
-        extra.className = 'lb-node-extra';
-        card.appendChild(extra);
-      }
+      if (!extra) { extra = document.createElement('div'); extra.className = 'lb-node-extra'; card.appendChild(extra); }
       const reqCount = Array.isArray(n.pass_requires) ? n.pass_requires.length : 0;
       const links = edgesFor(id);
       const state = id === active ? 'CURRENT' : String(n.status || 'UNKNOWN').toUpperCase();
-      extra.innerHTML = `${n.summary ? `<div class="lb-node-summary">${esc(n.summary)}</div>` : ''}
+      const html = `${n.summary ? `<div class="lb-node-summary">${esc(n.summary)}</div>` : ''}
         <div class="lb-node-meta">
           <span class="lb-node-chip status">${esc(state)}</span>
           ${reqCount ? `<span class="lb-node-chip">${reqCount} requirements</span>` : ''}
           ${(links.incoming.length + links.outgoing.length) ? `<span class="lb-node-chip">${links.incoming.length + links.outgoing.length} links</span>` : ''}
         </div>`;
-      card.addEventListener('click', () => {
-        selectedNodeId = id;
-        setTimeout(renderDetailPanels, 0);
-      }, { once:false });
+      const signature = `${id}|${state}|${reqCount}|${links.incoming.length}|${links.outgoing.length}|${n.summary || ''}`;
+      if (extra.dataset.signature !== signature) { extra.innerHTML = html; extra.dataset.signature = signature; }
+      if (!card.dataset.lbNodeBound) {
+        card.dataset.lbNodeBound = '1';
+        card.addEventListener('click', () => { selectedNodeId = id; setTimeout(renderDetailPanels, 0); });
+      }
     });
   }
 
@@ -283,8 +260,7 @@
     renderedFor = key;
     const active = activeId();
     const chunks = await Promise.all(ps.map(async p => ({ p, d: await statusOf(p) })));
-    list.innerHTML = `<div class="rp-title">Repositories</div>` + (chunks.map(({ p, d }) => branchRow(p, d, p.id === active)).join('')
-      || '<div class="branch-missing">No project repo data.</div>');
+    list.innerHTML = `<div class="rp-title">Repositories</div>` + (chunks.map(({ p, d }) => branchRow(p, d, p.id === active)).join('') || '<div class="branch-missing">No project repo data.</div>');
   }
 
   function refreshProjection() {
@@ -315,11 +291,7 @@
       selectedNodeId = null;
       setTimeout(() => { renderBranches(); refreshProjection(); }, 80);
     });
-    setInterval(() => {
-      renderedFor = null;
-      renderBranches();
-      refreshProjection();
-    }, 8000);
+    setInterval(() => { renderedFor = null; renderBranches(); refreshProjection(); }, 8000);
   };
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
