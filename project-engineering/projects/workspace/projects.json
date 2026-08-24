@@ -24,7 +24,7 @@
     },
     {
       "id": "lbe",
-      "name": "LBE",
+      "name": "LBE Guard Inspector",
       "subtitle": "Stage 2 · Document Reallocation · Divergence Review",
       "mapped": true,
       "active_node": "stage-2-group-1-divergence-review",
