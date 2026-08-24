@@ -6,10 +6,10 @@
   "updated": "2026-08-24",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "source_branch": "main",
-  "source_head": "090a53f4847279e2515dc84677efdaa995b9c809",
+  "source_head": "2abca625cd277733aabfff2e79dbc168fa62d254",
   "local_workspace": "C:/Agents-Memory-Tool-v6-integration",
-  "local_state_source": "user-supplied live workspace evidence plus uploaded Stage 0 acceptance record",
-  "active_node": "stage-0-baseline-freeze",
+  "local_state_source": "user-supplied live workspace evidence plus canonical GitHub verification",
+  "active_node": "stage-1-document-authority-map",
   "execution_policy": {
     "one_stage_at_a_time": true,
     "pass_required_before_next_stage": true,
@@ -26,27 +26,25 @@
       "lane": "Authority",
       "title": "Workspace reconciliation authority",
       "status": "proven",
-      "summary": "Canonical repo is Letterblack0306/LBE_Presistent_Agent_wall main at committed HEAD 090a53f. Local workspace contains substantial uncommitted work and is the current evidence source for dirty-state reconciliation."
+      "summary": "Canonical repo is Letterblack0306/LBE_Presistent_Agent_wall main at 2abca625cd277733aabfff2e79dbc168fa62d254. Stage 0 checkpoint is present on canonical main."
     },
     {
       "id": "stage-0-baseline-freeze",
       "parent": "authority",
       "lane": "Stage 0",
       "title": "Baseline freeze and preservation matrix",
-      "status": "current",
-      "priority": "AUTHORIZED — CANONICALIZATION EXECUTION PENDING",
-      "summary": "Stage 0 acceptance record reports PASS locally. Explicit authorization now exists to stage only docs/acceptance/STAGE_0_BASELINE_FREEZE.md, commit it on existing main, push main, verify the remote single-file commit and 0/0 alignment, then classify Stage 0 canonical PASS. No other dirty path is authorized. Stage 1 remains locked until remote verification succeeds.",
+      "status": "proven",
+      "priority": "CANONICAL PASS",
+      "summary": "Canonical main contains commit 2abca625cd277733aabfff2e79dbc168fa62d254 with exactly one changed file: docs/acceptance/STAGE_0_BASELINE_FREEZE.md. Stage 0 is complete. Remaining pre-existing dirty work stays outside this committed checkpoint.",
       "pass_requires": [
-        "Every frozen dirty path maps exactly once — reported PASS",
-        "Stage 0 acceptance record exists — proven from uploaded record",
-        "No code changes by Stage 0 — reported PASS",
+        "Every frozen dirty path maps exactly once — PASS",
+        "Stage 0 acceptance record exists — PASS",
+        "No code changes by Stage 0 — PASS",
         "B3 remains held",
         "Governance remains independently excluded",
         "B4 hash and modified-relocation review remains deferred to Stage 2",
-        "Explicit Stage 0 canonicalization authorization — GRANTED",
-        "Commit contains only docs/acceptance/STAGE_0_BASELINE_FREEZE.md — PENDING PROOF",
-        "Push to canonical origin/main and verify local HEAD equals remote — PENDING PROOF",
-        "Stage-0 canonical PASS — NOT YET PROVEN"
+        "Single-file canonical commit — PROVEN",
+        "Canonical main points to 2abca625cd277733aabfff2e79dbc168fa62d254 — PROVEN"
       ]
     },
     {
@@ -54,13 +52,15 @@
       "parent": "stage-0-baseline-freeze",
       "lane": "Stage 1",
       "title": "Document authority map",
-      "status": "locked",
-      "summary": "Define canonical document classes and fact owners before moving anything: boot-path docs, governance, acceptance, contracts, design, reference, research and history. Identify duplicates, stale owners and modified historical documents. Unlock only after Stage 0 PASS is pushed and remotely verified.",
+      "status": "current",
+      "priority": "UNLOCKED / READY",
+      "summary": "Define canonical document classes and fact owners before moving anything: boot-path docs, governance, acceptance, contracts, design, reference, research and history. Identify duplicates, stale owners and modified historical documents. No relocation occurs in this stage.",
       "pass_requires": [
         "One fact has one live owner",
         "Every document class has a deterministic destination",
         "Duplicates and stale documents are classified before relocation",
         "Relocation matrix is complete",
+        "No document move or destructive cleanup occurs during Stage 1",
         "Stage-1 PASS is committed and pushed"
       ]
     },
@@ -127,7 +127,7 @@
   ],
   "edges": [
     {"from": "authority", "to": "stage-0-baseline-freeze", "type": "authority"},
-    {"from": "stage-0-baseline-freeze", "to": "stage-1-document-authority-map", "type": "pass-unlocks-after-push"},
+    {"from": "stage-0-baseline-freeze", "to": "stage-1-document-authority-map", "type": "pass-unlocked"},
     {"from": "stage-1-document-authority-map", "to": "stage-2-document-reallocation", "type": "pass-unlocks"},
     {"from": "stage-2-document-reallocation", "to": "stage-3-governance-alignment", "type": "pass-unlocks"},
     {"from": "stage-3-governance-alignment", "to": "stage-4-active-runtime-slice", "type": "pass-unlocks"},
