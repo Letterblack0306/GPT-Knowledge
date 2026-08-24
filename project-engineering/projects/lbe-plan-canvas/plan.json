@@ -2,13 +2,13 @@
   "schema_version": 3,
   "project": "LBE Persistent Agent",
   "purpose": "Evidence-gated reconciliation plan for C:/Agents-Memory-Tool-v6-integration. Source, local workspace evidence, machine gates, acceptance records and pushed commits remain authoritative.",
-  "authority_rule": "A later stage becomes active only after the previous stage is documented PASS, committed, pushed and remotely verified. Stage 4 runtime work must be bounded to the machine-selected active slice and may not widen authority beyond the current governance gate.",
+  "authority_rule": "A later stage becomes active only after the previous stage is documented PASS, committed, pushed and remotely verified. Stage 4 runtime work must remain bounded to the machine-selected active slice and does not unlock Stage 5 until the broader active runtime gate is accepted and checkpointed.",
   "updated": "2026-08-25",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "source_branch": "main",
-  "source_head": "12a4b565b4691f71c66f075ea1e208fffa854004",
+  "source_head": "0098e9c86614643e8364dd941e4f23e0295994d7",
   "local_workspace": "C:/Agents-Memory-Tool-v6-integration",
-  "active_node": "stage-4-active-runtime-slice",
+  "active_node": "stage-4-doctrine-provider-context-bridge",
   "execution_policy": {
     "one_stage_at_a_time": true,
     "pass_required_before_next_stage": true,
@@ -18,13 +18,14 @@
     "continue_without_unnecessary_stops": true
   },
   "nodes": [
-    {"id":"authority","parent":null,"lane":"Authority","title":"Workspace reconciliation authority","status":"proven","summary":"Canonical LBE main is 12a4b565b4691f71c66f075ea1e208fffa854004. Stages 0-3 are canonical PASS."},
+    {"id":"authority","parent":null,"lane":"Authority","title":"Workspace reconciliation authority","status":"proven","summary":"Canonical LBE main is 0098e9c86614643e8364dd941e4f23e0295994d7. Stages 0-3 are canonical PASS; Stage 4 is in progress."},
     {"id":"stage-0-baseline-freeze","parent":"authority","lane":"Stage 0","title":"Baseline freeze and preservation matrix","status":"proven","priority":"CANONICAL PASS","summary":"Complete at 2abca625cd277733aabfff2e79dbc168fa62d254."},
     {"id":"stage-1-document-authority-map","parent":"stage-0-baseline-freeze","lane":"Stage 1","title":"Document authority map","status":"proven","priority":"CANONICAL PASS","summary":"Complete at 7e8dbf95b01b663c5e9f3a616123b298dd3af9db."},
     {"id":"stage-2-document-reallocation","parent":"stage-1-document-authority-map","lane":"Stage 2","title":"Document reallocation and navigation alignment","status":"proven","priority":"CANONICAL PASS","summary":"Complete at 6b44c624834523725fde1297c9f714b0a75a144f."},
-    {"id":"stage-3-governance-alignment","parent":"stage-2-document-reallocation","lane":"Stage 3","title":"Governance and current-state alignment","status":"proven","priority":"CANONICAL PASS","summary":"Governance/current-state alignment is canonical across commits 6d844c820706a474631f60728d9b8446e349e645 and 12a4b565b4691f71c66f075ea1e208fffa854004. Machine authority now selects COMPLETE_LBE_AGENT_RUNTIME_GATE / COMPLETE_LBE_AGENT_RUNTIME_IMPLEMENTATION / DOCTRINE_TO_PROVIDER_CONTEXT_BRIDGE. Publication remains locked through nested governance records."},
-    {"id":"stage-4-active-runtime-slice","parent":"stage-3-governance-alignment","lane":"Stage 4","title":"Authorized runtime slice","status":"current","priority":"UNLOCKED / READY","summary":"Stage 4 is unlocked but has not started. The only authorized runtime slice is DOCTRINE_TO_PROVIDER_CONTEXT_BRIDGE under docs/acceptance/COMPLETE_LBE_AGENT_RUNTIME_GATE.md. Preserve unrelated B2/B3/B5 dirty work and do not widen beyond the machine gate.","pass_requires":["Read .lbe/governance/implementation-gates.json and the active acceptance gate before mutation","Implement only DOCTRINE_TO_PROVIDER_CONTEXT_BRIDGE","Reuse existing owners/adapters where required by governance","Run focused configuration/provider/profile/persistence evidence required by the active gate","Run credential non-leakage validation where required","Do not reactivate publication work","Do not absorb unrelated dirty paths","Create Stage 4 PASS/FAIL checkpoint","Commit and push only the validated Stage 4 scope","Remote-verify Stage 4 before unlocking Stage 5"]},
-    {"id":"stage-5-next-slice","parent":"stage-4-active-runtime-slice","lane":"Stage 5","title":"Advance to next authorized slice","status":"locked","summary":"Locked until Stage 4 canonical PASS and newly verified machine state."}
+    {"id":"stage-3-governance-alignment","parent":"stage-2-document-reallocation","lane":"Stage 3","title":"Governance and current-state alignment","status":"proven","priority":"CANONICAL PASS","summary":"Canonical at 12a4b565b4691f71c66f075ea1e208fffa854004. Machine authority selects COMPLETE_LBE_AGENT_RUNTIME_GATE / COMPLETE_LBE_AGENT_RUNTIME_IMPLEMENTATION / DOCTRINE_TO_PROVIDER_CONTEXT_BRIDGE."},
+    {"id":"stage-4-active-runtime-slice","parent":"stage-3-governance-alignment","lane":"Stage 4","title":"Authorized runtime slice","status":"current","priority":"IN PROGRESS","summary":"Stage 4 runtime work is active under the machine-selected DOCTRINE_TO_PROVIDER_CONTEXT_BRIDGE slice. Implementation commit 0098e9c86614643e8364dd941e4f23e0295994d7 is canonical on main, but the broader active runtime gate is not yet complete."},
+    {"id":"stage-4-doctrine-provider-context-bridge","parent":"stage-4-active-runtime-slice","lane":"Stage 4 · Active Slice","title":"Doctrine to provider context bridge","status":"current","priority":"IMPLEMENTED / VALIDATION CONTINUES","summary":"Commit 0098e9c86614643e8364dd941e4f23e0295994d7 adds provenance-tagged provider guidance, integrates it with governed coding and non-streaming provider turns, wires Audit/Investigation guidance through the existing TUI provider path, and persists safe guidance metadata without persisting prompt/project-instruction text. GitHub verifies exactly six files in the commit. User-supplied live evidence reports 52 tests passed, clean index and 0/0 local/remote alignment.","remaining_evidence":["installed TUI acceptance","live governed tool-call behavior","completion validation","full end-to-end runtime proof","any active-gate provider-profile/persistence evidence not yet satisfied"]},
+    {"id":"stage-5-next-slice","parent":"stage-4-active-runtime-slice","lane":"Stage 5","title":"Advance to next authorized slice","status":"locked","summary":"Locked until Stage 4 canonical PASS and newly verified machine governance state."}
   ],
   "edges": [
     {"from":"authority","to":"stage-0-baseline-freeze","type":"authority"},
@@ -32,6 +33,7 @@
     {"from":"stage-1-document-authority-map","to":"stage-2-document-reallocation","type":"pass-unlocked"},
     {"from":"stage-2-document-reallocation","to":"stage-3-governance-alignment","type":"pass-unlocked"},
     {"from":"stage-3-governance-alignment","to":"stage-4-active-runtime-slice","type":"pass-unlocked"},
+    {"from":"stage-4-active-runtime-slice","to":"stage-4-doctrine-provider-context-bridge","type":"active-slice"},
     {"from":"stage-4-active-runtime-slice","to":"stage-5-next-slice","type":"pass-unlocks"}
   ]
 }
