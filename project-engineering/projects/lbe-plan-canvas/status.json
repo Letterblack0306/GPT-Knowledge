@@ -4,67 +4,82 @@
   "verified_at": "2026-08-25",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "source_branch": "main",
-  "source_head": "12a4b565b4691f71c66f075ea1e208fffa854004",
+  "source_head": "0098e9c86614643e8364dd941e4f23e0295994d7",
   "local_workspace": "C:/Agents-Memory-Tool-v6-integration",
-  "overall_classification": "STAGE_3_CANONICAL_PASS_STAGE_4_READY",
-  "authority_note": "GitHub verification proves canonical LBE main points to 12a4b565b4691f71c66f075ea1e208fffa854004. Commit 6d844c820706a474631f60728d9b8446e349e645 aligns machine governance and human current-state projections to COMPLETE_LBE_AGENT_RUNTIME_GATE / COMPLETE_LBE_AGENT_RUNTIME_IMPLEMENTATION / DOCTRINE_TO_PROVIDER_CONTEXT_BRIDGE. Commit 12a4b565b4691f71c66f075ea1e208fffa854004 corrects publication projection wording to nested publication controls. The live machine gate confirms implementation_allowed=true, architecture_changes_allowed=true, next_phase_locked=true, and one active slice. Local 0/0 alignment, clean index, remaining dirty count and protected-scope preservation are user-supplied live workspace evidence.",
+  "overall_classification": "STAGE_4_IN_PROGRESS_DOCTRINE_TO_PROVIDER_CONTEXT_BRIDGE_IMPLEMENTED",
+  "authority_note": "GitHub verification proves canonical LBE main points to 0098e9c86614643e8364dd941e4f23e0295994d7. The commit is runtime: bridge doctrine context into provider turns and contains exactly cli.py, provider_turn_runtime.py, runtime/agent_guidance.py, runtime/governed_coding.py, tests/test_agent_guidance.py, and tests/test_provider_turn_runtime.py. The diff shows provenance-tagged guidance, safe audit metadata, governed-coding system-context replacement, non-streaming provider system guidance, and Audit/Investigation TUI wiring while preserving existing governed execution ownership. Local test count, index cleanliness, local/remote 0/0 alignment, dirty-scope preservation and no publication/governance mutation are user-supplied live workspace evidence.",
   "current_stage": {
     "id": "stage-4-active-runtime-slice",
     "title": "Authorized runtime slice",
-    "status": "UNLOCKED_READY",
+    "status": "IN_PROGRESS",
     "active_plan": "docs/acceptance/COMPLETE_LBE_AGENT_RUNTIME_GATE.md",
     "active_phase": "COMPLETE_LBE_AGENT_RUNTIME_IMPLEMENTATION",
     "active_slice": "DOCTRINE_TO_PROVIDER_CONTEXT_BRIDGE",
-    "reason": "Stage 3 governance/current-state alignment is canonical and the machine authority now exposes exactly one implementation slice. Stage 4 may begin, but no Stage 4 runtime mutation is recorded yet.",
-    "next_valid_action": "Read the active acceptance gate and exact owner/runtime surfaces, then implement only DOCTRINE_TO_PROVIDER_CONTEXT_BRIDGE with focused evidence. Preserve unrelated B2/B3/B5 dirty work and keep publication paused."
+    "implementation_commit": "0098e9c86614643e8364dd941e4f23e0295994d7",
+    "reason": "The doctrine-to-provider context bridge now has a canonical implementation commit on main, but the broader complete-runtime gate still requires additional acceptance/evidence before Stage 4 can become canonical PASS.",
+    "next_valid_action": "Continue only within the active runtime gate and gather the remaining required evidence: installed TUI acceptance, live governed tool-call behavior, completion validation, full end-to-end runtime proof, and any still-unsatisfied provider/profile/persistence evidence. Do not widen into unrelated dirty provider-profile, credential-store, provider-registry, TUI, B5, governance, or publication work unless the machine gate explicitly authorizes it."
   },
   "stage_0": {"classification":"CANONICAL_PASS","commit_sha":"2abca625cd277733aabfff2e79dbc168fa62d254"},
   "stage_1": {"classification":"CANONICAL_PASS","commit_sha":"7e8dbf95b01b663c5e9f3a616123b298dd3af9db"},
   "stage_2": {"classification":"CANONICAL_PASS","final_checkpoint_commit":"6b44c624834523725fde1297c9f714b0a75a144f"},
-  "stage_3": {
-    "classification": "CANONICAL_PASS",
-    "alignment_commit": "6d844c820706a474631f60728d9b8446e349e645",
-    "publication_projection_commit": "12a4b565b4691f71c66f075ea1e208fffa854004",
-    "github_main_verified": true,
-    "machine_state": {
-      "active_plan": "docs/acceptance/COMPLETE_LBE_AGENT_RUNTIME_GATE.md",
-      "active_phase": "COMPLETE_LBE_AGENT_RUNTIME_IMPLEMENTATION",
-      "active_slice": "DOCTRINE_TO_PROVIDER_CONTEXT_BRIDGE",
-      "status": "OPEN",
-      "implementation_allowed": true,
-      "architecture_changes_allowed": true,
-      "next_phase_locked": true,
-      "one_active_slice": true,
-      "publication_controls": "LOCKED_BY_NESTED_GOVERNANCE_RECORDS"
+  "stage_3": {"classification":"CANONICAL_PASS","final_evidence":"12a4b565b4691f71c66f075ea1e208fffa854004"},
+  "stage_4": {
+    "classification": "IN_PROGRESS",
+    "active_slice": "DOCTRINE_TO_PROVIDER_CONTEXT_BRIDGE",
+    "implementation": {
+      "classification": "IMPLEMENTED_CANONICAL_COMMIT",
+      "commit_sha": "0098e9c86614643e8364dd941e4f23e0295994d7",
+      "commit_message": "runtime: bridge doctrine context into provider turns",
+      "github_main_verified": true,
+      "files": [
+        "lbe_guard_inspector/cli.py",
+        "lbe_guard_inspector/provider_turn_runtime.py",
+        "lbe_guard_inspector/runtime/agent_guidance.py",
+        "lbe_guard_inspector/runtime/governed_coding.py",
+        "tests/test_agent_guidance.py",
+        "tests/test_provider_turn_runtime.py"
+      ],
+      "verified_from_diff": [
+        "bounded provenance-tagged AgentGuidance with ENGINEERING/AUDIT/INVESTIGATION doctrine",
+        "root AGENTS.md may be loaded as bounded project context and its text is excluded from audit_payload",
+        "safe persisted guidance metadata contains mode/doctrine/instruction provenance/tool IDs rather than prompt text",
+        "governed coding provider receives AgentGuidance.prompt while existing governed tool orchestration remains the execution owner",
+        "non-streaming provider turns may receive system guidance and emit runtime.guidance.loaded metadata",
+        "TUI Audit/Investigation non-streaming provider path builds guidance through existing mode resolution"
+      ]
     },
-    "validation": {
-      "governance_json_parse": "PASS_REPORTED",
-      "machine_human_gate_alignment": "PASS_REPORTED",
-      "git_diff_cached_check": "PASS_REPORTED",
-      "runtime_tests": "NOT_RUN_DOCUMENTATION_GOVERNANCE_ONLY"
-    },
-    "reported_local_verification": {
-      "local_head": "12a4b565b4691f71c66f075ea1e208fffa854004",
-      "origin_main": "12a4b565b4691f71c66f075ea1e208fffa854004",
+    "reported_validation": {
+      "focused_tests": "52 passed in 27.00s",
+      "git_diff_cached_check": "PASS",
+      "index": "clean",
+      "local_head": "0098e9c86614643e8364dd941e4f23e0295994d7",
+      "origin_main": "0098e9c86614643e8364dd941e4f23e0295994d7",
       "ahead_behind": "0/0",
-      "index": "empty",
-      "remaining_dirty_paths": 44,
-      "protected_scope": "B2/B3/B5 and unrelated dirty work preserved",
       "classification": "USER_SUPPLIED_LIVE_EVIDENCE"
-    }
+    },
+    "remaining_gate_evidence": [
+      "installed TUI acceptance",
+      "live governed tool-call behavior",
+      "completion validation",
+      "full end-to-end runtime proof",
+      "provider/profile/persistence evidence still required by active gate"
+    ]
   },
   "preservation_state": {
-    "b2": "PRESERVED_UNTOUCHED_BY_STAGE_3",
-    "b3": "PRESERVED_UNTOUCHED_BY_STAGE_3",
-    "b5": "PRESERVED_QUARANTINE",
-    "other_dirty_work": "PRESERVED"
+    "provider_profile_lifecycle_dirty_work": "PRESERVED_UNTOUCHED_REPORTED",
+    "credential_store_dirty_work": "PRESERVED_UNTOUCHED_REPORTED",
+    "provider_registry_dirty_work": "PRESERVED_UNTOUCHED_REPORTED",
+    "unrelated_tui_dirty_work": "PRESERVED_UNTOUCHED_REPORTED",
+    "b5": "PRESERVED_QUARANTINE_REPORTED",
+    "governance": "NO_STAGE_4_MUTATION_REPORTED",
+    "publication": "NOT_REACTIVATED_REPORTED"
   },
   "stage_sequence": [
     {"id":"stage-0-baseline-freeze","status":"CANONICAL_PASS","evidence":"2abca625cd277733aabfff2e79dbc168fa62d254"},
     {"id":"stage-1-document-authority-map","status":"CANONICAL_PASS","evidence":"7e8dbf95b01b663c5e9f3a616123b298dd3af9db"},
     {"id":"stage-2-document-reallocation","status":"CANONICAL_PASS","evidence":"6b44c624834523725fde1297c9f714b0a75a144f"},
     {"id":"stage-3-governance-alignment","status":"CANONICAL_PASS","evidence":"12a4b565b4691f71c66f075ea1e208fffa854004"},
-    {"id":"stage-4-active-runtime-slice","status":"UNLOCKED_READY","active_slice":"DOCTRINE_TO_PROVIDER_CONTEXT_BRIDGE"},
+    {"id":"stage-4-active-runtime-slice","status":"IN_PROGRESS","active_slice":"DOCTRINE_TO_PROVIDER_CONTEXT_BRIDGE","implementation_evidence":"0098e9c86614643e8364dd941e4f23e0295994d7"},
     {"id":"stage-5-next-slice","status":"LOCKED","unlock":"Stage 4 canonical PASS and newly verified machine state"}
   ],
   "continuation_policy": {
