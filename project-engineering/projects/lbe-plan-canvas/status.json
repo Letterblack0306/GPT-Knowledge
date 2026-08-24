@@ -1,23 +1,37 @@
 {
-  "schema_version": 3,
+  "schema_version": 4,
   "project": "LBE Persistent Agent",
   "verified_at": "2026-08-25",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "source_branch": "main",
   "source_head": "0098e9c86614643e8364dd941e4f23e0295994d7",
   "local_workspace": "C:/Agents-Memory-Tool-v6-integration",
-  "overall_classification": "STAGE_4_IN_PROGRESS_DOCTRINE_TO_PROVIDER_CONTEXT_BRIDGE_IMPLEMENTED",
-  "authority_note": "GitHub verification proves canonical LBE main points to 0098e9c86614643e8364dd941e4f23e0295994d7. The commit is runtime: bridge doctrine context into provider turns and contains exactly cli.py, provider_turn_runtime.py, runtime/agent_guidance.py, runtime/governed_coding.py, tests/test_agent_guidance.py, and tests/test_provider_turn_runtime.py. The diff shows provenance-tagged guidance, safe audit metadata, governed-coding system-context replacement, non-streaming provider system guidance, and Audit/Investigation TUI wiring while preserving existing governed execution ownership. Local test count, index cleanliness, local/remote 0/0 alignment, dirty-scope preservation and no publication/governance mutation are user-supplied live workspace evidence.",
+  "overall_classification": "STAGE_4_IN_PROGRESS_IMPLEMENTED_CLEAN_CANONICAL_ACCEPTANCE_PENDING",
+  "authority_note": "Canonical LBE main remains 0098e9c86614643e8364dd941e4f23e0295994d7. The machine gate selects COMPLETE_LBE_AGENT_RUNTIME_GATE / COMPLETE_LBE_AGENT_RUNTIME_IMPLEMENTATION / DOCTRINE_TO_PROVIDER_CONTEXT_BRIDGE with one active slice. The implementation commit is canonical. A dirty-working-tree installed-TUI acceptance attempt reported 123 passed and 2 failed because protected local B3 rewrites remove interfaces that are present in canonical main. This is an acceptance-environment contamination boundary, not proof of a canonical Stage 4 TUI defect. The next valid acceptance path is an isolated clean projection/install of canonical main while preserving all protected dirty work.",
+  "core_doctrine": "Provider proposes. LBE governs. Approved adapters execute. Evidence proves what happened. LBE deterministic validation owns completion truth.",
   "current_stage": {
     "id": "stage-4-active-runtime-slice",
-    "title": "Authorized runtime slice",
+    "title": "Complete-runtime active slice",
     "status": "IN_PROGRESS",
     "active_plan": "docs/acceptance/COMPLETE_LBE_AGENT_RUNTIME_GATE.md",
     "active_phase": "COMPLETE_LBE_AGENT_RUNTIME_IMPLEMENTATION",
     "active_slice": "DOCTRINE_TO_PROVIDER_CONTEXT_BRIDGE",
     "implementation_commit": "0098e9c86614643e8364dd941e4f23e0295994d7",
-    "reason": "The doctrine-to-provider context bridge now has a canonical implementation commit on main, but the broader complete-runtime gate still requires additional acceptance/evidence before Stage 4 can become canonical PASS.",
-    "next_valid_action": "Continue only within the active runtime gate and gather the remaining required evidence: installed TUI acceptance, live governed tool-call behavior, completion validation, full end-to-end runtime proof, and any still-unsatisfied provider/profile/persistence evidence. Do not widen into unrelated dirty provider-profile, credential-store, provider-registry, TUI, B5, governance, or publication work unless the machine gate explicitly authorizes it."
+    "implementation_status": "IMPLEMENTED_CANONICAL",
+    "acceptance_status": "CLEAN_CANONICAL_INSTALLED_ACCEPTANCE_PENDING",
+    "reason": "The doctrine-to-provider context bridge is implemented on canonical main, but Stage 4 requires installed/runtime evidence before PASS. Protected unrelated dirty B3 files invalidate the dirty-worktree TUI acceptance environment without invalidating canonical source.",
+    "next_valid_action": "Continue autonomously with Stage 4 acceptance from an isolated clean projection of exact canonical main: installed TUI behavior, live governed tool-call behavior, completion validation, provider/profile/persistence evidence still required by the active gate, secret/package-state checks, and full end-to-end proof. Do not mutate/reset/absorb protected B3 merely to make acceptance pass."
+  },
+  "machine_state": {
+    "active_plan": "docs/acceptance/COMPLETE_LBE_AGENT_RUNTIME_GATE.md",
+    "active_phase": "COMPLETE_LBE_AGENT_RUNTIME_IMPLEMENTATION",
+    "active_slice": "DOCTRINE_TO_PROVIDER_CONTEXT_BRIDGE",
+    "status": "OPEN",
+    "implementation_allowed": true,
+    "architecture_changes_allowed": true,
+    "next_phase_locked": true,
+    "one_active_slice": true,
+    "publication": "PAUSED_LOCKED_BY_NESTED_GOVERNANCE_RECORDS"
   },
   "stage_0": {"classification":"CANONICAL_PASS","commit_sha":"2abca625cd277733aabfff2e79dbc168fa62d254"},
   "stage_1": {"classification":"CANONICAL_PASS","commit_sha":"7e8dbf95b01b663c5e9f3a616123b298dd3af9db"},
@@ -39,51 +53,94 @@
         "tests/test_agent_guidance.py",
         "tests/test_provider_turn_runtime.py"
       ],
-      "verified_from_diff": [
-        "bounded provenance-tagged AgentGuidance with ENGINEERING/AUDIT/INVESTIGATION doctrine",
-        "root AGENTS.md may be loaded as bounded project context and its text is excluded from audit_payload",
-        "safe persisted guidance metadata contains mode/doctrine/instruction provenance/tool IDs rather than prompt text",
-        "governed coding provider receives AgentGuidance.prompt while existing governed tool orchestration remains the execution owner",
-        "non-streaming provider turns may receive system guidance and emit runtime.guidance.loaded metadata",
-        "TUI Audit/Investigation non-streaming provider path builds guidance through existing mode resolution"
+      "implemented_behavior": [
+        "provenance-tagged ENGINEERING/AUDIT/INVESTIGATION AgentGuidance",
+        "bounded root AGENTS.md provider context with safe provenance metadata",
+        "governed coding system guidance while existing LBE tool orchestration remains execution owner",
+        "non-streaming provider system guidance and runtime.guidance.loaded safe metadata",
+        "Audit/Investigation guidance through existing TUI provider path",
+        "no project-instruction or full provider-prompt persistence"
       ]
     },
     "reported_validation": {
-      "focused_tests": "52 passed in 27.00s",
-      "git_diff_cached_check": "PASS",
-      "index": "clean",
-      "local_head": "0098e9c86614643e8364dd941e4f23e0295994d7",
-      "origin_main": "0098e9c86614643e8364dd941e4f23e0295994d7",
-      "ahead_behind": "0/0",
+      "implementation_focused_tests": "52 passed in 27.00s",
+      "dirty_worktree_installed_acceptance": "123 passed, 2 failed",
+      "dirty_worktree_failure_classification": "PROTECTED_B3_INTERFACE_DIVERGENCE",
+      "failed_contracts": ["composer_hint/prefix grammar palette", "/settings truthful command projection"],
       "classification": "USER_SUPPLIED_LIVE_EVIDENCE"
     },
+    "canonical_tui_contract": {
+      "classification": "PRESENT_IN_CANONICAL_MAIN",
+      "required_surfaces": ["#composer_hint","prefix grammar","/settings","/mcp","/skills","/attach","/mentions","command palette"],
+      "implication": "The dirty local B3 failure does not establish a canonical product defect."
+    },
+    "clean_acceptance_strategy": {
+      "classification": "NEXT_VALID_WORK",
+      "steps": [
+        "fetch canonical origin/main",
+        "create isolated clean archive/projection of exact canonical commit",
+        "build/install only from that clean source",
+        "run installed TUI acceptance",
+        "run live governed tool-call proof",
+        "run completion validation",
+        "run remaining provider/profile/persistence and secret/package-state evidence required by the active gate",
+        "run full end-to-end proof",
+        "document Stage 4 PASS/FAIL checkpoint",
+        "commit/push/remote-verify checkpoint before Stage 5 unlock"
+      ],
+      "protected_boundary": "Do not reset, restore, overwrite, stage, or absorb unrelated dirty B3/B5/provider/profile/credential/governance/publication work merely for acceptance."
+    },
     "remaining_gate_evidence": [
-      "installed TUI acceptance",
+      "installed TUI acceptance from clean canonical artifact",
       "live governed tool-call behavior",
       "completion validation",
-      "full end-to-end runtime proof",
-      "provider/profile/persistence evidence still required by active gate"
+      "full installed end-to-end runtime proof",
+      "still-required provider/profile/persistence evidence",
+      "package-output and persisted-state secret scan",
+      "any transaction/rollback or bypass evidence required by the active gate/selected assurance profile",
+      "git diff --check and bounded Stage 4 checkpoint"
     ]
   },
+  "autonomous_continuation": {
+    "status": "ENABLED_WITHIN_CURRENT_AUTHORITY",
+    "rule": "The execution agent should make its own deterministic bounded decisions and continue without asking the user after every routine step.",
+    "continue_without_user_prompt": [
+      "required read-only inspection",
+      "required focused and installed validation",
+      "temporary isolated canonical builds/installs",
+      "deterministic diagnostics after ordinary test failures",
+      "bounded repairs already proven to be inside active machine-authorized scope",
+      "reruns and evidence capture required by the current gate"
+    ],
+    "stop_conditions": [
+      "scope or authority widening",
+      "destructive action against protected/unrelated work",
+      "unresolvable authority contradiction",
+      "mutation outside the active gate",
+      "missing evidence requiring guesswork",
+      "new product/architecture decision rather than bounded defect",
+      "intentional product contract conflicting with acceptance"
+    ]
+  },
+  "research_boundary": {
+    "uploaded_deep_audit": "HISTORICAL_RESEARCH_NOT_CURRENT_AUTHORITY",
+    "reason": "The audit targeted an older pravesh0306 fork/head and itself reported that fork as stale relative to Letterblack0306 upstream. Its architecture/security/process findings are useful research candidates but require current re-verification before action."
+  },
   "preservation_state": {
+    "b3": "PROTECTED_DIRTY_LOCAL_WORK_REPORTED_PRESERVED",
+    "b5": "PRESERVED_QUARANTINE_REPORTED",
     "provider_profile_lifecycle_dirty_work": "PRESERVED_UNTOUCHED_REPORTED",
     "credential_store_dirty_work": "PRESERVED_UNTOUCHED_REPORTED",
     "provider_registry_dirty_work": "PRESERVED_UNTOUCHED_REPORTED",
-    "unrelated_tui_dirty_work": "PRESERVED_UNTOUCHED_REPORTED",
-    "b5": "PRESERVED_QUARANTINE_REPORTED",
-    "governance": "NO_STAGE_4_MUTATION_REPORTED",
-    "publication": "NOT_REACTIVATED_REPORTED"
+    "governance": "NO_NEW_STAGE_4_MUTATION_REPORTED",
+    "publication": "NOT_REACTIVATED"
   },
   "stage_sequence": [
     {"id":"stage-0-baseline-freeze","status":"CANONICAL_PASS","evidence":"2abca625cd277733aabfff2e79dbc168fa62d254"},
     {"id":"stage-1-document-authority-map","status":"CANONICAL_PASS","evidence":"7e8dbf95b01b663c5e9f3a616123b298dd3af9db"},
     {"id":"stage-2-document-reallocation","status":"CANONICAL_PASS","evidence":"6b44c624834523725fde1297c9f714b0a75a144f"},
     {"id":"stage-3-governance-alignment","status":"CANONICAL_PASS","evidence":"12a4b565b4691f71c66f075ea1e208fffa854004"},
-    {"id":"stage-4-active-runtime-slice","status":"IN_PROGRESS","active_slice":"DOCTRINE_TO_PROVIDER_CONTEXT_BRIDGE","implementation_evidence":"0098e9c86614643e8364dd941e4f23e0295994d7"},
+    {"id":"stage-4-active-runtime-slice","status":"IN_PROGRESS","active_slice":"DOCTRINE_TO_PROVIDER_CONTEXT_BRIDGE","implementation_evidence":"0098e9c86614643e8364dd941e4f23e0295994d7","next":"clean canonical installed acceptance"},
     {"id":"stage-5-next-slice","status":"LOCKED","unlock":"Stage 4 canonical PASS and newly verified machine state"}
-  ],
-  "continuation_policy": {
-    "continue_without_stopping_for": ["routine PASS results","deterministic read-only checks","validation already required by the active stage","multiple commands required for the same authorized objective"],
-    "stop_only_for": ["real blocker","evidence contradiction","scope crossing","material ambiguity that could change repository authority/state","missing required evidence requiring guessing","unrelated dirty-work risk","failed validation with unclear safe continuation","new destructive/policy/authority decision requiring authorization"]
-  }
+  ]
 }
