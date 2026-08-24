@@ -1,182 +1,133 @@
 {
-  "schema_version": 2,
+  "schema_version": 3,
   "project": "LBE Persistent Agent",
-  "purpose": "Repository-driven visual roadmap for Letterblack0306/LBE_Presistent_Agent_wall. Navigation state only; source, machine gates, runtime and acceptance evidence remain authoritative.",
-  "authority_rule": "Current repository main, .lbe/governance/implementation-gates.json, project acceptance records, exact local revision, installed runtime and interactive evidence outrank this projection.",
-  "updated": "2026-08-22",
+  "purpose": "Evidence-gated reconciliation plan for C:/Agents-Memory-Tool-v6-integration. This projection shows only the ordered stages; source, local workspace evidence, machine gates, acceptance records and pushed commits remain authoritative.",
+  "authority_rule": "Current local workspace evidence outranks this projection for dirty-state claims. Canonical GitHub main, .lbe/governance/implementation-gates.json, acceptance records and exact pushed commits prove completed stages. A later stage cannot become active until the previous stage is documented PASS and pushed.",
+  "updated": "2026-08-24",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "source_branch": "main",
-  "source_head": "942e494dbbf17550eb01f82caae31822d7ffbbbd",
-  "active_node": "tui-projection-view-models",
+  "source_head": "090a53f4847279e2515dc84677efdaa995b9c809",
+  "local_workspace": "C:/Agents-Memory-Tool-v6-integration",
+  "local_state_source": "user-supplied live workspace evidence",
+  "active_node": "stage-0-baseline-freeze",
+  "execution_policy": {
+    "one_stage_at_a_time": true,
+    "pass_required_before_next_stage": true,
+    "commit_and_push_after_each_pass": true,
+    "no_random_file_checks": true,
+    "no_unrelated_dirty_file_absorption": true,
+    "no_destructive_cleanup_without_explicit_authorization": true,
+    "stage_record_required": true
+  },
   "nodes": [
     {
-      "id": "vision",
-      "lane": "Foundation",
-      "title": "Persistent governed agent runtime",
+      "id": "authority",
+      "parent": null,
+      "lane": "Authority",
+      "title": "Workspace reconciliation authority",
       "status": "proven",
-      "summary": "Providers reason; LBE owns workspace identity, policy, authorization, governed execution, receipts, evidence, persistence, recovery and deterministic completion."
+      "summary": "Canonical repo is Letterblack0306/LBE_Presistent_Agent_wall main at committed HEAD 090a53f. Local workspace contains substantial uncommitted work and is the current evidence source for dirty-state reconciliation."
     },
     {
-      "id": "r3-r6",
-      "lane": "Accepted Baseline",
-      "title": "R3–R6F core contracts",
-      "status": "proven",
-      "summary": "Machine gate records R3 through R6F as PROVEN_COMPLETE."
-    },
-    {
-      "id": "cli",
-      "lane": "Accepted Baseline",
-      "title": "CLI control plane",
-      "status": "proven",
-      "summary": "Machine gate records CLI as PROVEN_COMPLETE."
-    },
-    {
-      "id": "r7",
-      "lane": "Accepted Baseline",
-      "title": "R7 installed end-to-end acceptance",
-      "status": "proven",
-      "summary": "Machine gate records R7_INSTALLED_END_TO_END_ACCEPTANCE as PASS."
-    },
-    {
-      "id": "release-readiness",
-      "lane": "Accepted Baseline",
-      "title": "Release package readiness and precheck",
-      "status": "proven",
-      "summary": "Release package contract repair, readiness acceptance and publication precheck are PASS only for their bounded claims."
-    },
-    {
-      "id": "complete-tui",
-      "lane": "Active Product Phase",
-      "title": "Complete TUI implementation",
-      "status": "proven",
-      "summary": "Explicitly authorized phase. GitHub is implementation authority; LoopTool/local execution is evidence-only and must not patch source. Publication is paused."
-    },
-    {
-      "id": "tui-projection-view-models",
-      "lane": "Active Slice",
-      "title": "TUI projection contract and view models",
+      "id": "stage-0-baseline-freeze",
+      "parent": "authority",
+      "lane": "Stage 0",
+      "title": "Baseline freeze and preservation matrix",
       "status": "current",
-      "priority": "OPEN",
-      "summary": "Project persisted events into typed truthful TUI states without creating a second runtime or inventing unavailable evidence. Source and focused tests exist at main 942e494d; executed focused proof is not established by repository inspection alone."
+      "priority": "BLOCKED — MATRIX CORRECTION REQUIRED",
+      "summary": "Record exact HEAD/origin, classify every dirty path exactly once, include the preservation matrix itself, and reclassify the three non-hash-matching B4 relocations as modified historical relocations requiring individual review.",
+      "pass_requires": [
+        "Every dirty path maps exactly once",
+        "No path appears in multiple preservation buckets",
+        "Pure moves are hash-proven",
+        "Modified relocations are explicitly separated from pure moves",
+        "B3 remains held unless separately authorized",
+        "Governance remains excluded from accidental reconciliation",
+        "Stage-0 checkpoint records PASS/FAIL and exact evidence"
+      ]
     },
     {
-      "id": "tui-workspace",
-      "lane": "TUI Sequence",
-      "title": "Objective and activity workspace",
-      "status": "next",
-      "summary": "Build one spatially stable keyboard-first workspace with progressive disclosure over existing owners."
+      "id": "stage-1-document-authority-map",
+      "parent": "stage-0-baseline-freeze",
+      "lane": "Stage 1",
+      "title": "Document authority map",
+      "status": "locked",
+      "summary": "Define canonical document classes and fact owners before moving anything: boot-path docs, governance, acceptance, contracts, design, reference, research and history. Identify duplicates, stale owners and modified historical documents.",
+      "pass_requires": [
+        "One fact has one live owner",
+        "Every document class has a deterministic destination",
+        "Duplicates and stale documents are classified before relocation",
+        "Relocation matrix is complete",
+        "Stage-1 PASS is committed and pushed"
+      ]
     },
     {
-      "id": "tui-commands",
-      "lane": "TUI Sequence",
-      "title": "Truthful command routing",
-      "status": "next",
-      "summary": "Implement distinct status, provider, evidence, help, interrupt and cancel behavior; no unrelated help aliases."
+      "id": "stage-2-document-reallocation",
+      "parent": "stage-1-document-authority-map",
+      "lane": "Stage 2",
+      "title": "Document reallocation and navigation alignment",
+      "status": "locked",
+      "summary": "Move only approved document groups. Prove hash-preserving moves, individually review modified historical relocations, repair links, and validate the canonical README → CURRENT_STATUS → ARCHITECTURE → RUNTIME_CONTRACT → MODES → active-gate route.",
+      "pass_requires": [
+        "Approved relocations only",
+        "Hash proof for pure moves",
+        "Individual content review for modified relocations",
+        "No broken canonical navigation",
+        "No competing live document owners",
+        "Stage-2 PASS is committed and pushed"
+      ]
     },
     {
-      "id": "tui-sessions-provider",
-      "lane": "TUI Sequence",
-      "title": "Session and provider surfaces",
-      "status": "next",
-      "summary": "Session create/resume/navigation plus provider/model selection, configuration and health through existing owners."
+      "id": "stage-3-governance-alignment",
+      "parent": "stage-2-document-reallocation",
+      "lane": "Stage 3",
+      "title": "Governance and current-state alignment",
+      "status": "locked",
+      "summary": "Reconcile CURRENT_STATUS, implementation-gates and acceptance records so machine state, human status and active acceptance all describe the same current phase without competing active claims.",
+      "pass_requires": [
+        "Machine gate is authoritative",
+        "CURRENT_STATUS is not stale against machine state",
+        "Exactly one active phase and slice",
+        "Publication and next-phase locks agree across owners",
+        "Stage-3 PASS is committed and pushed"
+      ]
     },
     {
-      "id": "tui-details",
-      "lane": "TUI Sequence",
-      "title": "Structured evidence and capability views",
-      "status": "next",
-      "summary": "Render tool, authorization, receipt, evidence, validation, diff, capability and integration truth with unsupported states."
+      "id": "stage-4-active-runtime-slice",
+      "parent": "stage-3-governance-alignment",
+      "lane": "Stage 4",
+      "title": "Authorized runtime slice",
+      "status": "locked",
+      "summary": "Only after documentation and governance alignment, continue the active doctrine-to-provider context bridge through its exact allowed implementation owners and focused validation surface.",
+      "pass_requires": [
+        "Exact owner and gap identified",
+        "Only active-slice allowed paths changed",
+        "Focused provider-turn and doctrine-guidance tests pass",
+        "Implementation gate checker passes",
+        "Live local-provider comparison is proven or explicitly remains UNVERIFIED",
+        "Stage-4 PASS is committed and pushed"
+      ]
     },
     {
-      "id": "tui-installed-acceptance",
-      "lane": "Acceptance",
-      "title": "Installed interactive runtime proof",
-      "status": "blocked",
-      "priority": "FINAL TUI GATE",
-      "summary": "Requires exact clean artifact, Windows Terminal render, six distinct commands, session/provider flows, governed local-provider tool turn, interrupt/cancel, terminal compatibility and regression evidence."
-    },
-    {
-      "id": "release-gate-conflict",
-      "lane": "Release",
-      "title": "2.0.3 gate reconciliation",
-      "status": "warning",
-      "priority": "DOCUMENT CONFLICT",
-      "summary": "pyproject.toml is already 2.0.3, but release_progression still lists setting 2.0.3 as remaining. Reconcile gate text before release preparation resumes."
-    },
-    {
-      "id": "release-2.0.3",
-      "lane": "Release",
-      "title": "Publish and verify 2.0.3",
-      "status": "blocked",
-      "priority": "PAUSED",
-      "summary": "Publication is forbidden during COMPLETE_TUI_IMPLEMENTATION. Exact artifact/install, immediate PyPI absence, trusted publishing and post-publish verification remain required."
+      "id": "stage-5-next-slice",
+      "parent": "stage-4-active-runtime-slice",
+      "lane": "Stage 5",
+      "title": "Advance to next authorized slice",
+      "status": "locked",
+      "summary": "Select the next slice only from the newly verified machine state after Stage 4 passes. No preplanned implementation may override the resulting gate authority.",
+      "pass_requires": [
+        "Previous stage is PASS on pushed main",
+        "New machine gate identifies the next slice",
+        "New scope and allowed paths are recorded before work begins"
+      ]
     }
   ],
   "edges": [
-    {
-      "from": "vision",
-      "to": "r3-r6",
-      "type": "flow"
-    },
-    {
-      "from": "r3-r6",
-      "to": "cli",
-      "type": "flow"
-    },
-    {
-      "from": "cli",
-      "to": "r7",
-      "type": "flow"
-    },
-    {
-      "from": "r7",
-      "to": "release-readiness",
-      "type": "flow"
-    },
-    {
-      "from": "release-readiness",
-      "to": "complete-tui",
-      "type": "flow"
-    },
-    {
-      "from": "complete-tui",
-      "to": "tui-projection-view-models",
-      "type": "flow"
-    },
-    {
-      "from": "tui-projection-view-models",
-      "to": "tui-workspace",
-      "type": "acceptance"
-    },
-    {
-      "from": "tui-workspace",
-      "to": "tui-commands",
-      "type": "flow"
-    },
-    {
-      "from": "tui-commands",
-      "to": "tui-sessions-provider",
-      "type": "flow"
-    },
-    {
-      "from": "tui-sessions-provider",
-      "to": "tui-details",
-      "type": "flow"
-    },
-    {
-      "from": "tui-details",
-      "to": "tui-installed-acceptance",
-      "type": "acceptance"
-    },
-    {
-      "from": "tui-installed-acceptance",
-      "to": "release-gate-conflict",
-      "type": "requires-revalidation"
-    },
-    {
-      "from": "release-gate-conflict",
-      "to": "release-2.0.3",
-      "type": "acceptance"
-    }
+    {"from": "authority", "to": "stage-0-baseline-freeze", "type": "authority"},
+    {"from": "stage-0-baseline-freeze", "to": "stage-1-document-authority-map", "type": "pass-unlocks"},
+    {"from": "stage-1-document-authority-map", "to": "stage-2-document-reallocation", "type": "pass-unlocks"},
+    {"from": "stage-2-document-reallocation", "to": "stage-3-governance-alignment", "type": "pass-unlocks"},
+    {"from": "stage-3-governance-alignment", "to": "stage-4-active-runtime-slice", "type": "pass-unlocks"},
+    {"from": "stage-4-active-runtime-slice", "to": "stage-5-next-slice", "type": "pass-unlocks"}
   ]
 }
