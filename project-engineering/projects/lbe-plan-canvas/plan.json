@@ -1,39 +1,161 @@
 {
-  "schema_version": 3,
+  "schema_version": 4,
   "project": "LBE Persistent Agent",
-  "purpose": "Evidence-gated reconciliation plan for C:/Agents-Memory-Tool-v6-integration. Source, local workspace evidence, machine gates, acceptance records and pushed commits remain authoritative.",
-  "authority_rule": "A later stage becomes active only after the previous stage is documented PASS, committed, pushed and remotely verified. Stage 4 runtime work must remain bounded to the machine-selected active slice and does not unlock Stage 5 until the broader active runtime gate is accepted and checkpointed.",
+  "purpose": "Persistent browser projection of the current LBE architecture, ownership boundaries, evidence-gated implementation stages, acceptance strategy, and autonomous-agent continuation policy. Canonical repository/runtime evidence remains authoritative.",
+  "authority_rule": "Live workspace/runtime evidence and the current LBE machine gate outrank this projection. A later stage unlocks only after the previous stage is documented PASS, committed, pushed, and remotely verified.",
   "updated": "2026-08-25",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "source_branch": "main",
   "source_head": "0098e9c86614643e8364dd941e4f23e0295994d7",
   "local_workspace": "C:/Agents-Memory-Tool-v6-integration",
   "active_node": "stage-4-doctrine-provider-context-bridge",
+  "core_doctrine": "Provider proposes. LBE governs. Approved adapters execute. Evidence proves what happened. Deterministic LBE validation owns completion truth.",
+  "evidence_order": [
+    "live workspace/runtime evidence",
+    "machine governance gate",
+    "machine-selected active acceptance gate",
+    "canonical repository source and pushed commits",
+    "canonical current-state/architecture/contract documents",
+    "GPT-Knowledge reference and projection records",
+    "historical research",
+    "model inference"
+  ],
+  "runtime_pipeline": [
+    {"step":1,"stage":"Request entry","owner":"CLI / control protocol / gateway","meaning":"Accept and validate the request without becoming execution authority."},
+    {"step":2,"stage":"Identity","owner":"Session/runtime owners","meaning":"Resolve and prove session, task, canonical workspace, project identity, mode, permission, runtime policy, provider/profile and persisted state."},
+    {"step":3,"stage":"Mode and doctrine","owner":"LBE mode resolution + AgentGuidance","meaning":"Resolve Engineering, Audit, or Investigation behavior. Guidance constrains provider reasoning but does not grant authority."},
+    {"step":4,"stage":"Bounded context","owner":"LBE context/guidance assembly","meaning":"Load only bounded project instructions, current evidence contract, and descriptions of registered governed capabilities with provenance."},
+    {"step":5,"stage":"Reasoning","owner":"Selected provider","meaning":"Interpret the objective, form hypotheses, choose among exposed capabilities, and propose actions. The provider is replaceable and never becomes policy, execution, evidence, or completion authority."},
+    {"step":6,"stage":"Capability validation","owner":"ToolRegistry / typed tool contract","meaning":"Confirm that the requested capability exists and that arguments match the registered contract."},
+    {"step":7,"stage":"Permission decision","owner":"Authorization resolver","meaning":"Return ALLOW, DENY, or a narrowly defined explicit authority decision requirement. Ordinary policy-covered work is automatic; there is no generic approval queue."},
+    {"step":8,"stage":"Execution","owner":"GovernedToolOrchestrator + approved adapter","meaning":"Execute only through the approved registered adapter. Filesystem, Git, terminal, network, MCP/plugin, hosted-service and later capabilities remain behind this boundary."},
+    {"step":9,"stage":"Truth production","owner":"ToolReceipt + runtime events + evidence producers","meaning":"Record operation identity, result, hashes/diffs/output, receipts, evidence and correlations describing what actually happened."},
+    {"step":10,"stage":"Provider continuation","owner":"Provider continuation/runtime","meaning":"Return governed receipts/evidence to the provider so reasoning may continue. Continuation owns no execution authority."},
+    {"step":11,"stage":"Completion validation","owner":"Completion runtime/gate","meaning":"Evaluate current evidence, tests, repository state and completion contract. Provider prose cannot decide terminal success."},
+    {"step":12,"stage":"Persistence","owner":"SessionMemoryRuntimeBridge / SessionOperationalHistory / SQLite owners","meaning":"Persist session/task/checkpoint state, safe runtime events, receipts, evidence, recovery and terminal status."},
+    {"step":13,"stage":"Presentation","owner":"TUI / CLI projection","meaning":"Display persisted runtime truth, evidence, diffs, failures, blocked results and next action without becoming a second runtime."}
+  ],
+  "ownership_split": [
+    {"area":"Request entry","owner":"CLI, control protocol, gateway","provider_may":"submit or receive objective","provider_must_not":"own validation or execution"},
+    {"area":"Identity","owner":"Session/runtime owners","provider_may":"consume resolved identity context","provider_must_not":"choose or rewrite workspace/session authority"},
+    {"area":"Doctrine","owner":"LBE AgentGuidance","provider_may":"reason inside Engineering/Audit/Investigation guidance","provider_must_not":"convert guidance into policy authority"},
+    {"area":"Reasoning","owner":"Provider","provider_may":"interpret, hypothesize, choose exposed tools, propose work","provider_must_not":"claim that a proposed action executed"},
+    {"area":"Capability validation","owner":"ToolRegistry","provider_may":"request a registered tool","provider_must_not":"invent unavailable tools"},
+    {"area":"Permission","owner":"Authorization resolver","provider_may":"receive decision","provider_must_not":"self-authorize"},
+    {"area":"Execution","owner":"Governed orchestrator/adapters","provider_may":"request execution","provider_must_not":"directly mutate workspace/Git/terminal/network outside LBE"},
+    {"area":"Truth","owner":"Receipts/events/evidence producers","provider_may":"interpret receipts","provider_must_not":"manufacture receipts, diffs, evidence or success"},
+    {"area":"Completion","owner":"Deterministic completion runtime","provider_may":"state a belief that work is complete","provider_must_not":"set terminal completion truth"},
+    {"area":"Presentation","owner":"TUI/CLI","provider_may":"produce user-facing reasoning summaries","provider_must_not":"make UI optimistic state authoritative"}
+  ],
+  "runtime_loops": {
+    "reasoning_loop": ["request","bounded context","provider reasoning","capability proposal","LBE validation/authorization","governed action","receipt/evidence","provider continuation"],
+    "truth_loop": ["executed action","receipt/event","current validation evidence","completion decision","task/session/checkpoint persistence","TUI/CLI projection"],
+    "invariant": "The truth loop outranks provider prose. A convincing provider response is never proof that an action executed or that the task is complete."
+  },
+  "agent_guidance": {
+    "status": "IMPLEMENTED_CANONICAL",
+    "commit": "0098e9c86614643e8364dd941e4f23e0295994d7",
+    "provides": [
+      "active doctrine: ENGINEERING, AUDIT, or INVESTIGATION",
+      "objective and expected behavior",
+      "mutation rule appropriate to the active mode",
+      "bounded root AGENTS.md project instructions when safely loadable",
+      "descriptions of currently exposed governed capabilities",
+      "instruction-source provenance and tool identifiers",
+      "evidence expectations and anti-bypass guidance"
+    ],
+    "persistence_boundary": "Only safe guidance metadata is persisted. Project instruction text and provider system prompt text remain provider-only and are not written into runtime events.",
+    "authority_boundary": "AgentGuidance informs reasoning only. It does not grant capabilities, alter policy, execute tools, create receipts, or decide completion."
+  },
   "execution_policy": {
     "one_stage_at_a_time": true,
     "pass_required_before_next_stage": true,
     "commit_and_push_after_each_pass": true,
     "no_unrelated_dirty_file_absorption": true,
     "no_destructive_cleanup_without_explicit_authorization": true,
-    "continue_without_unnecessary_stops": true
+    "continue_without_unnecessary_stops": true,
+    "clean_projection_for_acceptance_when_dirty_work_interferes": true
+  },
+  "autonomous_agent_policy": {
+    "goal": "Continue through the currently authorized objective without asking the user to approve each routine step.",
+    "continue_without_asking": [
+      "read current owners, source, tests, gates and logs",
+      "run validation already required by the active gate",
+      "create temporary isolated acceptance environments",
+      "archive/install/test the exact canonical commit without altering protected dirty work",
+      "choose the next deterministic diagnostic step after a failure",
+      "rerun focused acceptance after a bounded proven repair inside authorized scope",
+      "record evidence required by the active gate",
+      "commit/push a bounded proven fix that is already inside the active machine-authorized scope, then continue validation"
+    ],
+    "stop_only_for": [
+      "a real authority or scope expansion",
+      "destructive/reset/delete work affecting protected or unrelated changes",
+      "authoritative evidence conflict that cannot be resolved read-only",
+      "a required mutation outside the active machine gate",
+      "missing evidence where continuation would require guessing",
+      "a failed validation that exposes a new architectural/product decision rather than a bounded defect",
+      "an intentional current product contract that conflicts with the acceptance contract"
+    ],
+    "failure_rule": "A failed test is normally an investigation input, not a user-decision point. Diagnose and continue unless one of the stop conditions is reached.",
+    "completion_rule": "Do not mark a stage PASS until its required checkpoint is documented, committed, pushed and remotely verified."
+  },
+  "stage_4_acceptance": {
+    "status": "IN_PROGRESS",
+    "active_slice": "DOCTRINE_TO_PROVIDER_CONTEXT_BRIDGE",
+    "implementation_commit": "0098e9c86614643e8364dd941e4f23e0295994d7",
+    "implemented": [
+      "bounded provenance-tagged provider guidance",
+      "governed coding provider guidance",
+      "non-streaming provider guidance",
+      "Audit/Investigation mode guidance through existing TUI provider path",
+      "safe guidance metadata persistence without prompt/project-instruction persistence"
+    ],
+    "remaining_evidence": [
+      "installed TUI behavior from a clean canonical artifact",
+      "live governed tool-call behavior",
+      "completion validation",
+      "full end-to-end installed runtime proof",
+      "any still-required provider/profile/persistence evidence under the active gate",
+      "package/state secret scan and other PASS evidence explicitly required by the active runtime gate"
+    ],
+    "dirty_b3_boundary": {
+      "classification": "LOCAL_WORKTREE_ACCEPTANCE_BLOCKED_BY_UNRELATED_DIRTY_B3",
+      "canonical_contract": "The canonical 0098e9c TUI includes composer_hint, prefix grammar, /settings, /mcp, /skills, /attach and /mentions surfaces required by the existing acceptance tests.",
+      "local_problem": "Protected dirty B3 rewrites shadow that canonical interface and produced 123 passed / 2 failed in the dirty working-tree acceptance attempt.",
+      "required_strategy": "Do not mutate, reset or absorb protected B3 merely to make Stage 4 pass. Build/install/test an isolated clean projection of canonical origin/main. Only if the clean canonical artifact reproduces the failure is a new product defect proven.",
+      "preferred_flow": ["git fetch origin main","archive exact canonical main/commit","expand into isolated temporary directory","build/install exact artifact","run installed TUI + governed tool + completion acceptance","preserve actual dirty workspace untouched"]
+    }
   },
   "nodes": [
-    {"id":"authority","parent":null,"lane":"Authority","title":"Workspace reconciliation authority","status":"proven","summary":"Canonical LBE main is 0098e9c86614643e8364dd941e4f23e0295994d7. Stages 0-3 are canonical PASS; Stage 4 is in progress."},
+    {"id":"authority","parent":null,"lane":"Authority","title":"Workspace and evidence authority","status":"proven","priority":"CANONICAL","summary":"Canonical LBE main is 0098e9c86614643e8364dd941e4f23e0295994d7. Live workspace/runtime evidence and machine governance outrank this browser projection."},
+    {"id":"architecture-runtime-pipeline","parent":"authority","lane":"Architecture","title":"Provider reasoning inside LBE authority","status":"proven","priority":"CORE INVARIANT","summary":"Provider proposes capabilities; LBE validates, authorizes, executes through approved adapters, records receipts/evidence, validates completion and persists truth. TUI/CLI only project persisted runtime state."},
     {"id":"stage-0-baseline-freeze","parent":"authority","lane":"Stage 0","title":"Baseline freeze and preservation matrix","status":"proven","priority":"CANONICAL PASS","summary":"Complete at 2abca625cd277733aabfff2e79dbc168fa62d254."},
     {"id":"stage-1-document-authority-map","parent":"stage-0-baseline-freeze","lane":"Stage 1","title":"Document authority map","status":"proven","priority":"CANONICAL PASS","summary":"Complete at 7e8dbf95b01b663c5e9f3a616123b298dd3af9db."},
     {"id":"stage-2-document-reallocation","parent":"stage-1-document-authority-map","lane":"Stage 2","title":"Document reallocation and navigation alignment","status":"proven","priority":"CANONICAL PASS","summary":"Complete at 6b44c624834523725fde1297c9f714b0a75a144f."},
-    {"id":"stage-3-governance-alignment","parent":"stage-2-document-reallocation","lane":"Stage 3","title":"Governance and current-state alignment","status":"proven","priority":"CANONICAL PASS","summary":"Canonical at 12a4b565b4691f71c66f075ea1e208fffa854004. Machine authority selects COMPLETE_LBE_AGENT_RUNTIME_GATE / COMPLETE_LBE_AGENT_RUNTIME_IMPLEMENTATION / DOCTRINE_TO_PROVIDER_CONTEXT_BRIDGE."},
-    {"id":"stage-4-active-runtime-slice","parent":"stage-3-governance-alignment","lane":"Stage 4","title":"Authorized runtime slice","status":"current","priority":"IN PROGRESS","summary":"Stage 4 runtime work is active under the machine-selected DOCTRINE_TO_PROVIDER_CONTEXT_BRIDGE slice. Implementation commit 0098e9c86614643e8364dd941e4f23e0295994d7 is canonical on main, but the broader active runtime gate is not yet complete."},
-    {"id":"stage-4-doctrine-provider-context-bridge","parent":"stage-4-active-runtime-slice","lane":"Stage 4 · Active Slice","title":"Doctrine to provider context bridge","status":"current","priority":"IMPLEMENTED / VALIDATION CONTINUES","summary":"Commit 0098e9c86614643e8364dd941e4f23e0295994d7 adds provenance-tagged provider guidance, integrates it with governed coding and non-streaming provider turns, wires Audit/Investigation guidance through the existing TUI provider path, and persists safe guidance metadata without persisting prompt/project-instruction text. GitHub verifies exactly six files in the commit. User-supplied live evidence reports 52 tests passed, clean index and 0/0 local/remote alignment.","remaining_evidence":["installed TUI acceptance","live governed tool-call behavior","completion validation","full end-to-end runtime proof","any active-gate provider-profile/persistence evidence not yet satisfied"]},
-    {"id":"stage-5-next-slice","parent":"stage-4-active-runtime-slice","lane":"Stage 5","title":"Advance to next authorized slice","status":"locked","summary":"Locked until Stage 4 canonical PASS and newly verified machine governance state."}
+    {"id":"stage-3-governance-alignment","parent":"stage-2-document-reallocation","lane":"Stage 3","title":"Governance and current-state alignment","status":"proven","priority":"CANONICAL PASS","summary":"Canonical at 12a4b565b4691f71c66f075ea1e208fffa854004. One machine-selected runtime slice: DOCTRINE_TO_PROVIDER_CONTEXT_BRIDGE."},
+    {"id":"stage-4-active-runtime-slice","parent":"stage-3-governance-alignment","lane":"Stage 4","title":"Complete-runtime active slice","status":"current","priority":"IN PROGRESS","summary":"Stage 4 remains open under COMPLETE_LBE_AGENT_RUNTIME_IMPLEMENTATION. The doctrine/context bridge implementation is canonical; acceptance evidence continues."},
+    {"id":"stage-4-doctrine-provider-context-bridge","parent":"stage-4-active-runtime-slice","lane":"Stage 4 · Implementation","title":"Doctrine to provider context bridge","status":"current","priority":"IMPLEMENTED / ACCEPTANCE CONTINUES","summary":"Commit 0098e9c86614643e8364dd941e4f23e0295994d7 implements bounded AgentGuidance across governed coding and non-streaming provider paths while preserving LBE authorization, execution, receipt and completion owners."},
+    {"id":"stage-4-clean-installed-acceptance","parent":"stage-4-active-runtime-slice","lane":"Stage 4 · Acceptance","title":"Clean canonical installed-runtime proof","status":"current","priority":"NEXT VALID WORK","summary":"Run installed TUI, live governed tool-call, completion and end-to-end proof from an isolated clean projection of canonical main so protected dirty B3 work cannot contaminate acceptance."},
+    {"id":"stage-5-next-slice","parent":"stage-4-active-runtime-slice","lane":"Stage 5","title":"Advance to next authorized slice","status":"locked","priority":"LOCKED","summary":"Locked until Stage 4 canonical PASS and newly verified machine governance state selects the next slice."}
   ],
+  "research_boundary": {
+    "deep_repository_audit": {
+      "classification": "HISTORICAL_RESEARCH_NOT_CURRENT_AUTHORITY",
+      "summary": "The uploaded deep repository audit contains useful architecture, persistence, security, dependency, CI and technical-debt analysis, but its audited target/head was an older pravesh0306 fork and it explicitly classified that fork as stale relative to Letterblack0306 upstream. Its recommendations are research inputs only and must be re-verified against current canonical LBE main before use.",
+      "useful_topics": ["authority separation","SQLite persistence model","provider/runtime boundary","tool orchestration","release governance","dependency reproducibility","timeout/idempotency semantics","SQLite concurrency/retention","credential-bearing provider endpoint security","CI and licensing review"],
+      "rule": "Never let historical audit findings override live machine governance, current source, current runtime evidence, or active acceptance results."
+    }
+  },
   "edges": [
+    {"from":"authority","to":"architecture-runtime-pipeline","type":"architecture"},
     {"from":"authority","to":"stage-0-baseline-freeze","type":"authority"},
     {"from":"stage-0-baseline-freeze","to":"stage-1-document-authority-map","type":"pass-unlocked"},
     {"from":"stage-1-document-authority-map","to":"stage-2-document-reallocation","type":"pass-unlocked"},
     {"from":"stage-2-document-reallocation","to":"stage-3-governance-alignment","type":"pass-unlocked"},
     {"from":"stage-3-governance-alignment","to":"stage-4-active-runtime-slice","type":"pass-unlocked"},
-    {"from":"stage-4-active-runtime-slice","to":"stage-4-doctrine-provider-context-bridge","type":"active-slice"},
+    {"from":"stage-4-active-runtime-slice","to":"stage-4-doctrine-provider-context-bridge","type":"implementation"},
+    {"from":"stage-4-active-runtime-slice","to":"stage-4-clean-installed-acceptance","type":"acceptance"},
     {"from":"stage-4-active-runtime-slice","to":"stage-5-next-slice","type":"pass-unlocks"}
   ]
 }
