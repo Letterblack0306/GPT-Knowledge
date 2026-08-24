@@ -3,13 +3,13 @@
   "project": "LBE Persistent Agent",
   "purpose": "Evidence-gated reconciliation plan for C:/Agents-Memory-Tool-v6-integration. This projection shows only the ordered stages; source, local workspace evidence, machine gates, acceptance records and pushed commits remain authoritative.",
   "authority_rule": "Current local workspace evidence outranks this projection for dirty-state claims. Canonical GitHub main, .lbe/governance/implementation-gates.json, acceptance records and exact pushed commits prove completed stages. A later stage cannot become active until the previous stage is documented PASS and pushed.",
-  "updated": "2026-08-24",
+  "updated": "2026-08-25",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "source_branch": "main",
-  "source_head": "2abca625cd277733aabfff2e79dbc168fa62d254",
+  "source_head": "7e8dbf95b01b663c5e9f3a616123b298dd3af9db",
   "local_workspace": "C:/Agents-Memory-Tool-v6-integration",
   "local_state_source": "user-supplied live workspace evidence plus canonical GitHub verification",
-  "active_node": "stage-1-document-authority-map",
+  "active_node": "stage-2-document-reallocation",
   "execution_policy": {
     "one_stage_at_a_time": true,
     "pass_required_before_next_stage": true,
@@ -20,117 +20,20 @@
     "stage_record_required": true
   },
   "nodes": [
-    {
-      "id": "authority",
-      "parent": null,
-      "lane": "Authority",
-      "title": "Workspace reconciliation authority",
-      "status": "proven",
-      "summary": "Canonical repo is Letterblack0306/LBE_Presistent_Agent_wall main at 2abca625cd277733aabfff2e79dbc168fa62d254. Stage 0 checkpoint is present on canonical main."
-    },
-    {
-      "id": "stage-0-baseline-freeze",
-      "parent": "authority",
-      "lane": "Stage 0",
-      "title": "Baseline freeze and preservation matrix",
-      "status": "proven",
-      "priority": "CANONICAL PASS",
-      "summary": "Canonical main contains commit 2abca625cd277733aabfff2e79dbc168fa62d254 with exactly one changed file: docs/acceptance/STAGE_0_BASELINE_FREEZE.md. Stage 0 is complete. Remaining pre-existing dirty work stays outside this committed checkpoint.",
-      "pass_requires": [
-        "Every frozen dirty path maps exactly once — PASS",
-        "Stage 0 acceptance record exists — PASS",
-        "No code changes by Stage 0 — PASS",
-        "B3 remains held",
-        "Governance remains independently excluded",
-        "B4 hash and modified-relocation review remains deferred to Stage 2",
-        "Single-file canonical commit — PROVEN",
-        "Canonical main points to 2abca625cd277733aabfff2e79dbc168fa62d254 — PROVEN"
-      ]
-    },
-    {
-      "id": "stage-1-document-authority-map",
-      "parent": "stage-0-baseline-freeze",
-      "lane": "Stage 1",
-      "title": "Document authority map",
-      "status": "current",
-      "priority": "UNLOCKED / READY",
-      "summary": "Define canonical document classes and fact owners before moving anything: boot-path docs, governance, acceptance, contracts, design, reference, research and history. Identify duplicates, stale owners and modified historical documents. No relocation occurs in this stage.",
-      "pass_requires": [
-        "One fact has one live owner",
-        "Every document class has a deterministic destination",
-        "Duplicates and stale documents are classified before relocation",
-        "Relocation matrix is complete",
-        "No document move or destructive cleanup occurs during Stage 1",
-        "Stage-1 PASS is committed and pushed"
-      ]
-    },
-    {
-      "id": "stage-2-document-reallocation",
-      "parent": "stage-1-document-authority-map",
-      "lane": "Stage 2",
-      "title": "Document reallocation and navigation alignment",
-      "status": "locked",
-      "summary": "Move only approved document groups. Prove hash-preserving moves, individually review modified historical relocations, repair links, and validate the canonical README → CURRENT_STATUS → ARCHITECTURE → RUNTIME_CONTRACT → MODES → active-gate route.",
-      "pass_requires": [
-        "Approved relocations only",
-        "Hash proof for pure moves",
-        "Individual content review for modified relocations",
-        "No broken canonical navigation",
-        "No competing live document owners",
-        "Stage-2 PASS is committed and pushed"
-      ]
-    },
-    {
-      "id": "stage-3-governance-alignment",
-      "parent": "stage-2-document-reallocation",
-      "lane": "Stage 3",
-      "title": "Governance and current-state alignment",
-      "status": "locked",
-      "summary": "Reconcile CURRENT_STATUS, implementation-gates and acceptance records so machine state, human status and active acceptance all describe the same current phase without competing active claims.",
-      "pass_requires": [
-        "Machine gate is authoritative",
-        "CURRENT_STATUS is not stale against machine state",
-        "Exactly one active phase and slice",
-        "Publication and next-phase locks agree across owners",
-        "Stage-3 PASS is committed and pushed"
-      ]
-    },
-    {
-      "id": "stage-4-active-runtime-slice",
-      "parent": "stage-3-governance-alignment",
-      "lane": "Stage 4",
-      "title": "Authorized runtime slice",
-      "status": "locked",
-      "summary": "Only after documentation and governance alignment, continue the active doctrine-to-provider context bridge through its exact allowed implementation owners and focused validation surface.",
-      "pass_requires": [
-        "Exact owner and gap identified",
-        "Only active-slice allowed paths changed",
-        "Focused provider-turn and doctrine-guidance tests pass",
-        "Implementation gate checker passes",
-        "Live local-provider comparison is proven or explicitly remains UNVERIFIED",
-        "Stage-4 PASS is committed and pushed"
-      ]
-    },
-    {
-      "id": "stage-5-next-slice",
-      "parent": "stage-4-active-runtime-slice",
-      "lane": "Stage 5",
-      "title": "Advance to next authorized slice",
-      "status": "locked",
-      "summary": "Select the next slice only from the newly verified machine state after Stage 4 passes. No preplanned implementation may override the resulting gate authority.",
-      "pass_requires": [
-        "Previous stage is PASS on pushed main",
-        "New machine gate identifies the next slice",
-        "New scope and allowed paths are recorded before work begins"
-      ]
-    }
+    {"id":"authority","parent":null,"lane":"Authority","title":"Workspace reconciliation authority","status":"proven","summary":"Canonical repo is Letterblack0306/LBE_Presistent_Agent_wall main at 7e8dbf95b01b663c5e9f3a616123b298dd3af9db. Stage 0 and Stage 1 checkpoints are present on canonical main."},
+    {"id":"stage-0-baseline-freeze","parent":"authority","lane":"Stage 0","title":"Baseline freeze and preservation matrix","status":"proven","priority":"CANONICAL PASS","summary":"Stage 0 is complete at 2abca625cd277733aabfff2e79dbc168fa62d254 with a single-file canonical checkpoint."},
+    {"id":"stage-1-document-authority-map","parent":"stage-0-baseline-freeze","lane":"Stage 1","title":"Document authority map","status":"proven","priority":"CANONICAL PASS","summary":"Canonical main contains commit 7e8dbf95b01b663c5e9f3a616123b298dd3af9db adding only docs/acceptance/STAGE_1_DOCUMENT_AUTHORITY_MAP.md. The map establishes one-fact/one-owner rules, document classes, relocation proposals, conflict registers, and explicit exclusions without moving documents."},
+    {"id":"stage-2-document-reallocation","parent":"stage-1-document-authority-map","lane":"Stage 2","title":"Document reallocation and navigation alignment","status":"current","priority":"UNLOCKED / READY","summary":"Execute only the Stage 1-approved relocation matrix, one classification group at a time. Prove hash-preserving moves, separately review modified historical relocations, repair links/navigation, and validate the canonical README → CURRENT_STATUS → ARCHITECTURE → RUNTIME_CONTRACT → MODES → active-gate route.","pass_requires":["Use only Stage 1-approved actions","Execute one classification group at a time","Hash-prove pure moves before treating them as relocations","Individually review the three known non-pure B4 pairs","Preserve B5 quarantine and B3 hold unless separately authorized","Do not change governance during Stage 2","Repair all affected navigation and references","Validate canonical boot path and one-live-owner invariants","Create Stage 2 PASS/FAIL checkpoint","Commit and push only after Stage 2 validation passes"]},
+    {"id":"stage-3-governance-alignment","parent":"stage-2-document-reallocation","lane":"Stage 3","title":"Governance and current-state alignment","status":"locked","summary":"Reconcile CURRENT_STATUS, implementation-gates and acceptance records only after Stage 2 canonical PASS."},
+    {"id":"stage-4-active-runtime-slice","parent":"stage-3-governance-alignment","lane":"Stage 4","title":"Authorized runtime slice","status":"locked","summary":"Continue the exact machine-authorized runtime slice only after documentation and governance alignment."},
+    {"id":"stage-5-next-slice","parent":"stage-4-active-runtime-slice","lane":"Stage 5","title":"Advance to next authorized slice","status":"locked","summary":"Select the next slice only from newly verified machine state after Stage 4 passes."}
   ],
   "edges": [
-    {"from": "authority", "to": "stage-0-baseline-freeze", "type": "authority"},
-    {"from": "stage-0-baseline-freeze", "to": "stage-1-document-authority-map", "type": "pass-unlocked"},
-    {"from": "stage-1-document-authority-map", "to": "stage-2-document-reallocation", "type": "pass-unlocks"},
-    {"from": "stage-2-document-reallocation", "to": "stage-3-governance-alignment", "type": "pass-unlocks"},
-    {"from": "stage-3-governance-alignment", "to": "stage-4-active-runtime-slice", "type": "pass-unlocks"},
-    {"from": "stage-4-active-runtime-slice", "to": "stage-5-next-slice", "type": "pass-unlocks"}
+    {"from":"authority","to":"stage-0-baseline-freeze","type":"authority"},
+    {"from":"stage-0-baseline-freeze","to":"stage-1-document-authority-map","type":"pass-unlocked"},
+    {"from":"stage-1-document-authority-map","to":"stage-2-document-reallocation","type":"pass-unlocked"},
+    {"from":"stage-2-document-reallocation","to":"stage-3-governance-alignment","type":"pass-unlocks"},
+    {"from":"stage-3-governance-alignment","to":"stage-4-active-runtime-slice","type":"pass-unlocks"},
+    {"from":"stage-4-active-runtime-slice","to":"stage-5-next-slice","type":"pass-unlocks"}
   ]
 }
