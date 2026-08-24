@@ -25,9 +25,9 @@
     {
       "id": "lbe",
       "name": "LBE",
-      "subtitle": "Complete TUI Implementation · Publication Paused",
+      "subtitle": "Stage 2 · Document Reallocation · Divergence Review",
       "mapped": true,
-      "active_node": "tui-projection-view-models",
+      "active_node": "stage-2-group-1-divergence-review",
       "plan_file": "../lbe-plan-canvas/plan.json",
       "status_file": "../lbe-plan-canvas/status.json",
       "references_file": "../lbe-plan-canvas/references.json",
