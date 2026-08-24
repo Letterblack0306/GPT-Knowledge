@@ -4,80 +4,49 @@
   "verified_at": "2026-08-24",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "source_branch": "main",
-  "source_head": "090a53f4847279e2515dc84677efdaa995b9c809",
+  "source_head": "2abca625cd277733aabfff2e79dbc168fa62d254",
   "local_workspace": "C:/Agents-Memory-Tool-v6-integration",
-  "overall_classification": "WORKSPACE_RECONCILIATION_STAGE_0_PASS_LOCAL_PUSH_AUTHORIZED_EXECUTION_PENDING",
-  "authority_note": "Stage 0 local PASS is supported by the uploaded acceptance record. Explicit authorization now exists only for Stage 0 canonicalization: stage docs/acceptance/STAGE_0_BASELINE_FREEZE.md, commit that single path on existing main, push main, verify the remote commit and alignment, then classify canonical PASS. Stage 1 remains locked until those execution proofs exist.",
+  "overall_classification": "WORKSPACE_RECONCILIATION_STAGE_0_CANONICAL_PASS_STAGE_1_READY",
+  "authority_note": "GitHub verification proves canonical main points to Stage 0 commit 2abca625cd277733aabfff2e79dbc168fa62d254 and that the commit contains exactly docs/acceptance/STAGE_0_BASELINE_FREEZE.md. Local ahead/behind, empty index, and remaining dirty count remain based on the user's live workspace report.",
   "current_stage": {
-    "id": "stage-0-baseline-freeze",
-    "title": "Baseline freeze and preservation matrix",
-    "status": "PASS_LOCAL_PUSH_AUTHORIZED_EXECUTION_PENDING",
-    "reason": "The local Stage 0 record reports a valid baseline freeze and exact one-time dirty-path classification. The transition to canonical PASS has been explicitly authorized but has not yet been proven executed.",
-    "authorization": {
-      "classification": "EXPLICIT_USER_AUTHORIZATION",
-      "scope": "STAGE_0_CANONICALIZATION_ONLY",
-      "allowed_actions": [
-        "Stage only docs/acceptance/STAGE_0_BASELINE_FREEZE.md",
-        "Commit that single path on existing main",
-        "Push main to origin/main",
-        "Verify local HEAD, origin/main, ahead/behind 0/0 and single-file commit contents",
-        "Classify Stage 0 canonical PASS only after successful remote verification"
-      ],
-      "forbidden_actions": [
-        "Stage any other dirty path",
-        "Modify any other file",
-        "Clean, reset, stash, delete, move or restore unrelated work",
-        "Touch B2, B3, B4, B5 or governance",
-        "Start Stage 1 in the same operation",
-        "Infer authorization for later stages"
-      ]
-    },
-    "next_valid_action": "Execute the authorized single-file Stage 0 commit/push on the LBE workspace and return exact commit SHA plus remote verification evidence. Until then Stage 1 remains locked."
+    "id": "stage-1-document-authority-map",
+    "title": "Document authority map",
+    "status": "UNLOCKED_READY",
+    "reason": "Stage 0 is canonically committed and present at the tip of LBE main. Stage 1 may now begin, but no Stage 1 work has yet been recorded.",
+    "next_valid_action": "Perform Stage 1 as documentation analysis only: define the canonical document classes, identify the single live owner for each fact category, classify duplicates/stale/history candidates, and produce a complete relocation matrix. Do not relocate files in Stage 1."
   },
-  "observed_local_state": {
-    "classification": "UPLOADED_STAGE_0_ACCEPTANCE_RECORD",
-    "branch": "main",
-    "head": "090a53f4847279e2515dc84677efdaa995b9c809",
-    "origin_main": "090a53f4847279e2515dc84677efdaa995b9c809",
-    "upstream": "origin/main",
-    "ahead_behind": "0/0",
-    "staged_paths_at_capture": 0,
-    "dirty_paths_at_capture": 65,
-    "live_dirty_paths_after_stage_record": 66,
-    "code_changes_by_stage_0": "none",
-    "git_diff_check": "PASS",
-    "full_test_suite": "NOT_RUN"
-  },
-  "preservation_findings": [
-    {
-      "id": "exact-one-time-classification",
-      "classification": "PASS_LOCAL",
-      "detail": "The Stage 0 record classifies every frozen dirty path exactly once across B1-B5 plus an independent governance exclusion."
-    },
-    {
-      "id": "stage-record-self",
-      "classification": "PASS_LOCAL",
-      "detail": "docs/acceptance/STAGE_0_BASELINE_FREEZE.md is classified as a B1 documentation path; the record states the live dirty count becomes 66 after its creation."
-    },
-    {
-      "id": "b4-review",
-      "classification": "DEFERRED_TO_STAGE_2",
-      "detail": "B4 hash/move validation and modified-relocation review remain deferred. Known non-pure pairs: PHASE12_END_TO_END_PROOF, PHASE_13_CALLBACK_VERTICAL_SLICE and VALIDATED_WORKSPACE_MEMORY."
-    },
-    {
-      "id": "b3",
-      "classification": "HELD",
-      "detail": "TUI/projection paths remain held."
-    },
-    {
-      "id": "governance",
-      "classification": "EXCLUDED",
-      "detail": ".lbe/governance/implementation-gates.json remains independently classified and excluded from Stage 0 canonicalization."
+  "stage_0": {
+    "classification": "CANONICAL_PASS",
+    "commit_sha": "2abca625cd277733aabfff2e79dbc168fa62d254",
+    "commit_message": "docs: canonicalize stage 0 baseline freeze",
+    "remote_branch": "origin/main",
+    "github_main_verified": true,
+    "changed_files": [
+      "docs/acceptance/STAGE_0_BASELINE_FREEZE.md"
+    ],
+    "single_file_commit_verification": "PROVEN_GITHUB",
+    "reported_local_verification": {
+      "local_head": "2abca625cd277733aabfff2e79dbc168fa62d254",
+      "origin_main": "2abca625cd277733aabfff2e79dbc168fa62d254",
+      "ahead_behind": "0/0",
+      "index": "empty",
+      "remaining_dirty_paths": 65,
+      "classification": "USER_SUPPLIED_LIVE_EVIDENCE"
     }
-  ],
+  },
+  "preservation_state": {
+    "b3": "HELD",
+    "governance": "EXCLUDED_UNTIL_STAGE_3",
+    "b4_non_pure_relocations": [
+      "docs/PHASE12_END_TO_END_PROOF.md -> docs/history/PHASE12_END_TO_END_PROOF.md",
+      "docs/PHASE_13_CALLBACK_VERTICAL_SLICE.md -> docs/history/PHASE_13_CALLBACK_VERTICAL_SLICE.md",
+      "docs/VALIDATED_WORKSPACE_MEMORY.md -> docs/contracts/VALIDATED_WORKSPACE_MEMORY.md"
+    ],
+    "b4_review_stage": 2
+  },
   "stage_sequence": [
-    {"id": "stage-0-baseline-freeze", "status": "PASS_LOCAL_PUSH_AUTHORIZED_EXECUTION_PENDING", "unlock": "execute authorized single-file commit/push and verify canonical main"},
-    {"id": "stage-1-document-authority-map", "status": "LOCKED", "unlock": "Stage 0 canonical PASS verified on pushed main"},
+    {"id": "stage-0-baseline-freeze", "status": "CANONICAL_PASS", "evidence": "2abca625cd277733aabfff2e79dbc168fa62d254"},
+    {"id": "stage-1-document-authority-map", "status": "UNLOCKED_READY", "unlock": "Stage 0 canonical PASS verified"},
     {"id": "stage-2-document-reallocation", "status": "LOCKED", "unlock": "Stage 1 PASS pushed"},
     {"id": "stage-3-governance-alignment", "status": "LOCKED", "unlock": "Stage 2 PASS pushed"},
     {"id": "stage-4-active-runtime-slice", "status": "LOCKED", "unlock": "Stage 3 PASS pushed"},
@@ -86,9 +55,7 @@
   "update_contract": {
     "on_stage_start": "Set exactly one active stage and preserve all later stages as locked.",
     "on_stage_fail": "Record FAIL/BLOCKED evidence on the same node; do not activate another node.",
-    "on_local_stage_pass": "Record PASS_LOCAL and keep the next node locked until canonical push is verified.",
-    "on_authorization": "Record the exact authorized action scope without treating authorization as execution proof.",
     "on_stage_pass_pushed": "Record validation, exact touched paths, checkpoint document and source commit SHA; verify pushed main; only then unlock the next node.",
-    "ui_rule": "Tree state mirrors plan/status data. UI state never becomes authority and never marks canonical PASS from authorization or narrative alone."
+    "ui_rule": "Tree state mirrors plan/status data. UI state never becomes authority and never marks canonical PASS from narrative alone."
   }
 }
