@@ -1,80 +1,74 @@
 {
-  "schema_version": 13,
+  "schema_version": 14,
   "project": "LBE Persistent Agent",
-  "purpose": "Persistent projection of LBE product intent, structural authority, machine-selected implementation scope, evidence-gated progression, and remaining product sequence. Canonical LBE repository/runtime evidence remains authoritative.",
+  "purpose": "Persistent projection of LBE product intent, structural authority, evidence-gated progression, Cline reuse boundaries, and next product architecture work. Canonical LBE repository/runtime evidence remains authoritative.",
   "authority_rule": "Current workspace/runtime evidence and .lbe/governance/implementation-gates.json outrank this projection. PROJECT_INDEX.md defines structural responsibility. PROJECT_INTENT_LEDGER.md defines durable project intent. GPT-Knowledge is projection only.",
   "updated": "2026-08-25",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "source_branch": "main",
-  "source_head": "6d444de2004acfb8d22f2a7e1bc144ed4e1a5b3f",
+  "source_head": "49ca39b6b8b0d9417563f2af63bd6349dff3b929",
   "local_workspace": "C:/Agents-Memory-Tool-v6-integration",
-  "active_node": "recovery-completion-promotion",
+  "active_node": "complete-runtime-pass",
   "core_doctrine": "Agent/provider reasons and proposes. LBE preserves project identity and intent, governs authority and consequences, executes only through approved adapters, records receipts/evidence, and owns deterministic completion truth.",
-  "product_identity": {"product":"LBE","interface":"LBE interface","runtime_authority":"LBE","cline_role":"Mechanics/reuse source only; not product identity and not interface identity."},
-  "pre_mutation_governance": {"name":"INTENT_AND_STRUCTURE_BEFORE_MUTATION","status":"CANONICAL","owners":["PROJECT_INDEX.md","docs/governance/PROJECT_INTENT_LEDGER.md",".lbe/governance/implementation-gates.json"]},
-  "workspace_authority": {"primary_rule":"Primary main worktree remains the only implementation/runtime/architecture authority.","alignment":"REMOTE_MAIN_ADVANCED_LOCAL_PULL_REQUIRED","lbe_core":"Separate read-only reference repository.","lbe_tui":"User-provided local reference only; untracked, not canonical, do not stage/commit/delete."},
+  "product_identity": {"product": "LBE", "interface": "LBE interface", "runtime_authority": "LBE", "cline_role": "Mechanics/reuse source only; not product identity and not interface identity."},
+  "pre_mutation_governance": {"name": "INTENT_AND_STRUCTURE_BEFORE_MUTATION", "status": "CANONICAL", "owners": ["PROJECT_INDEX.md", "docs/governance/PROJECT_INTENT_LEDGER.md", ".lbe/governance/implementation-gates.json"]},
+  "workspace_authority": {"primary_rule": "Primary main worktree remains the only implementation/runtime/architecture authority.", "alignment": "REMOTE_MAIN_VERIFIED_49ca39b", "lbe_core": "Separate read-only reference repository.", "lbe_tui": "User-provided local reference only; untracked, not canonical, do not stage/commit/delete.", "preserved_lifecycle_patch": "C:/Users/prave/LBE-preserved-session-lifecycle-unification-20260825"},
   "runtime_pipeline": [
-    {"step":1,"stage":"Start / Request","owner":"LBE product entry + interface"},
-    {"step":2,"stage":"Project + workspace + persisted session identity","owner":"LBE session/runtime owners"},
-    {"step":3,"stage":"Installed capability inventory/configuration","owner":"LBE installed registry metadata owner"},
-    {"step":4,"stage":"Reasoning context","owner":"LBE context boundary"},
-    {"step":5,"stage":"Reasoning","owner":"Provider / agent; single mutation attempt on coding path"},
-    {"step":6,"stage":"Capability validation/registration","owner":"ExternalCapabilityRegistration + ToolRegistry"},
-    {"step":7,"stage":"Authorization","owner":"R6C"},
-    {"step":8,"stage":"Execution","owner":"R6E GovernedToolOrchestrator + approved adapter"},
-    {"step":9,"stage":"Truth production","owner":"ToolReceipt/events + trusted completion evidence producers"},
-    {"step":10,"stage":"Bounded recovery","owner":"R5 SessionMemoryRuntimeBridge/recovery.py"},
-    {"step":11,"stage":"Completion validation","owner":"CodingCompletionRuntime + existing completion gate"},
-    {"step":12,"stage":"Proof promotion","owner":"MemoryPromoter; READY only"},
-    {"step":13,"stage":"Persistence and presentation","owner":"LBE persistence + LBE interface"}
+    {"step": 1, "stage": "Start / Request", "owner": "LBE product entry + interface"},
+    {"step": 2, "stage": "Project + workspace + persisted session identity", "owner": "LBE session/runtime owners"},
+    {"step": 3, "stage": "Installed capability inventory/configuration", "owner": "LBE installed registry metadata owner"},
+    {"step": 4, "stage": "Reasoning context", "owner": "LBE context boundary"},
+    {"step": 5, "stage": "Reasoning", "owner": "Provider / agent"},
+    {"step": 6, "stage": "Capability validation/registration", "owner": "ExternalCapabilityRegistration + ToolRegistry"},
+    {"step": 7, "stage": "Authorization", "owner": "R6C"},
+    {"step": 8, "stage": "Execution", "owner": "R6E GovernedToolOrchestrator + approved adapter"},
+    {"step": 9, "stage": "Truth production", "owner": "ToolReceipt/events + trusted completion evidence producers"},
+    {"step": 10, "stage": "Bounded recovery", "owner": "R5 SessionMemoryRuntimeBridge/recovery.py"},
+    {"step": 11, "stage": "Completion validation", "owner": "CodingCompletionRuntime + completion gate"},
+    {"step": 12, "stage": "Proof promotion", "owner": "MemoryPromoter; READY only"},
+    {"step": 13, "stage": "Persistence and presentation", "owner": "LBE persistence + LBE interface"}
   ],
-  "active_intent": {
-    "intent_id": "LBE-INTENT-RECOVERY-COMPLETION-PROMOTION-001",
-    "status": "ACTIVE",
-    "machine_slice": "RECOVERY_COMPLETION_PROMOTION_INTEGRATION",
-    "phase": "COMPLETE_LBE_AGENT_RUNTIME_IMPLEMENTATION",
-    "slice_result": "OPEN_IMPLEMENTED_VALIDATION_PENDING",
-    "implementation_head": "6d444de2004acfb8d22f2a7e1bc144ed4e1a5b3f"
-  },
+  "active_intent": null,
   "completed_product_slices": [
-    {"id":"doctrine-provider-context","title":"Doctrine to provider context bridge","status":"PASS"},
-    {"id":"workspace-hygiene","title":"Workspace hygiene governed deletion","status":"PASS","focused_tests":"52 passed"},
-    {"id":"mandatory-governed-mutation-dispatch","title":"Filesystem / registered process / primary-main Git governed dispatch","status":"PASS","focused_tests":"80 passed","full_tests":"713 passed"},
-    {"id":"governed-external-capability-registration","title":"Governed MCP/plugin/subagent/network/hosted-service registration contract","status":"PASS","focused_tests":"58 passed","full_tests":"732 passed"},
-    {"id":"first-run-live-session-entry","title":"First-run/live persisted session entry","status":"PASS","focused_tests":"63 passed","full_tests":"740 passed"},
-    {"id":"installed-capability-registry","title":"Installed capability registry","status":"PASS","focused_tests":"71 passed","full_tests":"760 passed"},
-    {"id":"interface-control-evidence-surfaces","title":"LBE interface/control/evidence surfaces","status":"PASS","focused_tests":"53 passed","full_tests":"763 passed"}
+    {"id": "doctrine-provider-context", "title": "Doctrine to provider context bridge", "status": "PASS"},
+    {"id": "workspace-hygiene", "title": "Workspace hygiene governed deletion", "status": "PASS"},
+    {"id": "mandatory-governed-mutation-dispatch", "title": "Governed filesystem/process/main Git dispatch", "status": "PASS"},
+    {"id": "governed-external-capability-registration", "title": "Governed external capability registration", "status": "PASS"},
+    {"id": "first-run-live-session-entry", "title": "First-run/live persisted session entry", "status": "PASS"},
+    {"id": "installed-capability-registry", "title": "Installed capability registry", "status": "PASS"},
+    {"id": "interface-control-evidence-surfaces", "title": "LBE interface/control/evidence surfaces", "status": "PASS"},
+    {"id": "recovery-completion-promotion", "title": "Recovery + deterministic completion + proof promotion", "status": "PASS"},
+    {"id": "installed-package-acceptance", "title": "Installed-package end-to-end acceptance", "status": "PASS"},
+    {"id": "complete-runtime-pass", "title": "Complete LBE runtime gate", "status": "PASS"}
   ],
-  "active_product_slice": {
-    "id": "recovery-completion-promotion",
-    "title": "Recovery, deterministic completion and completion-proof promotion",
-    "status": "IMPLEMENTED_VALIDATION_PENDING",
-    "goal": "Make deterministic LBE completion automatic on the normal coding path while preserving single-attempt mutation execution, bounded recovery for safe validation, and evidence-gated proof promotion.",
-    "implementation": [
-      "mutation-capable reasoning executes under R5 identity with max_attempts=1 and idempotent=false",
-      "provider COMPLETED creates a TEMP/UNVERIFIED task_complete memory record",
-      "trusted evidence producers use bounded transient recovery only as idempotent operations",
-      "normal gateway calls the existing completion gate automatically",
-      "READY produces VALIDATED_COMPLETION and promotes the same task_complete record VERIFIED",
-      "FAILED/INCOMPLETE never promotes verified completion",
-      "exact request replay cannot repeat provider reasoning after terminal recovery success"
-    ]
+  "next_product_candidate": {
+    "id": "session-application-contract-unification",
+    "intent_id": "LBE-INTENT-SESSION-APPLICATION-CONTRACT-UNIFICATION-001",
+    "status": "NOT_ACTIVE_CANDIDATE",
+    "goal": "Unify CLI and Textual session/provider lifecycle orchestration behind one LBE-owned application service while preserving WorkspaceMemoryStore, SessionMemoryRuntimeBridge, ProviderRegistry, and PersistentTurnControl as existing owners.",
+    "preserved_patch": "C:/Users/prave/LBE-preserved-session-lifecycle-unification-20260825"
+  },
+  "cline_reuse": {
+    "accepted_intent": "LBE-INTENT-CLINE-AGENTRUNTIME-001",
+    "status": "ACCEPTED_PRODUCT_DIRECTION_NOT_ACTIVE",
+    "audited_revision": "8bbdde2a5c1f972864fe1b954f639c21fac61a40",
+    "current_upstream_head_observed": "491b30b806fdb8c93513f821f2b87d63a61542f5",
+    "historically_proven_in_lbe": ["provider-backed AgentRuntime continuation", "LBE proxy tools through GovernedToolOrchestrator", "ToolReceipt returned into same continuation loop", "deny-before-execute", "allow-exactly-once", "AgentRuntime.abort cancellation mapping"],
+    "reuse": ["AgentRuntime model-tool-result continuation"],
+    "adapt": ["provider adapters", "stream/event model", "pre-tool hooks", "cancellation", "pending prompts/steering", "context compaction", "MCP contribution", "background process lifecycle", "usage/cost accounting", "checkpoint comparison", "automation/cron", "client presentation mechanics"],
+    "reject": ["Cline-native filesystem mutation as canonical", "Cline-native shell/process execution as canonical", "Cline canonical session ownership", "Cline authorization authority", "Cline completion authority", "Cline-branded LBE product/interface identity"]
   },
   "remaining_product_sequence": [
-    {"order":1,"title":"Installed-package end-to-end acceptance","status":"LOCKED_UNTIL_CURRENT_PASS"}
-  ],
-  "accepted_product_intents": [
-    {"intent_id":"LBE-INTENT-CLINE-AGENTRUNTIME-001","status":"ACCEPTED_PRODUCT_DIRECTION_NOT_ACTIVE","agent_loop_base":"Selectively reuse/adapt proven Cline AgentRuntime continuation, event and tool mechanics behind an LBE-owned governance boundary.","reject":["Cline-native canonical mutation authority","second session authority","second completion authority","Cline-branded LBE product/interface identity"]}
+    {"order": 1, "title": "Session/application contract unification", "status": "NEXT_CANDIDATE_NOT_ACTIVE"},
+    {"order": 2, "title": "Refresh Cline boundary audit against current upstream", "status": "AFTER_SESSION_UNIFICATION"},
+    {"order": 3, "title": "Reactivate/adapt governed Cline AgentRuntime mechanics below LBE authority", "status": "FUTURE"}
   ],
   "nodes": [
-    {"id":"authority","parent":null,"lane":"Authority","title":"Canonical project authority","status":"proven","priority":"CANONICAL"},
-    {"id":"governed-mutation","parent":"authority","lane":"Completed","title":"Mandatory governed mutation dispatch","status":"proven","priority":"PASS"},
-    {"id":"external-registration","parent":"governed-mutation","lane":"Completed","title":"Governed external capability registration","status":"proven","priority":"PASS"},
-    {"id":"first-run-live-session-entry","parent":"external-registration","lane":"Completed","title":"First-run/live persisted session entry","status":"proven","priority":"PASS"},
-    {"id":"installed-capability-registry","parent":"first-run-live-session-entry","lane":"Completed","title":"Installed capability registry","status":"proven","priority":"PASS"},
-    {"id":"interface-surfaces","parent":"installed-capability-registry","lane":"Completed","title":"LBE interface/control/evidence surfaces","status":"proven","priority":"PASS"},
-    {"id":"recovery-completion-promotion","parent":"interface-surfaces","lane":"Active slice","title":"Recovery + deterministic completion + proof promotion","status":"current","priority":"VALIDATION PENDING"},
-    {"id":"installed-package-acceptance","parent":"recovery-completion-promotion","lane":"Next","title":"Installed-package end-to-end acceptance","status":"locked","priority":"LOCKED UNTIL CURRENT PASS"},
-    {"id":"lbe-interface","parent":"authority","lane":"Product identity","title":"LBE interface identity","status":"proven","priority":"ACCEPTED"}
+    {"id": "authority", "parent": null, "lane": "Authority", "title": "Canonical project authority", "status": "proven", "priority": "CANONICAL"},
+    {"id": "complete-runtime-pass", "parent": "authority", "lane": "Completed", "title": "Complete LBE runtime accepted", "status": "proven", "priority": "PASS"},
+    {"id": "session-application-contract-unification", "parent": "complete-runtime-pass", "lane": "Next candidate", "title": "Session/application contract unification", "status": "planned", "priority": "NOT ACTIVE"},
+    {"id": "cline-upstream-refresh", "parent": "session-application-contract-unification", "lane": "Future", "title": "Refresh Cline reuse boundary against current upstream", "status": "planned", "priority": "AFTER SESSION UNIFICATION"},
+    {"id": "cline-agent-runtime", "parent": "cline-upstream-refresh", "lane": "Accepted direction", "title": "Governed Cline AgentRuntime reuse", "status": "accepted-direction", "priority": "NOT ACTIVE"},
+    {"id": "lbe-interface", "parent": "authority", "lane": "Product identity", "title": "LBE interface identity", "status": "proven", "priority": "ACCEPTED"}
   ]
 }
