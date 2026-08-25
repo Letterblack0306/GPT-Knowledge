@@ -1,32 +1,29 @@
 {
-  "schema_version": 4,
+  "schema_version": 5,
   "updated": "2026-08-25",
-  "source_head": "0227e844245c901e4178e7d8aaedfbd77fe301bf",
+  "source_head": "b163a945faa99f93c87c6641c7ba756e415b3f33",
   "references": [
     {"id":"canonical-repo","label":"Canonical LBE repository","url":"https://github.com/Letterblack0306/LBE_Presistent_Agent_wall","kind":"project-authority","authority":"canonical source"},
     {"id":"project-index","label":"Project Structural Authority Index","url":"https://github.com/Letterblack0306/LBE_Presistent_Agent_wall/blob/main/PROJECT_INDEX.md","kind":"governance-authority","authority":"structural responsibility owner; pre-mutation input"},
     {"id":"intent-ledger","label":"Project Intent Ledger","url":"https://github.com/Letterblack0306/LBE_Presistent_Agent_wall/blob/main/docs/governance/PROJECT_INTENT_LEDGER.md","kind":"governance-authority","authority":"durable project intent; pre-mutation input"},
     {"id":"machine-gate","label":"Machine governance gate","url":"https://github.com/Letterblack0306/LBE_Presistent_Agent_wall/blob/main/.lbe/governance/implementation-gates.json","kind":"machine-authority","authority":"active authorization/slice/intent binding owner"},
     {"id":"gate-checker","label":"Implementation gate checker","url":"https://github.com/Letterblack0306/LBE_Presistent_Agent_wall/blob/main/scripts/check-implementation-gate.py","kind":"machine-enforcement","authority":"fail-closed intent, structure and staged-scope enforcement"},
-    {"id":"agent-entry","label":"Canonical agent project context","url":"https://github.com/Letterblack0306/LBE_Presistent_Agent_wall/blob/main/.agent/PROJECT_CONTEXT.md","kind":"router","authority":"agent entrypoint and workspace authority routing"},
-    {"id":"execution-guide","label":"Agent Implementation Execution Guide","url":"https://github.com/Letterblack0306/LBE_Presistent_Agent_wall/blob/main/docs/governance/AGENT_IMPLEMENTATION_EXECUTION_GUIDE.md","kind":"governance","authority":"canonical operating guide; primary-worktree rule plus bounded hygiene projection exception"},
-    {"id":"docs-entry","label":"LBE Documentation Library","url":"https://github.com/Letterblack0306/LBE_Presistent_Agent_wall/blob/main/docs/README.md","kind":"router","authority":"documentation entrypoint"},
+    {"id":"docs-entry","label":"LBE Documentation Library","url":"https://github.com/Letterblack0306/LBE_Presistent_Agent_wall/blob/main/docs/README.md","kind":"router","authority":"canonical documentation entrypoint"},
+    {"id":"document-manifest","label":"Document Intent Manifest","url":"https://github.com/Letterblack0306/LBE_Presistent_Agent_wall/blob/main/docs/DOCUMENT_INTENT_MANIFEST.md","kind":"documentation-governance","authority":"tracked Markdown role/disposition inventory"},
     {"id":"active-gate","label":"Complete LBE Agent Runtime Gate","url":"https://github.com/Letterblack0306/LBE_Presistent_Agent_wall/blob/main/docs/acceptance/COMPLETE_LBE_AGENT_RUNTIME_GATE.md","kind":"acceptance-authority","authority":"machine-selected active acceptance plan"},
-    {"id":"current-status","label":"Current Status","url":"https://github.com/Letterblack0306/LBE_Presistent_Agent_wall/blob/main/docs/CURRENT_STATUS.md","kind":"current-state","authority":"human-readable projection"},
-    {"id":"implementation-plan","label":"Canonical Implementation Plan","url":"https://github.com/Letterblack0306/LBE_Presistent_Agent_wall/blob/main/docs/IMPLEMENTATION_PLAN.md","kind":"roadmap","authority":"ordered product/implementation sequence"},
+    {"id":"agency-separation","label":"Agent Agency / LBE Authority Separation","url":"https://github.com/Letterblack0306/LBE_Presistent_Agent_wall/blob/main/docs/design/AGENT_AGENCY_LBE_AUTHORITY_SEPARATION.md","kind":"design-owner","authority":"canonical LBE interface identity and agent/LBE authority boundary"},
     {"id":"lifecycle","label":"LBE Agent Lifecycle","url":"https://github.com/Letterblack0306/LBE_Presistent_Agent_wall/blob/main/docs/LBE_AGENT_LIFECYCLE.md","kind":"architecture","authority":"operational turn-flow owner"},
-    {"id":"agency-separation","label":"Agent Agency / LBE Authority Separation","url":"https://github.com/Letterblack0306/LBE_Presistent_Agent_wall/blob/main/docs/design/AGENT_AGENCY_LBE_AUTHORITY_SEPARATION.md","kind":"design","authority":"agent/LBE authority separation design"},
     {"id":"lifecycle-phases","label":"Agent Lifecycle Phases","url":"https://github.com/Letterblack0306/LBE_Presistent_Agent_wall/blob/main/docs/design/AGENT_LIFECYCLE_PHASES.md","kind":"design","authority":"product lifecycle and reuse/wrap/own design"},
-    {"id":"cline-reuse-matrix","label":"Cline Core Reuse Boundary Matrix","url":"https://github.com/Letterblack0306/LBE_Presistent_Agent_wall/blob/main/docs/research/CLINE_CORE_REUSE_BOUNDARY_MATRIX.md","kind":"reuse-boundary","authority":"accepted reuse/adapt/reject evidence; not machine activation by itself"},
-    {"id":"cli-review","label":"CLI Agent Reference Review","url":"https://github.com/Letterblack0306/LBE_Presistent_Agent_wall/blob/main/docs/reference/CLI_AGENT_REFERENCE_REVIEW_2026-08-21.md","kind":"reference","authority":"planning/reference only"},
-    {"id":"gpt-provider-boundary","label":"LBE CLI control-plane/provider boundary","path":"../../../ai-agents/lbe-cli-control-plane-provider-boundary.md","kind":"gpt-knowledge-reference","authority":"cross-project design reference"},
-    {"id":"gpt-truth-ui","label":"Inline agent runtime tool-call truth UI","path":"../../../ui-engineering/inline-agent-runtime-toolcall-truth-ui.md","kind":"gpt-knowledge-reference","authority":"cross-project UI/runtime reference"},
-    {"id":"project-status-mirror","label":"LBE project status mirror","path":"../lbe-persistent-agent-wall-status.md","kind":"reference","authority":"projection only"},
-    {"id":"deep-document-research","label":"Reconstruct, Verify, and Consolidate the LBE Workspace Documentation","kind":"historical-research","authority":"research input only; current repository and machine governance outrank it","note":"Use its evidence-first consolidation method and explicit evidence labels, but re-verify every current-state or authority claim."}
+    {"id":"cline-reuse-matrix","label":"Cline Core Reuse Boundary Matrix","url":"https://github.com/Letterblack0306/LBE_Presistent_Agent_wall/blob/main/docs/research/CLINE_CORE_REUSE_BOUNDARY_MATRIX.md","kind":"reuse-boundary","authority":"reuse/adapt/reject evidence; Cline is a mechanics source, not product/interface identity"},
+    {"id":"current-status","label":"Current Status","url":"https://github.com/Letterblack0306/LBE_Presistent_Agent_wall/blob/main/docs/CURRENT_STATUS.md","kind":"current-state","authority":"human-readable projection"},
+    {"id":"implementation-plan","label":"Canonical Implementation Plan","url":"https://github.com/Letterblack0306/LBE_Presistent_Agent_wall/blob/main/docs/IMPLEMENTATION_PLAN.md","kind":"roadmap","authority":"ordered product/implementation sequence"}
   ],
   "important_commits": [
     {"sha":"17d6e7c09987b6f6d9ea857a130023d21412c566","meaning":"canonical governed workspace deletion moved into approved existing owners"},
-    {"sha":"ac0aafbaee2b1e7560f6802d63eb4fce4c45c7d0","meaning":"intent and structure before mutation became canonical machine-enforced governance"},
-    {"sha":"0227e844245c901e4178e7d8aaedfbd77fe301bf","meaning":"bounded protected-workspace hygiene projection exception documented while preserving primary implementation authority"}
+    {"sha":"ac0aafbaee2b1e7560f6802d63eb4fce4c45c7d0","meaning":"intent and structure before mutation became canonical governance"},
+    {"sha":"0227e844245c901e4178e7d8aaedfbd77fe301bf","meaning":"bounded protected-workspace hygiene projection exception documented"},
+    {"sha":"da92266bc2cb0d43974b32932842c3eb3621c9f2","meaning":"workspace authority routing reconciled; stale route retired; manifest/index coverage repaired; lbe-core registered as separate reference repository"},
+    {"sha":"fc6b5e9aaf7c06f02fc5851343d01db182460d7c","meaning":"initial durable interaction-direction record; later wording corrected"},
+    {"sha":"b163a945faa99f93c87c6641c7ba756e415b3f33","meaning":"canonical product/interface identity corrected: Product=LBE, Interface=LBE interface, Cline=reuse source only"}
   ]
 }
