@@ -1,14 +1,14 @@
 {
-  "schema_version": 7,
+  "schema_version": 8,
   "project": "LBE Persistent Agent",
   "purpose": "Persistent projection of LBE product intent, structural authority, machine-selected implementation scope, evidence-gated progression, accepted future product direction, and canonical preservation routing. Canonical LBE repository/runtime evidence remains authoritative.",
   "authority_rule": "Current workspace/runtime evidence and .lbe/governance/implementation-gates.json outrank this projection. PROJECT_INDEX.md defines structural responsibility. PROJECT_INTENT_LEDGER.md defines durable project intent. GPT-Knowledge is projection only.",
   "updated": "2026-08-25",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "source_branch": "main",
-  "source_head": "cdce28498fcac4f1af42c079d6c3e469bef80d48",
+  "source_head": "47885891848ec9a535a4e09694d3129b320da91a",
   "local_workspace": "C:/Agents-Memory-Tool-v6-integration",
-  "active_node": "workspace-hygiene",
+  "active_node": "mandatory-governed-mutation-dispatch",
   "core_doctrine": "Agent/provider reasons and proposes. LBE preserves project identity and intent, governs authority and consequences, executes only through approved adapters, records receipts/evidence, and owns deterministic completion truth.",
   "project_continuity_doctrine": "The project must remember what it is trying to become even when the reasoning agent changes.",
   "product_identity": {
@@ -22,26 +22,8 @@
   "pre_mutation_governance": {
     "name": "INTENT_AND_STRUCTURE_BEFORE_MUTATION",
     "status": "CANONICAL",
-    "sequence": [
-      "resolve project identity",
-      "read PROJECT_INDEX.md",
-      "resolve affected structural owner",
-      "read/register PROJECT_INTENT_LEDGER.md intent",
-      "verify intent matches machine active slice",
-      "verify mutation path fits declared intent scope",
-      "only then mutate",
-      "validate",
-      "update intent result/checkpoint",
-      "commit/push/remote verify"
-    ],
-    "hard_rules": [
-      "NO ACTIVE INTENT -> NO IMPLEMENTATION MUTATION",
-      "NO ROOT INDEX ENTRY -> NO IMPLEMENTATION MUTATION",
-      "NO DECLARED OWNER -> NO IMPLEMENTATION MUTATION",
-      "INTENT DOES NOT MATCH MACHINE SLICE -> NO IMPLEMENTATION MUTATION",
-      "OUT-OF-INTENT PATH -> NO IMPLEMENTATION MUTATION",
-      "UNINDEXED STRUCTURE -> NO MUTATION"
-    ],
+    "sequence": ["resolve project identity", "read PROJECT_INDEX.md", "resolve affected structural owner", "read/register PROJECT_INTENT_LEDGER.md intent", "verify intent matches machine active slice", "verify mutation path fits declared intent scope", "only then mutate", "validate", "update intent result/checkpoint", "commit/push/remote verify"],
+    "hard_rules": ["NO ACTIVE INTENT -> NO IMPLEMENTATION MUTATION", "NO ROOT INDEX ENTRY -> NO IMPLEMENTATION MUTATION", "NO DECLARED OWNER -> NO IMPLEMENTATION MUTATION", "INTENT DOES NOT MATCH MACHINE SLICE -> NO IMPLEMENTATION MUTATION", "OUT-OF-INTENT PATH -> NO IMPLEMENTATION MUTATION", "UNINDEXED STRUCTURE -> NO MUTATION"],
     "owners": {
       "root_index": "PROJECT_INDEX.md",
       "intent_ledger": "docs/governance/PROJECT_INTENT_LEDGER.md",
@@ -53,7 +35,7 @@
   },
   "workspace_authority": {
     "primary_rule": "Primary main worktree remains the only implementation/runtime/architecture authority.",
-    "alignment": "PRIMARY_MAIN_ALIGNED_WITH_ORIGIN_MAIN",
+    "alignment": "REMOTE_MAIN_ADVANCED_LOCAL_PULL_REQUIRED",
     "authority_reconciliation_commit": "da92266bc2cb0d43974b32932842c3eb3621c9f2",
     "registered_structures": [".github/", "rules/", "tools/", "lbe-core/", "unused-in-repo/"],
     "lbe_core": "Separate read-only reference repository from the parent project; no parent execution authority.",
@@ -77,23 +59,14 @@
     {"step":13,"stage":"Presentation","owner":"LBE interface","meaning":"Project canonical truth without becoming a second runtime authority."}
   ],
   "active_intent": {
-    "intent_id": "LBE-INTENT-WORKSPACE-HYGIENE-001",
+    "intent_id": "LBE-INTENT-MANDATORY-GOVERNED-MUTATION-DISPATCH-001",
     "status": "ACTIVE",
-    "machine_slice": "WORKSPACE_HYGIENE_GOVERNED_DELETION",
+    "machine_slice": "MANDATORY_GOVERNED_AGENT_MUTATION_DISPATCH",
     "phase": "COMPLETE_LBE_AGENT_RUNTIME_IMPLEMENTATION",
     "gate_status": "OPEN",
-    "owner": "LBE governance, documentation, runtime orchestration, and validation owners",
-    "documentation_reconciliation": "PASS",
-    "required_evidence": [
-      "inside-workspace disposable deletion",
-      "outside-workspace denial",
-      "protected-path denial",
-      "path-escape denial",
-      "authorization before execution",
-      "direct adapter bypass unavailable",
-      "success and failure receipts",
-      "protected user work preserved"
-    ]
+    "owner": "LBE runtime orchestration, authorization, provider continuation, Git/workspace capability, and validation owners",
+    "implementation_commit": "47885891848ec9a535a4e09694d3129b320da91a",
+    "required_evidence": ["provider-only LBE tool schema", "contained workspace write", "stale-write denial", "arbitrary-shell denial", "bounded registered-process execution", "primary-main Git enforcement", "governed-path-only Git staging", "authorization before execution", "correlated receipts", "audit/investigation read-only preservation", "duplicate-authority scan"]
   },
   "accepted_product_intents": [
     {
@@ -124,11 +97,11 @@
   "nodes": [
     {"id":"authority","parent":null,"lane":"Authority","title":"Canonical project authority","status":"proven","priority":"CANONICAL","summary":"Canonical LBE product and interface identity are LBE. GPT-Knowledge remains projection only."},
     {"id":"intent-index","parent":"authority","lane":"Governance","title":"Intent + structural ownership before mutation","status":"proven","priority":"CANONICAL","summary":"PROJECT_INDEX + PROJECT_INTENT_LEDGER + machine gate form the pre-mutation governance wall."},
-    {"id":"workspace-hygiene","parent":"intent-index","lane":"Active slice","title":"Workspace hygiene governed deletion","status":"current","priority":"OPEN","summary":"Documentation/structural reconciliation passed; active machine slice remains OPEN until deletion/containment/receipt evidence closes it."},
-    {"id":"workspace-reconcile","parent":"workspace-hygiene","lane":"Workspace authority","title":"Workspace authority reconciliation","status":"proven","priority":"PASS","summary":"Primary main aligned; stale route retired; manifest coverage repaired; .github, rules, tools and lbe-core relationship registered."},
+    {"id":"workspace-hygiene","parent":"intent-index","lane":"Completed slice","title":"Workspace hygiene governed deletion","status":"proven","priority":"PASS","summary":"52 focused tests passed; nine approved disposable targets were governed-deleted; zero approved disposable targets remain; fourteen historical snapshots remain preserved and non-blocking."},
+    {"id":"mandatory-governed-mutation-dispatch","parent":"workspace-hygiene","lane":"Active slice","title":"Mandatory governed agent mutation dispatch","status":"current","priority":"OPEN / VALIDATION PENDING","summary":"Remote main implements bounded workspace.write_text, registered process execution, main-only Git stage/commit, governed-path staging, and no arbitrary native mutation tool exposure. Exact local LoopTool validation is still required."},
     {"id":"lbe-interface","parent":"intent-index","lane":"Accepted product direction","title":"LBE interface identity","status":"proven","priority":"ACCEPTED","summary":"Product = LBE; Interface = LBE interface; Cline is mechanics/reuse source only, never product or interface identity."},
     {"id":"ui-references","parent":"lbe-interface","lane":"Reference inputs","title":"UI/UX reference inputs","status":"locked","priority":"REFERENCE ONLY","summary":"Python TUI, lbe-tui, lbe-core TUI material and Cline interaction mechanics may inform UX; none is a competing product foundation."},
     {"id":"unused-preservation","parent":"workspace-hygiene","lane":"Preservation","title":"unused-in-repo preservation surface","status":"proven","priority":"CANONICAL / EMPTY","summary":"Canonical preservation surface is registered and empty. Future moves require complete negative reachability/protection proof; absence of references is insufficient."},
-    {"id":"next","parent":"workspace-hygiene","lane":"Next slice","title":"Next machine-authorized implementation slice","status":"locked","priority":"LOCKED","summary":"No next product slice until workspace hygiene reaches PASS or governance explicitly supersedes the active intent."}
+    {"id":"next","parent":"mandatory-governed-mutation-dispatch","lane":"Next slice","title":"Next machine-authorized implementation slice","status":"locked","priority":"LOCKED","summary":"No next product slice until mandatory governed mutation dispatch is locally validated and canonically checkpointed PASS."}
   ]
 }
