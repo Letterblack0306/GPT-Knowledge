@@ -1,0 +1,144 @@
+{
+  "schema_version": 1,
+  "project": "LBE Persistent Agent",
+  "updated": "2026-08-25",
+  "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
+  "source_head": "cdce28498fcac4f1af42c079d6c3e469bef80d48",
+  "source_manifest": "docs/DOCUMENT_INTENT_MANIFEST.md",
+  "source_router": "docs/README.md",
+  "authority_note": "This is a GPT-Knowledge navigation projection derived from the canonical LBE document intent manifest and documentation router. It does not replace machine governance, current source/runtime evidence, or the active acceptance gate.",
+  "coverage": {
+    "canonical_areas_expected": 9,
+    "canonical_areas_represented": 9,
+    "status": "PASS",
+    "projection_rule": "Every canonical documentation area must remain represented; live/current authority classes must stay directly discoverable; reference, research, and history must remain visibly non-current authority."
+  },
+  "areas": [
+    {
+      "id": "live-owners",
+      "title": "Live Owners",
+      "path": "docs/",
+      "classes": ["LIVE_OWNER", "ROUTER"],
+      "authority": "Current human-readable owners and documentation routers; machine governance and runtime evidence still outrank projections.",
+      "status": "CURRENT",
+      "key_documents": [
+        "docs/CURRENT_STATUS.md",
+        "docs/IMPLEMENTATION_PLAN.md",
+        "docs/LBE_AGENT_LIFECYCLE.md",
+        "docs/AUDIT_FINDING_REVIEW_REGISTER.md",
+        "docs/README.md",
+        "docs/DOCUMENT_INTENT_MANIFEST.md"
+      ]
+    },
+    {
+      "id": "governance",
+      "title": "Governance",
+      "path": "docs/governance/",
+      "classes": ["GOVERNANCE"],
+      "authority": "Cross-cutting progression and implementation rules; machine gate remains execution authority.",
+      "status": "CURRENT",
+      "key_documents": [
+        "docs/governance/PROJECT_INTENT_LEDGER.md",
+        "docs/governance/AGENT_IMPLEMENTATION_EXECUTION_GUIDE.md",
+        "docs/governance/WORKSPACE_AND_IMPLEMENTATION_PROGRESSION_LOCK.md",
+        "PROJECT_INDEX.md",
+        ".lbe/governance/implementation-gates.json"
+      ]
+    },
+    {
+      "id": "acceptance",
+      "title": "Acceptance",
+      "path": "docs/acceptance/",
+      "classes": ["ACCEPTANCE_AUTHORITY", "ACCEPTANCE_HISTORY"],
+      "authority": "Active machine-selected acceptance authority plus preserved closed proof. Historical gates are not current authority.",
+      "status": "CURRENT_WITH_HISTORY",
+      "key_documents": [
+        "docs/acceptance/COMPLETE_LBE_AGENT_RUNTIME_GATE.md",
+        "docs/acceptance/CURRENT_IMPLEMENTATION_GATE.md",
+        "docs/acceptance/PUBLICATION_EXECUTION_AUTHORIZATION_GATE.md",
+        "docs/acceptance/PUBLICATION_VERSION_2_0_3_PREPARATION_GATE.md"
+      ]
+    },
+    {
+      "id": "design",
+      "title": "Design",
+      "path": "docs/design/",
+      "classes": ["DESIGN"],
+      "authority": "Architecture and product design intent; not proof of runtime behavior.",
+      "status": "CURRENT_DESIGN",
+      "key_documents": [
+        "docs/design/AGENT_AGENCY_LBE_AUTHORITY_SEPARATION.md",
+        "docs/design/AGENT_LIFECYCLE_PHASES.md",
+        "docs/design/AUTHORITY_OWNERSHIP_INSPECTOR_CONTRACT.md",
+        "docs/design/CLI_CONTROL_PLANE_PROVIDER_BOUNDARY.md",
+        "docs/design/C0_RUNTIME_POLICY_COMPOSITION_ROADMAP.md",
+        "docs/design/C1_TASK_COMPLETION_POLICY_ROADMAP.md",
+        "docs/design/LLM_REASONING_LAYER_ROADMAP.md",
+        "docs/design/WORKSPACE_MODULAR_STRUCTURE_PLAN.md"
+      ]
+    },
+    {
+      "id": "contracts",
+      "title": "Contracts",
+      "path": "docs/contracts/",
+      "classes": ["CONTRACT"],
+      "authority": "Named current technical contracts and registries; not status reports.",
+      "status": "CURRENT",
+      "key_documents": [
+        "docs/contracts/PRIORITY_MODULE_REGISTRY.md",
+        "docs/contracts/VALIDATED_WORKSPACE_MEMORY.md"
+      ]
+    },
+    {
+      "id": "reference",
+      "title": "Reference",
+      "path": "docs/reference/",
+      "classes": ["REFERENCE"],
+      "authority": "Supporting product/external/technical evidence only; never acceptance proof by itself.",
+      "status": "NON_AUTHORITATIVE_REFERENCE",
+      "key_documents": [
+        "docs/reference/README.md",
+        "docs/reference/CLI_AGENT_REFERENCE_REVIEW_2026-08-21.md"
+      ]
+    },
+    {
+      "id": "research",
+      "title": "Research",
+      "path": "docs/research/",
+      "classes": ["REFERENCE"],
+      "authority": "Exploratory comparison/research material. Conclusions become durable only after promotion into a canonical owner document.",
+      "status": "NON_AUTHORITATIVE_RESEARCH",
+      "key_documents": [
+        "docs/research/CLINE_CORE_REUSE_BOUNDARY_MATRIX.md"
+      ]
+    },
+    {
+      "id": "history",
+      "title": "History",
+      "path": "docs/history/",
+      "classes": ["HISTORY", "ACCEPTANCE_HISTORY"],
+      "authority": "Closed evidence and superseded records retained for provenance; never current authority unless explicitly reactivated by governance.",
+      "status": "HISTORICAL",
+      "key_documents": [
+        "docs/history/PHASE12_END_TO_END_PROOF.md",
+        "docs/history/PHASE_13_CALLBACK_VERTICAL_SLICE.md",
+        "docs/history/VALIDATION_2026-07-25.md",
+        "docs/history/legacy-acceptance/README.md",
+        "docs/history/legacy-acceptance/RELOCATION_RECEIPT_2026-08-25.md"
+      ]
+    },
+    {
+      "id": "preserved-unused",
+      "title": "Preserved Unused Material",
+      "path": "unused-in-repo/",
+      "classes": ["UNUSED_BUT_PRESERVED", "ROUTER"],
+      "authority": "Canonical preservation and recovery index only; never live source/runtime/governance/documentation authority.",
+      "status": "CANONICAL_EMPTY_PRESERVATION_SURFACE",
+      "manifest_entries": 0,
+      "key_documents": [
+        "unused-in-repo/README.md",
+        "unused-in-repo/MANIFEST.md"
+      ]
+    }
+  ]
+}
