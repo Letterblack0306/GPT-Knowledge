@@ -1,34 +1,68 @@
 {
-  "schema_version": 4,
+  "schema_version": 5,
   "project": "LBE Persistent Agent",
   "verified_at": "2026-08-25",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "source_branch": "main",
-  "source_head": "183c86178d3f13d0a76a04cb811f59074e0d226e",
+  "source_head": "0227e844245c901e4178e7d8aaedfbd77fe301bf",
   "local_workspace": "C:/Agents-Memory-Tool-v6-integration",
-  "overall_classification": "STAGE_4_WORKSPACE_HYGIENE_OPEN_DOCUMENT_ALIGNMENT_IN_PROGRESS",
-  "authority_note": "Live workspace/runtime evidence and the LBE machine gate remain authoritative. Canonical remote main is 183c86178d3f13d0a76a04cb811f59074e0d226e. The machine gate selects COMPLETE_LBE_AGENT_RUNTIME_GATE / COMPLETE_LBE_AGENT_RUNTIME_IMPLEMENTATION / WORKSPACE_HYGIENE_GOVERNED_DELETION. Human-readable projections were aligned to that machine-selected slice in commit 183c861. GPT-Knowledge is a projection and must not override current GitHub, machine governance, or runtime evidence.",
-  "core_doctrine": "Provider proposes. LBE governs. Approved adapters execute. Evidence proves what happened. Deterministic LBE validation owns completion truth.",
+  "overall_classification": "INTENT_STRUCTURE_GOVERNANCE_CANONICAL_WORKSPACE_HYGIENE_OPEN_LOCAL_ALIGNMENT_PENDING",
+  "authority_note": "Verified remote LBE main is 0227e844245c901e4178e7d8aaedfbd77fe301bf. Machine governance selects COMPLETE_LBE_AGENT_RUNTIME_GATE / COMPLETE_LBE_AGENT_RUNTIME_IMPLEMENTATION / WORKSPACE_HYGIENE_GOVERNED_DELETION with active intent LBE-INTENT-WORKSPACE-HYGIENE-001. PROJECT_INDEX.md and PROJECT_INTENT_LEDGER.md are now pre-mutation governance inputs. GPT-Knowledge remains projection only.",
+  "core_doctrine": "Provider/agent reasons and proposes. LBE preserves project identity and intent, governs authority and consequences, executes only through approved adapters, records evidence, and owns deterministic completion truth.",
+  "governance": {
+    "intent_and_structure_before_mutation": "CANONICAL_PASS",
+    "implementation_commit": "ac0aafbaee2b1e7560f6802d63eb4fce4c45c7d0",
+    "root_index": "PROJECT_INDEX.md",
+    "intent_ledger": "docs/governance/PROJECT_INTENT_LEDGER.md",
+    "machine_scope_enforcement": "CANONICAL",
+    "rules": [
+      "NO ACTIVE INTENT -> NO IMPLEMENTATION MUTATION",
+      "NO ROOT INDEX ENTRY -> NO IMPLEMENTATION MUTATION",
+      "NO DECLARED OWNER -> NO IMPLEMENTATION MUTATION",
+      "INTENT/SKICE MISMATCH -> NO IMPLEMENTATION MUTATION",
+      "OUT-OF-INTENT PATH -> NO IMPLEMENTATION MUTATION"
+    ]
+  },
   "current_stage": {
-    "id": "stage-4-workspace-hygiene-governed-deletion",
+    "id": "workspace-hygiene",
     "title": "Workspace hygiene governed deletion",
     "status": "OPEN",
     "active_plan": "docs/acceptance/COMPLETE_LBE_AGENT_RUNTIME_GATE.md",
     "active_phase": "COMPLETE_LBE_AGENT_RUNTIME_IMPLEMENTATION",
     "active_slice": "WORKSPACE_HYGIENE_GOVERNED_DELETION",
-    "implementation_status": "IMPLEMENTED_CANONICAL_BUT_GATE_NOT_CLOSED",
-    "documentation_status": "LIVE_PROJECTIONS_ALIGNED_HISTORY_RELOCATION_PENDING",
-    "next_valid_action": "Close legacy acceptance authority references, repair inbound links, then relocate proven historical acceptance evidence to docs/history/legacy-acceptance without deleting evidence or disturbing protected dirty work. Workspace-hygiene acceptance remains OPEN until the machine gate's required deletion/containment/receipt/non-bypass proofs pass."
+    "active_intent": "LBE-INTENT-WORKSPACE-HYGIENE-001",
+    "implementation_status": "CANONICAL_IMPLEMENTATION_PRESENT_GATE_NOT_CLOSED",
+    "next_valid_action": "Reconcile the clean primary local main to verified origin/main after the duplicate/superseded local-only commit classification, preserve the stash unchanged, then continue the active workspace-hygiene acceptance objective."
   },
   "machine_state": {
     "active_plan": "docs/acceptance/COMPLETE_LBE_AGENT_RUNTIME_GATE.md",
     "active_phase": "COMPLETE_LBE_AGENT_RUNTIME_IMPLEMENTATION",
     "active_slice": "WORKSPACE_HYGIENE_GOVERNED_DELETION",
+    "active_intent": "LBE-INTENT-WORKSPACE-HYGIENE-001",
     "status": "OPEN",
     "implementation_allowed": true,
     "architecture_changes_allowed": true,
     "next_phase_locked": true,
     "publish_allowed": false
+  },
+  "workspace_authority": {
+    "primary_implementation_authority": "PRIMARY_MAIN_WORKTREE_ONLY",
+    "hygiene_projection_exception": "CANONICAL_BOUNDED_EXCEPTION",
+    "exception_commit": "0227e844245c901e4178e7d8aaedfbd77fe301bf",
+    "allowed_projection_work": [
+      "workspace-hygiene inventory",
+      "document classification",
+      "documentation-only link repair",
+      "bounded hygiene validation",
+      "hygiene/documentation commits"
+    ],
+    "projection_forbidden": [
+      "runtime implementation",
+      "architecture implementation",
+      "general product delivery",
+      "protected-work absorption",
+      "competing implementation authority"
+    ]
   },
   "accepted_baseline": {
     "R3_R6F": "PROVEN_COMPLETE",
@@ -42,7 +76,6 @@
   "workspace_hygiene": {
     "classification": "ACTIVE_OPEN",
     "canonical_implementation_commit": "17d6e7c09987b6f6d9ea857a130023d21412c566",
-    "current_projection_commit": "183c86178d3f13d0a76a04cb811f59074e0d226e",
     "required_evidence": [
       "inside-workspace disposable deletion",
       "outside-workspace denial",
@@ -53,76 +86,45 @@
       "success and failure receipts",
       "protected user work preserved"
     ],
-    "rule": "Do not infer slice PASS from implementation presence. The machine gate remains OPEN until required evidence is recorded and the gate is advanced."
+    "rule": "Implementation presence is not PASS. The machine gate stays OPEN until required evidence is recorded and governance advances it."
   },
-  "document_alignment": {
-    "classification": "IN_PROGRESS",
-    "live_projection_alignment": "PASS",
-    "alignment_commit": "183c86178d3f13d0a76a04cb811f59074e0d226e",
-    "canonical_entrypoints": [
-      ".agent/PROJECT_CONTEXT.md",
-      ".lbe/governance/implementation-gates.json",
-      "docs/README.md",
-      "docs/CURRENT_STATUS.md",
-      "docs/IMPLEMENTATION_PLAN.md",
-      "docs/LBE_AGENT_LIFECYCLE.md",
-      "docs/design/AGENT_AGENCY_LBE_AUTHORITY_SEPARATION.md"
-    ],
-    "acceptance_corpus_evidence": {
-      "source": "USER_SUPPLIED_LOOPTOOL_READ_ONLY_CLASSIFICATION",
-      "tracked_documents": 55,
-      "machine_referenced_documents": 4,
-      "unreferenced_documents": 51,
-      "machine_referenced": [
-        "docs/acceptance/COMPLETE_LBE_AGENT_RUNTIME_GATE.md",
-        "docs/acceptance/PUBLICATION_EXECUTION_AUTHORIZATION_GATE.md",
-        "docs/acceptance/PUBLICATION_VERSION_2_0_3_PREPARATION_GATE.md",
-        "docs/acceptance/TERMINAL_WORKSPACE_FOUNDATION_GATE.md"
-      ]
-    },
-    "important_distinction": "MACHINE_REFERENCED does not mean ACTIVE. TERMINAL_WORKSPACE_FOUNDATION_GATE is referenced by governance but explicitly classified SUPERSEDED_BY_COMPLETE_RUNTIME_GATE.",
-    "next_sequence": [
-      "classify remaining OPEN/PENDING/UNVERIFIED legacy gates against later accepted evidence",
-      "repair inbound references from live documents and machine governance",
-      "move completed/superseded acceptance records into docs/history/legacy-acceptance",
-      "validate internal links and ensure no historical document presents itself as current authority"
-    ]
+  "cline_product_direction": {
+    "intent_id": "LBE-INTENT-CLINE-AGENTRUNTIME-001",
+    "status": "ACCEPTED_PRODUCT_DIRECTION_NOT_ACTIVE",
+    "runtime_decision": "Reuse Cline AgentRuntime continuation/tool/event mechanics behind an LBE governance adapter.",
+    "ui_decision": "React/hybrid Cline-style presentation after adapter acceptance.",
+    "authority_boundary": "LBE keeps workspace/session identity, authorization, execution, receipts, evidence, persistence and completion authority.",
+    "next_dependency": "LBE-to-Cline AgentRuntime governance adapter",
+    "activation": "LOCKED_BY_CURRENT_ACTIVE_SLICE"
   },
-  "repository_document_findings": {
-    "docs_readme": "Canonical documentation entrypoint; defines one-fact-one-live-owner routing and history/reference boundaries.",
-    "lifecycle": "Canonical operational turn flow: provider reasons; LBE owns identity, authorization, governed execution, receipts, persistence, and completion truth.",
-    "active_gate": "Complete runtime gate confirms doctrine bridge PASS and workspace hygiene as the active in-progress slice.",
-    "architecture_design": "AGENT_AGENCY_LBE_AUTHORITY_SEPARATION remains a proposed follow-on architecture review, not an activated gate.",
-    "broken_projection_links_fixed_in_gptk": [
-      "docs/ARCHITECTURE.md is not tracked on current remote main",
-      "docs/RUNTIME_CONTRACT.md is not tracked on current remote main",
-      "docs/MODES.md is not tracked on current remote main"
-    ]
+  "local_alignment": {
+    "classification": "USER_SUPPLIED_LOCAL_EVIDENCE_NOT_REMOTELY_PROVEN",
+    "reported_primary_worktree": "C:/Agents-Memory-Tool-v6-integration",
+    "reported_local_head": "9786dd65c89c308026e9b0b6c7d5fa73d1224321",
+    "verified_origin_main": "0227e844245c901e4178e7d8aaedfbd77fe301bf",
+    "reported_ahead_behind": "1 / 12",
+    "local_only_commit": "9786dd65c89c308026e9b0b6c7d5fa73d1224321",
+    "classification_result": "LOCAL_COMMIT_DUPLICATED_UPSTREAM_AND_SUPERSEDED",
+    "duplicate_upstream_commit": "3924f23260880e05d5a626141e10a6cb9e91fe74",
+    "superseding_canonical_commit": "17d6e7c09987b6f6d9ea857a130023d21412c566",
+    "stash": "workspace-hygiene-preserve-before-clean-20260825-064541",
+    "next": "Align clean primary main to origin/main; do not apply/drop stash during alignment."
   },
-  "research_boundary": {
-    "deep_research_document": "Reconstruct, Verify, and Consolidate the LBE Workspace Documentation",
-    "classification": "HISTORICAL_RESEARCH_INPUT_REVERIFIED_AGAINST_CURRENT_REPO",
-    "governing_constraints": [
-      "current workspace/repository evidence outranks historical conversations, exports, summaries and prior agent reports",
-      "use explicit evidence labels: PROVEN, IMPLEMENTED, DOCUMENTED, INFERRED, UNVERIFIED, STALE, CONTRADICTED, BLOCKED",
-      "documentation is not authorization",
-      "installation is not enforcement",
-      "tests existing is not the same as tests passing",
-      "historical conversation is not current implementation truth"
-    ],
-    "current_reverification": "The research direction is supported by current evidence: live-state projections drifted from machine governance, acceptance history remained mixed with active authority, and GPT-Knowledge itself had stale source-head and active-slice projections. Those projections are being reconciled rather than treated as authority."
-  },
-  "preservation_state": {
-    "protected_local_worktree": "PRESERVE; do not reset/absorb unrelated dirty paths",
-    "historical_acceptance_evidence": "PRESERVE; relocate rather than delete unless separately proven disposable",
-    "publication": "PAUSED"
-  },
+  "risks": [
+    "Workspace-hygiene acceptance remains OPEN.",
+    "Local primary main alignment is pending based on user-supplied local evidence.",
+    "The machine gate still references TERMINAL_WORKSPACE_FOUNDATION_GATE although that record is classified superseded.",
+    "A governance blocker must not be weakened or self-excepted by an agent unless the active intent explicitly authorizes the governance change."
+  ],
   "next_gate_state": {
-    "DOCUMENT_LIVE_PROJECTIONS": "PASS",
-    "DOCUMENT_HISTORY_CLASSIFICATION": "IN_PROGRESS",
-    "INBOUND_REFERENCE_REPAIR": "PENDING",
-    "PHYSICAL_RELOCATION": "PENDING",
+    "INTENT_AND_STRUCTURE_BEFORE_MUTATION": "CANONICAL_PASS",
+    "PROJECT_INDEX": "CANONICAL",
+    "PROJECT_INTENT_LEDGER": "CANONICAL",
+    "PRIMARY_IMPLEMENTATION_AUTHORITY": "PRESERVED",
+    "HYGIENE_PROJECTION_EXCEPTION": "CANONICAL_BOUNDED",
+    "LOCAL_MAIN_ALIGNMENT": "PENDING",
     "WORKSPACE_HYGIENE_SLICE": "OPEN",
-    "COMPLETE_LBE_AGENT_RUNTIME_GATE": "OPEN"
+    "CLINE_INTENT": "ACCEPTED_NOT_ACTIVE",
+    "NEXT_PRODUCT_SLICE": "LOCKED"
   }
 }
