@@ -29,7 +29,7 @@ for (const entry of await readdir(birdeyeProjectionsSource)) {
 // This keeps Vercel a projection of workspace-relevant evidence instead of a
 // mirror of the whole project-engineering knowledge tree.
 const registry = JSON.parse(await readFile(resolve(workspaceRoot, 'projects.json'), 'utf8'));
-const referenceFields = ['plan_file', 'status_file', 'references_file', 'reference', 'canvas_file'];
+const referenceFields = ['plan_file', 'status_file', 'references_file', 'documentation_file', 'reference', 'canvas_file'];
 const copied = new Set();
 
 for (const project of registry.projects ?? []) {
