@@ -1,32 +1,21 @@
 {
-  "schema_version": 14,
+  "schema_version": 15,
   "project": "LBE Persistent Agent",
   "verified_at": "2026-08-25",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "source_branch": "main",
-  "source_head": "e88c4010f5e0b1790967016865cba482b86e7537",
+  "source_head": "6d444de2004acfb8d22f2a7e1bc144ed4e1a5b3f",
   "local_workspace": "C:/Agents-Memory-Tool-v6-integration",
-  "overall_classification": "LBE_INTERFACE_CONTROL_EVIDENCE_SURFACES_PASS_RECOVERY_COMPLETION_OWNER_AUDIT_NEXT",
+  "overall_classification": "RECOVERY_COMPLETION_PROMOTION_IMPLEMENTED_VALIDATION_PENDING",
   "authority_note": "GPT-Knowledge is projection only. Canonical LBE source, machine governance, local runtime evidence, and acceptance checkpoints retain authority.",
   "core_doctrine": "Provider/agent reasons and proposes. LBE preserves project identity and intent, governs authority and consequences, executes only through approved adapters, records evidence, and owns deterministic completion truth.",
-  "product_identity": {
-    "product": "LBE",
-    "interface": "LBE interface",
-    "runtime_authority": "LBE",
-    "cline_role": "REUSE_SOURCE_ONLY"
-  },
-  "documentation_coverage": {
-    "status": "PASS",
-    "canonical_areas_expected": 9,
-    "canonical_areas_represented": 9
-  },
+  "product_identity": {"product":"LBE","interface":"LBE interface","runtime_authority":"LBE","cline_role":"REUSE_SOURCE_ONLY"},
   "machine_state": {
     "active_plan": "docs/acceptance/COMPLETE_LBE_AGENT_RUNTIME_GATE.md",
     "active_phase": "COMPLETE_LBE_AGENT_RUNTIME_IMPLEMENTATION",
-    "active_slice": "LBE_INTERFACE_CONTROL_EVIDENCE_SURFACES",
-    "active_intent": "LBE-INTENT-INTERFACE-CONTROL-EVIDENCE-SURFACES-001",
-    "validated_slice_result": "PASS",
-    "machine_closure_commit_pending": true,
+    "active_slice": "RECOVERY_COMPLETION_PROMOTION_INTEGRATION",
+    "active_intent": "LBE-INTENT-RECOVERY-COMPLETION-PROMOTION-001",
+    "slice_result": "OPEN_IMPLEMENTED_VALIDATION_PENDING",
     "top_level_status": "OPEN",
     "next_phase_locked": true,
     "publish_allowed": false
@@ -35,55 +24,37 @@
     "primary_implementation_authority": "PRIMARY_MAIN_WORKTREE_ONLY",
     "local_alignment": "PULL_REQUIRED_TO_SOURCE_HEAD",
     "lbe_tui": "UNTRACKED_LOCAL_REFERENCE_ONLY",
-    "lbe_core": "SEPARATE_REPOSITORY_REFERENCE_ONLY",
-    "unused_in_repo": "CANONICAL_EMPTY_PRESERVATION_SURFACE"
+    "lbe_core": "SEPARATE_REPOSITORY_REFERENCE_ONLY"
   },
   "completed_slices": {
-    "WORKSPACE_HYGIENE_GOVERNED_DELETION": {"status": "PASS", "focused_validation": "52 passed"},
-    "MANDATORY_GOVERNED_AGENT_MUTATION_DISPATCH": {"status": "PASS", "implementation_commit": "47885891848ec9a535a4e09694d3129b320da91a", "focused_validation": "80 passed", "full_validation": "713 passed"},
-    "GOVERNED_EXTERNAL_CAPABILITY_REGISTRATION": {"status": "PASS", "implementation_commit": "02c761ab5ee969edd1c24fed65a6a2d343d20927", "focused_validation": "58 passed", "full_validation": "732 passed"},
-    "FIRST_RUN_LIVE_SESSION_ENTRY": {"status": "PASS", "implementation_commit": "dbefbc0884cb78be5327100d3e9e648bea5a6e52", "focused_validation": "63 passed", "full_validation": "740 passed"},
-    "INSTALLED_CAPABILITY_REGISTRY_DISCOVERY": {"status": "PASS", "implementation_commit": "151136089b63fd9470d3a581a6ad6419cf567595", "focused_validation": "71 passed", "full_validation": "760 passed"},
-    "LBE_INTERFACE_CONTROL_EVIDENCE_SURFACES": {
-      "status": "PASS",
-      "implementation_commit": "9ca27a1498afa017ec0c5a449d80882ca0958a73",
-      "checkpoint": "docs/acceptance/LBE_INTERFACE_CONTROL_EVIDENCE_SURFACES_CHECKPOINT.md",
-      "focused_validation": "53 passed in 10.72s",
-      "full_validation": "763 passed in 212.94s",
-      "looptool_command_hash": "334C15A0913D56BE5D6EC6057BA5B66909B06C72F745FA92A5D3281837821C04",
-      "head_alignment": "PASS",
-      "protected_reference": "lbe-tui/ remained untracked and untouched"
-    }
+    "WORKSPACE_HYGIENE_GOVERNED_DELETION": {"status":"PASS","focused_validation":"52 passed"},
+    "MANDATORY_GOVERNED_AGENT_MUTATION_DISPATCH": {"status":"PASS","implementation_commit":"47885891848ec9a535a4e09694d3129b320da91a","focused_validation":"80 passed","full_validation":"713 passed"},
+    "GOVERNED_EXTERNAL_CAPABILITY_REGISTRATION": {"status":"PASS","implementation_commit":"02c761ab5ee969edd1c24fed65a6a2d343d20927","focused_validation":"58 passed","full_validation":"732 passed"},
+    "FIRST_RUN_LIVE_SESSION_ENTRY": {"status":"PASS","implementation_commit":"dbefbc0884cb78be5327100d3e9e648bea5a6e52","focused_validation":"63 passed","full_validation":"740 passed"},
+    "INSTALLED_CAPABILITY_REGISTRY_DISCOVERY": {"status":"PASS","implementation_commit":"151136089b63fd9470d3a581a6ad6419cf567595","focused_validation":"71 passed","full_validation":"760 passed"},
+    "LBE_INTERFACE_CONTROL_EVIDENCE_SURFACES": {"status":"PASS","implementation_commit":"9ca27a1498afa017ec0c5a449d80882ca0958a73","checkpoint":"docs/acceptance/LBE_INTERFACE_CONTROL_EVIDENCE_SURFACES_CHECKPOINT.md","focused_validation":"53 passed","full_validation":"763 passed","looptool_command_hash":"334C15A0913D56BE5D6EC6057BA5B66909B06C72F745FA92A5D3281837821C04"}
   },
   "current_stage": {
-    "id": "lbe-interface-control-evidence-surfaces",
-    "title": "LBE interface control and evidence surfaces",
-    "status": "PASS",
-    "implementation_head": "9ca27a1498afa017ec0c5a449d80882ca0958a73",
-    "checkpoint": "docs/acceptance/LBE_INTERFACE_CONTROL_EVIDENCE_SURFACES_CHECKPOINT.md",
-    "proven": [
-      "installed integration metadata projects into /integrations without execution",
-      "MCP metadata is filtered truthfully in /mcp",
-      "configured integrations remain distinct from executable governed ToolRegistry tools",
-      "settings/provider/session/evidence/detail projections continue to use existing owners",
-      "interrupt/cancel continue through PersistentTurnControl",
-      "no second interface/runtime/execution authority was introduced"
+    "id": "recovery-completion-promotion",
+    "title": "Recovery, deterministic completion and completion-proof promotion",
+    "status": "IMPLEMENTED_VALIDATION_PENDING",
+    "implementation_head": "6d444de2004acfb8d22f2a7e1bc144ed4e1a5b3f",
+    "implementation": [
+      "normal coding reasoning receives one persisted R5 operation identity with max_attempts=1 and no automatic mutation retry",
+      "provider COMPLETED creates only TEMP/UNVERIFIED task_complete proof",
+      "source_change/focused_test/git_status producers run under bounded idempotent recovery for transient failures only",
+      "normal gateway automatically invokes existing CodingCompletionRuntime.finalize after trusted evidence",
+      "READY alone promotes the same task_complete proof to VERIFIED",
+      "failed/incomplete validation cannot create verified completion truth",
+      "exact request replay is blocked by persisted terminal recovery identity"
     ],
-    "next_valid_action": "Audit and bind bounded recovery + deterministic completion + TEMP/promotion integration over existing recovery, memory promotion, completion, session, evidence, and receipt owners."
+    "next_valid_action": "Pull exact LBE main and run focused recovery/completion/gateway tests plus full regression. Do not mark PASS until local evidence is clean."
   },
-  "remaining_complete_runtime_sequence": [
-    "recovery + deterministic completion + TEMP/promotion integration",
-    "installed-package acceptance"
-  ],
+  "remaining_complete_runtime_sequence": ["installed-package end-to-end acceptance"],
   "next_gate_state": {
-    "DOCUMENTATION_AREA_COVERAGE": "PASS_9_OF_9",
-    "WORKSPACE_HYGIENE_SLICE": "PASS",
-    "MANDATORY_GOVERNED_MUTATION_DISPATCH": "PASS",
-    "GOVERNED_EXTERNAL_CAPABILITY_REGISTRATION": "PASS",
-    "FIRST_RUN_LIVE_SESSION_ENTRY": "PASS",
-    "INSTALLED_CAPABILITY_REGISTRY_DISCOVERY": "PASS",
-    "LBE_INTERFACE_CONTROL_EVIDENCE_SURFACES": "PASS_VALIDATED",
-    "NEXT_PRODUCT_AREA": "RECOVERY_COMPLETION_TEMP_PROMOTION",
+    "LBE_INTERFACE_CONTROL_EVIDENCE_SURFACES": "PASS",
+    "RECOVERY_COMPLETION_PROMOTION_INTEGRATION": "OPEN_VALIDATION_PENDING",
+    "INSTALLED_PACKAGE_ACCEPTANCE": "LOCKED",
     "PUBLICATION": "PAUSED"
   }
 }
