@@ -1,25 +1,35 @@
 {
-  "schema_version": 5,
+  "schema_version": 6,
   "project": "LBE Persistent Agent",
   "verified_at": "2026-08-25",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "source_branch": "main",
-  "source_head": "0227e844245c901e4178e7d8aaedfbd77fe301bf",
+  "source_head": "b163a945faa99f93c87c6641c7ba756e415b3f33",
   "local_workspace": "C:/Agents-Memory-Tool-v6-integration",
-  "overall_classification": "INTENT_STRUCTURE_GOVERNANCE_CANONICAL_WORKSPACE_HYGIENE_OPEN_LOCAL_ALIGNMENT_PENDING",
-  "authority_note": "Verified remote LBE main is 0227e844245c901e4178e7d8aaedfbd77fe301bf. Machine governance selects COMPLETE_LBE_AGENT_RUNTIME_GATE / COMPLETE_LBE_AGENT_RUNTIME_IMPLEMENTATION / WORKSPACE_HYGIENE_GOVERNED_DELETION with active intent LBE-INTENT-WORKSPACE-HYGIENE-001. PROJECT_INDEX.md and PROJECT_INTENT_LEDGER.md are now pre-mutation governance inputs. GPT-Knowledge remains projection only.",
+  "overall_classification": "LBE_INTERFACE_IDENTITY_CANONICAL_WORKSPACE_RECONCILIATION_PASS_HYGIENE_GATE_OPEN",
+  "authority_note": "Canonical LBE main includes workspace authority reconciliation and the accepted LBE interface identity. Machine governance still selects WORKSPACE_HYGIENE_GOVERNED_DELETION and remains OPEN. GPT-Knowledge is projection only.",
   "core_doctrine": "Provider/agent reasons and proposes. LBE preserves project identity and intent, governs authority and consequences, executes only through approved adapters, records evidence, and owns deterministic completion truth.",
+  "product_identity": {
+    "product": "LBE",
+    "interface": "LBE interface",
+    "runtime_authority": "LBE",
+    "cline_role": "REUSE_SOURCE_ONLY",
+    "cline_not_product_identity": true,
+    "cline_not_interface_identity": true,
+    "canonical_commit": "b163a945faa99f93c87c6641c7ba756e415b3f33"
+  },
   "governance": {
     "intent_and_structure_before_mutation": "CANONICAL_PASS",
-    "implementation_commit": "ac0aafbaee2b1e7560f6802d63eb4fce4c45c7d0",
     "root_index": "PROJECT_INDEX.md",
     "intent_ledger": "docs/governance/PROJECT_INTENT_LEDGER.md",
     "machine_scope_enforcement": "CANONICAL",
+    "workspace_authority_reconciliation": "PASS",
+    "workspace_authority_commit": "da92266bc2cb0d43974b32932842c3eb3621c9f2",
     "rules": [
       "NO ACTIVE INTENT -> NO IMPLEMENTATION MUTATION",
       "NO ROOT INDEX ENTRY -> NO IMPLEMENTATION MUTATION",
       "NO DECLARED OWNER -> NO IMPLEMENTATION MUTATION",
-      "INTENT/SKICE MISMATCH -> NO IMPLEMENTATION MUTATION",
+      "INTENT/SLICE MISMATCH -> NO IMPLEMENTATION MUTATION",
       "OUT-OF-INTENT PATH -> NO IMPLEMENTATION MUTATION"
     ]
   },
@@ -31,8 +41,8 @@
     "active_phase": "COMPLETE_LBE_AGENT_RUNTIME_IMPLEMENTATION",
     "active_slice": "WORKSPACE_HYGIENE_GOVERNED_DELETION",
     "active_intent": "LBE-INTENT-WORKSPACE-HYGIENE-001",
-    "implementation_status": "CANONICAL_IMPLEMENTATION_PRESENT_GATE_NOT_CLOSED",
-    "next_valid_action": "Reconcile the clean primary local main to verified origin/main after the duplicate/superseded local-only commit classification, preserve the stash unchanged, then continue the active workspace-hygiene acceptance objective."
+    "documentation_reconciliation": "PASS",
+    "next_valid_action": "Continue only the active workspace-hygiene acceptance objective and close its required deletion/containment/authorization/receipt evidence. Do not activate UI implementation yet."
   },
   "machine_state": {
     "active_plan": "docs/acceptance/COMPLETE_LBE_AGENT_RUNTIME_GATE.md",
@@ -40,42 +50,31 @@
     "active_slice": "WORKSPACE_HYGIENE_GOVERNED_DELETION",
     "active_intent": "LBE-INTENT-WORKSPACE-HYGIENE-001",
     "status": "OPEN",
-    "implementation_allowed": true,
-    "architecture_changes_allowed": true,
     "next_phase_locked": true,
     "publish_allowed": false
   },
   "workspace_authority": {
     "primary_implementation_authority": "PRIMARY_MAIN_WORKTREE_ONLY",
-    "hygiene_projection_exception": "CANONICAL_BOUNDED_EXCEPTION",
-    "exception_commit": "0227e844245c901e4178e7d8aaedfbd77fe301bf",
-    "allowed_projection_work": [
-      "workspace-hygiene inventory",
-      "document classification",
-      "documentation-only link repair",
-      "bounded hygiene validation",
-      "hygiene/documentation commits"
+    "primary_alignment": "PASS",
+    "reported_local_head_after_alignment": "0227e844245c901e4178e7d8aaedfbd77fe301bf",
+    "subsequent_canonical_commits": [
+      "da92266bc2cb0d43974b32932842c3eb3621c9f2",
+      "fc6b5e9aaf7c06f02fc5851343d01db182460d7c",
+      "b163a945faa99f93c87c6641c7ba756e415b3f33"
     ],
-    "projection_forbidden": [
-      "runtime implementation",
-      "architecture implementation",
-      "general product delivery",
-      "protected-work absorption",
-      "competing implementation authority"
-    ]
-  },
-  "accepted_baseline": {
-    "R3_R6F": "PROVEN_COMPLETE",
-    "CLI_NORMAL_PATH_ACCEPTANCE": "PROVEN_COMPLETE",
-    "R7_INSTALLED_END_TO_END_ACCEPTANCE": "PASS",
-    "RELEASE_PACKAGE_CONTRACT_REPAIR": "PASS",
-    "RELEASE_PACKAGE_READINESS_ACCEPTANCE": "PASS",
-    "PUBLICATION_PRECHECK": "PASS",
-    "DOCTRINE_TO_PROVIDER_CONTEXT_BRIDGE": "PASS"
+    "registered_structures": {
+      ".github/": "CI/release governance",
+      "rules/": "active audit/rule implementation",
+      "tools/": "validation utilities",
+      "lbe-core/": "separate read-only reference repository"
+    },
+    "lbe_tui": "UNTRACKED_LOCAL_REFERENCE_ONLY",
+    "lbe_core": "SEPARATE_REPOSITORY_REFERENCE_ONLY",
+    "hidden_memory": "LOCAL_REFERENCE_NOT_MACHINE_AUTHORITY"
   },
   "workspace_hygiene": {
     "classification": "ACTIVE_OPEN",
-    "canonical_implementation_commit": "17d6e7c09987b6f6d9ea857a130023d21412c566",
+    "documentation_reconciliation": "PASS",
     "required_evidence": [
       "inside-workspace disposable deletion",
       "outside-workspace denial",
@@ -86,45 +85,50 @@
       "success and failure receipts",
       "protected user work preserved"
     ],
-    "rule": "Implementation presence is not PASS. The machine gate stays OPEN until required evidence is recorded and governance advances it."
+    "rule": "Implementation/documentation presence is not slice PASS. Machine gate stays OPEN until required acceptance evidence is recorded and governance advances it."
   },
-  "cline_product_direction": {
-    "intent_id": "LBE-INTENT-CLINE-AGENTRUNTIME-001",
-    "status": "ACCEPTED_PRODUCT_DIRECTION_NOT_ACTIVE",
-    "runtime_decision": "Reuse Cline AgentRuntime continuation/tool/event mechanics behind an LBE governance adapter.",
-    "ui_decision": "React/hybrid Cline-style presentation after adapter acceptance.",
-    "authority_boundary": "LBE keeps workspace/session identity, authorization, execution, receipts, evidence, persistence and completion authority.",
-    "next_dependency": "LBE-to-Cline AgentRuntime governance adapter",
-    "activation": "LOCKED_BY_CURRENT_ACTIVE_SLICE"
+  "lbe_interface_direction": {
+    "status": "CANONICAL_ACCEPTED_NOT_ACTIVE_IMPLEMENTATION",
+    "canonical_document": "docs/design/AGENT_AGENCY_LBE_AUTHORITY_SEPARATION.md",
+    "canonical_commit": "b163a945faa99f93c87c6641c7ba756e415b3f33",
+    "decision": "The accepted product direction is the LBE interface.",
+    "cline_role": "Selected interaction and AgentRuntime mechanics may be reused/adapted from Cline behind an LBE-owned governance boundary. Cline is not part of product or interface identity.",
+    "ux_reference_inputs": [
+      "current Python TUI",
+      "lbe-tui/ Go demo",
+      "lbe-core TUI/product-direction material",
+      "Cline CLI/TUI interaction mechanics"
+    ],
+    "future_ui_question": "Which useful UX mechanics from approved reference inputs should be incorporated into the LBE interface while preserving LBE authority?",
+    "activation": "NO_ACTIVE_UI_SLICE"
   },
-  "local_alignment": {
-    "classification": "USER_SUPPLIED_LOCAL_EVIDENCE_NOT_REMOTELY_PROVEN",
-    "reported_primary_worktree": "C:/Agents-Memory-Tool-v6-integration",
-    "reported_local_head": "9786dd65c89c308026e9b0b6c7d5fa73d1224321",
-    "verified_origin_main": "0227e844245c901e4178e7d8aaedfbd77fe301bf",
-    "reported_ahead_behind": "1 / 12",
-    "local_only_commit": "9786dd65c89c308026e9b0b6c7d5fa73d1224321",
-    "classification_result": "LOCAL_COMMIT_DUPLICATED_UPSTREAM_AND_SUPERSEDED",
-    "duplicate_upstream_commit": "3924f23260880e05d5a626141e10a6cb9e91fe74",
-    "superseding_canonical_commit": "17d6e7c09987b6f6d9ea857a130023d21412c566",
-    "stash": "workspace-hygiene-preserve-before-clean-20260825-064541",
-    "next": "Align clean primary main to origin/main; do not apply/drop stash during alignment."
+  "unused_in_repo_direction": {
+    "status": "PROPOSED_NOT_CANONICAL",
+    "purpose": "Preservation/quarantine concept for material proven unused by the live repository so future recovery can check one indexed surface before repeating deep workspace discovery.",
+    "constraints": [
+      "UNREFERENCED != UNUSED",
+      "UNUSED != DISPOSABLE",
+      "no move before intent/index/machine authorization",
+      "preserve original path/classification/evidence/restore instructions"
+    ],
+    "excluded_current_references": ["lbe-tui/", "lbe-core/", ".lbe/memory/", "state/", "local configs", "historical backups"]
   },
   "risks": [
     "Workspace-hygiene acceptance remains OPEN.",
-    "Local primary main alignment is pending based on user-supplied local evidence.",
-    "The machine gate still references TERMINAL_WORKSPACE_FOUNDATION_GATE although that record is classified superseded.",
+    "No UI implementation slice is active.",
+    "unused-in-repo/ is a proposed preservation concept only and must not be created or populated without canonical governance.",
     "A governance blocker must not be weakened or self-excepted by an agent unless the active intent explicitly authorizes the governance change."
   ],
   "next_gate_state": {
     "INTENT_AND_STRUCTURE_BEFORE_MUTATION": "CANONICAL_PASS",
-    "PROJECT_INDEX": "CANONICAL",
-    "PROJECT_INTENT_LEDGER": "CANONICAL",
-    "PRIMARY_IMPLEMENTATION_AUTHORITY": "PRESERVED",
-    "HYGIENE_PROJECTION_EXCEPTION": "CANONICAL_BOUNDED",
-    "LOCAL_MAIN_ALIGNMENT": "PENDING",
+    "WORKSPACE_AUTHORITY_RECONCILIATION": "PASS",
+    "PRIMARY_MAIN_ALIGNMENT": "PASS",
+    "LBE_INTERFACE_IDENTITY": "CANONICAL_ACCEPTED",
+    "CLINE_ROLE": "REUSE_SOURCE_ONLY",
+    "LBE_TUI": "REFERENCE_ONLY",
+    "LBE_CORE": "SEPARATE_REFERENCE_REPOSITORY",
+    "UNUSED_IN_REPO": "PROPOSED_NOT_CANONICAL",
     "WORKSPACE_HYGIENE_SLICE": "OPEN",
-    "CLINE_INTENT": "ACCEPTED_NOT_ACTIVE",
     "NEXT_PRODUCT_SLICE": "LOCKED"
   }
 }
