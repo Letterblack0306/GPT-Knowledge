@@ -1,23 +1,30 @@
 {
-  "schema_version": 2,
+  "schema_version": 3,
   "updated": "2026-08-25",
+  "source_head": "183c86178d3f13d0a76a04cb811f59074e0d226e",
   "references": [
     {"id":"canonical-repo","label":"Canonical LBE repository","url":"https://github.com/Letterblack0306/LBE_Presistent_Agent_wall","kind":"project-authority","authority":"canonical source"},
     {"id":"machine-gate","label":"Machine governance gate","url":"https://github.com/Letterblack0306/LBE_Presistent_Agent_wall/blob/main/.lbe/governance/implementation-gates.json","kind":"machine-authority","authority":"authorization owner"},
-    {"id":"active-gate","label":"Complete LBE Agent Runtime Gate","url":"https://github.com/Letterblack0306/LBE_Presistent_Agent_wall/blob/main/docs/acceptance/COMPLETE_LBE_AGENT_RUNTIME_GATE.md","kind":"acceptance-authority","authority":"active acceptance scope"},
+    {"id":"agent-entry","label":"Canonical agent project context","url":"https://github.com/Letterblack0306/LBE_Presistent_Agent_wall/blob/main/.agent/PROJECT_CONTEXT.md","kind":"router","authority":"agent entrypoint; routing only"},
+    {"id":"docs-entry","label":"LBE Documentation Library","url":"https://github.com/Letterblack0306/LBE_Presistent_Agent_wall/blob/main/docs/README.md","kind":"router","authority":"single documentation entrypoint"},
+    {"id":"active-gate","label":"Complete LBE Agent Runtime Gate","url":"https://github.com/Letterblack0306/LBE_Presistent_Agent_wall/blob/main/docs/acceptance/COMPLETE_LBE_AGENT_RUNTIME_GATE.md","kind":"acceptance-authority","authority":"machine-selected active acceptance plan"},
+    {"id":"current-gate-projection","label":"Current Implementation Gate","url":"https://github.com/Letterblack0306/LBE_Presistent_Agent_wall/blob/main/docs/acceptance/CURRENT_IMPLEMENTATION_GATE.md","kind":"projection","authority":"human-readable projection only"},
     {"id":"current-status","label":"Current Status","url":"https://github.com/Letterblack0306/LBE_Presistent_Agent_wall/blob/main/docs/CURRENT_STATUS.md","kind":"current-state","authority":"human-readable projection"},
     {"id":"implementation-plan","label":"Canonical Implementation Plan","url":"https://github.com/Letterblack0306/LBE_Presistent_Agent_wall/blob/main/docs/IMPLEMENTATION_PLAN.md","kind":"roadmap","authority":"ordered product/implementation sequence"},
-    {"id":"architecture","label":"LBE Architecture","url":"https://github.com/Letterblack0306/LBE_Presistent_Agent_wall/blob/main/docs/ARCHITECTURE.md","kind":"architecture","authority":"canonical architecture owner"},
-    {"id":"runtime-contract","label":"LBE Runtime Contract","url":"https://github.com/Letterblack0306/LBE_Presistent_Agent_wall/blob/main/docs/RUNTIME_CONTRACT.md","kind":"contract","authority":"runtime boundary contract"},
-    {"id":"modes","label":"LBE Modes","url":"https://github.com/Letterblack0306/LBE_Presistent_Agent_wall/blob/main/docs/MODES.md","kind":"contract","authority":"mode contract"},
-    {"id":"lifecycle","label":"LBE Agent Lifecycle","url":"https://github.com/Letterblack0306/LBE_Presistent_Agent_wall/blob/main/docs/LBE_AGENT_LIFECYCLE.md","kind":"architecture","authority":"lifecycle explanation"},
-    {"id":"agency-separation","label":"Agent Agency / LBE Authority Separation","url":"https://github.com/Letterblack0306/LBE_Presistent_Agent_wall/blob/main/docs/design/AGENT_AGENCY_LBE_AUTHORITY_SEPARATION.md","kind":"design","authority":"accepted architecture design"},
+    {"id":"lifecycle","label":"LBE Agent Lifecycle","url":"https://github.com/Letterblack0306/LBE_Presistent_Agent_wall/blob/main/docs/LBE_AGENT_LIFECYCLE.md","kind":"architecture","authority":"operational turn-flow owner"},
+    {"id":"agency-separation","label":"Agent Agency / LBE Authority Separation","url":"https://github.com/Letterblack0306/LBE_Presistent_Agent_wall/blob/main/docs/design/AGENT_AGENCY_LBE_AUTHORITY_SEPARATION.md","kind":"design","authority":"proposed follow-on architecture review; not an active gate"},
+    {"id":"lifecycle-phases","label":"Agent Lifecycle Phases","url":"https://github.com/Letterblack0306/LBE_Presistent_Agent_wall/blob/main/docs/design/AGENT_LIFECYCLE_PHASES.md","kind":"design","authority":"product lifecycle design"},
     {"id":"cli-review","label":"CLI Agent Reference Review","url":"https://github.com/Letterblack0306/LBE_Presistent_Agent_wall/blob/main/docs/reference/CLI_AGENT_REFERENCE_REVIEW_2026-08-21.md","kind":"reference","authority":"planning/reference only"},
     {"id":"gpt-provider-boundary","label":"LBE CLI control-plane/provider boundary","path":"../../../ai-agents/lbe-cli-control-plane-provider-boundary.md","kind":"gpt-knowledge-reference","authority":"cross-project design reference"},
     {"id":"gpt-truth-ui","label":"Inline agent runtime tool-call truth UI","path":"../../../ui-engineering/inline-agent-runtime-toolcall-truth-ui.md","kind":"gpt-knowledge-reference","authority":"cross-project UI/runtime reference"},
     {"id":"project-status-mirror","label":"LBE project status mirror","path":"../lbe-persistent-agent-wall-status.md","kind":"reference","authority":"projection only"},
-    {"id":"acceptance-routing","label":"LBE acceptance and implementation routing","path":"../lbe-persistent-agent-c5-r7-acceptance-routing.md","kind":"routing","authority":"routing/reference only"},
+    {"id":"acceptance-routing","label":"LBE acceptance and implementation routing","path":"../lbe-persistent-agent-c5-r7-acceptance-routing.md","kind":"routing","authority":"historical routing/reference only"},
     {"id":"plan-method","label":"Project feature implementation plan method","path":"../../project-feature-implementation-plan.md","kind":"method","authority":"methodology"},
-    {"id":"historical-deep-audit","label":"Deep repository audit — older pravesh0306 fork/head","kind":"historical-research","authority":"research only; stale fork/head; re-verify before action","note":"Useful for architecture, persistence, dependency, security, CI and technical-debt hypotheses. It must never override current Letterblack0306 main, machine governance, live runtime evidence or current acceptance results."}
+    {"id":"deep-document-research","label":"Reconstruct, Verify, and Consolidate the LBE Workspace Documentation","kind":"historical-research","authority":"research input only; current repository and machine governance outrank it","note":"Use its evidence-first consolidation method and explicit evidence labels, but re-verify every proposed authority/current-state claim against current canonical main before action."}
+  ],
+  "removed_stale_references": [
+    {"path":"docs/ARCHITECTURE.md","reason":"not tracked on current canonical remote main"},
+    {"path":"docs/RUNTIME_CONTRACT.md","reason":"not tracked on current canonical remote main"},
+    {"path":"docs/MODES.md","reason":"not tracked on current canonical remote main"}
   ]
 }
