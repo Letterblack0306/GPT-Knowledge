@@ -1,7 +1,7 @@
 {
-  "schema_version": 5,
+  "schema_version": 6,
   "updated": "2026-08-25",
-  "source_head": "b163a945faa99f93c87c6641c7ba756e415b3f33",
+  "source_head": "cdce28498fcac4f1af42c079d6c3e469bef80d48",
   "references": [
     {"id":"canonical-repo","label":"Canonical LBE repository","url":"https://github.com/Letterblack0306/LBE_Presistent_Agent_wall","kind":"project-authority","authority":"canonical source"},
     {"id":"project-index","label":"Project Structural Authority Index","url":"https://github.com/Letterblack0306/LBE_Presistent_Agent_wall/blob/main/PROJECT_INDEX.md","kind":"governance-authority","authority":"structural responsibility owner; pre-mutation input"},
@@ -16,7 +16,10 @@
     {"id":"lifecycle-phases","label":"Agent Lifecycle Phases","url":"https://github.com/Letterblack0306/LBE_Presistent_Agent_wall/blob/main/docs/design/AGENT_LIFECYCLE_PHASES.md","kind":"design","authority":"product lifecycle and reuse/wrap/own design"},
     {"id":"cline-reuse-matrix","label":"Cline Core Reuse Boundary Matrix","url":"https://github.com/Letterblack0306/LBE_Presistent_Agent_wall/blob/main/docs/research/CLINE_CORE_REUSE_BOUNDARY_MATRIX.md","kind":"reuse-boundary","authority":"reuse/adapt/reject evidence; Cline is a mechanics source, not product/interface identity"},
     {"id":"current-status","label":"Current Status","url":"https://github.com/Letterblack0306/LBE_Presistent_Agent_wall/blob/main/docs/CURRENT_STATUS.md","kind":"current-state","authority":"human-readable projection"},
-    {"id":"implementation-plan","label":"Canonical Implementation Plan","url":"https://github.com/Letterblack0306/LBE_Presistent_Agent_wall/blob/main/docs/IMPLEMENTATION_PLAN.md","kind":"roadmap","authority":"ordered product/implementation sequence"}
+    {"id":"implementation-plan","label":"Canonical Implementation Plan","url":"https://github.com/Letterblack0306/LBE_Presistent_Agent_wall/blob/main/docs/IMPLEMENTATION_PLAN.md","kind":"roadmap","authority":"ordered product/implementation sequence"},
+    {"id":"audit-findings","label":"Audit Finding Review Register","url":"https://github.com/Letterblack0306/LBE_Presistent_Agent_wall/blob/main/docs/AUDIT_FINDING_REVIEW_REGISTER.md","kind":"live-owner","authority":"canonical finding review/disposition owner"},
+    {"id":"unused-readme","label":"Preserved Unused Repository Material","url":"https://github.com/Letterblack0306/LBE_Presistent_Agent_wall/blob/main/unused-in-repo/README.md","kind":"preservation-router","authority":"canonical preservation-surface rules; not live project authority"},
+    {"id":"unused-manifest","label":"unused-in-repo Preservation Manifest","url":"https://github.com/Letterblack0306/LBE_Presistent_Agent_wall/blob/main/unused-in-repo/MANIFEST.md","kind":"preservation-register","authority":"canonical register for proven-unused preserved material; currently empty"}
   ],
   "important_commits": [
     {"sha":"17d6e7c09987b6f6d9ea857a130023d21412c566","meaning":"canonical governed workspace deletion moved into approved existing owners"},
@@ -24,6 +27,7 @@
     {"sha":"0227e844245c901e4178e7d8aaedfbd77fe301bf","meaning":"bounded protected-workspace hygiene projection exception documented"},
     {"sha":"da92266bc2cb0d43974b32932842c3eb3621c9f2","meaning":"workspace authority routing reconciled; stale route retired; manifest/index coverage repaired; lbe-core registered as separate reference repository"},
     {"sha":"fc6b5e9aaf7c06f02fc5851343d01db182460d7c","meaning":"initial durable interaction-direction record; later wording corrected"},
-    {"sha":"b163a945faa99f93c87c6641c7ba756e415b3f33","meaning":"canonical product/interface identity corrected: Product=LBE, Interface=LBE interface, Cline=reuse source only"}
+    {"sha":"b163a945faa99f93c87c6641c7ba756e415b3f33","meaning":"canonical product/interface identity corrected: Product=LBE, Interface=LBE interface, Cline=reuse source only"},
+    {"sha":"cdce28498fcac4f1af42c079d6c3e469bef80d48","meaning":"unused-in-repo became the canonical empty preservation surface with manifest-backed move proof requirements"}
   ]
 }
