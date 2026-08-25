@@ -25,9 +25,9 @@
     {
       "id": "lbe",
       "name": "LBE Persistent Agent",
-      "subtitle": "LBE Interface · Documentation Coverage · Workspace Authority",
+      "subtitle": "Complete Runtime PASS · Session Contract Next · Cline Reuse Boundary",
       "mapped": true,
-      "active_node": "workspace-hygiene",
+      "active_node": "complete-runtime-pass",
       "plan_file": "../lbe-plan-canvas/plan.json",
       "status_file": "../lbe-plan-canvas/status.json",
       "references_file": "../lbe-plan-canvas/references.json",
