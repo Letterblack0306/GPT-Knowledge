@@ -2,154 +2,141 @@
 
 ## Authority and routing
 
-- Last reconciled: 2026-08-22
+- Last reconciled: 2026-08-25
 - Project repository: `Letterblack0306/LBE_Presistent_Agent_wall`
-- Current project head at stop checkpoint: `8a4e601b516315bf463331753c2fd9a43e335f00`
-- Authority: this is a short navigation mirror. Live LBE source, Git state, machine gates,
-  acceptance records, and runtime evidence are authoritative.
+- Canonical remote `main`: `183c86178d3f13d0a76a04cb811f59074e0d226e`
+- Authority: this is a short navigation mirror. Live LBE source, Git/workspace state, `.lbe/governance/implementation-gates.json`, machine-selected acceptance records, validation, and runtime evidence are authoritative.
 
 ```text
-GPT-Knowledge -> reusable method, architecture/UI reference, and project resume checkpoint
-LBE repository -> current source, status, plan, machine gate, acceptance evidence
-local validation -> test/debug/runtime evidence only
+GPT-Knowledge -> method, reference, project projection
+LBE repository -> current source/docs/gates/acceptance authority
+LoopTool/local -> test/debug/runtime/workspace evidence
 ```
 
 ## Current project state
 
 ```text
+active_plan: docs/acceptance/COMPLETE_LBE_AGENT_RUNTIME_GATE.md
+active_phase: COMPLETE_LBE_AGENT_RUNTIME_IMPLEMENTATION
+active_slice: WORKSPACE_HYGIENE_GOVERNED_DELETION
+status: OPEN
+implementation_allowed: true within active slice
+architecture_changes_allowed: true (explicit user authorization)
+next_phase_locked: true
+publish_allowed: false
+```
+
+Accepted baseline retained by machine governance:
+
+```text
 R3-R6F: PROVEN_COMPLETE
 CLI_NORMAL_PATH_ACCEPTANCE: PROVEN_COMPLETE
 R7_INSTALLED_END_TO_END_ACCEPTANCE: PASS
+RELEASE_PACKAGE_CONTRACT_REPAIR: PASS
 RELEASE_PACKAGE_READINESS_ACCEPTANCE: PASS
 PUBLICATION_PRECHECK: PASS
-
-active_phase: COMPLETE_TUI_IMPLEMENTATION
-active_slice: TUI_INSTALLED_INTERACTIVE_ACCEPTANCE
-status: OPEN
-implementation_allowed: true within the active TUI gate
-architecture_changes_allowed: true (explicit user authorization)
-publish_allowed: false
-publication version preparation: PAUSED_NOT_CLOSED (target retained: 2.0.3)
+DOCTRINE_TO_PROVIDER_CONTEXT_BRIDGE: PASS
 ```
 
-Completed TUI slices before the current installed-acceptance slice:
+## Workspace hygiene slice
+
+The prior doctrine-to-provider context bridge is complete and recorded `PASS`. The current machine-selected slice is `WORKSPACE_HYGIENE_GOVERNED_DELETION`.
+
+Canonical implementation lineage:
 
 ```text
-TUI_PROJECTION_CONTRACT_AND_VIEW_MODELS: PASS
-TUI_OBJECTIVE_ACTIVITY_WORKSPACE: PASS
-TUI_COMMAND_ROUTING: PASS
-TUI_SESSION_NAVIGATION_AND_RESUME: PASS
-TUI_PROVIDER_MODEL_CONFIGURATION_AND_HEALTH: PASS
-TUI_STRUCTURED_ACTIVITY_AND_DETAIL_VIEWS: PASS
-TUI_CAPABILITY_INTEGRATION_INSPECTION: PASS
+17d6e7c09987b6f6d9ea857a130023d21412c566
+feat: govern workspace deletion through modify capability
 ```
 
-The capability/integration slice was proven at source revision
-`775e595270ae391573aca9bed9b63b5d6a0f3e9e` with 38 focused tests passing and command hash
-`59AA029B59C7D10EE98C3F8891C7FFEE659A5D07841DC59E7706083E7A705EFB`.
-The machine gate was then advanced on `main` to `TUI_INSTALLED_INTERACTIVE_ACCEPTANCE` at
-`8a4e601b516315bf463331753c2fd9a43e335f00`.
-
-## Installed acceptance checkpoint — session stopped after V38
-
-The implementation session was intentionally stopped after V38. Do not infer completion beyond
-this checkpoint.
-
-### Proven
+Current live-document alignment:
 
 ```text
-LBE source/GitHub head: 8a4e601b516315bf463331753c2fd9a43e335f00
-canonical source version: 2.0.3
-installed package version: 2.0.3
-installed module location: Python 3.14 user site-packages
-installed artifact alignment: PASS
-LM Studio endpoint 127.0.0.1:1234: reachable
-model discovery: PASS
-selected acceptance model: qwen/qwen3.5-9b
+183c86178d3f13d0a76a04cb811f59074e0d226e
+docs: align current projections with hygiene gate
 ```
 
-The installed artifact proof came from building a wheel from exact `origin/main`, replacing the
-previous installed `0.2.0`, then importing outside the repository workspace. The installed module
-resolved to:
+The slice remains `OPEN`; implementation presence is not acceptance proof. Required evidence still includes bounded inside-workspace deletion, outside/protected/escape denial, authorization before execution, bypass unavailability, correlated success/failure receipts, and preservation of protected user work.
+
+## Documentation authority reconciliation
+
+The original documentation objective is now being treated as an authority/routing problem, not generic filesystem cleanup.
+
+Live human-readable projections were aligned in `183c861`:
+
+- `docs/CURRENT_STATUS.md`
+- `docs/IMPLEMENTATION_PLAN.md`
+- `docs/acceptance/CURRENT_IMPLEMENTATION_GATE.md`
+- `docs/acceptance/CURRENT_AGENT_EXECUTION_GATE.md`
+
+Current canonical navigation is:
 
 ```text
-C:\Users\prave\AppData\Roaming\Python\Python314\site-packages\lbe_guard_inspector\__init__.py
+.agent/PROJECT_CONTEXT.md
+ -> .lbe/governance/workspace-lock.json
+ -> .lbe/governance/implementation-gates.json
+ -> exact machine-selected active_plan
+ -> docs/README.md and the relevant live owner
 ```
 
-This resolved the earlier false source-checkout import ambiguity.
+`docs/README.md` is the single documentation library entrypoint and states the one-fact/one-live-owner rule. `docs/LBE_AGENT_LIFECYCLE.md` owns operational turn flow. `docs/IMPLEMENTATION_PLAN.md` owns ordered work. `docs/CURRENT_STATUS.md` is the human current-state projection. The machine gate alone owns active authorization.
 
-### V38 result
+### Acceptance corpus classification
+
+Latest read-only LoopTool classification reported:
 
 ```text
-V38 command hash: E8787772E84AB2B5F606C0F1C67B068826175C84081A6699957762ACC9A11A4A
-installed identity: PASS
-LM Studio model discovery: PASS
-installed provider health: FAIL
-failure: ProviderError: timed out
+tracked acceptance documents = 55
+machine-referenced documents = 4
+unreferenced documents = 51
 ```
 
-Classification at stop:
+Machine-referenced paths:
 
 ```text
-INSTALLED_ARTIFACT_ALIGNMENT = PASS
-INSTALLED_PROVIDER_HEALTH = FAIL
-TUI_INSTALLED_INTERACTIVE_ACCEPTANCE = OPEN
-INTERACTIVE_TUI_LAUNCH = NOT RUN
-SESSION/COMMAND INTERACTIVE ACCEPTANCE = NOT RUN
-REGRESSION_ACCEPTANCE = NOT RUN
-PUBLICATION_PROGRESSION = PAUSED
+docs/acceptance/COMPLETE_LBE_AGENT_RUNTIME_GATE.md
+docs/acceptance/PUBLICATION_EXECUTION_AUTHORIZATION_GATE.md
+docs/acceptance/PUBLICATION_VERSION_2_0_3_PREPARATION_GATE.md
+docs/acceptance/TERMINAL_WORKSPACE_FOUNDATION_GATE.md
 ```
 
-The provider timeout is not classified as an artifact/version failure. V38 proved the installed
-`2.0.3` runtime was active, the LM Studio server answered `/v1/models`, and
-`qwen/qwen3.5-9b` was discoverable before `lbe provider check` timed out.
+Important: machine-referenced does not mean active. The machine gate explicitly classifies `TERMINAL_WORKSPACE_FOUNDATION_GATE.md` as `SUPERSEDED_BY_COMPLETE_RUNTIME_GATE`.
+
+The next documentation step is to resolve legacy gates that still contain `OPEN`, `PENDING`, or `UNVERIFIED` language against later accepted evidence, repair inbound links, then move completed/superseded acceptance evidence to `docs/history/legacy-acceptance/`. Preserve historical evidence; do not delete it merely because it is no longer current authority.
+
+## Deep-research reconciliation
+
+Earlier research input: **“Reconstruct, Verify, and Consolidate the LBE Workspace Documentation.”**
+
+Current evidence supports its core method:
+
+- current workspace/repository evidence outranks historical conversation, old plans, summaries, and prior agent reports;
+- use explicit evidence classes rather than treating documentation as proof;
+- documentation is not authorization;
+- installation is not enforcement;
+- tests existing is not the same as tests passing;
+- historical records should be retained as evidence but structurally separated from current authority.
+
+The research remains advisory. Every current-state claim must be re-verified against canonical `main`, machine governance, and live/runtime evidence before action.
+
+## Repository review findings
+
+Current remote review confirms:
+
+- `docs/README.md` is the documentation router and learning spine.
+- `docs/LBE_AGENT_LIFECYCLE.md` preserves the core boundary: provider reasons; LBE owns identity, authorization, governed execution, receipts, persistence, and deterministic completion truth.
+- `docs/acceptance/COMPLETE_LBE_AGENT_RUNTIME_GATE.md` records doctrine bridge `PASS` and workspace hygiene `IN PROGRESS`.
+- `docs/design/AGENT_AGENCY_LBE_AUTHORITY_SEPARATION.md` remains a **proposed follow-on architecture review**, not an active gate.
+- GPT-Knowledge previously linked to `docs/ARCHITECTURE.md`, `docs/RUNTIME_CONTRACT.md`, and `docs/MODES.md`; those paths are not tracked on current canonical remote `main`, so they have been removed from the GPT-Knowledge canonical reference set.
 
 ## Exact resume point
 
-Resume from the current installed-acceptance slice. The first bounded task is:
-
 ```text
-diagnose the installed `lbe provider check` timeout against LM Studio
-127.0.0.1:1234 using the installed 2.0.3 runtime, without changing the artifact/version unless
-evidence proves an implementation defect.
+1. Reconcile old OPEN/PENDING/UNVERIFIED acceptance documents against later accepted evidence.
+2. Repair inbound links and any machine-governance references before moving files.
+3. Relocate proven historical acceptance evidence to docs/history/legacy-acceptance/.
+4. Validate links/routing and ensure no historical document can present itself as current authority.
+5. Separately complete the machine-required workspace-hygiene deletion acceptance evidence before advancing the runtime gate.
 ```
 
-Only after provider health is validly proven should the project continue to the real installed
-interactive TUI acceptance. That remaining acceptance must still prove the real terminal launch,
-distinct/truthful commands, session create/resume/navigation, provider selection/check without
-credential leakage, governed local-provider tool turn, interrupt/cancel behavior, required
-terminal layouts/color modes, and then the final compatibility/regression acceptance.
-
-Do not resume publication/version progression while `COMPLETE_TUI_IMPLEMENTATION` remains active.
-
-## Product direction retained from GPT-Knowledge
-
-- The provider/agent reasons; LBE owns workspace/session identity, policy, authorization,
-  governed execution, receipts, evidence, persistence, validation, and completion truth.
-- Policy-covered capability use is automatic within the granted boundary. Ordinary edits and
-  commands do not become approval queues.
-- CLI/API/TUI are clients/projections of the same persisted runtime owners, never a second runtime
-  or authority.
-- The TUI is keyboard-first, uses stable regions and compact activity rows, and uses structured
-  progressive disclosure such as `/detail [event-sequence]` for rich event facts.
-- Missing capability/integration ownership must render truthfully as unavailable rather than
-  inventing static availability or a second registry.
-
-## Canonical LBE documents
-
-Read these in the LBE repository before planning or implementation:
-
-```text
-docs/README.md
-.agent/PROJECT_CONTEXT.md
-.lbe/governance/implementation-gates.json
-docs/acceptance/COMPLETE_LBE_TUI_IMPLEMENTATION_GATE.md
-docs/CURRENT_STATUS.md
-docs/IMPLEMENTATION_PLAN.md
-docs/design/AGENT_AGENCY_LBE_AUTHORITY_SEPARATION.md
-docs/reference/CLI_AGENT_REFERENCE_REVIEW_2026-08-21.md
-```
-
-Historical acceptance records preserve their original evidence. Do not rewrite them as current
-project direction. If this mirror conflicts with the live LBE gate, update this mirror and follow
-the live gate.
+Do not resume publication/version progression while the complete-runtime workspace-hygiene slice remains open.
