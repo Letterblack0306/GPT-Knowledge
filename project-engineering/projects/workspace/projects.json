@@ -25,7 +25,7 @@
     {
       "id": "lbe",
       "name": "LBE Persistent Agent",
-      "subtitle": "Intent Governance · Workspace Authority · Cline Product Direction",
+      "subtitle": "LBE Interface · Intent Governance · Workspace Authority",
       "mapped": true,
       "active_node": "workspace-hygiene",
       "plan_file": "../lbe-plan-canvas/plan.json",
