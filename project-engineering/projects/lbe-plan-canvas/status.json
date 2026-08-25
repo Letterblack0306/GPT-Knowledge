@@ -4,143 +4,125 @@
   "verified_at": "2026-08-25",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "source_branch": "main",
-  "source_head": "0098e9c86614643e8364dd941e4f23e0295994d7",
+  "source_head": "183c86178d3f13d0a76a04cb811f59074e0d226e",
   "local_workspace": "C:/Agents-Memory-Tool-v6-integration",
-  "overall_classification": "STAGE_4_IN_PROGRESS_IMPLEMENTED_CLEAN_CANONICAL_ACCEPTANCE_PENDING",
-  "authority_note": "Canonical LBE main remains 0098e9c86614643e8364dd941e4f23e0295994d7. The machine gate selects COMPLETE_LBE_AGENT_RUNTIME_GATE / COMPLETE_LBE_AGENT_RUNTIME_IMPLEMENTATION / DOCTRINE_TO_PROVIDER_CONTEXT_BRIDGE with one active slice. The implementation commit is canonical. A dirty-working-tree installed-TUI acceptance attempt reported 123 passed and 2 failed because protected local B3 rewrites remove interfaces that are present in canonical main. This is an acceptance-environment contamination boundary, not proof of a canonical Stage 4 TUI defect. The next valid acceptance path is an isolated clean projection/install of canonical main while preserving all protected dirty work.",
-  "core_doctrine": "Provider proposes. LBE governs. Approved adapters execute. Evidence proves what happened. LBE deterministic validation owns completion truth.",
+  "overall_classification": "STAGE_4_WORKSPACE_HYGIENE_OPEN_DOCUMENT_ALIGNMENT_IN_PROGRESS",
+  "authority_note": "Live workspace/runtime evidence and the LBE machine gate remain authoritative. Canonical remote main is 183c86178d3f13d0a76a04cb811f59074e0d226e. The machine gate selects COMPLETE_LBE_AGENT_RUNTIME_GATE / COMPLETE_LBE_AGENT_RUNTIME_IMPLEMENTATION / WORKSPACE_HYGIENE_GOVERNED_DELETION. Human-readable projections were aligned to that machine-selected slice in commit 183c861. GPT-Knowledge is a projection and must not override current GitHub, machine governance, or runtime evidence.",
+  "core_doctrine": "Provider proposes. LBE governs. Approved adapters execute. Evidence proves what happened. Deterministic LBE validation owns completion truth.",
   "current_stage": {
-    "id": "stage-4-active-runtime-slice",
-    "title": "Complete-runtime active slice",
-    "status": "IN_PROGRESS",
+    "id": "stage-4-workspace-hygiene-governed-deletion",
+    "title": "Workspace hygiene governed deletion",
+    "status": "OPEN",
     "active_plan": "docs/acceptance/COMPLETE_LBE_AGENT_RUNTIME_GATE.md",
     "active_phase": "COMPLETE_LBE_AGENT_RUNTIME_IMPLEMENTATION",
-    "active_slice": "DOCTRINE_TO_PROVIDER_CONTEXT_BRIDGE",
-    "implementation_commit": "0098e9c86614643e8364dd941e4f23e0295994d7",
-    "implementation_status": "IMPLEMENTED_CANONICAL",
-    "acceptance_status": "CLEAN_CANONICAL_INSTALLED_ACCEPTANCE_PENDING",
-    "reason": "The doctrine-to-provider context bridge is implemented on canonical main, but Stage 4 requires installed/runtime evidence before PASS. Protected unrelated dirty B3 files invalidate the dirty-worktree TUI acceptance environment without invalidating canonical source.",
-    "next_valid_action": "Continue autonomously with Stage 4 acceptance from an isolated clean projection of exact canonical main: installed TUI behavior, live governed tool-call behavior, completion validation, provider/profile/persistence evidence still required by the active gate, secret/package-state checks, and full end-to-end proof. Do not mutate/reset/absorb protected B3 merely to make acceptance pass."
+    "active_slice": "WORKSPACE_HYGIENE_GOVERNED_DELETION",
+    "implementation_status": "IMPLEMENTED_CANONICAL_BUT_GATE_NOT_CLOSED",
+    "documentation_status": "LIVE_PROJECTIONS_ALIGNED_HISTORY_RELOCATION_PENDING",
+    "next_valid_action": "Close legacy acceptance authority references, repair inbound links, then relocate proven historical acceptance evidence to docs/history/legacy-acceptance without deleting evidence or disturbing protected dirty work. Workspace-hygiene acceptance remains OPEN until the machine gate's required deletion/containment/receipt/non-bypass proofs pass."
   },
   "machine_state": {
     "active_plan": "docs/acceptance/COMPLETE_LBE_AGENT_RUNTIME_GATE.md",
     "active_phase": "COMPLETE_LBE_AGENT_RUNTIME_IMPLEMENTATION",
-    "active_slice": "DOCTRINE_TO_PROVIDER_CONTEXT_BRIDGE",
+    "active_slice": "WORKSPACE_HYGIENE_GOVERNED_DELETION",
     "status": "OPEN",
     "implementation_allowed": true,
     "architecture_changes_allowed": true,
     "next_phase_locked": true,
-    "one_active_slice": true,
-    "publication": "PAUSED_LOCKED_BY_NESTED_GOVERNANCE_RECORDS"
+    "publish_allowed": false
   },
-  "stage_0": {"classification":"CANONICAL_PASS","commit_sha":"2abca625cd277733aabfff2e79dbc168fa62d254"},
-  "stage_1": {"classification":"CANONICAL_PASS","commit_sha":"7e8dbf95b01b663c5e9f3a616123b298dd3af9db"},
-  "stage_2": {"classification":"CANONICAL_PASS","final_checkpoint_commit":"6b44c624834523725fde1297c9f714b0a75a144f"},
-  "stage_3": {"classification":"CANONICAL_PASS","final_evidence":"12a4b565b4691f71c66f075ea1e208fffa854004"},
-  "stage_4": {
+  "accepted_baseline": {
+    "R3_R6F": "PROVEN_COMPLETE",
+    "CLI_NORMAL_PATH_ACCEPTANCE": "PROVEN_COMPLETE",
+    "R7_INSTALLED_END_TO_END_ACCEPTANCE": "PASS",
+    "RELEASE_PACKAGE_CONTRACT_REPAIR": "PASS",
+    "RELEASE_PACKAGE_READINESS_ACCEPTANCE": "PASS",
+    "PUBLICATION_PRECHECK": "PASS",
+    "DOCTRINE_TO_PROVIDER_CONTEXT_BRIDGE": "PASS"
+  },
+  "workspace_hygiene": {
+    "classification": "ACTIVE_OPEN",
+    "canonical_implementation_commit": "17d6e7c09987b6f6d9ea857a130023d21412c566",
+    "current_projection_commit": "183c86178d3f13d0a76a04cb811f59074e0d226e",
+    "required_evidence": [
+      "inside-workspace disposable deletion",
+      "outside-workspace denial",
+      "protected-path denial",
+      "path-escape denial",
+      "authorization before execution",
+      "direct adapter bypass unavailable",
+      "success and failure receipts",
+      "protected user work preserved"
+    ],
+    "rule": "Do not infer slice PASS from implementation presence. The machine gate remains OPEN until required evidence is recorded and the gate is advanced."
+  },
+  "document_alignment": {
     "classification": "IN_PROGRESS",
-    "active_slice": "DOCTRINE_TO_PROVIDER_CONTEXT_BRIDGE",
-    "implementation": {
-      "classification": "IMPLEMENTED_CANONICAL_COMMIT",
-      "commit_sha": "0098e9c86614643e8364dd941e4f23e0295994d7",
-      "commit_message": "runtime: bridge doctrine context into provider turns",
-      "github_main_verified": true,
-      "files": [
-        "lbe_guard_inspector/cli.py",
-        "lbe_guard_inspector/provider_turn_runtime.py",
-        "lbe_guard_inspector/runtime/agent_guidance.py",
-        "lbe_guard_inspector/runtime/governed_coding.py",
-        "tests/test_agent_guidance.py",
-        "tests/test_provider_turn_runtime.py"
-      ],
-      "implemented_behavior": [
-        "provenance-tagged ENGINEERING/AUDIT/INVESTIGATION AgentGuidance",
-        "bounded root AGENTS.md provider context with safe provenance metadata",
-        "governed coding system guidance while existing LBE tool orchestration remains execution owner",
-        "non-streaming provider system guidance and runtime.guidance.loaded safe metadata",
-        "Audit/Investigation guidance through existing TUI provider path",
-        "no project-instruction or full provider-prompt persistence"
+    "live_projection_alignment": "PASS",
+    "alignment_commit": "183c86178d3f13d0a76a04cb811f59074e0d226e",
+    "canonical_entrypoints": [
+      ".agent/PROJECT_CONTEXT.md",
+      ".lbe/governance/implementation-gates.json",
+      "docs/README.md",
+      "docs/CURRENT_STATUS.md",
+      "docs/IMPLEMENTATION_PLAN.md",
+      "docs/LBE_AGENT_LIFECYCLE.md",
+      "docs/design/AGENT_AGENCY_LBE_AUTHORITY_SEPARATION.md"
+    ],
+    "acceptance_corpus_evidence": {
+      "source": "USER_SUPPLIED_LOOPTOOL_READ_ONLY_CLASSIFICATION",
+      "tracked_documents": 55,
+      "machine_referenced_documents": 4,
+      "unreferenced_documents": 51,
+      "machine_referenced": [
+        "docs/acceptance/COMPLETE_LBE_AGENT_RUNTIME_GATE.md",
+        "docs/acceptance/PUBLICATION_EXECUTION_AUTHORIZATION_GATE.md",
+        "docs/acceptance/PUBLICATION_VERSION_2_0_3_PREPARATION_GATE.md",
+        "docs/acceptance/TERMINAL_WORKSPACE_FOUNDATION_GATE.md"
       ]
     },
-    "reported_validation": {
-      "implementation_focused_tests": "52 passed in 27.00s",
-      "dirty_worktree_installed_acceptance": "123 passed, 2 failed",
-      "dirty_worktree_failure_classification": "PROTECTED_B3_INTERFACE_DIVERGENCE",
-      "failed_contracts": ["composer_hint/prefix grammar palette", "/settings truthful command projection"],
-      "classification": "USER_SUPPLIED_LIVE_EVIDENCE"
-    },
-    "canonical_tui_contract": {
-      "classification": "PRESENT_IN_CANONICAL_MAIN",
-      "required_surfaces": ["#composer_hint","prefix grammar","/settings","/mcp","/skills","/attach","/mentions","command palette"],
-      "implication": "The dirty local B3 failure does not establish a canonical product defect."
-    },
-    "clean_acceptance_strategy": {
-      "classification": "NEXT_VALID_WORK",
-      "steps": [
-        "fetch canonical origin/main",
-        "create isolated clean archive/projection of exact canonical commit",
-        "build/install only from that clean source",
-        "run installed TUI acceptance",
-        "run live governed tool-call proof",
-        "run completion validation",
-        "run remaining provider/profile/persistence and secret/package-state evidence required by the active gate",
-        "run full end-to-end proof",
-        "document Stage 4 PASS/FAIL checkpoint",
-        "commit/push/remote-verify checkpoint before Stage 5 unlock"
-      ],
-      "protected_boundary": "Do not reset, restore, overwrite, stage, or absorb unrelated dirty B3/B5/provider/profile/credential/governance/publication work merely for acceptance."
-    },
-    "remaining_gate_evidence": [
-      "installed TUI acceptance from clean canonical artifact",
-      "live governed tool-call behavior",
-      "completion validation",
-      "full installed end-to-end runtime proof",
-      "still-required provider/profile/persistence evidence",
-      "package-output and persisted-state secret scan",
-      "any transaction/rollback or bypass evidence required by the active gate/selected assurance profile",
-      "git diff --check and bounded Stage 4 checkpoint"
+    "important_distinction": "MACHINE_REFERENCED does not mean ACTIVE. TERMINAL_WORKSPACE_FOUNDATION_GATE is referenced by governance but explicitly classified SUPERSEDED_BY_COMPLETE_RUNTIME_GATE.",
+    "next_sequence": [
+      "classify remaining OPEN/PENDING/UNVERIFIED legacy gates against later accepted evidence",
+      "repair inbound references from live documents and machine governance",
+      "move completed/superseded acceptance records into docs/history/legacy-acceptance",
+      "validate internal links and ensure no historical document presents itself as current authority"
     ]
   },
-  "autonomous_continuation": {
-    "status": "ENABLED_WITHIN_CURRENT_AUTHORITY",
-    "rule": "The execution agent should make its own deterministic bounded decisions and continue without asking the user after every routine step.",
-    "continue_without_user_prompt": [
-      "required read-only inspection",
-      "required focused and installed validation",
-      "temporary isolated canonical builds/installs",
-      "deterministic diagnostics after ordinary test failures",
-      "bounded repairs already proven to be inside active machine-authorized scope",
-      "reruns and evidence capture required by the current gate"
-    ],
-    "stop_conditions": [
-      "scope or authority widening",
-      "destructive action against protected/unrelated work",
-      "unresolvable authority contradiction",
-      "mutation outside the active gate",
-      "missing evidence requiring guesswork",
-      "new product/architecture decision rather than bounded defect",
-      "intentional product contract conflicting with acceptance"
+  "repository_document_findings": {
+    "docs_readme": "Canonical documentation entrypoint; defines one-fact-one-live-owner routing and history/reference boundaries.",
+    "lifecycle": "Canonical operational turn flow: provider reasons; LBE owns identity, authorization, governed execution, receipts, persistence, and completion truth.",
+    "active_gate": "Complete runtime gate confirms doctrine bridge PASS and workspace hygiene as the active in-progress slice.",
+    "architecture_design": "AGENT_AGENCY_LBE_AUTHORITY_SEPARATION remains a proposed follow-on architecture review, not an activated gate.",
+    "broken_projection_links_fixed_in_gptk": [
+      "docs/ARCHITECTURE.md is not tracked on current remote main",
+      "docs/RUNTIME_CONTRACT.md is not tracked on current remote main",
+      "docs/MODES.md is not tracked on current remote main"
     ]
   },
   "research_boundary": {
-    "uploaded_deep_audit": "HISTORICAL_RESEARCH_NOT_CURRENT_AUTHORITY",
-    "reason": "The audit targeted an older pravesh0306 fork/head and itself reported that fork as stale relative to Letterblack0306 upstream. Its architecture/security/process findings are useful research candidates but require current re-verification before action."
+    "deep_research_document": "Reconstruct, Verify, and Consolidate the LBE Workspace Documentation",
+    "classification": "HISTORICAL_RESEARCH_INPUT_REVERIFIED_AGAINST_CURRENT_REPO",
+    "governing_constraints": [
+      "current workspace/repository evidence outranks historical conversations, exports, summaries and prior agent reports",
+      "use explicit evidence labels: PROVEN, IMPLEMENTED, DOCUMENTED, INFERRED, UNVERIFIED, STALE, CONTRADICTED, BLOCKED",
+      "documentation is not authorization",
+      "installation is not enforcement",
+      "tests existing is not the same as tests passing",
+      "historical conversation is not current implementation truth"
+    ],
+    "current_reverification": "The research direction is supported by current evidence: live-state projections drifted from machine governance, acceptance history remained mixed with active authority, and GPT-Knowledge itself had stale source-head and active-slice projections. Those projections are being reconciled rather than treated as authority."
   },
   "preservation_state": {
-    "b3": "PROTECTED_DIRTY_LOCAL_WORK_REPORTED_PRESERVED",
-    "b5": "PRESERVED_QUARANTINE_REPORTED",
-    "provider_profile_lifecycle_dirty_work": "PRESERVED_UNTOUCHED_REPORTED",
-    "credential_store_dirty_work": "PRESERVED_UNTOUCHED_REPORTED",
-    "provider_registry_dirty_work": "PRESERVED_UNTOUCHED_REPORTED",
-    "governance": "NO_NEW_STAGE_4_MUTATION_REPORTED",
-    "publication": "NOT_REACTIVATED"
+    "protected_local_worktree": "PRESERVE; do not reset/absorb unrelated dirty paths",
+    "historical_acceptance_evidence": "PRESERVE; relocate rather than delete unless separately proven disposable",
+    "publication": "PAUSED"
   },
-  "stage_sequence": [
-    {"id":"stage-0-baseline-freeze","status":"CANONICAL_PASS","evidence":"2abca625cd277733aabfff2e79dbc168fa62d254"},
-    {"id":"stage-1-document-authority-map","status":"CANONICAL_PASS","evidence":"7e8dbf95b01b663c5e9f3a616123b298dd3af9db"},
-    {"id":"stage-2-document-reallocation","status":"CANONICAL_PASS","evidence":"6b44c624834523725fde1297c9f714b0a75a144f"},
-    {"id":"stage-3-governance-alignment","status":"CANONICAL_PASS","evidence":"12a4b565b4691f71c66f075ea1e208fffa854004"},
-    {"id":"stage-4-active-runtime-slice","status":"IN_PROGRESS","active_slice":"DOCTRINE_TO_PROVIDER_CONTEXT_BRIDGE","implementation_evidence":"0098e9c86614643e8364dd941e4f23e0295994d7","next":"clean canonical installed acceptance"},
-    {"id":"stage-5-next-slice","status":"LOCKED","unlock":"Stage 4 canonical PASS and newly verified machine state"}
-  ]
+  "next_gate_state": {
+    "DOCUMENT_LIVE_PROJECTIONS": "PASS",
+    "DOCUMENT_HISTORY_CLASSIFICATION": "IN_PROGRESS",
+    "INBOUND_REFERENCE_REPAIR": "PENDING",
+    "PHYSICAL_RELOCATION": "PENDING",
+    "WORKSPACE_HYGIENE_SLICE": "OPEN",
+    "COMPLETE_LBE_AGENT_RUNTIME_GATE": "OPEN"
+  }
 }
