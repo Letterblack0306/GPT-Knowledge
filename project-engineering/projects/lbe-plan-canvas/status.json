@@ -1,60 +1,69 @@
 {
-  "schema_version": 15,
+  "schema_version": 16,
   "project": "LBE Persistent Agent",
   "verified_at": "2026-08-25",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "source_branch": "main",
-  "source_head": "6d444de2004acfb8d22f2a7e1bc144ed4e1a5b3f",
+  "source_head": "49ca39b6b8b0d9417563f2af63bd6349dff3b929",
   "local_workspace": "C:/Agents-Memory-Tool-v6-integration",
-  "overall_classification": "RECOVERY_COMPLETION_PROMOTION_IMPLEMENTED_VALIDATION_PENDING",
+  "overall_classification": "COMPLETE_LBE_AGENT_RUNTIME_PASS_NEXT_PRODUCT_SLICE_NOT_ACTIVE",
   "authority_note": "GPT-Knowledge is projection only. Canonical LBE source, machine governance, local runtime evidence, and acceptance checkpoints retain authority.",
   "core_doctrine": "Provider/agent reasons and proposes. LBE preserves project identity and intent, governs authority and consequences, executes only through approved adapters, records evidence, and owns deterministic completion truth.",
-  "product_identity": {"product":"LBE","interface":"LBE interface","runtime_authority":"LBE","cline_role":"REUSE_SOURCE_ONLY"},
+  "product_identity": {
+    "product": "LBE",
+    "interface": "LBE interface",
+    "runtime_authority": "LBE",
+    "cline_role": "MECHANICS_REUSE_SOURCE_ONLY"
+  },
   "machine_state": {
     "active_plan": "docs/acceptance/COMPLETE_LBE_AGENT_RUNTIME_GATE.md",
     "active_phase": "COMPLETE_LBE_AGENT_RUNTIME_IMPLEMENTATION",
-    "active_slice": "RECOVERY_COMPLETION_PROMOTION_INTEGRATION",
-    "active_intent": "LBE-INTENT-RECOVERY-COMPLETION-PROMOTION-001",
-    "slice_result": "OPEN_IMPLEMENTED_VALIDATION_PENDING",
-    "top_level_status": "OPEN",
-    "next_phase_locked": true,
+    "active_slice": "INSTALLED_PACKAGE_END_TO_END_ACCEPTANCE",
+    "slice_result": "PASS",
+    "complete_runtime_result": "PASS",
+    "top_level_routing_status": "OPEN_RESIDUAL_ROUTING_STATE",
+    "next_product_slice_active": false,
     "publish_allowed": false
   },
   "workspace_authority": {
     "primary_implementation_authority": "PRIMARY_MAIN_WORKTREE_ONLY",
-    "local_alignment": "PULL_REQUIRED_TO_SOURCE_HEAD",
-    "lbe_tui": "UNTRACKED_LOCAL_REFERENCE_ONLY",
-    "lbe_core": "SEPARATE_REPOSITORY_REFERENCE_ONLY"
+    "remote_alignment": "HEAD_EQUALS_ORIGIN_MAIN_AT_49ca39b",
+    "lbe_tui": "UNTRACKED_LOCAL_REFERENCE_ONLY_UNTOUCHED",
+    "lbe_core": "SEPARATE_REPOSITORY_REFERENCE_ONLY",
+    "preserved_session_lifecycle_patch": "C:/Users/prave/LBE-preserved-session-lifecycle-unification-20260825"
   },
   "completed_slices": {
-    "WORKSPACE_HYGIENE_GOVERNED_DELETION": {"status":"PASS","focused_validation":"52 passed"},
-    "MANDATORY_GOVERNED_AGENT_MUTATION_DISPATCH": {"status":"PASS","implementation_commit":"47885891848ec9a535a4e09694d3129b320da91a","focused_validation":"80 passed","full_validation":"713 passed"},
-    "GOVERNED_EXTERNAL_CAPABILITY_REGISTRATION": {"status":"PASS","implementation_commit":"02c761ab5ee969edd1c24fed65a6a2d343d20927","focused_validation":"58 passed","full_validation":"732 passed"},
-    "FIRST_RUN_LIVE_SESSION_ENTRY": {"status":"PASS","implementation_commit":"dbefbc0884cb78be5327100d3e9e648bea5a6e52","focused_validation":"63 passed","full_validation":"740 passed"},
-    "INSTALLED_CAPABILITY_REGISTRY_DISCOVERY": {"status":"PASS","implementation_commit":"151136089b63fd9470d3a581a6ad6419cf567595","focused_validation":"71 passed","full_validation":"760 passed"},
-    "LBE_INTERFACE_CONTROL_EVIDENCE_SURFACES": {"status":"PASS","implementation_commit":"9ca27a1498afa017ec0c5a449d80882ca0958a73","checkpoint":"docs/acceptance/LBE_INTERFACE_CONTROL_EVIDENCE_SURFACES_CHECKPOINT.md","focused_validation":"53 passed","full_validation":"763 passed","looptool_command_hash":"334C15A0913D56BE5D6EC6057BA5B66909B06C72F745FA92A5D3281837821C04"}
+    "WORKSPACE_HYGIENE_GOVERNED_DELETION": {"status": "PASS", "focused_validation": "52 passed"},
+    "MANDATORY_GOVERNED_AGENT_MUTATION_DISPATCH": {"status": "PASS", "implementation_commit": "47885891848ec9a535a4e09694d3129b320da91a", "focused_validation": "80 passed", "full_validation": "713 passed"},
+    "GOVERNED_EXTERNAL_CAPABILITY_REGISTRATION": {"status": "PASS", "implementation_commit": "02c761ab5ee969edd1c24fed65a6a2d343d20927", "focused_validation": "58 passed", "full_validation": "732 passed"},
+    "FIRST_RUN_LIVE_SESSION_ENTRY": {"status": "PASS", "implementation_commit": "dbefbc0884cb78be5327100d3e9e648bea5a6e52", "focused_validation": "63 passed", "full_validation": "740 passed"},
+    "INSTALLED_CAPABILITY_REGISTRY_DISCOVERY": {"status": "PASS", "implementation_commit": "151136089b63fd9470d3a581a6ad6419cf567595", "focused_validation": "71 passed", "full_validation": "760 passed"},
+    "LBE_INTERFACE_CONTROL_EVIDENCE_SURFACES": {"status": "PASS", "implementation_commit": "9ca27a1498afa017ec0c5a449d80882ca0958a73", "focused_validation": "53 passed", "full_validation": "763 passed"},
+    "RECOVERY_COMPLETION_PROMOTION_INTEGRATION": {"status": "PASS", "canonical_commit": "cc3a72885721d7f07b560f67590f4bdb86d0a03f", "focused_validation": "59 passed", "full_validation": "767 passed", "checkpoint": "docs/acceptance/RECOVERY_COMPLETION_PROMOTION_CHECKPOINT.md"},
+    "INSTALLED_PACKAGE_END_TO_END_ACCEPTANCE": {"status": "PASS", "checkpoint_commit": "49ca39b6b8b0d9417563f2af63bd6349dff3b929", "wheel_sha256": "a5be438a6c7953916d5e5119d9f560b38d875c2bf91d3a0c3c42f84787beeff0", "installed_governance_tests": "59 passed", "installed_textual_tests": "13 passed", "installed_runtime_tests": "132 passed", "full_validation": "767 passed", "checkpoint": "docs/acceptance/INSTALLED_PACKAGE_END_TO_END_ACCEPTANCE_CHECKPOINT.md"}
   },
   "current_stage": {
-    "id": "recovery-completion-promotion",
-    "title": "Recovery, deterministic completion and completion-proof promotion",
-    "status": "IMPLEMENTED_VALIDATION_PENDING",
-    "implementation_head": "6d444de2004acfb8d22f2a7e1bc144ed4e1a5b3f",
-    "implementation": [
-      "normal coding reasoning receives one persisted R5 operation identity with max_attempts=1 and no automatic mutation retry",
-      "provider COMPLETED creates only TEMP/UNVERIFIED task_complete proof",
-      "source_change/focused_test/git_status producers run under bounded idempotent recovery for transient failures only",
-      "normal gateway automatically invokes existing CodingCompletionRuntime.finalize after trusted evidence",
-      "READY alone promotes the same task_complete proof to VERIFIED",
-      "failed/incomplete validation cannot create verified completion truth",
-      "exact request replay is blocked by persisted terminal recovery identity"
-    ],
-    "next_valid_action": "Pull exact LBE main and run focused recovery/completion/gateway tests plus full regression. Do not mark PASS until local evidence is clean."
+    "id": "complete-runtime-pass",
+    "title": "Complete LBE runtime accepted",
+    "status": "PASS_NO_NEXT_PRODUCT_SLICE_ACTIVE",
+    "implementation_head": "49ca39b6b8b0d9417563f2af63bd6349dff3b929",
+    "next_candidate": "SESSION_APPLICATION_CONTRACT_UNIFICATION",
+    "next_candidate_intent": "LBE-INTENT-SESSION-APPLICATION-CONTRACT-UNIFICATION-001"
   },
-  "remaining_complete_runtime_sequence": ["installed-package end-to-end acceptance"],
+  "cline_surface": {
+    "accepted_direction": "LBE-INTENT-CLINE-AGENTRUNTIME-001",
+    "status": "ACCEPTED_PRODUCT_DIRECTION_NOT_ACTIVE",
+    "historically_proven_provider_continuation": true,
+    "audited_revision": "8bbdde2a5c1f972864fe1b954f639c21fac61a40",
+    "current_upstream_head_observed": "491b30b806fdb8c93513f821f2b87d63a61542f5",
+    "reuse": ["AgentRuntime tool-result continuation"],
+    "adapt": ["provider adapters", "stream events", "pre-tool hooks", "cancellation", "pending prompts", "context compaction", "MCP contribution", "background process mechanics", "usage/cost", "checkpoint comparison", "automation"],
+    "reject_as_authority": ["Cline-native filesystem mutation", "Cline-native shell/process execution", "Cline canonical session ownership", "Cline completion authority", "Cline-branded LBE product/interface identity"]
+  },
   "next_gate_state": {
-    "LBE_INTERFACE_CONTROL_EVIDENCE_SURFACES": "PASS",
-    "RECOVERY_COMPLETION_PROMOTION_INTEGRATION": "OPEN_VALIDATION_PENDING",
-    "INSTALLED_PACKAGE_ACCEPTANCE": "LOCKED",
-    "PUBLICATION": "PAUSED"
+    "COMPLETE_LBE_AGENT_RUNTIME": "PASS",
+    "SESSION_APPLICATION_CONTRACT_UNIFICATION": "NOT_ACTIVE_CANDIDATE",
+    "CLINE_AGENTRUNTIME_REUSE": "ACCEPTED_DIRECTION_NOT_ACTIVE",
+    "PUBLICATION": "LOCKED"
   }
 }
