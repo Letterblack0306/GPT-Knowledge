@@ -1,12 +1,12 @@
 {
-  "schema_version": 16,
+  "schema_version": 17,
   "project": "LBE Persistent Agent",
-  "verified_at": "2026-08-25",
+  "verified_at": "2026-08-26",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "source_branch": "main",
-  "source_head": "49ca39b6b8b0d9417563f2af63bd6349dff3b929",
+  "source_head": "c76d81ea942d0d8589469c80925b8d92b18cf69e",
   "local_workspace": "C:/Agents-Memory-Tool-v6-integration",
-  "overall_classification": "COMPLETE_LBE_AGENT_RUNTIME_PASS_NEXT_PRODUCT_SLICE_NOT_ACTIVE",
+  "overall_classification": "COMPLETE_LBE_AGENT_RUNTIME_CLOSED_SESSION_APPLICATION_CONTRACT_PASS_NO_ACTIVE_SLICE",
   "authority_note": "GPT-Knowledge is projection only. Canonical LBE source, machine governance, local runtime evidence, and acceptance checkpoints retain authority.",
   "core_doctrine": "Provider/agent reasons and proposes. LBE preserves project identity and intent, governs authority and consequences, executes only through approved adapters, records evidence, and owns deterministic completion truth.",
   "product_identity": {
@@ -17,20 +17,28 @@
   },
   "machine_state": {
     "active_plan": "docs/acceptance/COMPLETE_LBE_AGENT_RUNTIME_GATE.md",
-    "active_phase": "COMPLETE_LBE_AGENT_RUNTIME_IMPLEMENTATION",
-    "active_slice": "INSTALLED_PACKAGE_END_TO_END_ACCEPTANCE",
-    "slice_result": "PASS",
-    "complete_runtime_result": "PASS",
-    "top_level_routing_status": "OPEN_RESIDUAL_ROUTING_STATE",
-    "next_product_slice_active": false,
+    "active_phase": "COMPLETE_LBE_AGENT_RUNTIME",
+    "active_slice": "NONE",
+    "status": "CLOSED",
+    "implementation_allowed": false,
+    "architecture_changes_allowed": true,
+    "next_phase_locked": true,
+    "last_completed_slice": "SESSION_APPLICATION_CONTRACT_UNIFICATION",
+    "last_completed_intent": "LBE-INTENT-SESSION-APPLICATION-CONTRACT-UNIFICATION-001",
+    "next_product_slice": "NOT_ACTIVATED",
+    "publication": "LOCKED",
     "publish_allowed": false
   },
   "workspace_authority": {
     "primary_implementation_authority": "PRIMARY_MAIN_WORKTREE_ONLY",
-    "remote_alignment": "HEAD_EQUALS_ORIGIN_MAIN_AT_49ca39b",
+    "remote_alignment": "REMOTE_MAIN_VERIFIED_C76D81E",
+    "tracked_worktree": "CLEAN_BY_USER_SUPPLIED_LOOPTOOL_EVIDENCE",
+    "secondary_worktree": "PRESENT_NON_CANONICAL_PRESERVED",
     "lbe_tui": "UNTRACKED_LOCAL_REFERENCE_ONLY_UNTOUCHED",
     "lbe_core": "SEPARATE_REPOSITORY_REFERENCE_ONLY",
-    "preserved_session_lifecycle_patch": "C:/Users/prave/LBE-preserved-session-lifecycle-unification-20260825"
+    "stashes": "PRESERVED_UNTOUCHED",
+    "generated_residue": ["__pycache__/", ".pytest_cache/", "build/", "lbe_guard_inspector.egg-info/"],
+    "generated_residue_status": "PENDING_GOVERNED_DELETION_EXPOSED_ADAPTER_SCOPE_BLOCKER"
   },
   "completed_slices": {
     "WORKSPACE_HYGIENE_GOVERNED_DELETION": {"status": "PASS", "focused_validation": "52 passed"},
@@ -39,30 +47,48 @@
     "FIRST_RUN_LIVE_SESSION_ENTRY": {"status": "PASS", "implementation_commit": "dbefbc0884cb78be5327100d3e9e648bea5a6e52", "focused_validation": "63 passed", "full_validation": "740 passed"},
     "INSTALLED_CAPABILITY_REGISTRY_DISCOVERY": {"status": "PASS", "implementation_commit": "151136089b63fd9470d3a581a6ad6419cf567595", "focused_validation": "71 passed", "full_validation": "760 passed"},
     "LBE_INTERFACE_CONTROL_EVIDENCE_SURFACES": {"status": "PASS", "implementation_commit": "9ca27a1498afa017ec0c5a449d80882ca0958a73", "focused_validation": "53 passed", "full_validation": "763 passed"},
-    "RECOVERY_COMPLETION_PROMOTION_INTEGRATION": {"status": "PASS", "canonical_commit": "cc3a72885721d7f07b560f67590f4bdb86d0a03f", "focused_validation": "59 passed", "full_validation": "767 passed", "checkpoint": "docs/acceptance/RECOVERY_COMPLETION_PROMOTION_CHECKPOINT.md"},
-    "INSTALLED_PACKAGE_END_TO_END_ACCEPTANCE": {"status": "PASS", "checkpoint_commit": "49ca39b6b8b0d9417563f2af63bd6349dff3b929", "wheel_sha256": "a5be438a6c7953916d5e5119d9f560b38d875c2bf91d3a0c3c42f84787beeff0", "installed_governance_tests": "59 passed", "installed_textual_tests": "13 passed", "installed_runtime_tests": "132 passed", "full_validation": "767 passed", "checkpoint": "docs/acceptance/INSTALLED_PACKAGE_END_TO_END_ACCEPTANCE_CHECKPOINT.md"}
+    "RECOVERY_COMPLETION_PROMOTION_INTEGRATION": {"status": "PASS", "canonical_commit": "cc3a72885721d7f07b560f67590f4bdb86d0a03f", "focused_validation": "59 passed", "full_validation": "767 passed"},
+    "INSTALLED_PACKAGE_END_TO_END_ACCEPTANCE": {"status": "PASS", "checkpoint_commit": "49ca39b6b8b0d9417563f2af63bd6349dff3b929", "full_validation": "767 passed"},
+    "SESSION_APPLICATION_CONTRACT_UNIFICATION": {
+      "status": "PASS",
+      "implementation_commit": "dc4c2a99c09266d595214f1f7147e153cb7b4888",
+      "focused_validation": "74 passed",
+      "full_source_validation": "773 passed",
+      "fresh_wheel_build": "PASS",
+      "fresh_installed_validation": "74 passed",
+      "checkpoint": "docs/acceptance/SESSION_APPLICATION_CONTRACT_UNIFICATION_CHECKPOINT.md"
+    },
+    "OBSOLETE_AGENT_CLINE_ROUTING_RETIREMENT": {
+      "status": "PASS",
+      "commit": "c76d81ea942d0d8589469c80925b8d92b18cf69e",
+      "result": "seven obsolete .agent/.cline routing files removed; live authority documents repaired; historical acceptance records preserved"
+    }
   },
   "current_stage": {
-    "id": "complete-runtime-pass",
-    "title": "Complete LBE runtime accepted",
-    "status": "PASS_NO_NEXT_PRODUCT_SLICE_ACTIVE",
-    "implementation_head": "49ca39b6b8b0d9417563f2af63bd6349dff3b929",
-    "next_candidate": "SESSION_APPLICATION_CONTRACT_UNIFICATION",
-    "next_candidate_intent": "LBE-INTENT-SESSION-APPLICATION-CONTRACT-UNIFICATION-001"
+    "id": "runtime-closed",
+    "title": "Complete LBE runtime closed",
+    "status": "CLOSED_NO_ACTIVE_PRODUCT_SLICE",
+    "canonical_head": "c76d81ea942d0d8589469c80925b8d92b18cf69e",
+    "last_completed_slice": "SESSION_APPLICATION_CONTRACT_UNIFICATION",
+    "next_candidate": null
+  },
+  "documentation_state": {
+    "current_status": "ALIGNED_WITH_CLOSED_GATE",
+    "implementation_plan": "STALE_RELATIVE_TO_CLOSED_MACHINE_GATE",
+    "obsolete_agent_cline_live_routing": "REPAIRED_AT_C76D81E",
+    "historical_stage_0_stage_1_references": "PRESERVED_AS_HISTORICAL_EVIDENCE"
   },
   "cline_surface": {
     "accepted_direction": "LBE-INTENT-CLINE-AGENTRUNTIME-001",
     "status": "ACCEPTED_PRODUCT_DIRECTION_NOT_ACTIVE",
-    "historically_proven_provider_continuation": true,
     "audited_revision": "8bbdde2a5c1f972864fe1b954f639c21fac61a40",
     "current_upstream_head_observed": "491b30b806fdb8c93513f821f2b87d63a61542f5",
-    "reuse": ["AgentRuntime tool-result continuation"],
-    "adapt": ["provider adapters", "stream events", "pre-tool hooks", "cancellation", "pending prompts", "context compaction", "MCP contribution", "background process mechanics", "usage/cost", "checkpoint comparison", "automation"],
     "reject_as_authority": ["Cline-native filesystem mutation", "Cline-native shell/process execution", "Cline canonical session ownership", "Cline completion authority", "Cline-branded LBE product/interface identity"]
   },
   "next_gate_state": {
-    "COMPLETE_LBE_AGENT_RUNTIME": "PASS",
-    "SESSION_APPLICATION_CONTRACT_UNIFICATION": "NOT_ACTIVE_CANDIDATE",
+    "COMPLETE_LBE_AGENT_RUNTIME": "CLOSED_PASS",
+    "SESSION_APPLICATION_CONTRACT_UNIFICATION": "PASS",
+    "NEXT_PRODUCT_SLICE": "NOT_ACTIVATED",
     "CLINE_AGENTRUNTIME_REUSE": "ACCEPTED_DIRECTION_NOT_ACTIVE",
     "PUBLICATION": "LOCKED"
   }
