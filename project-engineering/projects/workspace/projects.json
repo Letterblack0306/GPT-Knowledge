@@ -25,9 +25,9 @@
     {
       "id": "lbe",
       "name": "LBE Persistent Agent",
-      "subtitle": "Runtime Architecture · Stage 4 · Doctrine → Provider Context",
+      "subtitle": "Workspace Hygiene · Document Authority Reconciliation",
       "mapped": true,
-      "active_node": "stage-4-doctrine-provider-context-bridge",
+      "active_node": "stage-4-workspace-hygiene-governed-deletion",
       "plan_file": "../lbe-plan-canvas/plan.json",
       "status_file": "../lbe-plan-canvas/status.json",
       "references_file": "../lbe-plan-canvas/references.json",
