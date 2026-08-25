@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
   "project": "LoopTool",
-  "verified_at": "2026-08-23T08:26:00+04:00",
+  "verified_at": "2026-08-26T03:03:00+04:00",
   "source_repo": "Letterblack0306/tools",
   "source_branch": "master",
   "source_head": "ddf1c09873599efe5f4976f7dc6456a65474b9b6",
   "overall_classification": "PROVEN_BOUNDED_EXECUTION_AND_RECALL_BRIDGE_WITH_RUNTIME_PROOF",
-  "authority_note": "This status is a GPT-Knowledge projection backed by a dated runtime proof. Current tools source, active local workspace/revision, fresh returned LoopTool evidence and live runtime acceptance outrank it.",
+  "authority_note": "This status is a GPT-Knowledge projection backed by dated runtime/local evidence. Current tools source, active local workspace/revision, fresh returned LoopTool evidence, current project repository truth and live runtime acceptance outrank it.",
   "runtime_proof": {
     "classification": "PROVEN_BOUNDED_RUNTIME_CAPABILITY",
     "reference": "runtime-proof-2026-08-23.md",
@@ -55,6 +55,12 @@
       "detail": "A live LoopTool command used the existing Memory/Cline session index and fetch owners, selected the highest-scoring matching session among 50 recent sessions, returned bounded matching messages, and returned SHA256 provenance for the session metadata and message files."
     },
     {
+      "id": "historical-recall-guide",
+      "title": "Historical recall and evidence retrieval guide",
+      "classification": "DOCUMENTED_PROVEN_WORKFLOW_REFERENCE",
+      "detail": "GPT-Knowledge now records the bounded Memory/Cline/LoopTool recall workflow, provenance fields, historical_evidence_non_truth boundary, disagreement/correction retrieval rules, and current-truth reconciliation requirement in historical-recall-evidence-guide-2026-08-26.md."
+    },
+    {
       "id": "implementation-identity",
       "title": "Recorded implementation repository identity",
       "classification": "VERIFIED_REMOTE_REPOSITORY_AT_PRIOR_CHECKPOINT",
@@ -63,6 +69,13 @@
   ],
   "supported_historical": [],
   "pending": [
+    {
+      "id": "lbe-workspace-delete-scope",
+      "title": "LBE workspace cleanup adapter-scope boundary",
+      "priority": "WHEN CLEANUP IS REQUIRED",
+      "classification": "CURRENT_LOCAL_SCOPE_FINDING_REVALIDATE_BEFORE_EXECUTION",
+      "detail": "2026-08-26 bounded workspace evidence reports that canonical LBE already owns governed workspace.delete, while the currently exposed filesystem deletion MCP adapter is scoped to C:/Users/prave and therefore was not used against C:/Agents-Memory-Tool-v6-integration. Four generated directories remained present; protected .agent/.cline deletions and lbe-tui/ were untouched. This does not imply a missing LBE capability and does not itself authorize deletion. See historical-recall-evidence-guide-2026-08-26.md."
+    },
     {
       "id": "execution-record-persistence",
       "title": "First-class recallable execution records",
