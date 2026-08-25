@@ -1,12 +1,12 @@
 {
-  "schema_version": 13,
+  "schema_version": 14,
   "project": "LBE Persistent Agent",
   "verified_at": "2026-08-25",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "source_branch": "main",
-  "source_head": "efdb1fe97e32a2543925165a3c3186c01be8c60b",
+  "source_head": "e88c4010f5e0b1790967016865cba482b86e7537",
   "local_workspace": "C:/Agents-Memory-Tool-v6-integration",
-  "overall_classification": "INSTALLED_CAPABILITY_REGISTRY_PASS_NEXT_INTERFACE_SLICE_NOT_ACTIVATED",
+  "overall_classification": "LBE_INTERFACE_CONTROL_EVIDENCE_SURFACES_PASS_RECOVERY_COMPLETION_OWNER_AUDIT_NEXT",
   "authority_note": "GPT-Knowledge is projection only. Canonical LBE source, machine governance, local runtime evidence, and acceptance checkpoints retain authority.",
   "core_doctrine": "Provider/agent reasons and proposes. LBE preserves project identity and intent, governs authority and consequences, executes only through approved adapters, records evidence, and owns deterministic completion truth.",
   "product_identity": {
@@ -23,12 +23,12 @@
   "machine_state": {
     "active_plan": "docs/acceptance/COMPLETE_LBE_AGENT_RUNTIME_GATE.md",
     "active_phase": "COMPLETE_LBE_AGENT_RUNTIME_IMPLEMENTATION",
-    "active_slice": "INSTALLED_CAPABILITY_REGISTRY_DISCOVERY",
-    "active_intent": "LBE-INTENT-INSTALLED-CAPABILITY-REGISTRY-001",
-    "slice_result": "PASS",
+    "active_slice": "LBE_INTERFACE_CONTROL_EVIDENCE_SURFACES",
+    "active_intent": "LBE-INTENT-INTERFACE-CONTROL-EVIDENCE-SURFACES-001",
+    "validated_slice_result": "PASS",
+    "machine_closure_commit_pending": true,
     "top_level_status": "OPEN",
     "next_phase_locked": true,
-    "next_product_slice": "NOT_ACTIVATED",
     "publish_allowed": false
   },
   "workspace_authority": {
@@ -40,59 +40,38 @@
   },
   "completed_slices": {
     "WORKSPACE_HYGIENE_GOVERNED_DELETION": {"status": "PASS", "focused_validation": "52 passed"},
-    "MANDATORY_GOVERNED_AGENT_MUTATION_DISPATCH": {
+    "MANDATORY_GOVERNED_AGENT_MUTATION_DISPATCH": {"status": "PASS", "implementation_commit": "47885891848ec9a535a4e09694d3129b320da91a", "focused_validation": "80 passed", "full_validation": "713 passed"},
+    "GOVERNED_EXTERNAL_CAPABILITY_REGISTRATION": {"status": "PASS", "implementation_commit": "02c761ab5ee969edd1c24fed65a6a2d343d20927", "focused_validation": "58 passed", "full_validation": "732 passed"},
+    "FIRST_RUN_LIVE_SESSION_ENTRY": {"status": "PASS", "implementation_commit": "dbefbc0884cb78be5327100d3e9e648bea5a6e52", "focused_validation": "63 passed", "full_validation": "740 passed"},
+    "INSTALLED_CAPABILITY_REGISTRY_DISCOVERY": {"status": "PASS", "implementation_commit": "151136089b63fd9470d3a581a6ad6419cf567595", "focused_validation": "71 passed", "full_validation": "760 passed"},
+    "LBE_INTERFACE_CONTROL_EVIDENCE_SURFACES": {
       "status": "PASS",
-      "implementation_commit": "47885891848ec9a535a4e09694d3129b320da91a",
-      "focused_validation": "80 passed",
-      "full_validation": "713 passed",
-      "looptool_command_hash": "D0DA7CA90B549E0C51FC2E65C7B68A30ECF7542710CE9CC1AF006D91FCA7F725"
-    },
-    "GOVERNED_EXTERNAL_CAPABILITY_REGISTRATION": {
-      "status": "PASS",
-      "implementation_commit": "02c761ab5ee969edd1c24fed65a6a2d343d20927",
-      "focused_validation": "58 passed",
-      "full_validation": "732 passed",
-      "looptool_command_hash": "E474AAD3D03DEC376BF69944FFA3F56251052D534D46369B27547A7E9F563859"
-    },
-    "FIRST_RUN_LIVE_SESSION_ENTRY": {
-      "status": "PASS",
-      "implementation_commit": "dbefbc0884cb78be5327100d3e9e648bea5a6e52",
-      "checkpoint": "docs/acceptance/FIRST_RUN_LIVE_SESSION_ENTRY_CHECKPOINT.md",
-      "focused_validation": "63 passed",
-      "full_validation": "740 passed",
-      "looptool_command_hash": "7C462B292C3978B957701FAB5F8AC719673EFA18207AAB8633C704411C78C736"
-    },
-    "INSTALLED_CAPABILITY_REGISTRY_DISCOVERY": {
-      "status": "PASS",
-      "implementation_commit": "151136089b63fd9470d3a581a6ad6419cf567595",
-      "checkpoint": "docs/acceptance/INSTALLED_CAPABILITY_REGISTRY_DISCOVERY_CHECKPOINT.md",
-      "focused_validation": "71 passed in 1.40s",
-      "full_validation": "760 passed in 207.36s",
-      "looptool_command_hash": "F76DA642DAA71A9CCE6385710D4122AD30699A9B7B4B711578B2461B21D62E90",
+      "implementation_commit": "9ca27a1498afa017ec0c5a449d80882ca0958a73",
+      "checkpoint": "docs/acceptance/LBE_INTERFACE_CONTROL_EVIDENCE_SURFACES_CHECKPOINT.md",
+      "focused_validation": "53 passed in 10.72s",
+      "full_validation": "763 passed in 212.94s",
+      "looptool_command_hash": "334C15A0913D56BE5D6EC6057BA5B66909B06C72F745FA92A5D3281837821C04",
       "head_alignment": "PASS",
       "protected_reference": "lbe-tui/ remained untracked and untouched"
     }
   },
   "current_stage": {
-    "id": "installed-capability-registry",
-    "title": "Installed capability registry discovery and configuration",
+    "id": "lbe-interface-control-evidence-surfaces",
+    "title": "LBE interface control and evidence surfaces",
     "status": "PASS",
-    "implementation_head": "151136089b63fd9470d3a581a6ad6419cf567595",
-    "checkpoint": "docs/acceptance/INSTALLED_CAPABILITY_REGISTRY_DISCOVERY_CHECKPOINT.md",
+    "implementation_head": "9ca27a1498afa017ec0c5a449d80882ca0958a73",
+    "checkpoint": "docs/acceptance/LBE_INTERFACE_CONTROL_EVIDENCE_SURFACES_CHECKPOINT.md",
     "proven": [
-      "schema-versioned installed capability registry",
-      "MCP/plugin/subagent/network/hosted-service classification",
-      "duplicate and malformed configuration denial",
-      "plaintext secret field rejection with opaque credential_ref only",
-      "AVAILABLE/UNAVAILABLE/DISABLED projection without execution",
-      "safe conversion into ExternalCapabilityRegistration behind ToolRegistry/R6C/R6E",
-      "provider endpoint/executable/shell transport arguments remain unavailable",
-      "lbe capabilities list|validate is inspection/configuration projection only"
+      "installed integration metadata projects into /integrations without execution",
+      "MCP metadata is filtered truthfully in /mcp",
+      "configured integrations remain distinct from executable governed ToolRegistry tools",
+      "settings/provider/session/evidence/detail projections continue to use existing owners",
+      "interrupt/cancel continue through PersistentTurnControl",
+      "no second interface/runtime/execution authority was introduced"
     ],
-    "next_valid_action": "Bind one bounded LBE interface/control projection slice over existing Textual, terminal projection, persisted event, session, and capability owners."
+    "next_valid_action": "Audit and bind bounded recovery + deterministic completion + TEMP/promotion integration over existing recovery, memory promotion, completion, session, evidence, and receipt owners."
   },
   "remaining_complete_runtime_sequence": [
-    "remaining LBE interface/control/evidence/diff/settings/session surfaces",
     "recovery + deterministic completion + TEMP/promotion integration",
     "installed-package acceptance"
   ],
@@ -103,7 +82,8 @@
     "GOVERNED_EXTERNAL_CAPABILITY_REGISTRATION": "PASS",
     "FIRST_RUN_LIVE_SESSION_ENTRY": "PASS",
     "INSTALLED_CAPABILITY_REGISTRY_DISCOVERY": "PASS",
-    "NEXT_PRODUCT_SLICE": "NOT_ACTIVATED",
+    "LBE_INTERFACE_CONTROL_EVIDENCE_SURFACES": "PASS_VALIDATED",
+    "NEXT_PRODUCT_AREA": "RECOVERY_COMPLETION_TEMP_PROMOTION",
     "PUBLICATION": "PAUSED"
   }
 }
