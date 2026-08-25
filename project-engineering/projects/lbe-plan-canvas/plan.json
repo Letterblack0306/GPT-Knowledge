@@ -1,107 +1,110 @@
 {
-  "schema_version": 8,
+  "schema_version": 9,
   "project": "LBE Persistent Agent",
-  "purpose": "Persistent projection of LBE product intent, structural authority, machine-selected implementation scope, evidence-gated progression, accepted future product direction, and canonical preservation routing. Canonical LBE repository/runtime evidence remains authoritative.",
+  "purpose": "Persistent projection of LBE product intent, structural authority, machine-selected implementation scope, evidence-gated progression, and remaining product sequence. Canonical LBE repository/runtime evidence remains authoritative.",
   "authority_rule": "Current workspace/runtime evidence and .lbe/governance/implementation-gates.json outrank this projection. PROJECT_INDEX.md defines structural responsibility. PROJECT_INTENT_LEDGER.md defines durable project intent. GPT-Knowledge is projection only.",
   "updated": "2026-08-25",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "source_branch": "main",
-  "source_head": "47885891848ec9a535a4e09694d3129b320da91a",
+  "source_head": "59de95b0e05fa200520aef10ee493f6e89ad2129",
   "local_workspace": "C:/Agents-Memory-Tool-v6-integration",
   "active_node": "mandatory-governed-mutation-dispatch",
   "core_doctrine": "Agent/provider reasons and proposes. LBE preserves project identity and intent, governs authority and consequences, executes only through approved adapters, records receipts/evidence, and owns deterministic completion truth.",
-  "project_continuity_doctrine": "The project must remember what it is trying to become even when the reasoning agent changes.",
   "product_identity": {
     "product": "LBE",
     "interface": "LBE interface",
     "runtime_authority": "LBE",
     "ui_role": "projection/control surface only",
-    "cline_role": "Mechanics and reuse source only; Cline is not part of the product or interface identity.",
-    "canonical_commit": "b163a945faa99f93c87c6641c7ba756e415b3f33"
+    "cline_role": "Mechanics/reuse source only; not product identity and not interface identity."
   },
   "pre_mutation_governance": {
     "name": "INTENT_AND_STRUCTURE_BEFORE_MUTATION",
     "status": "CANONICAL",
-    "sequence": ["resolve project identity", "read PROJECT_INDEX.md", "resolve affected structural owner", "read/register PROJECT_INTENT_LEDGER.md intent", "verify intent matches machine active slice", "verify mutation path fits declared intent scope", "only then mutate", "validate", "update intent result/checkpoint", "commit/push/remote verify"],
-    "hard_rules": ["NO ACTIVE INTENT -> NO IMPLEMENTATION MUTATION", "NO ROOT INDEX ENTRY -> NO IMPLEMENTATION MUTATION", "NO DECLARED OWNER -> NO IMPLEMENTATION MUTATION", "INTENT DOES NOT MATCH MACHINE SLICE -> NO IMPLEMENTATION MUTATION", "OUT-OF-INTENT PATH -> NO IMPLEMENTATION MUTATION", "UNINDEXED STRUCTURE -> NO MUTATION"],
-    "owners": {
-      "root_index": "PROJECT_INDEX.md",
-      "intent_ledger": "docs/governance/PROJECT_INTENT_LEDGER.md",
-      "machine_gate": ".lbe/governance/implementation-gates.json",
-      "checker": "scripts/check-implementation-gate.py",
-      "agent_router": ".agent/PROJECT_CONTEXT.md",
-      "operating_guide": "docs/governance/AGENT_IMPLEMENTATION_EXECUTION_GUIDE.md"
-    }
+    "sequence": [
+      "resolve project identity",
+      "read PROJECT_INDEX.md",
+      "resolve affected structural owner",
+      "read/register PROJECT_INTENT_LEDGER.md intent",
+      "verify intent matches machine active slice",
+      "verify mutation path fits declared intent scope",
+      "only then mutate",
+      "validate",
+      "update intent result/checkpoint",
+      "commit/push/remote verify"
+    ]
   },
   "workspace_authority": {
     "primary_rule": "Primary main worktree remains the only implementation/runtime/architecture authority.",
-    "alignment": "REMOTE_MAIN_ADVANCED_LOCAL_PULL_REQUIRED",
-    "authority_reconciliation_commit": "da92266bc2cb0d43974b32932842c3eb3621c9f2",
-    "registered_structures": [".github/", "rules/", "tools/", "lbe-core/", "unused-in-repo/"],
-    "lbe_core": "Separate read-only reference repository from the parent project; no parent execution authority.",
-    "lbe_tui": "User-provided local reference only; untracked, not canonical, not active implementation, do not stage/commit/delete.",
-    "hidden_memory": ".lbe/memory remains local/reference material, not machine authority.",
-    "unused_in_repo": "Canonical preservation surface only; never live authority. No items are currently registered."
+    "alignment": "PASS_AT_VALIDATION_HEAD",
+    "lbe_core": "Separate read-only reference repository.",
+    "lbe_tui": "User-provided local reference only; untracked, not canonical, do not stage/commit/delete.",
+    "unused_in_repo": "Canonical empty preservation surface; never live authority."
   },
   "runtime_pipeline": [
-    {"step":1,"stage":"Request","owner":"User / LBE interface","meaning":"Submit objective; interface owns no execution authority."},
-    {"step":2,"stage":"Project + workspace identity","owner":"LBE","meaning":"Resolve canonical project/workspace/session/task/mode/policy state."},
-    {"step":3,"stage":"Intent + structure","owner":"LBE governance","meaning":"Resolve durable project intent and affected structural owner before mutation."},
-    {"step":4,"stage":"Reasoning context","owner":"LBE context boundary","meaning":"Expose bounded project context, capabilities and evidence expectations without granting authority."},
-    {"step":5,"stage":"Reasoning","owner":"Provider / agent","meaning":"Interpret, investigate, plan, choose exposed capabilities and propose actions."},
-    {"step":6,"stage":"Capability validation","owner":"Registry/contracts","meaning":"Validate requested capability and typed arguments."},
-    {"step":7,"stage":"Authorization","owner":"LBE authorization resolver","meaning":"ALLOW, DENY, or explicit authority expansion decision before execution."},
-    {"step":8,"stage":"Execution","owner":"GovernedToolOrchestrator + approved adapter","meaning":"Execute only inside the governed authority boundary."},
-    {"step":9,"stage":"Truth production","owner":"Receipts/events/evidence","meaning":"Record operation identity, results, diffs/hashes/output and provenance."},
-    {"step":10,"stage":"Provider continuation","owner":"Provider / reused loop mechanics","meaning":"Continue reasoning over governed results without becoming execution authority."},
-    {"step":11,"stage":"Completion validation","owner":"LBE deterministic validation","meaning":"Evidence decides completion; provider prose cannot manufacture terminal truth."},
-    {"step":12,"stage":"Persistence","owner":"LBE persistence","meaning":"Persist intent/session/task/checkpoint/receipt/evidence state."},
-    {"step":13,"stage":"Presentation","owner":"LBE interface","meaning":"Project canonical truth without becoming a second runtime authority."}
+    {"step":1,"stage":"Request","owner":"User / LBE interface"},
+    {"step":2,"stage":"Project + workspace identity","owner":"LBE"},
+    {"step":3,"stage":"Intent + structure","owner":"LBE governance"},
+    {"step":4,"stage":"Reasoning context","owner":"LBE context boundary"},
+    {"step":5,"stage":"Reasoning","owner":"Provider / agent"},
+    {"step":6,"stage":"Capability validation","owner":"Registry/contracts"},
+    {"step":7,"stage":"Authorization","owner":"LBE authorization resolver"},
+    {"step":8,"stage":"Execution","owner":"GovernedToolOrchestrator + approved adapter"},
+    {"step":9,"stage":"Truth production","owner":"Receipts/events/evidence"},
+    {"step":10,"stage":"Provider continuation","owner":"Provider / reused loop mechanics"},
+    {"step":11,"stage":"Completion validation","owner":"LBE deterministic validation"},
+    {"step":12,"stage":"Persistence","owner":"LBE persistence"},
+    {"step":13,"stage":"Presentation","owner":"LBE interface"}
   ],
   "active_intent": {
     "intent_id": "LBE-INTENT-MANDATORY-GOVERNED-MUTATION-DISPATCH-001",
-    "status": "ACTIVE",
+    "status": "ACTIVE_WITH_PASS_RESULT_UNTIL_SUCCESSOR_BINDING",
     "machine_slice": "MANDATORY_GOVERNED_AGENT_MUTATION_DISPATCH",
     "phase": "COMPLETE_LBE_AGENT_RUNTIME_IMPLEMENTATION",
-    "gate_status": "OPEN",
-    "owner": "LBE runtime orchestration, authorization, provider continuation, Git/workspace capability, and validation owners",
+    "slice_result": "PASS",
     "implementation_commit": "47885891848ec9a535a4e09694d3129b320da91a",
-    "required_evidence": ["provider-only LBE tool schema", "contained workspace write", "stale-write denial", "arbitrary-shell denial", "bounded registered-process execution", "primary-main Git enforcement", "governed-path-only Git staging", "authorization before execution", "correlated receipts", "audit/investigation read-only preservation", "duplicate-authority scan"]
+    "checkpoint": "docs/acceptance/MANDATORY_GOVERNED_AGENT_MUTATION_DISPATCH_CHECKPOINT.md",
+    "looptool_command_hash": "D0DA7CA90B549E0C51FC2E65C7B68A30ECF7542710CE9CC1AF006D91FCA7F725"
   },
+  "completed_product_slices": [
+    {"id":"doctrine-provider-context","title":"Doctrine to provider context bridge","status":"PASS"},
+    {"id":"workspace-hygiene","title":"Workspace hygiene governed deletion","status":"PASS","focused_tests":"52 passed"},
+    {"id":"mandatory-governed-mutation-dispatch","title":"Filesystem / registered process / primary-main Git governed dispatch","status":"PASS","focused_tests":"80 passed","full_tests":"713 passed"}
+  ],
+  "remaining_product_sequence": [
+    {
+      "order": 1,
+      "title": "Remaining governed integration dispatch",
+      "scope": ["MCP/plugin", "subagent", "network", "hosted-service"],
+      "status": "NEXT_CANDIDATE_NOT_MACHINE_BOUND",
+      "rule": "Identify/reuse existing owners before selecting one bounded machine slice."
+    },
+    {"order":2,"title":"First-run setup and live persisted session entry","status":"REMAINING"},
+    {"order":3,"title":"Capability registry expansion behind governed dispatch","status":"REMAINING"},
+    {"order":4,"title":"Remaining LBE interface/control/evidence surfaces","status":"REMAINING"},
+    {"order":5,"title":"Recovery + deterministic completion + TEMP/promotion integration","status":"REMAINING"},
+    {"order":6,"title":"Installed-package acceptance","status":"REMAINING"}
+  ],
   "accepted_product_intents": [
     {
       "intent_id": "LBE-INTENT-CLINE-AGENTRUNTIME-001",
       "status": "ACCEPTED_PRODUCT_DIRECTION_NOT_ACTIVE",
-      "interface": "LBE interface",
       "agent_loop_base": "Selectively reuse/adapt proven Cline AgentRuntime continuation, event and tool mechanics behind an LBE-owned governance boundary.",
-      "cline_identity_rule": "Cline is a reuse source, not product identity and not interface identity.",
-      "reuse": ["continuation loop", "tool-call parsing/continuation", "runtime event mechanics", "interaction mechanics"],
-      "adapt": ["provider mechanics", "event normalization", "MCP", "session/checkpoint mechanics", "presentation mechanics"],
-      "reject": ["Cline-native canonical mutation authority", "Cline-native canonical shell/filesystem execution", "second session authority", "second completion authority", "Cline-branded LBE product/interface identity"],
-      "ux_reference_inputs": ["current Python TUI", "lbe-tui Go demo", "lbe-core TUI/product-direction material", "Cline CLI/TUI interaction mechanics"],
-      "future_ui_question": "Which useful UX mechanics from approved reference inputs should be incorporated into the LBE interface while preserving LBE authority?",
-      "activation_rule": "Cannot activate until a matching UI intent, indexed owner, bounded mutation paths, and machine-gate authorization exist."
+      "reject": ["Cline-native canonical mutation authority", "second session authority", "second completion authority", "Cline-branded LBE product/interface identity"]
     }
   ],
   "preservation_direction": {
     "status": "CANONICAL_EMPTY_PRESERVATION_SURFACE",
     "name": "unused-in-repo/",
-    "canonical_commit": "cdce28498fcac4f1af42c079d6c3e469bef80d48",
-    "manifest": "unused-in-repo/MANIFEST.md",
     "manifest_entries": 0,
-    "purpose": "Canonical preservation surface for material proven not to participate in the live repository, retained for recovery/review so future lookup can inspect one indexed surface before deeper filesystem discovery.",
-    "lookup_order": ["canonical project", "unused-in-repo/MANIFEST.md", "historical/reference repositories", "deeper filesystem discovery only if unresolved"],
-    "rule": "UNREFERENCED != UNUSED; UNUSED != DISPOSABLE; DISPOSABLE != DELETE; every move requires complete negative reachability/protection proof.",
-    "explicitly_not_unused": ["lbe-tui/", "lbe-core/", ".lbe/memory/", "state/", "local configuration", "historical backups", "Git metadata", "embedded repositories", "runtime/database/state material", "protected user work", "deliberate local references"]
+    "rule": "UNREFERENCED != UNUSED; UNUSED != DISPOSABLE; DISPOSABLE != DELETE."
   },
   "nodes": [
-    {"id":"authority","parent":null,"lane":"Authority","title":"Canonical project authority","status":"proven","priority":"CANONICAL","summary":"Canonical LBE product and interface identity are LBE. GPT-Knowledge remains projection only."},
-    {"id":"intent-index","parent":"authority","lane":"Governance","title":"Intent + structural ownership before mutation","status":"proven","priority":"CANONICAL","summary":"PROJECT_INDEX + PROJECT_INTENT_LEDGER + machine gate form the pre-mutation governance wall."},
-    {"id":"workspace-hygiene","parent":"intent-index","lane":"Completed slice","title":"Workspace hygiene governed deletion","status":"proven","priority":"PASS","summary":"52 focused tests passed; nine approved disposable targets were governed-deleted; zero approved disposable targets remain; fourteen historical snapshots remain preserved and non-blocking."},
-    {"id":"mandatory-governed-mutation-dispatch","parent":"workspace-hygiene","lane":"Active slice","title":"Mandatory governed agent mutation dispatch","status":"current","priority":"OPEN / VALIDATION PENDING","summary":"Remote main implements bounded workspace.write_text, registered process execution, main-only Git stage/commit, governed-path staging, and no arbitrary native mutation tool exposure. Exact local LoopTool validation is still required."},
-    {"id":"lbe-interface","parent":"intent-index","lane":"Accepted product direction","title":"LBE interface identity","status":"proven","priority":"ACCEPTED","summary":"Product = LBE; Interface = LBE interface; Cline is mechanics/reuse source only, never product or interface identity."},
-    {"id":"ui-references","parent":"lbe-interface","lane":"Reference inputs","title":"UI/UX reference inputs","status":"locked","priority":"REFERENCE ONLY","summary":"Python TUI, lbe-tui, lbe-core TUI material and Cline interaction mechanics may inform UX; none is a competing product foundation."},
-    {"id":"unused-preservation","parent":"workspace-hygiene","lane":"Preservation","title":"unused-in-repo preservation surface","status":"proven","priority":"CANONICAL / EMPTY","summary":"Canonical preservation surface is registered and empty. Future moves require complete negative reachability/protection proof; absence of references is insufficient."},
-    {"id":"next","parent":"mandatory-governed-mutation-dispatch","lane":"Next slice","title":"Next machine-authorized implementation slice","status":"locked","priority":"LOCKED","summary":"No next product slice until mandatory governed mutation dispatch is locally validated and canonically checkpointed PASS."}
+    {"id":"authority","parent":null,"lane":"Authority","title":"Canonical project authority","status":"proven","priority":"CANONICAL"},
+    {"id":"intent-index","parent":"authority","lane":"Governance","title":"Intent + structural ownership before mutation","status":"proven","priority":"CANONICAL"},
+    {"id":"workspace-hygiene","parent":"intent-index","lane":"Completed slice","title":"Workspace hygiene governed deletion","status":"proven","priority":"PASS"},
+    {"id":"mandatory-governed-mutation-dispatch","parent":"workspace-hygiene","lane":"Completed slice","title":"Mandatory governed agent mutation dispatch","status":"proven","priority":"PASS","summary":"80 focused tests and 713 full tests passed against exact implementation head 4788589; lbe-tui remained untouched."},
+    {"id":"remaining-integrations","parent":"mandatory-governed-mutation-dispatch","lane":"Next candidate","title":"Remaining governed integration dispatch","status":"locked","priority":"NOT MACHINE BOUND","summary":"MCP/plugin, subagent, network, and hosted-service classes remain. Existing owners must be traced before one exact successor slice is activated."},
+    {"id":"lbe-interface","parent":"intent-index","lane":"Accepted product direction","title":"LBE interface identity","status":"proven","priority":"ACCEPTED"},
+    {"id":"unused-preservation","parent":"workspace-hygiene","lane":"Preservation","title":"unused-in-repo preservation surface","status":"proven","priority":"CANONICAL / EMPTY"}
   ]
 }
