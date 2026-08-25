@@ -1,9 +1,9 @@
 {
-  "schema_version": 2,
+  "schema_version": 3,
   "project": "LoopTool",
   "purpose": "Visual operating map for LoopTool as the bounded local execution/evidence bridge inside the GPT-Knowledge engineering workflow. This map explains when to use it, when not to use it, how command/result transport works, how it composes historical Memory retrieval for existing plans/decisions/disagreements, and what evidence it can and cannot prove.",
   "authority_rule": "Current GPT-Knowledge routing, current Letterblack0306/tools source, active local workspace identity, returned AGENT RESULT evidence, current Memory/BirdEye evidence and live runtime/rendered behavior outrank this projection. LoopTool is transport/evidence, not the historical-memory owner, investigation owner or acceptance authority.",
-  "updated": "2026-08-23",
+  "updated": "2026-08-26",
   "source_repo": "Letterblack0306/tools",
   "source_branch": "master",
   "source_head": "ddf1c09873599efe5f4976f7dc6456a65474b9b6",
@@ -71,6 +71,14 @@
       "title": "Existing plan / decision / disagreement recall",
       "status": "proven",
       "summary": "LoopTool can compose GPT-Knowledge project mapping, BirdEye local identity and Memory historical retrieval to recover prior plans, decisions, corrections, rejected approaches and implementation evidence with provenance. LoopTool transports the bounded retrieval; Memory remains the historical owner."
+    },
+    {
+      "id": "historical-recall-guide",
+      "lane": "Historical Evidence",
+      "title": "Historical recall + evidence guide",
+      "status": "proven",
+      "priority": "REFERENCE",
+      "summary": "The LoopTool project now carries historical-recall-evidence-guide-2026-08-26.md covering Memory/Cline retrieval, provenance, bounded context, disagreement/correction chains, historical_evidence_non_truth classification and current-truth reconciliation."
     },
     {
       "id": "source-selection",
@@ -179,6 +187,14 @@
       "summary": "Verify the command targets the intended active workspace and remains inside allowed workspace boundaries. Local evidence is only meaningful when workspace/revision identity is known."
     },
     {
+      "id": "lbe-delete-scope-boundary",
+      "lane": "Evidence",
+      "title": "Capability owner != exposed adapter scope",
+      "status": "warning",
+      "priority": "REVALIDATE WHEN USED",
+      "summary": "2026-08-26 LBE workspace evidence: canonical LBE already owns governed workspace.delete, while the exposed filesystem deletion MCP adapter was scoped to C:/Users/prave and therefore was not used against C:/Agents-Memory-Tool-v6-integration. Four generated directories remained; protected .agent/.cline state and lbe-tui/ were untouched. This is an adapter-scope boundary, not proof of a missing delete capability."
+    },
+    {
       "id": "runtime-proof",
       "lane": "Acceptance",
       "title": "Live runtime closes behavior claims",
@@ -202,7 +218,8 @@
     {"from":"identity","to":"historical-question","type":"workflow"},
     {"from":"historical-question","to":"historical-retrieval","type":"selection"},
     {"from":"historical-question","to":"question-falsifier","type":"workflow"},
-    {"from":"historical-retrieval","to":"source-selection","type":"retrieval"},
+    {"from":"historical-retrieval","to":"historical-recall-guide","type":"reference"},
+    {"from":"historical-recall-guide","to":"source-selection","type":"retrieval"},
     {"from":"source-selection","to":"scope-before-ranking","type":"retrieval"},
     {"from":"scope-before-ranking","to":"preserve-disagreement","type":"context"},
     {"from":"preserve-disagreement","to":"graph-context","type":"context"},
@@ -217,7 +234,8 @@
     {"from":"result-envelope","to":"classify-layer","type":"classification"},
     {"from":"classify-layer","to":"failure-separation","type":"classification"},
     {"from":"failure-separation","to":"workspace-safety","type":"validation"},
-    {"from":"workspace-safety","to":"runtime-proof","type":"acceptance"},
+    {"from":"workspace-safety","to":"lbe-delete-scope-boundary","type":"scope"},
+    {"from":"lbe-delete-scope-boundary","to":"runtime-proof","type":"revalidation"},
     {"from":"runtime-proof","to":"implementation-drift","type":"revalidation"},
     {"from":"do-not-general","to":"command-envelope","type":"guard"},
     {"from":"do-not-owner","to":"bounded-execution","type":"guard"},
