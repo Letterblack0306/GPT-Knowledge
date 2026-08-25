@@ -1,12 +1,12 @@
 {
-  "schema_version": 12,
+  "schema_version": 13,
   "project": "LBE Persistent Agent",
   "verified_at": "2026-08-25",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "source_branch": "main",
-  "source_head": "151136089b63fd9470d3a581a6ad6419cf567595",
+  "source_head": "efdb1fe97e32a2543925165a3c3186c01be8c60b",
   "local_workspace": "C:/Agents-Memory-Tool-v6-integration",
-  "overall_classification": "INSTALLED_CAPABILITY_REGISTRY_IMPLEMENTED_VALIDATION_PENDING",
+  "overall_classification": "INSTALLED_CAPABILITY_REGISTRY_PASS_NEXT_INTERFACE_SLICE_NOT_ACTIVATED",
   "authority_note": "GPT-Knowledge is projection only. Canonical LBE source, machine governance, local runtime evidence, and acceptance checkpoints retain authority.",
   "core_doctrine": "Provider/agent reasons and proposes. LBE preserves project identity and intent, governs authority and consequences, executes only through approved adapters, records evidence, and owns deterministic completion truth.",
   "product_identity": {
@@ -25,9 +25,10 @@
     "active_phase": "COMPLETE_LBE_AGENT_RUNTIME_IMPLEMENTATION",
     "active_slice": "INSTALLED_CAPABILITY_REGISTRY_DISCOVERY",
     "active_intent": "LBE-INTENT-INSTALLED-CAPABILITY-REGISTRY-001",
-    "slice_result": "OPEN_IMPLEMENTED_VALIDATION_PENDING",
+    "slice_result": "PASS",
     "top_level_status": "OPEN",
     "next_phase_locked": true,
+    "next_product_slice": "NOT_ACTIVATED",
     "publish_allowed": false
   },
   "workspace_authority": {
@@ -60,24 +61,35 @@
       "focused_validation": "63 passed",
       "full_validation": "740 passed",
       "looptool_command_hash": "7C462B292C3978B957701FAB5F8AC719673EFA18207AAB8633C704411C78C736"
+    },
+    "INSTALLED_CAPABILITY_REGISTRY_DISCOVERY": {
+      "status": "PASS",
+      "implementation_commit": "151136089b63fd9470d3a581a6ad6419cf567595",
+      "checkpoint": "docs/acceptance/INSTALLED_CAPABILITY_REGISTRY_DISCOVERY_CHECKPOINT.md",
+      "focused_validation": "71 passed in 1.40s",
+      "full_validation": "760 passed in 207.36s",
+      "looptool_command_hash": "F76DA642DAA71A9CCE6385710D4122AD30699A9B7B4B711578B2461B21D62E90",
+      "head_alignment": "PASS",
+      "protected_reference": "lbe-tui/ remained untracked and untouched"
     }
   },
   "current_stage": {
     "id": "installed-capability-registry",
     "title": "Installed capability registry discovery and configuration",
-    "status": "IMPLEMENTED_VALIDATION_PENDING",
+    "status": "PASS",
     "implementation_head": "151136089b63fd9470d3a581a6ad6419cf567595",
-    "implementation": [
-      "persisted schema-versioned installed capability metadata registry",
+    "checkpoint": "docs/acceptance/INSTALLED_CAPABILITY_REGISTRY_DISCOVERY_CHECKPOINT.md",
+    "proven": [
+      "schema-versioned installed capability registry",
       "MCP/plugin/subagent/network/hosted-service classification",
       "duplicate and malformed configuration denial",
       "plaintext secret field rejection with opaque credential_ref only",
       "AVAILABLE/UNAVAILABLE/DISABLED projection without execution",
-      "safe materialization into ExternalCapabilityRegistration only through host adapter factories",
-      "provider endpoint/executable/shell transport arguments remain forbidden",
-      "lbe capabilities list|validate product projection with execution_attempted=false"
+      "safe conversion into ExternalCapabilityRegistration behind ToolRegistry/R6C/R6E",
+      "provider endpoint/executable/shell transport arguments remain unavailable",
+      "lbe capabilities list|validate is inspection/configuration projection only"
     ],
-    "next_valid_action": "Pull exact LBE main and run focused installed-registry/product-capability tests plus full regression. Do not mark PASS until local evidence is clean."
+    "next_valid_action": "Bind one bounded LBE interface/control projection slice over existing Textual, terminal projection, persisted event, session, and capability owners."
   },
   "remaining_complete_runtime_sequence": [
     "remaining LBE interface/control/evidence/diff/settings/session surfaces",
@@ -90,7 +102,8 @@
     "MANDATORY_GOVERNED_MUTATION_DISPATCH": "PASS",
     "GOVERNED_EXTERNAL_CAPABILITY_REGISTRATION": "PASS",
     "FIRST_RUN_LIVE_SESSION_ENTRY": "PASS",
-    "INSTALLED_CAPABILITY_REGISTRY_DISCOVERY": "OPEN_VALIDATION_PENDING",
+    "INSTALLED_CAPABILITY_REGISTRY_DISCOVERY": "PASS",
+    "NEXT_PRODUCT_SLICE": "NOT_ACTIVATED",
     "PUBLICATION": "PAUSED"
   }
 }
