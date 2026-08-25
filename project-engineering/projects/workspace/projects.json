@@ -25,12 +25,13 @@
     {
       "id": "lbe",
       "name": "LBE Persistent Agent",
-      "subtitle": "Workspace Hygiene · Document Authority Reconciliation",
+      "subtitle": "Intent Governance · Workspace Authority · Cline Product Direction",
       "mapped": true,
-      "active_node": "stage-4-workspace-hygiene-governed-deletion",
+      "active_node": "workspace-hygiene",
       "plan_file": "../lbe-plan-canvas/plan.json",
       "status_file": "../lbe-plan-canvas/status.json",
       "references_file": "../lbe-plan-canvas/references.json",
+      "canvas_file": "../lbe-plan-canvas/index.html",
       "reference": "../lbe-persistent-agent-wall-status.md"
     },
     {
