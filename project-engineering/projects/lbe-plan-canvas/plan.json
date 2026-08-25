@@ -1,19 +1,22 @@
 {
-  "schema_version": 4,
+  "schema_version": 5,
   "project": "LBE Persistent Agent",
-  "purpose": "Persistent browser projection of current LBE architecture, machine-selected implementation scope, document authority, evidence-gated progression, and acceptance strategy. Canonical repository/runtime evidence remains authoritative.",
-  "authority_rule": "Live workspace/runtime evidence and .lbe/governance/implementation-gates.json outrank this projection. Historical plans, research, summaries and old acceptance records are context only unless corroborated by current evidence.",
+  "purpose": "Persistent browser projection of LBE product intent, structural ownership, runtime authority, machine-selected implementation scope, evidence-gated progression, and accepted future product directions. Canonical LBE repository/runtime evidence remains authoritative.",
+  "authority_rule": "Current workspace/runtime evidence and .lbe/governance/implementation-gates.json outrank this projection. PROJECT_INDEX.md defines structural responsibility. PROJECT_INTENT_LEDGER.md defines durable project intent. GPT-Knowledge is projection only.",
   "updated": "2026-08-25",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "source_branch": "main",
-  "source_head": "183c86178d3f13d0a76a04cb811f59074e0d226e",
+  "source_head": "0227e844245c901e4178e7d8aaedfbd77fe301bf",
   "local_workspace": "C:/Agents-Memory-Tool-v6-integration",
-  "active_node": "stage-4-workspace-hygiene-governed-deletion",
-  "core_doctrine": "Provider proposes. LBE governs. Approved adapters execute. Evidence proves what happened. Deterministic LBE validation owns completion truth.",
+  "active_node": "workspace-hygiene",
+  "core_doctrine": "Agent/provider reasons and proposes. LBE preserves project identity and intent, governs authority and consequences, executes only through approved adapters, records receipts/evidence, and owns deterministic completion truth.",
+  "project_continuity_doctrine": "The project must remember what it is trying to become even when the reasoning agent changes.",
   "evidence_order": [
     "current validation and live runtime evidence",
-    "current workspace/Git evidence",
+    "current canonical workspace/Git evidence",
     "machine governance gate",
+    "PROJECT_INDEX.md structural authority",
+    "PROJECT_INTENT_LEDGER.md durable intent",
     "machine-selected active acceptance plan",
     "canonical repository source and pushed commits",
     "canonical current-state/design/roadmap documents",
@@ -22,117 +25,143 @@
     "historical research",
     "model inference"
   ],
-  "runtime_pipeline": [
-    {"step":1,"stage":"Request entry","owner":"CLI / control protocol / gateway","meaning":"Accept the request without becoming execution authority."},
-    {"step":2,"stage":"Identity","owner":"LBE runtime/session owners","meaning":"Resolve canonical workspace, session/task, mode, permission and persisted state."},
-    {"step":3,"stage":"Reasoning context","owner":"LBE context/guidance assembly","meaning":"Provide bounded project context, registered capabilities and evidence expectations without granting authority."},
-    {"step":4,"stage":"Reasoning","owner":"Provider/agent","meaning":"Interpret the objective, investigate, choose exposed capabilities and propose actions."},
-    {"step":5,"stage":"Capability validation","owner":"Typed registry/contracts","meaning":"Validate requested capability and arguments."},
-    {"step":6,"stage":"Authorization","owner":"LBE authorization resolver","meaning":"ALLOW, DENY or explicit high-risk authority decision before execution."},
-    {"step":7,"stage":"Execution","owner":"GovernedToolOrchestrator + approved adapter","meaning":"Execute only through the governed adapter boundary."},
-    {"step":8,"stage":"Truth production","owner":"ToolReceipt/events/evidence","meaning":"Record operation identity, result and evidence of what actually happened."},
-    {"step":9,"stage":"Provider continuation","owner":"Provider","meaning":"Continue reasoning over receipts/evidence without gaining execution authority."},
-    {"step":10,"stage":"Completion validation","owner":"LBE deterministic completion","meaning":"Decide completion from evidence; provider prose is not terminal truth."},
-    {"step":11,"stage":"Persistence","owner":"LBE persistence owners","meaning":"Persist session/task/checkpoint/receipt/evidence state."},
-    {"step":12,"stage":"Presentation","owner":"TUI / CLI","meaning":"Project persisted truth without becoming a second runtime."}
-  ],
-  "document_authority": {
-    "entry_route": [
-      ".agent/PROJECT_CONTEXT.md",
-      ".lbe/governance/workspace-lock.json",
-      ".lbe/governance/implementation-gates.json",
-      "machine-selected active_plan",
-      "docs/README.md"
+  "pre_mutation_governance": {
+    "name": "INTENT_AND_STRUCTURE_BEFORE_MUTATION",
+    "status": "CANONICAL",
+    "implementation_commit": "ac0aafbaee2b1e7560f6802d63eb4fce4c45c7d0",
+    "sequence": [
+      "resolve project identity",
+      "read PROJECT_INDEX.md",
+      "resolve affected structural owner",
+      "read/register PROJECT_INTENT_LEDGER.md intent",
+      "verify intent matches machine active slice",
+      "verify staged paths fit declared intent scope",
+      "only then mutate",
+      "validate",
+      "update intent result/checkpoint",
+      "commit/push/remote verify"
     ],
-    "live_owners": {
-      "current_authorization": ".lbe/governance/implementation-gates.json",
-      "active_acceptance_plan": "docs/acceptance/COMPLETE_LBE_AGENT_RUNTIME_GATE.md",
-      "human_current_projection": "docs/CURRENT_STATUS.md",
-      "ordered_roadmap": "docs/IMPLEMENTATION_PLAN.md",
-      "operational_flow": "docs/LBE_AGENT_LIFECYCLE.md",
-      "documentation_router": "docs/README.md"
-    },
-    "rule": "One fact has one live owner. Historical acceptance evidence must not remain discoverable as competing current authority."
+    "hard_rules": [
+      "NO ACTIVE INTENT -> NO IMPLEMENTATION MUTATION",
+      "NO ROOT INDEX ENTRY -> NO IMPLEMENTATION MUTATION",
+      "NO DECLARED OWNER -> NO IMPLEMENTATION MUTATION",
+      "INTENT DOES NOT MATCH MACHINE SLICE -> NO IMPLEMENTATION MUTATION",
+      "OUT-OF-INTENT PATH -> NO IMPLEMENTATION MUTATION",
+      "UNINDEXED STRUCTURE -> NO MUTATION"
+    ],
+    "owners": {
+      "root_index": "PROJECT_INDEX.md",
+      "intent_ledger": "docs/governance/PROJECT_INTENT_LEDGER.md",
+      "machine_gate": ".lbe/governance/implementation-gates.json",
+      "checker": "scripts/check-implementation-gate.py",
+      "agent_router": ".agent/PROJECT_CONTEXT.md",
+      "operating_guide": "docs/governance/AGENT_IMPLEMENTATION_EXECUTION_GUIDE.md"
+    }
   },
-  "stage_4": {
-    "status": "IN_PROGRESS",
-    "active_slice": "WORKSPACE_HYGIENE_GOVERNED_DELETION",
-    "active_plan": "docs/acceptance/COMPLETE_LBE_AGENT_RUNTIME_GATE.md",
-    "prior_slice": {"id":"DOCTRINE_TO_PROVIDER_CONTEXT_BRIDGE","status":"PASS","implementation_commit":"0098e9c86614643e8364dd941e4f23e0295994d7"},
-    "implementation_commit": "17d6e7c09987b6f6d9ea857a130023d21412c566",
-    "projection_alignment_commit": "183c86178d3f13d0a76a04cb811f59074e0d226e",
-    "required_hygiene_evidence": [
-      "inside workspace disposable delete pass",
-      "outside workspace delete denied",
-      "protected path delete denied",
-      "path escape denied",
+  "workspace_authority": {
+    "primary_rule": "Primary main worktree remains the only implementation/runtime/architecture authority.",
+    "allowed_delivery": "primary main HEAD -> origin/main",
+    "forbidden": [
+      "feature-branch implementation authority",
+      "secondary implementation worktree authority",
+      "detached-HEAD implementation",
+      "alternate implementation remote",
+      "force push",
+      "hook bypass"
+    ],
+    "hygiene_projection_exception": {
+      "status": "CANONICAL_BOUNDED_EXCEPTION",
+      "commit": "0227e844245c901e4178e7d8aaedfbd77fe301bf",
+      "allowed": [
+        "workspace-hygiene inventory",
+        "document classification",
+        "documentation-only link repair",
+        "bounded hygiene validation",
+        "hygiene/documentation commits"
+      ],
+      "forbidden": [
+        "runtime changes",
+        "architecture changes",
+        "general product implementation",
+        "absorbing protected user work",
+        "creating a competing implementation authority"
+      ]
+    }
+  },
+  "runtime_pipeline": [
+    {"step":1,"stage":"Request","owner":"User / CLI / control client","meaning":"Submit objective; client owns no execution authority."},
+    {"step":2,"stage":"Project + workspace identity","owner":"LBE","meaning":"Resolve canonical project/workspace/session/task/mode/policy state."},
+    {"step":3,"stage":"Intent + structure","owner":"LBE governance","meaning":"Resolve durable project intent and affected structural owner before mutation."},
+    {"step":4,"stage":"Reasoning context","owner":"LBE context boundary","meaning":"Expose bounded project context, capabilities and evidence expectations without granting authority."},
+    {"step":5,"stage":"Reasoning","owner":"Provider / agent","meaning":"Interpret, investigate, plan, choose exposed capabilities and propose actions."},
+    {"step":6,"stage":"Capability validation","owner":"Registry/contracts","meaning":"Validate requested capability and typed arguments."},
+    {"step":7,"stage":"Authorization","owner":"LBE authorization resolver","meaning":"ALLOW, DENY, or explicit authority expansion decision before execution."},
+    {"step":8,"stage":"Execution","owner":"GovernedToolOrchestrator + approved adapter","meaning":"Execute only inside the governed authority boundary."},
+    {"step":9,"stage":"Truth production","owner":"Receipts/events/evidence","meaning":"Record operation identity, results, diffs/hashes/output and provenance."},
+    {"step":10,"stage":"Provider continuation","owner":"Provider","meaning":"Continue reasoning over governed results without becoming execution authority."},
+    {"step":11,"stage":"Completion validation","owner":"LBE deterministic validation","meaning":"Evidence decides completion; provider prose cannot manufacture terminal truth."},
+    {"step":12,"stage":"Persistence","owner":"LBE persistence","meaning":"Persist intent/session/task/checkpoint/receipt/evidence state."},
+    {"step":13,"stage":"Presentation","owner":"CLI / TUI / future Cline-style UI","meaning":"Project canonical truth without becoming a second runtime authority."}
+  ],
+  "active_intent": {
+    "intent_id": "LBE-INTENT-WORKSPACE-HYGIENE-001",
+    "status": "ACTIVE",
+    "machine_slice": "WORKSPACE_HYGIENE_GOVERNED_DELETION",
+    "phase": "COMPLETE_LBE_AGENT_RUNTIME_IMPLEMENTATION",
+    "gate_status": "OPEN",
+    "owner": "LBE governance, documentation, runtime orchestration, and validation owners",
+    "required_evidence": [
+      "inside-workspace disposable deletion",
+      "outside-workspace denial",
+      "protected-path denial",
+      "path-escape denial",
       "authorization before execution",
       "direct adapter bypass unavailable",
       "success and failure receipts",
       "protected user work preserved"
-    ],
-    "document_reconciliation": {
-      "live_projections": "PASS",
-      "acceptance_corpus_classification": "IN_PROGRESS",
-      "reported_corpus": {"documents":55,"machine_referenced":4,"unreferenced":51,"evidence":"USER_SUPPLIED_LOOPTOOL_READ_ONLY_CLASSIFICATION"},
-      "next": [
-        "close or explicitly supersede old OPEN/PENDING/UNVERIFIED legacy gates using later accepted evidence",
-        "repair inbound references",
-        "repair machine reference to superseded terminal foundation record before moving it",
-        "relocate proven historical acceptance evidence to docs/history/legacy-acceptance",
-        "validate links and current-authority routing"
-      ]
-    }
+    ]
   },
-  "research_boundary": {
-    "deep_document_research": {
-      "title": "Reconstruct, Verify, and Consolidate the LBE Workspace Documentation",
-      "classification": "HISTORICAL_RESEARCH_INPUT",
-      "reverified_findings": [
-        "current-state documentation can drift from machine governance and must be reconciled",
-        "historical/current acceptance records mixed in one namespace create retrieval ambiguity",
-        "hidden/local-only documentation must not silently become authority",
-        "document consolidation should preserve evidence while making current authority directly routable"
-      ],
-      "constraints": [
-        "current repository/workspace evidence is authoritative over historical research",
-        "explicit evidence classifications are required",
-        "documentation is not authorization",
-        "tests or installation alone are not proof of governed execution"
-      ]
+  "accepted_product_intents": [
+    {
+      "intent_id": "LBE-INTENT-CLINE-AGENTRUNTIME-001",
+      "status": "ACCEPTED_PRODUCT_DIRECTION_NOT_ACTIVE",
+      "agent_loop_base": "Reuse Cline AgentRuntime continuation/event/tool mechanics behind an LBE governance adapter.",
+      "presentation": "React/hybrid Cline-style interaction surface after the governance adapter boundary is proven.",
+      "reuse": ["continuation loop", "tool-call parsing/continuation", "runtime event mechanics"],
+      "adapt": ["provider mechanics", "event normalization", "MCP", "session/checkpoint mechanics", "presentation"],
+      "reject": ["Cline-native canonical mutation authority", "Cline-native canonical shell/filesystem execution", "second session authority", "second completion authority"],
+      "next_dependency": "LBE-to-Cline AgentRuntime governance adapter",
+      "activation_rule": "Cannot activate until the current machine slice reaches PASS or governance explicitly supersedes it."
     }
+  ],
+  "local_reconciliation": {
+    "classification": "USER_SUPPLIED_READ_ONLY_AUDIT",
+    "reported_local_main": "9786dd65c89c308026e9b0b6c7d5fa73d1224321",
+    "verified_remote_main": "0227e844245c901e4178e7d8aaedfbd77fe301bf",
+    "reported_ahead_behind": "1 / 12",
+    "local_only_commit_classification": "DUPLICATED_UPSTREAM_AND_SUPERSEDED",
+    "upstream_duplicate": "3924f23260880e05d5a626141e10a6cb9e91fe74",
+    "canonical_superseding_owner_commit": "17d6e7c09987b6f6d9ea857a130023d21412c566",
+    "next": "Align clean primary main to origin/main after preserving the stash; local alignment remains user/local evidence until reverified."
   },
   "execution_policy": {
-    "one_stage_at_a_time": true,
-    "pass_required_before_next_stage": true,
-    "commit_and_push_after_each_pass": true,
-    "no_unrelated_dirty_file_absorption": true,
+    "one_active_slice": true,
+    "pass_required_before_next_slice": true,
+    "intent_required_before_mutation": true,
+    "structure_owner_required_before_mutation": true,
+    "commit_push_remote_verify_after_pass": true,
+    "no_unrelated_dirty_absorption": true,
     "no_destructive_cleanup_of_unknown_or_protected_work": true,
-    "historical_evidence_preserved": true
+    "no_policy_self_bypass_without_explicit_intent": true
   },
   "nodes": [
-    {"id":"authority","parent":null,"lane":"Authority","title":"Workspace and evidence authority","status":"proven","priority":"CANONICAL","summary":"Canonical LBE main is 183c86178d3f13d0a76a04cb811f59074e0d226e. Machine governance and live evidence outrank this projection."},
-    {"id":"architecture-runtime-pipeline","parent":"authority","lane":"Architecture","title":"Provider reasoning inside LBE authority","status":"proven","priority":"CORE INVARIANT","summary":"Provider reasons and proposes; LBE validates, authorizes, executes through approved adapters, records receipts/evidence, persists state and validates completion."},
-    {"id":"stage-0-baseline-freeze","parent":"authority","lane":"Stage 0","title":"Baseline freeze and preservation matrix","status":"proven","priority":"PASS","summary":"Historical canonical pass."},
-    {"id":"stage-1-document-authority-map","parent":"stage-0-baseline-freeze","lane":"Stage 1","title":"Document authority map","status":"proven","priority":"PASS","summary":"Historical canonical pass."},
-    {"id":"stage-2-document-reallocation","parent":"stage-1-document-authority-map","lane":"Stage 2","title":"Document reallocation and navigation alignment","status":"proven","priority":"PASS","summary":"Historical canonical pass; later drift still required current reconciliation."},
-    {"id":"stage-3-governance-alignment","parent":"stage-2-document-reallocation","lane":"Stage 3","title":"Governance alignment","status":"proven","priority":"PASS","summary":"Machine governance remains the active authorization owner."},
-    {"id":"stage-4-doctrine-provider-context-bridge","parent":"stage-3-governance-alignment","lane":"Stage 4 · Prior slice","title":"Doctrine to provider context bridge","status":"proven","priority":"PASS","summary":"Accepted baseline PASS; no longer the active slice."},
-    {"id":"stage-4-workspace-hygiene-governed-deletion","parent":"stage-4-doctrine-provider-context-bridge","lane":"Stage 4 · Active slice","title":"Workspace hygiene governed deletion","status":"current","priority":"OPEN","summary":"Canonical implementation exists; machine gate remains OPEN pending required containment, authorization, receipt, bypass and preservation evidence."},
-    {"id":"document-live-projections","parent":"stage-4-workspace-hygiene-governed-deletion","lane":"Documentation","title":"Align live projections","status":"proven","priority":"PASS","summary":"CURRENT_STATUS, IMPLEMENTATION_PLAN and current gate projections aligned at 183c861."},
-    {"id":"document-history-reconciliation","parent":"document-live-projections","lane":"Documentation","title":"Reconcile legacy acceptance history","status":"current","priority":"NEXT","summary":"Classify old unresolved-looking gates, repair references, then relocate historical acceptance evidence out of the active namespace."},
-    {"id":"stage-5-next-slice","parent":"stage-4-workspace-hygiene-governed-deletion","lane":"Stage 5","title":"Advance to next authorized slice","status":"locked","priority":"LOCKED","summary":"Locked until current machine-selected slice reaches PASS and governance explicitly advances."}
-  ],
-  "edges": [
-    {"from":"authority","to":"architecture-runtime-pipeline","type":"architecture"},
-    {"from":"authority","to":"stage-0-baseline-freeze","type":"authority"},
-    {"from":"stage-0-baseline-freeze","to":"stage-1-document-authority-map","type":"pass-unlocked"},
-    {"from":"stage-1-document-authority-map","to":"stage-2-document-reallocation","type":"pass-unlocked"},
-    {"from":"stage-2-document-reallocation","to":"stage-3-governance-alignment","type":"pass-unlocked"},
-    {"from":"stage-3-governance-alignment","to":"stage-4-doctrine-provider-context-bridge","type":"pass-unlocked"},
-    {"from":"stage-4-doctrine-provider-context-bridge","to":"stage-4-workspace-hygiene-governed-deletion","type":"machine-advanced"},
-    {"from":"stage-4-workspace-hygiene-governed-deletion","to":"document-live-projections","type":"documentation-reconciliation"},
-    {"from":"document-live-projections","to":"document-history-reconciliation","type":"next"},
-    {"from":"stage-4-workspace-hygiene-governed-deletion","to":"stage-5-next-slice","type":"pass-unlocks"}
+    {"id":"authority","parent":null,"lane":"Authority","title":"Canonical project authority","status":"proven","priority":"CANONICAL","summary":"Remote LBE main is 0227e844. Live workspace/runtime evidence and machine governance outrank this projection."},
+    {"id":"intent-index","parent":"authority","lane":"Governance","title":"Intent + structural ownership before mutation","status":"proven","priority":"CANONICAL","summary":"PROJECT_INDEX + PROJECT_INTENT_LEDGER + machine gate + staged-scope checker now form the pre-mutation wall."},
+    {"id":"runtime","parent":"intent-index","lane":"Runtime","title":"Provider reasoning inside LBE authority","status":"proven","priority":"CORE","summary":"Provider reasons; LBE owns identity, policy, authorization, governed execution, evidence, persistence and completion."},
+    {"id":"workspace-hygiene","parent":"intent-index","lane":"Active slice","title":"Workspace hygiene governed deletion","status":"current","priority":"OPEN","summary":"Active intent LBE-INTENT-WORKSPACE-HYGIENE-001. Implementation exists but gate remains OPEN until all required acceptance evidence passes."},
+    {"id":"hygiene-projection","parent":"workspace-hygiene","lane":"Workspace policy","title":"Protected-workspace hygiene projection","status":"proven","priority":"BOUNDED EXCEPTION","summary":"Clean origin/main projection may perform hygiene/documentation only; it cannot become implementation/runtime/architecture authority."},
+    {"id":"branch-reconcile","parent":"workspace-hygiene","lane":"Workspace state","title":"Primary main reconciliation","status":"pending","priority":"LOCAL PENDING","summary":"User-supplied audit classified the local-only hygiene commit as duplicated upstream and superseded. Safe alignment to origin/main is the next local step."},
+    {"id":"cline-intent","parent":"intent-index","lane":"Accepted product direction","title":"Cline AgentRuntime reuse + Cline-style UI","status":"locked","priority":"ACCEPTED / NOT ACTIVE","summary":"Reuse Cline loop mechanics behind LBE governance; React/hybrid presentation later. No Cline execution/session/completion authority."},
+    {"id":"next","parent":"workspace-hygiene","lane":"Next slice","title":"Next machine-authorized implementation slice","status":"locked","priority":"LOCKED","summary":"No next product slice until workspace hygiene reaches PASS or governance explicitly supersedes the active intent."}
   ]
 }
