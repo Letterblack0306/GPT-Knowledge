@@ -1,13 +1,13 @@
 {
-  "schema_version": 7,
+  "schema_version": 8,
   "project": "LBE Persistent Agent",
   "verified_at": "2026-08-25",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "source_branch": "main",
   "source_head": "cdce28498fcac4f1af42c079d6c3e469bef80d48",
   "local_workspace": "C:/Agents-Memory-Tool-v6-integration",
-  "overall_classification": "LBE_INTERFACE_IDENTITY_CANONICAL_UNUSED_PRESERVATION_CANONICAL_EMPTY_HYGIENE_GATE_OPEN",
-  "authority_note": "Canonical LBE main includes workspace authority reconciliation, accepted LBE interface identity, and the canonical empty unused-in-repo preservation surface. Machine governance still selects WORKSPACE_HYGIENE_GOVERNED_DELETION and remains OPEN. GPT-Knowledge is projection only.",
+  "overall_classification": "LBE_DOCUMENTATION_AREA_COVERAGE_PASS_UNUSED_PRESERVATION_CANONICAL_EMPTY_HYGIENE_GATE_OPEN",
+  "authority_note": "GPT-Knowledge now projects all nine canonical LBE documentation areas from docs/DOCUMENT_INTENT_MANIFEST.md and docs/README.md. This remains navigation/projection only: machine governance, canonical source/runtime evidence, and the active acceptance gate retain authority.",
   "core_doctrine": "Provider/agent reasons and proposes. LBE preserves project identity and intent, governs authority and consequences, executes only through approved adapters, records evidence, and owns deterministic completion truth.",
   "product_identity": {
     "product": "LBE",
@@ -17,6 +17,26 @@
     "cline_not_product_identity": true,
     "cline_not_interface_identity": true,
     "canonical_commit": "b163a945faa99f93c87c6641c7ba756e415b3f33"
+  },
+  "documentation_coverage": {
+    "status": "PASS",
+    "registry": "documentation.json",
+    "source_manifest": "docs/DOCUMENT_INTENT_MANIFEST.md",
+    "source_router": "docs/README.md",
+    "canonical_areas_expected": 9,
+    "canonical_areas_represented": 9,
+    "areas": [
+      "Live Owners",
+      "Governance",
+      "Acceptance",
+      "Design",
+      "Contracts",
+      "Reference",
+      "Research",
+      "History",
+      "Preserved Unused Material"
+    ],
+    "maintenance_rule": "Every canonical documentation area must remain represented. Current authority classes must remain directly discoverable; reference/research/history must remain visibly non-current authority. Projection source_head must track the canonical LBE source used for the registry."
   },
   "governance": {
     "intent_and_structure_before_mutation": "CANONICAL_PASS",
@@ -118,7 +138,7 @@
     "Workspace-hygiene acceptance remains OPEN.",
     "No UI implementation slice is active.",
     "No material is currently eligible for unused-in-repo; manifest_entries remains 0.",
-    "A governance blocker must not be weakened or self-excepted by an agent unless the active intent explicitly authorizes the governance change."
+    "GPT-Knowledge documentation coverage is a projection and must be refreshed when the canonical LBE manifest/router changes."
   ],
   "next_gate_state": {
     "INTENT_AND_STRUCTURE_BEFORE_MUTATION": "CANONICAL_PASS",
@@ -126,6 +146,7 @@
     "PRIMARY_MAIN_ALIGNMENT": "PASS",
     "LBE_INTERFACE_IDENTITY": "CANONICAL_ACCEPTED",
     "CLINE_ROLE": "REUSE_SOURCE_ONLY",
+    "DOCUMENTATION_AREA_COVERAGE": "PASS_9_OF_9",
     "LBE_TUI": "REFERENCE_ONLY",
     "LBE_CORE": "SEPARATE_REFERENCE_REPOSITORY",
     "UNUSED_IN_REPO": "CANONICAL_EMPTY_PRESERVATION_SURFACE",
