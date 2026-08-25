@@ -1,12 +1,12 @@
 {
-  "schema_version": 11,
+  "schema_version": 12,
   "project": "LBE Persistent Agent",
   "verified_at": "2026-08-25",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "source_branch": "main",
-  "source_head": "dbefbc0884cb78be5327100d3e9e648bea5a6e52",
+  "source_head": "151136089b63fd9470d3a581a6ad6419cf567595",
   "local_workspace": "C:/Agents-Memory-Tool-v6-integration",
-  "overall_classification": "FIRST_RUN_LIVE_SESSION_ENTRY_IMPLEMENTED_VALIDATION_PENDING",
+  "overall_classification": "INSTALLED_CAPABILITY_REGISTRY_IMPLEMENTED_VALIDATION_PENDING",
   "authority_note": "GPT-Knowledge is projection only. Canonical LBE source, machine governance, local runtime evidence, and acceptance checkpoints retain authority.",
   "core_doctrine": "Provider/agent reasons and proposes. LBE preserves project identity and intent, governs authority and consequences, executes only through approved adapters, records evidence, and owns deterministic completion truth.",
   "product_identity": {
@@ -23,8 +23,8 @@
   "machine_state": {
     "active_plan": "docs/acceptance/COMPLETE_LBE_AGENT_RUNTIME_GATE.md",
     "active_phase": "COMPLETE_LBE_AGENT_RUNTIME_IMPLEMENTATION",
-    "active_slice": "FIRST_RUN_LIVE_SESSION_ENTRY",
-    "active_intent": "LBE-INTENT-FIRST-RUN-LIVE-SESSION-ENTRY-001",
+    "active_slice": "INSTALLED_CAPABILITY_REGISTRY_DISCOVERY",
+    "active_intent": "LBE-INTENT-INSTALLED-CAPABILITY-REGISTRY-001",
     "slice_result": "OPEN_IMPLEMENTED_VALIDATION_PENDING",
     "top_level_status": "OPEN",
     "next_phase_locked": true,
@@ -38,10 +38,7 @@
     "unused_in_repo": "CANONICAL_EMPTY_PRESERVATION_SURFACE"
   },
   "completed_slices": {
-    "WORKSPACE_HYGIENE_GOVERNED_DELETION": {
-      "status": "PASS",
-      "focused_validation": "52 passed"
-    },
+    "WORKSPACE_HYGIENE_GOVERNED_DELETION": {"status": "PASS", "focused_validation": "52 passed"},
     "MANDATORY_GOVERNED_AGENT_MUTATION_DISPATCH": {
       "status": "PASS",
       "implementation_commit": "47885891848ec9a535a4e09694d3129b320da91a",
@@ -52,39 +49,37 @@
     "GOVERNED_EXTERNAL_CAPABILITY_REGISTRATION": {
       "status": "PASS",
       "implementation_commit": "02c761ab5ee969edd1c24fed65a6a2d343d20927",
-      "checkpoint": "docs/acceptance/GOVERNED_EXTERNAL_CAPABILITY_REGISTRATION_CHECKPOINT.md",
       "focused_validation": "58 passed",
       "full_validation": "732 passed",
-      "looptool_command_hash": "E474AAD3D03DEC376BF69944FFA3F56251052D534D46369B27547A7E9F563859",
-      "proven": [
-        "MCP/plugin/subagent/network/hosted-service registrations are classified behind ToolRegistry/R6C/R6E",
-        "raw endpoint/URL/transport/executable/command/argv/shell selection is denied",
-        "network and hosted-service registrations require explicit network metadata",
-        "authorization precedes adapter execution",
-        "unregistered external tools fail closed",
-        "correlated ToolReceipt evidence is retained",
-        "no parallel execution/authorization/session/completion owner was introduced"
-      ]
+      "looptool_command_hash": "E474AAD3D03DEC376BF69944FFA3F56251052D534D46369B27547A7E9F563859"
+    },
+    "FIRST_RUN_LIVE_SESSION_ENTRY": {
+      "status": "PASS",
+      "implementation_commit": "dbefbc0884cb78be5327100d3e9e648bea5a6e52",
+      "checkpoint": "docs/acceptance/FIRST_RUN_LIVE_SESSION_ENTRY_CHECKPOINT.md",
+      "focused_validation": "63 passed",
+      "full_validation": "740 passed",
+      "looptool_command_hash": "7C462B292C3978B957701FAB5F8AC719673EFA18207AAB8633C704411C78C736"
     }
   },
   "current_stage": {
-    "id": "first-run-live-session-entry",
-    "title": "First-run setup and live persisted session entry",
+    "id": "installed-capability-registry",
+    "title": "Installed capability registry discovery and configuration",
     "status": "IMPLEMENTED_VALIDATION_PENDING",
-    "implementation_head": "dbefbc0884cb78be5327100d3e9e648bea5a6e52",
+    "implementation_head": "151136089b63fd9470d3a581a6ad6419cf567595",
     "implementation": [
-      "new lbe_guard_inspector.product_entry:main package entry",
-      "lbe start creates or restores through existing CLI/session/TUI owners",
-      "all non-start commands delegate to legacy cli.main",
-      "existing-session identity overrides are rejected",
-      "provider/model selection remains explicitly validated",
-      "provider-config model mismatch fails closed through existing TUI/runtime owner",
-      "new persistence-focused product-entry tests added"
+      "persisted schema-versioned installed capability metadata registry",
+      "MCP/plugin/subagent/network/hosted-service classification",
+      "duplicate and malformed configuration denial",
+      "plaintext secret field rejection with opaque credential_ref only",
+      "AVAILABLE/UNAVAILABLE/DISABLED projection without execution",
+      "safe materialization into ExternalCapabilityRegistration only through host adapter factories",
+      "provider endpoint/executable/shell transport arguments remain forbidden",
+      "lbe capabilities list|validate product projection with execution_attempted=false"
     ],
-    "next_valid_action": "Pull exact LBE main and run focused product-entry/CLI plus full regression. Do not mark PASS until local evidence is clean."
+    "next_valid_action": "Pull exact LBE main and run focused installed-registry/product-capability tests plus full regression. Do not mark PASS until local evidence is clean."
   },
   "remaining_complete_runtime_sequence": [
-    "capability registry expansion with concrete installed integration discovery/configuration behind governed dispatch",
     "remaining LBE interface/control/evidence/diff/settings/session surfaces",
     "recovery + deterministic completion + TEMP/promotion integration",
     "installed-package acceptance"
@@ -94,7 +89,8 @@
     "WORKSPACE_HYGIENE_SLICE": "PASS",
     "MANDATORY_GOVERNED_MUTATION_DISPATCH": "PASS",
     "GOVERNED_EXTERNAL_CAPABILITY_REGISTRATION": "PASS",
-    "FIRST_RUN_LIVE_SESSION_ENTRY": "OPEN_VALIDATION_PENDING",
+    "FIRST_RUN_LIVE_SESSION_ENTRY": "PASS",
+    "INSTALLED_CAPABILITY_REGISTRY_DISCOVERY": "OPEN_VALIDATION_PENDING",
     "PUBLICATION": "PAUSED"
   }
 }
