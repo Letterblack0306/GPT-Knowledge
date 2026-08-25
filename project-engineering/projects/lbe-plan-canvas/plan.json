@@ -1,12 +1,12 @@
 {
-  "schema_version": 11,
+  "schema_version": 12,
   "project": "LBE Persistent Agent",
   "purpose": "Persistent projection of LBE product intent, structural authority, machine-selected implementation scope, evidence-gated progression, and remaining product sequence. Canonical LBE repository/runtime evidence remains authoritative.",
   "authority_rule": "Current workspace/runtime evidence and .lbe/governance/implementation-gates.json outrank this projection. PROJECT_INDEX.md defines structural responsibility. PROJECT_INTENT_LEDGER.md defines durable project intent. GPT-Knowledge is projection only.",
   "updated": "2026-08-25",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "source_branch": "main",
-  "source_head": "151136089b63fd9470d3a581a6ad6419cf567595",
+  "source_head": "efdb1fe97e32a2543925165a3c3186c01be8c60b",
   "local_workspace": "C:/Agents-Memory-Tool-v6-integration",
   "active_node": "installed-capability-registry",
   "core_doctrine": "Agent/provider reasons and proposes. LBE preserves project identity and intent, governs authority and consequences, executes only through approved adapters, records receipts/evidence, and owns deterministic completion truth.",
@@ -44,37 +44,38 @@
   ],
   "active_intent": {
     "intent_id": "LBE-INTENT-INSTALLED-CAPABILITY-REGISTRY-001",
-    "status": "ACTIVE",
+    "status": "ACTIVE_WITH_PASS_RESULT_UNTIL_SUCCESSOR_BINDING",
     "machine_slice": "INSTALLED_CAPABILITY_REGISTRY_DISCOVERY",
     "phase": "COMPLETE_LBE_AGENT_RUNTIME_IMPLEMENTATION",
-    "slice_result": "OPEN_IMPLEMENTED_VALIDATION_PENDING",
-    "implementation_head": "151136089b63fd9470d3a581a6ad6419cf567595"
+    "slice_result": "PASS",
+    "implementation_head": "151136089b63fd9470d3a581a6ad6419cf567595",
+    "checkpoint": "docs/acceptance/INSTALLED_CAPABILITY_REGISTRY_DISCOVERY_CHECKPOINT.md"
   },
   "completed_product_slices": [
     {"id":"doctrine-provider-context","title":"Doctrine to provider context bridge","status":"PASS"},
     {"id":"workspace-hygiene","title":"Workspace hygiene governed deletion","status":"PASS","focused_tests":"52 passed"},
     {"id":"mandatory-governed-mutation-dispatch","title":"Filesystem / registered process / primary-main Git governed dispatch","status":"PASS","focused_tests":"80 passed","full_tests":"713 passed"},
     {"id":"governed-external-capability-registration","title":"Governed MCP/plugin/subagent/network/hosted-service registration contract","status":"PASS","focused_tests":"58 passed","full_tests":"732 passed"},
-    {"id":"first-run-live-session-entry","title":"First-run setup and live persisted session entry","status":"PASS","focused_tests":"63 passed","full_tests":"740 passed"}
+    {"id":"first-run-live-session-entry","title":"First-run setup and live persisted session entry","status":"PASS","focused_tests":"63 passed","full_tests":"740 passed"},
+    {"id":"installed-capability-registry","title":"Installed capability registry discovery and configuration","status":"PASS","focused_tests":"71 passed","full_tests":"760 passed","looptool_command_hash":"F76DA642DAA71A9CCE6385710D4122AD30699A9B7B4B711578B2461B21D62E90"}
   ],
-  "active_product_slice": {
-    "id": "installed-capability-registry",
-    "title": "Installed capability registry discovery and configuration",
-    "status": "IMPLEMENTED_VALIDATION_PENDING",
-    "goal": "Persist safe non-secret installed integration metadata and materialize only host-configured adapters into the already-proven governed external capability path.",
-    "implementation": [
-      "schema-versioned InstalledCapabilityRegistry and atomic JSON store",
-      "MCP/plugin/subagent/network/hosted-service classification",
-      "opaque credential_ref only; plaintext secret fields rejected",
-      "duplicate identities and unknown/malformed configuration denied",
-      "AVAILABLE/UNAVAILABLE/DISABLED projection without adapter execution",
-      "materialization requires host-supplied adapter factory and returns ExternalCapabilityRegistration",
-      "provider-controlled endpoint/base_url/url/transport/executable/command/argv/shell arguments remain forbidden",
-      "lbe capabilities list|validate exposes non-executing product projection"
-    ]
+  "next_product_slice": {
+    "id": "interface-control-evidence-surfaces",
+    "title": "Remaining LBE interface/control/evidence/diff/settings/session surfaces",
+    "status": "OWNER_AUDIT_BEFORE_MACHINE_BINDING",
+    "known_existing_owners": [
+      "Textual LBE client",
+      "terminal projection",
+      "TUI view models",
+      "persisted operational history",
+      "PersistentTurnControl",
+      "provider/session settings owners",
+      "installed capability registry"
+    ],
+    "known_gap": "The TUI has /tools support through injected ToolRegistry, but /integrations and /mcp are still hard-coded unavailable placeholders; exact remaining gap must be validated before mutation."
   },
   "remaining_product_sequence": [
-    {"order":1,"title":"Remaining LBE interface/control/evidence/diff/settings/session surfaces","status":"REMAINING_AFTER_CURRENT_PASS"},
+    {"order":1,"title":"Remaining LBE interface/control/evidence/diff/settings/session surfaces","status":"NEXT_OWNER_AUDIT"},
     {"order":2,"title":"Recovery + deterministic completion + TEMP/promotion integration","status":"REMAINING"},
     {"order":3,"title":"Installed-package acceptance","status":"REMAINING"}
   ],
@@ -90,9 +91,9 @@
     {"id":"authority","parent":null,"lane":"Authority","title":"Canonical project authority","status":"proven","priority":"CANONICAL"},
     {"id":"governed-mutation","parent":"authority","lane":"Completed","title":"Mandatory governed mutation dispatch","status":"proven","priority":"PASS"},
     {"id":"external-registration","parent":"governed-mutation","lane":"Completed","title":"Governed external capability registration","status":"proven","priority":"PASS"},
-    {"id":"first-run-live-session-entry","parent":"external-registration","lane":"Completed","title":"First-run/live persisted session entry","status":"proven","priority":"PASS","summary":"63 focused tests and 740 full tests passed against dbefbc0."},
-    {"id":"installed-capability-registry","parent":"first-run-live-session-entry","lane":"Active slice","title":"Installed capability registry","status":"current","priority":"VALIDATION PENDING","summary":"Safe persisted integration metadata and non-executing CLI projection are implemented and await exact local regression proof."},
-    {"id":"interface-surfaces","parent":"installed-capability-registry","lane":"Next","title":"Remaining LBE interface/control/evidence surfaces","status":"locked","priority":"LOCKED UNTIL CURRENT PASS"},
+    {"id":"first-run-live-session-entry","parent":"external-registration","lane":"Completed","title":"First-run/live persisted session entry","status":"proven","priority":"PASS"},
+    {"id":"installed-capability-registry","parent":"first-run-live-session-entry","lane":"Completed","title":"Installed capability registry","status":"proven","priority":"PASS","summary":"71 focused tests and 760 full tests passed against 1511360; lbe-tui remained untouched."},
+    {"id":"interface-surfaces","parent":"installed-capability-registry","lane":"Next owner audit","title":"Remaining LBE interface/control/evidence surfaces","status":"open","priority":"AUDIT BEFORE BINDING"},
     {"id":"lbe-interface","parent":"authority","lane":"Product identity","title":"LBE interface identity","status":"proven","priority":"ACCEPTED"}
   ]
 }
