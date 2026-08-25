@@ -1,104 +1,91 @@
 {
-  "schema_version": 10,
+  "schema_version": 11,
   "project": "LBE Persistent Agent",
   "verified_at": "2026-08-25",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "source_branch": "main",
-  "source_head": "59de95b0e05fa200520aef10ee493f6e89ad2129",
+  "source_head": "dbefbc0884cb78be5327100d3e9e648bea5a6e52",
   "local_workspace": "C:/Agents-Memory-Tool-v6-integration",
-  "overall_classification": "MANDATORY_GOVERNED_MUTATION_DISPATCH_PASS_NEXT_PRODUCT_SLICE_NOT_ACTIVATED",
+  "overall_classification": "FIRST_RUN_LIVE_SESSION_ENTRY_IMPLEMENTED_VALIDATION_PENDING",
   "authority_note": "GPT-Knowledge is projection only. Canonical LBE source, machine governance, local runtime evidence, and acceptance checkpoints retain authority.",
   "core_doctrine": "Provider/agent reasons and proposes. LBE preserves project identity and intent, governs authority and consequences, executes only through approved adapters, records evidence, and owns deterministic completion truth.",
   "product_identity": {
     "product": "LBE",
     "interface": "LBE interface",
     "runtime_authority": "LBE",
-    "cline_role": "REUSE_SOURCE_ONLY",
-    "cline_not_product_identity": true,
-    "cline_not_interface_identity": true
+    "cline_role": "REUSE_SOURCE_ONLY"
   },
   "documentation_coverage": {
     "status": "PASS",
-    "registry": "documentation.json",
     "canonical_areas_expected": 9,
     "canonical_areas_represented": 9
-  },
-  "current_stage": {
-    "id": "mandatory-governed-mutation-dispatch",
-    "title": "Mandatory governed agent mutation dispatch",
-    "status": "PASS",
-    "active_plan": "docs/acceptance/COMPLETE_LBE_AGENT_RUNTIME_GATE.md",
-    "active_phase": "COMPLETE_LBE_AGENT_RUNTIME_IMPLEMENTATION",
-    "active_slice": "MANDATORY_GOVERNED_AGENT_MUTATION_DISPATCH",
-    "active_intent": "LBE-INTENT-MANDATORY-GOVERNED-MUTATION-DISPATCH-001",
-    "implementation_head": "47885891848ec9a535a4e09694d3129b320da91a",
-    "checkpoint": "docs/acceptance/MANDATORY_GOVERNED_AGENT_MUTATION_DISPATCH_CHECKPOINT.md",
-    "next_valid_action": "Identify the existing owners for one remaining integrated mutation class and atomically bind the next exact machine intent/slice. Do not infer a next task from historical/reference documents."
   },
   "machine_state": {
     "active_plan": "docs/acceptance/COMPLETE_LBE_AGENT_RUNTIME_GATE.md",
     "active_phase": "COMPLETE_LBE_AGENT_RUNTIME_IMPLEMENTATION",
-    "active_slice": "MANDATORY_GOVERNED_AGENT_MUTATION_DISPATCH",
-    "active_intent": "LBE-INTENT-MANDATORY-GOVERNED-MUTATION-DISPATCH-001",
-    "slice_result": "PASS",
+    "active_slice": "FIRST_RUN_LIVE_SESSION_ENTRY",
+    "active_intent": "LBE-INTENT-FIRST-RUN-LIVE-SESSION-ENTRY-001",
+    "slice_result": "OPEN_IMPLEMENTED_VALIDATION_PENDING",
     "top_level_status": "OPEN",
     "next_phase_locked": true,
-    "next_product_slice": "NOT_ACTIVATED",
     "publish_allowed": false
   },
   "workspace_authority": {
     "primary_implementation_authority": "PRIMARY_MAIN_WORKTREE_ONLY",
-    "primary_alignment": "PASS_AT_VALIDATION_HEAD",
+    "local_alignment": "PULL_REQUIRED_TO_SOURCE_HEAD",
     "lbe_tui": "UNTRACKED_LOCAL_REFERENCE_ONLY",
     "lbe_core": "SEPARATE_REPOSITORY_REFERENCE_ONLY",
     "unused_in_repo": "CANONICAL_EMPTY_PRESERVATION_SURFACE"
   },
-  "workspace_hygiene": {
-    "classification": "PASS",
-    "completion_commit": "5b6badbef96cc52c1224da7cbe9ce2925d791b0c",
-    "focused_validation": "52 passed",
-    "governed_deletions": 9,
-    "remaining_approved_disposable_targets": 0,
-    "preserved_snapshots": 14
+  "completed_slices": {
+    "WORKSPACE_HYGIENE_GOVERNED_DELETION": {
+      "status": "PASS",
+      "focused_validation": "52 passed"
+    },
+    "MANDATORY_GOVERNED_AGENT_MUTATION_DISPATCH": {
+      "status": "PASS",
+      "implementation_commit": "47885891848ec9a535a4e09694d3129b320da91a",
+      "focused_validation": "80 passed",
+      "full_validation": "713 passed",
+      "looptool_command_hash": "D0DA7CA90B549E0C51FC2E65C7B68A30ECF7542710CE9CC1AF006D91FCA7F725"
+    },
+    "GOVERNED_EXTERNAL_CAPABILITY_REGISTRATION": {
+      "status": "PASS",
+      "implementation_commit": "02c761ab5ee969edd1c24fed65a6a2d343d20927",
+      "checkpoint": "docs/acceptance/GOVERNED_EXTERNAL_CAPABILITY_REGISTRATION_CHECKPOINT.md",
+      "focused_validation": "58 passed",
+      "full_validation": "732 passed",
+      "looptool_command_hash": "E474AAD3D03DEC376BF69944FFA3F56251052D534D46369B27547A7E9F563859",
+      "proven": [
+        "MCP/plugin/subagent/network/hosted-service registrations are classified behind ToolRegistry/R6C/R6E",
+        "raw endpoint/URL/transport/executable/command/argv/shell selection is denied",
+        "network and hosted-service registrations require explicit network metadata",
+        "authorization precedes adapter execution",
+        "unregistered external tools fail closed",
+        "correlated ToolReceipt evidence is retained",
+        "no parallel execution/authorization/session/completion owner was introduced"
+      ]
+    }
   },
-  "governed_mutation_dispatch": {
-    "classification": "PASS",
-    "authorization_commit": "ba97b72e5b29fd8854cbe90a45ebf8457a4b5ba1",
-    "implementation_commit": "47885891848ec9a535a4e09694d3129b320da91a",
-    "checkpoint_commit": "381f8b6c6c88e08a0e0566c6a9ab270bf1154e94",
-    "machine_pass_commit": "428a37398cfb746bd5f6bf0219acce33bd67e58a",
-    "looptool_command_hash": "D0DA7CA90B549E0C51FC2E65C7B68A30ECF7542710CE9CC1AF006D91FCA7F725",
-    "focused_validation": "80 passed in 46.48s",
-    "full_validation": "713 passed in 217.41s",
-    "machine_binding": "PASS",
-    "head_alignment": "PASS",
-    "protected_reference": "lbe-tui/ remained untracked and untouched",
-    "proven": [
-      "provider receives only LBE-generated registered tool definitions",
-      "workspace text mutation is contained and stale-write guarded",
-      "arbitrary native shell exposure is unavailable",
-      "process execution is limited to an LBE-owned registered command catalog",
-      "Git mutation requires the primary main workspace",
-      "Git staging/commit is limited to governed mutation paths from the current reasoning turn",
-      "authorization occurs before execution",
-      "success/failure emit correlated ToolReceipt evidence",
-      "audit/investigation paths remain read-only",
-      "no parallel execution/authorization/receipt/session/completion owner was introduced"
+  "current_stage": {
+    "id": "first-run-live-session-entry",
+    "title": "First-run setup and live persisted session entry",
+    "status": "IMPLEMENTED_VALIDATION_PENDING",
+    "implementation_head": "dbefbc0884cb78be5327100d3e9e648bea5a6e52",
+    "implementation": [
+      "new lbe_guard_inspector.product_entry:main package entry",
+      "lbe start creates or restores through existing CLI/session/TUI owners",
+      "all non-start commands delegate to legacy cli.main",
+      "existing-session identity overrides are rejected",
+      "provider/model selection remains explicitly validated",
+      "provider-config model mismatch fails closed through existing TUI/runtime owner",
+      "new persistence-focused product-entry tests added"
     ],
-    "not_proven_by_this_slice": [
-      "MCP/plugin mutation dispatch",
-      "subagent mutation dispatch",
-      "network mutation dispatch",
-      "hosted-service mutation dispatch",
-      "complete installed-runtime acceptance",
-      "publication"
-    ]
+    "next_valid_action": "Pull exact LBE main and run focused product-entry/CLI plus full regression. Do not mark PASS until local evidence is clean."
   },
   "remaining_complete_runtime_sequence": [
-    "remaining governed integration dispatch: MCP/plugin, subagent, network, hosted-service",
-    "first-run/live persisted session flow",
-    "capability registry expansion behind governed dispatch",
-    "remaining LBE interface/control/evidence surfaces",
+    "capability registry expansion with concrete installed integration discovery/configuration behind governed dispatch",
+    "remaining LBE interface/control/evidence/diff/settings/session surfaces",
     "recovery + deterministic completion + TEMP/promotion integration",
     "installed-package acceptance"
   ],
@@ -106,7 +93,8 @@
     "DOCUMENTATION_AREA_COVERAGE": "PASS_9_OF_9",
     "WORKSPACE_HYGIENE_SLICE": "PASS",
     "MANDATORY_GOVERNED_MUTATION_DISPATCH": "PASS",
-    "NEXT_PRODUCT_SLICE": "NOT_ACTIVATED",
+    "GOVERNED_EXTERNAL_CAPABILITY_REGISTRATION": "PASS",
+    "FIRST_RUN_LIVE_SESSION_ENTRY": "OPEN_VALIDATION_PENDING",
     "PUBLICATION": "PAUSED"
   }
 }
