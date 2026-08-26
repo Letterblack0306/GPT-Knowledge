@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "project": "LoopTool",
-  "verified_at": "2026-08-26T03:03:00+04:00",
+  "verified_at": "2026-08-26T04:07:00+04:00",
   "source_repo": "Letterblack0306/tools",
   "source_branch": "master",
   "source_head": "ddf1c09873599efe5f4976f7dc6456a65474b9b6",
@@ -58,7 +58,13 @@
       "id": "historical-recall-guide",
       "title": "Historical recall and evidence retrieval guide",
       "classification": "DOCUMENTED_PROVEN_WORKFLOW_REFERENCE",
-      "detail": "GPT-Knowledge now records the bounded Memory/Cline/LoopTool recall workflow, provenance fields, historical_evidence_non_truth boundary, disagreement/correction retrieval rules, and current-truth reconciliation requirement in historical-recall-evidence-guide-2026-08-26.md."
+      "detail": "GPT-Knowledge records the bounded Memory/Cline/LoopTool recall workflow, provenance fields, historical_evidence_non_truth boundary, disagreement/correction retrieval rules, and current-truth reconciliation requirement in historical-recall-evidence-guide-2026-08-26.md."
+    },
+    {
+      "id": "memory-recall-skill",
+      "title": "LoopTool + Memory recall skill",
+      "classification": "DOCUMENTED_ACTIVE_SKILL_CONTRACT",
+      "detail": "project-engineering/looptool-memory-recall-skill.md was added in GPT-Knowledge commit a8a1063. It defines selective use of Memory MCP recall/search/timeline/conversation/message/related/sources alongside LoopTool, exact provenance descent, the corrected authority precedence runtime > workspace > session > project docs > historical evidence > derived memory > inference, and explicit boundaries against mandatory recall, stale-history promotion, fabricated memory and Memory-owned reasoning workflows."
     },
     {
       "id": "implementation-identity",
