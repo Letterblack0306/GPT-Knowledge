@@ -9,206 +9,35 @@
   "source_head": "ddf1c09873599efe5f4976f7dc6456a65474b9b6",
   "active_node": "bounded-execution",
   "nodes": [
-    {
-      "id": "purpose",
-      "lane": "Role",
-      "title": "Deterministic local execution bridge",
-      "status": "proven",
-      "summary": "Use LoopTool for local testing, debugging, repository inspection, validation, reproduction and bounded command execution. The reasoning agent decides what evidence is required; LoopTool transports one selected local action and returns evidence."
-    },
-    {
-      "id": "not-agent",
-      "lane": "Role",
-      "title": "Not the reasoning agent",
-      "status": "proven",
-      "summary": "LoopTool must not interpret the whole investigation, invent the next fix, or become a blind command/fix loop. Agents reason; the bridge executes and returns evidence."
-    },
-    {
-      "id": "authority-separation",
-      "lane": "Role",
-      "title": "Keep authorities separate",
-      "status": "proven",
-      "summary": "GPT-Knowledge owns reusable method/routing; Memory owns canonical historical retrieval; GitHub owns remote repo truth; active workspace owns local file/revision truth; BirdEye owns governed local evidence; LoopTool owns command transport/evidence return; live runtime/UI owns behavioral acceptance."
-    },
-    {
-      "id": "gpt-route",
-      "lane": "Before Execution",
-      "title": "Route through GPT-Knowledge",
-      "status": "proven",
-      "summary": "Start from 000_START_HERE.md and knowledge-index.json, then load only the smallest task-relevant method/skills. Project/feature work must route through project-feature-implementation-plan.md before implementation-oriented LoopTool use."
-    },
-    {
-      "id": "identity",
-      "lane": "Before Execution",
-      "title": "Establish exact identity",
-      "status": "proven",
-      "summary": "Before consequential execution establish repository, project, branch/revision, working directory and runtime identity as applicable. Do not execute against an assumed workspace."
-    },
-    {
-      "id": "historical-question",
-      "lane": "Before Execution",
-      "title": "Recover prior plan / decision when relevant",
-      "status": "proven",
-      "summary": "When the user asks what was planned, decided, rejected, corrected, tried or implemented before, scope the question to the exact project/workspace/feature first and retrieve historical evidence before reinventing the direction."
-    },
-    {
-      "id": "question-falsifier",
-      "lane": "Before Execution",
-      "title": "One question + observable",
-      "status": "proven",
-      "summary": "Define one bounded question, the authoritative observable, a falsifier and the acceptance condition before issuing the command. The command should answer that question rather than explore randomly."
-    },
-    {
-      "id": "use-cases",
-      "lane": "Use When",
-      "title": "Testing / debugging / inspection",
-      "status": "proven",
-      "summary": "Use when deterministic local evidence is required: reproduce a failure, inspect repo/runtime state, run focused tests, validate a fix, execute a bounded maintenance command, or collect stdout/stderr/exit-code/runtime evidence."
-    },
-    {
-      "id": "historical-retrieval",
-      "lane": "Use When",
-      "title": "Existing plan / decision / disagreement recall",
-      "status": "proven",
-      "summary": "LoopTool can compose GPT-Knowledge project mapping, BirdEye local identity and Memory historical retrieval to recover prior plans, decisions, corrections, rejected approaches and implementation evidence with provenance. LoopTool transports the bounded retrieval; Memory remains the historical owner."
-    },
-    {
-      "id": "historical-recall-guide",
-      "lane": "Historical Evidence",
-      "title": "Historical recall + evidence guide",
-      "status": "proven",
-      "priority": "REFERENCE",
-      "summary": "The LoopTool project now carries historical-recall-evidence-guide-2026-08-26.md covering Memory/Cline retrieval, provenance, bounded context, disagreement/correction chains, historical_evidence_non_truth classification and current-truth reconciliation."
-    },
-    {
-      "id": "source-selection",
-      "lane": "Historical Evidence",
-      "title": "Choose the owning historical source",
-      "status": "proven",
-      "summary": "Use the imported GPT/ChatGPT archive for broad conversation history, Cline session history for Cline/tool/runtime-session evidence, and Memory exact/semantic/hybrid retrieval as the canonical historical interface. Do not assume one source contains all history."
-    },
-    {
-      "id": "scope-before-ranking",
-      "lane": "Historical Evidence",
-      "title": "Scope before ranking",
-      "status": "proven",
-      "summary": "Bind retrieval to project/workspace/repository/feature/session/time anchors before semantic or keyword ranking. A high-scoring mixed-project session is not authoritative merely because it contains matching terms."
-    },
-    {
-      "id": "preserve-disagreement",
-      "lane": "Historical Evidence",
-      "title": "Preserve rejected and superseded history",
-      "status": "proven",
-      "summary": "Retrieve disagreement, correction, rejection and supersession context instead of hiding old statements. Historical evidence can remain searchable even when stale or wrong; retrieval does not promote it to current truth."
-    },
-    {
-      "id": "graph-context",
-      "lane": "Historical Evidence",
-      "title": "Use conversation graph context",
-      "status": "proven",
-      "summary": "ChatGPT archive conversations may branch. Do not infer chronology from SQLite row adjacency. When correction history matters, use conversation/node relationships and the relevant active branch."
-    },
-    {
-      "id": "truth-reconciliation",
-      "lane": "Historical Evidence",
-      "title": "History proposes; current evidence resolves truth",
-      "status": "proven",
-      "summary": "Historical plans and decisions answer what happened before and why. Present-state claims about branch, files, wiring, runtime health or current authority must be reconciled against GitHub, BirdEye/current workspace or live runtime evidence before being stated as truth."
-    },
-    {
-      "id": "explicit-looptool",
-      "lane": "Use When",
-      "title": "Explicit LoopTool execution",
-      "status": "proven",
-      "summary": "Use when the user explicitly asks for LoopTool / Workspace Launcher Loop / local execution, or when the routed workflow selects LoopTool as the direct local evidence path."
-    },
-    {
-      "id": "do-not-general",
-      "lane": "Do Not Use",
-      "title": "No local evidence requirement",
-      "status": "warning",
-      "summary": "Do not activate LoopTool for general coding questions, architecture discussion, documentation-only review, theoretical explanation, or code suggestions when no deterministic local execution evidence is required."
-    },
-    {
-      "id": "do-not-owner",
-      "lane": "Do Not Use",
-      "title": "Never investigation owner",
-      "status": "warning",
-      "summary": "Do not use it as a run-everything mechanism, a substitute for repository reasoning, a blind retry/fix loop, or a way to claim acceptance from a successful command alone."
-    },
-    {
-      "id": "birdeye-boundary",
-      "lane": "Do Not Use",
-      "title": "Do not duplicate BirdEye blindly",
-      "status": "warning",
-      "summary": "When BirdEye is the governed evidence layer, use its workspace/revision/search/inspect/run path when appropriate. Do not run the same command through BirdEye and LoopTool without an explicit cross-validation reason."
-    },
-    {
-      "id": "command-envelope",
-      "lane": "Transport",
-      "title": "AGENT COMMAND envelope",
-      "status": "proven",
-      "summary": "Execution request format: === AGENT COMMAND START ===, WORKING DIRECTORY: <absolute project path>, COMMAND: <PowerShell command>, === AGENT COMMAND END ===. Working directory is part of the execution contract."
-    },
-    {
-      "id": "bounded-execution",
-      "lane": "Transport",
-      "title": "Execute one bounded action",
-      "status": "current",
-      "priority": "CORE",
-      "summary": "Run the smallest action that can answer the defined question. Avoid broad mutation, destructive cleanup, or unrelated commands unless explicitly justified by the routed investigation."
-    },
-    {
-      "id": "result-envelope",
-      "lane": "Transport",
-      "title": "AGENT RESULT evidence",
-      "status": "proven",
-      "summary": "The documented result channel returns evidence shaped as AGENT RESULT with command status/hash, working directory, command, exit code and runtime output such as stdout/stderr. Treat the current implementation as something to verify, not assume from documentation."
-    },
-    {
-      "id": "classify-layer",
-      "lane": "Evidence",
-      "title": "Classify only observed layer",
-      "status": "proven",
-      "summary": "Command emitted is not command executed. Exit code 0 is not feature acceptance. A focused test pass is not end-to-end proof. Historical retrieval rank is not authority. Classify evidence only at the layer actually observed."
-    },
-    {
-      "id": "failure-separation",
-      "lane": "Evidence",
-      "title": "Separate transport/runtime failures",
-      "status": "proven",
-      "summary": "Distinguish command failure from bridge delivery failure, session loss, dependency/configuration block, stale test/fixture, harness failure and product/runtime failure before changing code."
-    },
-    {
-      "id": "workspace-safety",
-      "lane": "Evidence",
-      "title": "Workspace containment",
-      "status": "proven",
-      "summary": "Verify the command targets the intended active workspace and remains inside allowed workspace boundaries. Local evidence is only meaningful when workspace/revision identity is known."
-    },
-    {
-      "id": "lbe-delete-scope-boundary",
-      "lane": "Evidence",
-      "title": "Capability owner != exposed adapter scope",
-      "status": "warning",
-      "priority": "REVALIDATE WHEN USED",
-      "summary": "2026-08-26 LBE workspace evidence: canonical LBE already owns governed workspace.delete, while the exposed filesystem deletion MCP adapter was scoped to C:/Users/prave and therefore was not used against C:/Agents-Memory-Tool-v6-integration. Four generated directories remained; protected .agent/.cline state and lbe-tui/ were untouched. This is an adapter-scope boundary, not proof of a missing delete capability."
-    },
-    {
-      "id": "runtime-proof",
-      "lane": "Acceptance",
-      "title": "Live runtime closes behavior claims",
-      "status": "proven",
-      "summary": "When the claim is behavioral or user-visible, continue from LoopTool evidence to the required live runtime/rendered UI acceptance. LoopTool output alone does not prove behavior it did not observe."
-    },
-    {
-      "id": "implementation-drift",
-      "lane": "Acceptance",
-      "title": "Verify implementation drift",
-      "status": "next",
-      "priority": "WHEN NEEDED",
-      "summary": "Protocol documentation and Letterblack0306/tools may drift. Before implementation-specific claims, inspect current source/runtime and revalidate parser, readiness, duplicate suppression, timeout/cancellation and result-return behavior as relevant."
-    }
+    {"id":"purpose","lane":"Role","title":"Deterministic local execution bridge","status":"proven","summary":"Use LoopTool for local testing, debugging, repository inspection, validation, reproduction and bounded command execution. The reasoning agent decides what evidence is required; LoopTool transports one selected local action and returns evidence."},
+    {"id":"not-agent","lane":"Role","title":"Not the reasoning agent","status":"proven","summary":"LoopTool must not interpret the whole investigation, invent the next fix, or become a blind command/fix loop. Agents reason; the bridge executes and returns evidence."},
+    {"id":"authority-separation","lane":"Role","title":"Keep authorities separate","status":"proven","summary":"GPT-Knowledge owns reusable method/routing; Memory owns canonical historical retrieval; GitHub owns remote repo truth; active workspace owns local file/revision truth; BirdEye owns governed local evidence; LoopTool owns command transport/evidence return; live runtime/UI owns behavioral acceptance."},
+    {"id":"gpt-route","lane":"Before Execution","title":"Route through GPT-Knowledge","status":"proven","summary":"Start from 000_START_HERE.md and knowledge-index.json, then load only the smallest task-relevant method/skills. Project/feature work must route through project-feature-implementation-plan.md before implementation-oriented LoopTool use."},
+    {"id":"identity","lane":"Before Execution","title":"Establish exact identity","status":"proven","summary":"Before consequential execution establish repository, project, branch/revision, working directory and runtime identity as applicable. Do not execute against an assumed workspace."},
+    {"id":"historical-question","lane":"Before Execution","title":"Recover prior plan / decision when relevant","status":"proven","summary":"When the user asks what was planned, decided, rejected, corrected, tried or implemented before, scope the question to the exact project/workspace/feature first and retrieve historical evidence before reinventing the direction."},
+    {"id":"question-falsifier","lane":"Before Execution","title":"One question + observable","status":"proven","summary":"Define one bounded question, the authoritative observable, a falsifier and the acceptance condition before issuing the command. The command should answer that question rather than explore randomly."},
+    {"id":"use-cases","lane":"Use When","title":"Testing / debugging / inspection","status":"proven","summary":"Use when deterministic local evidence is required: reproduce a failure, inspect repo/runtime state, run focused tests, validate a fix, execute a bounded maintenance command, or collect stdout/stderr/exit-code/runtime evidence."},
+    {"id":"historical-retrieval","lane":"Use When","title":"Existing plan / decision / disagreement recall","status":"proven","summary":"LoopTool can compose GPT-Knowledge project mapping, BirdEye local identity and Memory historical retrieval to recover prior plans, decisions, corrections, rejected approaches and implementation evidence with provenance. LoopTool transports the bounded retrieval; Memory remains the historical owner."},
+    {"id":"historical-recall-guide","lane":"Historical Evidence","title":"Historical recall + evidence guide","status":"proven","priority":"REFERENCE","summary":"The LoopTool project carries historical-recall-evidence-guide-2026-08-26.md covering Memory/Cline retrieval, provenance, bounded context, disagreement/correction chains, historical_evidence_non_truth classification and current-truth reconciliation."},
+    {"id":"memory-recall-skill","lane":"Historical Evidence","title":"LoopTool + Memory recall skill contract","status":"proven","priority":"SKILL","summary":"GPT-Knowledge now includes project-engineering/looptool-memory-recall-skill.md. The skill tells reasoning agents when to use the seven Memory MCP capabilities with LoopTool, preserves exact provenance, uses runtime > workspace > session > project docs > historical evidence > derived memory > inference authority, and explicitly forbids mandatory recall, stale-history promotion and Memory-owned reasoning workflows."},
+    {"id":"source-selection","lane":"Historical Evidence","title":"Choose the owning historical source","status":"proven","summary":"Use the imported GPT/ChatGPT archive for broad conversation history, Cline session history for Cline/tool/runtime-session evidence, and Memory exact/semantic/hybrid retrieval as the canonical historical interface. Do not assume one source contains all history."},
+    {"id":"scope-before-ranking","lane":"Historical Evidence","title":"Scope before ranking","status":"proven","summary":"Bind retrieval to project/workspace/repository/feature/session/time anchors before semantic or keyword ranking. A high-scoring mixed-project session is not authoritative merely because it contains matching terms."},
+    {"id":"preserve-disagreement","lane":"Historical Evidence","title":"Preserve rejected and superseded history","status":"proven","summary":"Retrieve disagreement, correction, rejection and supersession context instead of hiding old statements. Historical evidence can remain searchable even when stale or wrong; retrieval does not promote it to current truth."},
+    {"id":"graph-context","lane":"Historical Evidence","title":"Use conversation graph context","status":"proven","summary":"ChatGPT archive conversations may branch. Do not infer chronology from SQLite row adjacency. When correction history matters, use conversation/node relationships and the relevant active branch."},
+    {"id":"truth-reconciliation","lane":"Historical Evidence","title":"History proposes; current evidence resolves truth","status":"proven","summary":"Historical plans and decisions answer what happened before and why. Present-state claims about branch, files, wiring, runtime health or current authority must be reconciled against GitHub, BirdEye/current workspace or live runtime evidence before being stated as truth."},
+    {"id":"explicit-looptool","lane":"Use When","title":"Explicit LoopTool execution","status":"proven","summary":"Use when the user explicitly asks for LoopTool / Workspace Launcher Loop / local execution, or when the routed workflow selects LoopTool as the direct local evidence path."},
+    {"id":"do-not-general","lane":"Do Not Use","title":"No local evidence requirement","status":"warning","summary":"Do not activate LoopTool for general coding questions, architecture discussion, documentation-only review, theoretical explanation, or code suggestions when no deterministic local execution evidence is required."},
+    {"id":"do-not-owner","lane":"Do Not Use","title":"Never investigation owner","status":"warning","summary":"Do not use it as a run-everything mechanism, a substitute for repository reasoning, a blind retry/fix loop, or a way to claim acceptance from a successful command alone."},
+    {"id":"birdeye-boundary","lane":"Do Not Use","title":"Do not duplicate BirdEye blindly","status":"warning","summary":"When BirdEye is the governed evidence layer, use its workspace/revision/search/inspect/run path when appropriate. Do not run the same command through BirdEye and LoopTool without an explicit cross-validation reason."},
+    {"id":"command-envelope","lane":"Transport","title":"AGENT COMMAND envelope","status":"proven","summary":"Execution request format: === AGENT COMMAND START ===, WORKING DIRECTORY: <absolute project path>, COMMAND: <PowerShell command>, === AGENT COMMAND END ===. Working directory is part of the execution contract."},
+    {"id":"bounded-execution","lane":"Transport","title":"Execute one bounded action","status":"current","priority":"CORE","summary":"Run the smallest action that can answer the defined question. Avoid broad mutation, destructive cleanup, or unrelated commands unless explicitly justified by the routed investigation."},
+    {"id":"result-envelope","lane":"Transport","title":"AGENT RESULT evidence","status":"proven","summary":"The documented result channel returns evidence shaped as AGENT RESULT with command status/hash, working directory, command, exit code and runtime output such as stdout/stderr. Treat the current implementation as something to verify, not assume from documentation."},
+    {"id":"classify-layer","lane":"Evidence","title":"Classify only observed layer","status":"proven","summary":"Command emitted is not command executed. Exit code 0 is not feature acceptance. A focused test pass is not end-to-end proof. Historical retrieval rank is not authority. Classify evidence only at the layer actually observed."},
+    {"id":"failure-separation","lane":"Evidence","title":"Separate transport/runtime failures","status":"proven","summary":"Distinguish command failure from bridge delivery failure, session loss, dependency/configuration block, stale test/fixture, harness failure and product/runtime failure before changing code."},
+    {"id":"workspace-safety","lane":"Evidence","title":"Workspace containment","status":"proven","summary":"Verify the command targets the intended active workspace and remains inside allowed workspace boundaries. Local evidence is only meaningful when workspace/revision identity is known."},
+    {"id":"lbe-delete-scope-boundary","lane":"Evidence","title":"Capability owner != exposed adapter scope","status":"warning","priority":"REVALIDATE WHEN USED","summary":"2026-08-26 LBE workspace evidence: canonical LBE already owns governed workspace.delete, while the exposed filesystem deletion MCP adapter was scoped to C:/Users/prave and therefore was not used against C:/Agents-Memory-Tool-v6-integration. Four generated directories remained; protected .agent/.cline state and lbe-tui/ were untouched. This is an adapter-scope boundary, not proof of a missing delete capability."},
+    {"id":"runtime-proof","lane":"Acceptance","title":"Live runtime closes behavior claims","status":"proven","summary":"When the claim is behavioral or user-visible, continue from LoopTool evidence to the required live runtime/rendered UI acceptance. LoopTool output alone does not prove behavior it did not observe."},
+    {"id":"implementation-drift","lane":"Acceptance","title":"Verify implementation drift","status":"next","priority":"WHEN NEEDED","summary":"Protocol documentation and Letterblack0306/tools may drift. Before implementation-specific claims, inspect current source/runtime and revalidate parser, readiness, duplicate suppression, timeout/cancellation and result-return behavior as relevant."}
   ],
   "edges": [
     {"from":"purpose","to":"not-agent","type":"boundary"},
@@ -219,7 +48,8 @@
     {"from":"historical-question","to":"historical-retrieval","type":"selection"},
     {"from":"historical-question","to":"question-falsifier","type":"workflow"},
     {"from":"historical-retrieval","to":"historical-recall-guide","type":"reference"},
-    {"from":"historical-recall-guide","to":"source-selection","type":"retrieval"},
+    {"from":"historical-recall-guide","to":"memory-recall-skill","type":"skill"},
+    {"from":"memory-recall-skill","to":"source-selection","type":"retrieval"},
     {"from":"source-selection","to":"scope-before-ranking","type":"retrieval"},
     {"from":"scope-before-ranking","to":"preserve-disagreement","type":"context"},
     {"from":"preserve-disagreement","to":"graph-context","type":"context"},
