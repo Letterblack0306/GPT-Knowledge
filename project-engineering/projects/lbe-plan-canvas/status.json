@@ -1,19 +1,19 @@
 {
-  "schema_version": 17,
+  "schema_version": 18,
   "project": "LBE Persistent Agent",
   "verified_at": "2026-08-26",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "source_branch": "main",
   "source_head": "c76d81ea942d0d8589469c80925b8d92b18cf69e",
   "local_workspace": "C:/Agents-Memory-Tool-v6-integration",
-  "overall_classification": "COMPLETE_LBE_AGENT_RUNTIME_CLOSED_SESSION_APPLICATION_CONTRACT_PASS_NO_ACTIVE_SLICE",
+  "overall_classification": "COMPLETE_LBE_AGENT_RUNTIME_CLOSED_NATIVE_CLINE_OPENTUI_INTEGRATION_DIRECTION_NOT_ACTIVE",
   "authority_note": "GPT-Knowledge is projection only. Canonical LBE source, machine governance, local runtime evidence, and acceptance checkpoints retain authority.",
   "core_doctrine": "Provider/agent reasons and proposes. LBE preserves project identity and intent, governs authority and consequences, executes only through approved adapters, records evidence, and owns deterministic completion truth.",
   "product_identity": {
     "product": "LBE",
-    "interface": "LBE interface",
+    "interface": "LBE-branded native Cline CLI/OpenTUI surface",
     "runtime_authority": "LBE",
-    "cline_role": "MECHANICS_REUSE_SOURCE_ONLY"
+    "cline_role": "BASE_REFERENCE_AND_BASE_UI_IMPLEMENTATION"
   },
   "machine_state": {
     "active_plan": "docs/acceptance/COMPLETE_LBE_AGENT_RUNTIME_GATE.md",
@@ -24,7 +24,6 @@
     "architecture_changes_allowed": true,
     "next_phase_locked": true,
     "last_completed_slice": "SESSION_APPLICATION_CONTRACT_UNIFICATION",
-    "last_completed_intent": "LBE-INTENT-SESSION-APPLICATION-CONTRACT-UNIFICATION-001",
     "next_product_slice": "NOT_ACTIVATED",
     "publication": "LOCKED",
     "publish_allowed": false
@@ -34,62 +33,71 @@
     "remote_alignment": "REMOTE_MAIN_VERIFIED_C76D81E",
     "tracked_worktree": "CLEAN_BY_USER_SUPPLIED_LOOPTOOL_EVIDENCE",
     "secondary_worktree": "PRESENT_NON_CANONICAL_PRESERVED",
-    "lbe_tui": "UNTRACKED_LOCAL_REFERENCE_ONLY_UNTOUCHED",
+    "lbe_tui": "USER_REVIEWED_HTML_VISUAL_REFERENCE_ONLY_NOT_IMPLEMENTATION_BASE",
     "lbe_core": "SEPARATE_REPOSITORY_REFERENCE_ONLY",
-    "stashes": "PRESERVED_UNTOUCHED",
-    "generated_residue": ["__pycache__/", ".pytest_cache/", "build/", "lbe_guard_inspector.egg-info/"],
-    "generated_residue_status": "PENDING_GOVERNED_DELETION_EXPOSED_ADAPTER_SCOPE_BLOCKER"
-  },
-  "completed_slices": {
-    "WORKSPACE_HYGIENE_GOVERNED_DELETION": {"status": "PASS", "focused_validation": "52 passed"},
-    "MANDATORY_GOVERNED_AGENT_MUTATION_DISPATCH": {"status": "PASS", "implementation_commit": "47885891848ec9a535a4e09694d3129b320da91a", "focused_validation": "80 passed", "full_validation": "713 passed"},
-    "GOVERNED_EXTERNAL_CAPABILITY_REGISTRATION": {"status": "PASS", "implementation_commit": "02c761ab5ee969edd1c24fed65a6a2d343d20927", "focused_validation": "58 passed", "full_validation": "732 passed"},
-    "FIRST_RUN_LIVE_SESSION_ENTRY": {"status": "PASS", "implementation_commit": "dbefbc0884cb78be5327100d3e9e648bea5a6e52", "focused_validation": "63 passed", "full_validation": "740 passed"},
-    "INSTALLED_CAPABILITY_REGISTRY_DISCOVERY": {"status": "PASS", "implementation_commit": "151136089b63fd9470d3a581a6ad6419cf567595", "focused_validation": "71 passed", "full_validation": "760 passed"},
-    "LBE_INTERFACE_CONTROL_EVIDENCE_SURFACES": {"status": "PASS", "implementation_commit": "9ca27a1498afa017ec0c5a449d80882ca0958a73", "focused_validation": "53 passed", "full_validation": "763 passed"},
-    "RECOVERY_COMPLETION_PROMOTION_INTEGRATION": {"status": "PASS", "canonical_commit": "cc3a72885721d7f07b560f67590f4bdb86d0a03f", "focused_validation": "59 passed", "full_validation": "767 passed"},
-    "INSTALLED_PACKAGE_END_TO_END_ACCEPTANCE": {"status": "PASS", "checkpoint_commit": "49ca39b6b8b0d9417563f2af63bd6349dff3b929", "full_validation": "767 passed"},
-    "SESSION_APPLICATION_CONTRACT_UNIFICATION": {
-      "status": "PASS",
-      "implementation_commit": "dc4c2a99c09266d595214f1f7147e153cb7b4888",
-      "focused_validation": "74 passed",
-      "full_source_validation": "773 passed",
-      "fresh_wheel_build": "PASS",
-      "fresh_installed_validation": "74 passed",
-      "checkpoint": "docs/acceptance/SESSION_APPLICATION_CONTRACT_UNIFICATION_CHECKPOINT.md"
-    },
-    "OBSOLETE_AGENT_CLINE_ROUTING_RETIREMENT": {
-      "status": "PASS",
-      "commit": "c76d81ea942d0d8589469c80925b8d92b18cf69e",
-      "result": "seven obsolete .agent/.cline routing files removed; live authority documents repaired; historical acceptance records preserved"
-    }
+    "stashes": "PRESERVED_UNTOUCHED"
   },
   "current_stage": {
     "id": "runtime-closed",
     "title": "Complete LBE runtime closed",
     "status": "CLOSED_NO_ACTIVE_PRODUCT_SLICE",
     "canonical_head": "c76d81ea942d0d8589469c80925b8d92b18cf69e",
-    "last_completed_slice": "SESSION_APPLICATION_CONTRACT_UNIFICATION",
-    "next_candidate": null
-  },
-  "documentation_state": {
-    "current_status": "ALIGNED_WITH_CLOSED_GATE",
-    "implementation_plan": "STALE_RELATIVE_TO_CLOSED_MACHINE_GATE",
-    "obsolete_agent_cline_live_routing": "REPAIRED_AT_C76D81E",
-    "historical_stage_0_stage_1_references": "PRESERVED_AS_HISTORICAL_EVIDENCE"
+    "next_candidate": "CLINE_CLI_OPENTUI_LBE_INTEGRATION"
   },
   "cline_surface": {
-    "accepted_direction": "LBE-INTENT-CLINE-AGENTRUNTIME-001",
-    "status": "ACCEPTED_PRODUCT_DIRECTION_NOT_ACTIVE",
-    "audited_revision": "8bbdde2a5c1f972864fe1b954f639c21fac61a40",
-    "current_upstream_head_observed": "491b30b806fdb8c93513f821f2b87d63a61542f5",
-    "reject_as_authority": ["Cline-native filesystem mutation", "Cline-native shell/process execution", "Cline canonical session ownership", "Cline completion authority", "Cline-branded LBE product/interface identity"]
+    "status": "DOCUMENTED_INTEGRATION_DIRECTION_NOT_ACTIVE",
+    "base_reference": "Cline CLI source",
+    "base_implementation": "native Cline OpenTUI + React terminal surface",
+    "runtime_bridge": "Cline runtime callback/event seam",
+    "reference_paths": [
+      "apps/cli/src/runtime/run-interactive.ts",
+      "apps/cli/src/tui/index.tsx"
+    ],
+    "sdk_roles": {
+      "@cline/sdk": "public SDK surface",
+      "@cline/core": "sessions, orchestration, persistence and built-in runtime services",
+      "@cline/agents": "agent loop"
+    },
+    "existing_lbe_proof": "bounded @cline/agents worker lower runtime path",
+    "native_surface_state": "NOT_IMPLEMENTED_IN_LBE_REPOSITORY",
+    "event_seam": [
+      "onSubmit",
+      "onAbort",
+      "provider/model changes",
+      "streaming agent events",
+      "pending tool approvals",
+      "session lifecycle"
+    ],
+    "target_path": [
+      "Cline CLI/OpenTUI",
+      "Cline callback/event bridge",
+      "LBE session/runtime adapter",
+      "LBE permission boundary",
+      "LBE governed tools",
+      "LBE receipts/evidence/completion"
+    ],
+    "permission_rule": "Explicit LBE tool policies/custom approval handling must override unsafe native defaults.",
+    "branding_rule": "Keep native Cline/OpenTUI mechanics, replace product identity with LBE branding.",
+    "tagline": "Your agents propose. LBE decides."
+  },
+  "lbe_interface_direction": {
+    "status": "DOCUMENTED_NOT_ACTIVE",
+    "title": "Native Cline/OpenTUI base with LBE integration",
+    "summary": "Use the real Cline CLI/OpenTUI surface as the base implementation, keep its terminal UX and event mechanics, apply LBE branding, and route consequential operations through existing LBE authority owners.",
+    "future_ui_question": "Activate a governed CLINE_CLI_OPENTUI_LBE_INTEGRATION slice that maps native Cline UI events into the LBE session/runtime adapter and preserves LBE permission, governed execution, receipt, evidence and completion authority.",
+    "reject": [
+      "Python/Textual replacement TUI",
+      "HTML look-alike as implementation",
+      "hand-built Cline clone",
+      "dashboard-first LBE shell",
+      "Cline-native mutation bypass",
+      "Cline default auto-approval as LBE authorization"
+    ]
   },
   "next_gate_state": {
     "COMPLETE_LBE_AGENT_RUNTIME": "CLOSED_PASS",
-    "SESSION_APPLICATION_CONTRACT_UNIFICATION": "PASS",
     "NEXT_PRODUCT_SLICE": "NOT_ACTIVATED",
-    "CLINE_AGENTRUNTIME_REUSE": "ACCEPTED_DIRECTION_NOT_ACTIVE",
+    "CLINE_CLI_OPENTUI_LBE_INTEGRATION": "CANDIDATE_NOT_ACTIVATED",
     "PUBLICATION": "LOCKED"
   }
 }
