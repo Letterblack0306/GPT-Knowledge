@@ -2,10 +2,10 @@
 
 ## Authority and routing
 
-- Last reconciled: 2026-08-25
+- Last reconciled: 2026-08-26
 - Project repository: `Letterblack0306/LBE_Presistent_Agent_wall`
-- Canonical remote `main`: `183c86178d3f13d0a76a04cb811f59074e0d226e`
-- Authority: this is a short navigation mirror. Live LBE source, Git/workspace state, `.lbe/governance/implementation-gates.json`, machine-selected acceptance records, validation, and runtime evidence are authoritative.
+- Canonical remote `main`: `c76d81ea942d0d8589469c80925b8d92b18cf69e`
+- Authority: this is a projection/navigation mirror only. Live LBE source, Git/workspace state, `.lbe/governance/implementation-gates.json`, machine-selected acceptance records, validation, and runtime evidence are authoritative.
 
 ```text
 GPT-Knowledge -> method, reference, project projection
@@ -17,126 +17,110 @@ LoopTool/local -> test/debug/runtime/workspace evidence
 
 ```text
 active_plan: docs/acceptance/COMPLETE_LBE_AGENT_RUNTIME_GATE.md
-active_phase: COMPLETE_LBE_AGENT_RUNTIME_IMPLEMENTATION
-active_slice: WORKSPACE_HYGIENE_GOVERNED_DELETION
-status: OPEN
-implementation_allowed: true within active slice
-architecture_changes_allowed: true (explicit user authorization)
+active_phase: COMPLETE_LBE_AGENT_RUNTIME
+active_slice: NONE
+status: CLOSED
+implementation_allowed: false
 next_phase_locked: true
-publish_allowed: false
+last_completed_slice: SESSION_APPLICATION_CONTRACT_UNIFICATION
+next_slice: NOT_ACTIVATED
+publication: LOCKED
 ```
 
-Accepted baseline retained by machine governance:
+The complete runtime gate is closed. No next product slice is active.
+
+## Session/application contract unification
+
+`SESSION_APPLICATION_CONTRACT_UNIFICATION` is `PASS`.
+
+Canonical implementation:
+`dc4c2a99c09266d595214f1f7147e153cb7b4888`
+
+Acceptance checkpoint:
+`docs/acceptance/SESSION_APPLICATION_CONTRACT_UNIFICATION_CHECKPOINT.md`
+
+Recorded validation:
 
 ```text
-R3-R6F: PROVEN_COMPLETE
-CLI_NORMAL_PATH_ACCEPTANCE: PROVEN_COMPLETE
-R7_INSTALLED_END_TO_END_ACCEPTANCE: PASS
-RELEASE_PACKAGE_CONTRACT_REPAIR: PASS
-RELEASE_PACKAGE_READINESS_ACCEPTANCE: PASS
-PUBLICATION_PRECHECK: PASS
-DOCTRINE_TO_PROVIDER_CONTEXT_BRIDGE: PASS
+focused lifecycle / CLI / Textual / provider / session = 74 passed
+full source regression                                 = 773 passed
+fresh wheel build                                      = PASS
+fresh installed lifecycle regression                   = 74 passed
+installed lbe entrypoint                               = PASS
+git diff check                                         = PASS
 ```
 
-## Workspace hygiene slice
+The shared session application service composes existing LBE owners; it does not replace persisted session, provider-registry, or persistent-turn authority.
 
-The prior doctrine-to-provider context bridge is complete and recorded `PASS`. The current machine-selected slice is `WORKSPACE_HYGIENE_GOVERNED_DELETION`.
+## Obsolete `.agent/.cline` routing retirement
 
-Canonical implementation lineage:
+Canonical commit:
 
 ```text
-17d6e7c09987b6f6d9ea857a130023d21412c566
-feat: govern workspace deletion through modify capability
+c76d81ea942d0d8589469c80925b8d92b18cf69e
+docs: retire obsolete agent routing aliases
 ```
 
-Current live-document alignment:
+Seven obsolete `.agent/.cline` routing files were removed and the live authority documents were repaired. Historical Stage 0/Stage 1 and later acceptance evidence remains historical evidence and was not rewritten to pretend those paths never existed.
+
+Current live routing no longer depends on the retired aliases. Canonical authority is routed through the root structural index, project intent ledger, machine governance, current status, and applicable acceptance/contract records.
+
+## Workspace state
+
+User-supplied LoopTool evidence after the routing cleanup reported:
 
 ```text
-183c86178d3f13d0a76a04cb811f59074e0d226e
-docs: align current projections with hygiene gate
+HEAD        = c76d81ea942d0d8589469c80925b8d92b18cf69e
+origin/main = c76d81ea942d0d8589469c80925b8d92b18cf69e
+ahead/behind = 0 / 0
+tracked dirty files = 0
 ```
 
-The slice remains `OPEN`; implementation presence is not acceptance proof. Required evidence still includes bounded inside-workspace deletion, outside/protected/escape denial, authorization before execution, bypass unavailability, correlated success/failure receipts, and preservation of protected user work.
+Preserved non-canonical/local material:
 
-## Documentation authority reconciliation
+- `lbe-tui/` — untracked reference only; untouched.
+- secondary TUI worktree — present, non-canonical, untouched.
+- stashes — preserved, untouched.
+- `__pycache__/`, `.pytest_cache/`, `build/`, `lbe_guard_inspector.egg-info/` — generated residue still present.
 
-The original documentation objective is now being treated as an authority/routing problem, not generic filesystem cleanup.
+The generated residue remains pending governed deletion because the currently exposed filesystem deletion adapter scope does not reach the LBE workspace root. This does not mean canonical LBE lacks a governed deletion owner.
 
-Live human-readable projections were aligned in `183c861`:
+## Documentation state
 
-- `docs/CURRENT_STATUS.md`
-- `docs/IMPLEMENTATION_PLAN.md`
-- `docs/acceptance/CURRENT_IMPLEMENTATION_GATE.md`
-- `docs/acceptance/CURRENT_AGENT_EXECUTION_GATE.md`
+`docs/CURRENT_STATUS.md` is aligned with the closed gate.
 
-Current canonical navigation is:
+`docs/IMPLEMENTATION_PLAN.md` remains stale relative to current machine governance and still requires bounded reconciliation. GPT-Knowledge must not treat its old `OPEN` workspace-hygiene language as current authorization.
+
+Historical acceptance evidence remains historical unless the current machine gate explicitly selects it.
+
+## Cline reuse boundary
+
+Cline remains a mechanics/reuse source only.
 
 ```text
-.agent/PROJECT_CONTEXT.md
- -> .lbe/governance/workspace-lock.json
- -> .lbe/governance/implementation-gates.json
- -> exact machine-selected active_plan
- -> docs/README.md and the relevant live owner
+PRODUCT           = LBE
+INTERFACE         = LBE interface
+RUNTIME AUTHORITY = LBE
+CLINE ROLE        = selective mechanics reuse/adaptation only
 ```
 
-`docs/README.md` is the single documentation library entrypoint and states the one-fact/one-live-owner rule. `docs/LBE_AGENT_LIFECYCLE.md` owns operational turn flow. `docs/IMPLEMENTATION_PLAN.md` owns ordered work. `docs/CURRENT_STATUS.md` is the human current-state projection. The machine gate alone owns active authorization.
+The recorded Cline AgentRuntime direction remains accepted but **not active**. No current machine slice authorizes Cline runtime adaptation.
 
-### Acceptance corpus classification
-
-Latest read-only LoopTool classification reported:
+## Exact current resume point
 
 ```text
-tracked acceptance documents = 55
-machine-referenced documents = 4
-unreferenced documents = 51
+COMPLETE_LBE_AGENT_RUNTIME = CLOSED / PASS
+SESSION_APPLICATION_CONTRACT_UNIFICATION = PASS
+OBSOLETE AGENT/CLINE ROUTING = REMOVED / CANONICALIZED
+ACTIVE_SLICE = NONE
+NEXT_PRODUCT_SLICE = NOT_ACTIVATED
+PUBLICATION = LOCKED
 ```
 
-Machine-referenced paths:
+Remaining bounded reconciliation/workspace-hygiene items are:
 
-```text
-docs/acceptance/COMPLETE_LBE_AGENT_RUNTIME_GATE.md
-docs/acceptance/PUBLICATION_EXECUTION_AUTHORIZATION_GATE.md
-docs/acceptance/PUBLICATION_VERSION_2_0_3_PREPARATION_GATE.md
-docs/acceptance/TERMINAL_WORKSPACE_FOUNDATION_GATE.md
-```
+1. reconcile stale `docs/IMPLEMENTATION_PLAN.md` against the closed machine gate;
+2. remove generated build/cache residue only through an authorized governed deletion path;
+3. preserve `lbe-tui/`, the secondary worktree, and stashes unless separately classified/authorized.
 
-Important: machine-referenced does not mean active. The machine gate explicitly classifies `TERMINAL_WORKSPACE_FOUNDATION_GATE.md` as `SUPERSEDED_BY_COMPLETE_RUNTIME_GATE`.
-
-The next documentation step is to resolve legacy gates that still contain `OPEN`, `PENDING`, or `UNVERIFIED` language against later accepted evidence, repair inbound links, then move completed/superseded acceptance evidence to `docs/history/legacy-acceptance/`. Preserve historical evidence; do not delete it merely because it is no longer current authority.
-
-## Deep-research reconciliation
-
-Earlier research input: **“Reconstruct, Verify, and Consolidate the LBE Workspace Documentation.”**
-
-Current evidence supports its core method:
-
-- current workspace/repository evidence outranks historical conversation, old plans, summaries, and prior agent reports;
-- use explicit evidence classes rather than treating documentation as proof;
-- documentation is not authorization;
-- installation is not enforcement;
-- tests existing is not the same as tests passing;
-- historical records should be retained as evidence but structurally separated from current authority.
-
-The research remains advisory. Every current-state claim must be re-verified against canonical `main`, machine governance, and live/runtime evidence before action.
-
-## Repository review findings
-
-Current remote review confirms:
-
-- `docs/README.md` is the documentation router and learning spine.
-- `docs/LBE_AGENT_LIFECYCLE.md` preserves the core boundary: provider reasons; LBE owns identity, authorization, governed execution, receipts, persistence, and deterministic completion truth.
-- `docs/acceptance/COMPLETE_LBE_AGENT_RUNTIME_GATE.md` records doctrine bridge `PASS` and workspace hygiene `IN PROGRESS`.
-- `docs/design/AGENT_AGENCY_LBE_AUTHORITY_SEPARATION.md` remains a **proposed follow-on architecture review**, not an active gate.
-- GPT-Knowledge previously linked to `docs/ARCHITECTURE.md`, `docs/RUNTIME_CONTRACT.md`, and `docs/MODES.md`; those paths are not tracked on current canonical remote `main`, so they have been removed from the GPT-Knowledge canonical reference set.
-
-## Exact resume point
-
-```text
-1. Reconcile old OPEN/PENDING/UNVERIFIED acceptance documents against later accepted evidence.
-2. Repair inbound links and any machine-governance references before moving files.
-3. Relocate proven historical acceptance evidence to docs/history/legacy-acceptance/.
-4. Validate links/routing and ensure no historical document can present itself as current authority.
-5. Separately complete the machine-required workspace-hygiene deletion acceptance evidence before advancing the runtime gate.
-```
-
-Do not resume publication/version progression while the complete-runtime workspace-hygiene slice remains open.
+No new product slice should be inferred from this mirror.
