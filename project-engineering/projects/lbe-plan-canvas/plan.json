@@ -1,7 +1,7 @@
 {
-  "schema_version": 15,
+  "schema_version": 16,
   "project": "LBE Persistent Agent",
-  "purpose": "Persistent projection of LBE product intent, structural authority, evidence-gated progression, Cline reuse boundaries, and current closure state. Canonical LBE repository/runtime evidence remains authoritative.",
+  "purpose": "Persistent projection of LBE product intent, structural authority, evidence-gated progression, Cline reuse boundaries, current closure state, and documented terminal UI direction. Canonical LBE repository/runtime evidence remains authoritative.",
   "authority_rule": "Current workspace/runtime evidence and .lbe/governance/implementation-gates.json outrank this projection. PROJECT_INDEX.md defines structural responsibility. PROJECT_INTENT_LEDGER.md defines durable project intent. GPT-Knowledge is projection only.",
   "updated": "2026-08-26",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
@@ -10,8 +10,21 @@
   "local_workspace": "C:/Agents-Memory-Tool-v6-integration",
   "active_node": "runtime-closed",
   "core_doctrine": "Agent/provider reasons and proposes. LBE preserves project identity and intent, governs authority and consequences, executes only through approved adapters, records receipts/evidence, and owns deterministic completion truth.",
-  "product_identity": {"product": "LBE", "interface": "LBE interface", "runtime_authority": "LBE", "cline_role": "Mechanics/reuse source only; not product identity and not interface identity."},
-  "pre_mutation_governance": {"name": "INTENT_AND_STRUCTURE_BEFORE_MUTATION", "status": "CANONICAL", "owners": ["PROJECT_INDEX.md", "docs/governance/PROJECT_INTENT_LEDGER.md", ".lbe/governance/implementation-gates.json"]},
+  "product_identity": {
+    "product": "LBE",
+    "interface": "LBE interface",
+    "runtime_authority": "LBE",
+    "cline_role": "Mechanics/reuse source only; not product identity and not interface identity."
+  },
+  "pre_mutation_governance": {
+    "name": "INTENT_AND_STRUCTURE_BEFORE_MUTATION",
+    "status": "CANONICAL",
+    "owners": [
+      "PROJECT_INDEX.md",
+      "docs/governance/PROJECT_INTENT_LEDGER.md",
+      ".lbe/governance/implementation-gates.json"
+    ]
+  },
   "machine_gate": {
     "status": "CLOSED",
     "active_phase": "COMPLETE_LBE_AGENT_RUNTIME",
@@ -61,7 +74,23 @@
     "status": "ACCEPTED_PRODUCT_DIRECTION_NOT_ACTIVE",
     "audited_revision": "8bbdde2a5c1f972864fe1b954f639c21fac61a40",
     "current_upstream_head_observed": "491b30b806fdb8c93513f821f2b87d63a61542f5",
-    "reject": ["Cline-native filesystem mutation as canonical", "Cline-native shell/process execution as canonical", "Cline canonical session ownership", "Cline authorization authority", "Cline completion authority", "Cline-branded LBE product/interface identity"]
+    "reject": [
+      "Cline-native filesystem mutation as canonical",
+      "Cline-native shell/process execution as canonical",
+      "Cline canonical session ownership",
+      "Cline authorization authority",
+      "Cline completion authority",
+      "Cline-branded LBE product/interface identity"
+    ]
+  },
+  "ui_plan": {
+    "id": "lbe-terminal-tui",
+    "title": "LBE Terminal TUI",
+    "classification": "DOCUMENTED_UI_DIRECTION",
+    "implementation_state": "NOT_ACTIVE",
+    "plan_file": "LBE_TERMINAL_TUI_UI_PLAN.md",
+    "reference_basis": "User-reviewed HTML terminal reference from 2026-08-26",
+    "product_rule": "Regular coding-agent terminal UX first; LBE branding and boundary behavior are integrated minimally and inline."
   },
   "remaining_product_sequence": [],
   "nodes": [
@@ -72,6 +101,7 @@
     {"id": "generated-residue", "parent": "runtime-closed", "lane": "Workspace hygiene", "title": "Generated residue pending governed deletion", "status": "warning", "priority": "PENDING"},
     {"id": "implementation-plan-drift", "parent": "runtime-closed", "lane": "Documentation", "title": "Implementation plan drift", "status": "warning", "priority": "RECONCILE"},
     {"id": "cline-agent-runtime", "parent": "runtime-closed", "lane": "Accepted direction", "title": "Governed Cline AgentRuntime reuse", "status": "accepted-direction", "priority": "NOT ACTIVE"},
-    {"id": "lbe-interface", "parent": "authority", "lane": "Product identity", "title": "LBE interface identity", "status": "proven", "priority": "ACCEPTED"}
+    {"id": "lbe-interface", "parent": "authority", "lane": "Product identity", "title": "LBE interface identity", "status": "proven", "priority": "ACCEPTED"},
+    {"id": "lbe-terminal-tui-plan", "parent": "lbe-interface", "lane": "UI Plan", "title": "Terminal-first LBE TUI direction", "status": "documented-direction", "priority": "NOT ACTIVE"}
   ]
 }
