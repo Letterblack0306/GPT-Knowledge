@@ -1,7 +1,7 @@
 {
-  "schema_version": 16,
+  "schema_version": 17,
   "project": "LBE Persistent Agent",
-  "purpose": "Persistent projection of LBE product intent, structural authority, evidence-gated progression, Cline reuse boundaries, current closure state, and documented terminal UI direction. Canonical LBE repository/runtime evidence remains authoritative.",
+  "purpose": "Persistent projection of LBE product intent, structural authority, evidence-gated progression, native Cline CLI/OpenTUI base integration direction, and current closure state. Canonical LBE repository/runtime evidence remains authoritative.",
   "authority_rule": "Current workspace/runtime evidence and .lbe/governance/implementation-gates.json outrank this projection. PROJECT_INDEX.md defines structural responsibility. PROJECT_INTENT_LEDGER.md defines durable project intent. GPT-Knowledge is projection only.",
   "updated": "2026-08-26",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
@@ -12,9 +12,11 @@
   "core_doctrine": "Agent/provider reasons and proposes. LBE preserves project identity and intent, governs authority and consequences, executes only through approved adapters, records receipts/evidence, and owns deterministic completion truth.",
   "product_identity": {
     "product": "LBE",
-    "interface": "LBE interface",
+    "interface": "LBE-branded native Cline CLI/OpenTUI surface",
     "runtime_authority": "LBE",
-    "cline_role": "Mechanics/reuse source only; not product identity and not interface identity."
+    "cline_role": "BASE_REFERENCE_AND_BASE_UI_IMPLEMENTATION",
+    "branding_rule": "Retain native Cline CLI/OpenTUI mechanics; present LBE product identity and branding.",
+    "authority_rule": "Cline UI/runtime mechanics do not replace LBE permission, governed execution, receipt, evidence, or completion ownership."
   },
   "pre_mutation_governance": {
     "name": "INTENT_AND_STRUCTURE_BEFORE_MUTATION",
@@ -30,6 +32,8 @@
     "active_phase": "COMPLETE_LBE_AGENT_RUNTIME",
     "active_slice": "NONE",
     "implementation_allowed": false,
+    "architecture_changes_allowed": true,
+    "next_phase_locked": true,
     "last_completed_slice": "SESSION_APPLICATION_CONTRACT_UNIFICATION",
     "next_slice": "NOT_ACTIVATED",
     "publication": "LOCKED"
@@ -39,7 +43,7 @@
     "alignment": "REMOTE_MAIN_VERIFIED_C76D81E",
     "secondary_worktree": "Preserved non-canonical worktree; no current mutation authority.",
     "lbe_core": "Separate read-only reference repository.",
-    "lbe_tui": "User-provided local reference only; untracked, not canonical, do not stage/commit/delete.",
+    "lbe_tui": "User-provided local visual reference only; not the implementation base.",
     "generated_residue": "Present and pending governed deletion; current exposed filesystem adapter scope does not reach LBE workspace root."
   },
   "active_intent": null,
@@ -64,44 +68,70 @@
     "next_product_slice": "NOT_ACTIVATED",
     "publication": "LOCKED"
   },
-  "documentation_reconciliation": {
-    "obsolete_agent_cline_live_routes": "REPAIRED",
-    "implementation_plan": "STALE_REQUIRES_BOUNDED_RECONCILIATION",
-    "historical_acceptance_records": "PRESERVE_AS_HISTORICAL_EVIDENCE"
-  },
-  "cline_reuse": {
-    "accepted_intent": "LBE-INTENT-CLINE-AGENTRUNTIME-001",
-    "status": "ACCEPTED_PRODUCT_DIRECTION_NOT_ACTIVE",
-    "audited_revision": "8bbdde2a5c1f972864fe1b954f639c21fac61a40",
-    "current_upstream_head_observed": "491b30b806fdb8c93513f821f2b87d63a61542f5",
-    "reject": [
-      "Cline-native filesystem mutation as canonical",
-      "Cline-native shell/process execution as canonical",
-      "Cline canonical session ownership",
-      "Cline authorization authority",
-      "Cline completion authority",
-      "Cline-branded LBE product/interface identity"
-    ]
+  "cline_integration": {
+    "status": "DOCUMENTED_INTEGRATION_DIRECTION_NOT_ACTIVE",
+    "base_surface": "Cline CLI source + native OpenTUI",
+    "base_runtime_seam": "Cline runtime callback/event bridge",
+    "package_roles": {
+      "@cline/sdk": "public SDK surface",
+      "@cline/core": "sessions, orchestration, persistence, built-in tools and runtime services",
+      "@cline/agents": "agent loop",
+      "cline_cli_source": "native OpenTUI terminal product surface"
+    },
+    "reference_path": [
+      "apps/cli/src/runtime/run-interactive.ts",
+      "apps/cli/src/tui/index.tsx",
+      "OpenTUI + React terminal components"
+    ],
+    "target_bridge": [
+      "Cline CLI source + native OpenTUI",
+      "Cline runtime callback/event bridge",
+      "LBE session/runtime adapter",
+      "LBE permission boundary",
+      "LBE governed tools",
+      "LBE receipts/evidence/completion"
+    ],
+    "event_mapping": [
+      "onSubmit",
+      "onAbort",
+      "provider/model changes",
+      "streaming agent events",
+      "pending tool approvals",
+      "session lifecycle"
+    ],
+    "existing_proof": "Bounded @cline/agents worker proves the lower runtime path only; native Cline CLI/OpenTUI integration is not yet implemented.",
+    "permission_rule": "LBE must supply explicit tool policies or custom approval handling; Cline defaults cannot become LBE authorization.",
+    "no_bypass_rule": "No Cline-native filesystem/process/Git mutation path may bypass LBE governed dispatch.",
+    "branding": {
+      "product_name": "LBE",
+      "tagline": "Your agents propose. LBE decides.",
+      "rule": "Replace Cline product branding at product identity surfaces while retaining native Cline/OpenTUI mechanics."
+    }
   },
   "ui_plan": {
-    "id": "lbe-terminal-tui",
-    "title": "LBE Terminal TUI",
-    "classification": "DOCUMENTED_UI_DIRECTION",
+    "id": "lbe-native-cline-opentui",
+    "title": "LBE on native Cline CLI/OpenTUI",
+    "classification": "DOCUMENTED_INTEGRATION_DIRECTION",
     "implementation_state": "NOT_ACTIVE",
     "plan_file": "LBE_TERMINAL_TUI_UI_PLAN.md",
-    "reference_basis": "User-reviewed HTML terminal reference from 2026-08-26",
-    "product_rule": "Regular coding-agent terminal UX first; LBE branding and boundary behavior are integrated minimally and inline."
+    "reference_basis": "Native Cline CLI/OpenTUI architecture plus user-reviewed LBE visual branding reference",
+    "product_rule": "Use Cline CLI/OpenTUI as the actual base implementation; integrate LBE branding and authority through the runtime callback/event seam. Do not build a clone."
+  },
+  "next_candidate_slice": {
+    "id": "CLINE_CLI_OPENTUI_LBE_INTEGRATION",
+    "status": "CANDIDATE_NOT_ACTIVATED",
+    "objective": "Integrate the native Cline CLI/OpenTUI surface with LBE session/runtime, permission, governed tool, receipt, evidence and completion owners.",
+    "activation_requirement": "Canonical machine gate must explicitly activate the slice before implementation."
   },
   "remaining_product_sequence": [],
   "nodes": [
     {"id": "authority", "parent": null, "lane": "Authority", "title": "Canonical project authority", "status": "proven", "priority": "CANONICAL"},
-    {"id": "session-application-contract-unification", "parent": "authority", "lane": "Completed", "title": "Session/application contract unification", "status": "proven", "priority": "PASS"},
-    {"id": "obsolete-agent-cline-routing-retirement", "parent": "session-application-contract-unification", "lane": "Completed", "title": "Obsolete agent/Cline routing retired", "status": "proven", "priority": "PASS"},
-    {"id": "runtime-closed", "parent": "obsolete-agent-cline-routing-retirement", "lane": "Current", "title": "Complete runtime gate closed", "status": "proven", "priority": "CLOSED"},
-    {"id": "generated-residue", "parent": "runtime-closed", "lane": "Workspace hygiene", "title": "Generated residue pending governed deletion", "status": "warning", "priority": "PENDING"},
-    {"id": "implementation-plan-drift", "parent": "runtime-closed", "lane": "Documentation", "title": "Implementation plan drift", "status": "warning", "priority": "RECONCILE"},
-    {"id": "cline-agent-runtime", "parent": "runtime-closed", "lane": "Accepted direction", "title": "Governed Cline AgentRuntime reuse", "status": "accepted-direction", "priority": "NOT ACTIVE"},
-    {"id": "lbe-interface", "parent": "authority", "lane": "Product identity", "title": "LBE interface identity", "status": "proven", "priority": "ACCEPTED"},
-    {"id": "lbe-terminal-tui-plan", "parent": "lbe-interface", "lane": "UI Plan", "title": "Terminal-first LBE TUI direction", "status": "documented-direction", "priority": "NOT ACTIVE"}
+    {"id": "runtime-closed", "parent": "authority", "lane": "Current", "title": "Complete runtime gate closed", "status": "proven", "priority": "CLOSED"},
+    {"id": "lbe-interface", "parent": "authority", "lane": "Product identity", "title": "LBE product identity", "status": "proven", "priority": "ACCEPTED"},
+    {"id": "cline-native-base", "parent": "lbe-interface", "lane": "UI Integration", "title": "Native Cline CLI/OpenTUI is the base surface", "status": "documented-direction", "priority": "BASE"},
+    {"id": "cline-runtime-seam", "parent": "cline-native-base", "lane": "UI Integration", "title": "Cline runtime callback/event seam", "status": "documented-direction", "priority": "INTEGRATION SEAM"},
+    {"id": "lbe-runtime-adapter", "parent": "cline-runtime-seam", "lane": "UI Integration", "title": "LBE session/runtime adapter", "status": "candidate", "priority": "NOT ACTIVE"},
+    {"id": "lbe-authority-bridge", "parent": "lbe-runtime-adapter", "lane": "UI Integration", "title": "LBE permission → governed tools → receipts/evidence/completion", "status": "candidate", "priority": "NOT ACTIVE"},
+    {"id": "lbe-branding", "parent": "cline-native-base", "lane": "Product identity", "title": "LBE branding on native Cline surface", "status": "documented-direction", "priority": "APPROVED DIRECTION"}
   ]
 }
