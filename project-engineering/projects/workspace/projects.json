@@ -25,9 +25,9 @@
     {
       "id": "lbe",
       "name": "LBE Persistent Agent",
-      "subtitle": "Complete Runtime PASS · Session Contract Next · Cline Reuse Boundary",
+      "subtitle": "Runtime CLOSED · Session Contract PASS · No Active Slice",
       "mapped": true,
-      "active_node": "complete-runtime-pass",
+      "active_node": "runtime-closed",
       "plan_file": "../lbe-plan-canvas/plan.json",
       "status_file": "../lbe-plan-canvas/status.json",
       "references_file": "../lbe-plan-canvas/references.json",
