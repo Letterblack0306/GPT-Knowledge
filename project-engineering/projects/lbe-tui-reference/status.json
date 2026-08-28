@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "project": "LBE Terminal UI Contract",
+  "classification": "REFERENCE_NON_CANONICAL",
+  "verified_at": "2026-08-29",
+  "source_repo": "Letterblack0306/LBE_Agents_wall_Intigration",
+  "source_branch": "main",
+  "source_head": "2bbada6dee2473734d5a466e0c862d4568682daa",
+  "source_commit_message": "Expand mock UI runtime contract and LBE provider policy",
+  "overall_status": "MATURE_MOCK_UI_RUNTIME_CONTRACT_REAL_AUTHORITY_BOUNDARIES_CLOSED",
+  "runtime_path": [
+    "Ratatui TUI",
+    "LbeWrapper",
+    "MockLbeWrapper",
+    "mock snapshots/events"
+  ],
+  "truth_label": "MOCK / NOT CONNECTED · UI CONTRACT PREVIEW",
+  "implemented_source_verified": [
+    "Ratatui TUI architecture",
+    "LbeWrapper abstraction",
+    "MockLbeWrapper runtime",
+    "runtime/session projection",
+    "Lbe Audit / Agent regular / Plan modes",
+    "approval_id lifecycle and stale-ID rejection",
+    "execution / validation / completion separation",
+    "structured tool lifecycle",
+    "session continuation with session-ID validation",
+    "context compaction projection",
+    "command stdout/stderr lifecycle projection",
+    "checkpoint projection",
+    "retry and timeout projection",
+    "runtime diagnostics projection",
+    "detached/background command projection",
+    "runtime attachment/connection projection",
+    "provider/model contract projection",
+    "provider capability projection",
+    "truthful mock connection labeling"
+  ],
+  "typed_provider_contract": {
+    "status": "IMPLEMENTED_AS_MOCK_CONTRACT",
+    "providers": [
+      "OpenAI",
+      "Anthropic",
+      "Google Gemini",
+      "AWS Bedrock",
+      "Mistral",
+      "OpenAI-compatible",
+      "LM Studio",
+      "Ollama"
+    ],
+    "live_adapters": false
+  },
+  "provider_policy": {
+    "classification": "DOCUMENTED",
+    "cline_documentation": "REFERENCE_ONLY",
+    "cline_authentication": "NOT_USED",
+    "api_cline_bot": "NOT_USED",
+    "future_path": "LBE-owned provider gateway -> direct provider connection",
+    "credential_policy": "provider-native credentials referenced through secure storage; raw credentials not rendered in TUI snapshots/events"
+  },
+  "not_implemented": [
+    "RealLbeWrapper",
+    "live LBE_Presistent_Agent_wall attachment",
+    "live audit/guard calls",
+    "live approval authority",
+    "live validation",
+    "live evidence",
+    "live receipts",
+    "canonical persistence",
+    "real provider adapters",
+    "provider credential store",
+    "provider-native auth",
+    "provider health probes",
+    "live model discovery",
+    "provider streaming translation",
+    "tool-call translation",
+    "usage normalization",
+    "reasoning-delta normalization"
+  ],
+  "stale_claims_withdrawn": [
+    "Rust TUI currently connects to installed lbe-guard-audit wrapper",
+    "Rust TUI currently reuses live wall deterministic audit authority",
+    "Audit mode is currently backed by live LBE guard execution"
+  ],
+  "future_boundary": [
+    "LBE TUI",
+    "RealLbeWrapper",
+    "canonical LBE runtime",
+    "LBE-owned provider gateway",
+    "direct providers"
+  ],
+  "authority_note": "GPT-Knowledge is projection/reference only. Mock UI state is not proof of live LBE authorization, execution, validation, evidence, receipts, provider connectivity, or persistence."
+}
