@@ -2,19 +2,21 @@
 
 **Classification:** REFERENCE  
 **Authority:** NON-CANONICAL  
-**Verified against UI repository:** `Letterblack0306/LBE_Agents_wall_Intigration`  
-**Verified branch:** `main`  
-**Verified commit:** `2bbada6dee2473734d5a466e0c862d4568682daa`  
-**Verified date:** 2026-08-29  
-**Purpose:** Record the current Rust/Ratatui LBE terminal UI contract and distinguish implemented mock projection from real LBE/runtime/provider integration.
+**Remote UI repository:** `Letterblack0306/LBE_Agents_wall_Intigration`  
+**Remote branch:** `main`  
+**Remote commit:** `2bbada6dee2473734d5a466e0c862d4568682daa`  
+**Local workspace evidence:** `C:\LBE-TUI-Lab` (user-supplied, dirty/unpushed)  
+**Verified date:** 2026-08-29
 
 ---
 
 ## 1. Current truth
 
-The current UI repository is a **UI/TUI contract prototype only**.
+The Rust/Ratatui work is an **implemented LBE terminal UI plus an implemented integration contract currently using `MockLbeWrapper` as a temporary pre-integration backend**.
 
-Current path:
+It must not be described as a disposable mock-only prototype.
+
+Intended pre-integration architecture:
 
 ```text
 Ratatui TUI
@@ -23,138 +25,231 @@ LbeWrapper
     ↓
 MockLbeWrapper
     ↓
-mock snapshots / mock events
+typed mock snapshots/events
 ```
 
-The UI visibly identifies this state as:
+Later live architecture:
+
+```text
+Ratatui TUI
+    ↓
+LbeWrapper
+    ↓
+Real LBE adapter
+    ↓
+canonical LBE runtime
+```
+
+The visible label remains truthful:
 
 ```text
 MOCK / NOT CONNECTED · UI CONTRACT PREVIEW
 ```
 
-The repository currently contains no `RealLbeWrapper`, no canonical LBE wall attachment, no persistent-agent service connection, no live guard runtime, no live authorization, no canonical evidence/receipts, and no live provider/model integration.
+That label describes runtime connectivity, not the maturity or intended permanence of the TUI frontend.
 
-### Superseded statement
+### Current local modularization state
 
-The earlier version of this reference stated that an installed `lbe-guard-audit` wrapper was currently connected and covered by the Rust TUI. That statement is **STALE** relative to UI repository `main` at `2bbada6...` and must not be used as current implementation truth.
+User-supplied runtime evidence from `C:\LBE-TUI-Lab` shows the local working tree is dirty and still based on remote head `2bbada6`.
 
-The canonical LBE wall may expose audit capabilities independently, but the current UI repository is not connected to them.
+The root `Cargo.toml` points the `lbe` binary at:
+
+```text
+src/main.rs
+```
+
+The modular files are present and declared, but the active entrypoint currently contains only:
+
+```rust
+fn main() {
+    println!("placeholder");
+}
+```
+
+`src/tests.rs` is also a placeholder and contains no `#[test]` declarations.
+
+Current validation evidence:
+
+```text
+cargo check = PASS WITH WARNINGS
+cargo test  = PASS, 0 tests discovered
+```
+
+Therefore the current local modular source split is **not yet feature-readiness proof**. The active TUI event loop and test suite must be restored before modular feature closure continues.
 
 ---
 
 ## 2. Implemented UI/runtime contract
 
-### Runtime/session projection — IMPLEMENTED AS MOCK CONTRACT
-
-The current typed projection includes:
+The typed contract already covers:
 
 ```text
-runtime_id
-runtime_mode
-connection state
-attached_client_count
-session_id
-session_state
-turn_id
-workspace_id
-workspace_label
-```
-
-Session states include:
-
-```text
-Idle
-Running
-WaitingForApproval
-WaitingForInput
-Completed
-Failed
-Aborted
-```
-
-These fields are mock/runtime contract surfaces, not proof of a live runtime.
-
-### Modes — IMPLEMENTED
-
-```text
-Lbe Audit
-Agent regular
-Plan
-```
-
-`Tab` cycles through the three modes. The active mode is carried through the wrapper/snapshot contract rather than being presentation-only.
-
-### Approval identity — IMPLEMENTED AS MOCK CONTRACT
-
-The mock lifecycle preserves an explicit `approval_id` through proposal → UI → approve/reject. Unknown or stale approval IDs are rejected.
-
-This replaces placeholder approval semantics such as `Approve("any")`.
-
-### Execution / validation / completion separation — IMPLEMENTED AS MOCK CONTRACT
-
-The event model separates:
-
-```text
-ExecutionStarted
-AgentRequestedCompletion
-ExecutionCompleted
-ValidationStarted
-ValidationCompleted
-LbeCompletionAccepted
-```
-
-Therefore `execution completed` is not treated as equivalent to validation success or LBE completion acceptance.
-
-### Tool lifecycle — IMPLEMENTED AS MOCK CONTRACT
-
-```text
-ToolRequested
-ToolStarted
-ToolOutputDelta
-ToolCompleted
-ToolFailed
-```
-
-Associated projection includes identifiers, tool name, input summary, risk and optional evidence reference.
-
-Risk classes include:
-
-```text
-READ_ONLY
-GOVERNED
-ELEVATED
-```
-
-### Session continuation — IMPLEMENTED AS MOCK CONTRACT
-
-`UserRequest::Continue` exists with active session-ID validation in the mock runtime.
-
-### Additional contract projections — IMPLEMENTED AS MOCK CONTRACT
-
-The current source also includes contract/projection support for:
-
-```text
+runtime/session projection
+Lbe Audit / Agent regular / Plan modes
+approval IDs and stale-ID rejection
+execution / validation / completion separation
+tool lifecycle
+session continuation with session-ID validation
 context compaction
 command stdout/stderr lifecycle
 checkpoint projection
-retry and retry-limit state
-timeout / elapsed state
-runtime diagnostics
-detached/background command projection
-runtime attachment/connection states
+retry / timeout projection
+diagnostics
+detached/background command events
+runtime attachment / connection state
 provider/model catalog projection
-provider capability projection
+provider capabilities
 ```
 
-These remain local mock representations.
+These are implementation surfaces intended to survive the later replacement of `MockLbeWrapper` with a real LBE adapter.
 
 ---
 
-## 3. Provider contract and policy
+## 3. Immediate blocker before further feature implementation
 
-### Typed provider contract — IMPLEMENTED AS MOCK CONTRACT
+Restore the active modular binary wiring:
 
-The UI source defines concepts including:
+```text
+src/main.rs
+→ init_terminal
+→ construct MockLbeWrapper
+→ construct App from wrapper snapshot
+→ draw UI
+→ poll/reduce LBE events
+→ process key/resize events
+→ route requests through LbeWrapper
+→ restore terminal
+```
+
+Restore the migrated test suite through:
+
+```rust
+#[cfg(test)]
+mod tests;
+```
+
+and require:
+
+```text
+cargo check = PASS
+cargo test  = PASS with non-zero expected tests
+```
+
+before claiming the modularized TUI is functionally restored.
+
+---
+
+## 4. Modular pre-integration closure state
+
+```text
+01 Transcript viewport / long output       MISSING
+02 Interactive model picker                PARTIAL
+03 Checkpoint compare / restore            PARTIAL
+04 Session management                      PARTIAL
+05 Background / detached processes         PARTIAL
+06 Provider configuration                  PARTIAL
+07 Tool registry                           PLACEHOLDER
+08 Evidence browser                        PLACEHOLDER
+09 Receipt browser                         PLACEHOLDER
+10 MCP registry                            PLACEHOLDER
+11 Terminal compatibility                  MISSING
+12 Plain / non-TUI mode                    MISSING
+13 Terminal lifecycle acceptance           NOT_PROVEN
+14 Responsive/minimum-size acceptance      PARTIAL
+15 Session memory and recall               PLANNED
+16 Browser-chat bridge                     PLANNED
+```
+
+Each module should be implemented and closed independently rather than regenerating the full plan.
+
+---
+
+## 5. Session memory and recall — PLANNED
+
+Goal: allow the agent to recover relevant work from its own prior LBE sessions so the user does not need to repeatedly reconstruct project history.
+
+Planned behavior:
+
+```text
+stable session hash
+meaningful event/record hashes
+session hash-chain head
+structured session summary
+bounded relevance-based recall
+verified/current memory ranked above unverified/stale memory
+```
+
+Meaningful records include:
+
+```text
+user intent
+agent decisions
+selected constraints
+tool/action execution
+validation outcome
+completion result
+checkpoint
+evidence/receipt references
+session summary
+```
+
+Raw streaming deltas should not become independent durable memories.
+
+The TUI may use a local non-canonical cache during pre-integration, but canonical persistent memory remains owned by the LBE runtime.
+
+---
+
+## 6. Browser-chat bridge — PLANNED
+
+The browser-chat interaction plan is provider-neutral:
+
+```text
+Browser Chat
+    ↓
+BrowserChatAdapter
+    ↓
+LBE bridge protocol
+    ↓
+LbeWrapper
+    ↓
+Canonical LBE runtime
+```
+
+Browser chat is a reasoning/conversation surface, not execution authority.
+
+Every browser interaction should correlate:
+
+```text
+browser_session_id
+lbe_session_id
+lbe_turn_id
+browser_message_id
+tool_call_id
+evidence_ref
+receipt_id
+```
+
+Governed tool flow must be:
+
+```text
+browser assistant proposes action
+→ bridge intercepts request
+→ LBE authorization / approval
+→ LBE-owned execution
+→ validation
+→ evidence / receipt
+→ structured result returned to browser chat
+```
+
+No silent fallback from browser chat to direct governed filesystem/process/tool execution is permitted.
+
+Browser chat should reuse the LBE session-memory layer for bounded recall rather than becoming an independent memory authority.
+
+---
+
+## 7. Provider contract and policy
+
+The UI source defines typed provider/model concepts including:
 
 ```text
 ProviderId
@@ -175,159 +270,63 @@ FinishReason
 ProviderError
 ```
 
-Provider identities represented include:
+Provider identities represented include OpenAI, Anthropic, Google Gemini, AWS Bedrock, Mistral, OpenAI-compatible, LM Studio and Ollama.
 
-```text
-OpenAI
-Anthropic
-Google Gemini
-AWS Bedrock
-Mistral
-OpenAI-compatible
-LM Studio
-Ollama
-```
-
-No real provider adapters are present.
-
-### Provider policy — DOCUMENTED
-
-The UI repository README states:
-
-```text
-Cline documentation = reference only
-Cline authentication = not used
-api.cline.bot = not used
-future provider path = LBE-owned provider gateway → direct provider connection
-```
-
-Provider credentials are intended to remain provider-native and referenced through secure storage rather than exposed in TUI snapshots/events.
+These remain mock contracts; no real provider adapters are proven connected in this UI repository.
 
 ---
 
-## 4. Not implemented
-
-### Real LBE integration — NOT IMPLEMENTED
+## 8. Not implemented live
 
 ```text
-RealLbeWrapper
-live LBE_Presistent_Agent_wall attachment
-live audit/guard calls
+RealLbeWrapper / real LBE adapter
+live canonical LBE attachment
+live guard/audit calls
 live approval authority
 live validation
-live evidence
-live receipts
-canonical persistence
-```
-
-### Real direct-provider integration — NOT IMPLEMENTED
-
-```text
-OpenAI adapter
-Anthropic adapter
-Gemini adapter
-Bedrock adapter
-Mistral adapter
-OpenAI-compatible adapter
-LM Studio adapter
-Ollama adapter
-provider credential store
-provider-native authentication
-provider health probes
-live model discovery
-provider streaming translation
-tool-call translation
-usage normalization
-reasoning-delta normalization
+live evidence / receipts
+canonical persistence attachment
+real provider adapters/auth/health/model discovery
+session-memory client integration
+browser-chat bridge
+installed end-to-end live integration
 ```
 
 ---
 
-## 5. Current architecture
+## 9. Superseded claims
+
+The following claims must not be used as current truth:
 
 ```text
-                 LBE_Agents_wall_Intigration
-                         UI ONLY
-                           │
-                           ▼
-                     LbeWrapper
-                           │
-                           ▼
-                     MockLbeWrapper
-                           │
-          ┌────────────────┼────────────────┐
-          │                │                │
-       sessions         providers        tools
-       approvals        models           execution
-       context          health           validation
-       checkpoints      auth state       completion
-          │                │                │
-          └────────────────┴────────────────┘
-                           │
-                    MOCK PROJECTIONS
-```
-
-Future integration boundary:
-
-```text
-LBE TUI
-   ↓
-RealLbeWrapper
-   ↓
-canonical LBE runtime
-   ↓
-LBE-owned provider gateway
-   ↓
-direct providers
-```
-
-The future path is documented intent only until implemented and validated.
-
----
-
-## 6. Current classification
-
-```text
-UI architecture                         IMPLEMENTED / SOURCE-VERIFIED
-Mock runtime contract                   IMPLEMENTED / SOURCE-VERIFIED
-Typed provider contract                 IMPLEMENTED AS MOCK CONTRACT
-Approval/session lifecycle              IMPLEMENTED AS MOCK CONTRACT
-Tool lifecycle                          IMPLEMENTED AS MOCK CONTRACT
-Execution/validation separation         IMPLEMENTED AS MOCK CONTRACT
-Provider policy                         DOCUMENTED IN UI REPOSITORY
-Truthful mock connection labeling       IMPLEMENTED / SOURCE-VERIFIED
-
-Real LBE attachment                     NOT IMPLEMENTED
-Real guard/audit connection             NOT IMPLEMENTED
-Real provider connections               NOT IMPLEMENTED
-Real credentials/auth                   NOT IMPLEMENTED
-Real evidence/receipts                  NOT IMPLEMENTED
-Canonical persistence                   NOT IMPLEMENTED
-Installed end-to-end real integration   NOT PROVEN
+Rust TUI currently connects to installed lbe-guard-audit wrapper
+Rust TUI currently reuses live wall deterministic audit authority
+Audit mode is currently backed by live LBE guard execution
+Current local modular binary is already a fully wired runnable TUI
 ```
 
 ---
 
-## 7. Authority boundary
-
-This reference must not convert mock projection into runtime truth.
+## 10. Authority boundary
 
 ```text
-TUI:
-- renders;
-- navigates;
-- requests;
-- projects contract state.
+TUI / browser clients:
+- render and navigate;
+- collect input;
+- select context;
+- construct requests;
+- project runtime state.
 
-Canonical LBE runtime/wall:
+Canonical LBE runtime:
 - owns workspace identity;
+- owns sessions and canonical persistence;
 - owns policy and authorization;
-- owns deterministic guard execution;
+- owns deterministic guards;
 - owns consequential execution;
 - owns validation;
 - owns evidence and receipts;
-- owns persistence;
+- owns canonical memory;
 - owns completion proof.
 ```
 
-No GPT-K reference or UI mock state may be cited as proof that those live runtime capabilities are connected.
+GPT-K is a reference/projection surface only. The local modular workspace is not remote repository truth until committed and independently verified.
