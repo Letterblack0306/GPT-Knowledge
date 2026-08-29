@@ -1,27 +1,22 @@
 {
-  "schema_version": 5,
+  "schema_version": 6,
   "project": "LBE Terminal UI Contract",
   "classification": "REFERENCE_NON_CANONICAL",
   "verified_at": "2026-08-29",
   "source_repo": "Letterblack0306/LBE_Agents_wall_Intigration",
   "source_branch": "main",
-  "remote_source_head": "4a0476e49628012e2dd9a557067292c2cbe9e14a",
-  "remote_source_commit_message": "Attach TUI to Agent Wall validation",
+  "remote_source_head": "c0674c9a9dcf2cc73ffaf5d9b9a41423adda066e",
+  "remote_source_commit_message": "Add Agent Wall disconnect reconnect recovery",
   "agent_wall_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "agent_wall_head": "580f9db1aea1d2e8f48282f7755a8ea65c7fc0f8",
   "local_workspace": "C:\\LBE-TUI-Lab",
-  "current_status": "READ_ONLY_BATCH_1_ACCEPTED_NEXT_DISCONNECT_RECONNECT_RECOVERY",
-  "implementation_intent": "The Rust/Ratatui TUI remains a projection-only LetterBlack/LBE frontend. RealLbeWrapper now consumes the full committed Agent Wall read-only Batch 1 projection set (project_truth, session_context, provenance, validation) through the Agent Wall product CLI boundary, validates cross-projection identity, and preserves Agent Wall as the sole authority. Mutation remains closed.",
+  "current_status": "CORRELATION_CONTRACT_REPAIR_REQUIRED",
+  "implementation_intent": "The Rust/Ratatui TUI remains a projection-only LetterBlack/LBE frontend. Read-only Batch 1 and disconnect/reconnect recovery are accepted. Request/event correlation is not yet sufficient at the event/reducer boundary, so the read/write gate remains closed.",
   "completed": {
     "agent_wall_read_only_export_seam": {
       "status": "PROVEN",
       "commit": "580f9db1aea1d2e8f48282f7755a8ea65c7fc0f8",
-      "capabilities_exported": [
-        "project_truth",
-        "session_context",
-        "provenance",
-        "validation"
-      ],
+      "capabilities_exported": ["project_truth", "session_context", "provenance", "validation"],
       "project_truth_runtime_smoke": "PASS",
       "focused_tests": "10 passed"
     },
@@ -34,173 +29,143 @@
       "status": "PASS_CLOSED",
       "commit": "59d4943b0adb9d16867ce30fc4e224d5c3ecca71",
       "tests_at_closure": "68/68 PASS",
-      "real_smoke": "BLOCKED_NO_EXISTING_SESSION",
-      "authority_rule": "Session context is retained as its own typed Agent Wall-owned projection. TUI does not fabricate lineage, checkpoint, memory, runtime, turn, provider/model or SessionStatus semantics from it."
+      "real_smoke": "BLOCKED_NO_EXISTING_SESSION"
     },
     "real_agent_wall_provenance_attachment_v1": {
       "status": "PASS_CLOSED",
       "commit": "ed6e34cefc9aef2123ea631bff24fc6c04fa4120",
       "tests_at_closure": "72/72 PASS",
-      "real_smoke": "BLOCKED_NO_EXISTING_SESSION",
-      "authority_rule": "Historical provenance event/provider/model/turn/runtime correlation fields remain provenance evidence and are not promoted into current TUI runtime authority."
+      "real_smoke": "BLOCKED_NO_EXISTING_SESSION"
     },
     "real_agent_wall_validation_attachment_v1": {
       "status": "PASS_CLOSED",
       "commit": "4a0476e49628012e2dd9a557067292c2cbe9e14a",
       "tests_at_closure": "75/75 PASS",
-      "real_smoke": "BLOCKED_NO_EXISTING_TASK",
-      "authority_rule": "Validation requirements, policies, evidence and task status are retained as read-only Agent Wall projection data. Policy commands are not executed and evidence/task statuses do not mutate TUI connection, execution, diagnostics or session state."
+      "real_smoke": "BLOCKED_NO_EXISTING_TASK"
     },
     "read_only_batch_1_acceptance": {
       "status": "PASS",
-      "tui_head": "4a0476e49628012e2dd9a557067292c2cbe9e14a",
-      "head_matches_origin_main": true,
-      "projections": {
-        "project_truth": "PASS",
-        "session_context": "PASS",
-        "provenance": "PASS",
-        "validation": "PASS"
-      },
-      "validation": {
-        "cargo_fmt_check": "PASS",
-        "cargo_check": "PASS",
-        "cargo_test": "PASS 75/75",
-        "git_diff_check": "PASS",
-        "warnings": "PRESENT_NON_BLOCKING"
-      },
       "scope_result": "4_OF_4_IMPLEMENTED_AND_ACCEPTED"
+    },
+    "disconnect_reconnect_recovery": {
+      "status": "PASS_CLOSED",
+      "commit": "c0674c9a9dcf2cc73ffaf5d9b9a41423adda066e",
+      "tests_at_closure": "79/79 PASS",
+      "real_smoke": "BLOCKED_NO_EXISTING_TASK",
+      "behavior": "disconnect leaves live-connected state; reconnect re-runs the full four-projection chain through an isolated candidate and atomically replaces authority only after full success; failures remain non-Connected with no mock fallback"
     }
   },
-  "real_lbe_wrapper": {
-    "status": "READ_ONLY_BATCH_1_ATTACHED_AND_ACCEPTED",
-    "project_truth": "PASS_CLOSED",
-    "session_context": "PASS_CLOSED",
-    "provenance": "PASS_CLOSED",
-    "validation": "PASS_CLOSED",
-    "disconnect_reconnect_recovery": "NEXT_NOT_YET_PROVEN",
-    "mutation": "DISABLED"
-  },
-  "current_read_only_boundary": {
-    "transport": "configured local Agent Wall product CLI subprocess",
-    "authority_rule": "TUI consumes Agent Wall-owned read-only projection data and does not duplicate Agent Wall business logic, authorization, validation, evidence, receipt or mutation authority.",
-    "attachment_order": [
-      "project_truth",
-      "session_context",
-      "provenance",
-      "validation",
-      "cross_projection_identity_validation",
-      "Connected"
+  "request_event_correlation": {
+    "acceptance_status": "FAIL_NOT_PROVEN",
+    "classification": "CORRELATION_MODEL_INSUFFICIENT",
+    "baseline_tests": "79/79 PASS",
+    "confirmed_gaps": [
+      "ValidationCompleted lacks execution_id",
+      "TimedOut lacks execution_id",
+      "ExecutionRejected lacks proposal/execution ownership identity",
+      "tool lifecycle events lack explicit owning execution_id",
+      "command lifecycle events lack explicit owning execution_id",
+      "App reducer applies several request-specific events without an owning execution/proposal guard",
+      "mock approval identity is reused across independent proposal lifecycles",
+      "SnapshotUpdated is not a substitute for request ownership",
+      "RuntimeAttachmentUpdated is attachment state only, not request completion proof"
     ],
-    "configuration": [
-      "LBE_WALL_ROOT",
-      "LBE_TARGET_WORKSPACE",
-      "optional LBE_WALL_PYTHON",
-      "LBE_WALL_DATABASE",
-      "LBE_SESSION_ID",
-      "LBE_TASK_ID"
-    ],
-    "note": "The proven V1 transport invokes the Agent Wall product_entry module through Python. This remains an accepted local read-only product boundary. A packaged executable or other stable transport is a later hardening option, not a prerequisite for the accepted Batch 1 read-only integration."
+    "next_slice": "REQUEST_EVENT_CORRELATION_CONTRACT_V1"
   },
-  "smoke_evidence": {
-    "project_truth": "PASS",
-    "session_context": "BLOCKED_NO_EXISTING_SESSION",
-    "provenance": "BLOCKED_NO_EXISTING_SESSION",
-    "validation": "BLOCKED_NO_EXISTING_TASK",
-    "classification_note": "Blocked session/task smokes are evidence qualifiers, not implementation failures. No Agent Wall session/task state was created or mutated merely to manufacture acceptance evidence."
-  },
-  "next_phase": {
-    "name": "DISCONNECT_RECONNECT_RECOVERY",
-    "status": "NEXT",
-    "goal": "Prove truthful lifecycle recovery for the accepted four-projection read-only attachment without cached-authority reuse, mock fallback or mutation.",
-    "target_flow": [
-      "Connected",
-      "disconnect_or_loss",
-      "connection_not_Connected",
-      "reconnect",
-      "re-export project_truth",
-      "re-export session_context",
-      "re-export provenance",
-      "re-export validation",
-      "revalidate cross-projection identities",
-      "atomically replace authoritative snapshot",
-      "Connected"
-    ],
-    "hard_invariants": [
-      "NO mock substitution on the real path",
-      "NO mutation",
-      "NO cached projection set sufficient to claim reconnection",
-      "NO partial candidate snapshot published as Connected",
-      "NO fabricated runtime/session/turn/provider/model authority",
-      "Agent Wall remains the sole authority"
-    ]
+  "ux_notes": {
+    "active_operation_feedback_v1": {
+      "status": "PLANNED_NON_BLOCKING_UX",
+      "current_behavior": "Phase::Running currently shows the static composer text '> Execution in progress…'. Timed redraw infrastructure and intro animation already exist, but there is no general animated loading/progress indicator for long-running operations.",
+      "problem": "During slow operations the terminal can appear visually idle or hung even though work is active.",
+      "goal": "Provide state-driven animated activity feedback so users can distinguish active work from a frozen or broken UI.",
+      "candidate_states": [
+        "Connecting",
+        "Reconnecting",
+        "Phase::Running",
+        "provider discovery",
+        "provider validation",
+        "context compaction",
+        "diagnostics",
+        "future governed tool/command execution",
+        "browser reconnect/waiting operations"
+      ],
+      "stop_states": [
+        "Completed",
+        "Failed",
+        "Rejected",
+        "TimedOut",
+        "Disconnected",
+        "Lost",
+        "AwaitingApproval"
+      ],
+      "design_rule": "Animation must reflect real state only; do not fake percentage progress or claim work that is not actually active.",
+      "implementation_order": "Implement after REQUEST_EVENT_CORRELATION_CONTRACT_V1 so event ownership changes and visual feedback remain separate patches.",
+      "suggested_label": "ACTIVE_OPERATION_FEEDBACK_V1"
+    }
   },
   "upcoming_plan": [
     {
       "order": 1,
-      "slice": "DISCONNECT_RECONNECT_RECOVERY",
+      "slice": "REQUEST_EVENT_CORRELATION_CONTRACT_V1",
       "status": "NEXT",
-      "scope": "connection loss/disconnect semantics, atomic four-projection reattachment, stale-authority truthfulness, identity revalidation"
+      "scope": "add explicit execution/proposal ownership to affected events, unique proposal approval IDs, and fail-closed reducer guards for stale/foreign events"
     },
     {
       "order": 2,
       "slice": "REQUEST_EVENT_CORRELATION_ACCEPTANCE",
-      "status": "PLANNED",
-      "scope": "prove request/event correlation required before the read/write gate can be considered for opening"
+      "status": "RERUN_AFTER_CONTRACT_REPAIR",
+      "scope": "prove stale-event, cross-execution, approval replay and terminal idempotency invariants"
     },
     {
       "order": 3,
-      "slice": "BATCH_2_REASONING_WORKFLOW_PROJECTIONS",
-      "status": "LATER",
-      "scope": "change impact, hypothesis/test/verify, dependency/task graph, what's next/prioritization"
+      "slice": "ACTIVE_OPERATION_FEEDBACK_V1",
+      "status": "PLANNED_NON_BLOCKING_UX",
+      "scope": "state-driven spinner/activity feedback for connecting, reconnecting, running and other long operations without fabricated progress"
     },
     {
       "order": 4,
-      "slice": "BATCH_3_SECONDARY_PROJECTIONS",
-      "status": "LATER",
-      "scope": "documentation, QA expansion, research evidence/provenance"
+      "slice": "BATCH_2_REASONING_WORKFLOW_PROJECTIONS",
+      "status": "LATER"
     },
     {
       "order": 5,
+      "slice": "BATCH_3_SECONDARY_PROJECTIONS",
+      "status": "LATER"
+    },
+    {
+      "order": 6,
       "slice": "GOVERNED_READ_WRITE_INTEGRATION",
-      "status": "GATE_CLOSED",
-      "scope": "sessions, providers/models, approvals, tools, commands, sandbox, checkpoints, file edits only after remaining lifecycle/correlation gates are proven"
+      "status": "GATE_CLOSED"
     }
   ],
   "read_write_gate": {
     "status": "CLOSED",
     "already_proven": [
       "Batch 1 read-only projection mapping 4/4",
-      "authoritative session identity representation where applicable",
-      "zero mock fallback across implemented read-only paths",
-      "single Agent Wall authority preserved"
+      "Batch 1 acceptance",
+      "single Agent Wall authority preserved",
+      "zero mock fallback across implemented real read-only/recovery paths",
+      "disconnect/reconnect recovery"
     ],
-    "remaining_before_considering_open": [
-      "disconnect/reconnect recovery proven",
-      "request/event correlation proven"
-    ]
+    "remaining_before_separate_gate_review": [
+      "request/event correlation contract repaired",
+      "request/event correlation acceptance proven"
+    ],
+    "note": "Passing correlation acceptance makes the gate eligible for separate review; it does not automatically open mutation authority."
   },
-  "remaining_gaps": [
-    "disconnect/reconnect recovery not yet proven",
-    "request/event correlation acceptance not yet proven",
-    "session_context/provenance real smokes remain blocked without an existing persisted session",
-    "validation real smoke remains blocked without an existing compatible persisted task/contract",
-    "exhaustive individually named malformed-input unit-test matrix remains non-exhaustive despite focused negative coverage",
-    "read/write mutation gate remains closed",
-    "installed end-to-end acceptance remains later"
-  ],
+  "smoke_evidence": {
+    "project_truth": "PASS",
+    "session_context": "BLOCKED_NO_EXISTING_SESSION",
+    "provenance": "BLOCKED_NO_EXISTING_SESSION",
+    "validation": "BLOCKED_NO_EXISTING_TASK",
+    "disconnect_reconnect": "BLOCKED_NO_EXISTING_TASK"
+  },
   "overall_status_summary": {
-    "tui_shell_runtime_loop": "IMPLEMENTED",
-    "mock_wrapper": "IMPLEMENTED",
-    "deterministic_state_machine": "IMPLEMENTED_PRE_INTEGRATION",
-    "terminal_idempotency": "IMPLEMENTED",
-    "agent_wall_read_only_export_seam": "PROVEN_COMMITTED",
-    "real_lbe_wrapper": "READ_ONLY_BATCH_1_ATTACHED_AND_ACCEPTED",
-    "project_truth_projection": "PASS_CLOSED",
-    "session_context_projection": "PASS_CLOSED",
-    "provenance_projection": "PASS_CLOSED",
-    "validation_projection": "PASS_CLOSED",
     "read_only_batch_1": "PASS_4_OF_4_IMPLEMENTED_AND_ACCEPTED",
-    "disconnect_reconnect_recovery": "NEXT",
+    "disconnect_reconnect_recovery": "PASS_CLOSED",
+    "request_event_correlation": "FAIL_NOT_PROVEN",
+    "correlation_contract_repair": "NEXT",
+    "active_operation_feedback": "PLANNED_NON_BLOCKING_UX",
     "read_write_integration": "GATE_CLOSED",
     "installed_end_to_end_acceptance": "LATER"
   },
