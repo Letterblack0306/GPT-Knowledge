@@ -1,480 +1,465 @@
-# LBE TUI — Current Status and Implementation Plan
+# LBE TUI — Current Status, Upcoming Plan, and End-to-End Integration Plan
 
 **Classification:** REFERENCE / NON-CANONICAL  
 **Date:** 2026-08-29  
-**Remote source repository:** `Letterblack0306/LBE_Agents_wall_Intigration`  
-**Remote source head:** `2bbada6dee2473734d5a466e0c862d4568682daa`  
-**Local workspace evidence:** `C:\LBE-TUI-Lab` (user-supplied runtime evidence; dirty/unpushed)
+**TUI source repository:** `Letterblack0306/LBE_Agents_wall_Intigration`  
+**Verified TUI source head:** `5ddc0e37f47f8e967710277faf77e9ba8362a2b4`  
+**Head message:** `Docs: correct stale Module 32/34 cross-cutting statements; rebuild Module 34 cleanly`  
+**Local workspace:** `C:\LBE-TUI-Lab`
 
-## 1. Correct implementation interpretation
+## 1. Current implementation interpretation
 
-The Rust/Ratatui work is an **implemented UI frontend plus an implemented integration contract using a temporary mock backend for pre-integration validation**.
+The Rust/Ratatui project is an **implemented LBE terminal frontend with an implemented wrapper/integration contract and a temporary mock runtime used for pre-live validation**.
 
 It is not a disposable mock-only prototype.
 
-Intended staging:
+Current architecture:
 
 ```text
-CURRENT PRE-INTEGRATION DESIGN
-
 Ratatui TUI
     ↓
 LbeWrapper
-    ↓
-MockLbeWrapper
-    ↓
-typed mock snapshots/events
-
-LATER LIVE INTEGRATION
-
-Ratatui TUI
-    ↓
-LbeWrapper
-    ↓
-Real LBE adapter
-    ↓
-Canonical LBE runtime
+    ├─ MockLbeWrapper          IMPLEMENTED / ACTIVE MOCK PATH
+    └─ RealLbeWrapper          IMPLEMENTED READ-ONLY SKELETON
+              ↓
+        Agent Wall             NOT YET ATTACHED
 ```
 
-The visible label `MOCK / NOT CONNECTED · UI CONTRACT PREVIEW` truthfully describes current runtime connectivity; it does not mean the UI implementation itself is disposable.
+The visible `MOCK / NOT CONNECTED · UI CONTRACT PREVIEW` labeling remains correct while the real wall is unattached.
 
-## 2. Current local workspace status
+## 2. Verified TUI repository state
 
-User-supplied command evidence from `C:\LBE-TUI-Lab` on 2026-08-29 showed:
+Remote `main` now contains the following implementation progression:
 
 ```text
-branch                main tracking origin/main
-HEAD                  2bbada6
-working tree          dirty
-Cargo binary          src/main.rs
-cargo check           PASS WITH WARNINGS
-cargo test            PASS, 0 tests discovered
+5ddc0e3 Docs: correct stale Module 32/34 cross-cutting statements; rebuild Module 34 cleanly
+ d4b39c2 Add RealLbeWrapper read-only skeleton, runtime selector, and Module 33 implementation plan
+ 4f596f7 Suppress duplicate terminal lifecycle events
+ 06d8060 Implement deterministic runtime state machine
+ 655cf77 Add Cline reuse roadmap and cleanup docs encoding
 ```
 
-Current `src/main.rs` is:
-
-```rust
-mod types;
-mod events;
-mod requests;
-mod wrapper;
-mod app;
-mod ui;
-mod tests;
-
-fn main() {
-    println!("placeholder");
-}
-```
-
-Current `src/tests.rs` is only:
+Current source status:
 
 ```text
-// Placeholder - will be extracted in Phase 3
+active binary                 src/main.rs
+active mock runtime owner     src/wrapper.rs
+UI reducer/projection owner   src/app.rs
+LbeWrapper abstraction        IMPLEMENTED
+MockLbeWrapper                IMPLEMENTED
+RealLbeWrapper                IMPLEMENTED READ-ONLY SKELETON
+runtime selector              IMPLEMENTED
+Module 32                     IMPLEMENTED_PRE_INTEGRATION
+Module 34                     DOCUMENTED / FRONTEND MAPPING PRESENT
 ```
 
-Therefore:
+User-reported local validation after the current work:
 
 ```text
-modular source split                 IMPLEMENTED
-module declarations                  IMPLEMENTED
-active production TUI entrypoint     MISSING / PLACEHOLDER
-active event-loop wiring             MISSING
-active test-suite migration          MISSING
-cargo check                          PASSING PLACEHOLDER CRATE
-cargo test                           PASSING WITH ZERO TESTS
-feature-readiness conclusion         BLOCKED
+cargo test --no-fail-fast     PASS
+42 tests                      PASS
+0 failures
+warnings                      PRESENT / NON-BLOCKING
 ```
 
-Do not treat current `cargo check` or `cargo test` as proof that the original TUI behavior survived modularization until the entrypoint and tests are restored.
+`rust/main.rs.bak` remains untracked and intentionally untouched.
 
-## 3. Immediate repair before feature modules
+## 3. Deterministic runtime state
 
-### 3.1 Restore active TUI entrypoint
+Module 32 has moved the mock runtime from display-oriented event handling toward a runtime-owned deterministic state machine.
 
-`src/main.rs` must again own or call the real runtime loop:
+Implemented/pre-integration behavior includes:
 
 ```text
-init_terminal
-→ construct MockLbeWrapper
-→ construct App from wrapper snapshot
-→ draw UI
-→ poll wrapper events
-→ reduce events into App
-→ poll keyboard/resize events
-→ submit App requests through LbeWrapper
-→ honor app/wrapper wake times
-→ restore terminal
+execution lifecycle ownership
+session/execution terminal synchronization
+tool lifecycle tracking
+command lifecycle tracking
+validation lifecycle tracking
+timeout deadline ownership
+abort/reject/failure terminalization
+out-of-order event protection
+duplicate terminal suppression
+terminal idempotency
+UI projection from wrapper/session status for main flows
 ```
 
-Relevant `ui.rs` functions/types should be exported `pub(crate)` as needed:
+Current classification:
 
 ```text
-AppTerminal
-init_terminal
-restore_terminal
-draw
+Module 32                         IMPLEMENTED_PRE_INTEGRATION
+mock lifecycle determinism         IMPLEMENTED
+terminal idempotency               IMPLEMENTED
+real runtime determinism           NOT YET PROVEN
 ```
 
-Relevant `App` APIs should be callable from the entrypoint:
+Real runtime determinism cannot be claimed until the real Agent Wall event stream is attached and exercised end to end.
 
-```text
-with_snapshot or equivalent constructor
-should_quit accessor
-handle_key
-reduce_lbe_event
-next_wake
-```
+## 4. Autonomous developer frontend mapping
 
-Relevant wrapper APIs remain behind:
+`Docs/34_autonomous_developer_frontend.md` maps the autonomous-development frontend surfaces to the current TUI.
 
-```text
-LbeWrapper
-MockLbeWrapper
-snapshot
-submit
-poll_event
-next_wake
-```
+Current frontend classifications:
 
-### 3.2 Restore active tests
-
-Use:
-
-```rust
-#[cfg(test)]
-mod tests;
-```
-
-and migrate the trusted existing TUI tests into `src/tests.rs`.
-
-Closure evidence for this repair requires:
-
-```text
-cargo check = PASS
-cargo test = PASS with non-zero tests discovered
-```
-
-Feature modules 01–16 should not be treated as closed while the active binary is still a placeholder.
-
-## 4. Modular pre-integration closure plan
-
-| Module | Area | Current status |
+| Feature | Status | Primary runtime dependency |
 |---|---|---|
-| 01 | Transcript viewport / long output | MISSING |
-| 02 | Interactive model picker | PARTIAL |
-| 03 | Checkpoint compare / restore | PARTIAL |
-| 04 | Session management | PARTIAL |
-| 05 | Background / detached processes | PARTIAL |
-| 06 | Provider configuration | PARTIAL |
-| 07 | Tool registry | PLACEHOLDER |
-| 08 | Evidence browser | PLACEHOLDER |
-| 09 | Receipt browser | PLACEHOLDER |
-| 10 | MCP registry | PLACEHOLDER |
-| 11 | Terminal compatibility | MISSING |
-| 12 | Plain / non-TUI mode | MISSING |
-| 13 | Terminal lifecycle acceptance | NOT_PROVEN |
-| 14 | Responsive/minimum-size acceptance | PARTIAL |
-| 15 | Session memory and recall | PLANNED |
-| 16 | Browser-chat bridge | PLANNED |
+| TUI-33 Project Context / Resume | PARTIAL | Agent Wall project truth + session export |
+| TUI-34 Decision Browser | PARTIAL | Agent Wall memory/decision export |
+| TUI-35 Code / Intent Provenance | MOCK | Agent Wall provenance export |
+| TUI-36 Change Impact Analysis | MOCK | Agent Wall impact/risk export |
+| TUI-37 Hypothesis / Test / Verify | PARTIAL | Agent Wall hypothesis/verification export |
+| TUI-38 Dependency / Task Graph | PARTIAL | Agent Wall task-graph export |
+| TUI-39 Validation Strategy | PARTIAL | Agent Wall validation export |
+| TUI-40 Documentation Review | PLACEHOLDER | Agent Wall documentation artifact export |
+| Artifact / Diff / Test Review | MISSING | Agent Wall artifact/diff/provenance export |
+| Background / Agent Panels | PARTIAL | Agent Wall process/agent projections |
 
-Each module is independently actionable. Update only the affected module plus aggregate status when implementing it.
+The frontend must consume Agent Wall truth; it must not duplicate Agent Wall engines locally.
 
-## 5. Module 15 — Session memory and recall
+## 5. Agent Wall capability readiness
 
-### Goal
-
-Allow the agent to recover **relevant work from its own prior LBE sessions** so the user does not need to restate project context repeatedly.
-
-This is not equivalent to dumping all historical chat into the model context.
-
-### Planned contract
-
-Suggested source surface:
+The current Agent Wall handoff classifies AW-33 through AW-43 as:
 
 ```text
-src/memory.rs
-MemoryProjection
-SessionMemoryRef
-MemoryRecord
-MemoryRecordType
-MemoryTruth
-MemoryEventIdentity
+IMPLEMENTED_IN_AGENT_WALL
+CLIENT_EXPORT_PENDING
 ```
 
-Suggested requests:
+Repository inspection confirms the underlying runtime component families are present for memory, sessions, project profiling, investigation/reasoning, provenance/authority, task completion/planning, validation/completion, external capabilities, and request/mode control.
+
+The exact client-export request/event names remain an integration-contract concern and must be verified at export time rather than inferred from internal Python implementation names.
+
+### Batch 1 — Foundational state
 
 ```text
-RecallSessionMemory { query, limit }
-RecallSession { session_id }
-CreateMemoryCheckpoint
+AW-33 Persistent Project Truth Memory
+AW-34 Session Continuity Engine
+AW-37 Code / Intent Provenance
+AW-39 Validation Strategy Framework
 ```
 
-Suggested events:
+### Batch 2 — Reasoning and workflow
 
 ```text
-SessionMemoryIndexed
-MemoryRecallStarted
-MemoryRecallResult
-MemoryRecallEmpty
-MemoryCheckpointCreated
+AW-35 Change Impact Analysis
+AW-36 Hypothesis → Test → Verify
+AW-38 Dependency / Task Graph
+AW-43 Task Prioritization / What's Next
 ```
 
-Suggested TUI surface:
+### Batch 3 — Secondary surfaces
 
 ```text
-/memory
-/memory session
-/memory recent
-/memory checkpoints
-@memory:<id>
-@session:<id-or-hash>
+AW-40 Automated Documentation Pipeline
+AW-41 Quality Expansion Framework
+AW-42 Autonomous Research Loop
 ```
 
-### What should become memory
+## 6. Immediate next implementation phase
 
-Persist meaningful boundaries rather than raw streaming deltas:
+The next implementation phase is **not another state-machine pass** and not another frontend capability invention.
+
+It is:
 
 ```text
-user intent
-agent decision
-selected constraints
-executed tool/action
-validation result
-completion result
-checkpoint
-receipt/evidence references
-compact session summary
+REAL_AGENT_WALL_READ_ONLY_CLIENT_EXPORT_AND_ATTACHMENT
 ```
 
-Do not create separate durable memory records for each token/text delta.
-
-### Hashing / provenance
-
-Use stable identities at several levels:
+Required direction:
 
 ```text
-session hash      = identity for one LBE session
-event hash        = identity for one meaningful event
-record hash       = identity for one persisted memory record
-session head hash = hash-chain integrity across ordered records
+existing Agent Wall capability
+        ↓
+stable read-only product-level export
+        ↓
+RealLbeWrapper
+        ↓
+Rust typed projection
+        ↓
+existing TUI view/panel
 ```
 
-A hash chain may use:
+Hard invariants:
 
 ```text
-record_1_hash = SHA256(record_1)
-record_2_hash = SHA256(record_1_hash + record_2)
-...
-session_head_hash = final record hash
+NO mock substitution on real path
+NO mutation during read-only phase
+NO direct Python coupling from Rust TUI
+NO duplicated Agent Wall business logic in TUI
+NO Agent Wall internal file/module names as client API
+NO TUI-owned canonical runtime state
 ```
 
-This is stronger than treating a command hash alone as memory.
+## 7. Batch 1 read-only integration plan
 
-### Retrieval behavior
+Implement and prove Batch 1 first.
 
-Before a turn where prior context could materially help:
+### 7.1 Agent Wall exports
+
+Expose stable read-only projections equivalent to:
 
 ```text
-identify workspace/session
-→ formulate bounded recall query
-→ retrieve same-project/session-lineage relevant records
-→ rank verified/current records above unverified/stale records
-→ inject only highest-value records
-→ continue reasoning
+ProjectTruthProjection
+SessionContextProjection
+ProvenanceProjection
+ValidationProjection
 ```
 
-Do not load every stored session.
+Exact type names may differ, but they must be product-level contracts and must not expose internal Python module structure.
 
-### Authority boundary
+### 7.2 RealLbeWrapper mapping
 
-During pre-integration, any TUI-local memory/cache must be explicitly non-canonical.
-
-Production architecture:
+`RealLbeWrapper` should:
 
 ```text
-TUI
- ↓
-LbeWrapper memory request
- ↓
-Canonical LBE memory owner
- ↓
-persistent session/turn/event/memory store
+attach to the real wall
+obtain authoritative connection/runtime state
+obtain Batch 1 snapshots
+translate wall data into existing Rust contracts
+poll wall-originated read-only events
+surface disconnect/reconnect state
+fail closed when authoritative data is unavailable
 ```
 
-The TUI may request and render memory. It must not silently become the canonical persistence authority.
-
-## 6. Module 16 — Browser-chat interaction bridge
-
-### Goal
-
-Support multiple browser-based AI chat surfaces while preserving LBE as the authority boundary.
-
-Use a provider-neutral abstraction rather than hard-coding one chat product.
-
-### Target architecture
+During this phase it must not:
 
 ```text
-Browser Chat
-    ↓
-BrowserChatAdapter
-    ↓
-LBE bridge protocol
-    ↓
-LbeWrapper
-    ↓
-Canonical LBE runtime
+execute tools
+mutate files
+run commands
+approve actions
+change models/providers
+restore checkpoints
+start background tasks
 ```
 
-Return path:
+### 7.3 Batch 1 acceptance gate
 
 ```text
-Canonical LBE runtime
-    ↓
-structured event/result
-    ↓
-BrowserChatAdapter
-    ↓
-Browser Chat
+REAL_AGENT_WALL_READ_ONLY_BATCH_1
+
+AW-33 export contract                  PASS
+AW-34 export contract                  PASS
+AW-37 export contract                  PASS
+AW-39 export contract                  PASS
+
+RealLbeWrapper attach                  PASS
+Rust type conversion                   PASS
+TUI real projection                    PASS
+disconnect/reconnect projection        PASS
+
+mock substitution                      NONE
+mutation                               NONE
+direct Python coupling                 NONE
+runtime authority leakage              NONE
 ```
 
-### Suggested source contract
+Only after this passes should Batch 2 open.
+
+## 8. Batch 2 integration plan
+
+After Batch 1 is stable, attach:
 
 ```text
-src/browser_chat.rs
-BrowserChatProvider
-BrowserChatSession
-BrowserChatMessage
-BrowserChatEvent
-BrowserChatError
-BrowserChatAdapter
+AW-35 Change Impact
+AW-36 Hypothesis/Test/Verify
+AW-38 Task Graph
+AW-43 What's Next
 ```
 
-Possible adapter implementations later:
+Target flow:
 
 ```text
-ChatGPTBrowserAdapter
-ClaudeBrowserAdapter
-GeminiBrowserAdapter
-other supported browser-chat adapters
+TUI request for inspection/reasoning state
+        ↓
+RealLbeWrapper
+        ↓
+Agent Wall read-only runtime export
+        ↓
+impact / hypothesis / task / priority projection
+        ↓
+TUI rendering
 ```
 
-### Required correlation
+This remains read-only from the TUI's perspective unless a separate mutation gate has explicitly opened.
 
-Every browser interaction should map through LBE identity:
+## 9. Batch 3 integration plan
+
+After Batch 2 acceptance, attach:
 
 ```text
-browser_session_id
-↔ lbe_session_id
-↔ lbe_turn_id
-↔ browser_message_id
-↔ tool_call_id
-↔ evidence_ref / receipt_id
+AW-40 Documentation proposals
+AW-41 QA/quality results
+AW-42 Research evidence/source provenance
 ```
 
-This allows browser conversations to reconnect to the correct LBE session and memory without treating raw browser history as canonical truth.
+These should initially surface as inspectable artifacts/results. Approval or mutation controls belong to the later read/write phase.
 
-### Tool boundary
+## 10. End-to-end integration sequence
 
-Required flow:
+The planned end-to-end sequence is:
 
 ```text
-browser assistant proposes governed tool/action
-→ BrowserChatAdapter detects request
-→ LBE request
-→ authorization / approval
-→ LBE-owned execution
-→ validation
-→ evidence / receipt
-→ structured result returned to browser chat
-→ browser assistant continues
+PHASE 0 — PRE-INTEGRATION CORRECTNESS
+Module 32 deterministic runtime hardening
+→ DONE PRE-INTEGRATION
+
+PHASE 1 — REAL WALL READ-ONLY ATTACHMENT
+RealLbeWrapper attach/disconnect/reconnect
+→ authoritative runtime/session identity
+→ no mutation
+
+PHASE 2 — BATCH 1 FOUNDATIONAL EXPORTS
+AW-33 memory/project truth
+AW-34 session continuity
+AW-37 provenance
+AW-39 validation
+→ real TUI projection
+
+PHASE 3 — BATCH 2 REASONING/WORKFLOW EXPORTS
+AW-35 impact
+AW-36 hypothesis/test/verify
+AW-38 task graph
+AW-43 next-task recommendation
+→ real TUI projection
+
+PHASE 4 — BATCH 3 SECONDARY EXPORTS
+AW-40 docs
+AW-41 QA
+AW-42 research
+→ real TUI projection
+
+PHASE 5 — READ-ONLY END-TO-END ACCEPTANCE
+real wall state
+→ wall client export
+→ RealLbeWrapper
+→ Rust typed contracts
+→ TUI
+→ disconnect/reconnect
+→ zero mock substitution
+→ zero mutation
+
+PHASE 6 — GOVERNED READ/WRITE INTEGRATION
+session operations
+model/provider selection
+approval flow
+governed tool execution
+governed command execution
+sandbox/permissions
+checkpoint restore
+file edits
+
+PHASE 7 — CODING IDE REVIEW LOOP
+workspace changes
+diff review
+patch review
+artifact review
+test result review
+accept/reject workflow
+
+PHASE 8 — DURABILITY
+persistent sessions
+resume
+checkpoint persistence
+project truth recall
+artifact/evidence/receipt history
+conversation handoff
+
+PHASE 9 — BACKGROUND / AGENT WORKSPACE
+background processes
+subagents
+agent teams
+dependency chains
+per-agent logs/artifacts/evidence
+
+PHASE 10 — HEADLESS / CI ACCEPTANCE
+plain non-TUI mode
+structured JSON output
+CI-safe execution
+terminal lifecycle acceptance
+installed end-to-end acceptance
 ```
 
-Forbidden fallback:
+## 11. Read/write mutation gate
+
+No real mutation should be enabled until the read-only path proves authoritative state transport.
+
+The read/write gate should require:
 
 ```text
-browser assistant → direct governed filesystem/process/tool execution
+real connection/session identity proven
+Batch 1–3 projection mapping proven
+no mock fallback proven
+single authority preserved
+request/event correlation proven
+disconnect/reconnect behavior proven
 ```
 
-The bridge must fail closed if LBE authority is unavailable.
-
-### TUI surface
-
-Suggested command:
+Then mutation may be enabled incrementally:
 
 ```text
-/browser
-/browser attach
-/browser detach
-/browser status
-/browser sessions
+1. session operations
+2. model/provider selection
+3. approvals
+4. governed tool execution
+5. governed command execution
+6. sandbox/permissions
+7. checkpoint restore
+8. file edit/write pipeline
+9. diff acceptance
+10. background tasks
 ```
 
-Suggested projection:
+Each mutation slice must retain Agent Wall authorization, validation, evidence, receipt, and completion authority.
+
+## 12. Final target architecture
 
 ```text
-provider
-connection state
-browser session ID
-mapped LBE session ID
-turn ID
-memory linkage
-last receipt/evidence
-reconnect status
+                    LBE Terminal TUI / CLI
+                             │
+                             ▼
+                         LbeWrapper
+                     /                 \
+          MockLbeWrapper             RealLbeWrapper
+          test-only/prelive                │
+                                          ▼
+                                      Agent Wall
+                         ┌────────────────┼────────────────┐
+                         │                │                │
+                   Project Truth      Sessions        Provenance
+                         │                │                │
+                     Validation      Impact/Tasks      Evidence
+                         │                │                │
+                      Receipts       Providers/Tools    Artifacts
+                         └────────────────┼────────────────┘
+                                          │
+                                          ▼
+                              governed execution/runtime
 ```
 
-### Memory integration
+Client surfaces own presentation, navigation, review, request construction, and local editor state.
 
-Browser chat should use Module 15 rather than its own independent memory authority:
+Agent Wall owns canonical runtime/session state, project truth, authorization, policy, tool/command execution, validation, evidence, receipts, persistence, provenance, and completion truth.
+
+## 13. Current overall status
 
 ```text
-browser message
-→ mapped LBE session
-→ bounded relevant memory recall
-→ selected context attached to browser turn
-→ resulting actions/events stored back under LBE session identity
+TUI shell / runtime loop                 IMPLEMENTED
+MockLbeWrapper                           IMPLEMENTED
+Module 32 deterministic state machine    IMPLEMENTED_PRE_INTEGRATION
+terminal idempotency                     IMPLEMENTED
+RealLbeWrapper                           READ_ONLY_SKELETON_IMPLEMENTED
+Module 34 frontend mapping               DOCUMENTED / PARTIAL FRONTEND SURFACES
+Agent Wall internal capabilities         READY / CLIENT_EXPORT_PENDING
+read-only client export                  NEXT
+RealLbeWrapper real attachment           NEXT
+TUI rendering of real wall truth         AFTER CONTRACT
+read/write mutation integration          LATER
+installed end-to-end acceptance          LATER
 ```
 
-This enables requests such as `continue the TUI work` without requiring the user to reconstruct the previous browser-chat session manually.
+## 14. Authority note
 
-## 7. Final target architecture
+GPT-Knowledge is a projection/reference layer, not implementation authority.
 
-```text
-                       Browser Chat
-                            │
-                            ▼
-                   BrowserChatAdapter
-                            │
-                            ▼
-Ratatui TUI ───────────► LbeWrapper
-                            │
-                            ▼
-                     Canonical LBE
-                    /      |       \
-               Memory    Tools    Evidence
-                 |         |          |
-              Sessions   Receipts   Validation
-```
-
-The client surfaces own presentation, navigation, context selection and request construction.
-
-Canonical LBE owns workspace identity, sessions, authorization, guards, execution, validation, evidence, receipts, persistent memory and completion truth.
-
-## 8. Closure sequence
-
-Minimum sequence from the current workspace state:
-
-```text
-0. Restore active src/main.rs TUI/event-loop wiring
-1. Restore active non-zero test suite
-2. cargo check PASS
-3. cargo test PASS with expected tests
-4. Work modular UI gaps 01–14 independently
-5. Implement Module 15 memory client/recall contract
-6. Implement Module 16 browser-chat bridge contract
-7. Attach RealLbeWrapper to canonical LBE runtime
-8. Replace mock/local authority projections with live runtime-owned state
-9. Run installed end-to-end acceptance
-```
-
-Do not skip steps 0–3 merely because the placeholder crate currently compiles.
+Implementation truth remains in the current source repositories and runtime evidence. This record should be updated whenever source heads, integration gates, or live acceptance evidence materially change.
