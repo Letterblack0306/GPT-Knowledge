@@ -3,41 +3,54 @@
 **Classification:** REFERENCE / NON-CANONICAL  
 **Date:** 2026-08-29  
 **TUI source repository:** `Letterblack0306/LBE_Agents_wall_Intigration`  
-**Verified TUI source head:** `4ac0c46c991b31b46b52558f8766ec040c827965`  
-**Head message:** `Attach TUI to Agent Wall project truth`  
+**Verified TUI source head:** `4a0476e49628012e2dd9a557067292c2cbe9e14a`  
+**Head message:** `Attach TUI to Agent Wall validation`  
 **Agent Wall source repository:** `Letterblack0306/LBE_Presistent_Agent_wall`  
 **Verified Agent Wall head:** `580f9db1aea1d2e8f48282f7755a8ea65c7fc0f8`  
 **Local workspace:** `C:\LBE-TUI-Lab`
 
 ## 1. Current state
 
-The first real read-only Agent Wall → TUI path is now proven.
+Read-only Batch 1 is now fully implemented and accepted.
 
 ```text
-REAL_AGENT_WALL_PROJECT_TRUTH_ATTACHMENT_V1 = PASS
+REAL_AGENT_WALL_PROJECT_TRUTH_ATTACHMENT_V1 = PASS / CLOSED
+REAL_AGENT_WALL_SESSION_CONTEXT_ATTACHMENT_V1 = PASS / CLOSED
+REAL_AGENT_WALL_PROVENANCE_ATTACHMENT_V1 = PASS / CLOSED
+REAL_AGENT_WALL_VALIDATION_ATTACHMENT_V1 = PASS / CLOSED
+READ_ONLY_BATCH_1_ACCEPTANCE = PASS
 ```
 
-Current architecture:
+Current committed real path:
 
 ```text
 Ratatui TUI
     ↓
 LbeWrapper
-    ├─ MockLbeWrapper
     └─ RealLbeWrapper
            ↓
-    configured Agent Wall product CLI
+    Agent Wall product CLI boundary
            ↓
-      project_truth v1
+      project_truth
            ↓
-      typed Rust projection
+      session_context
            ↓
-      existing TUI state/reducer
+      provenance
+           ↓
+      validation
+           ↓
+      strict cross-projection identity validation
+           ↓
+      authoritative LbeSnapshot
+           ↓
+      RuntimeAttachmentUpdated / SnapshotUpdated
+           ↓
+      existing App reducer / TUI
 ```
 
-The TUI remains projection-only. Agent Wall remains authority for project truth and later session/runtime/mutation state.
+The TUI remains projection-only. Agent Wall remains canonical authority for project truth, persisted session state, provenance, validation, and any future mutation/runtime operations.
 
-## 2. What is completed
+## 2. Completed work
 
 ### 2.1 TUI foundation
 
@@ -48,7 +61,7 @@ LbeWrapper abstraction                 IMPLEMENTED
 runtime selector                       IMPLEMENTED
 Module 32 deterministic state machine  IMPLEMENTED_PRE_INTEGRATION
 terminal idempotency                   IMPLEMENTED
-RealLbeWrapper skeleton                IMPLEMENTED
+RealLbeWrapper                         IMPLEMENTED_READ_ONLY_BATCH_1
 ```
 
 ### 2.2 Agent Wall read-only export seam
@@ -60,7 +73,7 @@ Agent Wall commit:
 Add read-only Agent Wall projection exports
 ```
 
-The committed seam exports:
+Exports:
 
 ```text
 project_truth
@@ -69,193 +82,287 @@ provenance
 validation
 ```
 
-Focused export validation:
+Agent Wall focused evidence:
 
 ```text
-10 tests passed
+10 focused export tests passed
 project_truth runtime smoke PASS
-local HEAD == origin/main at acceptance
 ```
 
-### 2.3 Real project-truth attachment
+### 2.3 Project truth attachment
 
-TUI commit:
+Commit:
 
 ```text
 4ac0c46c991b31b46b52558f8766ec040c827965
 Attach TUI to Agent Wall project truth
 ```
 
-Implemented flow:
+Result:
 
 ```text
-LBE_RUNTIME=real
-→ RealLbeWrapper
-→ LBE_WALL_ROOT / LBE_TARGET_WORKSPACE
-→ python -m lbe_guard_inspector.product_entry export project_truth
-→ strict ProjectTruthProjection v1 decode/validation
-→ LbeSnapshot.project_truth
-→ RuntimeAttachmentUpdated
-→ SnapshotUpdated
-→ existing App reducer/TUI
+project_truth typed projection         PASS
+configured real smoke                  PASS
+runtime/session/turn fabrication       NONE
+mock fallback on real path             NONE
+mutation                               NONE
 ```
 
-The TUI does not fabricate runtime/session/turn identity for this path.
+### 2.4 Session context attachment
 
-### 2.4 Validation evidence
+Commit:
+
+```text
+59d4943b0adb9d16867ce30fc4e224d5c3ecca71
+Attach TUI to Agent Wall session context
+```
+
+Result:
+
+```text
+SessionContextProjection               PASS
+session identity projection            PASS
+workspace/canonical-root cross-check   PASS
+opaque task/checkpoint/fact payloads    retained as Agent Wall-owned data
+lineage fabrication                    NONE
+CheckpointDescriptor fabrication       NONE
+MemoryProjection fabrication           NONE
+provider/model runtime projection      NONE
+runtime_id / turn_id fabrication       NONE
+```
+
+Validation at closure:
+
+```text
+68/68 tests PASS
+```
+
+Real smoke qualifier:
+
+```text
+REAL_SESSION_CONTEXT_SMOKE = BLOCKED_NO_EXISTING_SESSION
+```
+
+No Agent Wall session was created or mutated to manufacture the smoke.
+
+### 2.5 Provenance attachment
+
+Commit:
+
+```text
+ed6e34cefc9aef2123ea631bff24fc6c04fa4120
+Attach TUI to Agent Wall provenance
+```
+
+Result:
+
+```text
+ProvenanceProjection                   PASS
+workspace/session identity checks      PASS
+opaque source preservation             PASS
+current/stale/unknown staleness        PASS
+historical turn IDs remain provenance  PASS
+provider/model fields remain evidence  PASS
+runtime/tool correlation promotion     NONE
+```
+
+Validation at closure:
+
+```text
+72/72 tests PASS
+```
+
+Real smoke qualifier:
+
+```text
+REAL_PROVENANCE_SMOKE = BLOCKED_NO_EXISTING_SESSION
+```
+
+### 2.6 Validation attachment
+
+Commit:
+
+```text
+4a0476e49628012e2dd9a557067292c2cbe9e14a
+Attach TUI to Agent Wall validation
+```
+
+Result:
+
+```text
+ValidationProjection                   PASS
+LBE_TASK_ID explicit task identity     PASS
+workspace/session/task cross-check     PASS
+strict mode/status enums               PASS
+requirements/policies/evidence         retained read-only
+policy command execution               NONE
+validation evidence → diagnostics      NONE
+validation evidence → execution state  NONE
+validation task status → session state NONE
+```
+
+Validation at closure:
 
 ```text
 cargo fmt -- --check     PASS
 cargo check              PASS
-cargo test               PASS — 43/43
+cargo test               PASS — 75/75
 git diff --check         PASS
-configured real smoke    PASS — 1/1
 ```
 
-Configured real smoke:
+Real smoke qualifier:
 
 ```text
-LBE_WALL_ROOT=C:\Agents-Memory-Tool-v6-integration
-LBE_TARGET_WORKSPACE=C:\LBE-TUI-Lab
+REAL_VALIDATION_SMOKE = BLOCKED_NO_EXISTING_TASK
 ```
 
-Observed projection:
+No task, task completion contract, session, or database state was created or mutated to manufacture the smoke.
+
+## 3. Read-only Batch 1 acceptance
+
+The four foundational projections are now committed and accepted together:
+
+| Projection | Agent Wall export | TUI attachment | Status |
+|---|---|---|---|
+| `project_truth` | PROVEN | COMMITTED | **PASS / CLOSED** |
+| `session_context` | PROVEN | COMMITTED | **PASS / CLOSED** |
+| `provenance` | PROVEN | COMMITTED | **PASS / CLOSED** |
+| `validation` | PROVEN | COMMITTED | **PASS / CLOSED** |
+
+Acceptance evidence at TUI head `4a0476e49628012e2dd9a557067292c2cbe9e14a`:
 
 ```text
-schema_version       1.0
-projection_type      project_truth
-read_only            true
-workspace_id         workspace_681a91b3a62538ad
-workspace_root       C:\LBE-TUI-Lab
-target_project_root  C:\LBE-TUI-Lab
-connection           Connected
-runtime_mode         Local
-runtime_id           None
-session_id           None
-turn_id              None
+HEAD == origin/main       PASS
+cargo fmt -- --check      PASS
+cargo check               PASS
+cargo test                PASS — 75/75
+git diff --check          PASS
 ```
 
-### 2.5 Authority / safety properties proven
+Repository exception preserved:
 
 ```text
-mock fallback on real path       NONE
-fabricated runtime identity      NONE
-fabricated session identity      NONE
-fabricated turn identity         NONE
-provider/model mutation          NONE
-tool execution                   NONE
-command execution                NONE
-validation execution             NONE
-file mutation                    NONE
-Agent Wall source mutation       NONE for TUI slice
+C:\LBE-TUI-Lab\rust\main.rs.bak
 ```
 
-## 3. Current Batch 1 status
-
-Foundational read-only Batch 1 consists of four projections:
-
-| Projection | Agent Wall export | TUI attachment |
-|---|---|---|
-| `project_truth` | PROVEN | **PROVEN** |
-| `session_context` | PROVEN EXPORTED | **NEXT** |
-| `provenance` | PROVEN EXPORTED | PLANNED |
-| `validation` | PROVEN EXPORTED | PLANNED |
+remains untracked and intentionally untouched.
 
 Current classification:
 
 ```text
-READ_ONLY_BATCH_1 = PARTIAL — 1 OF 4 ATTACHED
+READ_ONLY_BATCH_1_IMPLEMENTATION = 4/4 CLOSED
+READ_ONLY_BATCH_1_ACCEPTANCE     = PASS
 ```
 
-The read/write gate remains **CLOSED**.
+## 4. Authority and safety properties
 
-## 4. Immediate next step
+Proven across the current read-only boundary:
 
 ```text
-REAL_AGENT_WALL_SESSION_CONTEXT_ATTACHMENT_V1
+Agent Wall remains canonical authority       YES
+mock fallback on real attachment path        NONE
+TUI-owned mutation authority                 NONE
+fabricated runtime identity                  NONE
+fabricated turn identity                     NONE
+opaque owner payload reinterpretation        NONE
+historical provenance → live runtime mapping NONE
+validation policy command execution          NONE
+validation evidence → TUI diagnostics        NONE
+provider/model mutation                      NONE
+tool/command execution                       NONE
+file/memory mutation                         NONE
 ```
 
-Before implementation, inspect and map `SessionContextProjection` against existing TUI owners for:
+The real attachment uses explicit configuration where owner identity cannot safely be inferred:
 
 ```text
-session identity/state
-workspace identity
-task context
-checkpoint state
-memory/context projections
-transcript/operational history
+LBE_WALL_ROOT
+LBE_TARGET_WORKSPACE
+optional LBE_WALL_PYTHON
+LBE_WALL_DATABASE
+LBE_SESSION_ID
+LBE_TASK_ID
 ```
 
-Rules:
+## 5. Smoke evidence status
 
-- reuse existing TUI state only where semantics match;
-- add a typed projection field where no correct existing destination exists;
-- do not overload diagnostics/runtime/provider fields;
-- no fabricated session identity;
-- no mock fallback on the real path;
-- no mutation;
-- Agent Wall remains canonical session/context owner.
+```text
+project_truth      REAL SMOKE = PASS
+session_context    REAL SMOKE = BLOCKED_NO_EXISTING_SESSION
+provenance         REAL SMOKE = BLOCKED_NO_EXISTING_SESSION
+validation         REAL SMOKE = BLOCKED_NO_EXISTING_TASK
+```
+
+The blocked smokes are evidence qualifiers, not implementation failures. The project intentionally did not create or mutate Agent Wall persistence merely to manufacture acceptance evidence.
+
+## 6. Immediate next step
+
+```text
+DISCONNECT_RECONNECT_RECOVERY
+```
+
+Goal:
+
+```text
+Connected
+→ disconnect / connection loss
+→ stop claiming live-connected authority
+→ reconnect
+→ re-export project_truth
+→ re-export session_context
+→ re-export provenance
+→ re-export validation
+→ revalidate all cross-projection identities
+→ atomically replace authoritative snapshot
+→ Connected
+```
+
+Required rules:
+
+- no cached projection set is sufficient to claim successful reconnection;
+- no partial reconnect candidate may be published as `Connected`;
+- no mock fallback from real-path recovery failures;
+- connection state must truthfully distinguish stale historical projection data from current live authority;
+- no Agent Wall mutation;
+- no new runtime/session/turn/provider/model authority fabrication.
 
 Acceptance target:
 
 ```text
-real persisted session_context export
-→ strict Rust decode/identity validation
-→ authoritative TUI projection
-→ existing event/reducer flow
-→ zero mock fallback
-→ zero mutation
+initial Connected state
+→ explicit disconnect/loss
+→ non-Connected truthful state
+→ deterministic fresh four-projection reload
+→ strict identity revalidation
+→ atomic snapshot replacement
+→ Connected
 ```
 
-## 5. Upcoming plan
-
-### Phase A — Session context
-
-`REAL_AGENT_WALL_SESSION_CONTEXT_ATTACHMENT_V1`
-
-Attach persisted session state, task/checkpoint/context and transcript state through the existing read-only boundary.
-
-### Phase B — Provenance
-
-`REAL_AGENT_WALL_PROVENANCE_ATTACHMENT_V1`
-
-Attach code/intent provenance plus owner-backed operational/evidence references.
-
-### Phase C — Validation
-
-`REAL_AGENT_WALL_VALIDATION_ATTACHMENT_V1`
-
-Attach validation strategy/completion evidence as read-only projection. The TUI must not execute validation merely to populate this view.
-
-### Phase D — Batch 1 acceptance
-
-`READ_ONLY_BATCH_1_ACCEPTANCE`
-
-Require all four projections together with:
+If no persisted session/task fixture exists for a real lifecycle smoke:
 
 ```text
-identity consistency
-zero mock fallback
-zero mutation
-single Agent Wall authority
-request/event consistency
+REAL_DISCONNECT_RECONNECT_SMOKE = BLOCKED_NO_EXISTING_TASK
 ```
 
-### Phase E — Disconnect/reconnect recovery
+Do not create state merely to satisfy the smoke.
 
-Prove:
+## 7. Upcoming plan
 
-```text
-connection loss
-stale-state clearing
-re-attachment
-identity revalidation
-no reuse of stale project/session truth
-```
+### Phase A — Disconnect/reconnect recovery — NEXT
 
-### Phase F — Batch 2 read-only reasoning/workflow
+`DISCONNECT_RECONNECT_RECOVERY`
 
-Later attach:
+Prove connection-loss truthfulness and atomic reattachment of all four accepted projections.
+
+### Phase B — Request/event correlation acceptance
+
+`REQUEST_EVENT_CORRELATION_ACCEPTANCE`
+
+Prove that future governed mutation requests can be correlated to the correct Agent Wall event/evidence/receipt chain before the read/write gate is considered for opening.
+
+### Phase C — Batch 2 read-only reasoning/workflow projections
+
+Later candidates:
 
 ```text
 change impact
@@ -264,9 +371,11 @@ dependency/task graph
 what's next / prioritization
 ```
 
-### Phase G — Batch 3 secondary projections
+These remain projection work and do not themselves open mutation authority.
 
-Later attach:
+### Phase D — Batch 3 secondary projections
+
+Later candidates:
 
 ```text
 documentation
@@ -274,11 +383,28 @@ QA/quality expansion
 research evidence/provenance
 ```
 
-### Phase H — Governed read/write integration
+### Phase E — Governed read/write integration
 
 **GATE CLOSED.**
 
-Only after read-only acceptance should mutation open incrementally for:
+Already proven prerequisites:
+
+```text
+Batch 1 read-only mapping 4/4
+Batch 1 acceptance
+single Agent Wall authority
+zero mock fallback across implemented real paths
+authoritative session/task identity representation
+```
+
+Still required before considering gate opening:
+
+```text
+disconnect/reconnect recovery
+request/event correlation acceptance
+```
+
+Only after those gates should mutation be considered incrementally for:
 
 ```text
 session operations
@@ -288,50 +414,52 @@ tools
 commands
 sandbox/permissions
 checkpoint restore
-file edits/diff acceptance
+file edits / diff acceptance
 background tasks
 ```
 
 Every mutation slice must preserve Agent Wall authorization, validation, evidence, receipt and completion authority.
 
-## 6. Remaining gaps
+## 8. Remaining gaps
 
 ```text
-session_context TUI attachment          NEXT
-provenance TUI attachment               PLANNED
-validation TUI attachment               PLANNED
-disconnect/reconnect recovery           UNVERIFIED
-exhaustive named negative-test matrix   UNVERIFIED
-read/write integration                  GATE CLOSED
-installed end-to-end acceptance         LATER
+disconnect/reconnect recovery              NEXT / UNPROVEN
+request/event correlation acceptance       PLANNED / UNPROVEN
+session_context real smoke                  BLOCKED_NO_EXISTING_SESSION
+provenance real smoke                       BLOCKED_NO_EXISTING_SESSION
+validation real smoke                       BLOCKED_NO_EXISTING_TASK
+exhaustive malformed-input matrix           NON-EXHAUSTIVE
+read/write integration                      GATE CLOSED
+installed end-to-end acceptance             LATER
 ```
 
-## 7. Transport note
+## 9. Transport note
 
-The current proven V1 local transport invokes the Agent Wall product entry through Python:
+Current V1 local read-only transport uses the Agent Wall product entry through Python:
 
 ```text
-python -m lbe_guard_inspector.product_entry export project_truth --workspace <target> --format json
+python -m lbe_guard_inspector.product_entry export <projection> ... --format json
 ```
 
-This is a read-only product CLI boundary, not duplicated Agent Wall business logic. A packaged executable or different stable transport may replace it later as hardening, but that is not required to classify the current `project_truth` slice as proven.
+This remains an accepted product CLI boundary, not duplication of Agent Wall business logic. Replacing it with a packaged executable or another stable transport is a later hardening option and is not required for the accepted Batch 1 integration.
 
-## 8. Final current classification
+## 10. Final current classification
 
 ```text
 Agent Wall read-only export seam        PROVEN / COMMITTED
-RealLbeWrapper project_truth path        PROVEN / COMMITTED
-Real configured smoke                    PROVEN
-TUI real project_truth projection        PROVEN
-Read-only Batch 1                        PARTIAL — 1/4 ATTACHED
-Session context                          NEXT
-Provenance                               PLANNED
-Validation                               PLANNED
-Disconnect/reconnect                     UNVERIFIED
-Read/write mutation                      GATE CLOSED
-Installed end-to-end acceptance          LATER
+Project truth attachment                PASS / CLOSED
+Session context attachment              PASS / CLOSED
+Provenance attachment                   PASS / CLOSED
+Validation attachment                   PASS / CLOSED
+Read-only Batch 1 implementation        4/4 CLOSED
+Read-only Batch 1 acceptance            PASS
+Current TUI head                        4a0476e49628012e2dd9a557067292c2cbe9e14a
+Disconnect/reconnect                    NEXT / UNPROVEN
+Request/event correlation               PLANNED / UNPROVEN
+Read/write mutation                     GATE CLOSED
+Installed end-to-end acceptance         LATER
 ```
 
-## 9. Authority note
+## 11. Authority note
 
 GPT-Knowledge is a reference/projection layer only. Source repositories and runtime evidence remain implementation authority.
