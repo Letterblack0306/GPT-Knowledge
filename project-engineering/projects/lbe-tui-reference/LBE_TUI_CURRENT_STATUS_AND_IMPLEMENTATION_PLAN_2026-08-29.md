@@ -3,243 +3,253 @@
 **Classification:** REFERENCE / NON-CANONICAL  
 **Date:** 2026-08-29  
 **TUI source repository:** `Letterblack0306/LBE_Agents_wall_Intigration`  
-**Verified TUI source head:** `4a0476e49628012e2dd9a557067292c2cbe9e14a`  
-**Head message:** `Attach TUI to Agent Wall validation`  
+**Verified TUI source head:** `c0674c9a9dcf2cc73ffaf5d9b9a41423adda066e`  
+**Head message:** `Add Agent Wall disconnect reconnect recovery`  
 **Agent Wall source repository:** `Letterblack0306/LBE_Presistent_Agent_wall`  
 **Verified Agent Wall head:** `580f9db1aea1d2e8f48282f7755a8ea65c7fc0f8`  
 **Local workspace:** `C:\LBE-TUI-Lab`
 
 ## 1. Current state
 
-Read-only Batch 1 is now fully implemented and accepted.
-
 ```text
-REAL_AGENT_WALL_PROJECT_TRUTH_ATTACHMENT_V1 = PASS / CLOSED
-REAL_AGENT_WALL_SESSION_CONTEXT_ATTACHMENT_V1 = PASS / CLOSED
-REAL_AGENT_WALL_PROVENANCE_ATTACHMENT_V1 = PASS / CLOSED
-REAL_AGENT_WALL_VALIDATION_ATTACHMENT_V1 = PASS / CLOSED
-READ_ONLY_BATCH_1_ACCEPTANCE = PASS
+READ_ONLY_BATCH_1_IMPLEMENTATION        4/4 CLOSED
+READ_ONLY_BATCH_1_ACCEPTANCE            PASS
+DISCONNECT_RECONNECT_RECOVERY           PASS / CLOSED
+REQUEST_EVENT_CORRELATION_ACCEPTANCE    FAIL / NOT PROVEN
+READ_WRITE_GATE                         CLOSED
 ```
 
-Current committed real path:
+The TUI remains projection-only and Agent Wall remains canonical authority. Request/event correlation is the current blocking correctness gate before any separate review of mutation eligibility.
 
-```text
-Ratatui TUI
-    ↓
-LbeWrapper
-    └─ RealLbeWrapper
-           ↓
-    Agent Wall product CLI boundary
-           ↓
-      project_truth
-           ↓
-      session_context
-           ↓
-      provenance
-           ↓
-      validation
-           ↓
-      strict cross-projection identity validation
-           ↓
-      authoritative LbeSnapshot
-           ↓
-      RuntimeAttachmentUpdated / SnapshotUpdated
-           ↓
-      existing App reducer / TUI
-```
+## 2. Completed read-only and recovery work
 
-The TUI remains projection-only. Agent Wall remains canonical authority for project truth, persisted session state, provenance, validation, and any future mutation/runtime operations.
-
-## 2. Completed work
-
-### 2.1 TUI foundation
-
-```text
-TUI shell/runtime loop                 IMPLEMENTED
-MockLbeWrapper                         IMPLEMENTED
-LbeWrapper abstraction                 IMPLEMENTED
-runtime selector                       IMPLEMENTED
-Module 32 deterministic state machine  IMPLEMENTED_PRE_INTEGRATION
-terminal idempotency                   IMPLEMENTED
-RealLbeWrapper                         IMPLEMENTED_READ_ONLY_BATCH_1
-```
-
-### 2.2 Agent Wall read-only export seam
-
-Agent Wall commit:
-
-```text
-580f9db1aea1d2e8f48282f7755a8ea65c7fc0f8
-Add read-only Agent Wall projection exports
-```
-
-Exports:
+The committed read-only projection chain is:
 
 ```text
 project_truth
-session_context
-provenance
-validation
+→ session_context
+→ provenance
+→ validation
+→ cross-projection identity validation
+→ Connected
 ```
 
-Agent Wall focused evidence:
+Completed commits:
 
 ```text
-10 focused export tests passed
-project_truth runtime smoke PASS
+4ac0c46c991b31b46b52558f8766ec040c827965  Attach TUI to Agent Wall project truth
+59d4943b0adb9d16867ce30fc4e224d5c3ecca71  Attach TUI to Agent Wall session context
+ed6e34cefc9aef2123ea631bff24fc6c04fa4120  Attach TUI to Agent Wall provenance
+4a0476e49628012e2dd9a557067292c2cbe9e14a  Attach TUI to Agent Wall validation
+c0674c9a9dcf2cc73ffaf5d9b9a41423adda066e  Add Agent Wall disconnect reconnect recovery
 ```
 
-### 2.3 Project truth attachment
-
-Commit:
+Current baseline:
 
 ```text
-4ac0c46c991b31b46b52558f8766ec040c827965
-Attach TUI to Agent Wall project truth
+cargo fmt -- --check    PASS
+cargo check             PASS
+cargo test              PASS — 79/79
+git diff --check        PASS
 ```
 
-Result:
+Real smoke qualifiers:
 
 ```text
-project_truth typed projection         PASS
-configured real smoke                  PASS
-runtime/session/turn fabrication       NONE
-mock fallback on real path             NONE
-mutation                               NONE
+project_truth           PASS
+session_context         BLOCKED_NO_EXISTING_SESSION
+provenance              BLOCKED_NO_EXISTING_SESSION
+validation              BLOCKED_NO_EXISTING_TASK
+disconnect/reconnect    BLOCKED_NO_EXISTING_TASK
 ```
 
-### 2.4 Session context attachment
+No Agent Wall state was created or mutated merely to manufacture smoke evidence.
 
-Commit:
+## 3. Disconnect/reconnect recovery
+
+Status:
 
 ```text
-59d4943b0adb9d16867ce30fc4e224d5c3ecca71
-Attach TUI to Agent Wall session context
+DISCONNECT_RECONNECT_RECOVERY = PASS / CLOSED
 ```
 
-Result:
+Implemented semantics:
 
 ```text
-SessionContextProjection               PASS
-session identity projection            PASS
-workspace/canonical-root cross-check   PASS
-opaque task/checkpoint/fact payloads    retained as Agent Wall-owned data
-lineage fabrication                    NONE
-CheckpointDescriptor fabrication       NONE
-MemoryProjection fabrication           NONE
-provider/model runtime projection      NONE
-runtime_id / turn_id fabrication       NONE
+Connected
+→ disconnect/loss
+→ non-Connected truthful state
+→ reconnect
+→ isolated fresh four-projection candidate
+→ full identity validation
+→ atomic live snapshot replacement
+→ Connected
 ```
 
-Validation at closure:
+Reconnect failure remains non-Connected and never falls back to the mock wrapper.
+
+## 4. Request/event correlation gate
+
+Status:
 
 ```text
-68/68 tests PASS
+REQUEST_EVENT_CORRELATION_ACCEPTANCE = FAIL / NOT PROVEN
+CLASSIFICATION = CORRELATION_MODEL_INSUFFICIENT
 ```
 
-Real smoke qualifier:
+Confirmed gaps at the current event/reducer boundary:
 
 ```text
-REAL_SESSION_CONTEXT_SMOKE = BLOCKED_NO_EXISTING_SESSION
+ValidationCompleted lacks execution_id
+TimedOut lacks execution_id
+ExecutionRejected lacks proposal/execution ownership identity
+tool lifecycle events lack explicit owning execution_id
+command lifecycle events lack explicit owning execution_id
+App reducer applies several request-specific events without an owning execution/proposal guard
+mock approval identity is reused across independent proposal lifecycles
+SnapshotUpdated is not a substitute for request ownership
+RuntimeAttachmentUpdated is attachment state only, not request completion proof
 ```
 
-No Agent Wall session was created or mutated to manufacture the smoke.
-
-### 2.5 Provenance attachment
-
-Commit:
+Next correctness slice:
 
 ```text
-ed6e34cefc9aef2123ea631bff24fc6c04fa4120
-Attach TUI to Agent Wall provenance
+REQUEST_EVENT_CORRELATION_CONTRACT_V1
 ```
 
-Result:
+After implementation, rerun:
 
 ```text
-ProvenanceProjection                   PASS
-workspace/session identity checks      PASS
-opaque source preservation             PASS
-current/stale/unknown staleness        PASS
-historical turn IDs remain provenance  PASS
-provider/model fields remain evidence  PASS
-runtime/tool correlation promotion     NONE
+REQUEST_EVENT_CORRELATION_ACCEPTANCE
 ```
 
-Validation at closure:
+Passing that acceptance makes the read/write gate **eligible for separate review**. It does not automatically open mutation authority.
+
+## 5. UX note — active operation feedback
+
+Planned non-blocking UX slice:
 
 ```text
-72/72 tests PASS
+ACTIVE_OPERATION_FEEDBACK_V1
 ```
 
-Real smoke qualifier:
+### Current behavior
+
+The current TUI already changes the composer during `Phase::Running` to the static message:
 
 ```text
-REAL_PROVENANCE_SMOKE = BLOCKED_NO_EXISTING_SESSION
+> Execution in progress…
 ```
 
-### 2.6 Validation attachment
+The application already has timed redraw infrastructure through `App::next_wake()` / `LbeWrapper::next_wake()`, and timed intro animation exists. However, there is **no general animated activity indicator** for slow operations.
 
-Commit:
+### UX problem
+
+When an operation takes noticeable time, a static terminal can look frozen, broken, or hung even though work is active.
+
+### Goal
+
+Provide lightweight, state-driven animated feedback such as a terminal spinner and contextual activity label.
+
+Example presentation:
 
 ```text
-4a0476e49628012e2dd9a557067292c2cbe9e14a
-Attach TUI to Agent Wall validation
+⠋ Connecting to Agent Wall…
+⠙ Reconnecting…
+⠹ Loading project context…
+⠸ Validating…
+⠼ Running…
+⠴ Waiting for tool result…
 ```
 
-Result:
+This is activity feedback, not fake progress. Do not invent percentages or claim progress not backed by runtime state.
+
+Candidate active states:
 
 ```text
-ValidationProjection                   PASS
-LBE_TASK_ID explicit task identity     PASS
-workspace/session/task cross-check     PASS
-strict mode/status enums               PASS
-requirements/policies/evidence         retained read-only
-policy command execution               NONE
-validation evidence → diagnostics      NONE
-validation evidence → execution state  NONE
-validation task status → session state NONE
+Connecting
+Reconnecting
+Phase::Running
+provider discovery
+provider validation
+context compaction
+diagnostics
+future governed tool/command execution
+browser reconnect/waiting operations
 ```
 
-Validation at closure:
+The animation should stop immediately for terminal/non-active states such as:
 
 ```text
-cargo fmt -- --check     PASS
-cargo check              PASS
-cargo test               PASS — 75/75
-git diff --check         PASS
+Completed
+Failed
+Rejected
+TimedOut
+Disconnected
+Lost
+AwaitingApproval
 ```
 
-Real smoke qualifier:
+### Implementation ordering
+
+Keep this feature separate from the correlation contract repair:
 
 ```text
-REAL_VALIDATION_SMOKE = BLOCKED_NO_EXISTING_TASK
+REQUEST_EVENT_CORRELATION_CONTRACT_V1
+→ REQUEST_EVENT_CORRELATION_ACCEPTANCE
+→ ACTIVE_OPERATION_FEEDBACK_V1
 ```
 
-No task, task completion contract, session, or database state was created or mutated to manufacture the smoke.
+Reason: event ownership/correctness and visual feedback should not be changed in the same patch unless later evidence requires it.
 
-## 3. Read-only Batch 1 acceptance
+This UX item is **not a read/write gate prerequisite**.
 
-The four foundational projections are now committed and accepted together:
+## 6. Upcoming plan
 
-| Projection | Agent Wall export | TUI attachment | Status |
-|---|---|---|---|
-| `project_truth` | PROVEN | COMMITTED | **PASS / CLOSED** |
-| `session_context` | PROVEN | COMMITTED | **PASS / CLOSED** |
-| `provenance` | PROVEN | COMMITTED | **PASS / CLOSED** |
-| `validation` | PROVEN | COMMITTED | **PASS / CLOSED** |
+1. `REQUEST_EVENT_CORRELATION_CONTRACT_V1` — **NEXT**  
+   Add explicit execution/proposal ownership to affected events, unique proposal approval identities, and fail-closed reducer guards for stale/foreign events.
 
-Acceptance evidence at TUI head `4a0476e49628012e2dd9a557067292c2cbe9e14a`:
+2. `REQUEST_EVENT_CORRELATION_ACCEPTANCE` — **RERUN AFTER CONTRACT REPAIR**  
+   Prove stale-event isolation, cross-execution isolation, approval replay protection, terminal idempotency and session/request ownership.
+
+3. `ACTIVE_OPERATION_FEEDBACK_V1` — **PLANNED / NON-BLOCKING UX**  
+   Add state-driven loading/activity animation for operations that otherwise make the TUI look idle.
+
+4. `BATCH_2_REASONING_WORKFLOW_PROJECTIONS` — **LATER**  
+   Change impact, hypothesis/test/verify, dependency/task graph, prioritization/what's next.
+
+5. `BATCH_3_SECONDARY_PROJECTIONS` — **LATER**  
+   Documentation, QA expansion and research evidence/provenance.
+
+6. `GOVERNED_READ_WRITE_INTEGRATION` — **GATE CLOSED**  
+   Consider only after correlation acceptance and a separate explicit gate review.
+
+## 7. Read/write gate
+
+Already proven:
 
 ```text
-HEAD == origin/main       PASS
-cargo fmt -- --check      PASS
-cargo check               PASS
-cargo test                PASS — 75/75
-git diff --check          PASS
+Batch 1 read-only mapping 4/4
+Batch 1 acceptance
+single Agent Wall authority
+zero mock fallback across implemented real read-only/recovery paths
+disconnect/reconnect recovery
 ```
 
-Repository exception preserved:
+Still required before separate gate review:
+
+```text
+request/event correlation contract repair
+request/event correlation acceptance
+```
+
+Current classification:
+
+```text
+READ_WRITE_GATE = CLOSED
+```
+
+## 8. Preserved workspace exception
 
 ```text
 C:\LBE-TUI-Lab\rust\main.rs.bak
@@ -247,219 +257,6 @@ C:\LBE-TUI-Lab\rust\main.rs.bak
 
 remains untracked and intentionally untouched.
 
-Current classification:
-
-```text
-READ_ONLY_BATCH_1_IMPLEMENTATION = 4/4 CLOSED
-READ_ONLY_BATCH_1_ACCEPTANCE     = PASS
-```
-
-## 4. Authority and safety properties
-
-Proven across the current read-only boundary:
-
-```text
-Agent Wall remains canonical authority       YES
-mock fallback on real attachment path        NONE
-TUI-owned mutation authority                 NONE
-fabricated runtime identity                  NONE
-fabricated turn identity                     NONE
-opaque owner payload reinterpretation        NONE
-historical provenance → live runtime mapping NONE
-validation policy command execution          NONE
-validation evidence → TUI diagnostics        NONE
-provider/model mutation                      NONE
-tool/command execution                       NONE
-file/memory mutation                         NONE
-```
-
-The real attachment uses explicit configuration where owner identity cannot safely be inferred:
-
-```text
-LBE_WALL_ROOT
-LBE_TARGET_WORKSPACE
-optional LBE_WALL_PYTHON
-LBE_WALL_DATABASE
-LBE_SESSION_ID
-LBE_TASK_ID
-```
-
-## 5. Smoke evidence status
-
-```text
-project_truth      REAL SMOKE = PASS
-session_context    REAL SMOKE = BLOCKED_NO_EXISTING_SESSION
-provenance         REAL SMOKE = BLOCKED_NO_EXISTING_SESSION
-validation         REAL SMOKE = BLOCKED_NO_EXISTING_TASK
-```
-
-The blocked smokes are evidence qualifiers, not implementation failures. The project intentionally did not create or mutate Agent Wall persistence merely to manufacture acceptance evidence.
-
-## 6. Immediate next step
-
-```text
-DISCONNECT_RECONNECT_RECOVERY
-```
-
-Goal:
-
-```text
-Connected
-→ disconnect / connection loss
-→ stop claiming live-connected authority
-→ reconnect
-→ re-export project_truth
-→ re-export session_context
-→ re-export provenance
-→ re-export validation
-→ revalidate all cross-projection identities
-→ atomically replace authoritative snapshot
-→ Connected
-```
-
-Required rules:
-
-- no cached projection set is sufficient to claim successful reconnection;
-- no partial reconnect candidate may be published as `Connected`;
-- no mock fallback from real-path recovery failures;
-- connection state must truthfully distinguish stale historical projection data from current live authority;
-- no Agent Wall mutation;
-- no new runtime/session/turn/provider/model authority fabrication.
-
-Acceptance target:
-
-```text
-initial Connected state
-→ explicit disconnect/loss
-→ non-Connected truthful state
-→ deterministic fresh four-projection reload
-→ strict identity revalidation
-→ atomic snapshot replacement
-→ Connected
-```
-
-If no persisted session/task fixture exists for a real lifecycle smoke:
-
-```text
-REAL_DISCONNECT_RECONNECT_SMOKE = BLOCKED_NO_EXISTING_TASK
-```
-
-Do not create state merely to satisfy the smoke.
-
-## 7. Upcoming plan
-
-### Phase A — Disconnect/reconnect recovery — NEXT
-
-`DISCONNECT_RECONNECT_RECOVERY`
-
-Prove connection-loss truthfulness and atomic reattachment of all four accepted projections.
-
-### Phase B — Request/event correlation acceptance
-
-`REQUEST_EVENT_CORRELATION_ACCEPTANCE`
-
-Prove that future governed mutation requests can be correlated to the correct Agent Wall event/evidence/receipt chain before the read/write gate is considered for opening.
-
-### Phase C — Batch 2 read-only reasoning/workflow projections
-
-Later candidates:
-
-```text
-change impact
-hypothesis/test/verify
-dependency/task graph
-what's next / prioritization
-```
-
-These remain projection work and do not themselves open mutation authority.
-
-### Phase D — Batch 3 secondary projections
-
-Later candidates:
-
-```text
-documentation
-QA/quality expansion
-research evidence/provenance
-```
-
-### Phase E — Governed read/write integration
-
-**GATE CLOSED.**
-
-Already proven prerequisites:
-
-```text
-Batch 1 read-only mapping 4/4
-Batch 1 acceptance
-single Agent Wall authority
-zero mock fallback across implemented real paths
-authoritative session/task identity representation
-```
-
-Still required before considering gate opening:
-
-```text
-disconnect/reconnect recovery
-request/event correlation acceptance
-```
-
-Only after those gates should mutation be considered incrementally for:
-
-```text
-session operations
-providers/models
-approvals
-tools
-commands
-sandbox/permissions
-checkpoint restore
-file edits / diff acceptance
-background tasks
-```
-
-Every mutation slice must preserve Agent Wall authorization, validation, evidence, receipt and completion authority.
-
-## 8. Remaining gaps
-
-```text
-disconnect/reconnect recovery              NEXT / UNPROVEN
-request/event correlation acceptance       PLANNED / UNPROVEN
-session_context real smoke                  BLOCKED_NO_EXISTING_SESSION
-provenance real smoke                       BLOCKED_NO_EXISTING_SESSION
-validation real smoke                       BLOCKED_NO_EXISTING_TASK
-exhaustive malformed-input matrix           NON-EXHAUSTIVE
-read/write integration                      GATE CLOSED
-installed end-to-end acceptance             LATER
-```
-
-## 9. Transport note
-
-Current V1 local read-only transport uses the Agent Wall product entry through Python:
-
-```text
-python -m lbe_guard_inspector.product_entry export <projection> ... --format json
-```
-
-This remains an accepted product CLI boundary, not duplication of Agent Wall business logic. Replacing it with a packaged executable or another stable transport is a later hardening option and is not required for the accepted Batch 1 integration.
-
-## 10. Final current classification
-
-```text
-Agent Wall read-only export seam        PROVEN / COMMITTED
-Project truth attachment                PASS / CLOSED
-Session context attachment              PASS / CLOSED
-Provenance attachment                   PASS / CLOSED
-Validation attachment                   PASS / CLOSED
-Read-only Batch 1 implementation        4/4 CLOSED
-Read-only Batch 1 acceptance            PASS
-Current TUI head                        4a0476e49628012e2dd9a557067292c2cbe9e14a
-Disconnect/reconnect                    NEXT / UNPROVEN
-Request/event correlation               PLANNED / UNPROVEN
-Read/write mutation                     GATE CLOSED
-Installed end-to-end acceptance         LATER
-```
-
-## 11. Authority note
+## 9. Authority note
 
 GPT-Knowledge is a reference/projection layer only. Source repositories and runtime evidence remain implementation authority.
