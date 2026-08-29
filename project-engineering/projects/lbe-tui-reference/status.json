@@ -1,24 +1,47 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "project": "LBE Terminal UI Contract",
   "classification": "REFERENCE_NON_CANONICAL",
   "verified_at": "2026-08-29",
   "source_repo": "Letterblack0306/LBE_Agents_wall_Intigration",
   "source_branch": "main",
-  "source_head": "2bbada6dee2473734d5a466e0c862d4568682daa",
-  "source_commit_message": "Expand mock UI runtime contract and LBE provider policy",
-  "overall_status": "MATURE_MOCK_UI_RUNTIME_CONTRACT_REAL_AUTHORITY_BOUNDARIES_CLOSED",
-  "runtime_path": [
+  "remote_source_head": "2bbada6dee2473734d5a466e0c862d4568682daa",
+  "remote_source_commit_message": "Expand mock UI runtime contract and LBE provider policy",
+  "local_workspace": "C:\\LBE-TUI-Lab",
+  "local_workspace_evidence": {
+    "classification": "USER_SUPPLIED_RUNTIME_EVIDENCE",
+    "branch": "main",
+    "tracking": "origin/main",
+    "head": "2bbada6",
+    "working_tree": "DIRTY",
+    "modified": ["Cargo.toml", "rust/main.rs"],
+    "untracked": ["Docs/", "rust/main.rs.bak", "src/"],
+    "cargo_manifest_bin": "src/main.rs",
+    "cargo_check": "PASS_WITH_WARNINGS",
+    "cargo_test": "PASS_ZERO_TESTS",
+    "active_entrypoint": "PLACEHOLDER",
+    "active_entrypoint_body": "fn main() { println!(\"placeholder\"); }",
+    "tests_file": "src/tests.rs",
+    "tests_state": "PLACEHOLDER_NO_TEST_DECLARATIONS"
+  },
+  "overall_status": "UI_IMPLEMENTATION_MODULARIZATION_IN_PROGRESS_ENTRYPOINT_AND_TEST_WIRING_BLOCKING_PREINTEGRATION_CLOSURE",
+  "implementation_intent": "The Rust/Ratatui UI is the intended LBE terminal frontend. MockLbeWrapper is a temporary pre-integration adapter used to complete and validate the UI contract before attaching the canonical LBE runtime.",
+  "runtime_path_current_intended": [
     "Ratatui TUI",
     "LbeWrapper",
     "MockLbeWrapper",
-    "mock snapshots/events"
+    "typed mock snapshots/events"
+  ],
+  "runtime_path_current_active_local_binary": [
+    "src/main.rs",
+    "placeholder main",
+    "modular files declared but production event loop not wired"
   ],
   "truth_label": "MOCK / NOT CONNECTED · UI CONTRACT PREVIEW",
-  "implemented_source_verified": [
+  "implemented_contract": [
     "Ratatui TUI architecture",
     "LbeWrapper abstraction",
-    "MockLbeWrapper runtime",
+    "MockLbeWrapper contract",
     "runtime/session projection",
     "Lbe Audit / Agent regular / Plan modes",
     "approval_id lifecycle and stale-ID rejection",
@@ -36,6 +59,76 @@
     "provider capability projection",
     "truthful mock connection labeling"
   ],
+  "current_blockers": [
+    "Restore active src/main.rs TUI entrypoint and event loop wiring",
+    "Restore/migrate test suite into active crate; current cargo test discovers 0 tests",
+    "Revalidate modular source with cargo check and non-zero cargo test suite before feature closure"
+  ],
+  "modular_preintegration_plan": {
+    "01_transcript_viewport": "MISSING",
+    "02_model_picker": "PARTIAL",
+    "03_checkpoints_restore": "PARTIAL",
+    "04_sessions": "PARTIAL",
+    "05_background_processes": "PARTIAL",
+    "06_provider_configuration": "PARTIAL",
+    "07_tools_registry": "PLACEHOLDER",
+    "08_evidence_browser": "PLACEHOLDER",
+    "09_receipts_browser": "PLACEHOLDER",
+    "10_mcp_surface": "PLACEHOLDER",
+    "11_terminal_compatibility": "MISSING",
+    "12_plain_cli_mode": "MISSING",
+    "13_lifecycle_acceptance": "NOT_PROVEN",
+    "14_responsive_acceptance": "PARTIAL",
+    "15_session_memory_recall": "PLANNED",
+    "16_browser_chat_bridge": "PLANNED"
+  },
+  "session_memory_plan": {
+    "status": "PLANNED",
+    "goal": "Let the agent recover relevant work from its own prior LBE sessions without requiring the user to restate project context.",
+    "principles": [
+      "Stable session identity and session hash",
+      "Hash meaningful session/turn/event records rather than UI redraws or raw text deltas",
+      "Persist decisions, executed actions, validation outcomes, evidence/receipt references, checkpoints and session summaries",
+      "Bounded relevance-based recall rather than replaying all history",
+      "Verified memory outranks unverified/stale memory",
+      "TUI-local memory may exist only as non-canonical pre-integration cache",
+      "Canonical persistence remains owned by LBE runtime"
+    ],
+    "planned_surface": [
+      "src/memory.rs",
+      "MemoryProjection",
+      "RecallSessionMemory request",
+      "memory recall events",
+      "/memory panel",
+      "@memory and @session context references",
+      "automatic bounded recall before turns",
+      "session/event/record hash chain"
+    ]
+  },
+  "browser_chat_bridge_plan": {
+    "status": "PLANNED",
+    "goal": "Allow provider-neutral browser chat surfaces to participate in an LBE-governed session without becoming execution or memory authority.",
+    "architecture": [
+      "Browser Chat",
+      "BrowserChatAdapter",
+      "LBE bridge protocol",
+      "LbeWrapper",
+      "Canonical LBE runtime"
+    ],
+    "planned_surface": [
+      "src/browser_chat.rs",
+      "BrowserChatAdapter trait",
+      "browser session to LBE session/turn correlation",
+      "attach/detach/reconnect state",
+      "browser message events",
+      "browser tool-request interception",
+      "LBE-governed tool execution",
+      "receipt/evidence correlation on returned results",
+      "/browser status surface",
+      "session-memory linkage for relevant recall"
+    ],
+    "hard_boundary": "Browser chat may reason and converse, but governed tool execution, authorization, validation, evidence, receipts, completion truth and canonical memory remain LBE-owned. No silent direct-browser execution fallback."
+  },
   "typed_provider_contract": {
     "status": "IMPLEMENTED_AS_MOCK_CONTRACT",
     "providers": [
@@ -50,44 +143,23 @@
     ],
     "live_adapters": false
   },
-  "provider_policy": {
-    "classification": "DOCUMENTED",
-    "cline_documentation": "REFERENCE_ONLY",
-    "cline_authentication": "NOT_USED",
-    "api_cline_bot": "NOT_USED",
-    "future_path": "LBE-owned provider gateway -> direct provider connection",
-    "credential_policy": "provider-native credentials referenced through secure storage; raw credentials not rendered in TUI snapshots/events"
-  },
-  "not_implemented": [
+  "not_implemented_live": [
     "RealLbeWrapper",
-    "live LBE_Presistent_Agent_wall attachment",
-    "live audit/guard calls",
+    "live canonical LBE attachment",
+    "live guard/audit calls",
     "live approval authority",
     "live validation",
-    "live evidence",
-    "live receipts",
-    "canonical persistence",
+    "live evidence/receipts",
+    "canonical persistence attachment",
     "real provider adapters",
-    "provider credential store",
-    "provider-native auth",
-    "provider health probes",
-    "live model discovery",
-    "provider streaming translation",
-    "tool-call translation",
-    "usage normalization",
-    "reasoning-delta normalization"
+    "session-memory client integration",
+    "browser-chat bridge"
   ],
   "stale_claims_withdrawn": [
     "Rust TUI currently connects to installed lbe-guard-audit wrapper",
     "Rust TUI currently reuses live wall deterministic audit authority",
-    "Audit mode is currently backed by live LBE guard execution"
+    "Audit mode is currently backed by live LBE guard execution",
+    "Current local modular binary is a fully wired runnable TUI"
   ],
-  "future_boundary": [
-    "LBE TUI",
-    "RealLbeWrapper",
-    "canonical LBE runtime",
-    "LBE-owned provider gateway",
-    "direct providers"
-  ],
-  "authority_note": "GPT-Knowledge is projection/reference only. Mock UI state is not proof of live LBE authorization, execution, validation, evidence, receipts, provider connectivity, or persistence."
+  "authority_note": "GPT-Knowledge is projection/reference only. Remote source head remains 2bbada6; the modular src/ workspace state is local/user-supplied evidence and must not be represented as pushed repository truth until committed and independently verified. Mock/local UI state is not proof of live LBE authorization, execution, validation, evidence, receipts, provider connectivity, persistence, memory, or browser-chat integration."
 }
