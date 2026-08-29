@@ -1,5 +1,37 @@
 # Start Here
 
+## Mandatory first-read: real implementation evidence gate
+
+**This section must always be read first before exploring, interpreting, comparing, planning from, or recommending anything based on GPT-Knowledge. Do not skip, bypass, or treat it as optional guidance.**
+
+Before recommending any feature, architecture, implementation, integration, replacement, migration, fix, or next step:
+
+1. Check the real shipping feature, current code/source, repository state, and runtime behavior that actually exist now.
+2. Compare that verified implementation/runtime evidence against the current project before using GPT-Knowledge to propose anything.
+3. Do not recommend adding a feature merely because it is documented, planned, named, discussed, or appears useful.
+4. A recommendation to add or copy something requires GPT to point to a **real implementation or authoritative source** and explain the **exact behavior that evidence proves**.
+5. Distinguish what is directly proven in source/runtime from what is only documented, inferred, historical, planned, or unverified.
+6. If the real implementation or authoritative evidence cannot be identified and its behavior cannot be explained precisely, do not recommend adding it. Record the evidence gap instead.
+7. If the current project already implements the relevant behavior, identify the existing implementation owner and verify it before proposing replacement or duplication.
+8. GPT-Knowledge is a routing and reasoning aid; it does not outrank current source, repository, runtime, test, or user-visible behavior evidence.
+
+Required decision sequence:
+
+```text
+CURRENT PROJECT
+  -> REAL SHIPPING / SOURCE / RUNTIME EVIDENCE
+  -> EXACT BEHAVIOR PROVEN BY THAT EVIDENCE
+  -> COMPARE AGAINST CURRENT PROJECT
+  -> IDENTIFY ACTUAL GAP
+  -> ONLY THEN CONSIDER A RECOMMENDATION
+```
+
+If that sequence cannot be completed, the correct result is:
+
+```text
+INSUFFICIENT EVIDENCE — NO RECOMMENDATION YET.
+```
+
 This repository is a selective decision aid, not a monolithic prompt.
 
 ## Global workspace guidance
