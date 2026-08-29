@@ -1,17 +1,17 @@
 {
-  "schema_version": 4,
+  "schema_version": 5,
   "project": "LBE Terminal UI Contract",
   "classification": "REFERENCE_NON_CANONICAL",
   "verified_at": "2026-08-29",
   "source_repo": "Letterblack0306/LBE_Agents_wall_Intigration",
   "source_branch": "main",
-  "remote_source_head": "4ac0c46c991b31b46b52558f8766ec040c827965",
-  "remote_source_commit_message": "Attach TUI to Agent Wall project truth",
+  "remote_source_head": "4a0476e49628012e2dd9a557067292c2cbe9e14a",
+  "remote_source_commit_message": "Attach TUI to Agent Wall validation",
   "agent_wall_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "agent_wall_head": "580f9db1aea1d2e8f48282f7755a8ea65c7fc0f8",
   "local_workspace": "C:\\LBE-TUI-Lab",
-  "current_status": "PROJECT_TRUTH_REAL_ATTACHMENT_PROVEN_NEXT_SESSION_CONTEXT",
-  "implementation_intent": "The Rust/Ratatui TUI remains a projection-only LetterBlack/LBE frontend. RealLbeWrapper now consumes the committed Agent Wall read-only project_truth product export and projects authoritative workspace truth without taking runtime or mutation authority away from Agent Wall.",
+  "current_status": "READ_ONLY_BATCH_1_ACCEPTED_NEXT_DISCONNECT_RECONNECT_RECOVERY",
+  "implementation_intent": "The Rust/Ratatui TUI remains a projection-only LetterBlack/LBE frontend. RealLbeWrapper now consumes the full committed Agent Wall read-only Batch 1 projection set (project_truth, session_context, provenance, validation) through the Agent Wall product CLI boundary, validates cross-projection identity, and preserves Agent Wall as the sole authority. Mutation remains closed.",
   "completed": {
     "agent_wall_read_only_export_seam": {
       "status": "PROVEN",
@@ -26,173 +26,165 @@
       "focused_tests": "10 passed"
     },
     "real_agent_wall_project_truth_attachment_v1": {
-      "status": "PASS",
+      "status": "PASS_CLOSED",
       "commit": "4ac0c46c991b31b46b52558f8766ec040c827965",
-      "flow": [
-        "LBE_RUNTIME=real",
-        "RealLbeWrapper",
-        "Agent Wall product CLI subprocess",
-        "project_truth v1 JSON",
-        "strict typed Rust decode/validation",
-        "LbeSnapshot.project_truth",
-        "RuntimeAttachmentUpdated",
-        "SnapshotUpdated",
-        "existing App reducer/TUI"
-      ],
-      "configuration": [
-        "LBE_WALL_ROOT",
-        "LBE_TARGET_WORKSPACE",
-        "optional LBE_WALL_PYTHON"
-      ],
+      "real_smoke": "PASS"
+    },
+    "real_agent_wall_session_context_attachment_v1": {
+      "status": "PASS_CLOSED",
+      "commit": "59d4943b0adb9d16867ce30fc4e224d5c3ecca71",
+      "tests_at_closure": "68/68 PASS",
+      "real_smoke": "BLOCKED_NO_EXISTING_SESSION",
+      "authority_rule": "Session context is retained as its own typed Agent Wall-owned projection. TUI does not fabricate lineage, checkpoint, memory, runtime, turn, provider/model or SessionStatus semantics from it."
+    },
+    "real_agent_wall_provenance_attachment_v1": {
+      "status": "PASS_CLOSED",
+      "commit": "ed6e34cefc9aef2123ea631bff24fc6c04fa4120",
+      "tests_at_closure": "72/72 PASS",
+      "real_smoke": "BLOCKED_NO_EXISTING_SESSION",
+      "authority_rule": "Historical provenance event/provider/model/turn/runtime correlation fields remain provenance evidence and are not promoted into current TUI runtime authority."
+    },
+    "real_agent_wall_validation_attachment_v1": {
+      "status": "PASS_CLOSED",
+      "commit": "4a0476e49628012e2dd9a557067292c2cbe9e14a",
+      "tests_at_closure": "75/75 PASS",
+      "real_smoke": "BLOCKED_NO_EXISTING_TASK",
+      "authority_rule": "Validation requirements, policies, evidence and task status are retained as read-only Agent Wall projection data. Policy commands are not executed and evidence/task statuses do not mutate TUI connection, execution, diagnostics or session state."
+    },
+    "read_only_batch_1_acceptance": {
+      "status": "PASS",
+      "tui_head": "4a0476e49628012e2dd9a557067292c2cbe9e14a",
+      "head_matches_origin_main": true,
+      "projections": {
+        "project_truth": "PASS",
+        "session_context": "PASS",
+        "provenance": "PASS",
+        "validation": "PASS"
+      },
       "validation": {
         "cargo_fmt_check": "PASS",
         "cargo_check": "PASS",
-        "cargo_test": "PASS 43/43",
+        "cargo_test": "PASS 75/75",
         "git_diff_check": "PASS",
-        "configured_real_smoke": "PASS 1/1",
         "warnings": "PRESENT_NON_BLOCKING"
       },
-      "real_smoke_truth": {
-        "schema_version": "1.0",
-        "projection_type": "project_truth",
-        "read_only": true,
-        "workspace_id": "workspace_681a91b3a62538ad",
-        "workspace_root": "C:\\LBE-TUI-Lab",
-        "target_project_root": "C:\\LBE-TUI-Lab",
-        "connection": "Connected",
-        "runtime_mode": "Local",
-        "runtime_id": null,
-        "session_id": null,
-        "turn_id": null
-      },
-      "authority_preservation": {
-        "mock_fallback_on_real_path": "NONE",
-        "runtime_identity_fabrication": "NONE",
-        "session_identity_fabrication": "NONE",
-        "provider_tool_command_mutation": "NONE",
-        "agent_wall_source_mutation_by_tui_slice": "NONE"
-      }
+      "scope_result": "4_OF_4_IMPLEMENTED_AND_ACCEPTED"
     }
   },
   "real_lbe_wrapper": {
-    "status": "READ_ONLY_PROJECT_TRUTH_ATTACHED_PROVEN",
-    "project_truth": "PROVEN",
-    "session_context": "NEXT",
-    "provenance": "PLANNED_AFTER_SESSION_CONTEXT",
-    "validation": "PLANNED_AFTER_PROVENANCE",
-    "disconnect_reconnect_recovery": "NOT_YET_PROVEN",
+    "status": "READ_ONLY_BATCH_1_ATTACHED_AND_ACCEPTED",
+    "project_truth": "PASS_CLOSED",
+    "session_context": "PASS_CLOSED",
+    "provenance": "PASS_CLOSED",
+    "validation": "PASS_CLOSED",
+    "disconnect_reconnect_recovery": "NEXT_NOT_YET_PROVEN",
     "mutation": "DISABLED"
   },
-  "module_32": {
-    "status": "IMPLEMENTED_PRE_INTEGRATION_WITH_FIRST_REAL_READ_ONLY_PATH_PROVEN",
-    "production_runtime_determinism": "PARTIALLY_PROVEN_FOR_PROJECT_TRUTH_ATTACHMENT_ONLY"
-  },
-  "module_34_frontend": {
-    "status": "DOCUMENTED_PARTIAL_FRONTEND_SCAFFOLDING",
-    "features": {
-      "project_truth_projection": "REAL_PROVEN",
-      "TUI_33_project_context_resume": "PARTIAL_NEXT_SESSION_CONTEXT",
-      "TUI_34_decision_browser": "PARTIAL",
-      "TUI_35_code_intent_provenance": "PLANNED_READ_ONLY",
-      "TUI_36_change_impact": "MOCK_OR_UNATTACHED",
-      "TUI_37_hypothesis_test_verify": "PARTIAL",
-      "TUI_38_dependency_task_graph": "PARTIAL",
-      "TUI_39_validation_strategy": "PLANNED_READ_ONLY",
-      "TUI_40_documentation_review": "PLACEHOLDER",
-      "artifact_diff_test_review": "MISSING",
-      "background_agent_panels": "PARTIAL"
-    }
-  },
   "current_read_only_boundary": {
-    "transport": "configured local product CLI subprocess",
-    "command": "python -m lbe_guard_inspector.product_entry export project_truth --workspace <target> --format json",
-    "authority_rule": "TUI consumes Agent Wall-owned projection data and does not duplicate Agent Wall business logic or mutation authority.",
-    "note": "The current proven V1 transport directly invokes the Agent Wall product_entry module through Python. This is accepted for the local read-only integration slice; replacing it with a packaged executable or other stable transport is a later hardening option, not a prerequisite for the proven project_truth slice."
+    "transport": "configured local Agent Wall product CLI subprocess",
+    "authority_rule": "TUI consumes Agent Wall-owned read-only projection data and does not duplicate Agent Wall business logic, authorization, validation, evidence, receipt or mutation authority.",
+    "attachment_order": [
+      "project_truth",
+      "session_context",
+      "provenance",
+      "validation",
+      "cross_projection_identity_validation",
+      "Connected"
+    ],
+    "configuration": [
+      "LBE_WALL_ROOT",
+      "LBE_TARGET_WORKSPACE",
+      "optional LBE_WALL_PYTHON",
+      "LBE_WALL_DATABASE",
+      "LBE_SESSION_ID",
+      "LBE_TASK_ID"
+    ],
+    "note": "The proven V1 transport invokes the Agent Wall product_entry module through Python. This remains an accepted local read-only product boundary. A packaged executable or other stable transport is a later hardening option, not a prerequisite for the accepted Batch 1 read-only integration."
+  },
+  "smoke_evidence": {
+    "project_truth": "PASS",
+    "session_context": "BLOCKED_NO_EXISTING_SESSION",
+    "provenance": "BLOCKED_NO_EXISTING_SESSION",
+    "validation": "BLOCKED_NO_EXISTING_TASK",
+    "classification_note": "Blocked session/task smokes are evidence qualifiers, not implementation failures. No Agent Wall session/task state was created or mutated merely to manufacture acceptance evidence."
   },
   "next_phase": {
-    "name": "REAL_AGENT_WALL_SESSION_CONTEXT_ATTACHMENT_V1",
-    "goal": "Extend the proven read-only boundary to authoritative persisted session context without creating TUI-owned session truth.",
-    "required_preimplementation_inspection": [
-      "map SessionContextProjection fields to existing TUI session/checkpoint/memory owners",
-      "identify fields that require typed projection additions rather than semantic overloading",
-      "verify Agent Wall session_context export inputs and real persisted-session fixture/evidence"
+    "name": "DISCONNECT_RECONNECT_RECOVERY",
+    "status": "NEXT",
+    "goal": "Prove truthful lifecycle recovery for the accepted four-projection read-only attachment without cached-authority reuse, mock fallback or mutation.",
+    "target_flow": [
+      "Connected",
+      "disconnect_or_loss",
+      "connection_not_Connected",
+      "reconnect",
+      "re-export project_truth",
+      "re-export session_context",
+      "re-export provenance",
+      "re-export validation",
+      "revalidate cross-projection identities",
+      "atomically replace authoritative snapshot",
+      "Connected"
     ],
     "hard_invariants": [
       "NO mock substitution on the real path",
-      "NO mutation during read-only phase",
-      "NO duplicated Agent Wall business logic in TUI",
-      "NO fabricated runtime/session/turn identity",
-      "NO TUI-owned canonical session state",
-      "NO provider/model/tool/command/file mutation"
+      "NO mutation",
+      "NO cached projection set sufficient to claim reconnection",
+      "NO partial candidate snapshot published as Connected",
+      "NO fabricated runtime/session/turn/provider/model authority",
+      "Agent Wall remains the sole authority"
     ]
   },
   "upcoming_plan": [
     {
       "order": 1,
-      "slice": "REAL_AGENT_WALL_SESSION_CONTEXT_ATTACHMENT_V1",
+      "slice": "DISCONNECT_RECONNECT_RECOVERY",
       "status": "NEXT",
-      "scope": "authoritative session state, workspace identity, task/checkpoint context, transcript/context projection"
+      "scope": "connection loss/disconnect semantics, atomic four-projection reattachment, stale-authority truthfulness, identity revalidation"
     },
     {
       "order": 2,
-      "slice": "REAL_AGENT_WALL_PROVENANCE_ATTACHMENT_V1",
+      "slice": "REQUEST_EVENT_CORRELATION_ACCEPTANCE",
       "status": "PLANNED",
-      "scope": "code/intent provenance and owner-backed operational/evidence references"
+      "scope": "prove request/event correlation required before the read/write gate can be considered for opening"
     },
     {
       "order": 3,
-      "slice": "REAL_AGENT_WALL_VALIDATION_ATTACHMENT_V1",
-      "status": "PLANNED",
-      "scope": "read-only validation strategy/completion evidence projection without running validation from the TUI"
+      "slice": "BATCH_2_REASONING_WORKFLOW_PROJECTIONS",
+      "status": "LATER",
+      "scope": "change impact, hypothesis/test/verify, dependency/task graph, what's next/prioritization"
     },
     {
       "order": 4,
-      "slice": "READ_ONLY_BATCH_1_ACCEPTANCE",
-      "status": "PLANNED",
-      "scope": "project_truth + session_context + provenance + validation, identity consistency, zero mock fallback, zero mutation"
+      "slice": "BATCH_3_SECONDARY_PROJECTIONS",
+      "status": "LATER",
+      "scope": "documentation, QA expansion, research evidence/provenance"
     },
     {
       "order": 5,
-      "slice": "DISCONNECT_RECONNECT_RECOVERY",
-      "status": "PLANNED",
-      "scope": "authoritative loss/recovery behavior and stale-state clearing"
-    },
-    {
-      "order": 6,
-      "slice": "BATCH_2_REASONING_WORKFLOW_PROJECTIONS",
-      "status": "LATER",
-      "scope": "change impact, hypothesis/test/verify, dependency/task graph, what's next"
-    },
-    {
-      "order": 7,
-      "slice": "BATCH_3_SECONDARY_PROJECTIONS",
-      "status": "LATER",
-      "scope": "documentation, QA expansion, research evidence"
-    },
-    {
-      "order": 8,
       "slice": "GOVERNED_READ_WRITE_INTEGRATION",
       "status": "GATE_CLOSED",
-      "scope": "sessions, providers/models, approvals, tools, commands, sandbox, checkpoints, file edits only after read-only acceptance"
+      "scope": "sessions, providers/models, approvals, tools, commands, sandbox, checkpoints, file edits only after remaining lifecycle/correlation gates are proven"
     }
   ],
   "read_write_gate": {
     "status": "CLOSED",
-    "opens_after": [
-      "Batch 1 read-only projection mapping proven",
-      "authoritative session identity proven where applicable",
-      "zero mock fallback proven",
-      "single authority preserved",
+    "already_proven": [
+      "Batch 1 read-only projection mapping 4/4",
+      "authoritative session identity representation where applicable",
+      "zero mock fallback across implemented read-only paths",
+      "single Agent Wall authority preserved"
+    ],
+    "remaining_before_considering_open": [
       "disconnect/reconnect recovery proven",
       "request/event correlation proven"
     ]
   },
   "remaining_gaps": [
-    "SessionContextProjection not yet attached to TUI",
-    "ProvenanceProjection not yet attached to TUI",
-    "ValidationProjection not yet attached to TUI",
     "disconnect/reconnect recovery not yet proven",
-    "exhaustive individually named malformed-input unit-test matrix remains unverified",
+    "request/event correlation acceptance not yet proven",
+    "session_context/provenance real smokes remain blocked without an existing persisted session",
+    "validation real smoke remains blocked without an existing compatible persisted task/contract",
+    "exhaustive individually named malformed-input unit-test matrix remains non-exhaustive despite focused negative coverage",
     "read/write mutation gate remains closed",
     "installed end-to-end acceptance remains later"
   ],
@@ -202,12 +194,13 @@
     "deterministic_state_machine": "IMPLEMENTED_PRE_INTEGRATION",
     "terminal_idempotency": "IMPLEMENTED",
     "agent_wall_read_only_export_seam": "PROVEN_COMMITTED",
-    "real_lbe_wrapper": "PROJECT_TRUTH_REAL_ATTACHMENT_PROVEN",
-    "project_truth_projection": "PROVEN_END_TO_END",
-    "session_context_projection": "NEXT",
-    "provenance_projection": "PLANNED",
-    "validation_projection": "PLANNED",
-    "read_only_batch_1": "PARTIAL_1_OF_4_PROJECTIONS_ATTACHED",
+    "real_lbe_wrapper": "READ_ONLY_BATCH_1_ATTACHED_AND_ACCEPTED",
+    "project_truth_projection": "PASS_CLOSED",
+    "session_context_projection": "PASS_CLOSED",
+    "provenance_projection": "PASS_CLOSED",
+    "validation_projection": "PASS_CLOSED",
+    "read_only_batch_1": "PASS_4_OF_4_IMPLEMENTED_AND_ACCEPTED",
+    "disconnect_reconnect_recovery": "NEXT",
     "read_write_integration": "GATE_CLOSED",
     "installed_end_to_end_acceptance": "LATER"
   },
