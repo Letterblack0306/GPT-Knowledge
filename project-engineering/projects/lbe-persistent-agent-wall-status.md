@@ -2,125 +2,133 @@
 
 ## Authority and routing
 
-- Last reconciled: 2026-08-26
-- Project repository: `Letterblack0306/LBE_Presistent_Agent_wall`
-- Canonical remote `main`: `c76d81ea942d0d8589469c80925b8d92b18cf69e`
-- Authority: this is a projection/navigation mirror only. Live LBE source, Git/workspace state, `.lbe/governance/implementation-gates.json`, machine-selected acceptance records, validation, and runtime evidence are authoritative.
+- Reconciled projection: 2026-08-31
+- Runtime/governance repository: `Letterblack0306/LBE_Presistent_Agent_wall`
+- Rust/Ratatui TUI repository: `Letterblack0306/LBE_Agents_wall_Intigration`
+- LBE workspace: `C:\Agents-Memory-Tool-v6-integration`
+- TUI workspace: `C:\LBE-TUI-Lab`
+- Authority: this document is a GPT-Knowledge projection only. Current LBE source, machine governance, workspace/runtime evidence and raw acceptance records remain authoritative.
+
+## Core architecture
 
 ```text
-GPT-Knowledge -> method, reference, project projection
-LBE repository -> current source/docs/gates/acceptance authority
-LoopTool/local -> test/debug/runtime/workspace evidence
+Agent/provider reasons.
+LBE governs.
+Registered capabilities execute.
+Evidence and ToolReceipts persist.
+Validation decides completion.
+The interface projects the result.
 ```
 
-## Current project state
+LBE remains the established authority for workspace/session identity, mode/policy, authorization, governed execution, operation identity, receipts/evidence, persistence, validation and completion.
+
+The Rust/Ratatui TUI is a separate client/projection repository. It does not recreate LBE runtime or governance authority.
+
+## Truth hierarchy
 
 ```text
-active_plan: docs/acceptance/COMPLETE_LBE_AGENT_RUNTIME_GATE.md
-active_phase: COMPLETE_LBE_AGENT_RUNTIME
-active_slice: NONE
-status: CLOSED
-implementation_allowed: false
-next_phase_locked: true
-last_completed_slice: SESSION_APPLICATION_CONTRACT_UNIFICATION
-next_slice: NOT_ACTIVATED
-publication: LOCKED
+Design                     = what should happen
+Acceptance records         = what happened for a bounded slice
+Machine governance         = what is allowed now
+Current runtime evidence   = what is true now
 ```
 
-The complete runtime gate is closed. No next product slice is active.
+When these disagree, the disagreement must be classified instead of guessed. Historical proof remains preserved but cannot silently override current runtime truth.
 
-## Session/application contract unification
+## Current bounded live acceptance
 
-`SESSION_APPLICATION_CONTRACT_UNIFICATION` is `PASS`.
-
-Canonical implementation:
-`dc4c2a99c09266d595214f1f7147e153cb7b4888`
-
-Acceptance checkpoint:
-`docs/acceptance/SESSION_APPLICATION_CONTRACT_UNIFICATION_CHECKPOINT.md`
-
-Recorded validation:
+The following paths are reported and validated as PASS:
 
 ```text
-focused lifecycle / CLI / Textual / provider / session = 74 passed
-full source regression                                 = 773 passed
-fresh wheel build                                      = PASS
-fresh installed lifecycle regression                   = 74 passed
-installed lbe entrypoint                               = PASS
-git diff check                                         = PASS
+Audit live provider round trip
+Plan / investigation provider turn
+Runtime / read-only coding turn
+Governed workspace.read
+Authorization before execution
+Real ToolReceipt/evidence correlation
+Provider continuation after tool result
+Read-only workspace.patch denial
+Malformed/denied provider tool handling
+Rust real-wrapper projection
 ```
 
-The shared session application service composes existing LBE owners; it does not replace persisted session, provider-registry, or persistent-turn authority.
-
-## Obsolete `.agent/.cline` routing retirement
-
-Canonical commit:
+The provider/model used for the accepted live paths is:
 
 ```text
-c76d81ea942d0d8589469c80925b8d92b18cf69e
-docs: retire obsolete agent routing aliases
+provider = openai-compatible
+model    = qwen/qwen3-vl-8b
 ```
 
-Seven obsolete `.agent/.cline` routing files were removed and the live authority documents were repaired. Historical Stage 0/Stage 1 and later acceptance evidence remains historical evidence and was not rewritten to pretend those paths never existed.
-
-Current live routing no longer depends on the retired aliases. Canonical authority is routed through the root structural index, project intent ledger, machine governance, current status, and applicable acceptance/contract records.
-
-## Workspace state
-
-User-supplied LoopTool evidence after the routing cleanup reported:
+The proven governed tool flow is:
 
 ```text
-HEAD        = c76d81ea942d0d8589469c80925b8d92b18cf69e
-origin/main = c76d81ea942d0d8589469c80925b8d92b18cf69e
-ahead/behind = 0 / 0
-tracked dirty files = 0
+provider/model
+→ LBE persisted session
+→ mode-specific runtime
+→ provider request
+→ LBE authorization
+→ registered tool execution
+→ ToolReceipt/evidence
+→ provider continuation
+→ completed turn
+→ Rust/Ratatui TUI projection
 ```
 
-Preserved non-canonical/local material:
+## Read-only mutation denial
 
-- `lbe-tui/` — untracked reference only; untouched.
-- secondary TUI worktree — present, non-canonical, untouched.
-- stashes — preserved, untouched.
-- `__pycache__/`, `.pytest_cache/`, `build/`, `lbe_guard_inspector.egg-info/` — generated residue still present.
-
-The generated residue remains pending governed deletion because the currently exposed filesystem deletion adapter scope does not reach the LBE workspace root. This does not mean canonical LBE lacks a governed deletion owner.
-
-## Documentation state
-
-`docs/CURRENT_STATUS.md` is aligned with the closed gate.
-
-`docs/IMPLEMENTATION_PLAN.md` remains stale relative to current machine governance and still requires bounded reconciliation. GPT-Knowledge must not treat its old `OPEN` workspace-hygiene language as current authorization.
-
-Historical acceptance evidence remains historical unless the current machine gate explicitly selects it.
-
-## Cline reuse boundary
-
-Cline remains a mechanics/reuse source only.
+A read-only Runtime `workspace.patch` attempt was denied before handler execution.
 
 ```text
-PRODUCT           = LBE
-INTERFACE         = LBE interface
-RUNTIME AUTHORITY = LBE
-CLINE ROLE        = selective mechanics reuse/adaptation only
+Authorization = DENY
+Result        = DENIED
+Error         = AUTHORIZATION_DENIED
+Handler       = NOT EXECUTED
+Mutation      = NONE
 ```
 
-The recorded Cline AgentRuntime direction remains accepted but **not active**. No current machine slice authorizes Cline runtime adaptation.
+This demonstrates that exposing a capability or UI control does not grant authority. LBE policy remains the execution boundary.
 
-## Exact current resume point
+## Regression evidence
 
 ```text
-COMPLETE_LBE_AGENT_RUNTIME = CLOSED / PASS
-SESSION_APPLICATION_CONTRACT_UNIFICATION = PASS
-OBSOLETE AGENT/CLINE ROUTING = REMOVED / CANONICALIZED
-ACTIVE_SLICE = NONE
-NEXT_PRODUCT_SLICE = NOT_ACTIVATED
-PUBLICATION = LOCKED
+Full Python suite                    813 passed
+Duration                             497.59 seconds
+Rust suite                           148 passed
+Focused provider/tool/governance      61 passed
+Malformed/denied tool checks           6 passed
+Python compilation                    PASS
+git diff --check                      PASS with line-ending warnings only
 ```
 
-Remaining bounded reconciliation/workspace-hygiene items are:
+The earlier full-suite timeout uncertainty is resolved; the full Python suite subsequently completed successfully.
 
-1. reconcile stale `docs/IMPLEMENTATION_PLAN.md` against the closed machine gate;
-2. remove generated build/cache residue only through an authorized governed deletion path;
-3. preserve `lbe-tui/`, the secondary worktree, and stashes unless separately classified/authorized.
+## Remaining unproven product-level slices
 
-No new product slice should be inferred from this mirror.
+Do not promote the bounded live acceptance into a claim that every TUI workflow is complete.
+
+Still requiring separate proof:
+
+1. write-capable governed mutation through the full editor → diff review → approval → `workspace.patch` → validation → receipt workflow;
+2. installed-package interactive TUI acceptance;
+3. any broader product-level completion claim not directly covered by current evidence.
+
+## Machine-governance note
+
+This GPT-K reconciliation does not invent the current active machine slice. When implementation authorization is needed, inspect the canonical LBE machine gate and current acceptance owner directly. Any older GPT-K gate snapshot must be treated as stale until reconciled against that source.
+
+## Current resume point
+
+```text
+LBE runtime authority                    ESTABLISHED / GOVERNED
+Rust/Ratatui authority boundary           DEFINED
+Conversational bridge                     COMPLETE for bounded slice
+Live Audit                                PASS
+Live Plan / investigation                 PASS
+Live Runtime / read-only                  PASS
+Governed workspace.read                   PASS
+Receipt/evidence + provider continuation  PASS
+Read-only mutation denial                 PASS
+Full Python regression                    813 PASS
+Rust regression                           148 PASS
+Complete product-level TUI acceptance     NOT YET PROVEN
+```
