@@ -1,176 +1,111 @@
 {
-  "schema_version": 6,
-  "project": "LBE Terminal UI Contract",
+  "schema_version": 7,
+  "project": "LBE Rust/Ratatui TUI Integration",
   "classification": "REFERENCE_NON_CANONICAL",
-  "verified_at": "2026-08-29",
+  "verified_at": "2026-08-31",
   "source_repo": "Letterblack0306/LBE_Agents_wall_Intigration",
   "source_branch": "main",
-  "remote_source_head": "c0674c9a9dcf2cc73ffaf5d9b9a41423adda066e",
-  "remote_source_commit_message": "Add Agent Wall disconnect reconnect recovery",
   "agent_wall_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
-  "agent_wall_head": "580f9db1aea1d2e8f48282f7755a8ea65c7fc0f8",
-  "local_workspace": "C:\\LBE-TUI-Lab",
-  "current_status": "CORRELATION_CONTRACT_REPAIR_REQUIRED",
-  "implementation_intent": "The Rust/Ratatui TUI remains a projection-only LetterBlack/LBE frontend. Read-only Batch 1 and disconnect/reconnect recovery are accepted. Request/event correlation is not yet sufficient at the event/reducer boundary, so the read/write gate remains closed.",
-  "completed": {
-    "agent_wall_read_only_export_seam": {
-      "status": "PROVEN",
-      "commit": "580f9db1aea1d2e8f48282f7755a8ea65c7fc0f8",
-      "capabilities_exported": ["project_truth", "session_context", "provenance", "validation"],
-      "project_truth_runtime_smoke": "PASS",
-      "focused_tests": "10 passed"
-    },
-    "real_agent_wall_project_truth_attachment_v1": {
-      "status": "PASS_CLOSED",
-      "commit": "4ac0c46c991b31b46b52558f8766ec040c827965",
-      "real_smoke": "PASS"
-    },
-    "real_agent_wall_session_context_attachment_v1": {
-      "status": "PASS_CLOSED",
-      "commit": "59d4943b0adb9d16867ce30fc4e224d5c3ecca71",
-      "tests_at_closure": "68/68 PASS",
-      "real_smoke": "BLOCKED_NO_EXISTING_SESSION"
-    },
-    "real_agent_wall_provenance_attachment_v1": {
-      "status": "PASS_CLOSED",
-      "commit": "ed6e34cefc9aef2123ea631bff24fc6c04fa4120",
-      "tests_at_closure": "72/72 PASS",
-      "real_smoke": "BLOCKED_NO_EXISTING_SESSION"
-    },
-    "real_agent_wall_validation_attachment_v1": {
-      "status": "PASS_CLOSED",
-      "commit": "4a0476e49628012e2dd9a557067292c2cbe9e14a",
-      "tests_at_closure": "75/75 PASS",
-      "real_smoke": "BLOCKED_NO_EXISTING_TASK"
-    },
-    "read_only_batch_1_acceptance": {
+  "local_tui_workspace": "C:\\LBE-TUI-Lab",
+  "local_lbe_workspace": "C:\\Agents-Memory-Tool-v6-integration",
+  "source_revision_status": "USER_REPORTED_LOCAL_VALIDATED_REVISION_NOT_SUPPLIED",
+  "current_status": "LIVE_GOVERNED_READ_ONLY_INTEGRATION_PROVEN",
+  "authority_model": {
+    "lbe": "runtime, governance, authorization, execution, evidence, ToolReceipt, persistence, validation and completion authority",
+    "tui": "Rust/Ratatui interface, request adapter and projection client only",
+    "provider": "reasoning provider; output remains advisory and cannot become LBE authority"
+  },
+  "core_truth_rule": "Design defines intended behavior. Acceptance proves bounded behavior. Machine governance defines what is allowed now. Current runtime evidence defines what is true now.",
+  "provider_binding": {
+    "provider": "openai-compatible",
+    "model": "qwen/qwen3-vl-8b",
+    "lm_studio_model_available": "PASS",
+    "provider_readiness": "PASS_READY",
+    "tool_calls": "SUPPORTED",
+    "structured_output": "SUPPORTED"
+  },
+  "live_acceptance": {
+    "audit_provider_round_trip": "PASS",
+    "plan_investigation_turn": "PASS",
+    "runtime_read_only_turn": "PASS",
+    "governed_workspace_read": "PASS",
+    "authorization_before_execution": "PASS",
+    "tool_receipt_evidence_correlation": "PASS",
+    "provider_continuation": "PASS",
+    "read_only_workspace_patch_denial": "PASS",
+    "malformed_and_denied_tool_handling": "PASS",
+    "rust_real_wrapper_projection": "PASS",
+    "no_active_turns_after_acceptance": "PASS"
+  },
+  "proven_flow": [
+    "Provider/model",
+    "LBE persisted session",
+    "mode-specific runtime",
+    "provider request",
+    "governed tool authorization",
+    "real registered tool execution",
+    "ToolReceipt/evidence",
+    "provider continuation",
+    "completed turn",
+    "Rust/Ratatui TUI projection"
+  ],
+  "mode_acceptance": {
+    "audit": {
       "status": "PASS",
-      "scope_result": "4_OF_4_IMPLEMENTED_AND_ACCEPTED"
+      "permission": "read_only",
+      "behavior": "live conversational provider round trip; no fabricated execution"
     },
-    "disconnect_reconnect_recovery": {
-      "status": "PASS_CLOSED",
-      "commit": "c0674c9a9dcf2cc73ffaf5d9b9a41423adda066e",
-      "tests_at_closure": "79/79 PASS",
-      "real_smoke": "BLOCKED_NO_EXISTING_TASK",
-      "behavior": "disconnect leaves live-connected state; reconnect re-runs the full four-projection chain through an isolated candidate and atomically replaces authority only after full success; failures remain non-Connected with no mock fallback"
+    "plan": {
+      "status": "PASS",
+      "runtime_mode": "investigation",
+      "permission": "read_only",
+      "behavior": "provider turn completed with no tools or execution"
+    },
+    "runtime": {
+      "status": "PASS",
+      "runtime_mode": "coding",
+      "permission": "read_only",
+      "behavior": "provider requested workspace.read; LBE authorized and executed it; receipt/evidence returned; provider continuation completed"
     }
   },
-  "request_event_correlation": {
-    "acceptance_status": "FAIL_NOT_PROVEN",
-    "classification": "CORRELATION_MODEL_INSUFFICIENT",
-    "baseline_tests": "79/79 PASS",
-    "confirmed_gaps": [
-      "ValidationCompleted lacks execution_id",
-      "TimedOut lacks execution_id",
-      "ExecutionRejected lacks proposal/execution ownership identity",
-      "tool lifecycle events lack explicit owning execution_id",
-      "command lifecycle events lack explicit owning execution_id",
-      "App reducer applies several request-specific events without an owning execution/proposal guard",
-      "mock approval identity is reused across independent proposal lifecycles",
-      "SnapshotUpdated is not a substitute for request ownership",
-      "RuntimeAttachmentUpdated is attachment state only, not request completion proof"
-    ],
-    "next_slice": "REQUEST_EVENT_CORRELATION_CONTRACT_V1"
-  },
-  "ux_notes": {
-    "active_operation_feedback_v1": {
-      "status": "PLANNED_NON_BLOCKING_UX",
-      "current_behavior": "Phase::Running currently shows the static composer text '> Execution in progress…'. Timed redraw infrastructure and intro animation already exist, but there is no general animated loading/progress indicator for long-running operations.",
-      "problem": "During slow operations the terminal can appear visually idle or hung even though work is active.",
-      "goal": "Provide state-driven animated activity feedback so users can distinguish active work from a frozen or broken UI.",
-      "candidate_states": [
-        "Connecting",
-        "Reconnecting",
-        "Phase::Running",
-        "provider discovery",
-        "provider validation",
-        "context compaction",
-        "diagnostics",
-        "future governed tool/command execution",
-        "browser reconnect/waiting operations"
-      ],
-      "stop_states": [
-        "Completed",
-        "Failed",
-        "Rejected",
-        "TimedOut",
-        "Disconnected",
-        "Lost",
-        "AwaitingApproval"
-      ],
-      "design_rule": "Animation must reflect real state only; do not fake percentage progress or claim work that is not actually active.",
-      "implementation_order": "Implement after REQUEST_EVENT_CORRELATION_CONTRACT_V1 so event ownership changes and visual feedback remain separate patches.",
-      "suggested_label": "ACTIVE_OPERATION_FEEDBACK_V1"
+  "negative_acceptance": {
+    "read_only_mutation": {
+      "status": "PASS",
+      "tool": "workspace.patch",
+      "authorization": "DENY",
+      "result": "DENIED",
+      "error": "AUTHORIZATION_DENIED",
+      "handler_executed": false,
+      "workspace_mutated": false
+    },
+    "empty_tool_calls": {
+      "status": "PASS",
+      "rule": "tool_calls: [] is normalized as no tool calls; non-empty tool calls still require LBE call-ID mapping and governed execution"
     }
   },
-  "upcoming_plan": [
-    {
-      "order": 1,
-      "slice": "REQUEST_EVENT_CORRELATION_CONTRACT_V1",
-      "status": "NEXT",
-      "scope": "add explicit execution/proposal ownership to affected events, unique proposal approval IDs, and fail-closed reducer guards for stale/foreign events"
-    },
-    {
-      "order": 2,
-      "slice": "REQUEST_EVENT_CORRELATION_ACCEPTANCE",
-      "status": "RERUN_AFTER_CONTRACT_REPAIR",
-      "scope": "prove stale-event, cross-execution, approval replay and terminal idempotency invariants"
-    },
-    {
-      "order": 3,
-      "slice": "ACTIVE_OPERATION_FEEDBACK_V1",
-      "status": "PLANNED_NON_BLOCKING_UX",
-      "scope": "state-driven spinner/activity feedback for connecting, reconnecting, running and other long operations without fabricated progress"
-    },
-    {
-      "order": 4,
-      "slice": "BATCH_2_REASONING_WORKFLOW_PROJECTIONS",
-      "status": "LATER"
-    },
-    {
-      "order": 5,
-      "slice": "BATCH_3_SECONDARY_PROJECTIONS",
-      "status": "LATER"
-    },
-    {
-      "order": 6,
-      "slice": "GOVERNED_READ_WRITE_INTEGRATION",
-      "status": "GATE_CLOSED"
-    }
+  "validation": {
+    "python_full_suite": "813 passed",
+    "python_full_suite_duration_seconds": 497.59,
+    "rust_full_suite": "148 passed",
+    "focused_provider_tool_governance": "61 passed",
+    "malformed_denied_tool_checks": "6 passed",
+    "python_compilation": "PASS",
+    "git_diff_check": "PASS_WITH_LINE_ENDING_WARNINGS_ONLY"
+  },
+  "remaining_unproven": [
+    "write-capable governed mutation acceptance through the complete interactive TUI workflow",
+    "installed-package interactive TUI acceptance",
+    "any broader completion claim not covered by the bounded live acceptance above"
   ],
-  "read_write_gate": {
-    "status": "CLOSED",
-    "already_proven": [
-      "Batch 1 read-only projection mapping 4/4",
-      "Batch 1 acceptance",
-      "single Agent Wall authority preserved",
-      "zero mock fallback across implemented real read-only/recovery paths",
-      "disconnect/reconnect recovery"
-    ],
-    "remaining_before_separate_gate_review": [
-      "request/event correlation contract repaired",
-      "request/event correlation acceptance proven"
-    ],
-    "note": "Passing correlation acceptance makes the gate eligible for separate review; it does not automatically open mutation authority."
-  },
-  "smoke_evidence": {
-    "project_truth": "PASS",
-    "session_context": "BLOCKED_NO_EXISTING_SESSION",
-    "provenance": "BLOCKED_NO_EXISTING_SESSION",
-    "validation": "BLOCKED_NO_EXISTING_TASK",
-    "disconnect_reconnect": "BLOCKED_NO_EXISTING_TASK"
-  },
   "overall_status_summary": {
-    "read_only_batch_1": "PASS_4_OF_4_IMPLEMENTED_AND_ACCEPTED",
-    "disconnect_reconnect_recovery": "PASS_CLOSED",
-    "request_event_correlation": "FAIL_NOT_PROVEN",
-    "correlation_contract_repair": "NEXT",
-    "active_operation_feedback": "PLANNED_NON_BLOCKING_UX",
-    "read_write_integration": "GATE_CLOSED",
-    "installed_end_to_end_acceptance": "LATER"
+    "bounded_conversational_bridge": "COMPLETE",
+    "static_unit_validation": "PASS",
+    "live_read_only_provider_runtime": "PASS",
+    "live_governed_read_only_tool_path": "PASS",
+    "live_negative_read_only_mutation_denial": "PASS",
+    "full_python_regression": "PASS_813",
+    "rust_regression": "PASS_148",
+    "complete_product_level_tui_acceptance": "NOT_YET_PROVEN"
   },
-  "unrelated_worktree_state": [
-    "C:\\LBE-TUI-Lab\\rust\\main.rs.bak remains untracked and intentionally untouched"
-  ],
-  "authority_note": "GPT-Knowledge is projection/reference only. Current implementation truth remains in the source repositories and runtime evidence."
+  "authority_note": "GPT-Knowledge is projection/reference only. Canonical LBE source, machine governance, current workspace/runtime evidence and acceptance records remain authoritative."
 }
