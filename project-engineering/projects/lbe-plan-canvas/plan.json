@@ -1,137 +1,103 @@
 {
-  "schema_version": 17,
+  "schema_version": 18,
   "project": "LBE Persistent Agent",
-  "purpose": "Persistent projection of LBE product intent, structural authority, evidence-gated progression, native Cline CLI/OpenTUI base integration direction, and current closure state. Canonical LBE repository/runtime evidence remains authoritative.",
-  "authority_rule": "Current workspace/runtime evidence and .lbe/governance/implementation-gates.json outrank this projection. PROJECT_INDEX.md defines structural responsibility. PROJECT_INTENT_LEDGER.md defines durable project intent. GPT-Knowledge is projection only.",
-  "updated": "2026-08-26",
+  "purpose": "Persistent projection of LBE authority, evidence-gated progression, and the separate Rust/Ratatui TUI client integration. Canonical LBE repository/runtime evidence remains authoritative.",
+  "authority_rule": "Current workspace/runtime evidence and canonical machine governance outrank this projection. GPT-Knowledge never creates runtime truth or implementation authority.",
+  "updated": "2026-08-31",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "source_branch": "main",
-  "source_head": "c76d81ea942d0d8589469c80925b8d92b18cf69e",
   "local_workspace": "C:/Agents-Memory-Tool-v6-integration",
-  "active_node": "runtime-closed",
-  "core_doctrine": "Agent/provider reasons and proposes. LBE preserves project identity and intent, governs authority and consequences, executes only through approved adapters, records receipts/evidence, and owns deterministic completion truth.",
+  "active_node": "rust-tui-live-governed-integration",
+  "core_doctrine": "Provider/agent reasons. LBE governs. Registered capabilities execute. Evidence and ToolReceipts persist. Validation decides completion. Interfaces project the result.",
   "product_identity": {
     "product": "LBE",
-    "interface": "LBE-branded native Cline CLI/OpenTUI surface",
     "runtime_authority": "LBE",
-    "cline_role": "BASE_REFERENCE_AND_BASE_UI_IMPLEMENTATION",
-    "branding_rule": "Retain native Cline CLI/OpenTUI mechanics; present LBE product identity and branding.",
-    "authority_rule": "Cline UI/runtime mechanics do not replace LBE permission, governed execution, receipt, evidence, or completion ownership."
+    "interface": "LetterBlack/LBE Rust/Ratatui TUI client",
+    "tui_repo": "Letterblack0306/LBE_Agents_wall_Intigration",
+    "tui_workspace": "C:/LBE-TUI-Lab",
+    "branding_rule": "LetterBlack/LBE identity only.",
+    "authority_rule": "The TUI cannot replace LBE session, policy, authorization, execution, receipt, evidence, persistence, validation or completion owners."
   },
-  "pre_mutation_governance": {
-    "name": "INTENT_AND_STRUCTURE_BEFORE_MUTATION",
-    "status": "CANONICAL",
-    "owners": [
-      "PROJECT_INDEX.md",
-      "docs/governance/PROJECT_INTENT_LEDGER.md",
-      ".lbe/governance/implementation-gates.json"
-    ]
+  "truth_model": {
+    "design": "what should happen",
+    "acceptance": "what happened for a bounded slice",
+    "machine_governance": "what is allowed now",
+    "runtime_evidence": "what is true now",
+    "conflict_rule": "When these disagree, classify the conflict or uncertainty; do not guess."
   },
   "machine_gate": {
-    "status": "CLOSED",
-    "active_phase": "COMPLETE_LBE_AGENT_RUNTIME",
-    "active_slice": "NONE",
-    "implementation_allowed": false,
-    "architecture_changes_allowed": true,
-    "next_phase_locked": true,
-    "last_completed_slice": "SESSION_APPLICATION_CONTRACT_UNIFICATION",
-    "next_slice": "NOT_ACTIVATED",
-    "publication": "LOCKED"
+    "status": "REQUIRES_FRESH_CANONICAL_RECONCILIATION",
+    "rule": "Do not derive current gate state from this projection. Read the canonical LBE machine gate before authorizing further implementation."
   },
-  "workspace_authority": {
-    "primary_rule": "Primary main worktree remains the only implementation/runtime/architecture authority.",
-    "alignment": "REMOTE_MAIN_VERIFIED_C76D81E",
-    "secondary_worktree": "Preserved non-canonical worktree; no current mutation authority.",
-    "lbe_core": "Separate read-only reference repository.",
-    "lbe_tui": "User-provided local visual reference only; not the implementation base.",
-    "generated_residue": "Present and pending governed deletion; current exposed filesystem adapter scope does not reach LBE workspace root."
+  "runtime_authority": {
+    "status": "ESTABLISHED_GOVERNED",
+    "owners": [
+      "workspace/session identity",
+      "mode/policy",
+      "authorization",
+      "governed execution",
+      "operation identity",
+      "ToolReceipt/evidence",
+      "persistence",
+      "deterministic validation/completion"
+    ]
   },
-  "active_intent": null,
   "completed_product_slices": [
-    {"id": "doctrine-provider-context", "title": "Doctrine to provider context bridge", "status": "PASS"},
-    {"id": "workspace-hygiene", "title": "Workspace hygiene governed deletion", "status": "PASS"},
-    {"id": "mandatory-governed-mutation-dispatch", "title": "Governed filesystem/process/main Git dispatch", "status": "PASS"},
-    {"id": "governed-external-capability-registration", "title": "Governed external capability registration", "status": "PASS"},
-    {"id": "first-run-live-session-entry", "title": "First-run/live persisted session entry", "status": "PASS"},
-    {"id": "installed-capability-registry", "title": "Installed capability registry", "status": "PASS"},
-    {"id": "interface-control-evidence-surfaces", "title": "LBE interface/control/evidence surfaces", "status": "PASS"},
-    {"id": "recovery-completion-promotion", "title": "Recovery + deterministic completion + proof promotion", "status": "PASS"},
-    {"id": "installed-package-acceptance", "title": "Installed-package end-to-end acceptance", "status": "PASS"},
-    {"id": "session-application-contract-unification", "title": "Session/application contract unification", "status": "PASS"},
-    {"id": "obsolete-agent-cline-routing-retirement", "title": "Retire obsolete .agent/.cline routing aliases", "status": "PASS"},
-    {"id": "runtime-closed", "title": "Complete LBE runtime gate closed", "status": "PASS"}
+    {"id":"lbe-runtime-authority","title":"Canonical LBE runtime/governance authority","status":"PROVEN_AS_ESTABLISHED_ARCHITECTURE"},
+    {"id":"tui-read-only-attachment","title":"Rust TUI read-only LBE attachment","status":"PASS"},
+    {"id":"tui-conversation-bridge","title":"Rust TUI conversational turn bridge","status":"PASS"},
+    {"id":"audit-live-round-trip","title":"Live Audit provider round trip","status":"PASS"},
+    {"id":"plan-investigation","title":"Live Plan / investigation provider turn","status":"PASS"},
+    {"id":"runtime-read-only","title":"Live Runtime / read-only coding turn","status":"PASS"},
+    {"id":"governed-workspace-read","title":"Provider-requested governed workspace.read","status":"PASS"},
+    {"id":"receipt-evidence-continuation","title":"ToolReceipt/evidence correlation and provider continuation","status":"PASS"},
+    {"id":"read-only-mutation-denial","title":"Read-only workspace.patch denied before handler execution","status":"PASS"},
+    {"id":"malformed-tool-fail-closed","title":"Malformed/denied provider tool handling","status":"PASS"},
+    {"id":"full-regression","title":"Full Python and Rust regression validation","status":"PASS"}
   ],
   "current_state": {
-    "id": "runtime-closed",
-    "status": "CLOSED_NO_ACTIVE_PRODUCT_SLICE",
-    "canonical_head": "c76d81ea942d0d8589469c80925b8d92b18cf69e",
-    "next_product_slice": "NOT_ACTIVATED",
-    "publication": "LOCKED"
+    "id": "rust-tui-live-governed-integration",
+    "status": "BOUNDED_LIVE_READ_ONLY_GOVERNED_INTEGRATION_PASS",
+    "provider": "openai-compatible",
+    "model": "qwen/qwen3-vl-8b",
+    "python_tests": "813 passed",
+    "rust_tests": "148 passed"
   },
-  "cline_integration": {
-    "status": "DOCUMENTED_INTEGRATION_DIRECTION_NOT_ACTIVE",
-    "base_surface": "Cline CLI source + native OpenTUI",
-    "base_runtime_seam": "Cline runtime callback/event bridge",
-    "package_roles": {
-      "@cline/sdk": "public SDK surface",
-      "@cline/core": "sessions, orchestration, persistence, built-in tools and runtime services",
-      "@cline/agents": "agent loop",
-      "cline_cli_source": "native OpenTUI terminal product surface"
+  "proven_flow": [
+    "provider/model",
+    "LBE persisted session",
+    "mode-specific runtime",
+    "provider request",
+    "governed authorization",
+    "registered capability execution",
+    "ToolReceipt/evidence",
+    "provider continuation",
+    "completed turn",
+    "Rust/Ratatui projection"
+  ],
+  "remaining_product_sequence": [
+    {
+      "order": 1,
+      "id": "write-capable-governed-mutation-acceptance",
+      "status": "NOT_YET_PROVEN",
+      "scope": "editable buffer -> diff review -> approval -> governed workspace.patch -> validation -> ToolReceipt"
     },
-    "reference_path": [
-      "apps/cli/src/runtime/run-interactive.ts",
-      "apps/cli/src/tui/index.tsx",
-      "OpenTUI + React terminal components"
-    ],
-    "target_bridge": [
-      "Cline CLI source + native OpenTUI",
-      "Cline runtime callback/event bridge",
-      "LBE session/runtime adapter",
-      "LBE permission boundary",
-      "LBE governed tools",
-      "LBE receipts/evidence/completion"
-    ],
-    "event_mapping": [
-      "onSubmit",
-      "onAbort",
-      "provider/model changes",
-      "streaming agent events",
-      "pending tool approvals",
-      "session lifecycle"
-    ],
-    "existing_proof": "Bounded @cline/agents worker proves the lower runtime path only; native Cline CLI/OpenTUI integration is not yet implemented.",
-    "permission_rule": "LBE must supply explicit tool policies or custom approval handling; Cline defaults cannot become LBE authorization.",
-    "no_bypass_rule": "No Cline-native filesystem/process/Git mutation path may bypass LBE governed dispatch.",
-    "branding": {
-      "product_name": "LBE",
-      "tagline": "Your agents propose. LBE decides.",
-      "rule": "Replace Cline product branding at product identity surfaces while retaining native Cline/OpenTUI mechanics."
+    {
+      "order": 2,
+      "id": "installed-interactive-tui-acceptance",
+      "status": "NOT_YET_PROVEN",
+      "scope": "prove the installed interactive product surface drives the same LBE-owned runtime path"
     }
-  },
-  "ui_plan": {
-    "id": "lbe-native-cline-opentui",
-    "title": "LBE on native Cline CLI/OpenTUI",
-    "classification": "DOCUMENTED_INTEGRATION_DIRECTION",
-    "implementation_state": "NOT_ACTIVE",
-    "plan_file": "LBE_TERMINAL_TUI_UI_PLAN.md",
-    "reference_basis": "Native Cline CLI/OpenTUI architecture plus user-reviewed LBE visual branding reference",
-    "product_rule": "Use Cline CLI/OpenTUI as the actual base implementation; integrate LBE branding and authority through the runtime callback/event seam. Do not build a clone."
-  },
-  "next_candidate_slice": {
-    "id": "CLINE_CLI_OPENTUI_LBE_INTEGRATION",
-    "status": "CANDIDATE_NOT_ACTIVATED",
-    "objective": "Integrate the native Cline CLI/OpenTUI surface with LBE session/runtime, permission, governed tool, receipt, evidence and completion owners.",
-    "activation_requirement": "Canonical machine gate must explicitly activate the slice before implementation."
-  },
-  "remaining_product_sequence": [],
+  ],
   "nodes": [
-    {"id": "authority", "parent": null, "lane": "Authority", "title": "Canonical project authority", "status": "proven", "priority": "CANONICAL"},
-    {"id": "runtime-closed", "parent": "authority", "lane": "Current", "title": "Complete runtime gate closed", "status": "proven", "priority": "CLOSED"},
-    {"id": "lbe-interface", "parent": "authority", "lane": "Product identity", "title": "LBE product identity", "status": "proven", "priority": "ACCEPTED"},
-    {"id": "cline-native-base", "parent": "lbe-interface", "lane": "UI Integration", "title": "Native Cline CLI/OpenTUI is the base surface", "status": "documented-direction", "priority": "BASE"},
-    {"id": "cline-runtime-seam", "parent": "cline-native-base", "lane": "UI Integration", "title": "Cline runtime callback/event seam", "status": "documented-direction", "priority": "INTEGRATION SEAM"},
-    {"id": "lbe-runtime-adapter", "parent": "cline-runtime-seam", "lane": "UI Integration", "title": "LBE session/runtime adapter", "status": "candidate", "priority": "NOT ACTIVE"},
-    {"id": "lbe-authority-bridge", "parent": "lbe-runtime-adapter", "lane": "UI Integration", "title": "LBE permission → governed tools → receipts/evidence/completion", "status": "candidate", "priority": "NOT ACTIVE"},
-    {"id": "lbe-branding", "parent": "cline-native-base", "lane": "Product identity", "title": "LBE branding on native Cline surface", "status": "documented-direction", "priority": "APPROVED DIRECTION"}
+    {"id":"authority","parent":null,"lane":"Authority","title":"LBE canonical runtime authority","status":"proven","priority":"CANONICAL"},
+    {"id":"truth-boundary","parent":"authority","lane":"Evidence","title":"Supported truth / no assumption boundary","status":"proven","priority":"CORE"},
+    {"id":"rust-tui","parent":"authority","lane":"Interface","title":"Rust/Ratatui TUI client + projection adapter","status":"implemented","priority":"ACTIVE INTERFACE"},
+    {"id":"rust-tui-live-governed-integration","parent":"rust-tui","lane":"Acceptance","title":"Live governed read-only conversational/tool path","status":"proven","priority":"PASS"},
+    {"id":"audit-plan-runtime","parent":"rust-tui-live-governed-integration","lane":"Modes","title":"Audit + Plan + Runtime acceptance","status":"proven","priority":"PASS"},
+    {"id":"receipt-evidence","parent":"rust-tui-live-governed-integration","lane":"Evidence","title":"Authorization + ToolReceipt + evidence + continuation","status":"proven","priority":"PASS"},
+    {"id":"deny-path","parent":"rust-tui-live-governed-integration","lane":"Fail Closed","title":"Read-only mutation denial + malformed tool handling","status":"proven","priority":"PASS"},
+    {"id":"write-mutation","parent":"rust-tui","lane":"Next","title":"Write-capable governed mutation acceptance","status":"candidate","priority":"NOT PROVEN"},
+    {"id":"installed-tui","parent":"rust-tui","lane":"Next","title":"Installed interactive TUI acceptance","status":"candidate","priority":"NOT PROVEN"}
   ]
 }
