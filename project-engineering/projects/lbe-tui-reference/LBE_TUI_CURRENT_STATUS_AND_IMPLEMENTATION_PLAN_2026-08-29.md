@@ -1,262 +1,135 @@
-# LBE TUI — Current Status, Upcoming Plan, and End-to-End Integration Plan
+# LBE TUI — Current Status and Governed Integration Evidence
 
 **Classification:** REFERENCE / NON-CANONICAL  
-**Date:** 2026-08-29  
+**Reconciled:** 2026-08-31  
 **TUI source repository:** `Letterblack0306/LBE_Agents_wall_Intigration`  
-**Verified TUI source head:** `c0674c9a9dcf2cc73ffaf5d9b9a41423adda066e`  
-**Head message:** `Add Agent Wall disconnect reconnect recovery`  
-**Agent Wall source repository:** `Letterblack0306/LBE_Presistent_Agent_wall`  
-**Verified Agent Wall head:** `580f9db1aea1d2e8f48282f7755a8ea65c7fc0f8`  
-**Local workspace:** `C:\LBE-TUI-Lab`
+**LBE runtime repository:** `Letterblack0306/LBE_Presistent_Agent_wall`  
+**TUI workspace:** `C:\LBE-TUI-Lab`  
+**LBE workspace:** `C:\Agents-Memory-Tool-v6-integration`
 
-## 1. Current state
+## Authority boundary
 
 ```text
-READ_ONLY_BATCH_1_IMPLEMENTATION        4/4 CLOSED
-READ_ONLY_BATCH_1_ACCEPTANCE            PASS
-DISCONNECT_RECONNECT_RECOVERY           PASS / CLOSED
-REQUEST_EVENT_CORRELATION_ACCEPTANCE    FAIL / NOT PROVEN
-READ_WRITE_GATE                         CLOSED
+Provider reasons.
+LBE governs.
+Registered capabilities execute.
+Evidence and ToolReceipts persist.
+Validation decides completion.
+The Rust/Ratatui interface projects the result.
 ```
 
-The TUI remains projection-only and Agent Wall remains canonical authority. Request/event correlation is the current blocking correctness gate before any separate review of mutation eligibility.
+The LBE repository remains the authority for runtime, governance, authorization, governed execution, evidence, receipts, persistence, validation and completion. The Rust/Ratatui TUI is a separate interface/client repository and must not recreate those owners.
 
-## 2. Completed read-only and recovery work
-
-The committed read-only projection chain is:
+## Current bounded status
 
 ```text
-project_truth
-→ session_context
-→ provenance
-→ validation
-→ cross-projection identity validation
-→ Connected
+CONVERSATIONAL_TURN_BRIDGE                  COMPLETE
+LIVE_AUDIT_PROVIDER_ROUND_TRIP              PASS
+LIVE_PLAN_INVESTIGATION_TURN                 PASS
+LIVE_RUNTIME_READ_ONLY_TURN                  PASS
+LIVE_GOVERNED_WORKSPACE_READ                 PASS
+AUTHORIZATION_BEFORE_EXECUTION               PASS
+TOOLRECEIPT_EVIDENCE_CORRELATION             PASS
+PROVIDER_CONTINUATION                        PASS
+READ_ONLY_MUTATION_DENIAL                    PASS
+MALFORMED_DENIED_TOOL_HANDLING               PASS
+RUST_REAL_WRAPPER_PROJECTION                 PASS
+FULL_PYTHON_REGRESSION                       813 PASS
+FULL_RUST_REGRESSION                         148 PASS
+COMPLETE_PRODUCT_LEVEL_TUI_ACCEPTANCE        NOT YET PROVEN
 ```
 
-Completed commits:
+## Proven live flow
 
 ```text
-4ac0c46c991b31b46b52558f8766ec040c827965  Attach TUI to Agent Wall project truth
-59d4943b0adb9d16867ce30fc4e224d5c3ecca71  Attach TUI to Agent Wall session context
-ed6e34cefc9aef2123ea631bff24fc6c04fa4120  Attach TUI to Agent Wall provenance
-4a0476e49628012e2dd9a557067292c2cbe9e14a  Attach TUI to Agent Wall validation
-c0674c9a9dcf2cc73ffaf5d9b9a41423adda066e  Add Agent Wall disconnect reconnect recovery
+Provider/model
+→ LBE persisted session
+→ mode-specific runtime
+→ provider request
+→ governed tool authorization
+→ registered tool execution
+→ ToolReceipt/evidence
+→ provider continuation
+→ completed turn
+→ Rust/Ratatui TUI projection
 ```
 
-Current baseline:
+Provider/model used in the live acceptance:
 
 ```text
-cargo fmt -- --check    PASS
-cargo check             PASS
-cargo test              PASS — 79/79
-git diff --check        PASS
+provider = openai-compatible
+model    = qwen/qwen3-vl-8b
 ```
 
-Real smoke qualifiers:
+LM Studio model discovery and LBE provider readiness were reported PASS/READY. No fake provider, operation, receipt, evidence or runtime binding was created to manufacture acceptance.
+
+## Mode acceptance
+
+### Audit — PASS
+
+A persisted `audit` / `read_only` LBE session completed a real provider round trip. Text-only provider output produced no fabricated tool operation or ToolReceipt.
+
+### Plan / investigation — PASS
+
+The Plan path uses investigation guidance. Tools are not exposed and no execution occurs. The live provider turn completed successfully with no tool/execution events.
+
+### Runtime / read-only coding — PASS
+
+The provider requested `workspace.read`. LBE authorized the request, executed the existing governed capability, produced real receipt/evidence correlation, returned the result to the provider, and completed the turn. The TUI consumed the correlated result as a projection.
+
+## Negative/fail-closed acceptance
+
+Read-only `workspace.patch` is explicitly denied before handler execution.
 
 ```text
-project_truth           PASS
-session_context         BLOCKED_NO_EXISTING_SESSION
-provenance              BLOCKED_NO_EXISTING_SESSION
-validation              BLOCKED_NO_EXISTING_TASK
-disconnect/reconnect    BLOCKED_NO_EXISTING_TASK
+workspace.patch
+→ LBE authorization
+→ DENY
+→ AUTHORIZATION_DENIED
+→ denial receipt
+→ no mutation handler execution
+→ target workspace remains unchanged
 ```
 
-No Agent Wall state was created or mutated merely to manufacture smoke evidence.
+The provider adapter also treats `tool_calls: []` as no tool call. Non-empty tool calls continue to require an LBE call-ID mapping and remain governed.
 
-## 3. Disconnect/reconnect recovery
+Focused malformed/denied tool handling is reported PASS.
 
-Status:
+## Validation evidence
 
 ```text
-DISCONNECT_RECONNECT_RECOVERY = PASS / CLOSED
+Full Python suite                    813 passed
+Full Python duration                 497.59 seconds
+Rust suite                           148 passed
+Focused provider/tool/governance      61 passed
+Malformed/denied tool checks           6 passed
+Python compilation                    PASS
+git diff --check                      PASS (line-ending warnings only)
 ```
 
-Implemented semantics:
+Earlier command-runner timeouts are no longer an unresolved full-suite limitation; the full Python suite subsequently completed successfully.
+
+## What remains unproven
+
+The bounded read-only conversational/governed execution path is proven. Do not silently widen that claim to every possible product workflow.
+
+Still requiring separate evidence:
+
+1. write-capable governed mutation acceptance through the complete interactive editor/review/approval workflow;
+2. installed-package interactive TUI acceptance;
+3. any broader product-level completion claim beyond the accepted slices above.
+
+## Truth hierarchy
 
 ```text
-Connected
-→ disconnect/loss
-→ non-Connected truthful state
-→ reconnect
-→ isolated fresh four-projection candidate
-→ full identity validation
-→ atomic live snapshot replacement
-→ Connected
+Design documents         → what should happen
+Acceptance records       → what happened for a bounded slice
+Machine governance       → what is authorized now
+Current runtime evidence → what is true now
 ```
 
-Reconnect failure remains non-Connected and never falls back to the mock wrapper.
+If those disagree, classify the disagreement. Do not guess or allow stale documentation to override stronger current evidence.
 
-## 4. Request/event correlation gate
+## Authority note
 
-Status:
-
-```text
-REQUEST_EVENT_CORRELATION_ACCEPTANCE = FAIL / NOT PROVEN
-CLASSIFICATION = CORRELATION_MODEL_INSUFFICIENT
-```
-
-Confirmed gaps at the current event/reducer boundary:
-
-```text
-ValidationCompleted lacks execution_id
-TimedOut lacks execution_id
-ExecutionRejected lacks proposal/execution ownership identity
-tool lifecycle events lack explicit owning execution_id
-command lifecycle events lack explicit owning execution_id
-App reducer applies several request-specific events without an owning execution/proposal guard
-mock approval identity is reused across independent proposal lifecycles
-SnapshotUpdated is not a substitute for request ownership
-RuntimeAttachmentUpdated is attachment state only, not request completion proof
-```
-
-Next correctness slice:
-
-```text
-REQUEST_EVENT_CORRELATION_CONTRACT_V1
-```
-
-After implementation, rerun:
-
-```text
-REQUEST_EVENT_CORRELATION_ACCEPTANCE
-```
-
-Passing that acceptance makes the read/write gate **eligible for separate review**. It does not automatically open mutation authority.
-
-## 5. UX note — active operation feedback
-
-Planned non-blocking UX slice:
-
-```text
-ACTIVE_OPERATION_FEEDBACK_V1
-```
-
-### Current behavior
-
-The current TUI already changes the composer during `Phase::Running` to the static message:
-
-```text
-> Execution in progress…
-```
-
-The application already has timed redraw infrastructure through `App::next_wake()` / `LbeWrapper::next_wake()`, and timed intro animation exists. However, there is **no general animated activity indicator** for slow operations.
-
-### UX problem
-
-When an operation takes noticeable time, a static terminal can look frozen, broken, or hung even though work is active.
-
-### Goal
-
-Provide lightweight, state-driven animated feedback such as a terminal spinner and contextual activity label.
-
-Example presentation:
-
-```text
-⠋ Connecting to Agent Wall…
-⠙ Reconnecting…
-⠹ Loading project context…
-⠸ Validating…
-⠼ Running…
-⠴ Waiting for tool result…
-```
-
-This is activity feedback, not fake progress. Do not invent percentages or claim progress not backed by runtime state.
-
-Candidate active states:
-
-```text
-Connecting
-Reconnecting
-Phase::Running
-provider discovery
-provider validation
-context compaction
-diagnostics
-future governed tool/command execution
-browser reconnect/waiting operations
-```
-
-The animation should stop immediately for terminal/non-active states such as:
-
-```text
-Completed
-Failed
-Rejected
-TimedOut
-Disconnected
-Lost
-AwaitingApproval
-```
-
-### Implementation ordering
-
-Keep this feature separate from the correlation contract repair:
-
-```text
-REQUEST_EVENT_CORRELATION_CONTRACT_V1
-→ REQUEST_EVENT_CORRELATION_ACCEPTANCE
-→ ACTIVE_OPERATION_FEEDBACK_V1
-```
-
-Reason: event ownership/correctness and visual feedback should not be changed in the same patch unless later evidence requires it.
-
-This UX item is **not a read/write gate prerequisite**.
-
-## 6. Upcoming plan
-
-1. `REQUEST_EVENT_CORRELATION_CONTRACT_V1` — **NEXT**  
-   Add explicit execution/proposal ownership to affected events, unique proposal approval identities, and fail-closed reducer guards for stale/foreign events.
-
-2. `REQUEST_EVENT_CORRELATION_ACCEPTANCE` — **RERUN AFTER CONTRACT REPAIR**  
-   Prove stale-event isolation, cross-execution isolation, approval replay protection, terminal idempotency and session/request ownership.
-
-3. `ACTIVE_OPERATION_FEEDBACK_V1` — **PLANNED / NON-BLOCKING UX**  
-   Add state-driven loading/activity animation for operations that otherwise make the TUI look idle.
-
-4. `BATCH_2_REASONING_WORKFLOW_PROJECTIONS` — **LATER**  
-   Change impact, hypothesis/test/verify, dependency/task graph, prioritization/what's next.
-
-5. `BATCH_3_SECONDARY_PROJECTIONS` — **LATER**  
-   Documentation, QA expansion and research evidence/provenance.
-
-6. `GOVERNED_READ_WRITE_INTEGRATION` — **GATE CLOSED**  
-   Consider only after correlation acceptance and a separate explicit gate review.
-
-## 7. Read/write gate
-
-Already proven:
-
-```text
-Batch 1 read-only mapping 4/4
-Batch 1 acceptance
-single Agent Wall authority
-zero mock fallback across implemented real read-only/recovery paths
-disconnect/reconnect recovery
-```
-
-Still required before separate gate review:
-
-```text
-request/event correlation contract repair
-request/event correlation acceptance
-```
-
-Current classification:
-
-```text
-READ_WRITE_GATE = CLOSED
-```
-
-## 8. Preserved workspace exception
-
-```text
-C:\LBE-TUI-Lab\rust\main.rs.bak
-```
-
-remains untracked and intentionally untouched.
-
-## 9. Authority note
-
-GPT-Knowledge is a reference/projection layer only. Source repositories and runtime evidence remain implementation authority.
+GPT-Knowledge is a projection/reference layer only. Canonical source repositories, current machine governance, workspace/runtime evidence and raw acceptance records retain authority.
