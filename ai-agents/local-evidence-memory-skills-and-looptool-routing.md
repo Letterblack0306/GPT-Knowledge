@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This document defines the current Letterblack local-agent evidence configuration and the authority boundaries between BirdEye, Memory, GPT-Knowledge, the MCP Skills gallery, and LoopTool.
+This document defines the current Letterblack local-agent evidence configuration and the authority boundaries between BirdEye, Memory, GPT-Knowledge, Skills, and LoopTool.
 
 It is a routing and interpretation contract. It does not replace live workspace/runtime inspection.
 
@@ -10,22 +10,51 @@ It is a routing and interpretation contract. It does not replace live workspace/
 
 ```text
 BirdEye
-= canonical local filesystem identity, indexing, SHA-256, root status, revision/provenance
+= shared MCP access surface for indexed workspace, Skills, and Memory capabilities;
+  canonical local filesystem identity, indexing, SHA-256, root status, revision/provenance
 
 Memory
 = historical conversations, agent sessions, runtime history, and derived durable memory
 
+Skills
+= curated specialized skill content and workflow guidance
+
 GPT-Knowledge
 = curated reusable engineering knowledge and project/method projection
-
-Skills MCP
-= specialized skill discovery/fetch over the curated skill corpus
 
 LoopTool
 = bounded local command execution only
 ```
 
-These responsibilities are complementary. Do not collapse them into one service and do not let one subsystem silently assume another subsystem's authority.
+These responsibilities are complementary. BirdEye may expose shared discovery/retrieval for a domain without becoming the semantic owner of that domain.
+
+## Current common MCP direction
+
+The current architecture removes agent-specific skill filesystem/catalog authority from runtime construction and routes agents toward a common BirdEye MCP capability surface.
+
+Target flow:
+
+```text
+reasoning agent
+→ common MCP capability discovery
+→ BirdEye
+   ├─ workspace capability
+   ├─ skills capability
+   └─ memory capability
+→ bounded discovery/retrieval
+→ agent consumes returned evidence/guidance
+```
+
+Ownership remains distinct:
+
+```text
+BirdEye = access/index/retrieval surface
+Skills  = curated skill-content domain
+Memory  = historical/durable-memory domain
+Agent   = consumer/reasoning owner
+```
+
+Do not infer runtime completion from this architecture record alone. Until current source/tests/runtime prove the common capability surface end to end, classify it as implementation in progress rather than PROVEN runtime behavior.
 
 ## BirdEye unified root model
 
@@ -65,6 +94,34 @@ deleted file
 
 Hashing identifies exact content. Hashing does not determine semantic authority.
 
+## Indexed-content search evolution
+
+The older reference pattern used SQLite metadata/SHA for candidate lookup and then reopened candidate physical files to search current content.
+
+The BirdEye MCP implementation is being extended beyond that pattern with:
+
+- cached searchable content in the SQLite file index;
+- root and `path_prefix` filtering;
+- indexed-only normal content matching;
+- optional `verify_freshness` checks;
+- targeted refresh of changed or uncached files;
+- explicit `content_status` and `version_status` reporting.
+
+Target behavior:
+
+```text
+normal query
+→ indexed/cached content search
+→ no recursive filesystem rescan
+→ no physical file read merely to perform normal content matching
+
+explicit freshness/inspect
+→ targeted filesystem check/read
+→ refresh SHA/content when changed or uncached
+```
+
+Do not classify this target as fully PROVEN until focused tests and live MCP behavior confirm it, including migration/backfill of pre-content-cache rows.
+
 ## Historical Memory roots
 
 Historical agent/runtime data is indexed and SHA-identified by BirdEye but remains Memory-domain evidence.
@@ -93,22 +150,9 @@ A provider/agent path must not be invented. Register it only after a real local 
 
 ### Historical authority rule
 
-Historical records can answer:
+Historical records can answer what happened previously, what an agent attempted, what output/error was observed, what decision or plan existed at that time, and what prior context may help the current investigation.
 
-- what happened previously;
-- what an agent attempted;
-- what error/output was observed;
-- what decision or plan existed at that time;
-- what prior context may help the current investigation.
-
-Historical records cannot, by themselves, establish:
-
-- what code exists now;
-- whether a file still exists now;
-- whether the current repository is clean;
-- whether tests pass now;
-- whether runtime behavior works now;
-- whether a prior implementation remains current.
+Historical records cannot by themselves establish current code, current file existence, current repository cleanliness, current test results, current runtime behavior, or whether an old implementation remains authoritative.
 
 Current truth must be reverified against the current workspace/repository/runtime authority.
 
@@ -131,25 +175,36 @@ user instruction
 
 Memory is intentionally below current source/runtime evidence because it preserves the past.
 
-## Skills MCP boundary
+## Skills through BirdEye
 
-The curated Skills gallery remains a semantic discovery/fetch system.
+The retired direct `skills_hash_status` / `skills_list` / `skills_fetch` workflow is not the current intended agent path.
 
-Its role is:
+The current routing target is:
 
 ```text
 agent needs specialized guidance
-→ skill-gallery-router
-→ skills_hash_status
-→ skills_list using narrowest relevant prefix
-→ select smallest relevant skill set
-→ skills_fetch selected SKILL.md/supporting files
-→ retain returned SHA-256 as loaded skill version
+→ discover Skills capability through common BirdEye MCP surface
+→ narrow with BirdEye root/status/search/inspect capability
+→ select the smallest relevant skill content
+→ consume returned indexed content + SHA/version metadata
 ```
 
-BirdEye is the canonical local filesystem identity/index owner for registered skill files. Skills MCP retains skill-specific discovery, metadata, trigger, and fetch semantics.
+BirdEye owns filesystem/index/retrieval mechanics for registered skill files. Skills remains the semantic content/curation domain.
 
-Do not confuse a skill SHA with current workspace truth. A skill hash identifies the exact skill content loaded.
+An individual application or agent must not recreate a local SkillCatalog, skill filesystem scanner, skill SHA cache, or independent discovery authority merely because it consumes skills.
+
+A skill SHA identifies the exact skill content version; it does not establish current workspace/runtime truth.
+
+## Memory through BirdEye
+
+Agents should discover and retrieve historical Memory evidence through the common BirdEye MCP surface when that capability is exposed, while preserving Memory authority semantics.
+
+```text
+BirdEye retrieval
+≠ Memory truth promotion
+```
+
+Historical records remain historical even when discovered, indexed, hashed, and returned through BirdEye.
 
 ## GPT-Knowledge boundary
 
@@ -163,18 +218,13 @@ GPT-Knowledge may explain the expected architecture and latest recorded project 
 
 LoopTool is a command executor, not an agent, indexer, memory system, search system, or semantic planner.
 
-Use LoopTool only after the reasoning agent has already determined:
-
-- the exact workspace/path;
-- the exact bounded command;
-- why executing it is necessary;
-- what output/result would count as evidence.
+Use LoopTool only after the reasoning agent has already determined the exact workspace/path, exact bounded command, why execution is necessary, and what output/result would count as evidence.
 
 Preferred flow:
 
 ```text
 task
-→ retrieve/verify with the appropriate evidence owner
+→ retrieve/verify with the appropriate evidence owner through the common evidence surface where available
 → select exact target
 → formulate bounded command
 → execute with LoopTool
@@ -185,8 +235,8 @@ task
 Do not use LoopTool to:
 
 - locate files or search indexed workspaces → BirdEye;
-- recall historical conversations → Memory;
-- load specialized guidance → Skills MCP;
+- recall historical conversations → BirdEye/Memory capability while preserving Memory authority;
+- load specialized guidance → BirdEye/Skills capability while preserving Skills authority;
 - determine remote repository truth → GitHub/repository authority;
 - decide what command should be run → reasoning agent.
 
@@ -212,16 +262,16 @@ Do not compare unlike hash types as if they represented the same thing.
 
 ## Decision rule for agents
 
-When a task involves local evidence, ask which owner can actually prove the next fact:
+When a task involves local evidence, ask which owner can actually prove the next fact and which common capability surface exposes it:
 
 ```text
-current file/path/content?        → BirdEye
+current file/path/content?        → BirdEye workspace capability
 current Git/revision state?       → BirdEye + Git/repository evidence
-past conversation/agent activity? → Memory
+past conversation/agent activity? → BirdEye Memory capability; authority remains Memory/historical
 reusable engineering guidance?    → GPT-Knowledge
-specialized procedure/skill?      → Skills MCP
+specialized procedure/skill?      → BirdEye Skills capability; authority remains Skills
 local command execution?          → LoopTool
 live user-visible behavior?       → runtime-specific acceptance path
 ```
 
-Use the smallest relevant owner set and preserve the distinction between current truth, curated knowledge, historical context, and execution evidence.
+Use the smallest relevant owner set and preserve the distinction between access surface, semantic ownership, current truth, curated knowledge, historical context, and execution evidence.
