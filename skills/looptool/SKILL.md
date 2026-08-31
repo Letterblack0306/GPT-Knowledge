@@ -3,9 +3,9 @@ name: looptool
 description: >
   Use Letterblack LoopTool for one bounded local command after the reasoning agent has already
   identified the exact workspace, exact command, and evidence goal. LoopTool executes; it does
-  not search, index, remember, plan, or determine truth. Route current local evidence to BirdEye,
-  historical agent/chat context to Memory, specialized guidance to Skills MCP, and remote repository
-  truth to GitHub before using LoopTool.
+  not search, index, remember, plan, or determine truth. Route current local evidence, Skills
+  discovery, and Memory retrieval through the common BirdEye MCP surface while preserving each
+  domain's authority; route remote repository truth to GitHub before using LoopTool.
 ---
 
 # LoopTool — Bounded Local Command Execution
@@ -27,18 +27,20 @@ It is not:
 
 ## Required routing before execution
 
-Use the proper owner first:
+Use the proper owner/access surface first:
 
 ```text
-current local file/index/hash/revision → BirdEye
-historical ChatGPT/agent/runtime data → Memory
-specialized workflow guidance         → Skills MCP
+current local file/index/hash/revision → BirdEye workspace capability
+historical ChatGPT/agent/runtime data → BirdEye Memory capability; authority remains Memory
+specialized workflow guidance         → BirdEye Skills capability; authority remains Skills
 reusable engineering knowledge        → GPT-Knowledge
 remote repository/PR/commit truth      → GitHub
 bounded local command execution        → LoopTool
 ```
 
-Historical Memory data may be SHA-indexed by BirdEye but remains:
+The retired direct `skills_hash_status` / `skills_list` / `skills_fetch` path is not the intended agent runtime route. Individual agents should consume Skills through the shared BirdEye MCP capability surface rather than construct their own local SkillCatalog or filesystem-first discovery authority.
+
+Historical Memory data may be SHA-indexed and retrieved by BirdEye but remains:
 
 ```text
 root_class = memory
@@ -71,8 +73,8 @@ Typical uses:
 
 - finding relevant files or sections → BirdEye search/inspect;
 - searching indexed workspace content → BirdEye;
-- historical conversation/session recall → Memory;
-- loading a domain workflow → Skills MCP;
+- historical conversation/session recall → BirdEye/Memory capability;
+- loading a domain workflow → BirdEye/Skills capability;
 - determining current GitHub truth → GitHub/current repository evidence;
 - deciding what command to run → reasoning agent;
 - claiming semantic success solely from exit code 0.
@@ -81,7 +83,7 @@ Typical uses:
 
 ```text
 task
-→ identify the evidence owner
+→ identify the evidence owner and common capability surface
 → retrieve/verify current facts
 → choose exact target
 → formulate one bounded command
@@ -165,4 +167,4 @@ reasoning agent decides
 → authoritative evidence owner validates
 ```
 
-LoopTool must never become the semantic planner, workspace search authority, or completion judge.
+LoopTool must never become the semantic planner, workspace search authority, skill authority, Memory authority, or completion judge.
