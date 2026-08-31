@@ -1,122 +1,107 @@
 {
-  "schema_version": 20,
+  "schema_version": 21,
   "project": "LBE Persistent Agent",
   "verified_at": "2026-08-31",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "source_branch": "main",
   "local_workspace": "C:/Agents-Memory-Tool-v6-integration",
-  "overall_classification": "LBE_RUNTIME_AUTHORITY_ESTABLISHED_RUST_TUI_LIVE_GOVERNED_READ_ONLY_PATH_PROVEN_REUSE_FIRST_REQUIRED",
-  "authority_note": "GPT-Knowledge is projection only. Canonical LBE source, machine governance, current workspace/runtime evidence and raw acceptance records retain authority.",
-  "core_doctrine": "Provider/agent reasons. LBE governs authority and consequences. Reuse mature mechanics before rebuilding them. Registered capabilities execute through LBE. Evidence and ToolReceipts persist. Validation decides completion. Interfaces project the result.",
-  "truth_hierarchy": [
-    "current runtime/validation evidence",
-    "current workspace/Git evidence",
-    "active machine governance",
-    "current acceptance records",
-    "canonical design/plan",
-    "historical proof",
-    "GPT-Knowledge projection",
-    "model inference"
-  ],
+  "overall_classification": "LBE_RUNTIME_OWNERS_PROVEN_CLINE_INTERFACE_APPROVED_RUST_CLIENT_BOUNDED_P2_VALIDATION_IN_PROGRESS",
+  "authority_note": "GPT-Knowledge is projection only. Canonical LBE source, machine governance, current workspace/runtime evidence and acceptance records retain authority.",
+  "core_doctrine": "Provider/agent reasons. LBE governs capabilities and consequences. Existing LBE runtime owners are reused through adapters; clients do not copy or recreate them. ToolReceipts/evidence persist. Validation decides completion.",
   "product_identity": {
     "product": "LBE",
     "runtime_authority": "LBE",
-    "active_interface_integration": "Rust/Ratatui TUI client and projection adapter",
-    "tui_repository": "Letterblack0306/LBE_Agents_wall_Intigration",
-    "tui_workspace": "C:/LBE-TUI-Lab",
-    "branding_rule": "LetterBlack/LBE product identity only; Cline and OpenCode are implementation/reuse inputs and never competing product authority."
+    "final_interface_direction": "Cline CLI/SDK mechanics under LBE identity/authority",
+    "cline_classification": "APPROVED_INTERFACE_DIRECTION_AND_REUSE_SOURCE",
+    "rust_classification": "BOUNDED_CLIENT_ADAPTER_PROJECTION_INTEGRATION",
+    "rust_long_term_role": "REQUIRES_RECONCILIATION",
+    "opencode_classification": "REFERENCE_REUSE_SOURCE_PINNED_AUDIT_REQUIRED"
   },
   "machine_state": {
     "status": "REQUIRES_FRESH_CANONICAL_RECONCILIATION",
-    "note": "This GPT-K update does not invent a current machine-gate value. Resolve active phase/slice/implementation permission from the canonical LBE machine gate when needed."
+    "note": "Resolve active phase/slice/implementation permission from the canonical LBE machine gate when implementation authorization is required."
   },
   "runtime_authority": {
     "status": "ESTABLISHED_GOVERNED",
     "owns": [
-      "workspace/session identity where defined by LBE contracts",
+      "workspace/session identity",
       "mode/policy",
       "authorization and approval authority",
       "governed execution and mutation",
-      "operation identity",
-      "ToolReceipt",
-      "evidence provenance",
-      "persistence governed by LBE contracts",
+      "ToolRegistry registration and operation identity",
+      "ToolReceipt and evidence provenance",
+      "session persistence and operational history",
+      "provider continuation boundary",
       "validation and completion truth"
     ]
   },
+  "canonical_runtime_owners": {
+    "workspace_tools": "PASS",
+    "authorization_governance": "PASS",
+    "memory": "PASS",
+    "sessions_persistence": "PASS",
+    "evidence_receipts": "PASS",
+    "providers_continuation": "PASS",
+    "product_entry": "PASS",
+    "rule": "These owners stay in C:/Agents-Memory-Tool-v6-integration and are invoked by clients; they are not copied into C:/LBE-TUI-Lab."
+  },
+  "tool_surface": {
+    "registered": ["workspace.read", "workspace.list", "workspace.glob", "workspace.search", "workspace.patch", "process.run_registered"],
+    "product_entry_commands": ["export", "tool", "authorization", "turn", "start", "capabilities"]
+  },
+  "tool_receipt_envelope": {
+    "status": "PROVEN",
+    "fields": ["operation_id", "tool_id", "status", "receipt_id", "authorization", "output", "evidence"],
+    "failure_fields": ["error_code", "error_message"],
+    "client_rule": "Decode LBE-owned output/evidence; do not fabricate result state locally."
+  },
+  "external_capabilities": {
+    "registration_boundary": "PASS",
+    "mcp_registration": "PASS",
+    "mcp_governed_tool_boundary": "PASS",
+    "mcp_rust_panel": "PLACEHOLDER",
+    "mcp_rust_projection": "MISSING",
+    "mcp_installed_acceptance": "NOT_PROVEN",
+    "mcp_full_live_server_acceptance": "NOT_PROVEN"
+  },
   "reuse_first": {
     "status": "MANDATORY_FOR_REMAINING_CAPABILITIES",
-    "rule": "Do not recreate a capability merely because the Rust TUI does not yet expose it. Check canonical LBE ownership first, then Cline reuse/adaptation, then OpenCode reuse/adaptation. BUILD_NEW is the last resort.",
+    "rule": "Check canonical LBE ownership first. Reuse through an adapter. Reuse/adapt approved Cline mechanics next. Verify and pin OpenCode capability-specific source before direct reuse. BUILD_NEW is last resort.",
     "cline": {
-      "classification": "PRIMARY_DIRECT_REUSE_ADAPT_CANDIDATE",
-      "current_evidence": "Existing LBE source audit supports adapting mature agent-loop, continuation, event, provider and generic tool-lifecycle mechanics behind an LBE-owned governance adapter.",
+      "classification": "APPROVED_INTERFACE_AND_PRIMARY_REUSE_ADAPT_SOURCE",
+      "source_audit": "PASS",
       "must_not_own": ["LBE authorization", "LBE governed mutation", "LBE receipts/evidence", "LBE completion truth"]
     },
     "opencode": {
-      "classification": "REUSE_ADAPT_REFERENCE_CURRENT_SOURCE_AUDIT_REQUIRED",
-      "current_external_reference": "OpenCode currently presents an open-source terminal coding agent with provider-agnostic operation, TUI focus and client/server architecture. Capability-by-capability direct reuse in LBE remains unverified until source mapping is completed.",
-      "candidate_areas": ["TUI behavior", "client/server patterns", "provider setup", "permissions UX", "MCP", "agents/subagents", "headless automation"]
-    },
-    "allowed_classifications": [
-      "LBE_REUSE",
-      "CLINE_REUSE",
-      "CLINE_ADAPT",
-      "OPENCODE_REUSE_OR_ADAPT",
-      "WRAP_EXISTING",
-      "RUST_UI_ONLY",
-      "LBE_NATIVE_REQUIRED",
-      "REJECT",
-      "UNVERIFIED",
-      "BUILD_NEW_LAST_RESORT"
-    ]
+      "classification": "REFERENCE_ONLY_UNTIL_PINNED_CAPABILITY_MATRIX",
+      "direct_reuse": "UNVERIFIED"
+    }
   },
-  "tui_integration": {
-    "status": "LIVE_GOVERNED_READ_ONLY_PATH_PROVEN",
+  "rust_adapter": {
+    "status": "IMPLEMENTED_BOUNDED_REAL_WRAPPER",
     "role": "client_adapter_projection",
-    "does_not_own": [
-      "authorization",
-      "execution",
-      "evidence authority",
-      "ToolReceipt creation authority",
-      "persistence authority",
-      "completion authority"
-    ],
-    "provider": "openai-compatible",
-    "model": "qwen/qwen3-vl-8b",
-    "live_acceptance": {
-      "audit_provider_round_trip": "PASS",
-      "plan_investigation": "PASS",
-      "runtime_read_only": "PASS",
-      "workspace_read_governed_execution": "PASS",
-      "authorization_before_execution": "PASS",
-      "receipt_evidence_correlation": "PASS",
-      "provider_continuation": "PASS",
-      "read_only_mutation_denial": "PASS",
-      "malformed_denied_tool_handling": "PASS",
-      "rust_real_wrapper_projection": "PASS"
-    },
-    "proven_flow": "provider/model -> LBE session -> mode-specific runtime -> provider request -> governed authorization -> registered tool execution -> ToolReceipt/evidence -> provider continuation -> completed turn -> Rust/Ratatui projection"
+    "authoritative_invocation": "python -m lbe_guard_inspector.product_entry",
+    "remote_source_proves_lbe_command_invocation": "PASS",
+    "remote_source_proves_identity_cross_checks": "PASS",
+    "remote_source_proves_receipt/evidence_lifecycle_projection": "PASS",
+    "local_reported_workspace_read_list_output_decode": "REPORTED_LOCAL_UPDATE",
+    "local_reported_workspace_read_list_output_decode_remote_verification": "NOT_YET_VERIFIED",
+    "copy_lbe_runtime_into_rust": "REJECTED"
   },
-  "validation": {
-    "python_full_suite": "813 passed",
-    "python_duration_seconds": 497.59,
-    "rust_full_suite": "148 passed",
-    "focused_provider_tool_governance": "61 passed",
-    "malformed_denied_tool_checks": "6 passed",
-    "python_compilation": "PASS",
-    "git_diff_check": "PASS_WITH_LINE_ENDING_WARNINGS_ONLY"
-  },
-  "current_stage": {
-    "id": "rust-tui-live-governed-integration",
-    "title": "Rust/Ratatui live governed integration",
-    "status": "BOUNDED_READ_ONLY_ACCEPTANCE_PASS"
+  "p2_read_only_validation": {
+    "scope": ["workspace.read", "workspace.list", "workspace.glob", "workspace.search"],
+    "status": "IN_PROGRESS_LOCAL_EVIDENCE",
+    "write_patch": "NOT_TESTED_BY_READ_ONLY_SLICE",
+    "write_patch_requirement": "real target path + replacement content + expected hash + authorization evidence"
   },
   "remaining_unproven": [
-    "capability-by-capability LBE/Cline/OpenCode reuse matrix for all remaining TUI modules",
-    "current-source OpenCode reuse audit and exact integration decisions",
-    "write-capable governed mutation acceptance through the complete interactive editor/review/approval flow",
-    "installed-package interactive TUI acceptance",
-    "broader product-level TUI completion beyond the bounded accepted paths"
+    "actual retained PASS/FAIL output for the four local P2 read-only real-wrapper tests",
+    "remote verification of the reported workspace.read/workspace.list output decoding update",
+    "write-capable workspace.patch acceptance using real payload/hash evidence",
+    "Rust MCP projection and installed MCP acceptance",
+    "installed interactive client acceptance",
+    "Rust long-term product role after reconciliation with the approved Cline CLI/SDK interface direction",
+    "pinned OpenCode capability-by-capability reuse matrix"
   ],
-  "status_rule": "Do not upgrade bounded live acceptance or a reuse proposal into broader completion/reuse claims without matching source and runtime evidence."
+  "status_rule": "Do not turn an LBE owner PASS into a client/TUI PASS, a local reported change into remote proof, or a bounded read-only acceptance into write/product completion."
 }
