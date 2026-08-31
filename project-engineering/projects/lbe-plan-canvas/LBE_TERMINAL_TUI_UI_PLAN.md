@@ -1,211 +1,234 @@
-# LBE Terminal TUI — Reuse-First Integration Plan
+# LBE Client Integration — Reuse-First Projection Plan
 
-Status: ACTIVE_REUSE_FIRST_INTEGRATION_DIRECTION
-Updated: 2026-08-31
-Projection owner: GPT-Knowledge
-Canonical runtime authority: `Letterblack0306/LBE_Presistent_Agent_wall`
-Rust TUI workspace: `C:/LBE-TUI-Lab`
+Status: ACTIVE_REUSE_FIRST_INTEGRATION_DIRECTION  
+Updated: 2026-08-31  
+Projection owner: GPT-Knowledge  
+Canonical runtime authority: `Letterblack0306/LBE_Presistent_Agent_wall`  
+Rust client workspace: `C:/LBE-TUI-Lab`
 
 ## Purpose
 
-Record the current LBE terminal/client integration direction without turning GPT-Knowledge into runtime authority.
+Record the current client integration direction without turning GPT-Knowledge or the Rust workspace into runtime authority.
 
-The rule is now explicit: **reuse mature LBE, Cline, and OpenCode capability before recreating it.** A missing Rust/TUI surface does not automatically authorize a new implementation.
+The central rule is now explicit:
 
-## Current evidence state
+> **The canonical LBE runtime owners already exist. Clients invoke them and project their results. They do not copy or recreate them.**
 
-Current projected evidence records:
-
-- canonical LBE runtime/governance authority is established;
-- Rust/Ratatui read-only LBE attachment is PASS;
-- conversational provider turn bridge is PASS;
-- Audit, Plan, and Runtime read-only paths are PASS;
-- provider-requested governed `workspace.read` is PASS;
-- authorization-before-execution is PASS for the accepted bounded path;
-- ToolReceipt/evidence correlation and provider continuation are PASS;
-- read-only mutation denial and malformed/denied tool handling are PASS;
-- complete write-capable interactive mutation acceptance is not yet proven;
-- installed-package interactive TUI acceptance is not yet proven.
-
-The canonical LBE machine gate must still be read fresh before authorizing additional implementation.
-
-## Product decision
-
-**LBE is the product and execution/governance authority.**
-
-Cline and OpenCode are reuse sources. They must not become competing product or execution authorities.
+## Product and interface decision
 
 ```text
-Agent / provider mechanics
-        ↓
-reuse/adapt mature upstream behavior where valid
-        ↓
-LBE-owned adapter and authorization boundary
-        ↓
-registered governed execution
-        ↓
-ToolReceipt / evidence / validation / completion
-        ↓
-Rust/Ratatui projection
+PRODUCT                  = LBE
+RUNTIME AUTHORITY        = LBE
+FINAL INTERFACE DIRECTION= Cline CLI/SDK mechanics under LBE identity/authority
+CLINE                    = approved interface/mechanics reuse source
+RUST/RATATUI             = bounded client / adapter / projection integration
+OPENCODE                 = external reuse/reference source; pinned capability audit required
+```
+
+The long-term Rust product role must remain explicitly reconciled with the approved Cline CLI/SDK interface direction. A current Rust integration slice is not evidence that Rust owns the final product interface.
+
+## Canonical LBE owners already present
+
+The authoritative LBE workspace contains the runtime owners required by the planned integration:
+
+- workspace tools and governed execution: `runtime/tool_orchestration.py`, `runtime/governed_coding.py`, `product_entry.py`;
+- authorization/governance: `runtime/authorization_resolver.py`, `runtime/mode_controller.py`, `runtime/completion_gate.py`, `runtime/validation_command_policy.py`;
+- memory: `session_memory_runtime.py`, `memory/store.py`, `memory/models.py`, `memory/promoter.py`, `memory/context.py`, `memory/operational_history.py`, `memory/memory_schema.sql`;
+- sessions/persistence: `session_lifecycle.py`, `persistent_turn_control.py`, `recovery.py`, `memory/store.py`;
+- evidence/receipts: `evidence_service.py`, `runtime/completion_evidence_producers.py`, `memory/completion_evidence.py`, `runtime/tool_orchestration.py`;
+- providers/continuation: `provider_registry.py`, `provider_continuation.py`, `provider_turn_runtime.py`, `reasoning_provider.py`, `runtime/cline_stdio_bridge.py`;
+- product-level entrypoint: `product_entry.py`.
+
+Current governed tool surface includes:
+
+```text
+workspace.read
+workspace.list
+workspace.glob
+workspace.search
+workspace.patch
+process.run_registered
+```
+
+Current product entry exposes the existing command families:
+
+```text
+export
+tool
+authorization
+turn
+start
+capabilities
+```
+
+## Tool receipt/result contract
+
+The canonical LBE tool response is owned by LBE and includes:
+
+```text
+receipt/result
+├── operation_id
+├── tool_id
+├── status
+├── receipt_id
+├── authorization
+├── output
+├── evidence
+├── error_code       (failure path)
+└── error_message    (failure path)
+```
+
+Clients must decode the LBE-owned `output` and `evidence`. They must not reconstruct workspace truth, invent receipt IDs, or create parallel execution state.
+
+## Rust RealLbeWrapper role
+
+`RealLbeWrapper` is the correct integration seam:
+
+```text
+UserRequest
+    ↓
+RealLbeWrapper
+    ↓
+python -m lbe_guard_inspector.product_entry ...
+    ↓
+canonical LBE owner
+    ↓
+ToolReceipt / output / evidence / control result
+    ↓
+Rust typed event/snapshot projection
+    ↓
+TUI
+```
+
+Current remote source proves that the real wrapper invokes authoritative LBE commands, validates session/workspace identity, and projects receipt/evidence lifecycle state.
+
+A local update was reported that makes `workspace.read` and `workspace.list` consume data from the LBE-owned `output` object. Until that exact change is present in the remote Rust source, GPT-Knowledge classifies it as:
+
+```text
+LOCAL_REPORTED_NOT_YET_REMOTE_VERIFIED
+```
+
+## P2 read-only acceptance
+
+The correct bounded P2 validation order is:
+
+```text
+workspace.read
+workspace.list
+workspace.glob
+workspace.search
+```
+
+These operations may prove the real-wrapper **read-only P2 slice** when retained execution evidence shows PASS and receipt/output/evidence correlation.
+
+They do **not** prove `workspace.patch`.
+
+A real patch test requires:
+
+```text
+explicit target path
++ exact replacement content
++ expected current hash
++ applicable authorization evidence
+```
+
+No synthetic patch payload should be invented merely to advance status.
+
+## MCP/external capability ownership
+
+LBE already has a PASS bounded registration/governed-execution boundary for MCP, plugin, subagent, network and hosted-service capabilities.
+
+Correct MCP path:
+
+```text
+ExternalCapabilityRegistration(MCP)
+    ↓
+ToolSpec / ToolHandler
+    ↓
+ToolRegistry
+    ↓
+R6C authorization
+    ↓
+R6E GovernedToolOrchestrator
+    ↓
+ToolReceipt / evidence
+    ↓
+provider continuation
+    ↓
+persisted LBE event/history
+    ↓
+client projection
+```
+
+Do not build a second MCP executor in Rust.
+
+Current Rust MCP classification remains:
+
+```text
+/mcp surface             = PLACEHOLDER
+MCP typed projection     = MISSING
+installed MCP acceptance = NOT PROVEN
+full live MCP acceptance = NOT PROVEN
 ```
 
 ## Mandatory reuse decision gate
 
-Before implementing any remaining capability, classify it in this order:
+Before implementing a missing client capability:
 
-1. `LBE_REUSE`
-2. `CLINE_REUSE`
-3. `CLINE_ADAPT`
-4. `OPENCODE_REUSE_OR_ADAPT`
-5. `WRAP_EXISTING`
-6. `RUST_UI_ONLY`
-7. `LBE_NATIVE_REQUIRED`
-8. `REJECT`
-9. `UNVERIFIED`
-10. `BUILD_NEW_LAST_RESORT`
-
-`BUILD_NEW` is not the default.
-
-## Cline reuse role
-
-Cline is the primary direct runtime reuse/adaptation candidate for mature agent mechanics.
-
-Reuse/adapt where source and LBE boundaries permit:
-
-- agent loop;
-- continuation mechanics;
-- provider stream normalization;
-- generic tool request/result lifecycle;
-- session/event projection mechanics that do not replace LBE owners;
-- provider/model capability handling;
-- retry/compaction behavior;
-- interactive/headless CLI mechanics;
-- terminal interaction patterns where applicable.
-
-Cline must **not** own:
-
-- LBE authorization or approval authority;
-- governed filesystem/process/Git/external mutation;
-- LBE ToolReceipt/evidence authority;
-- LBE validation/completion truth;
-- any direct mutation route that bypasses LBE.
-
-## OpenCode reuse role
-
-OpenCode is an open-source reuse/adaptation source, particularly for product/runtime patterns that should not be rebuilt blindly.
-
-Candidate reuse/adaptation areas:
-
-- terminal/TUI interaction behavior;
-- client/server separation;
-- provider configuration UX;
-- permission UX and plan/build patterns;
-- MCP management;
-- agents/subagents UX;
-- headless automation patterns.
-
-Direct reuse is **not yet claimed as proven**. A current-source capability-by-capability audit must map exact OpenCode owners and licensing/integration boundaries before implementation claims are upgraded.
-
-## LBE ownership boundary
-
-LBE remains authoritative for:
-
-- workspace/session identity where defined by LBE contracts;
-- mode and policy;
-- authorization and approval;
-- governed execution and mutation;
-- operation identity;
-- ToolReceipts;
-- evidence provenance;
-- governed persistence contracts;
-- validation and completion truth;
-- removed/blocked feature intent where governed by the project ledger.
-
-Upstream mechanics may request, transport, display, or continue these operations. They do not become a second authority owner.
-
-## Rust/Ratatui role
-
-The Rust TUI is primarily:
-
-- client;
-- adapter;
-- event/snapshot projection;
-- interaction surface;
-- review/approval presentation.
-
-It should not recreate runtime owners already present in LBE or mature generic mechanics that can be safely reused/adapted from upstream.
-
-## Capability mapping requirement
-
-Every remaining TUI capability should answer:
-
-```text
-TUI capability
-→ existing LBE owner?
-→ existing Cline owner/mechanic?
-→ existing OpenCode owner/mechanic?
-→ reuse/adapt/wrap/native/reject decision
-→ LBE authority boundary
-→ Rust request mapping
-→ normalized event/snapshot mapping
-→ UI projection
-→ acceptance proof
-```
-
-A capability is not implementation-ready until that mapping exists at the appropriate source/contract level.
+1. `LBE_REUSE` — does the canonical LBE runtime already own it?
+2. `CLINE_REUSE` / `CLINE_ADAPT` — can approved Cline mechanics expose it without replacing LBE authority?
+3. `OPENCODE_VERIFY_THEN_REUSE_OR_ADAPT` — only after pinned capability-specific source validation.
+4. `WRAP_EXISTING` — can an existing owner be exposed through a bounded adapter?
+5. `RUST_UI_ONLY` — is only presentation/navigation missing?
+6. `LBE_NATIVE_REQUIRED` — is the missing piece uniquely an LBE authority requirement?
+7. `REJECT` / `UNVERIFIED`.
+8. `BUILD_NEW_LAST_RESORT`.
 
 ## Explicitly rejected directions
 
-- rebuilding a second generic agent loop when Cline mechanics are reusable;
-- rebuilding a second provider/model framework without a proven LBE-specific requirement;
-- rebuilding generic MCP/subagent/TUI machinery merely because the Rust client lacks it;
-- hand-building a clone of mature upstream terminal behavior;
-- creating parallel session/event ownership that conflicts with LBE;
-- direct Cline/OpenCode mutation paths outside LBE governance;
-- treating upstream auto-approval/permission defaults as LBE authorization;
-- replacing LBE branding or product identity with upstream branding;
-- treating an HTML mock/reference as runtime implementation proof.
+- copying `lbe_guard_inspector` runtime owners into `C:/LBE-TUI-Lab`;
+- adding a second workspace/process executor in Rust;
+- adding a second authorization resolver or receipt/evidence owner;
+- creating Rust-side persistence for canonical LBE session/event truth;
+- creating an MCP executor outside the existing LBE ToolRegistry/R6C/R6E path;
+- treating Cline/OpenCode native approvals as LBE authorization;
+- upgrading local reported changes to remote/source proof without verification;
+- upgrading read-only P2 evidence into write-capable acceptance.
 
-## Remaining product sequence
+## Remaining sequence
 
-### 1. Reuse capability matrix
+### 1. Finish bounded P2 read-only proof
 
-Complete the capability-by-capability LBE/Cline/OpenCode mapping for the remaining Rust/TUI modules. This is a prerequisite for new capability implementation.
+Retain PASS/FAIL evidence for `workspace.read`, `workspace.list`, `workspace.glob`, and `workspace.search` against the configured real LBE session.
 
-### 2. Write-capable governed mutation acceptance
+### 2. Reconcile the client capability matrix
 
-Target flow:
+For every missing feature record:
 
 ```text
-editable buffer
-→ diff/review
-→ approval
-→ LBE authorization
-→ governed workspace.patch
-→ validation
-→ ToolReceipt/evidence
-→ completion projection
+capability
+→ canonical LBE owner
+→ approved Cline mechanic
+→ optional verified OpenCode mechanic
+→ request/control mapping
+→ LBE command/protocol
+→ receipt/output/event mapping
+→ client projection
+→ acceptance proof
 ```
 
-Reuse mature editor/diff/tool-loop mechanics where valid. LBE retains mutation authority.
+### 3. Prove write-capable governed mutation separately
 
-### 3. Installed interactive TUI acceptance
+Use a real file/payload/hash and preserve the existing LBE `workspace.patch` authority path.
 
-Prove the installed product drives the same LBE-owned runtime path and that reused/adapted mechanics cannot bypass authorization, receipts, evidence, or completion.
+### 4. Complete MCP/client projections only after backend ownership is mapped
 
-## Acceptance rule
+Build projection and interaction surfaces over existing LBE owners; do not rebuild backend capability infrastructure.
 
-A future capability is aligned only when:
+### 5. Installed interactive acceptance
 
-1. current source proves the upstream capability actually exists;
-2. the reuse/adapt decision is explicit;
-3. no duplicate LBE authority is introduced;
-4. consequential execution crosses LBE governance;
-5. receipt/evidence/completion originate from LBE owners;
-6. Rust only owns the client/projection/UI responsibilities assigned to it;
-7. installed-runtime tests prove the complete path;
-8. GPT-Knowledge status remains bounded to the evidence actually produced.
+Prove the installed client drives canonical LBE owners and cannot bypass authorization, receipts, evidence, persistence, or completion.
 
 ## Authority boundary
 
-This file is a projection and integration plan. It does not activate the canonical LBE machine gate, authorize repository mutation, or prove an untested upstream integration.
+This file is a GPT-Knowledge projection/integration plan. It does not activate a machine gate, authorize canonical repository mutation, or turn a local client implementation into LBE runtime authority.
