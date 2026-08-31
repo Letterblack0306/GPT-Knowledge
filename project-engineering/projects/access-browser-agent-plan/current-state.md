@@ -1,151 +1,122 @@
 # Access Browser Agent — Current State
 
-Date: 2026-08-22
+Date: 2026-08-31
 
-## Source authority
+## Authority
 
-- Repository: `Letterblack0306/access-browser-agent`
-- Branch: `main`
-- Verified HEAD: `b9abac124c0e5036d19bfa902e36fb898ed3c2e6`
-- Protected local untracked file: `section_09.md` — preserved, not modified
-- Active engineering gate: **P1 Terminal-state UI live acceptance — proven**
+GPT-Knowledge is a projection only. Current repository source, exact Git identity, local working-tree state, tests, runtime evidence, and acceptance evidence remain authoritative.
 
-Current repository source, local runtime evidence and acceptance results remain authoritative over this projection.
+## Current remote repository — PROVEN
 
-## Projection boundary
-
-GPT-Knowledge is alignment/navigation state only. The working product repository and runtime remain authoritative. The retained product UI scope is the local IDE, local agent, managed browser, provider/runtime, editor, terminal and MCP surfaces. External BirdEye/workspace-handoff UI surfaces were removed from the product.
-
-Source work follows this order:
-
-```text
-inspect the live repository and runtime
-→ verify GitHub main SHA + diff
-→ run focused checks, then authoritative project checks
-→ classify only the tested gate
-→ sync GPT-Knowledge
-→ verify Vercel/live projection
-→ only then next change
-```
-
-Every future plan must distinguish:
-
-```text
-EXISTING + PROVEN
-EXISTING BUT NOT YET VERIFIED LIVE
-MISSING — IMPLEMENTATION REQUIRED
-```
-
-Only `MISSING — IMPLEMENTATION REQUIRED` authorizes designing a new capability. This projection does not create product authority, runtime state, or external UI requirements.
-
-## P1.1 Runtime Progress / Re-entry — CLOSED
-
-Baseline:
-
-`b2b6ff31f781c1299e916d52ab3122f0c0ac3507`
-
-Implementation:
-
-`741d20815858ccf829c283709d504f6e0bd0f6e1`
-
-Exact source diff:
-
-```text
-1 commit ahead
-1 file changed
-src/agent/executive/LiveAgentCore.js  +53 -5
-```
-
-Local acceptance command hash:
-
-`7DF5420CB2BB58ED745B58933DBAA4A382443A5F64758FC765EB149FE8067E60`
-
-Observed result:
-
-```text
-HEAD = 741d20815858ccf829c283709d504f6e0bd0f6e1
-node --check LiveAgentCore.js = PASS
-agent-runtime-no-progress-smoke = PASS
-agent-runtime-resilience-smoke = PASS
-git status = main aligned with origin/main; section_09.md remains untracked
-```
+- Repository: `Letterblack0306/Accecc_Browser_Agent`
+- Default branch: `main`
+- Current GitHub `main` HEAD: `beeab1738334b854a315793d870f4b9dfbb7ea67`
+- HEAD commit: `docs: define development history archive boundary`
+- Branch protection: off
+- Required status checks on current HEAD: none
+- Open issues observed in the current repository check: 0
+- Major implementation remains distributed across open/stacked pull requests; full intended product consolidation into current `main` is not proven.
 
 Classification:
 
-**P1_1_RUNTIME_PROGRESS_REENTRY = PROVEN_SOURCE_AND_LOCAL_REGRESSION**
+`REMOTE_MAIN = PROVEN_CURRENT_BEEAB173`
 
-This proves the bounded runtime contract for the focused regression: exact repeated observations are intercepted on the second duplicate before another provider completion, the first warning remains transient, and the neighboring failed-tool/resilience behavior still passes.
+## Current local workspace — USER-PROVIDED AUDIT EVIDENCE
 
-## Active gate — P1 Bounded Page Settlement
+Workspace audited:
 
-### Proven current weakness
+`G:\Developments\46_Accecc_Browser_Agent\Browser Agent`
 
-`src/browser/browser-tool-runtime.js` currently has two weak downstream-settlement paths:
+Observed audit state:
 
-- navigation waits for `document.readyState` to become `interactive` or `complete`;
-- ordinary DOM click uses a fixed `100 ms` delay and reports downstream outcome as unverified.
+- branch reported as `main`;
+- approximately 40 uncommitted modifications/deletions;
+- working tree described as mid-cleanup and not committed;
+- `npm run check` passed end-to-end;
+- static audit completed across the repository;
+- full Browser Loop end-to-end acceptance remains not proven;
+- exact local HEAD was not provided in the audit;
+- local-vs-remote ancestry/alignment to `beeab173` is therefore unverified.
 
-This does not prove:
-
-- SPA route completion;
-- hydration completion;
-- DOM mutation stability;
-- bounded network/activity settlement;
-- settled snapshot/state revision.
-
-### Source/test owner map — PROVEN
+Classification:
 
 ```text
-source owner: src/browser/browser-tool-runtime.js
-test owner: test/browser-tool-runtime-smoke.js
+LOCAL_STATE          = DIRTY_IMPLEMENTATION_WORKTREE
+LOCAL_HEAD           = UNVERIFIED_IN_CURRENT_AUDIT
+LOCAL_REMOTE_IDENTITY = UNVERIFIED
+SOURCE_VALIDATION    = PASS_NPM_RUN_CHECK
+FULL_BROWSER_LOOP_E2E = NOT_PROVEN
 ```
 
-The existing harness already owns protected-target isolation, URL safety, open/navigate/snapshot/click/type/scroll/close behavior. Do not create a duplicate browser-runtime harness.
+## Confirmed local defect — PROVEN STATIC
 
-### Required proof before the regression change
+The local audit identified a runtime defect in `electron/main.js` around lines 537-543: IPC handlers reference `skills`, but no corresponding declaration/import was found after deletion of the former skill catalog owner. The preload surface still exposes the related skill APIs.
 
-Before deciding how to run the P1.2 regression, inspect the **active BirdEye installation/configuration** for the exact Access workspace and prove:
+Classification:
+
+`SKILLS_IPC_OWNER = PROVEN_STATIC_DEFECT_NOT_RUNTIME_ACCEPTED`
+
+Do not classify the skill surface as healthy until the owner is repaired or the dead surface is removed and the relevant runtime path is validated.
+
+## Local hygiene / vestigial findings — SUPPORTED BY AUDIT
+
+The audit also identified:
+
+- stale root logs and audit-session artifacts;
+- a local gitignored installer binary around 113 MB;
+- duplicate/superseded UI acceptance script variants;
+- a self-flagged orphan `scripts/tmp-registry-audit.js` pending triage;
+- stale/dead IPC and compatibility surfaces;
+- an empty vestigial `electron/modules/workspace-sync.js`;
+- a stale module-registry path;
+- several undocumented behaviors requiring owner/policy review, including auto-plan watching, agent-controlled `declareMode`, change-intent authorization behavior, MCP `shell:true` spawning, and BirdEye GitHub token use;
+- no material secrets, telemetry, hidden windows, obfuscation, or malicious-code finding in the audit.
+
+These are audit findings, not automatically authorized implementation changes.
+
+## Historical acceptance evidence boundary
+
+Older GPT-Knowledge records contain valid historical/local evidence for browser settlement, terminal-state UI, recovery reconciliation, process isolation, AX projection, screenshot evidence storage, provider readiness, IDE-shell alignment, and related gates.
+
+Those records must be retained, but until ancestry and current-source revalidation are performed they are classified as one of:
 
 ```text
-workspace root mapping
-watcher coverage
-existing validation profiles
-whether browser-tool-runtime-smoke.js is already covered
-active request bridge runtime branch/path
-polling vs webhook/trigger live behavior
+PROVEN_HISTORICAL
+PROVEN_ON_PRIOR_HEAD
+PROVEN_ON_FEATURE_OR_STACKED_BRANCH
+NOT_REVALIDATED_AGAINST_CURRENT_MAIN
 ```
 
-Then reuse or minimally extend what exists. Do not design another local execution mechanism unless BirdEye capability is proven missing.
+They must not be interpreted as proof that current remote `main` at `beeab173` contains and passes the complete intended product.
 
-### Intended scope after that proof
+## Current engineering gate
 
-ADD:
-- navigation transition detection;
-- bounded DOM mutation quiet window;
-- bounded network/activity settlement where meaningful;
-- snapshot/state revision after settled transition;
-- explicit timeout classification.
+The next evidence gate is repository identity and integration reconciliation, not new feature design.
 
-CHANGE:
-- replace fixed `wait(100)` as primary downstream settlement;
-- strengthen `_waitReady()` beyond document-ready-state-only semantics.
+Required proof:
 
-REMOVE:
-- arbitrary fixed sleep as downstream-success proxy.
+```text
+local git rev-parse HEAD
+local git status --short
+local git rev-list --left-right --count HEAD...origin/main
+remote main = beeab1738334b854a315793d870f4b9dfbb7ea67
+```
 
-DO NOT TOUCH:
-- protected ChatGPT transport target ownership;
-- HTTP/HTTPS URL safety rules;
-- persistent relay login/profile continuity;
-- P1.1 progress guard.
+Then classify the local dirty changes relative to current remote `main` and the open PR lineage before deciding what is current, historical, mergeable, removable, or still missing.
 
-## Pending after settlement
+## Current project classification
 
-- Durable Stop terminal receipt acceptance;
-- `turn-37c...` recovery reconciliation;
-- terminal-state UI live acceptance;
-- node-pty `AttachConsole` owner mapping (host PTY probe timed out);
-- arbitrary process-death exactly-once recovery (not proven);
-- isolated browser task contexts (host CDP `Not allowed` blocker);
-- native AX + optional screenshot perception (live target creation host blocker; bounded AX source projection implemented);
-- CSP and parallel-settings cleanup.
+```text
+REMOTE_REPOSITORY             = PROVEN
+REMOTE_MAIN_HEAD              = beeab1738334b854a315793d870f4b9dfbb7ea67
+LOCAL_WORKTREE                = DIRTY_MID_CLEANUP
+LOCAL_HEAD                    = UNVERIFIED
+LOCAL_REMOTE_ALIGNMENT        = UNVERIFIED
+NPM_RUN_CHECK                 = PASS_LOCAL_AUDIT
+STATIC_AUDIT                  = COMPLETE
+SKILLS_RUNTIME_DEFECT         = PROVEN_STATIC
+FULL_BROWSER_LOOP_E2E         = NOT_PROVEN
+MAJOR_REBUILD_ON_CURRENT_MAIN = NOT_PROVEN
+GPTK_OLDER_ACCEPTANCE_RECORDS = RETAIN_AS_HISTORICAL_UNTIL_REVALIDATED
+ACTIVE_GATE                   = REPOSITORY_IDENTITY_AND_INTEGRATION_RECONCILIATION
+```
