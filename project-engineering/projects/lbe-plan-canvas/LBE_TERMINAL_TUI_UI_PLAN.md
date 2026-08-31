@@ -1,239 +1,211 @@
-# LBE Terminal TUI — Native Cline/OpenTUI Integration Plan
+# LBE Terminal TUI — Reuse-First Integration Plan
 
-Status: DOCUMENTED_INTEGRATION_DIRECTION
-Implementation state: NOT_ACTIVE
-Recorded: 2026-08-26
+Status: ACTIVE_REUSE_FIRST_INTEGRATION_DIRECTION
+Updated: 2026-08-31
 Projection owner: GPT-Knowledge
 Canonical runtime authority: `Letterblack0306/LBE_Presistent_Agent_wall`
+Rust TUI workspace: `C:/LBE-TUI-Lab`
 
 ## Purpose
 
-Record the user-approved integration direction for the LBE terminal interface without changing the canonical runtime gate or falsely claiming implementation.
+Record the current LBE terminal/client integration direction without turning GPT-Knowledge into runtime authority.
 
-## Product decision
-
-**Cline CLI/OpenTUI is the base reference and base terminal UI implementation.**
-
-LBE must not build a separate Python/Textual terminal, HTML look-alike, or independently designed imitation of Cline.
-
-The implementation target is the native Cline CLI/OpenTUI source and interaction model, with LBE integrated into that same surface through branding and runtime-authority seams.
-
-## Integration model
-
-```text
-Cline CLI source + native OpenTUI
-        ↓
-Cline runtime callback/event bridge
-        ↓
-LBE session/runtime adapter
-        ↓
-LBE permission boundary
-        ↓
-LBE governed tools
-        ↓
-LBE receipts / evidence / completion
-```
-
-Cline remains responsible for the terminal presentation mechanics and interaction surface. LBE remains responsible for consequence and authority.
-
-## Cline base surface
-
-The intended base is the native Cline CLI/OpenTUI implementation, including the interaction model represented by:
-
-```text
-apps/cli/src/runtime/run-interactive.ts
-        ↓
-apps/cli/src/tui/index.tsx
-        ↓
-OpenTUI + React terminal components
-```
-
-The runtime/TUI seam must support the same classes of events needed by the native Cline surface, including:
-
-- user submit;
-- abort/cancel;
-- provider/model changes;
-- streaming agent events;
-- pending tool approvals;
-- session lifecycle.
-
-This callback/event seam is the intended LBE integration boundary.
-
-## Cline package roles
-
-The integration direction recognizes the following Cline package responsibilities:
-
-- `@cline/sdk` — public programmatic SDK surface;
-- `@cline/core` — sessions, orchestration, persistence, built-in tools and runtime services;
-- `@cline/agents` — agent loop;
-- Cline CLI source — native terminal/OpenTUI product surface.
-
-The existing LBE repository already contains a bounded `@cline/agents` worker path. That lower runtime path does **not** prove the native Cline CLI/OpenTUI product surface is integrated.
-
-## LBE ownership boundary
-
-Reusing Cline as the base does not transfer LBE authority to Cline.
-
-LBE retains ownership of:
-
-- canonical workspace identity;
-- session/runtime authority where defined by LBE contracts;
-- permission and approval authority;
-- governed filesystem/process/Git/external tool execution;
-- receipts;
-- evidence;
-- validation/completion truth;
-- persistent project constraints and governance.
-
-Cline UI/runtime mechanics may request or project these operations, but they do not become a second authority owner.
-
-## Permission integration
-
-Native Cline tool-policy defaults must not silently become LBE policy.
-
-The integration must provide explicit LBE-owned tool policies or custom approval handling so that every consequential action still crosses the LBE permission boundary.
-
-```text
-Cline tool request
-      ↓
-LBE policy / authorization decision
-      ↓
-allowed → governed adapter execution
-blocked → native TUI receives denial/pending state
-      ↓
-receipt / evidence projected back into Cline TUI
-```
-
-There must be no direct Cline-native mutation path that bypasses LBE governance.
-
-## Product identity and branding
-
-The product presented to the user is **LBE**.
-
-Cline remains the implementation base, but Cline branding is replaced by LBE product identity where the terminal presents the product itself.
-
-Approved LBE supporting copy:
-
-> Your agents propose. LBE decides.
-
-Approved LBE SVG mark:
-
-```svg
-<svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
-  <g class="lg-outer"><rect x="4" y="4" width="292" height="292" rx="52" class="lg-fill"></rect></g>
-  <g class="lg-inner">
-    <rect x="30" y="30" width="240" height="240" rx="38" fill="var(--bg-inset)"></rect>
-    <rect class="lg-frame lg-stroke" x="64" y="64" width="172" height="172" rx="10" fill="none" stroke-width="17"></rect>
-    <path class="lg-bracket-l lg-stroke" d="M120 112 H102 V188 H120" fill="none" stroke-width="16" stroke-linecap="square"></path>
-    <path class="lg-bracket-r lg-stroke" d="M180 112 H198 V188 H180" fill="none" stroke-width="16" stroke-linecap="square"></path>
-    <rect class="lg-bar lg-fill" x="141" y="107" width="18" height="86"></rect>
-  </g>
-</svg>
-```
-
-Branding must be restrained and terminal-native. LBE should not turn Cline's native terminal into a governance dashboard.
-
-## UI behavior to preserve from Cline
-
-Preserve the native terminal interaction model instead of recreating it:
-
-- one terminal conversation surface;
-- scrollable agent/user transcript;
-- native inline tool activity;
-- native pending approval interactions, backed by LBE authority;
-- prompt/composer behavior;
-- slash commands and file/context mentions where retained;
-- model/provider/session controls where retained;
-- native keyboard navigation;
-- native OpenTUI styling/layout mechanics;
-- compact status/projection surfaces.
-
-## LBE additions inside the native surface
-
-LBE-specific projection should be minimal and contextual:
-
-- LBE product mark/name on welcome/product identity surfaces;
-- `Your agents propose. LBE decides.` as restrained brand copy;
-- permission result when LBE approval is required;
-- governed tool state;
-- receipt/evidence identifiers when useful;
-- blocked/denied reason;
-- completion/validation state when it materially helps the user.
-
-Do not add permanent left/right governance dashboards or explanatory architecture panels.
-
-## Explicitly rejected implementation directions
-
-- separate Python/Textual replacement TUI;
-- HTML implementation used as the real runtime surface;
-- hand-built clone of Cline's terminal appearance;
-- dashboard-first LBE shell around Cline;
-- Cline-native filesystem/process/Git mutation bypassing LBE;
-- Cline default auto-approval treated as LBE authorization;
-- Cline session/completion ownership silently replacing existing LBE owners;
-- Cline branding presented as the LBE product identity.
-
-## Role of the HTML reference
-
-The user-reviewed black `LETTERBLACK ENGINE` HTML remains a **visual branding/reference artifact only**.
-
-It established useful LBE visual choices such as the approved mark, black terminal direction, restrained tagline, inline boundary presentation and compact status treatment.
-
-It is **not** the implementation base and must not be used to claim native TUI completion.
+The rule is now explicit: **reuse mature LBE, Cline, and OpenCode capability before recreating it.** A missing Rust/TUI surface does not automatically authorize a new implementation.
 
 ## Current evidence state
 
-Current canonical evidence indicates:
+Current projected evidence records:
 
-- the LBE machine gate is closed;
-- `active_slice = NONE`;
-- `implementation_allowed = false`;
-- architecture changes are allowed only under repository governance;
-- the repository contains the bounded Cline worker/lower runtime integration;
-- the native Cline CLI/OpenTUI source surface is not currently integrated into the LBE repository.
+- canonical LBE runtime/governance authority is established;
+- Rust/Ratatui read-only LBE attachment is PASS;
+- conversational provider turn bridge is PASS;
+- Audit, Plan, and Runtime read-only paths are PASS;
+- provider-requested governed `workspace.read` is PASS;
+- authorization-before-execution is PASS for the accepted bounded path;
+- ToolReceipt/evidence correlation and provider continuation are PASS;
+- read-only mutation denial and malformed/denied tool handling are PASS;
+- complete write-capable interactive mutation acceptance is not yet proven;
+- installed-package interactive TUI acceptance is not yet proven.
 
-Therefore this remains a documented next integration boundary, not an implemented feature.
+The canonical LBE machine gate must still be read fresh before authorizing additional implementation.
 
-## Future implementation slice
+## Product decision
 
-The next authorized UI integration slice should explicitly activate the native Cline CLI/OpenTUI surface and define:
+**LBE is the product and execution/governance authority.**
 
-1. exact Cline CLI source/revision to integrate;
-2. retained native OpenTUI components and runtime bridge ownership;
-3. LBE branding replacement points;
-4. submit/abort/provider/model/event/session callback mapping;
-5. LBE session/runtime adapter contract;
-6. explicit LBE tool-policy and approval bridge;
-7. governed tool dispatch mapping;
-8. receipt/evidence projection back into the native TUI;
-9. completion-state projection;
-10. validation proving no Cline-native authority bypass exists.
+Cline and OpenCode are reuse sources. They must not become competing product or execution authorities.
 
-## Acceptance criteria
+```text
+Agent / provider mechanics
+        ↓
+reuse/adapt mature upstream behavior where valid
+        ↓
+LBE-owned adapter and authorization boundary
+        ↓
+registered governed execution
+        ↓
+ToolReceipt / evidence / validation / completion
+        ↓
+Rust/Ratatui projection
+```
 
-A future implementation is aligned only when:
+## Mandatory reuse decision gate
 
-1. the running product uses the native Cline CLI/OpenTUI implementation as its base surface;
-2. the UI is branded as LBE rather than Cline;
-3. the terminal interaction mechanics remain recognizably native Cline/OpenTUI rather than a clone;
-4. Cline UI events are mapped into the LBE runtime adapter;
-5. consequential tool execution crosses the LBE permission boundary;
-6. explicit LBE policies/custom approval handling override unsafe Cline defaults;
-7. receipts/evidence/completion states originate from LBE owners and are projected back into the TUI;
-8. no second filesystem/process/Git/session/completion authority is introduced;
-9. the HTML reference is not used as implementation proof;
-10. installed runtime acceptance proves the complete native TUI → LBE → governed tool → receipt/evidence/completion round trip.
+Before implementing any remaining capability, classify it in this order:
+
+1. `LBE_REUSE`
+2. `CLINE_REUSE`
+3. `CLINE_ADAPT`
+4. `OPENCODE_REUSE_OR_ADAPT`
+5. `WRAP_EXISTING`
+6. `RUST_UI_ONLY`
+7. `LBE_NATIVE_REQUIRED`
+8. `REJECT`
+9. `UNVERIFIED`
+10. `BUILD_NEW_LAST_RESORT`
+
+`BUILD_NEW` is not the default.
+
+## Cline reuse role
+
+Cline is the primary direct runtime reuse/adaptation candidate for mature agent mechanics.
+
+Reuse/adapt where source and LBE boundaries permit:
+
+- agent loop;
+- continuation mechanics;
+- provider stream normalization;
+- generic tool request/result lifecycle;
+- session/event projection mechanics that do not replace LBE owners;
+- provider/model capability handling;
+- retry/compaction behavior;
+- interactive/headless CLI mechanics;
+- terminal interaction patterns where applicable.
+
+Cline must **not** own:
+
+- LBE authorization or approval authority;
+- governed filesystem/process/Git/external mutation;
+- LBE ToolReceipt/evidence authority;
+- LBE validation/completion truth;
+- any direct mutation route that bypasses LBE.
+
+## OpenCode reuse role
+
+OpenCode is an open-source reuse/adaptation source, particularly for product/runtime patterns that should not be rebuilt blindly.
+
+Candidate reuse/adaptation areas:
+
+- terminal/TUI interaction behavior;
+- client/server separation;
+- provider configuration UX;
+- permission UX and plan/build patterns;
+- MCP management;
+- agents/subagents UX;
+- headless automation patterns.
+
+Direct reuse is **not yet claimed as proven**. A current-source capability-by-capability audit must map exact OpenCode owners and licensing/integration boundaries before implementation claims are upgraded.
+
+## LBE ownership boundary
+
+LBE remains authoritative for:
+
+- workspace/session identity where defined by LBE contracts;
+- mode and policy;
+- authorization and approval;
+- governed execution and mutation;
+- operation identity;
+- ToolReceipts;
+- evidence provenance;
+- governed persistence contracts;
+- validation and completion truth;
+- removed/blocked feature intent where governed by the project ledger.
+
+Upstream mechanics may request, transport, display, or continue these operations. They do not become a second authority owner.
+
+## Rust/Ratatui role
+
+The Rust TUI is primarily:
+
+- client;
+- adapter;
+- event/snapshot projection;
+- interaction surface;
+- review/approval presentation.
+
+It should not recreate runtime owners already present in LBE or mature generic mechanics that can be safely reused/adapted from upstream.
+
+## Capability mapping requirement
+
+Every remaining TUI capability should answer:
+
+```text
+TUI capability
+→ existing LBE owner?
+→ existing Cline owner/mechanic?
+→ existing OpenCode owner/mechanic?
+→ reuse/adapt/wrap/native/reject decision
+→ LBE authority boundary
+→ Rust request mapping
+→ normalized event/snapshot mapping
+→ UI projection
+→ acceptance proof
+```
+
+A capability is not implementation-ready until that mapping exists at the appropriate source/contract level.
+
+## Explicitly rejected directions
+
+- rebuilding a second generic agent loop when Cline mechanics are reusable;
+- rebuilding a second provider/model framework without a proven LBE-specific requirement;
+- rebuilding generic MCP/subagent/TUI machinery merely because the Rust client lacks it;
+- hand-building a clone of mature upstream terminal behavior;
+- creating parallel session/event ownership that conflicts with LBE;
+- direct Cline/OpenCode mutation paths outside LBE governance;
+- treating upstream auto-approval/permission defaults as LBE authorization;
+- replacing LBE branding or product identity with upstream branding;
+- treating an HTML mock/reference as runtime implementation proof.
+
+## Remaining product sequence
+
+### 1. Reuse capability matrix
+
+Complete the capability-by-capability LBE/Cline/OpenCode mapping for the remaining Rust/TUI modules. This is a prerequisite for new capability implementation.
+
+### 2. Write-capable governed mutation acceptance
+
+Target flow:
+
+```text
+editable buffer
+→ diff/review
+→ approval
+→ LBE authorization
+→ governed workspace.patch
+→ validation
+→ ToolReceipt/evidence
+→ completion projection
+```
+
+Reuse mature editor/diff/tool-loop mechanics where valid. LBE retains mutation authority.
+
+### 3. Installed interactive TUI acceptance
+
+Prove the installed product drives the same LBE-owned runtime path and that reused/adapted mechanics cannot bypass authorization, receipts, evidence, or completion.
+
+## Acceptance rule
+
+A future capability is aligned only when:
+
+1. current source proves the upstream capability actually exists;
+2. the reuse/adapt decision is explicit;
+3. no duplicate LBE authority is introduced;
+4. consequential execution crosses LBE governance;
+5. receipt/evidence/completion originate from LBE owners;
+6. Rust only owns the client/projection/UI responsibilities assigned to it;
+7. installed-runtime tests prove the complete path;
+8. GPT-Knowledge status remains bounded to the evidence actually produced.
 
 ## Authority boundary
 
-This file records integration intent only.
-
-It does **not**:
-
-- activate an implementation slice;
-- change `.lbe/governance/implementation-gates.json`;
-- prove native Cline/OpenTUI integration exists;
-- authorize mutation of the LBE repository;
-- supersede canonical runtime/source evidence.
-
-Until canonical implementation evidence exists, this plan remains `DOCUMENTED_INTEGRATION_DIRECTION / NOT_ACTIVE`.
+This file is a projection and integration plan. It does not activate the canonical LBE machine gate, authorize repository mutation, or prove an untested upstream integration.
