@@ -5,58 +5,111 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>LBE Project Authority Canvas</title>
 <style>
-:root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#171717;background:#ebe7df;--paper:#fffaf3;--line:#cfc6b9;--muted:#6c655c;--green:#275d4b;--orange:#b85025;--red:#8f3030;--blue:#245d78;--purple:#65518c}*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#f5f1e9,#e8e2d8)}header{position:sticky;top:0;z-index:20;background:#f5f1e9f2;backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}.head{max-width:1500px;margin:auto;padding:14px 20px;display:flex;justify-content:space-between;gap:16px;align-items:center}.brand{font-size:23px;font-weight:900;letter-spacing:-.045em}.sub{font-size:11px;color:var(--muted);margin-top:3px}.tabs{display:flex;gap:7px;flex-wrap:wrap}button{border:1px solid #bfb5a8;background:var(--paper);border-radius:999px;padding:8px 11px;font-size:11px;cursor:pointer}button.active{background:#171717;color:#fff;border-color:#171717}main{max-width:1500px;margin:auto;padding:18px 20px 40px}.summary{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;margin-bottom:14px}.card,.section{background:var(--paper);border:1px solid var(--line);border-radius:15px}.card{padding:11px}.card b{display:block;font-size:9px;letter-spacing:.09em;text-transform:uppercase;color:#756d63;margin-bottom:4px}.card span{font-size:12px;font-weight:800;line-height:1.35}.section{padding:18px;margin-bottom:12px}.section h2{margin:0 0 8px;font-size:18px}.section h3{margin:12px 0 6px;font-size:13px}.section p,.section li,.section td,.section th{font-size:11px;line-height:1.55;color:#59534c}.view{display:none}.view.active{display:block}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.mini{background:#fff;border:1px solid #d8d0c5;border-radius:13px;padding:12px}.mini p{margin:4px 0}.law{background:#171717;color:#f8f4ec;border-radius:13px;padding:14px;font:11px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace;white-space:pre-wrap}.pill{display:inline-block;border:1px solid #c8c0b4;border-radius:999px;padding:3px 7px;font-size:8px;font-weight:850;letter-spacing:.05em;text-transform:uppercase}.green{color:var(--green)}.orange{color:var(--orange)}.red{color:var(--red)}.blue{color:var(--blue)}.authority{border-left:4px solid var(--green)}.warning{border-left:4px solid var(--orange)}.integration{border-left:4px solid var(--blue)}.timeline{display:grid;gap:8px}.row{display:grid;grid-template-columns:260px 170px 1fr;gap:10px;padding:9px 0;border-bottom:1px solid #e0d8cd}.row:last-child{border-bottom:0}.row b,.row div{font-size:10px}.tablewrap{overflow:auto}table{width:100%;border-collapse:collapse}th,td{text-align:left;vertical-align:top;border-bottom:1px solid #ded6ca;padding:8px}th{text-transform:uppercase;letter-spacing:.06em;font-size:9px!important;color:#756d63!important}.ref{padding:9px 0;border-bottom:1px solid #ded6ca}.ref a{font-size:11px;font-weight:800;color:#174f76;text-decoration:none}.ref small{display:block;color:#70685e;margin-top:3px}.footer{font-size:9px;color:#746d64;margin-top:14px}@media(max-width:1100px){.summary{grid-template-columns:1fr 1fr 1fr}}@media(max-width:800px){.grid2,.grid3{grid-template-columns:1fr}.row{grid-template-columns:1fr}.head{align-items:flex-start;flex-direction:column}}@media(max-width:580px){main{padding:12px}.summary{grid-template-columns:1fr}.brand{font-size:19px}}
+:root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#171717;background:#ebe7df;--paper:#fffaf3;--line:#cfc6b9;--muted:#6c655c;--green:#275d4b;--orange:#b85025;--red:#8f3030;--blue:#245d78}*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#f5f1e9,#e8e2d8)}header{position:sticky;top:0;z-index:20;background:#f5f1e9f2;backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}.head{max-width:1500px;margin:auto;padding:14px 20px;display:flex;justify-content:space-between;gap:16px;align-items:center}.brand{font-size:23px;font-weight:900;letter-spacing:-.045em}.sub{font-size:11px;color:var(--muted);margin-top:3px}.tabs{display:flex;gap:7px;flex-wrap:wrap}button{border:1px solid #bfb5a8;background:var(--paper);border-radius:999px;padding:8px 11px;font-size:11px;cursor:pointer}button.active{background:#171717;color:#fff;border-color:#171717}main{max-width:1500px;margin:auto;padding:18px 20px 40px}.summary{display:grid;grid-template-columns:repeat(6,1fr);gap:9px;margin-bottom:14px}.card,.section{background:var(--paper);border:1px solid var(--line);border-radius:15px}.card{padding:11px}.card b{display:block;font-size:9px;letter-spacing:.09em;text-transform:uppercase;color:#756d63;margin-bottom:4px}.card span{font-size:12px;font-weight:800;line-height:1.35}.section{padding:18px;margin-bottom:12px}.section h2{margin:0 0 8px;font-size:18px}.section h3{margin:12px 0 6px;font-size:13px}.section p,.section li,.section td,.section th{font-size:11px;line-height:1.55;color:#59534c}.view{display:none}.view.active{display:block}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.mini{background:#fff;border:1px solid #d8d0c5;border-radius:13px;padding:12px}.mini p{margin:4px 0}.law{background:#171717;color:#f8f4ec;border-radius:13px;padding:14px;font:11px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace;white-space:pre-wrap}.pill{display:inline-block;border:1px solid #c8c0b4;border-radius:999px;padding:3px 7px;font-size:8px;font-weight:850;letter-spacing:.05em;text-transform:uppercase}.green{color:var(--green)}.orange{color:var(--orange)}.red{color:var(--red)}.blue{color:var(--blue)}.authority{border-left:4px solid var(--green)}.warning{border-left:4px solid var(--orange)}.integration{border-left:4px solid var(--blue)}.timeline{display:grid;gap:8px}.row{display:grid;grid-template-columns:260px 190px 1fr;gap:10px;padding:9px 0;border-bottom:1px solid #e0d8cd}.row:last-child{border-bottom:0}.row b,.row div{font-size:10px}.footer{font-size:9px;color:#746d64;margin-top:14px}@media(max-width:1100px){.summary{grid-template-columns:repeat(3,1fr)}}@media(max-width:800px){.grid2,.grid3{grid-template-columns:1fr}.row{grid-template-columns:1fr}.head{align-items:flex-start;flex-direction:column}}@media(max-width:580px){main{padding:12px}.summary{grid-template-columns:1fr}.brand{font-size:19px}}
 </style>
 </head>
 <body>
-<header><div class="head"><div><div class="brand">LBE · Project Authority Canvas</div><div class="sub">LBE authority · reuse-first Cline/OpenCode integration · Rust/Ratatui client · evidence-bound completion</div></div><div class="tabs"><button class="active" data-view="overview">Overview</button><button data-view="reuse">Reuse first</button><button data-view="runtime">Runtime</button><button data-view="governance">Authority</button><button data-view="refs">References</button><button id="refresh">Refresh</button></div></div></header>
+<header><div class="head"><div><div class="brand">LBE · Project Authority Canvas</div><div class="sub">Canonical LBE runtime owners · approved Cline interface direction · bounded Rust client projection · evidence-bound acceptance</div></div><div class="tabs"><button class="active" data-view="overview">Overview</button><button data-view="owners">Runtime owners</button><button data-view="adapter">Rust adapter</button><button data-view="mcp">MCP</button><button data-view="reuse">Reuse</button><button data-view="remaining">Remaining</button><button id="refresh">Refresh</button></div></div></header>
 <main>
-<section class="summary"><div class="card"><b>Product</b><span id="product">Loading…</span></div><div class="card"><b>Runtime authority</b><span id="authority">Loading…</span></div><div class="card"><b>Rust TUI</b><span id="tui">Loading…</span></div><div class="card"><b>Reuse rule</b><span id="reuseStatus">Loading…</span></div><div class="card"><b>Machine gate</b><span id="gate">Loading…</span></div></section>
+<section class="summary">
+<div class="card"><b>Product</b><span id="product">Loading…</span></div>
+<div class="card"><b>Runtime authority</b><span id="authority">Loading…</span></div>
+<div class="card"><b>Final interface</b><span id="finalInterface">Loading…</span></div>
+<div class="card"><b>Rust client</b><span id="rustStatus">Loading…</span></div>
+<div class="card"><b>MCP backend</b><span id="mcpStatus">Loading…</span></div>
+<div class="card"><b>Machine gate</b><span id="gate">Loading…</span></div>
+</section>
 
 <div id="overview" class="view active">
 <section class="section authority"><h2>Current architecture</h2><p id="doctrine"></p><div class="law" id="identityLaw"></div></section>
-<section class="section integration"><h2>Current proven path</h2><div class="law" id="provenFlow"></div></section>
-<section class="section warning"><h2>What remains unproven</h2><ul id="unproven"></ul></section>
-<section class="section"><h2>Project progression</h2><div id="nodes" class="timeline"></div></section>
+<section class="section integration"><h2>Integration law</h2><div class="law">UserRequest
+    ↓
+RealLbeWrapper / approved client adapter
+    ↓
+canonical LBE product / control / runtime command
+    ↓
+existing LBE owner
+    ↓
+ToolReceipt / output / evidence / control result
+    ↓
+typed client projection
+    ↓
+UI
+
+DO NOT copy canonical LBE runtime implementation into a client workspace.</div></section>
+<section class="section warning"><h2>Current evidence boundaries</h2><ul id="unproven"></ul></section>
+<section class="section"><h2>Project nodes</h2><div id="nodes" class="timeline"></div></section>
+</div>
+
+<div id="owners" class="view">
+<section class="section authority"><h2>LBE-owned authority</h2><ul id="ownerList"></ul></section>
+<section class="section"><h2>Canonical runtime components</h2><div id="ownerComponents" class="grid3"></div></section>
+<section class="section"><h2>Registered tool surface</h2><div class="law" id="tools"></div></section>
+<section class="section"><h2>LBE tool result envelope</h2><div class="law" id="receipt"></div></section>
+</div>
+
+<div id="adapter" class="view">
+<section class="section authority"><h2>RealLbeWrapper</h2><p id="adapterRole"></p><div class="law" id="adapterInvoke"></div></section>
+<section class="section grid2"><div class="mini"><h3>Remote-proven</h3><ul id="adapterProven"></ul></div><div class="mini"><h3>Local reported / not remote verified</h3><p id="adapterLocal"></p></div></section>
+<section class="section warning"><h2>P2 read-only acceptance</h2><p id="p2Status"></p><div class="law" id="p2Scope"></div></section>
+</div>
+
+<div id="mcp" class="view">
+<section class="section authority"><h2>MCP ownership</h2><div class="law">ExternalCapabilityRegistration(MCP)
+    ↓
+ToolSpec / ToolHandler
+    ↓
+ToolRegistry
+    ↓
+R6C authorization
+    ↓
+R6E GovernedToolOrchestrator
+    ↓
+ToolReceipt / evidence
+    ↓
+provider continuation
+    ↓
+persisted LBE event/history
+    ↓
+client projection</div></section>
+<section class="section"><h2>Current MCP status</h2><div id="mcpChecks" class="grid3"></div></section>
 </div>
 
 <div id="reuse" class="view">
-<section class="section authority"><h2>Mandatory reuse-first gate</h2><p id="reuseRule"></p><div class="law" id="decisionOrder"></div></section>
-<section class="section grid2"><div class="mini"><h3>Cline</h3><p id="clineRole"></p><h3>Reuse/adapt</h3><ul id="clineTargets"></ul><h3>Boundary</h3><p id="clineBoundary"></p></div><div class="mini"><h3>OpenCode</h3><p id="openRole"></p><h3>Reuse/adapt candidates</h3><ul id="openTargets"></ul><h3>Boundary</h3><p id="openBoundary"></p></div></section>
+<section class="section authority"><h2>Reuse-first rule</h2><p id="reuseRule"></p></section>
+<section class="section grid2"><div class="mini"><h3>Cline</h3><p id="cline"></p></div><div class="mini"><h3>OpenCode</h3><p id="opencode"></p></div></section>
 <section class="section warning"><h2>Do not recreate</h2><ul id="noRecreate"></ul></section>
-<section class="section"><h2>Implementation decision rule</h2><div class="law">Does canonical LBE already own it? → LBE_REUSE
-Else can Cline provide/adapt it? → CLINE_REUSE / CLINE_ADAPT
-Else can OpenCode provide/adapt it? → OPENCODE_REUSE_OR_ADAPT
-Else can an existing owner be wrapped? → WRAP_EXISTING
-Else is it presentation only? → RUST_UI_ONLY
-Else does LBE uniquely require it? → LBE_NATIVE_REQUIRED
-Otherwise → REJECT / UNVERIFIED
-BUILD_NEW → LAST RESORT</div></section>
 </div>
 
-<div id="runtime" class="view">
-<section class="section authority"><h2>Bounded live integration status</h2><p id="runtimeStatus"></p></section>
-<section class="section"><h2>Accepted live checks</h2><div id="liveChecks" class="grid3"></div></section>
-<section class="section"><h2>Remaining sequence</h2><div id="sequence" class="timeline"></div></section>
+<div id="remaining" class="view">
+<section class="section"><h2>Remaining evidence-backed sequence</h2><div id="sequence" class="timeline"></div></section>
 </div>
-
-<div id="governance" class="view">
-<section class="section authority"><h2>LBE-owned authority</h2><ul id="owners"></ul></section>
-<section class="section grid2"><div class="mini"><h3>Rust TUI role</h3><p id="tuiRole"></p></div><div class="mini"><h3>Rust TUI does not own</h3><ul id="tuiDoesNotOwn"></ul></div></section>
-<section class="section warning"><h2>Projection boundary</h2><p id="authorityNote"></p><p><strong>Fresh-gate rule:</strong> <span id="gateNote"></span></p></section>
-</div>
-
-<div id="refs" class="view"><section class="section"><h2>Canonical and reuse references</h2><div id="refList"></div></section></div>
 <div class="footer">GPT-Knowledge is projection only. Canonical LBE source, machine governance, runtime evidence and acceptance checkpoints remain authoritative.</div>
 </main>
 <script>
-const $=s=>document.querySelector(s);const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const li=a=>(a||[]).map(x=>`<li>${esc(x)}</li>`).join('');
-async function load(){const t='?t='+Date.now();const [plan,status,refs]=await Promise.all([fetch('plan.json'+t).then(r=>r.json()),fetch('status.json'+t).then(r=>r.json()),fetch('references.json'+t).then(r=>r.json())]);
-$('#product').textContent=plan.product_identity?.product||status.product_identity?.product||'LBE';$('#authority').textContent=status.runtime_authority?.status||'Unknown';$('#tui').textContent=status.tui_integration?.status||'Unknown';$('#reuseStatus').textContent=status.reuse_first?.status||plan.reuse_first_policy?.status||'Unknown';$('#gate').textContent=status.machine_state?.status||plan.machine_gate?.status||'Unknown';$('#doctrine').textContent=plan.core_doctrine||status.core_doctrine||'';$('#identityLaw').textContent=`PRODUCT = ${plan.product_identity?.product}\nINTERFACE = ${plan.product_identity?.interface}\nRUNTIME AUTHORITY = ${plan.product_identity?.runtime_authority}\nBRANDING = ${plan.product_identity?.branding_rule}\n\n${plan.product_identity?.authority_rule||''}`;$('#provenFlow').textContent=(plan.proven_flow||[]).join(' → ');$('#unproven').innerHTML=li(status.remaining_unproven);$('#nodes').innerHTML=(plan.nodes||[]).map(n=>`<div class="row"><b>${esc(n.title)}</b><div><span class="pill ${n.priority==='PASS'||n.priority==='CANONICAL'?'green':n.priority==='UNVERIFIED'||String(n.priority).includes('NOT PROVEN')?'orange':'blue'}">${esc(n.priority)}</span></div><div>${esc(n.lane)} · ${esc(n.status)}</div></div>`).join('');
-const rp=plan.reuse_first_policy||{};$('#reuseRule').textContent=rp.rule||status.reuse_first?.rule||'';$('#decisionOrder').textContent=(rp.decision_order||status.reuse_first?.allowed_classifications||[]).join(' → ');$('#clineRole').textContent=rp.cline?.role||status.reuse_first?.cline?.classification||'';$('#clineTargets').innerHTML=li(rp.cline?.reuse_targets);$('#clineBoundary').textContent=rp.cline?.boundary||'';$('#openRole').textContent=rp.opencode?.role||status.reuse_first?.opencode?.classification||'';$('#openTargets').innerHTML=li(rp.opencode?.reuse_targets||status.reuse_first?.opencode?.candidate_areas);$('#openBoundary').textContent=rp.opencode?.boundary||'';$('#noRecreate').innerHTML=li(rp.prohibited_recreation);
-$('#runtimeStatus').textContent=`${status.current_stage?.title||''} · ${status.current_stage?.status||''}. ${status.status_rule||''}`;$('#liveChecks').innerHTML=Object.entries(status.tui_integration?.live_acceptance||{}).map(([k,v])=>`<div class="mini"><b>${esc(k.replaceAll('_',' '))}</b><p class="green">${esc(v)}</p></div>`).join('');$('#sequence').innerHTML=(plan.remaining_product_sequence||[]).map(x=>`<div class="row"><b>${esc(x.order+'. '+x.id)}</b><div><span class="pill ${String(x.status).includes('NOT_YET')?'orange':'blue'}">${esc(x.status)}</span></div><div>${esc(x.scope)}</div></div>`).join('');
-$('#owners').innerHTML=li(status.runtime_authority?.owns||plan.runtime_authority?.owners);$('#tuiRole').textContent=status.tui_integration?.role||'client_adapter_projection';$('#tuiDoesNotOwn').innerHTML=li(status.tui_integration?.does_not_own);$('#authorityNote').textContent=status.authority_note||'';$('#gateNote').textContent=status.machine_state?.note||plan.machine_gate?.rule||'';$('#refList').innerHTML=(refs.references||[]).map(r=>`<div class="ref"><a target="_blank" rel="noreferrer" href="${esc(r.url)}">${esc(r.label)}</a><small>${esc(r.kind)} · ${esc(r.authority)}</small></div>`).join('')}
+const $=s=>document.querySelector(s);const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));const li=a=>(a||[]).map(x=>`<li>${esc(x)}</li>`).join('');
+async function load(){const t='?t='+Date.now();const [plan,status]=await Promise.all([fetch('plan.json'+t).then(r=>r.json()),fetch('status.json'+t).then(r=>r.json())]);
+$('#product').textContent=status.product_identity?.product||plan.product_identity?.product||'LBE';
+$('#authority').textContent=status.runtime_authority?.status||plan.runtime_authority?.status||'Unknown';
+$('#finalInterface').textContent=status.product_identity?.final_interface_direction||plan.product_identity?.final_interface_direction||'Unknown';
+$('#rustStatus').textContent=status.product_identity?.rust_classification||plan.product_identity?.rust_role||'Unknown';
+$('#mcpStatus').textContent=status.external_capabilities?.mcp_registration||plan.external_capabilities?.mcp_backend||'Unknown';
+$('#gate').textContent=status.machine_state?.status||plan.machine_gate?.status||'Unknown';
+$('#doctrine').textContent=status.core_doctrine||plan.core_doctrine||'';
+$('#identityLaw').textContent=`PRODUCT = ${status.product_identity?.product||'LBE'}\nRUNTIME AUTHORITY = ${status.product_identity?.runtime_authority||'LBE'}\nFINAL INTERFACE DIRECTION = ${status.product_identity?.final_interface_direction||''}\nCLINE = ${status.product_identity?.cline_classification||''}\nRUST = ${status.product_identity?.rust_classification||''}\nOPENCODE = ${status.product_identity?.opencode_classification||''}`;
+$('#unproven').innerHTML=li(status.remaining_unproven);
+$('#nodes').innerHTML=(plan.nodes||[]).map(n=>`<div class="row"><b>${esc(n.title)}</b><div><span class="pill ${n.priority==='PASS'||n.priority==='CANONICAL'||n.priority==='APPROVED'?'green':String(n.priority).includes('NOT PROVEN')||n.priority==='UNVERIFIED'?'orange':'blue'}">${esc(n.priority)}</span></div><div>${esc(n.lane)} · ${esc(n.status)}</div></div>`).join('');
+$('#ownerList').innerHTML=li(status.runtime_authority?.owns||plan.runtime_authority?.owners);
+const comps=plan.runtime_authority?.authoritative_components||{};$('#ownerComponents').innerHTML=Object.entries(comps).map(([k,v])=>`<div class="mini"><h3>${esc(k.replaceAll('_',' '))}</h3><p>${esc(Array.isArray(v)?v.join(' · '):v)}</p></div>`).join('');
+$('#tools').textContent=(status.tool_surface?.registered||plan.runtime_authority?.registered_workspace_capabilities||[]).join('\n');
+const r=status.tool_receipt_envelope||plan.tool_receipt_contract||{};$('#receipt').textContent=(r.fields||[]).join('\n')+'\n'+(r.failure_fields||[]).join('\n');
+$('#adapterRole').textContent=plan.rust_adapter?.role||status.rust_adapter?.role||'';$('#adapterInvoke').textContent=plan.rust_adapter?.authoritative_invocation||status.rust_adapter?.authoritative_invocation||'';
+$('#adapterProven').innerHTML=li([`LBE command invocation: ${status.rust_adapter?.remote_source_proves_lbe_command_invocation}`,`Identity cross-checks: ${status.rust_adapter?.remote_source_proves_identity_cross_checks}`,`Receipt/evidence lifecycle projection: ${status.rust_adapter?.['remote_source_proves_receipt/evidence_lifecycle_projection']}`]);
+$('#adapterLocal').textContent=`${status.rust_adapter?.local_reported_workspace_read_list_output_decode||''} · remote verification: ${status.rust_adapter?.local_reported_workspace_read_list_output_decode_remote_verification||''}`;
+$('#p2Status').textContent=status.p2_read_only_validation?.status||'';$('#p2Scope').textContent=(status.p2_read_only_validation?.scope||[]).join('\n')+`\n\nworkspace.patch = ${status.p2_read_only_validation?.write_patch||''}`;
+$('#mcpChecks').innerHTML=Object.entries(status.external_capabilities||{}).map(([k,v])=>`<div class="mini"><b>${esc(k.replaceAll('_',' '))}</b><p>${esc(v)}</p></div>`).join('');
+$('#reuseRule').textContent=status.reuse_first?.rule||plan.reuse_first_policy?.rule||'';$('#cline').textContent=`${status.reuse_first?.cline?.classification||''} · audit ${status.reuse_first?.cline?.source_audit||''}`;$('#opencode').textContent=`${status.reuse_first?.opencode?.classification||''} · direct reuse ${status.reuse_first?.opencode?.direct_reuse||''}`;$('#noRecreate').innerHTML=li(plan.reuse_first_policy?.prohibited_recreation);
+$('#sequence').innerHTML=(plan.remaining_product_sequence||[]).map(x=>`<div class="row"><b>${esc(x.order+'. '+x.id)}</b><div><span class="pill ${String(x.status).includes('NOT')?'orange':'blue'}">${esc(x.status)}</span></div><div>${esc(x.scope)}</div></div>`).join('');}
 document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-view]').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));b.classList.add('active');$('#'+b.dataset.view).classList.add('active')});$('#refresh').onclick=load;load().catch(e=>{console.error(e);$('#gate').textContent='Projection load failed'});
 </script>
 </body>
