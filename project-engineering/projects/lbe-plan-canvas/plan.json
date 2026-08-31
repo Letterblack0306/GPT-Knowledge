@@ -1,14 +1,14 @@
 {
-  "schema_version": 18,
+  "schema_version": 19,
   "project": "LBE Persistent Agent",
-  "purpose": "Persistent projection of LBE authority, evidence-gated progression, and the separate Rust/Ratatui TUI client integration. Canonical LBE repository/runtime evidence remains authoritative.",
+  "purpose": "Persistent projection of LBE authority, evidence-gated progression, and the Rust/Ratatui TUI client integration. Mature upstream agent/runtime/TUI capabilities must be reused or adapted before any new implementation is created. Canonical LBE repository/runtime evidence remains authoritative.",
   "authority_rule": "Current workspace/runtime evidence and canonical machine governance outrank this projection. GPT-Knowledge never creates runtime truth or implementation authority.",
   "updated": "2026-08-31",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "source_branch": "main",
   "local_workspace": "C:/Agents-Memory-Tool-v6-integration",
   "active_node": "rust-tui-live-governed-integration",
-  "core_doctrine": "Provider/agent reasons. LBE governs. Registered capabilities execute. Evidence and ToolReceipts persist. Validation decides completion. Interfaces project the result.",
+  "core_doctrine": "Provider/agent reasons. LBE governs. Reuse mature mechanics before rebuilding them. Registered capabilities execute through LBE. Evidence and ToolReceipts persist. Validation decides completion. Interfaces project the result.",
   "product_identity": {
     "product": "LBE",
     "runtime_authority": "LBE",
@@ -16,7 +16,7 @@
     "tui_repo": "Letterblack0306/LBE_Agents_wall_Intigration",
     "tui_workspace": "C:/LBE-TUI-Lab",
     "branding_rule": "LetterBlack/LBE identity only.",
-    "authority_rule": "The TUI cannot replace LBE session, policy, authorization, execution, receipt, evidence, persistence, validation or completion owners."
+    "authority_rule": "The TUI, Cline, and OpenCode cannot replace LBE policy, authorization, governed execution, receipt, evidence, persistence, validation or completion owners."
   },
   "truth_model": {
     "design": "what should happen",
@@ -32,14 +32,65 @@
   "runtime_authority": {
     "status": "ESTABLISHED_GOVERNED",
     "owners": [
-      "workspace/session identity",
+      "workspace/session identity where defined by LBE contracts",
       "mode/policy",
-      "authorization",
-      "governed execution",
+      "authorization and approval authority",
+      "governed execution and mutation",
       "operation identity",
       "ToolReceipt/evidence",
-      "persistence",
+      "persistence governed by LBE contracts",
       "deterministic validation/completion"
+    ]
+  },
+  "reuse_first_policy": {
+    "status": "MANDATORY_DESIGN_RULE",
+    "rule": "Before implementing any remaining capability, determine whether the canonical LBE runtime already owns it, whether Cline already provides reusable mechanics, or whether OpenCode provides reusable/adaptable runtime or TUI behavior. BUILD_NEW is permitted only after those checks fail or are explicitly rejected by the LBE authority boundary.",
+    "decision_order": [
+      "LBE_REUSE",
+      "CLINE_REUSE",
+      "CLINE_ADAPT",
+      "OPENCODE_REUSE_OR_ADAPT",
+      "WRAP_EXISTING",
+      "RUST_UI_ONLY",
+      "LBE_NATIVE_REQUIRED",
+      "REJECT",
+      "UNVERIFIED",
+      "BUILD_NEW_LAST_RESORT"
+    ],
+    "cline": {
+      "role": "primary direct runtime reuse candidate",
+      "reuse_targets": [
+        "agent loop and continuation mechanics",
+        "provider stream normalization",
+        "tool request/result lifecycle mechanics",
+        "session/event projection mechanics where they do not replace LBE authority",
+        "provider/model capability mechanics",
+        "compaction/retry patterns",
+        "interactive/headless CLI mechanics",
+        "native terminal interaction patterns where applicable"
+      ],
+      "boundary": "Executable filesystem/process/Git/external actions must cross LBE authorization and governed dispatch. Cline-native mutation/approval defaults are not LBE authority."
+    },
+    "opencode": {
+      "role": "open-source reuse/adaptation source for TUI, client/server, provider, permission, MCP, agent/subagent and headless patterns",
+      "reuse_targets": [
+        "terminal/TUI interaction patterns",
+        "client/server separation patterns",
+        "provider configuration patterns",
+        "permission UX and plan/build behavior",
+        "MCP management patterns",
+        "agent/subagent UX patterns",
+        "headless automation patterns"
+      ],
+      "boundary": "OpenCode is a reference/reuse source, not execution authority. Current-source capability-by-capability audit is still required before claiming direct reuse."
+    },
+    "prohibited_recreation": [
+      "second generic agent loop when Cline mechanics can be adapted",
+      "second provider/model framework without a proven LBE-specific need",
+      "second generic MCP framework without a proven LBE-specific need",
+      "hand-built clone of mature terminal behavior already available upstream",
+      "duplicate session/event machinery that conflicts with canonical LBE owners",
+      "parallel authorization, receipt, evidence or completion authority outside LBE"
     ]
   },
   "completed_product_slices": [
@@ -78,20 +129,29 @@
   "remaining_product_sequence": [
     {
       "order": 1,
-      "id": "write-capable-governed-mutation-acceptance",
-      "status": "NOT_YET_PROVEN",
-      "scope": "editable buffer -> diff review -> approval -> governed workspace.patch -> validation -> ToolReceipt"
+      "id": "reuse-capability-matrix-before-new-code",
+      "status": "REQUIRED_BEFORE_NEW_CAPABILITY_IMPLEMENTATION",
+      "scope": "For each remaining TUI/runtime capability classify LBE_REUSE, CLINE_REUSE/ADAPT, OPENCODE_REUSE/ADAPT, WRAP, RUST_UI_ONLY, LBE_NATIVE_REQUIRED, REJECT or UNVERIFIED before BUILD_NEW."
     },
     {
       "order": 2,
+      "id": "write-capable-governed-mutation-acceptance",
+      "status": "NOT_YET_PROVEN",
+      "scope": "editable buffer -> diff review -> approval -> governed workspace.patch -> validation -> ToolReceipt; reuse upstream editor/diff/tool-loop mechanics where valid, retain LBE mutation authority"
+    },
+    {
+      "order": 3,
       "id": "installed-interactive-tui-acceptance",
       "status": "NOT_YET_PROVEN",
-      "scope": "prove the installed interactive product surface drives the same LBE-owned runtime path"
+      "scope": "prove the installed interactive product surface drives the same LBE-owned runtime path and that reused/adapted mechanics do not create authority bypass"
     }
   ],
   "nodes": [
     {"id":"authority","parent":null,"lane":"Authority","title":"LBE canonical runtime authority","status":"proven","priority":"CANONICAL"},
     {"id":"truth-boundary","parent":"authority","lane":"Evidence","title":"Supported truth / no assumption boundary","status":"proven","priority":"CORE"},
+    {"id":"reuse-first","parent":"authority","lane":"Architecture","title":"Reuse-first capability decision gate","status":"required","priority":"MANDATORY"},
+    {"id":"cline-reuse","parent":"reuse-first","lane":"Reuse","title":"Cline agent/runtime mechanics reuse or adaptation","status":"accepted-direction","priority":"ADAPT/REUSE"},
+    {"id":"opencode-reuse","parent":"reuse-first","lane":"Reuse","title":"OpenCode capability/TUI reuse audit","status":"pending-current-source-audit","priority":"UNVERIFIED"},
     {"id":"rust-tui","parent":"authority","lane":"Interface","title":"Rust/Ratatui TUI client + projection adapter","status":"implemented","priority":"ACTIVE INTERFACE"},
     {"id":"rust-tui-live-governed-integration","parent":"rust-tui","lane":"Acceptance","title":"Live governed read-only conversational/tool path","status":"proven","priority":"PASS"},
     {"id":"audit-plan-runtime","parent":"rust-tui-live-governed-integration","lane":"Modes","title":"Audit + Plan + Runtime acceptance","status":"proven","priority":"PASS"},
