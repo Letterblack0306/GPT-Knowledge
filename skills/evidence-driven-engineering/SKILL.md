@@ -2,21 +2,20 @@
 name: evidence-driven-engineering
 description: >
   Orchestrate evidence-driven software investigations by reconstructing the connected flow,
-  asking one bounded question, defining an authoritative observable and falsifier,
-  classifying the result, patching only the proven owner, and closing with staged regression,
-  live acceptance when required, and current-position synchronization. Use for audits,
-  diagnosis, patches, recovery, verification, and long-running Letterblack engineering work.
-  Route specialist questions to the smallest relevant installed skill set instead of
-  duplicating their contracts or invoking all of them.
+  asking one bounded question, selecting the authoritative evidence owner, defining an observable
+  and falsifier, classifying the result, patching only the proven owner, and closing with staged
+  regression and live acceptance when required. Route current local evidence to BirdEye,
+  historical agent/chat context to Memory, specialized guidance to Skills MCP, reusable knowledge
+  to GPT-Knowledge, remote repository truth to GitHub, and bounded local execution to LoopTool.
 ---
 
 # Evidence-Driven Engineering
 
 ## Purpose
 
-This is the governing investigation method and central audit/debug router.
+This is the governing investigation method and evidence router.
 
-It coordinates specialist skills and available evidence capabilities. It does not replace project truth, repository truth, runtime truth, governance, or specialist skill authority.
+It coordinates specialist skills and evidence capabilities. It does not replace project truth, repository truth, runtime truth, governance, Memory, BirdEye, or specialist skill authority.
 
 Use this sequence:
 
@@ -24,7 +23,7 @@ Use this sequence:
 MAP
 → IDENTIFY OWNER
 → ONE QUESTION
-→ SOURCE OF TRUTH
+→ SELECT EVIDENCE AUTHORITY
 → AUTHORITATIVE OBSERVABLE
 → FALSIFIER
 → BOUNDED TEST
@@ -38,67 +37,143 @@ MAP
 
 Never jump directly from symptom to patch.
 
-## Authority order
+## Current authority order
 
-For consequential Letterblack engineering work, prefer the strongest current evidence:
+For consequential Letterblack engineering work:
 
 ```text
 user instruction
 → live/runtime evidence
-→ active workspace evidence
-→ authoritative repository state
-→ project-specific knowledge
-→ GPT-Knowledge method/project projection
+→ active workspace/source evidence
+→ authoritative repository/revision evidence
+→ BirdEye current root/index/revision evidence
+→ project-specific current records
+→ GPT-Knowledge curated/project projection
+→ Memory historical/session evidence
 → official external documentation
-→ model prior
+→ model prior knowledge
 ```
 
-GPT-Knowledge is durable project/method projection. It is not runtime authority.
+Historical conversation/session evidence is useful context but cannot establish current project truth without revalidation.
 
-## Core routing rule
+## Current local evidence configuration
 
-Use the minimum specialist capability required by the current bounded question.
+Use the following ownership model:
 
-Do not activate every installed skill or every tool because they exist.
+```text
+BirdEye
+= canonical local filesystem identity, indexing, SHA-256, root status, revision/provenance
 
-Use the installed specialist routing map when available:
+Memory
+= historical ChatGPT/agent sessions/runtime history and derived durable memory
 
-`project-engineering/chatgpt-installed-skill-routing.md`
+GPT-Knowledge
+= reusable engineering knowledge and project/method projection
 
-Typical specialist roles include:
+Skills MCP
+= specialist skill discovery/fetch and skill-content SHA identity
 
-- project truth / architecture drift;
-- Letterblack project evidence;
-- code audit and defect localization;
-- runtime proof and live acceptance;
-- agent reasoning / transport boundary;
-- governance and execution authority;
-- exhaustive audit only when explicitly requested;
-- domain-specific UI/framework skills only when materially relevant.
+LoopTool
+= bounded local command execution only
 
-## Capability model
+GitHub/repository authority
+= canonical remote source/commit/PR/patch truth
+```
 
-The Skill must work even when the future Letterblack Engineering App/MCP package is unavailable.
+Do not ask one subsystem to perform another subsystem's semantic role.
 
-### GPT-Knowledge
+## BirdEye rules
 
-Use to:
+BirdEye owns current local filesystem identity and index evidence for registered roots.
 
-- recover current project position;
-- read active plan/status/current-position documents;
-- recover closed gates and prior classifications;
-- select reusable methods;
-- synchronize materially changed project state after evidence is classified.
+For enabled indexed roots:
 
-Do not treat GPT-Knowledge as proof of current runtime behavior.
+```text
+new file  → index + SHA-256
+unchanged → reuse size + mtime + SHA; no rehash
+changed   → re-read + new SHA-256
+removed   → reconcile/delete indexed row
+```
 
-### Repository / GitHub
+Use BirdEye for:
 
-Use to:
+- root inventory/status;
+- current local file identity;
+- indexed search/inspect;
+- SHA-256 provenance;
+- local Git/revision/dirty-state evidence where supported;
+- governed local execution evidence where that BirdEye capability is explicitly used.
 
-- establish canonical source revision;
+A file hash proves exact indexed content identity. It does not determine semantic authority.
+
+## Memory rules
+
+Memory owns historical and derived durable memory.
+
+Historical agent/runtime roots use:
+
+```text
+root_class = memory
+authority = historical
+```
+
+This includes verified sources such as ChatGPT history, Cline sessions, Codex sessions, Claude sessions, Gemini history, Antigravity runtime history, BirdEye execution history, and other verified agent/runtime logs added later.
+
+Historical data may be indexed and SHA-identified by BirdEye. It still remains historical.
+
+Use Memory to answer:
+
+- what happened previously;
+- what an agent attempted;
+- prior output/error/context;
+- previous plans/decisions.
+
+Do not use Memory alone to answer what is true in the workspace/runtime now.
+
+## GPT-Knowledge rules
+
+Use GPT-Knowledge to:
+
+- recover project/method projection;
+- select reusable engineering methods;
+- recover prior classifications and closed gates;
+- understand intended architecture;
+- synchronize materially changed project state after current evidence is classified.
+
+GPT-Knowledge is not runtime authority and must not override newer source/runtime evidence.
+
+For the local evidence configuration, load:
+
+`ai-agents/local-evidence-memory-skills-and-looptool-routing.md`
+
+when BirdEye, Memory, Skills MCP, LoopTool, historical agent sessions, hashing, or cross-owner evidence routing is in scope.
+
+## Skills MCP rules
+
+Use the smallest relevant skill set.
+
+When the session-visible skill-gallery router is the bootstrap path, the expected route is:
+
+```text
+skill-gallery-router
+→ skills_hash_status
+→ skills_list using narrowest relevant prefix
+→ choose smallest relevant skill set
+→ skills_fetch selected SKILL.md/supporting files
+→ retain returned SHA-256 as loaded skill version
+```
+
+Do not load the whole gallery.
+
+A skill SHA identifies the exact skill content loaded; it is not project/runtime truth.
+
+## Repository / GitHub rules
+
+Use repository/GitHub evidence to:
+
+- establish canonical remote revision;
 - inspect source owners, tests, contracts, plans and diffs;
-- create or patch every durable source/test/document change;
+- create or patch durable source/test/document changes;
 - preserve commit SHA and diff as the comparison/debug boundary.
 
 Repository-first rule for durable changes:
@@ -107,61 +182,70 @@ Repository-first rule for durable changes:
 prove change required
 → patch/create in authoritative repository main
 → record BASE SHA / HEAD SHA / changed files
-→ fast-forward local workspace to exact HEAD
+→ align local workspace when required
 → validate locally
 → classify
-→ return any durable correction through repository main
+→ preserve durable correction through repository authority
 ```
 
-Do not create a durable local-only patch and later treat it as project truth.
+Do not treat a durable local-only patch as project truth.
 
-Temporary build artifacts, caches, generated outputs and disposable diagnostics may remain local. If a diagnostic becomes a reusable test/source/document, add it through the repository first.
+## LoopTool rules
 
-### BirdEye / local workspace evidence
+LoopTool is a bounded command executor, not an agent.
 
-When available, use for:
+Use it only after the reasoning agent already knows:
 
-- workspace identity;
-- local revision/status;
-- indexed source search/inspection;
-- local-vs-remote drift;
-- governed local command evidence.
+- exact workspace/path;
+- exact bounded command;
+- why execution is required;
+- what result would count as evidence.
 
-Do not pretend BirdEye was used when it is unavailable.
-
-### LoopTool / local execution
-
-Use only when deterministic local execution evidence is required:
-
-- focused tests;
-- bounded diagnostics;
-- runtime inspection;
-- acceptance;
-- recovery-state inspection/reconciliation;
-- command hashes and exact execution receipts.
-
-If direct execution is unavailable in the current chat, emit one bounded command envelope and classify only the returned result.
-
-Do not use local execution for theoretical or documentation-only questions where it adds no authority.
-
-### Future App/MCP architecture
-
-The planned Letterblack Engineering App/MCP architecture remains valid but is deferred infrastructure.
-
-Do not block current Skill usage on App installation.
-
-Future shape:
+Preferred flow:
 
 ```text
-Letterblack Engineering
-├── evidence-driven-engineering   # governing Skill
-├── specialist Skills             # narrow contracts
-├── GPT-Knowledge App             # durable project/method data
-├── Repository/BirdEye App        # workspace/source evidence
-└── LoopTool/Access App           # bounded local/runtime evidence
+task
+→ retrieve/verify with appropriate evidence owner
+→ choose exact target
+→ formulate bounded command
+→ execute through LoopTool
+→ inspect AGENT RESULT
+→ validate semantic outcome
 ```
 
-The App layer must remain an adapter over existing owners, not a new source of truth.
+Do not use LoopTool for:
+
+- finding/searching files → BirdEye;
+- historical recall → Memory;
+- skill discovery → Skills MCP;
+- remote repository truth → GitHub;
+- deciding what command should run → reasoning agent.
+
+LoopTool `COMMAND HASH` is execution-request/dedup identity. It is not BirdEye file SHA, Git revision identity, Memory record SHA, or skill-content SHA.
+
+When the browser command bridge is used, emit only the exact executable envelope when local execution is intended:
+
+```text
+=== AGENT COMMAND START ===
+WORKING DIRECTORY: <ABSOLUTE PROJECT PATH>
+COMMAND: <POWERSHELL COMMAND>
+=== AGENT COMMAND END ===
+```
+
+Wait for and inspect the matching `AGENT RESULT` before making dependent claims/actions.
+
+## Evidence-owner routing table
+
+```text
+current local file/path/content?        → BirdEye
+current local Git/revision state?       → BirdEye + repository evidence
+remote repo/commit/PR truth?            → GitHub/repository authority
+past conversation/agent activity?       → Memory
+reusable engineering guidance?          → GPT-Knowledge
+specialized procedure/skill?            → Skills MCP
+local command execution?                → LoopTool
+live user-visible behavior?             → runtime-specific acceptance path
+```
 
 ## Investigation protocol
 
@@ -169,17 +253,17 @@ The App layer must remain an adapter over existing owners, not a new source of t
 
 Reconstruct the connected control/data/state flow that can produce the observed behavior.
 
-Do not begin with a guessed file or guessed fix.
-
 ### 2. IDENTIFY OWNER
 
 Identify the component that owns the disputed behavior or state transition.
 
-Classify candidate capability state as one of:
+Classify candidate capability state as:
 
-- `EXISTING + PROVEN`
-- `EXISTING BUT NOT YET VERIFIED LIVE`
-- `MISSING — IMPLEMENTATION REQUIRED`
+```text
+EXISTING + PROVEN
+EXISTING BUT NOT YET VERIFIED LIVE
+MISSING — IMPLEMENTATION REQUIRED
+```
 
 Only a proven defective or missing owner authorizes implementation.
 
@@ -187,33 +271,21 @@ Only a proven defective or missing owner authorizes implementation.
 
 State one exact question that the next evidence step can answer.
 
-Avoid broad sweeps when one bounded test separates the competing explanations.
+### 4. SELECT EVIDENCE AUTHORITY
 
-### 4. SOURCE OF TRUTH
-
-Name the authority that can answer the question, such as:
-
-- repository source;
-- durable journal/store;
-- process state;
-- rendered UI state;
-- external API;
-- deployment revision;
-- exact test/acceptance harness.
+Choose the subsystem that can actually prove the answer. Do not select a convenient but semantically weaker source.
 
 ### 5. AUTHORITATIVE OBSERVABLE
 
-Define the concrete evidence that counts as proof.
-
-Examples:
+Define concrete proof, for example:
 
 - exact Git SHA/status;
+- BirdEye root/file SHA/status;
 - durable receipt/event ID;
-- journal state;
-- UI value on actual application path;
+- UI state on the actual runtime path;
 - process lifecycle state;
-- exact deployment revision;
-- bounded command hash + result.
+- bounded command hash + result;
+- historical source record when the question is explicitly historical.
 
 ### 6. FALSIFIER
 
@@ -223,11 +295,9 @@ Define what would disprove the current hypothesis or prove that the test cannot 
 
 Use the smallest existing authoritative test/inspection first.
 
-Prefer an existing regression or acceptance path over inventing a duplicate harness.
-
 ### 8. CLASSIFY
 
-Classify the evidence before deciding whether to patch.
+Classify evidence before deciding whether to patch.
 
 Common classes:
 
@@ -247,21 +317,11 @@ PROJECTION_STALE
 BROAD_PATCH_NOT_ACCEPTABLE
 ```
 
-Use more precise project-specific classes where available.
-
 ### 9. PATCH PROVEN OWNER
 
 Patch only the proven defective/missing owner.
 
-Every durable patch or new file must go through the authoritative repository first.
-
-Do not patch product behavior to satisfy:
-
-- a stale fixture;
-- a contaminated acceptance target;
-- an invalid precondition;
-- a test-harness failure;
-- unresolved authority ambiguity.
+Do not patch product behavior to satisfy stale fixtures, invalid preconditions, contaminated acceptance targets, harness failures, or unresolved authority ambiguity.
 
 ### 10. FOCUSED REGRESSION
 
@@ -269,38 +329,45 @@ Validate the changed owner with the smallest regression that proves it.
 
 ### 11. WIDER REGRESSION
 
-Only then run broader regression if collateral behavior may be affected.
+Run broader regression only when collateral behavior may be affected.
 
 ### 12. LIVE ACCEPTANCE
 
-Require real acceptance for claims involving:
-
-- runtime behavior;
-- rendered UI;
-- browser/provider behavior;
-- restart/recovery;
-- process death;
-- durable continuation;
-- external integration.
+Require real acceptance for runtime/UI/browser/provider/restart/recovery/external-integration claims.
 
 Do not relabel source/static regression as live proof.
 
 ### 13. CURRENT POSITION
 
-A material investigation does not end at PASS/FAIL.
-
 After classification:
 
 1. reconcile result against active project plan;
 2. update canonical status if materially changed;
-3. update plan/map when active gate, closed gate or next observable changes;
-4. verify user-facing/deployed projection when freshness is part of the project contract;
-5. preserve harness limitations, recovery state and next single question;
-6. only then advance.
+3. preserve current source/revision and validation evidence;
+4. preserve limitations/open questions;
+5. only then advance.
+
+## Hash-type discipline
+
+Always identify which hash is being discussed.
+
+```text
+file_sha256               = indexed file content
+root_snapshot_sha256      = deterministic root snapshot identity
+config_sha256             = index/root policy identity
+git_head_sha              = committed repository revision
+diff_state_sha256         = working-tree/diff identity
+command_hash              = normalized execution request
+execution_evidence_sha256 = governed execution receipt
+memory_record_sha256      = durable Memory record identity
+skill SHA-256             = exact loaded skill content
+```
+
+Do not compare unlike hashes as if they proved the same state.
 
 ## Repository comparison bookkeeping
 
-For every durable implementation change, preserve:
+For durable implementation changes preserve:
 
 ```text
 BASE SHA:
@@ -309,7 +376,7 @@ COMMITS AHEAD:
 FILES CHANGED:
 ```
 
-For local validation also preserve:
+For local validation also preserve when available:
 
 ```text
 LOCAL HEAD:
@@ -318,64 +385,22 @@ TEST / COMMAND HASH:
 RESULT CLASSIFICATION:
 ```
 
-This comparison boundary is mandatory because it supports debugging, attribution, rollback and regression analysis.
-
-## Recovery discipline
-
-Ambiguous durable work must not be blindly replayed.
-
-Use the existing recovery/reconciliation owner when one exists.
-
-A recovery classification may be:
-
-```text
-RECOVERY_REQUIRED
-QUARANTINED_AND_RECONCILED
-PROVEN_COMPLETE
-INCONCLUSIVE
-```
-
-Never infer successful completion merely because an execution started.
-
-## Long-project anti-drift checkpoint
-
-After consequential work preserve:
-
-```text
-CURRENT HEAD / REVISION
-ACTIVE OWNER
-ACTIVE GATE
-PROVEN INVARIANTS
-DISPROVEN ASSUMPTIONS
-OPEN QUESTIONS
-DEFERRED DESIGN DEBT
-KNOWN HARNESS LIMITATIONS
-RECOVERY STATE
-NEXT SINGLE QUESTION
-```
-
-Do not reopen a closed gate without new authoritative contradictory evidence.
-
 ## Behavioral failure conditions
 
-This Skill is being used incorrectly if it:
+This skill is being used incorrectly if it:
 
 - patches directly from symptoms;
 - invents a missing capability without proving absence;
-- invokes all specialists by default;
-- treats remembered/GPT-K state as stronger than live/repository evidence;
-- treats timeout as product failure without classifying the timeout boundary;
-- patches product code to satisfy a stale or contaminated harness;
-- creates a duplicate test before reusing a suitable existing one;
-- claims live proof from source/static tests;
-- replays ambiguous work instead of reconciling it;
-- creates durable local-only patches outside the repository-first rule;
-- finishes consequential work with stale project status/plan;
-- assumes browser/deployment projection is current without verification when verification is required.
+- invokes every specialist/tool by default;
+- treats Memory/GPT-K state as stronger than current live/source evidence;
+- uses LoopTool as a search/planning system;
+- treats a content hash as authority classification;
+- treats command exit code 0 as semantic completion;
+- claims live proof from static/source tests;
+- creates durable local-only patches outside repository authority;
+- finishes consequential work with stale project status.
 
 ## Compact result envelope
-
-Use this evidence summary when closing a bounded investigation:
 
 ```text
 QUESTION:
@@ -395,28 +420,4 @@ CURRENT POSITION:
 NEXT SINGLE QUESTION:
 ```
 
-This is an evidence/decision summary. Do not expose private chain-of-thought.
-
-## Current packaging policy
-
-Use the Skill-first architecture now.
-
-```text
-ACTIVE DELIVERY
-= SKILL-FIRST
-
-GOVERNING SKILL
-= evidence-driven-engineering
-
-DURABLE CHANGE AUTHORITY
-= repository main first
-
-GPT-KNOWLEDGE
-= durable method/project projection
-
-LOCAL EXECUTION
-= bounded evidence only
-
-LETTERBLACK ENGINEERING APP/MCP
-= future integration plan; preserve architecture, do not block current usage
-```
+This is an evidence/decision summary, not private chain-of-thought.
