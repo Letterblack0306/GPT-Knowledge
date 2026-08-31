@@ -1,163 +1,146 @@
 {
-  "schema_version": 19,
+  "schema_version": 20,
   "project": "LBE Persistent Agent",
-  "purpose": "Persistent projection of LBE authority, evidence-gated progression, and the Rust/Ratatui TUI client integration. Mature upstream agent/runtime/TUI capabilities must be reused or adapted before any new implementation is created. Canonical LBE repository/runtime evidence remains authoritative.",
-  "authority_rule": "Current workspace/runtime evidence and canonical machine governance outrank this projection. GPT-Knowledge never creates runtime truth or implementation authority.",
+  "purpose": "Persistent projection of canonical LBE authority, approved interface/reuse direction, and bounded client integration evidence. Existing LBE runtime owners and mature upstream mechanics must be reused before any new implementation is created.",
+  "authority_rule": "Current canonical LBE source/runtime evidence and machine governance outrank this projection. GPT-Knowledge never creates runtime truth or implementation authority.",
   "updated": "2026-08-31",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "source_branch": "main",
   "local_workspace": "C:/Agents-Memory-Tool-v6-integration",
-  "active_node": "rust-tui-live-governed-integration",
-  "core_doctrine": "Provider/agent reasons. LBE governs. Reuse mature mechanics before rebuilding them. Registered capabilities execute through LBE. Evidence and ToolReceipts persist. Validation decides completion. Interfaces project the result.",
+  "core_doctrine": "Provider/agent reasons. LBE governs capabilities and consequences. Existing LBE runtime owners are reused, not copied into clients. Registered capabilities execute through LBE. ToolReceipts/evidence persist. Validation decides completion. Interfaces project authoritative results.",
   "product_identity": {
     "product": "LBE",
     "runtime_authority": "LBE",
-    "interface": "LetterBlack/LBE Rust/Ratatui TUI client",
+    "final_interface_direction": "Cline CLI/SDK mechanics under LBE product identity and authority",
+    "cline_status": "APPROVED_INTERFACE_DIRECTION_AND_REUSE_SOURCE",
+    "rust_role": "bounded client / adapter / projection integration",
+    "rust_long_term_role": "REQUIRES_RECONCILIATION_WITH_APPROVED_CLINE_INTERFACE_DIRECTION",
     "tui_repo": "Letterblack0306/LBE_Agents_wall_Intigration",
     "tui_workspace": "C:/LBE-TUI-Lab",
     "branding_rule": "LetterBlack/LBE identity only.",
-    "authority_rule": "The TUI, Cline, and OpenCode cannot replace LBE policy, authorization, governed execution, receipt, evidence, persistence, validation or completion owners."
-  },
-  "truth_model": {
-    "design": "what should happen",
-    "acceptance": "what happened for a bounded slice",
-    "machine_governance": "what is allowed now",
-    "runtime_evidence": "what is true now",
-    "conflict_rule": "When these disagree, classify the conflict or uncertainty; do not guess."
+    "authority_rule": "Cline, Rust/Ratatui, OpenCode, MCP adapters, and other clients cannot replace LBE policy, authorization, governed execution, ToolReceipt, evidence, persistence, validation or completion owners."
   },
   "machine_gate": {
     "status": "REQUIRES_FRESH_CANONICAL_RECONCILIATION",
-    "rule": "Do not derive current gate state from this projection. Read the canonical LBE machine gate before authorizing further implementation."
+    "rule": "Read the canonical LBE machine gate before authorizing additional implementation."
   },
   "runtime_authority": {
     "status": "ESTABLISHED_GOVERNED",
     "owners": [
-      "workspace/session identity where defined by LBE contracts",
-      "mode/policy",
+      "workspace and session identity",
+      "mode and policy",
       "authorization and approval authority",
       "governed execution and mutation",
-      "operation identity",
-      "ToolReceipt/evidence",
-      "persistence governed by LBE contracts",
-      "deterministic validation/completion"
-    ]
+      "operation identity and idempotency",
+      "ToolRegistry / ToolSpec / ToolHandler registration",
+      "ToolReceipt and evidence",
+      "session persistence and operational history",
+      "provider continuation boundary",
+      "deterministic validation and completion"
+    ],
+    "authoritative_components": {
+      "workspace_tools": ["runtime/tool_orchestration.py", "runtime/governed_coding.py", "product_entry.py"],
+      "authorization_governance": ["runtime/authorization_resolver.py", "runtime/mode_controller.py", "runtime/completion_gate.py", "runtime/validation_command_policy.py"],
+      "memory": ["session_memory_runtime.py", "memory/store.py", "memory/models.py", "memory/promoter.py", "memory/context.py", "memory/operational_history.py", "memory/memory_schema.sql"],
+      "sessions_persistence": ["session_lifecycle.py", "persistent_turn_control.py", "recovery.py", "memory/store.py"],
+      "evidence_receipts": ["evidence_service.py", "runtime/completion_evidence_producers.py", "memory/completion_evidence.py", "runtime/tool_orchestration.py"],
+      "providers_continuation": ["provider_registry.py", "provider_continuation.py", "provider_turn_runtime.py", "reasoning_provider.py", "runtime/cline_stdio_bridge.py"],
+      "product_entry": "product_entry.py"
+    },
+    "registered_workspace_capabilities": [
+      "workspace.read",
+      "workspace.list",
+      "workspace.glob",
+      "workspace.search",
+      "workspace.patch",
+      "process.run_registered"
+    ],
+    "product_entry_commands": ["export", "tool", "authorization", "turn", "start", "capabilities"]
+  },
+  "tool_receipt_contract": {
+    "status": "PROVEN_FROM_CANONICAL_SOURCE",
+    "fields": ["operation_id", "tool_id", "status", "receipt_id", "authorization", "output", "evidence"],
+    "failure_fields": ["error_code", "error_message"],
+    "rule": "Clients consume the LBE-produced receipt/output/evidence envelope; they do not reconstruct workspace truth or create receipts locally."
+  },
+  "external_capabilities": {
+    "status": "PASS_BOUNDED_REGISTRATION_AND_GOVERNED_EXECUTION_BOUNDARY",
+    "kinds": ["MCP", "plugin", "subagent", "network", "hosted_service"],
+    "flow": "ExternalCapabilityRegistration -> ToolSpec/ToolHandler -> ToolRegistry -> R6C authorization -> R6E GovernedToolOrchestrator -> ToolReceipt/evidence -> provider continuation -> persisted LBE event -> client projection",
+    "mcp_backend": "PASS",
+    "mcp_complete_tui_product": "NOT_PROVEN",
+    "rust_mcp_surface": "PLACEHOLDER",
+    "rust_mcp_projection": "MISSING",
+    "installed_mcp_acceptance": "NOT_PROVEN"
   },
   "reuse_first_policy": {
     "status": "MANDATORY_DESIGN_RULE",
-    "rule": "Before implementing any remaining capability, determine whether the canonical LBE runtime already owns it, whether Cline already provides reusable mechanics, or whether OpenCode provides reusable/adaptable runtime or TUI behavior. BUILD_NEW is permitted only after those checks fail or are explicitly rejected by the LBE authority boundary.",
-    "decision_order": [
-      "LBE_REUSE",
-      "CLINE_REUSE",
-      "CLINE_ADAPT",
-      "OPENCODE_REUSE_OR_ADAPT",
-      "WRAP_EXISTING",
-      "RUST_UI_ONLY",
-      "LBE_NATIVE_REQUIRED",
-      "REJECT",
-      "UNVERIFIED",
-      "BUILD_NEW_LAST_RESORT"
-    ],
+    "rule": "Before implementing a missing client capability, check canonical LBE ownership first. Reuse the LBE owner through an adapter. Then reuse/adapt approved Cline mechanics. OpenCode remains a capability-specific reference until pinned source validation proves reuse compatibility. BUILD_NEW is last resort.",
+    "decision_order": ["LBE_REUSE", "CLINE_REUSE", "CLINE_ADAPT", "OPENCODE_VERIFY_THEN_REUSE_OR_ADAPT", "WRAP_EXISTING", "RUST_UI_ONLY", "LBE_NATIVE_REQUIRED", "REJECT", "UNVERIFIED", "BUILD_NEW_LAST_RESORT"],
     "cline": {
-      "role": "primary direct runtime reuse candidate",
-      "reuse_targets": [
-        "agent loop and continuation mechanics",
-        "provider stream normalization",
-        "tool request/result lifecycle mechanics",
-        "session/event projection mechanics where they do not replace LBE authority",
-        "provider/model capability mechanics",
-        "compaction/retry patterns",
-        "interactive/headless CLI mechanics",
-        "native terminal interaction patterns where applicable"
-      ],
+      "role": "approved final interface direction and primary direct mechanics reuse/adaptation source",
+      "audit_status": "PASS",
       "boundary": "Executable filesystem/process/Git/external actions must cross LBE authorization and governed dispatch. Cline-native mutation/approval defaults are not LBE authority."
     },
     "opencode": {
-      "role": "open-source reuse/adaptation source for TUI, client/server, provider, permission, MCP, agent/subagent and headless patterns",
-      "reuse_targets": [
-        "terminal/TUI interaction patterns",
-        "client/server separation patterns",
-        "provider configuration patterns",
-        "permission UX and plan/build behavior",
-        "MCP management patterns",
-        "agent/subagent UX patterns",
-        "headless automation patterns"
-      ],
-      "boundary": "OpenCode is a reference/reuse source, not execution authority. Current-source capability-by-capability audit is still required before claiming direct reuse."
+      "role": "external comparison/reuse source requiring pinned capability-specific validation before direct LBE reuse claims",
+      "status": "UNVERIFIED_FOR_DIRECT_LBE_REUSE",
+      "boundary": "OpenCode is not product, runtime, or authorization authority."
     },
     "prohibited_recreation": [
-      "second generic agent loop when Cline mechanics can be adapted",
+      "copying canonical LBE runtime implementation into the Rust workspace",
+      "second generic agent loop when approved Cline mechanics can be adapted",
       "second provider/model framework without a proven LBE-specific need",
-      "second generic MCP framework without a proven LBE-specific need",
-      "hand-built clone of mature terminal behavior already available upstream",
-      "duplicate session/event machinery that conflicts with canonical LBE owners",
-      "parallel authorization, receipt, evidence or completion authority outside LBE"
+      "second MCP executor or authorization path",
+      "duplicate session/event machinery that conflicts with LBE owners",
+      "parallel receipt/evidence/completion authority outside LBE"
     ]
   },
-  "completed_product_slices": [
-    {"id":"lbe-runtime-authority","title":"Canonical LBE runtime/governance authority","status":"PROVEN_AS_ESTABLISHED_ARCHITECTURE"},
-    {"id":"tui-read-only-attachment","title":"Rust TUI read-only LBE attachment","status":"PASS"},
-    {"id":"tui-conversation-bridge","title":"Rust TUI conversational turn bridge","status":"PASS"},
-    {"id":"audit-live-round-trip","title":"Live Audit provider round trip","status":"PASS"},
-    {"id":"plan-investigation","title":"Live Plan / investigation provider turn","status":"PASS"},
-    {"id":"runtime-read-only","title":"Live Runtime / read-only coding turn","status":"PASS"},
-    {"id":"governed-workspace-read","title":"Provider-requested governed workspace.read","status":"PASS"},
-    {"id":"receipt-evidence-continuation","title":"ToolReceipt/evidence correlation and provider continuation","status":"PASS"},
-    {"id":"read-only-mutation-denial","title":"Read-only workspace.patch denied before handler execution","status":"PASS"},
-    {"id":"malformed-tool-fail-closed","title":"Malformed/denied provider tool handling","status":"PASS"},
-    {"id":"full-regression","title":"Full Python and Rust regression validation","status":"PASS"}
-  ],
-  "current_state": {
-    "id": "rust-tui-live-governed-integration",
-    "status": "BOUNDED_LIVE_READ_ONLY_GOVERNED_INTEGRATION_PASS",
-    "provider": "openai-compatible",
-    "model": "qwen/qwen3-vl-8b",
-    "python_tests": "813 passed",
-    "rust_tests": "148 passed"
+  "rust_adapter": {
+    "role": "invoke canonical LBE product/control/runtime commands and project their authoritative results",
+    "real_wrapper": "IMPLEMENTED",
+    "authoritative_invocation": "python -m lbe_guard_inspector.product_entry",
+    "remote_proven_operations": ["workspace.read", "workspace.list", "workspace.glob", "workspace.search", "workspace.patch", "process.run_registered", "authorization"],
+    "local_reported_update": "workspace.read and workspace.list decode LBE-owned output object",
+    "local_reported_update_classification": "LOCAL_REPORTED_NOT_YET_REMOTE_VERIFIED",
+    "rule": "Do not copy LBE runtime owners into C:/LBE-TUI-Lab."
   },
-  "proven_flow": [
-    "provider/model",
-    "LBE persisted session",
-    "mode-specific runtime",
-    "provider request",
-    "governed authorization",
-    "registered capability execution",
-    "ToolReceipt/evidence",
-    "provider continuation",
-    "completed turn",
-    "Rust/Ratatui projection"
-  ],
   "remaining_product_sequence": [
     {
       "order": 1,
-      "id": "reuse-capability-matrix-before-new-code",
+      "id": "reconcile-client-role-and-capability-matrix",
       "status": "REQUIRED_BEFORE_NEW_CAPABILITY_IMPLEMENTATION",
-      "scope": "For each remaining TUI/runtime capability classify LBE_REUSE, CLINE_REUSE/ADAPT, OPENCODE_REUSE/ADAPT, WRAP, RUST_UI_ONLY, LBE_NATIVE_REQUIRED, REJECT or UNVERIFIED before BUILD_NEW."
+      "scope": "For every missing surface map canonical LBE owner -> approved Cline mechanic -> optional verified OpenCode mechanic -> client request -> LBE command/protocol -> receipt/output/event -> projection -> acceptance proof."
     },
     {
       "order": 2,
-      "id": "write-capable-governed-mutation-acceptance",
-      "status": "NOT_YET_PROVEN",
-      "scope": "editable buffer -> diff review -> approval -> governed workspace.patch -> validation -> ToolReceipt; reuse upstream editor/diff/tool-loop mechanics where valid, retain LBE mutation authority"
+      "id": "p2-read-only-real-wrapper-acceptance",
+      "status": "IN_PROGRESS_LOCAL_EVIDENCE",
+      "scope": "Validate workspace.read/list/glob/search against the configured real session and retain receipt/output/evidence correlation. Do not infer workspace.patch acceptance from read-only tests."
     },
     {
       "order": 3,
-      "id": "installed-interactive-tui-acceptance",
+      "id": "write-capable-governed-mutation-acceptance",
       "status": "NOT_YET_PROVEN",
-      "scope": "prove the installed interactive product surface drives the same LBE-owned runtime path and that reused/adapted mechanics do not create authority bypass"
+      "scope": "Use a real target path, replacement content and expected hash; route through existing LBE workspace.patch authorization/orchestration/receipt/evidence owners."
+    },
+    {
+      "order": 4,
+      "id": "installed-interactive-client-acceptance",
+      "status": "NOT_YET_PROVEN",
+      "scope": "Prove the installed client drives the same LBE-owned runtime path without creating authority bypass."
     }
   ],
   "nodes": [
     {"id":"authority","parent":null,"lane":"Authority","title":"LBE canonical runtime authority","status":"proven","priority":"CANONICAL"},
-    {"id":"truth-boundary","parent":"authority","lane":"Evidence","title":"Supported truth / no assumption boundary","status":"proven","priority":"CORE"},
-    {"id":"reuse-first","parent":"authority","lane":"Architecture","title":"Reuse-first capability decision gate","status":"required","priority":"MANDATORY"},
-    {"id":"cline-reuse","parent":"reuse-first","lane":"Reuse","title":"Cline agent/runtime mechanics reuse or adaptation","status":"accepted-direction","priority":"ADAPT/REUSE"},
-    {"id":"opencode-reuse","parent":"reuse-first","lane":"Reuse","title":"OpenCode capability/TUI reuse audit","status":"pending-current-source-audit","priority":"UNVERIFIED"},
-    {"id":"rust-tui","parent":"authority","lane":"Interface","title":"Rust/Ratatui TUI client + projection adapter","status":"implemented","priority":"ACTIVE INTERFACE"},
-    {"id":"rust-tui-live-governed-integration","parent":"rust-tui","lane":"Acceptance","title":"Live governed read-only conversational/tool path","status":"proven","priority":"PASS"},
-    {"id":"audit-plan-runtime","parent":"rust-tui-live-governed-integration","lane":"Modes","title":"Audit + Plan + Runtime acceptance","status":"proven","priority":"PASS"},
-    {"id":"receipt-evidence","parent":"rust-tui-live-governed-integration","lane":"Evidence","title":"Authorization + ToolReceipt + evidence + continuation","status":"proven","priority":"PASS"},
-    {"id":"deny-path","parent":"rust-tui-live-governed-integration","lane":"Fail Closed","title":"Read-only mutation denial + malformed tool handling","status":"proven","priority":"PASS"},
-    {"id":"write-mutation","parent":"rust-tui","lane":"Next","title":"Write-capable governed mutation acceptance","status":"candidate","priority":"NOT PROVEN"},
-    {"id":"installed-tui","parent":"rust-tui","lane":"Next","title":"Installed interactive TUI acceptance","status":"candidate","priority":"NOT PROVEN"}
+    {"id":"cline-interface","parent":"authority","lane":"Interface","title":"Cline CLI/SDK final interface direction","status":"approved","priority":"APPROVED"},
+    {"id":"rust-client","parent":"authority","lane":"Client","title":"Rust/Ratatui bounded client + adapter + projection","status":"integration","priority":"BOUNDED"},
+    {"id":"runtime-owners","parent":"authority","lane":"Runtime","title":"Existing LBE runtime owners reused through product/control interfaces","status":"proven","priority":"PASS"},
+    {"id":"receipt-contract","parent":"runtime-owners","lane":"Evidence","title":"ToolReceipt output/evidence envelope","status":"proven","priority":"PASS"},
+    {"id":"mcp-backend","parent":"runtime-owners","lane":"External capabilities","title":"MCP governed registration/execution boundary","status":"proven","priority":"PASS"},
+    {"id":"rust-mcp","parent":"rust-client","lane":"Projection","title":"Rust MCP panel/projection","status":"placeholder","priority":"NOT PROVEN"},
+    {"id":"p2-readonly","parent":"rust-client","lane":"Acceptance","title":"Real-wrapper read-only P2 operations","status":"local-validation-in-progress","priority":"IN PROGRESS"},
+    {"id":"write-mutation","parent":"rust-client","lane":"Acceptance","title":"Write-capable governed mutation acceptance","status":"candidate","priority":"NOT PROVEN"},
+    {"id":"opencode","parent":"authority","lane":"Reuse","title":"OpenCode pinned reuse matrix","status":"pending","priority":"UNVERIFIED"}
   ]
 }
