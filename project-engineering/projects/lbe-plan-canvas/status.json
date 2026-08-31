@@ -1,13 +1,13 @@
 {
-  "schema_version": 19,
+  "schema_version": 20,
   "project": "LBE Persistent Agent",
   "verified_at": "2026-08-31",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "source_branch": "main",
   "local_workspace": "C:/Agents-Memory-Tool-v6-integration",
-  "overall_classification": "LBE_RUNTIME_AUTHORITY_ESTABLISHED_RUST_TUI_LIVE_GOVERNED_READ_ONLY_PATH_PROVEN",
+  "overall_classification": "LBE_RUNTIME_AUTHORITY_ESTABLISHED_RUST_TUI_LIVE_GOVERNED_READ_ONLY_PATH_PROVEN_REUSE_FIRST_REQUIRED",
   "authority_note": "GPT-Knowledge is projection only. Canonical LBE source, machine governance, current workspace/runtime evidence and raw acceptance records retain authority.",
-  "core_doctrine": "Provider/agent reasons. LBE governs authority and consequences. Registered capabilities execute through LBE. Evidence and ToolReceipts persist. Validation decides completion. Interfaces project the result.",
+  "core_doctrine": "Provider/agent reasons. LBE governs authority and consequences. Reuse mature mechanics before rebuilding them. Registered capabilities execute through LBE. Evidence and ToolReceipts persist. Validation decides completion. Interfaces project the result.",
   "truth_hierarchy": [
     "current runtime/validation evidence",
     "current workspace/Git evidence",
@@ -24,7 +24,7 @@
     "active_interface_integration": "Rust/Ratatui TUI client and projection adapter",
     "tui_repository": "Letterblack0306/LBE_Agents_wall_Intigration",
     "tui_workspace": "C:/LBE-TUI-Lab",
-    "branding_rule": "LetterBlack/LBE product identity only; upstream technologies are implementation/reference inputs and never competing product authority."
+    "branding_rule": "LetterBlack/LBE product identity only; Cline and OpenCode are implementation/reuse inputs and never competing product authority."
   },
   "machine_state": {
     "status": "REQUIRES_FRESH_CANONICAL_RECONCILIATION",
@@ -33,15 +33,41 @@
   "runtime_authority": {
     "status": "ESTABLISHED_GOVERNED",
     "owns": [
-      "workspace/session identity",
+      "workspace/session identity where defined by LBE contracts",
       "mode/policy",
-      "authorization",
-      "governed execution",
+      "authorization and approval authority",
+      "governed execution and mutation",
       "operation identity",
       "ToolReceipt",
       "evidence provenance",
-      "persistence",
+      "persistence governed by LBE contracts",
       "validation and completion truth"
+    ]
+  },
+  "reuse_first": {
+    "status": "MANDATORY_FOR_REMAINING_CAPABILITIES",
+    "rule": "Do not recreate a capability merely because the Rust TUI does not yet expose it. Check canonical LBE ownership first, then Cline reuse/adaptation, then OpenCode reuse/adaptation. BUILD_NEW is the last resort.",
+    "cline": {
+      "classification": "PRIMARY_DIRECT_REUSE_ADAPT_CANDIDATE",
+      "current_evidence": "Existing LBE source audit supports adapting mature agent-loop, continuation, event, provider and generic tool-lifecycle mechanics behind an LBE-owned governance adapter.",
+      "must_not_own": ["LBE authorization", "LBE governed mutation", "LBE receipts/evidence", "LBE completion truth"]
+    },
+    "opencode": {
+      "classification": "REUSE_ADAPT_REFERENCE_CURRENT_SOURCE_AUDIT_REQUIRED",
+      "current_external_reference": "OpenCode currently presents an open-source terminal coding agent with provider-agnostic operation, TUI focus and client/server architecture. Capability-by-capability direct reuse in LBE remains unverified until source mapping is completed.",
+      "candidate_areas": ["TUI behavior", "client/server patterns", "provider setup", "permissions UX", "MCP", "agents/subagents", "headless automation"]
+    },
+    "allowed_classifications": [
+      "LBE_REUSE",
+      "CLINE_REUSE",
+      "CLINE_ADAPT",
+      "OPENCODE_REUSE_OR_ADAPT",
+      "WRAP_EXISTING",
+      "RUST_UI_ONLY",
+      "LBE_NATIVE_REQUIRED",
+      "REJECT",
+      "UNVERIFIED",
+      "BUILD_NEW_LAST_RESORT"
     ]
   },
   "tui_integration": {
@@ -86,9 +112,11 @@
     "status": "BOUNDED_READ_ONLY_ACCEPTANCE_PASS"
   },
   "remaining_unproven": [
+    "capability-by-capability LBE/Cline/OpenCode reuse matrix for all remaining TUI modules",
+    "current-source OpenCode reuse audit and exact integration decisions",
     "write-capable governed mutation acceptance through the complete interactive editor/review/approval flow",
     "installed-package interactive TUI acceptance",
     "broader product-level TUI completion beyond the bounded accepted paths"
   ],
-  "status_rule": "Do not upgrade bounded live acceptance into a broader completion claim without matching evidence."
+  "status_rule": "Do not upgrade bounded live acceptance or a reuse proposal into broader completion/reuse claims without matching source and runtime evidence."
 }
