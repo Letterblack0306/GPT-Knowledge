@@ -1,5 +1,5 @@
 {
-  "schema_version": 16,
+  "schema_version": 17,
   "project": "LBE Rust/Ratatui TUI Integration",
   "classification": "REFERENCE_NON_CANONICAL",
   "verified_at": "2026-09-01",
@@ -10,10 +10,9 @@
   "source_branch": "main",
   "source_commit": "6421726de39d9a58da6371b49f1707d8bb39fe91",
   "source_commit_message": "docs: record MCP metadata checkpoint",
-  "source_commit_remote_status": "PROVEN_HEAD_OF_ORIGIN_MAIN_AT_LAST_TUI_CHECKPOINT",
+  "source_commit_remote_status": "PROVEN_HEAD_OF_ORIGIN_MAIN",
   "agent_wall_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "agent_wall_remote_main": "7ca58f866c662ab246c6c3ef23667c4cf7519d03",
-  "agent_wall_remote_main_status": "PROVEN_AT_GOVERNANCE_REVIEW",
   "local_tui_workspace": "C:\\LBE-TUI-Lab",
   "local_lbe_workspace": "C:\\Agents-Memory-Tool-v6-integration",
   "product_level_status": "LBE_BACKEND_COMPLETE_RUST_CLI_PARTIALLY_INTEGRATED_COMPLETION_MODE_ACTIVE",
@@ -22,13 +21,6 @@
     "lbe": "authoritative backend for sessions, providers, tools, authorization, execution, evidence, receipts, persistence, validation and completion",
     "rust_tui": "client, typed adapter and projection layer only; must not duplicate LBE authority"
   },
-  "truth_order": [
-    "current machine governance",
-    "current source/runtime evidence",
-    "current GitHub repository state",
-    "current GPT-K status projection",
-    "historical GPT-K checkpoints"
-  ],
   "accepted_lbe_baseline": {
     "runtime_backend_authority": "PROVEN_COMPLETE",
     "CLI": "PROVEN_COMPLETE",
@@ -41,61 +33,82 @@
     "PUBLICATION_PRECHECK": "PASS"
   },
   "current_machine_gate": {
-    "authority": "COMMITTED_REMOTE_MACHINE_JSON",
+    "authority": "COMMITTED_REMOTE_MACHINE_JSON_AT_LAST_GOVERNANCE_REVIEW",
     "active_phase": "P2_P3_GOVERNED_EXECUTION",
     "active_slice": "TUI_P2_P3_GOVERNED_EXECUTION_INTEGRATION",
     "status": "OPEN",
     "implementation_allowed": true,
-    "architecture_changes_allowed": true,
     "next_phase_locked": true,
-    "required_status_for_advance": "PASS",
     "publication": "LOCKED"
-  },
-  "governance_projection_mismatch": {
-    "status": "RECONCILIATION_REQUIRED",
-    "machine_json": "TUI_P2_P3_GOVERNED_EXECUTION_INTEGRATION active and OPEN",
-    "human_readable_projection": "observed stale workspace-hygiene active text",
-    "interpretation": "human-readable governance projection drift; not an implementation-architecture blocker",
-    "required_action": "reconcile the human-readable gate and directly required governance projection metadata to the committed machine authority; validate and push focused governance files only"
   },
   "rust_integrated_proven": {
     "real_lbe_wrapper_boundary": "IMPLEMENTED",
     "attach_disconnect_reconnect_projection": "IMPLEMENTED_AND_TESTED",
-    "live_read_only_workspace_operations": [
-      "read",
-      "list",
-      "glob",
-      "search"
-    ],
+    "live_read_only_workspace_operations": ["read", "list", "glob", "search"],
     "read_only_mutation_denial": "PROVEN_IN_BOUNDED_LIVE_PATH",
     "mcp_metadata_bridge": "PROVEN",
     "mcp_registry_refresh": "PROVEN",
-    "mcp_metadata_projection": "IMPLEMENTED",
-    "rust_validation": "PASS_178"
+    "mcp_metadata_projection": "IMPLEMENTED"
+  },
+  "provider_catalog_projection": {
+    "status": "LOCAL_IMPLEMENTED_VALIDATED_NOT_COMMITTED",
+    "evidence_classification": "USER_REPORTED_LOCAL_VALIDATION",
+    "files": ["C:\\LBE-TUI-Lab\\src\\wrapper.rs", "C:\\LBE-TUI-Lab\\src\\tests.rs"],
+    "behavior": [
+      "RealLbeWrapper invokes the existing LBE provider list command",
+      "response requires action == provider.list",
+      "response requires ok == true",
+      "provider identity is validated before projection",
+      "registered providers project through ProviderCatalogDiscovered",
+      "authentication and health fields remain truthful rather than fabricated",
+      "model catalog remains empty when the LBE provider-list response contains no model data",
+      "UserRequest::RefreshProviderCatalog routes through RealLbeWrapper"
+    ],
+    "authority_boundary": "Rust projects provider metadata only; provider registry and provider truth remain LBE-owned",
+    "validation": {
+      "cargo_fmt": "PASS",
+      "cargo_fmt_check": "PASS",
+      "cargo_check": "PASS",
+      "provider_parser_tests": "PASS",
+      "provider_related_tests": "PASS_13",
+      "real_wrapper_provider_rejection_tests": "PASS_3",
+      "full_rust_suite": "PASS_181",
+      "git_diff_check": "PASS"
+    },
+    "repository_state": {
+      "branch": "main",
+      "head_equals_origin_main": "USER_REPORTED_TRUE_AND_REMOTE_MAIN_CONFIRMED_AT_6421726",
+      "committed": false,
+      "pushed": false,
+      "unrelated_existing_changes_preserved": true,
+      "untracked_preserved": ["Docs\\00_integration_alignment.md", "Docs\\36_p2_p3_client_contract.md"]
+    }
   },
   "mcp_current_truth": {
     "source_bridge": "PROVEN",
     "real_wrapper_refresh": "PROVEN",
     "metadata_contract": "PROVEN",
-    "last_live_payload": {
-      "schema_version": 1,
-      "count": 0,
-      "integrations": [],
-      "execution_attempted": false
-    },
     "installed_non_empty_registry_case": "MISSING",
     "conpty_or_real_pty_harness": "MISSING",
     "installed_mcp_e2e": "NOT_PROVEN",
     "repeat_metadata_implementation": "DO_NOT_REPEAT"
   },
+  "installed_terminal_acceptance": {
+    "status": "BLOCKED_BY_CURRENT_NON_TTY_AUTOMATION_ENVIRONMENT",
+    "winpty_attempt": "stdin is not a tty",
+    "interpretation": "current automation method cannot provide the required real terminal lifecycle; this does not by itself prove a Rust application defect",
+    "required_capability": "real Windows ConPTY/PTTY-capable harness"
+  },
+  "external_tooling_note": {
+    "birdeye_mcp": "BECAME_UNAVAILABLE_DURING_FINAL_VALIDATION_PASS",
+    "impact": "NO_EFFECT_ON_COMPLETED_LOCAL_COMPILER_AND_REPOSITORY_VALIDATION; not classified as a product implementation blocker from this checkpoint alone"
+  },
   "rust_completion_required": {
-    "governance_projection_reconciliation": "REQUIRED_FIRST",
-    "p2_p3_governed_client_integration": "IN_PROGRESS_OR_PENDING_BY_SURFACE",
+    "provider_catalog_projection": "IMPLEMENTED_LOCALLY_AWAITING_FOCUSED_COMMIT_PUSH",
     "real_non_empty_capability_registry_acceptance_case": "MISSING",
     "windows_conpty_pty_harness": "MISSING",
     "installed_mcp_e2e": "NOT_PROVEN",
     "core_session_lifecycle": "PARTIAL_PENDING_LIVE_SERVICE_EVENT_CLOSURE",
-    "provider_model_live_projection": "PARTIAL_PENDING",
     "tool_registry_live_projection": "PENDING",
     "receipt_evidence_projection": "PARTIAL_PENDING_PRODUCT_CLOSURE",
     "persistent_session_resume": "PENDING",
@@ -121,27 +134,15 @@
     "safe_uncertainty_resolvable_from_existing_contracts": "resolve and continue",
     "broad_rediscovery": "DO_NOT_RESTART_WITHOUT_NEW_CONTRADICTORY_EVIDENCE"
   },
-  "historical_records_policy": {
-    "preserve": true,
-    "current_blocker_authority": false,
-    "routing": "use HISTORY_AND_SUPERSEDED_RECORDS.md before treating older checkpoint claims as current",
-    "known_superseded_blockers": [
-      "mapped-file formatting lock",
-      "missing runtime bindings for MCP wrapper refresh",
-      "zero-test placeholder modular binary state",
-      "RealLbeWrapper absent",
-      "MCP registry placeholder-only state"
-    ]
-  },
   "overall_status_summary": {
     "lbe_backend_runtime": "PROVEN_COMPLETE",
     "lbe_authority_boundary": "PRESERVED",
-    "machine_tui_p2_p3_gate": "OPEN_AND_IMPLEMENTATION_ALLOWED",
-    "human_gate_projection": "STALE_RECONCILIATION_REQUIRED",
+    "machine_tui_p2_p3_gate": "OPEN_AND_IMPLEMENTATION_ALLOWED_AT_LAST_VERIFIED_GOVERNANCE_STATE",
     "rust_lbe_wrapper": "IMPLEMENTED",
     "rust_live_read_only_adapter": "BOUNDED_PROVEN",
     "rust_mcp_metadata_projection": "PROVEN",
-    "rust_tests": "PASS_178",
+    "rust_provider_catalog_projection": "LOCAL_IMPLEMENTED_VALIDATED_NOT_COMMITTED",
+    "rust_tests": "PASS_181_LOCAL_REPORTED",
     "rust_complete_cli": "INCOMPLETE",
     "conpty_pty_harness": "MISSING",
     "non_empty_authorized_registry_case": "MISSING",
@@ -150,15 +151,15 @@
   },
   "next_action": {
     "mode": "COMPLETION_MODE",
-    "first": "reconcile and push the human-readable LBE governance projection to match the committed machine TUI_P2_P3 gate",
+    "immediate": "preserve the validated provider projection and commit/push it only as a focused change when authorized, without including unrelated worktree changes",
     "then": [
-      "continue missing Rust client seams without rebuilding LBE owners",
+      "continue missing Rust client seams through existing LBE owners",
       "create or select a real authorized non-empty capability registry case",
       "build reusable Windows ConPTY/PTTY harness",
       "run installed /mcp and core CLI lifecycle acceptance",
-      "finish minimum session/provider/tool/receipt/evidence/persistence projections required for usable CLI",
+      "finish minimum session/tool/receipt/evidence/persistence projections required for usable CLI",
       "run final Rust and LBE regressions",
-      "commit/push focused completion changes and close gate only with claim-matched evidence"
+      "close the active gate only with claim-matched evidence"
     ]
   },
   "authority_note": "GPT-Knowledge is projection/reference only. Canonical LBE machine governance, current source/runtime evidence, local workspace evidence and GitHub remote evidence remain authoritative."
