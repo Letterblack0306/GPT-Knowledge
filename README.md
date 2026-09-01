@@ -12,11 +12,18 @@ Do not preload every domain. Knowledge guides decisions; it does not replace liv
 
 Use [`project-engineering/letterblack-mcp-ecosystem-and-routing.md`](project-engineering/letterblack-mcp-ecosystem-and-routing.md) when a task needs to determine **which component should be used and which source owns the truth**.
 
-Current direction:
+Current validated client direction:
 
 ```text
+Codex / Cline / OpenCode / Gemini / Antigravity / Claude
+                            │
+                            └──> BirdEye MCP
+                                  ├── workspace query
+                                  ├── memory query
+                                  └── skills query
+
 Skills
-  -> reasoning/workflow methodology
+  -> canonical curated reasoning/workflow corpus
   -> skill-gallery-router may guide where to look
   -> actual curated retrieval uses BirdEye MCP skills(query/fetch/status)
 
@@ -24,16 +31,18 @@ GPT-Knowledge
   -> durable project/method/status/reference projection and routing
 
 BirdEye MCP
+  -> consolidated client-facing Letterblack MCP route
   -> current local evidence/index
   -> GPT-Knowledge route/read access
   -> Memory query/read access
   -> consolidated Skills retrieval
   -> workspace/revision identity
   -> governed local execution
-  -> EYES health/projection controls
+  -> EYES/derived query health where active
 
 Memory
   -> canonical historical conversations/messages/provenance
+  -> accessed through BirdEye in the validated client topology
 
 GitHub
   -> canonical remote repository/branch/commit/PR/check truth
@@ -42,7 +51,9 @@ Runtime / Browser / Provider
   -> live behavior proof
 ```
 
-BirdEye may expose a capability without becoming the canonical owner of the underlying source. In particular, Memory remains the historical owner, Skills remain curated methodology/content, GPT-Knowledge remains durable project/method projection, and GitHub remains remote repository truth.
+The validated MCP Local architecture reports **52 required PASS / 0 FAIL** and keeps BirdEye as the consolidated enabled Letterblack MCP route for the checked clients. Duplicate direct Memory routes, separate Skills routes, broad filesystem bypasses, and legacy competing MCP routes are absent or disabled.
+
+BirdEye may expose a capability without becoming the canonical owner of the underlying source. Memory remains the historical owner, Skills remain the curated methodology/content owner, GPT-Knowledge remains the durable project/method projection owner, and GitHub remains remote repository truth.
 
 ## Purpose
 
