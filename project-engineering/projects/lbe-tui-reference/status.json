@@ -1,94 +1,165 @@
 {
-  "schema_version": 15,
+  "schema_version": 16,
   "project": "LBE Rust/Ratatui TUI Integration",
   "classification": "REFERENCE_NON_CANONICAL",
   "verified_at": "2026-09-01",
+  "entry_point": "project-engineering/projects/lbe-tui-reference/README.md",
+  "history_index": "project-engineering/projects/lbe-tui-reference/HISTORY_AND_SUPERSEDED_RECORDS.md",
+  "goal": "Finish the native LetterBlack Rust/Ratatui CLI as a usable client over the already-complete LBE backend; do not rebuild existing LBE authorities.",
   "source_repo": "Letterblack0306/LBE_Agents_wall_Intigration",
   "source_branch": "main",
   "source_commit": "6421726de39d9a58da6371b49f1707d8bb39fe91",
   "source_commit_message": "docs: record MCP metadata checkpoint",
-  "source_commit_remote_status": "PROVEN_HEAD_OF_ORIGIN_MAIN",
+  "source_commit_remote_status": "PROVEN_HEAD_OF_ORIGIN_MAIN_AT_LAST_TUI_CHECKPOINT",
   "agent_wall_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "agent_wall_remote_main": "7ca58f866c662ab246c6c3ef23667c4cf7519d03",
-  "agent_wall_remote_main_status": "PROVEN",
+  "agent_wall_remote_main_status": "PROVEN_AT_GOVERNANCE_REVIEW",
   "local_tui_workspace": "C:\\LBE-TUI-Lab",
   "local_lbe_workspace": "C:\\Agents-Memory-Tool-v6-integration",
-  "product_level_status": "LBE_BACKEND_AUTHORITATIVE_AND_COMPLETE_RUST_CLI_PARTIALLY_INTEGRATED",
+  "product_level_status": "LBE_BACKEND_COMPLETE_RUST_CLI_PARTIALLY_INTEGRATED_COMPLETION_MODE_ACTIVE",
   "authority_model": {
+    "provider": "reasoning and strategy",
     "lbe": "authoritative backend for sessions, providers, tools, authorization, execution, evidence, receipts, persistence, validation and completion",
     "rust_tui": "client, typed adapter and projection layer only; must not duplicate LBE authority"
   },
+  "truth_order": [
+    "current machine governance",
+    "current source/runtime evidence",
+    "current GitHub repository state",
+    "current GPT-K status projection",
+    "historical GPT-K checkpoints"
+  ],
   "accepted_lbe_baseline": {
     "runtime_backend_authority": "PROVEN_COMPLETE",
     "CLI": "PROVEN_COMPLETE",
-    "installed_backend_acceptance": "PASS",
     "R3_R6F": "PROVEN_COMPLETE",
     "R7_INSTALLED_END_TO_END_ACCEPTANCE": "PASS",
+    "WORKSPACE_HYGIENE_GOVERNED_DELETION": "PASS",
+    "MANDATORY_GOVERNED_AGENT_MUTATION_DISPATCH": "PASS",
+    "GOVERNED_EXTERNAL_CAPABILITY_REGISTRATION": "PASS",
+    "INSTALLED_CAPABILITY_REGISTRY_DISCOVERY": "PASS",
     "PUBLICATION_PRECHECK": "PASS"
+  },
+  "current_machine_gate": {
+    "authority": "COMMITTED_REMOTE_MACHINE_JSON",
+    "active_phase": "P2_P3_GOVERNED_EXECUTION",
+    "active_slice": "TUI_P2_P3_GOVERNED_EXECUTION_INTEGRATION",
+    "status": "OPEN",
+    "implementation_allowed": true,
+    "architecture_changes_allowed": true,
+    "next_phase_locked": true,
+    "required_status_for_advance": "PASS",
+    "publication": "LOCKED"
+  },
+  "governance_projection_mismatch": {
+    "status": "RECONCILIATION_REQUIRED",
+    "machine_json": "TUI_P2_P3_GOVERNED_EXECUTION_INTEGRATION active and OPEN",
+    "human_readable_projection": "observed stale workspace-hygiene active text",
+    "interpretation": "human-readable governance projection drift; not an implementation-architecture blocker",
+    "required_action": "reconcile the human-readable gate and directly required governance projection metadata to the committed machine authority; validate and push focused governance files only"
   },
   "rust_integrated_proven": {
     "real_lbe_wrapper_boundary": "IMPLEMENTED",
     "attach_disconnect_reconnect_projection": "IMPLEMENTED_AND_TESTED",
-    "live_read_only_workspace_operations": ["read", "list", "glob", "search"],
+    "live_read_only_workspace_operations": [
+      "read",
+      "list",
+      "glob",
+      "search"
+    ],
     "read_only_mutation_denial": "PROVEN_IN_BOUNDED_LIVE_PATH",
     "mcp_metadata_bridge": "PROVEN",
     "mcp_registry_refresh": "PROVEN",
     "mcp_metadata_projection": "IMPLEMENTED",
     "rust_validation": "PASS_178"
   },
-  "rust_partial_or_pending": {
-    "sessions": "LIVE_SERVICE_EVENT_INTEGRATION_PENDING",
-    "providers_models": "LIVE_CATALOG_BINDING_AND_RICHER_CONFIGURATION_PENDING",
-    "tool_registry": "LIVE_RUST_REGISTRY_PROJECTION_OPEN",
-    "evidence_browser": "TYPED_LIVE_BROWSER_PENDING",
-    "receipt_browser": "STRUCTURED_LIVE_BROWSER_PENDING",
-    "background_processes": "LIVE_DETACHED_PROCESS_PROJECTION_PENDING",
-    "terminal_compatibility": "NO_COLOR_ASCII_FALLBACK_WIDE_CHARACTER_ACCEPTANCE_MISSING",
-    "plain_cli_headless": "RUST_NON_TUI_PATH_MISSING",
-    "pty_conpty_acceptance": "MISSING",
+  "mcp_current_truth": {
+    "source_bridge": "PROVEN",
+    "real_wrapper_refresh": "PROVEN",
+    "metadata_contract": "PROVEN",
+    "last_live_payload": {
+      "schema_version": 1,
+      "count": 0,
+      "integrations": [],
+      "execution_attempted": false
+    },
+    "installed_non_empty_registry_case": "MISSING",
+    "conpty_or_real_pty_harness": "MISSING",
     "installed_mcp_e2e": "NOT_PROVEN",
-    "persistent_session_integration": "PENDING",
-    "diff_patch_review_ui": "MISSING",
-    "code_search_product_ui": "MISSING",
-    "subagents_teams": "NOT_PROVEN_IN_RUST_CLIENT"
+    "repeat_metadata_implementation": "DO_NOT_REPEAT"
   },
-  "mcp_authority_boundary": {
-    "rust_invokes": "LBE capabilities list / installed capability registry metadata",
-    "rust_retains": "metadata projection only",
-    "rust_does_not_own": ["MCP transport", "execution", "authorization", "credentials", "registry authority", "receipt authority", "evidence authority"]
+  "rust_completion_required": {
+    "governance_projection_reconciliation": "REQUIRED_FIRST",
+    "p2_p3_governed_client_integration": "IN_PROGRESS_OR_PENDING_BY_SURFACE",
+    "real_non_empty_capability_registry_acceptance_case": "MISSING",
+    "windows_conpty_pty_harness": "MISSING",
+    "installed_mcp_e2e": "NOT_PROVEN",
+    "core_session_lifecycle": "PARTIAL_PENDING_LIVE_SERVICE_EVENT_CLOSURE",
+    "provider_model_live_projection": "PARTIAL_PENDING",
+    "tool_registry_live_projection": "PENDING",
+    "receipt_evidence_projection": "PARTIAL_PENDING_PRODUCT_CLOSURE",
+    "persistent_session_resume": "PENDING",
+    "diff_patch_review": "PENDING"
   },
-  "remote_active_gate": {
-    "phase": "COMPLETE_LBE_AGENT_RUNTIME_IMPLEMENTATION",
-    "slice": "WORKSPACE_HYGIENE_GOVERNED_DELETION",
-    "status": "OPEN",
-    "implementation_allowed": "ACTIVE_WORKSPACE_HYGIENE_SLICE_ONLY",
-    "next_phase_locked": true,
-    "publication": "LOCKED_PAUSED"
+  "post_completion_non_blocking_unless_breaking_normal_use": [
+    "NO_COLOR refinements",
+    "ASCII fallback polish",
+    "wide-character edge-case acceptance",
+    "advanced evidence browser UX",
+    "advanced receipt browser UX",
+    "background process dashboard",
+    "headless/CI JSON mode",
+    "subagent/team UX",
+    "advanced code-search UI",
+    "optional visual polish",
+    "exhaustive non-critical edge-case coverage"
+  ],
+  "completion_rule": {
+    "required_not_proven": "implement and test",
+    "optional_not_proven": "record follow-up and continue",
+    "actual_external_blocker": "report blocker",
+    "safe_uncertainty_resolvable_from_existing_contracts": "resolve and continue",
+    "broad_rediscovery": "DO_NOT_RESTART_WITHOUT_NEW_CONTRADICTORY_EVIDENCE"
   },
-  "local_gate_divergence": {
-    "status": "LOCAL_UNCOMMITTED_STATE_DIFFERS_FROM_REMOTE_AUTHORITY",
-    "local_described_slice": "TUI_P2_P3_GOVERNED_EXECUTION_INTEGRATION",
-    "remote_authorization_for_tui_p2_p3": "NOT_PROVEN",
-    "rule": "local uncommitted gate state must not be presented as remote authority"
+  "historical_records_policy": {
+    "preserve": true,
+    "current_blocker_authority": false,
+    "routing": "use HISTORY_AND_SUPERSEDED_RECORDS.md before treating older checkpoint claims as current",
+    "known_superseded_blockers": [
+      "mapped-file formatting lock",
+      "missing runtime bindings for MCP wrapper refresh",
+      "zero-test placeholder modular binary state",
+      "RealLbeWrapper absent",
+      "MCP registry placeholder-only state"
+    ]
   },
   "overall_status_summary": {
     "lbe_backend_runtime": "PROVEN_COMPLETE",
-    "lbe_installed_backend": "PASS",
     "lbe_authority_boundary": "PRESERVED",
+    "machine_tui_p2_p3_gate": "OPEN_AND_IMPLEMENTATION_ALLOWED",
+    "human_gate_projection": "STALE_RECONCILIATION_REQUIRED",
     "rust_lbe_wrapper": "IMPLEMENTED",
     "rust_live_read_only_adapter": "BOUNDED_PROVEN",
     "rust_mcp_metadata_projection": "PROVEN",
     "rust_tests": "PASS_178",
     "rust_complete_cli": "INCOMPLETE",
-    "pty_conpty_harness": "MISSING",
+    "conpty_pty_harness": "MISSING",
+    "non_empty_authorized_registry_case": "MISSING",
     "installed_mcp_e2e": "NOT_PROVEN",
-    "remote_tui_p2_p3_authorization": "NOT_PROVEN",
     "publication": "LOCKED"
   },
   "next_action": {
-    "status": "GOVERNANCE_FIRST",
-    "action": "reconcile and authorize the LBE machine gate before broader Rust/TUI integration work",
-    "after_authorization": "continue client projection and installed acceptance; do not rebuild LBE backend"
+    "mode": "COMPLETION_MODE",
+    "first": "reconcile and push the human-readable LBE governance projection to match the committed machine TUI_P2_P3 gate",
+    "then": [
+      "continue missing Rust client seams without rebuilding LBE owners",
+      "create or select a real authorized non-empty capability registry case",
+      "build reusable Windows ConPTY/PTTY harness",
+      "run installed /mcp and core CLI lifecycle acceptance",
+      "finish minimum session/provider/tool/receipt/evidence/persistence projections required for usable CLI",
+      "run final Rust and LBE regressions",
+      "commit/push focused completion changes and close gate only with claim-matched evidence"
+    ]
   },
-  "authority_note": "GPT-Knowledge is projection/reference only. Canonical LBE machine governance, source/runtime evidence, local workspace evidence and GitHub remote evidence remain authoritative."
+  "authority_note": "GPT-Knowledge is projection/reference only. Canonical LBE machine governance, current source/runtime evidence, local workspace evidence and GitHub remote evidence remain authoritative."
 }
