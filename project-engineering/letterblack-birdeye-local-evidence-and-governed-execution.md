@@ -1,167 +1,233 @@
-# Letterblack BirdEye — Local Evidence and Governed Execution
+# Letterblack BirdEye — Local Evidence, MCP Routing, EYES, and Governed Execution
+
+Updated: 2026-09-01
 
 ## Purpose
 
-`Letterblack_BirdEye` is the local evidence and governed-execution layer used alongside GPT-Knowledge and GitHub.
+`Letterblack_BirdEye` is the consolidated local evidence/index and governed-execution MCP surface used alongside GPT-Knowledge, Memory, Skills, GitHub, and live runtime evidence.
 
-Use the three sources for different kinds of truth:
+Use `project-engineering/letterblack-mcp-ecosystem-and-routing.md` for the complete ecosystem map and ownership direction.
+
+BirdEye is an access/evidence surface. It does not automatically become the canonical owner of every source it exposes.
+
+## Current ownership boundary
 
 ```text
 GPT-Knowledge
-  -> reusable methods, prior reasoning, routing, and durable project guidance
+  -> durable project/method/status/reference projection and routing
+
+Memory
+  -> canonical historical conversations/messages/provenance
+
+Skills
+  -> curated reasoning/workflow instructions
+
+BirdEye MCP
+  -> current local evidence/index access
+  -> GPT-Knowledge routing/read access
+  -> Memory query/read access
+  -> consolidated Skills query/fetch/status
+  -> workspace/revision identity
+  -> governed local commands
+  -> EYES projection health/retirement controls
 
 GitHub
-  -> canonical remote repository, branches, commits, PRs, checks, and reviewed patch truth
+  -> canonical remote repository/branch/commit/PR/check truth
 
-Letterblack_BirdEye
-  -> current local workspace evidence, indexed local files, revision identity, local diff/status, and policy-governed command execution
+Runtime/browser/provider
+  -> live behavior proof
 ```
 
-BirdEye does not replace GPT-Knowledge as the reasoning/method authority and does not replace GitHub as the normal reviewed patch/PR destination.
+## Current BirdEye MCP capability families
 
-## Repository and local role
+### Local evidence
 
-Canonical repository:
+- `birdeye_search`
+- `birdeye_inspect`
+- `birdeye_roots`
+- `birdeye_status`
 
-- `Letterblack0306/Letterblack_BirdEye`
+### GPT-Knowledge
 
-BirdEye maintains configured local roots through `config.json`. A representative active configuration includes:
+- `knowledge_route`
+- `knowledge_read`
+- `local_projects`
 
-- `developments` -> `G:\Developments` (`workspace`)
-- `agents-memory-tool-v6` -> `C:\Agents-Memory-Tool-v6-integration` (`workspace`)
-- `gpt-knowledge` -> `C:\MCP Local\GPT-Knowledge` (configured as `knowledge`)
+### Historical Memory access
 
-Always verify the current local `config.json`; do not assume these paths are unchanged merely because they are documented here.
+- `memory_recall`
+- `memory_search`
+- `memory_timeline`
+- `memory_conversation`
+- `memory_message`
+- `memory_related`
+- `memory_sources`
 
-### Known root-class implementation discrepancy
+Canonical historical Memory remains owned by `C:\MCP Local\Memory\memory.db` even when accessed through BirdEye.
 
-Current source must be checked before trusting configured `root_class` labels. In the observed BirdEye implementation, `Context.load()` reads each configured root but constructs it with `root_class="workspace"` rather than preserving the configured value. A live `agent.py roots` trace therefore reported `gpt-knowledge` as `workspace` even though `config.json` declares it as `knowledge`.
+### Curated Skills
 
-Treat this as a current implementation discrepancy, not intended architecture. Until fixed and runtime-proven, do not claim that configured trust classes are preserved merely because `config.json` contains them.
+BirdEye exposes one consolidated `skills` tool:
 
-## Capability surface
+- `skills(operation="status")`
+- `skills(operation="query", query=..., prefix=...)`
+- `skills(operation="fetch", rel=...)`
 
-The BirdEye MCP server exposes these relevant tools:
+`skill-gallery-router` is routing guidance for the agent. It tells the agent when/where to look; it is not the actual gallery retrieval engine.
 
-### Local evidence and index tools
+Correct direction:
 
-- `birdeye_search` — ranked search across the live SQLite workspace index.
-- `birdeye_inspect` — inspect one indexed file by virtual path.
-- `birdeye_roots` — list configured roots and trust classes.
-- `birdeye_status` — inspect SQLite index health.
-- `workspace_identity` — read workspace and Git revision identity evidence.
-- `revision_status` — read branch/HEAD/upstream/dirty-state evidence bound to the observed revision.
+```text
+skill-gallery-router (when useful)
+  -> BirdEye skills(query)
+  -> select returned rel
+  -> BirdEye skills(fetch) only when full content is needed
+```
 
-### Governed execution tools
+A proven session successfully queried the real BirdEye Skills index and fetched `curated/design/frontend-design/SKILL.md`. Therefore do not conclude that the gallery is unavailable merely because a router wrapper returns only its instructions.
 
-- `workspace_run` — execute one argv-array command inside a verified workspace under BirdEye policy.
-- `workspace_run_sequence` — execute ordered governed commands, normally stopping on first failure.
-- `workspace_command_history` — retrieve recent execution journal entries.
+### Workspace/revision evidence
 
-These capabilities are implemented and dispatched by the MCP server; they are not documentation-only intentions.
+- `workspace_identity`
+- `revision_status`
 
-## Execution boundary
+### Governed execution
 
-BirdEye command execution is intentionally governed.
+- `workspace_run`
+- `workspace_run_sequence`
+- `workspace_command_history`
 
-Commands are passed as argv arrays, not free-form shell strings. The workspace is resolved from configured roots, execution occurs with `shell=False`, and policy decides whether the command is allowed.
+BirdEye execution remains policy-bound. A rejected command proves that BirdEye did not authorize that invocation through its configured governance; it does not prove the operation is universally impossible.
 
-Current governance permits bounded diagnostics and validation such as:
+## EYES projection system
 
-- Git status/diff/log/show/branch/rev-parse/ls-files/grep/fetch;
-- Node version;
-- npm test/lint/check/build;
-- Python version;
-- pytest/unittest.
+BirdEye's current EYES contract separates durable data/ledger state from disposable query projection state.
 
-The governance file also declares mutation-command categories, but the observed policy has `allowed_write_paths: []`, `max_changed_files: 0`, and `max_patch_bytes: 0`. Therefore do not infer writable/mutating BirdEye authority from the presence of a `mutation_commands` list alone; validate the effective policy and actual execution result first.
+```text
+canonical source/content owner
+        ↓
+eye_<domain>_data_01.db
+  canonical_generation
+  durable changes ledger
+        ↓
+project_pending_changes() / deterministic rebuild
+        ↓
+eye_<domain>_query_01.db
+  applied_generation
 
-Current policy explicitly blocks shell wrappers and broad destructive operations such as PowerShell/pwsh/cmd/bash/sh/wsl wrappers, destructive reset/clean/restore patterns, force push, and similar unsafe commands.
+lag = canonical_generation - applied_generation
+```
 
-Therefore:
+Current validated behavior reported for the local implementation:
 
-> **BirdEye is a governed execution surface, not an unrestricted local shell.**
+- deterministic Workspace query rebuild: PASS;
+- deterministic Skills query rebuild: PASS;
+- Memory EYES rebuild/replay parity: PASS;
+- Memory live rebuild: 68,097 documents;
+- Memory `journal_replayable = true`;
+- Memory `rebuildable = true`;
+- Memory generation lag: 0;
+- replay idempotency: targeted proof PASS;
+- repeated rebuild deterministic output: PASS;
+- unified EYES health/divergence reporting: implemented.
 
-If an operation is outside BirdEye policy, that does not prove the operation is impossible. It proves BirdEye did not authorize that operation through its current execution boundary. Use another explicitly available and appropriate execution path only when the user/task authorizes it.
+The query databases are projections. They must be recoverable from their canonical data/source owners and must not become a second source of truth.
+
+## Legacy compatibility and retirement
+
+Legacy `state\workspace.db` remains a compatibility path until retirement is explicitly activated.
+
+Current required compatibility state after Memory parity validation:
+
+```text
+state\eyes_legacy_retired.json   intentionally absent until activation
+legacy_storage_retired()         false until activation
+state\workspace.db               compatibility path active
+```
+
+The retirement operation is fail-closed: it reports the retirement gate and must refuse activation until every required predicate passes. The marker is persisted only after successful activation.
+
+Do not infer retirement merely because replay/rebuild parity now passes.
+
+## MCP process and watcher lifecycle
+
+BirdEye must support legitimate concurrent MCP stdio clients while preventing duplicate indexing watchers.
+
+Current corrected model:
+
+```text
+MCP client A ─┐
+              ├─> independent BirdEye stdio connections
+MCP client B ─┘
+                       │
+                       └─> separately singleton-leased filesystem watcher
+```
+
+The process-scoped diagnostic marker must not force a second legitimate client to disconnect. The watcher lease remains separate and singleton-owned.
+
+Validation reported after the fix:
+
+- Python compilation: PASS;
+- focused Skills tests: 7 passed;
+- concurrent stdio smoke test while another BirdEye process held the diagnostic marker:
+  - initialize: PASS;
+  - `skills(operation="status")`: PASS;
+  - MCP `isError`: false;
+  - shutdown: PASS.
+
+A client session that already cached the previous disconnected state may require MCP connection reload/restart. That stale client state is not proof that the repaired server still rejects concurrent clients.
+
+## Current direction for agents
+
+Use BirdEye according to the claim being established:
+
+| Need | BirdEye route |
+|---|---|
+| Current local indexed evidence | `birdeye_search` / `birdeye_inspect` |
+| Index/EYES health | `birdeye_status` and active EYES health surface |
+| Workspace/HEAD/dirty identity | `workspace_identity` / `revision_status` |
+| Project mapping | `local_projects` |
+| GPT-Knowledge route/read | `knowledge_route` / `knowledge_read` |
+| Historical recall | `memory_*` tools, preserving Memory ownership |
+| Curated skill discovery | `skills(query)` |
+| Curated skill fetch | `skills(fetch)` |
+| Governed local execution | `workspace_run` / `workspace_run_sequence` |
+| Execution journal | `workspace_command_history` |
 
 ## Evidence precedence
 
-For repository/project claims, keep evidence roles separate:
+For present-state engineering claims:
 
 ```text
-Live runtime proof
-  > active local workspace evidence (BirdEye/direct runtime inspection)
-  > canonical remote repository evidence (GitHub)
-  > project-specific durable guidance
-  > general GPT-Knowledge methods
-  > model prior knowledge
+live runtime proof
+  > active local workspace evidence
+  > canonical GitHub remote evidence
+  > project-specific durable GPT-Knowledge
+  > curated Skills methodology
+  > model inference
 ```
 
-Do not confuse local and remote truth:
-
-- GitHub may be clean while the local workspace is dirty.
-- A local file may differ from the active remote branch.
-- A passing remote check does not prove the local checkout matches it.
-- A BirdEye observation must be bound to the correct configured workspace and current revision.
-
-## Default operating route
-
-For project, repository, agent, CLI, runtime, or debugging work:
-
-```text
-1. Read GPT-Knowledge routing/method guidance first when the task is consequential.
-2. Verify canonical repository/branch/commit/PR state through GitHub.
-3. Use BirdEye when local workspace, revision, diff, file, or governed execution evidence is relevant.
-4. Use runtime-specific tooling for behavior that requires live execution or user-visible proof.
-5. Keep implementation patches in normal repository-backed review/PR flow unless the user explicitly chooses another workflow.
-```
-
-## When BirdEye should be consulted early
-
-Use BirdEye before strong conclusions when any of the following are material:
-
-- the user refers to a local path or current checkout;
-- local-vs-remote drift may matter;
-- a branch is reported as behind/ahead/dirty;
-- an agent claims a file exists, was changed, or was deleted locally;
-- current workspace identity or `HEAD` matters;
-- tests/build/checks need to be run locally under policy;
-- a local file/index search can disambiguate duplicate implementations or stale paths;
-- GitHub evidence alone cannot establish current machine state.
+Historical Memory is authoritative for what happened historically, not automatically for what is true now.
 
 ## What BirdEye does not prove by itself
 
-BirdEye source presence, index presence, or successful command execution does not automatically prove:
+BirdEye source/index/tool presence does not automatically prove:
 
-- a UI feature is user-visible and correct;
-- a browser/CDP action reached the intended rendered target;
-- a service remains running after command completion;
-- a remote GitHub branch contains local uncommitted changes;
-- an unrestricted operation is authorized merely because another local tool could execute it.
+- a UI rendered correctly;
+- a browser action reached the intended rendered target;
+- a provider completed a real continuation;
+- a remote branch contains local uncommitted changes;
+- an MCP client reloaded stale connection state;
+- a capability is user-visible merely because its schema exists.
 
-Match the proof to the claim.
-
-## Fallback relationship with broader local execution tools
-
-A broader local execution tool such as the Loop Tool may support operations that BirdEye governance intentionally blocks. Keep the distinction explicit:
-
-```text
-BirdEye
-  = inspection + indexed evidence + revision identity + governed argv execution
-
-Loop/local execution tool
-  = broader interactive/runtime execution according to that tool's own safety and workspace boundary
-```
-
-Prefer BirdEye for routine local evidence and allowed diagnostics because it produces workspace-bound governed evidence. Use a broader execution route only when BirdEye policy does not cover the required authorized operation or when interactive runtime behavior must be tested.
+Match proof to the claim.
 
 ## Maintenance rule
 
-Before changing BirdEye architecture, policy, command allowlists, workspace identity rules, MCP schemas, or execution semantics:
+Before making a consequential present-state claim about BirdEye:
 
-1. inspect the current `Letterblack_BirdEye` repository and active local configuration;
-2. verify the actual registered MCP tools and policy implementation;
-3. distinguish documented behavior from runtime-proven behavior;
-4. update this GPT-Knowledge reference when a durable capability or authority boundary materially changes.
-
-Do not let this document become a substitute for current BirdEye source or local runtime evidence.
+1. inspect current local BirdEye source/runtime when available;
+2. verify the actually registered MCP tool surface;
+3. distinguish source implementation, focused tests, MCP protocol proof, and live client behavior;
+4. preserve canonical owners for Memory, Skills content, GPT-Knowledge, GitHub, and runtime evidence;
+5. update this reference and `letterblack-mcp-ecosystem-and-routing.md` when a durable ownership/routing boundary changes.
