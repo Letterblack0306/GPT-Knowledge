@@ -1,5 +1,5 @@
 {
-  "schema_version": 10,
+  "schema_version": 11,
   "project": "LBE Rust/Ratatui TUI Integration",
   "classification": "REFERENCE_NON_CANONICAL",
   "verified_at": "2026-09-01",
@@ -9,7 +9,7 @@
   "local_tui_workspace": "C:\\LBE-TUI-Lab",
   "local_lbe_workspace": "C:\\Agents-Memory-Tool-v6-integration",
   "source_revision_status": "USER_REPORTED_LOCAL_VALIDATED_REVISION_NOT_SUPPLIED",
-  "current_status": "MCP_IMPLEMENTATION_PROVEN_RUST_VALIDATION_PASS_INSTALLED_RUNTIME_BINDINGS_BLOCKED",
+  "current_status": "MCP_SOURCE_AND_REAL_WRAPPER_REFRESH_PROVEN_INSTALLED_INTERACTIVE_PTY_E2E_NOT_PROVEN",
   "authority_model": {
     "lbe": "runtime, governance, authorization, execution, evidence, ToolReceipt, persistence, validation and completion authority",
     "tui": "Rust/Ratatui interface, request adapter and projection client only",
@@ -17,80 +17,61 @@
   },
   "core_truth_rule": "Design defines intended behavior. Acceptance proves bounded behavior. Machine governance defines what is allowed now. Current runtime evidence defines what is true now.",
   "mcp_projection": {
-    "status": "SOURCE_IMPLEMENTATION_PROVEN_INSTALLED_ACCEPTANCE_NOT_PROVEN",
+    "status": "SOURCE_AND_REAL_WRAPPER_METADATA_REFRESH_PROVEN_INSTALLED_INTERACTIVE_ACCEPTANCE_NOT_PROVEN",
     "authority_owner": "LBE installed capability registry / capabilities.list",
     "rust_bridge": "RealLbeWrapper metadata-only projection",
-    "configuration": "LBE_CAPABILITY_REGISTRY",
     "invocation": "python -m lbe_guard_inspector.product_entry capabilities list --registry <path> --format json",
-    "validated_response_contract": [
-      "action == capabilities.list",
-      "schema_version == 1",
-      "execution_attempted == false"
-    ],
+    "validated_live_payload": {
+      "schema_version": 1,
+      "count": 0,
+      "integrations": [],
+      "execution_attempted": false
+    },
     "rust_event": "McpRegistryUpdated",
-    "state_behavior": "atomically replace retained MCP schema and integration metadata",
     "ui_surface": "/mcp dynamic metadata-only projection",
-    "local_authority_exclusions": [
+    "authority_exclusions": [
       "no Rust MCP transport owner",
       "no Rust execution owner",
       "no Rust authorization owner",
       "no Rust credential owner",
       "no Rust receipt owner",
-      "no Rust evidence owner",
-      "transport/execution/authorization state not retained locally"
+      "no Rust evidence owner"
     ],
-    "source_implementation": "PROVEN",
-    "rust_formatting": "PASS",
-    "cargo_check": "PASS",
-    "rust_full_suite": "178 passed",
-    "rust_full_suite_with_LBE_RUNTIME_real": "178 passed",
-    "documentation_status": "PASS",
-    "authoritative_capability_command_help": "AVAILABLE",
-    "shared_skills_gallery_status": "AVAILABLE",
-    "targeted_mcp_gallery_query": "NO_MATCHING_SKILL_FOUND",
-    "installed_lbe_runtime": "BLOCKED_REQUIRED_RUNTIME_BINDINGS_UNAVAILABLE",
-    "installed_interactive_acceptance": "NOT_PROVEN"
-  },
-  "runtime_configuration_blocker": {
-    "status": "BLOCKED",
-    "required_missing_variables": [
-      "LBE_WALL_ROOT",
-      "LBE_TARGET_WORKSPACE",
-      "LBE_WALL_DATABASE",
-      "LBE_PROVIDER_CONFIG",
-      "LBE_CAPABILITY_REGISTRY",
-      "LBE_SESSION_ID"
-    ],
-    "also_unset_but_not_required_for_current_metadata_only_mcp_path": [
-      "LBE_TASK_ID",
-      "LBE_WALL_PYTHON"
-    ],
-    "binding_manifest_status": "NO_EXISTING_EXPLICIT_RUNTIME_BINDING_MANIFEST_FOUND",
-    "installed_capability_registry_status": "NO_EXISTING_REGISTRY_FOUND_THAT_CAN_SAFELY_SUPPLY_REQUIRED_VALUES",
-    "safety_rule": "do not hard-code paths, fabricate session identity, or alter LBE authority to bypass missing runtime bindings"
+    "configured_real_attachment": "PASS",
+    "configured_real_mcp_refresh": "PASS",
+    "clean_missing_configuration": "PASS_FAIL_CLOSED",
+    "clean_reconnect": "PASS_FAIL_CLOSED",
+    "installed_interactive_pty_e2e": "NOT_PROVEN"
   },
   "validation": {
-    "rust_formatting_current_reported": "PASS",
-    "cargo_check_current_reported": "PASS",
-    "rust_full_suite_current_reported": "178 passed",
-    "rust_full_suite_LBE_RUNTIME_real_current_reported": "178 passed",
-    "mcp_projection_regression": "PASS",
-    "documentation_status_current_reported": "PASS"
+    "rust_formatting": "PASS",
+    "rust_compilation": "PASS",
+    "rust_full_suite": "178 passed",
+    "configured_real_attachment": "PASS",
+    "configured_mcp_refresh": "PASS",
+    "missing_configuration": "PASS_FAIL_CLOSED",
+    "reconnect_fail_closed": "PASS",
+    "lbe_capability_registry_tests": "20 passed",
+    "git_diff_check_rust_integration_files": "PASS"
   },
+  "documented_binding_evidence": [
+    "C:\\LBE-TUI-Lab\\Docs\\35_p1_live_acceptance_evidence_record.md:10-20",
+    "C:\\LBE-TUI-Lab\\Docs\\34_p1_live_readonly_acceptance.md:19-36"
+  ],
   "remaining_unproven": [
-    "installed interactive MCP projection against a configured LBE runtime",
+    "complete installed terminal PTY/E2E interaction proving /mcp end to end",
     "complete installed-package interactive TUI acceptance",
     "any broader completion claim not covered by the bounded evidence above"
   ],
   "overall_status_summary": {
     "mcp_source_implementation": "PROVEN",
-    "rust_formatting": "PASS",
-    "rust_compilation": "PASS",
+    "real_wrapper_attachment": "PASS",
+    "real_mcp_metadata_refresh": "PASS",
+    "fail_closed_missing_configuration": "PASS",
+    "fail_closed_reconnect": "PASS",
     "rust_regression": "PASS_178",
-    "rust_regression_LBE_RUNTIME_real": "PASS_178",
-    "documentation_status": "PASS",
-    "installed_lbe_runtime": "BLOCKED_RUNTIME_BINDINGS_UNAVAILABLE",
-    "mcp_installed_acceptance": "NOT_PROVEN",
+    "lbe_capability_registry_regression": "PASS_20",
+    "mcp_installed_interactive_pty_e2e": "NOT_PROVEN",
     "complete_product_level_tui_acceptance": "NOT_YET_PROVEN"
   },
   "authority_note": "GPT-Knowledge is projection/reference only. Canonical LBE source, machine governance, current workspace/runtime evidence and acceptance records remain authoritative."
