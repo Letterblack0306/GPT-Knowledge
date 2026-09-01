@@ -4,11 +4,11 @@ Updated: 2026-09-01
 
 ## Purpose
 
-This document defines the current Letterblack local-agent ecosystem, ownership boundaries, and the direction an agent should use when selecting evidence or capabilities.
+This document defines the current Letterblack local-agent ecosystem, ownership boundaries, client routing direction, and the distinction between configuration validity and live runtime validity.
 
-It is a routing/ownership reference, not runtime truth. Current local source, registered MCP tools, repository state, validation receipts, and live runtime evidence outrank this document.
+It is a routing/ownership reference, not runtime truth. Current local source, registered MCP tools, live process state, validation receipts, repository state, and runtime evidence outrank this document.
 
-## Current validated MCP topology
+## Intended client topology
 
 ```text
 Agent clients
@@ -20,15 +20,15 @@ Agent clients
   ├── Antigravity
   └── Claude
         │
-        └── BirdEye MCP              <- consolidated client MCP route
+        └── BirdEye MCP              <- consolidated Letterblack MCP route
               ├── workspace query
               ├── memory query       <- ChatGPT + agent runtime/session history
               └── skills query       <- one consolidated Skills namespace/index
 ```
 
-The client-facing MCP topology is intentionally consolidated through BirdEye. A client does not register a duplicate direct Memory MCP route or a separate Skills MCP route when following this architecture.
+The validated configuration model uses BirdEye as the consolidated Letterblack MCP route. Clients should not add duplicate direct Memory or separate Skills MCP routes when following this architecture.
 
-Consolidated access does **not** collapse ownership:
+This routing consolidation does not collapse ownership:
 
 ```text
 Reasoning Agent   -> interpretation, planning, tool selection, conclusions
@@ -40,37 +40,74 @@ GitHub            -> canonical remote repository/branch/commit/PR/check truth
 Runtime/Browser   -> live behavior proof
 ```
 
-BirdEye can expose Memory, Skills, and GPT-Knowledge capabilities without becoming the canonical owner of those underlying sources.
+BirdEye may expose Memory, Skills, and GPT-Knowledge capabilities without becoming the canonical owner of those sources.
+
+## Current authoritative status — 2026-09-01
+
+The latest supplied verification separates architecture/configuration validity from live runtime exclusivity.
+
+```text
+MCP Local structure/configuration: PASS
+BirdEye handshake and Skills surface: PASS
+Global active-runtime exclusivity: FAIL
+Overall production-ready verdict: NOT YET PROVEN
+```
+
+Architecture validator:
+
+```text
+required checks: 52 PASS
+required failures: 0 FAIL
+```
+
+Global MCP alignment audit:
+
+```text
+status: FAIL
+issue: LIVE_COMPETING_PROCESS
+active competing processes reported: 3
+  - mcp-filesystem-server.exe
+  - Context7 MCP
+  - Playwright MCP
+port 3000: not listening
+C:\MCP Local\AGENTS.md: not found
+```
+
+The audit text also describes two competing MCP/proxy processes while listing three active competing processes. Preserve that discrepancy as reported; do not invent a reconciliation without the underlying audit/process evidence.
+
+### Correct interpretation
+
+1. The 52/52 architecture result proves the validated structure/configuration checks passed. It does **not** prove global live-process exclusivity.
+2. Skills lexical retrieval is acceptable by current design. The validator proves the curated 52-skill corpus, SHA identity checks, one public Skills tool, and lexical retrieval. It does not prove that every agent has no separately loaded skill copy.
+3. Absolute and cwd-relative BirdEye paths may resolve to the same server, but path form alone does not prove the same Python executable is used. That requires each client's complete launcher configuration plus live process command-line evidence.
+4. Disabled or removed legacy configuration entries do not terminate processes already launched by an earlier client/session. Static cleanup therefore does not prove runtime cleanup.
+5. A disabled entry also does not by itself prove it cannot be reactivated or inherited from another configuration layer.
+6. The current configuration layer is largely aligned, but live runtime state is not yet aligned.
+7. Production readiness must remain unproven until the live competing-process condition is cleared and the global alignment audit passes.
 
 ## Ownership and direction
 
-### 1. Reasoning agent
+### Reasoning agent
 
 The agent owns interpretation, task decomposition, tool selection, reconciliation, planning, and conclusions.
 
-Do not move semantic reasoning into MCP transport or indexing layers. The operating rule remains:
-
 > Agents reason; bridges and MCP transports expose bounded capabilities and evidence.
 
-### 2. Skills
+### Skills
 
-Skills are curated reasoning/workflow instructions. They are not repository truth and they are not local execution tools.
+Skills are curated reasoning/workflow instructions. They are not repository truth and are not local execution tools.
 
-The `skill-gallery-router` exists to tell an agent when and where to look for a specialist skill. It does not replace the actual Skills retrieval capability.
-
-Correct path:
+`skill-gallery-router` tells the agent when and where to look. Actual retrieval is performed by BirdEye's consolidated Skills capability:
 
 ```text
 task
-  -> skill-gallery-router when useful for routing
+  -> skill-gallery-router when useful
   -> BirdEye MCP skills(operation="query")
-  -> choose returned rel/path
-  -> BirdEye MCP skills(operation="fetch") only when full skill content is needed
+  -> select returned rel/path
+  -> BirdEye MCP skills(operation="fetch") when full content is needed
 ```
 
-The router is guidance. Actual gallery discovery/fetch is performed by BirdEye's single consolidated `skills` MCP capability.
-
-Current consolidated operations:
+Current public operations:
 
 - `skills(operation="status")`
 - `skills(operation="query", query=..., prefix=...)`
@@ -78,73 +115,48 @@ Current consolidated operations:
 
 Do not use obsolete separate `skills_list`, `skills_fetch`, or `skills_hash_status` assumptions. Do not create agent-specific Skills partitions.
 
-### 3. GPT-Knowledge
+Skills retrieval is currently lexical with SHA-256 identity/duplicate suppression. Skills vectors remain optional.
 
-GPT-Knowledge owns durable project/method/status/reference projection and deterministic project routing.
+### GPT-Knowledge
 
-Use it for:
+GPT-Knowledge owns durable project/method/status/reference projection and deterministic routing guidance. It does not prove current local workspace state, remote repository state, or live runtime behavior.
 
-- project plans/status/reference records;
-- reusable engineering guidance;
-- architecture/method decisions that have been documented durably;
-- project-to-local-path mapping;
-- routing to the correct evidence owner.
+### BirdEye MCP
 
-It does not prove current local workspace state, remote repository state, or live runtime behavior.
+BirdEye is the intended consolidated client-facing local MCP surface for:
 
-BirdEye may expose GPT-Knowledge through capabilities such as `knowledge_route`, `knowledge_read`, and `local_projects`, while GPT-Knowledge remains the durable knowledge owner.
-
-### 4. BirdEye MCP
-
-BirdEye is the consolidated client-facing local MCP surface for the validated MCP Local architecture.
-
-Capability families include:
-
-- local evidence: `birdeye_search`, `birdeye_inspect`, `birdeye_roots`, `birdeye_status`;
-- GPT-Knowledge routing/read access;
+- local workspace/index evidence;
+- GPT-Knowledge route/read access;
 - historical Memory query/read access;
-- curated Skills through one consolidated `skills` tool;
+- consolidated Skills query/fetch/status;
 - workspace/revision identity;
 - governed local execution;
-- EYES projection/health controls where exposed by the active runtime.
+- EYES projection/health controls where exposed.
 
-BirdEye is the single enabled Letterblack MCP route in the validated client topology. Competing broad filesystem, legacy MCP, direct Memory, and separate Skills routes are absent or disabled according to the validation checkpoint.
+BirdEye configuration alignment does not by itself prove that no competing MCP/proxy processes remain alive.
 
-### 5. Memory
+### Memory
 
-Canonical historical-memory ownership remains with the Memory system and its canonical historical store.
-
-Memory covers:
-
-- imported ChatGPT history;
-- coding-agent/runtime/session history;
-- historical decisions and prior implementation evidence;
-- exact provenance and source identity.
-
-Clients access that historical capability through BirdEye in the validated consolidated topology.
-
-Important distinction:
+Memory remains the canonical historical data owner for imported ChatGPT history and agent/runtime/session history.
 
 ```text
-client MCP route        = BirdEye
-historical data owner   = Memory
+client MCP route       = BirdEye
+historical data owner  = Memory
 ```
 
-A direct client -> Memory MCP registration is therefore **not part of the current validated architecture**. Removing the duplicate client route does not remove or transfer Memory ownership.
+A direct client -> Memory MCP registration is not part of the intended consolidated client topology.
 
-Memory semantic vectors remain active in the BirdEye-owned derived semantic index. Historical content authority remains with Memory; the derived vector/index layer is retrieval infrastructure.
+Memory semantic vectors are active in the BirdEye-owned derived semantic index. The derived index is retrieval infrastructure, not historical-content ownership.
 
-### 6. EYES
+### EYES
 
-EYES is BirdEye's durable/query projection system.
-
-Authority model:
+EYES separates durable data/ledger state from disposable query projection state:
 
 ```text
 canonical source/content owner
         ↓
 eye_<domain>_data_01.db
-canonical generation + durable change ledger
+canonical_generation + durable changes ledger
         ↓
 replay / deterministic rebuild
         ↓
@@ -152,71 +164,71 @@ eye_<domain>_query_01.db
 applied_generation
 ```
 
-Health uses:
-
 ```text
 lag = canonical_generation - applied_generation
 ```
 
-Workspace, Memory, and Skills participate in the current query architecture. Query databases are disposable projections and must remain recoverable from their canonical owners/data paths.
+Workspace, Memory, and Skills participate according to their ownership boundaries.
 
-Skills retrieval is currently lexical with SHA-256 identity/duplicate suppression. Skills vectors remain optional; their absence is not a failed required architecture condition.
-
-### 7. GitHub
+### GitHub
 
 GitHub remains canonical remote repository truth for branches, commits, pull requests, remote file state, required checks, and workflow results.
 
-Do not use GPT-Knowledge or BirdEye as a substitute for remote repository truth when the claim is specifically about GitHub state.
+### Runtime / browser / provider
 
-### 8. Runtime / browser / provider
+Live behavior proof outranks documentation and static configuration for process liveness, successful MCP initialization/tool invocation, browser behavior, provider behavior, and production-readiness claims.
 
-Live behavior proof outranks documentation and index presence for behavioral claims such as rendered UI, browser actions, provider continuation, service liveness, or successful MCP initialization/tool invocation.
+## Configuration validation vs runtime validation
 
-## Validated client direction
-
-The 2026-09-01 MCP Local architecture validation reports these required routing properties as PASS:
+Keep these two gates separate:
 
 ```text
-Codex          -> BirdEye only
-Cline          -> BirdEye only
-OpenCode       -> BirdEye only
-Gemini         -> BirdEye only
-Antigravity    -> BirdEye only
-Claude         -> BirdEye only
+CONFIGURATION / STRUCTURE GATE
+  -> registered routes
+  -> absent/disabled competing config entries
+  -> corpus/index identities
+  -> public MCP tool surface
+  -> launcher declarations
 
-Direct client -> Memory MCP      absent
-Separate client -> Skills MCP    absent
-Legacy competing MCP routes      absent/disabled
-Broad filesystem bypass          disabled
+LIVE RUNTIME GATE
+  -> actual running processes
+  -> actual process command lines
+  -> actual executable identity
+  -> inherited/stale client sessions
+  -> live ports/listeners
+  -> successful MCP handshake/tool behavior
 ```
 
-Cline standalone and Cline VS Code extension are both validated with BirdEye as the consolidated route and without duplicate direct Memory registration.
+Passing the first gate does not imply the second gate passed.
 
-## Skills validation direction
+## Current validated configuration properties
 
-The current validation reports:
+The supplied architecture validator reports:
 
-- exactly one public Skills tool;
+- BirdEye consolidated route configured for Codex, Cline standalone, Cline VS Code extension, OpenCode, Gemini, Antigravity, and Claude;
+- duplicate direct Memory routes absent in validated client configurations;
+- broad filesystem route disabled in validated configuration;
+- one public Skills tool;
 - no legacy Skills APIs;
 - no agent-specific Skills partitions;
-- `query`, `fetch`, and `status` concepts exposed;
 - 52 curated `SKILL.md` files;
 - SHA-256 identity for every curated skill;
-- automatic discovery without requiring a preselected skill name;
+- automatic Skills discovery;
 - bounded retrieval;
-- alternate concept/method discovery;
-- Memory owns no Skills MCP surface.
+- alternate-method discovery;
+- Memory semantic retrieval;
+- Skills vectors optional.
 
-`skill-gallery-router` remains a reasoning/router instruction. It may tell an agent where/how to look; BirdEye `skills(...)` performs actual retrieval.
+These are configuration/architecture facts, not proof that stale or previously launched competing processes have terminated.
 
 ## Query capabilities
 
-The validated query surface covers:
+The architecture validator reports PASS for:
 
 - exact symbol;
 - exact phrase/error/message;
 - lexical content/keyword retrieval;
-- path and path-prefix lookup;
+- path/path-prefix lookup;
 - root selection;
 - Memory semantic retrieval;
 - fetch;
@@ -224,34 +236,25 @@ The validated query surface covers:
 - freshness/SHA verification;
 - alternate-method/capability discovery.
 
-Skills semantic vectors are optional. Current Skills retrieval does not depend on them.
+## MCP process and watcher lifecycle
 
-## MCP connection model
+BirdEye may support legitimate concurrent stdio clients while indexing watcher ownership remains separately singleton-protected. That does not authorize unrelated competing MCP/proxy processes and does not make stale processes harmless by definition.
 
-BirdEye supports legitimate concurrent MCP stdio clients while the filesystem watcher remains separately singleton-owned.
-
-```text
-MCP client A ─┐
-              ├─> independent BirdEye stdio sessions
-MCP client B ─┘
-                       │
-                       └─> separately singleton-leased watcher
-```
-
-A stale client session may still require MCP reload/restart after a server-side connection fix; stale client connection state is not proof that the active server rejects concurrent clients.
+Static configuration changes do not terminate already running processes. Live process state must be checked independently.
 
 ## Capability routing table
 
-| Need | Primary route | Canonical owner / reason |
+| Need | Primary route | Canonical owner / proof boundary |
 |---|---|---|
 | Current local file/index evidence | BirdEye MCP | Current machine-local evidence surface |
 | Local branch/HEAD/dirty status | BirdEye workspace/revision capability | Revision-bound local evidence |
 | Governed local command | BirdEye governed execution | Policy-controlled execution |
-| Durable project/method/status knowledge | GPT-Knowledge, reachable directly or via BirdEye route/read | GPT-Knowledge remains owner |
-| Find specialist workflow guidance | skill-gallery-router -> BirdEye `skills(query)` | Skills corpus remains owner; BirdEye retrieves |
+| Durable project/method/status knowledge | GPT-Knowledge | GPT-Knowledge remains owner |
+| Find specialist workflow guidance | skill-gallery-router -> BirdEye `skills(query)` | Skills corpus remains owner |
 | Fetch selected skill | BirdEye `skills(fetch)` | Consolidated retrieval path |
 | Past ChatGPT/agent/session evidence | BirdEye Memory query surface | Memory remains historical owner |
 | Remote repository/PR/commit/check truth | GitHub | Canonical remote repository owner |
+| Live MCP/process exclusivity | Live process/config audit | Static config is insufficient |
 | Live UI/browser/provider behavior | Runtime-specific evidence | Only live execution proves behavior |
 
 ## Trust direction
@@ -259,46 +262,32 @@ A stale client session may still require MCP reload/restart after a server-side 
 For present-state engineering claims:
 
 ```text
-live runtime evidence
-  > active local workspace evidence
+live runtime/process evidence
+  > active local workspace/configuration evidence
   > canonical GitHub remote evidence
   > durable project-specific GPT-Knowledge
   > curated Skills methodology
   > model inference
 ```
 
-Historical evidence is authoritative for what happened historically, but it does not automatically outrank stronger current evidence for present-state claims.
+Historical evidence is authoritative for what happened historically, not automatically for what is true now.
 
 ## Required agent behavior
 
-1. Identify what kind of truth the question needs before selecting a capability.
-2. Use the consolidated BirdEye MCP route for local workspace, Memory, and Skills access in clients following the validated MCP Local architecture.
-3. Preserve canonical ownership: BirdEye access does not transfer ownership of Memory, Skills, GPT-Knowledge, GitHub, or runtime evidence.
-4. Use Skills for methodology, not source truth.
-5. Use GPT-Knowledge for durable routing/project context, not live local state.
-6. Use GitHub for remote repository truth.
-7. Use runtime evidence for behavioral claims.
-8. Do not restore duplicate direct Memory, separate Skills, broad filesystem, or legacy MCP routes merely because an agent fails to discover a capability; first verify BirdEye registration and tool exposure.
-9. If a skill router returns routing instructions, continue to BirdEye's actual `skills` capability rather than expecting the router itself to query the corpus.
+1. Identify whether a claim is about intended topology, static configuration, or live runtime state.
+2. Never convert a configuration PASS into a runtime-exclusivity PASS without live process evidence.
+3. Use BirdEye as the intended consolidated Letterblack MCP route for workspace, Memory, and Skills access.
+4. Preserve canonical ownership even when BirdEye exposes access.
+5. Treat lexical Skills retrieval as valid unless a requirement specifically demands semantic Skills vectors.
+6. Do not infer executable identity from equivalent-looking path arguments; inspect complete launcher and process command line when that distinction matters.
+7. Do not infer that disabled configuration terminated previously launched processes.
+8. Use GitHub for remote repository truth.
+9. Use runtime evidence for production-ready and live-behavior claims.
+10. If configuration and runtime disagree, report both; runtime wins for current-process claims.
 
-## Current validation checkpoint — 2026-09-01
+## Current validation artifacts
 
-Supplied MCP Local architecture validation reports:
-
-- architecture: **PASS**;
-- required checks: **52 PASS, 0 FAIL**;
-- BirdEye MCP handshake: PASS;
-- one live public Skills registration: PASS;
-- automatic Skills discovery: PASS;
-- bounded Skills retrieval: PASS;
-- alternate method discovery: PASS;
-- Memory semantic retrieval: PASS;
-- Memory incremental vector lifecycle coverage: PASS;
-- legacy Memory vector path absent: PASS;
-- Skills vectors: optional PLAN, not required;
-- all named client configurations checked for consolidated BirdEye routing and absence of duplicate direct Memory routes.
-
-Validation artifacts are recorded locally at:
+Architecture validation:
 
 ```text
 C:\MCP Local\servers\mcp_local_validation_report.json
@@ -306,4 +295,18 @@ C:\MCP Local\servers\mcp_local_validation_report.md
 C:\MCP Local\servers\mcp_local_validation.log
 ```
 
-This checkpoint is durable project evidence, but consequential present-state claims should still be rechecked against current configuration/source/runtime when they may have changed.
+Global runtime/config alignment audit:
+
+```text
+C:\MCP Local\mcp_alignment_audit.md
+C:\MCP Local\mcp_alignment_audit.json
+```
+
+Current authoritative summary:
+
+```text
+STRUCTURE / CONFIGURATION      PASS
+BIRDEYE HANDSHAKE / SKILLS     PASS
+LIVE RUNTIME EXCLUSIVITY       FAIL
+PRODUCTION READY               NOT YET PROVEN
+```
