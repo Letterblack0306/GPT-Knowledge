@@ -1,15 +1,21 @@
 {
-  "schema_version": 11,
+  "schema_version": 12,
   "project": "LBE Rust/Ratatui TUI Integration",
   "classification": "REFERENCE_NON_CANONICAL",
   "verified_at": "2026-09-01",
   "source_repo": "Letterblack0306/LBE_Agents_wall_Intigration",
   "source_branch": "main",
+  "source_commit": "6421726de39d9a58da6371b49f1707d8bb39fe91",
+  "source_commit_message": "docs: record MCP metadata checkpoint",
+  "source_commit_remote_status": "PROVEN_PRESENT_ON_GITHUB",
   "agent_wall_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "local_tui_workspace": "C:\\LBE-TUI-Lab",
   "local_lbe_workspace": "C:\\Agents-Memory-Tool-v6-integration",
-  "source_revision_status": "USER_REPORTED_LOCAL_VALIDATED_REVISION_NOT_SUPPLIED",
-  "current_status": "MCP_SOURCE_AND_REAL_WRAPPER_REFRESH_PROVEN_INSTALLED_INTERACTIVE_PTY_E2E_NOT_PROVEN",
+  "current_status": "MCP_SOURCE_REAL_WRAPPER_AND_LIVE_METADATA_REFRESH_PROVEN_COMMITTED_PUSHED_INSTALLED_INTERACTIVE_PTY_E2E_NOT_PROVEN",
+  "active_gate": {
+    "phase": "P2_P3_GOVERNED_EXECUTION",
+    "status": "OPEN"
+  },
   "authority_model": {
     "lbe": "runtime, governance, authorization, execution, evidence, ToolReceipt, persistence, validation and completion authority",
     "tui": "Rust/Ratatui interface, request adapter and projection client only",
@@ -37,27 +43,34 @@
       "no Rust receipt owner",
       "no Rust evidence owner"
     ],
-    "configured_real_attachment": "PASS",
-    "configured_real_mcp_refresh": "PASS",
+    "configured_real_attachment": "PROVEN",
+    "configured_real_mcp_refresh": "PROVEN",
     "clean_missing_configuration": "PASS_FAIL_CLOSED",
     "clean_reconnect": "PASS_FAIL_CLOSED",
     "installed_interactive_pty_e2e": "NOT_PROVEN"
   },
+  "documentation_checkpoint": {
+    "status": "COMMITTED_AND_PUSHED",
+    "commit": "6421726de39d9a58da6371b49f1707d8bb39fe91",
+    "files": [
+      "Agent.md",
+      "Docs/10_mcp_surface.md",
+      "Docs/README.md",
+      "Docs/STATUS.md",
+      "Docs/status.json",
+      "README.md"
+    ],
+    "unrelated_preexisting_changes": "PRESERVED_NOT_INCLUDED"
+  },
   "validation": {
+    "status_json_parse": "PASS",
+    "documentation_diff_check": "PASS_WITH_ONE_NON_BLOCKING_BLANK_LINE_WARNING",
     "rust_formatting": "PASS",
     "rust_compilation": "PASS",
     "rust_full_suite": "178 passed",
-    "configured_real_attachment": "PASS",
-    "configured_mcp_refresh": "PASS",
-    "missing_configuration": "PASS_FAIL_CLOSED",
-    "reconnect_fail_closed": "PASS",
-    "lbe_capability_registry_tests": "20 passed",
-    "git_diff_check_rust_integration_files": "PASS"
+    "lbe_capability_discovery": "PASS",
+    "focused_live_wrapper_mcp_tests": "PASS"
   },
-  "documented_binding_evidence": [
-    "C:\\LBE-TUI-Lab\\Docs\\35_p1_live_acceptance_evidence_record.md:10-20",
-    "C:\\LBE-TUI-Lab\\Docs\\34_p1_live_readonly_acceptance.md:19-36"
-  ],
   "remaining_unproven": [
     "complete installed terminal PTY/E2E interaction proving /mcp end to end",
     "complete installed-package interactive TUI acceptance",
@@ -65,12 +78,11 @@
   ],
   "overall_status_summary": {
     "mcp_source_implementation": "PROVEN",
-    "real_wrapper_attachment": "PASS",
-    "real_mcp_metadata_refresh": "PASS",
-    "fail_closed_missing_configuration": "PASS",
-    "fail_closed_reconnect": "PASS",
+    "real_wrapper_attachment": "PROVEN",
+    "real_mcp_metadata_refresh": "PROVEN",
     "rust_regression": "PASS_178",
-    "lbe_capability_registry_regression": "PASS_20",
+    "documentation_checkpoint": "COMMITTED_PUSHED",
+    "active_p2_p3_gate": "OPEN",
     "mcp_installed_interactive_pty_e2e": "NOT_PROVEN",
     "complete_product_level_tui_acceptance": "NOT_YET_PROVEN"
   },
