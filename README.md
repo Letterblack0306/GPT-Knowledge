@@ -8,6 +8,42 @@ Always begin with [`000_START_HERE.md`](000_START_HERE.md), then use [`knowledge
 
 Do not preload every domain. Knowledge guides decisions; it does not replace live workspace or runtime inspection.
 
+## Letterblack MCP ecosystem entry point
+
+Use [`project-engineering/letterblack-mcp-ecosystem-and-routing.md`](project-engineering/letterblack-mcp-ecosystem-and-routing.md) when a task needs to determine **which component should be used and which source owns the truth**.
+
+Current direction:
+
+```text
+Skills
+  -> reasoning/workflow methodology
+  -> skill-gallery-router may guide where to look
+  -> actual curated retrieval uses BirdEye MCP skills(query/fetch/status)
+
+GPT-Knowledge
+  -> durable project/method/status/reference projection and routing
+
+BirdEye MCP
+  -> current local evidence/index
+  -> GPT-Knowledge route/read access
+  -> Memory query/read access
+  -> consolidated Skills retrieval
+  -> workspace/revision identity
+  -> governed local execution
+  -> EYES health/projection controls
+
+Memory
+  -> canonical historical conversations/messages/provenance
+
+GitHub
+  -> canonical remote repository/branch/commit/PR/check truth
+
+Runtime / Browser / Provider
+  -> live behavior proof
+```
+
+BirdEye may expose a capability without becoming the canonical owner of the underlying source. In particular, Memory remains the historical owner, Skills remain curated methodology/content, GPT-Knowledge remains durable project/method projection, and GitHub remains remote repository truth.
+
 ## Purpose
 
 This repository stores reusable knowledge rather than project-specific implementation details.
