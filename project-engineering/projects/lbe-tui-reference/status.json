@@ -1,5 +1,5 @@
 {
-  "schema_version": 13,
+  "schema_version": 14,
   "project": "LBE Rust/Ratatui TUI Integration",
   "classification": "REFERENCE_NON_CANONICAL",
   "verified_at": "2026-09-01",
@@ -9,93 +9,84 @@
   "source_commit_message": "docs: record MCP metadata checkpoint",
   "source_commit_remote_status": "PROVEN_HEAD_OF_ORIGIN_MAIN",
   "agent_wall_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
+  "agent_wall_remote_main": "7ca58f866c662ab246c6c3ef23667c4cf7519d03",
+  "agent_wall_remote_main_status": "PROVEN",
   "local_tui_workspace": "C:\\LBE-TUI-Lab",
   "local_lbe_workspace": "C:\\Agents-Memory-Tool-v6-integration",
-  "current_status": "MCP_SOURCE_REAL_WRAPPER_AND_LIVE_METADATA_REFRESH_PROVEN_COMMITTED_PUSHED_INSTALLED_INTERACTIVE_PTY_E2E_BLOCKED_BY_TERMINAL_HARNESS",
-  "active_gate": {
-    "phase": "P2_P3_GOVERNED_EXECUTION",
-    "status": "OPEN"
+  "current_status": "GOVERNANCE_RECONCILIATION_REQUIRED_BEFORE_MORE_TUI_IMPLEMENTATION",
+  "remote_active_gate": {
+    "phase": "COMPLETE_LBE_AGENT_RUNTIME_IMPLEMENTATION",
+    "slice": "WORKSPACE_HYGIENE_GOVERNED_DELETION",
+    "status": "OPEN",
+    "implementation_allowed": "ACTIVE_WORKSPACE_HYGIENE_SLICE_ONLY",
+    "next_phase_locked": true,
+    "publication": "LOCKED_PAUSED"
   },
-  "authority_model": {
-    "lbe": "runtime, governance, authorization, execution, evidence, ToolReceipt, persistence, validation and completion authority",
-    "tui": "Rust/Ratatui interface, request adapter and projection client only",
-    "provider": "reasoning provider; output remains advisory and cannot become LBE authority"
+  "local_gate_divergence": {
+    "status": "LOCAL_UNCOMMITTED_STATE_DIFFERS_FROM_REMOTE_AUTHORITY",
+    "local_described_slice": "TUI_P2_P3_GOVERNED_EXECUTION_INTEGRATION",
+    "remote_authorization_for_tui_p2_p3": "NOT_PROVEN",
+    "rule": "local uncommitted gate state must not be presented as remote authority"
   },
-  "core_truth_rule": "Design defines intended behavior. Acceptance proves bounded behavior. Machine governance defines what is allowed now. Current runtime evidence defines what is true now.",
+  "accepted_lbe_baseline": {
+    "R3_R6F": "PROVEN_COMPLETE",
+    "CLI": "PROVEN_COMPLETE",
+    "R7_INSTALLED_END_TO_END_ACCEPTANCE": "PASS",
+    "PUBLICATION_PRECHECK": "PASS"
+  },
   "mcp_projection": {
-    "status": "SOURCE_AND_REAL_WRAPPER_METADATA_REFRESH_PROVEN_INSTALLED_INTERACTIVE_ACCEPTANCE_NOT_PROVEN",
+    "status": "PROVEN_AT_SOURCE_AND_REAL_WRAPPER_LEVEL",
     "authority_owner": "LBE installed capability registry / capabilities.list",
     "rust_bridge": "RealLbeWrapper metadata-only projection",
-    "invocation": "python -m lbe_guard_inspector.product_entry capabilities list --registry <path> --format json",
     "validated_live_payload": {
       "schema_version": 1,
       "count": 0,
       "integrations": [],
       "execution_attempted": false
     },
-    "rust_event": "McpRegistryUpdated",
-    "ui_surface": "/mcp dynamic metadata-only projection",
-    "authority_exclusions": [
-      "no Rust MCP transport owner",
-      "no Rust execution owner",
-      "no Rust authorization owner",
-      "no Rust credential owner",
-      "no Rust receipt owner",
-      "no Rust evidence owner"
-    ],
     "configured_real_attachment": "PROVEN",
     "configured_real_mcp_refresh": "PROVEN",
-    "clean_missing_configuration": "PASS_FAIL_CLOSED",
-    "clean_reconnect": "PASS_FAIL_CLOSED",
-    "installed_interactive_pty_e2e": "NOT_PROVEN"
+    "installed_interactive_pty_e2e": "NOT_PROVEN",
+    "additional_backend_or_registry_implementation_needed": false
   },
-  "documentation_checkpoint": {
-    "status": "COMMITTED_AND_PUSHED",
+  "tui_checkpoint": {
     "commit": "6421726de39d9a58da6371b49f1707d8bb39fe91",
-    "head_equals_origin_main": "PROVEN",
-    "files": [
-      "Agent.md",
-      "Docs/10_mcp_surface.md",
-      "Docs/README.md",
-      "Docs/STATUS.md",
-      "Docs/status.json",
-      "README.md"
-    ],
-    "unrelated_preexisting_changes": "PRESERVED_NOT_INCLUDED",
-    "additional_changes_in_latest_continuation": "NONE"
-  },
-  "installed_terminal_acceptance": {
-    "status": "BLOCKED_BY_MISSING_WINDOWS_PTY_HARNESS",
-    "binary": "C:\\LBE-TUI-Lab\\target\\debug\\lbe.exe",
-    "attempt_method": "redirected standard input",
-    "result": "TIMED_OUT_AND_TERMINATED",
-    "interpretation": "redirected stdin does not provide the real terminal/PTY lifecycle required by the full-screen Ratatui event reader; this does not prove an application defect",
-    "required_next_evidence": "genuine Windows terminal/PTy harness capable of driving the installed binary interactively"
-  },
-  "validation": {
+    "status": "COMMITTED_AND_PUSHED",
     "rust_formatting": "PASS",
     "rust_compilation": "PASS",
-    "rust_full_suite": "178 passed",
-    "lbe_mcp_registry_discovery": "PASS",
-    "rust_metadata_projection": "PROVEN",
-    "configured_real_wrapper_attachment": "PASS",
-    "configured_mcp_refresh": "PASS"
+    "rust_full_suite": "178 passed"
   },
-  "remaining_unproven": [
-    "complete installed terminal PTY/E2E interaction proving /mcp end to end",
-    "complete installed-package interactive TUI acceptance",
-    "any broader completion claim not covered by the bounded evidence above"
-  ],
-  "overall_status_summary": {
-    "repository_checkpoint_alignment": "HEAD_EQUALS_ORIGIN_MAIN_AT_6421726",
-    "mcp_source_implementation": "PROVEN",
-    "real_wrapper_attachment": "PROVEN",
-    "real_mcp_metadata_refresh": "PROVEN",
-    "rust_regression": "PASS_178",
-    "documentation_checkpoint": "COMMITTED_PUSHED",
-    "active_p2_p3_gate": "OPEN",
-    "mcp_installed_interactive_pty_e2e": "NOT_PROVEN_BLOCKED_BY_TERMINAL_HARNESS",
-    "complete_product_level_tui_acceptance": "NOT_YET_PROVEN"
+  "installed_terminal_acceptance": {
+    "status": "NOT_PROVEN",
+    "conpty_or_real_pty_harness": "MISSING",
+    "redirected_stdin_attempt": "INSUFFICIENT_FOR_FULL_SCREEN_TERMINAL_PROOF",
+    "required_after_authorization": [
+      "build reusable Windows ConPTY/PTTY harness",
+      "use an LBE-owned authorized non-empty capability registry",
+      "launch installed lbe.exe with documented real LBE bindings",
+      "drive /mcp through a real terminal",
+      "capture registered integration projection",
+      "prove unregistered capability rejection through LBE authority",
+      "prove clean q shutdown and terminal restoration",
+      "capture claim-matched TUI/LBE evidence"
+    ]
   },
-  "authority_note": "GPT-Knowledge is projection/reference only. Canonical LBE source, machine governance, current workspace/runtime evidence and acceptance records remain authoritative."
+  "next_action": {
+    "status": "GOVERNANCE_FIRST",
+    "action": "reconcile and authorize the LBE machine gate before writing more TUI code",
+    "options": [
+      "retain WORKSPACE_HYGIENE_GOVERNED_DELETION as the active remote slice",
+      "or deliberately promote TUI_P2_P3_GOVERNED_EXECUTION_INTEGRATION through an authorized, tested, committed, pushed, and GitHub-verified LBE gate update"
+    ]
+  },
+  "safe_current_classification": {
+    "lbe_backend": "PROVEN_COMPLETE",
+    "remote_active_slice": "WORKSPACE_HYGIENE_GOVERNED_DELETION",
+    "tui_mcp_projection": "PROVEN",
+    "installed_mcp_e2e": "NOT_PROVEN",
+    "conpty_infrastructure": "MISSING",
+    "tui_p2_p3_remote_authorization": "NOT_PROVEN",
+    "publication": "LOCKED"
+  },
+  "authority_note": "GPT-Knowledge is projection/reference only. Canonical LBE machine governance, current source/runtime evidence, local workspace evidence, and GitHub remote evidence remain authoritative."
 }
