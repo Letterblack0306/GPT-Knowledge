@@ -1,10 +1,11 @@
 {
-  "schema_version": 19,
+  "schema_version": 20,
   "project": "LBE Rust/Ratatui TUI Integration",
   "classification": "REFERENCE_NON_CANONICAL",
   "verified_at": "2026-09-02",
   "entry_point": "project-engineering/projects/lbe-tui-reference/README.md",
-  "goal": "Finish the native LetterBlack Rust/Ratatui CLI as a usable client over the already-complete LBE backend; do not rebuild existing LBE authorities.",
+  "active_completion_plan": "project-engineering/projects/lbe-tui-reference/COMPLETION_PLAN_2026-09-02.md",
+  "goal": "Finish the native LetterBlack Rust/Ratatui CLI as a usable client over the already-complete LBE backend and reach installed manual-user-test readiness without reopening settled architecture.",
   "source_repo": "Letterblack0306/LBE_Agents_wall_Intigration",
   "source_branch": "main",
   "source_commit": "6421726de39d9a58da6371b49f1707d8bb39fe91",
@@ -12,12 +13,28 @@
   "agent_wall_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "local_tui_workspace": "C:\\LBE-TUI-Lab",
   "local_lbe_workspace": "C:\\Agents-Memory-Tool-v6-integration",
-  "product_level_status": "LBE_BACKEND_COMPLETE_RUST_CLI_COMPLETION_MODE_ACTIVE",
+  "product_level_status": "LBE_BACKEND_COMPLETE_RUST_CLI_COMPLETION_MODE_ACTIVE_UNTIL_INSTALLED_USER_TEST_READY",
   "authority_model": {
     "provider": "reasoning and strategy",
-    "lbe": "authoritative backend for sessions, providers, tools, authorization, execution, evidence, receipts, persistence, validation and completion",
+    "lbe": "authoritative backend for sessions, provider/agent continuation, providers/models, tools, authorization, governed execution, MCP/external capability transport, evidence, receipts, persistence/recovery, validation and completion",
     "rust_tui": "client, typed adapter and projection layer only; must not duplicate LBE authority"
   },
+  "execution_spine": [
+    "Rust user prompt",
+    "RealLbeWrapper",
+    "LBE provider/runtime",
+    "LBE authorization and governed tool/MCP execution",
+    "LBE evidence and ToolReceipt",
+    "LBE provider continuation and completion",
+    "Rust event/projection"
+  ],
+  "explicit_non_goals_before_manual_user_test_readiness": [
+    "do not implement a second Rust-owned agent runtime",
+    "do not implement Rust MCP transport or authorization authority",
+    "do not make headless/CI JSON mode a release blocker",
+    "do not reopen already completed patch-approval client work",
+    "do not restart broad architecture discovery without contradictory canonical evidence"
+  ],
   "current_machine_gate": {
     "active_phase": "P2_P3_GOVERNED_EXECUTION",
     "active_slice": "TUI_P2_P3_GOVERNED_EXECUTION_INTEGRATION",
@@ -39,27 +56,6 @@
   "governed_patch_approval": {
     "status": "LOCAL_IMPLEMENTATION_COMPLETE_CLIENT_LEVEL_REAL_MUTATION_ACCEPTANCE_PENDING",
     "evidence_classification": "USER_REPORTED_LOCAL_VALIDATION",
-    "files": ["C:\\LBE-TUI-Lab\\src\\app.rs", "C:\\LBE-TUI-Lab\\src\\main.rs", "C:\\LBE-TUI-Lab\\src\\tests.rs", "C:\\LBE-TUI-Lab\\src\\ui.rs"],
-    "behavior": [
-      "/patch retains proposed patch in review",
-      "Enter requests LBE authorization for modify",
-      "workspace.patch is not submitted before authorization",
-      "ALLOW submits retained patch exactly once",
-      "DENY clears pending patch without mutation",
-      "REQUIRE_APPROVAL and ESCALATE retain pending patch",
-      "foreign authorization events are ignored",
-      "duplicate authorization events cannot submit twice",
-      "disconnect clears pending mutation state",
-      "Escape during approval clears pending patch and sends rejection",
-      "UI exposes AUTHORIZATION PENDING and does not mark running before authorization acceptance"
-    ],
-    "tests_added": [
-      "patch_review_requests_authorization_before_submitting_patch",
-      "allowed_patch_submits_the_retained_payload_exactly_once",
-      "denied_or_escalated_patch_waits_without_submitting_mutation",
-      "patch_approval_escape_clears_retained_patch_before_rejection_resolves",
-      "foreign_duplicate_and_disconnect_authorization_events_cannot_release_patch"
-    ],
     "validation": {
       "cargo_fmt_check": "PASS_LOCAL_REPORTED",
       "cargo_check": "PASS_LOCAL_REPORTED",
@@ -70,7 +66,8 @@
     "remaining_acceptance": [
       "authorized writable LBE session for real workspace.patch mutation",
       "real approval-enabled mutation receipt/evidence validation"
-    ]
+    ],
+    "sequencing_rule": "do not block independent Rust client completion work while waiting for real writable runtime evidence"
   },
   "mcp_current_truth": {
     "source_bridge": "PROVEN",
@@ -80,49 +77,101 @@
     "non_empty_authoritative_registry_case": "MISSING_CURRENT_CONFIGURED_REGISTRY_PATH_ABSENT",
     "conpty_or_real_pty_harness": "MISSING",
     "installed_mcp_e2e": "NOT_PROVEN",
-    "repeat_metadata_implementation": "DO_NOT_REPEAT"
-  },
-  "provider_catalog_projection": {
-    "status": "LOCAL_IMPLEMENTATION_REPORTED_PROVIDER_SPECIFIC_ACCEPTANCE_NOT_PROVEN",
-    "evidence_classification": "USER_REPORTED_LOCAL_AUDIT_WITH_DESIGNATED_SOURCE_LIMITATION",
-    "designated_source_result": "THE_SOURCE_DOES_NOT_SPECIFY_PROVIDER_CATALOG_IMPLEMENTATION_PROVIDER_LIST_BEHAVIOR_OR_PROVIDER_CATALOG_DISCOVERED",
-    "authority_boundary": "Rust may project provider metadata only; provider registry and provider truth remain LBE-owned"
+    "repeat_metadata_implementation": "DO_NOT_REPEAT",
+    "execution_authority_rule": "actual MCP/external invocation must remain behind existing LBE governed external-capability registration, authorization, transport, evidence and receipt owners"
   },
   "installed_terminal_acceptance": {
     "status": "BLOCKED_BY_CURRENT_NON_TTY_AUTOMATION_ENVIRONMENT",
     "redirected_stdin_attempt": "INSUFFICIENT_FOR_REAL_TERMINAL_PROOF",
-    "required_capability": "real Windows ConPTY/PTTY-capable harness"
+    "required_capability": "real Windows ConPTY/PTTY-capable harness",
+    "headless_json": "POST_COMPLETION_NON_BLOCKING_UNLESS_REQUIRED_FOR_NORMAL_USE"
   },
+  "release_blocking_completion_sequence": [
+    "real provider/agent continuation through existing LBE runtime",
+    "real agent-driven read-only tool-call continuation through LBE",
+    "real writable patch acceptance through implemented approval flow",
+    "structured evidence and ToolReceipt projection",
+    "basic real workspace diff/patch review",
+    "core session lifecycle and persistent resume",
+    "provider/model client surface completion",
+    "live registered tool/capability projection",
+    "non-empty MCP registry and one governed external capability acceptance case",
+    "reusable Windows ConPTY/PTTY harness",
+    "installed end-to-end LetterBlack CLI acceptance"
+  ],
+  "release_blocking_acceptance_chain": [
+    "launch",
+    "real LBE attach",
+    "workspace/session truth",
+    "provider/model",
+    "new or resumed session",
+    "user prompt",
+    "assistant continuation",
+    "governed read/search tool",
+    "approval-gated writable patch",
+    "diff review",
+    "ToolReceipt/evidence",
+    "MCP capability visibility/use",
+    "validation/completion",
+    "persistence/resume",
+    "clean quit"
+  ],
   "external_reference_mapping": {
     "cline": {
-      "role": "REFERENCE_ONLY_CLIENT_MECHANICS_NOT_AUTHORITY",
-      "useful_patterns": ["session resume", "tool-call transcript rows", "inline diff rendering", "checkpoint diff behavior", "approval-oriented UI/runtime continuation"]
+      "role": "REFERENCE_ONLY_CLIENT_AND_RUNTIME_MECHANICS_NOT_AUTHORITY",
+      "useful_patterns": [
+        "session resume",
+        "provider streaming/continuation mechanics",
+        "tool-call/result continuation",
+        "approval UX/interception mechanics",
+        "per-tool transcript rows",
+        "inline/checkpoint diff behavior",
+        "MCP interaction UX"
+      ]
     },
-    "opencode_ai_opencode": {
-      "role": "REFERENCE_ONLY_WEAKER_FOR_CURRENT_RUST_LBE_PATH",
-      "note": "linked repository is a Go codebase; do not let it replace current LBE/Rust architecture or authority"
+    "opencode": {
+      "role": "REFERENCE_ONLY_FOR_CLI_UX_MECHANICS",
+      "authority": "MUST_NOT_REPLACE_LBE_OWNERS"
     }
   },
-  "rust_completion_required": {
-    "real_writable_patch_acceptance": "PENDING_EXTERNAL_RUNTIME_EVIDENCE",
-    "approval_receipt_evidence_acceptance": "PENDING_EXTERNAL_RUNTIME_EVIDENCE",
-    "structured_receipt_evidence_projection": "PARTIAL_PENDING_PRODUCT_CLOSURE",
-    "workspace_diff_review": "PENDING",
-    "core_session_lifecycle": "PARTIAL_PENDING_LIVE_SERVICE_EVENT_CLOSURE",
-    "provider_catalog_projection": "PROVIDER_SPECIFIC_ACCEPTANCE_NOT_PROVEN",
-    "tool_registry_live_projection": "PENDING",
-    "persistent_session_resume": "PENDING",
-    "real_non_empty_capability_registry_acceptance_case": "MISSING",
-    "windows_conpty_pty_harness": "MISSING",
-    "installed_mcp_e2e": "NOT_PROVEN",
-    "full_installed_cli_acceptance": "NOT_PROVEN"
-  },
+  "post_completion_non_blocking_unless_breaking_normal_use": [
+    "headless/CI JSON mode",
+    "NO_COLOR refinements",
+    "ASCII/wide-character edge-case polish",
+    "advanced evidence-browser UX",
+    "advanced receipt-browser UX",
+    "background-process dashboard",
+    "subagent/team UX",
+    "schedules/connectors expansion",
+    "advanced code-search UI",
+    "optional visual polish",
+    "exhaustive non-critical edge-case coverage"
+  ],
   "completion_rule": {
     "required_not_proven": "implement and test",
     "optional_not_proven": "record follow-up and continue",
     "actual_external_blocker": "report blocker but continue every independent required slice",
     "safe_uncertainty_resolvable_from_existing_contracts": "resolve and continue",
-    "broad_rediscovery": "DO_NOT_RESTART_WITHOUT_NEW_CONTRADICTORY_EVIDENCE"
+    "broad_rediscovery": "DO_NOT_RESTART_WITHOUT_NEW_CONTRADICTORY_EVIDENCE",
+    "final_deliverable": "WORKING_INSTALLED_LETTERBLACK_CLI_READY_FOR_USER_TESTING"
+  },
+  "final_required_classifications": {
+    "lbe_backend_authority": "PASS_REQUIRED",
+    "rust_lbe_integration": "PASS_REQUIRED",
+    "provider_model_flow": "PASS_REQUIRED",
+    "session_lifecycle": "PASS_REQUIRED",
+    "governed_tools": "PASS_REQUIRED",
+    "authorization_approval": "PASS_REQUIRED",
+    "provider_tool_continuation": "PASS_REQUIRED",
+    "receipt_evidence": "PASS_REQUIRED",
+    "basic_diff_patch_review": "PASS_REQUIRED",
+    "persistent_session_resume": "PASS_REQUIRED",
+    "mcp_non_empty_projection": "PASS_REQUIRED",
+    "governed_mcp_external_invocation": "PASS_REQUIRED",
+    "installed_conpty_pty_lifecycle": "PASS_REQUIRED",
+    "installed_core_cli_e2e": "PASS_REQUIRED",
+    "rust_regression": "PASS_REQUIRED",
+    "lbe_regression": "PASS_REQUIRED"
   },
   "overall_status_summary": {
     "lbe_backend_runtime": "PROVEN_COMPLETE",
@@ -132,8 +181,6 @@
     "rust_live_read_only_adapter": "BOUNDED_PROVEN",
     "rust_mcp_metadata_projection": "PROVEN",
     "rust_governed_patch_approval": "IMPLEMENTED_LOCAL_TESTED_REAL_MUTATION_ACCEPTANCE_PENDING",
-    "rust_tests": "PASS_189_LOCAL_REPORTED",
-    "changed_source_diff_hygiene": "PASS_LOCAL_REPORTED",
     "rust_complete_cli": "INCOMPLETE",
     "conpty_pty_harness": "MISSING",
     "non_empty_authorized_registry_case": "MISSING",
@@ -144,11 +191,13 @@
   },
   "next_action": {
     "mode": "COMPLETION_MODE",
-    "immediate": "continue independent Rust client completion seams now; do not wait for writable-session, registry, or ConPTY external evidence before implementing remaining structured evidence/receipt, workspace-diff, session lifecycle, tool-registry and persistence projections",
-    "when_runtime_evidence_available": [
+    "plan": "COMPLETION_PLAN_2026-09-02.md",
+    "immediate": "continue the release-blocking completion sequence without another broad audit; bind/project existing LBE provider/agent continuation first, then prove an agent-driven governed read-only tool cycle, while continuing independent evidence/receipt, diff, session, provider/model, tool-registry and persistence client seams",
+    "runtime_evidence_actions_when_available": [
       "prove real authorized workspace.patch mutation",
       "validate approval-enabled receipt/evidence chain",
       "create or select a legitimate non-empty authoritative capability registry case",
+      "prove one governed LBE-owned external/MCP capability invocation",
       "run installed /mcp acceptance",
       "run full ConPTY/PTTY installed CLI acceptance"
     ]
