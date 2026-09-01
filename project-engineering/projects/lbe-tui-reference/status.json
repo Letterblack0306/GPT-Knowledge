@@ -1,5 +1,5 @@
 {
-  "schema_version": 17,
+  "schema_version": 18,
   "project": "LBE Rust/Ratatui TUI Integration",
   "classification": "REFERENCE_NON_CANONICAL",
   "verified_at": "2026-09-01",
@@ -51,43 +51,38 @@
     "mcp_metadata_projection": "IMPLEMENTED"
   },
   "provider_catalog_projection": {
-    "status": "LOCAL_IMPLEMENTED_VALIDATED_NOT_COMMITTED",
-    "evidence_classification": "USER_REPORTED_LOCAL_VALIDATION",
-    "files": ["C:\\LBE-TUI-Lab\\src\\wrapper.rs", "C:\\LBE-TUI-Lab\\src\\tests.rs"],
-    "behavior": [
-      "RealLbeWrapper invokes the existing LBE provider list command",
-      "response requires action == provider.list",
-      "response requires ok == true",
-      "provider identity is validated before projection",
-      "registered providers project through ProviderCatalogDiscovered",
-      "authentication and health fields remain truthful rather than fabricated",
-      "model catalog remains empty when the LBE provider-list response contains no model data",
-      "UserRequest::RefreshProviderCatalog routes through RealLbeWrapper"
-    ],
-    "authority_boundary": "Rust projects provider metadata only; provider registry and provider truth remain LBE-owned",
+    "status": "LOCAL_IMPLEMENTATION_REPORTED_PROVIDER_SPECIFIC_ACCEPTANCE_NOT_PROVEN",
+    "evidence_classification": "USER_REPORTED_LOCAL_AUDIT_WITH_DESIGNATED_SOURCE_LIMITATION",
+    "files_reported": ["C:\\LBE-TUI-Lab\\src\\wrapper.rs", "C:\\LBE-TUI-Lab\\src\\tests.rs"],
+    "designated_source_result": "THE_SOURCE_DOES_NOT_SPECIFY_PROVIDER_CATALOG_IMPLEMENTATION_PROVIDER_LIST_BEHAVIOR_OR_PROVIDER_CATALOG_DISCOVERED",
+    "authority_boundary": "Rust may project provider metadata only; provider registry and provider truth remain LBE-owned",
     "validation": {
-      "cargo_fmt": "PASS",
-      "cargo_fmt_check": "PASS",
-      "cargo_check": "PASS",
-      "provider_parser_tests": "PASS",
-      "provider_related_tests": "PASS_13",
-      "real_wrapper_provider_rejection_tests": "PASS_3",
-      "full_rust_suite": "PASS_181",
-      "git_diff_check": "PASS"
+      "cargo_fmt_check": "PASS_LOCAL_REPORTED",
+      "cargo_check": "PASS_LOCAL_REPORTED",
+      "full_rust_suite": "PASS_181_LOCAL_REPORTED",
+      "git_diff_check": "FAIL_LOCAL_REPORTED_TRAILING_WHITESPACE_AND_BLANK_LINES_IN_MODIFIED_FILES",
+      "provider_regex_command": "ZERO_MATCHING_TESTS",
+      "claimed_provider_related_tests_13": "NOT_REPRODUCED",
+      "claimed_real_wrapper_provider_rejection_tests_3": "NOT_REPRODUCED"
     },
     "repository_state": {
-      "branch": "main",
-      "head_equals_origin_main": "USER_REPORTED_TRUE_AND_REMOTE_MAIN_CONFIRMED_AT_6421726",
-      "committed": false,
-      "pushed": false,
-      "unrelated_existing_changes_preserved": true,
-      "untracked_preserved": ["Docs\\00_integration_alignment.md", "Docs\\36_p2_p3_client_contract.md"]
+      "remote_main": "PROVEN_AT_6421726",
+      "local_worktree_governance": "REPORTED_STRICTER_THAN_REMOTE_AGENTS_MD",
+      "committed_provider_change": "NOT_PROVEN",
+      "pushed_provider_change": "NOT_PROVEN",
+      "unrelated_existing_changes_preserved": true
     }
+  },
+  "governance_source_distinction": {
+    "remote_agents_md": "PROVEN_REMOTE_FILE_CONTAINS_MAIN_BRANCH_AND_WORKTREE_WORKFLOW_RULE_ONLY",
+    "local_modified_agents_md": "USER_REPORTED_TO_REQUIRE_DESIGNATED_SOURCE_EXCLUSIVITY_EXACT_CITATIONS_AND_SOURCE_DOES_NOT_SPECIFY_LANGUAGE",
+    "rule": "Do not conflate remote pushed governance with stricter local worktree governance. Claims made under the local audit must respect the local designated-source rule when it is in scope."
   },
   "mcp_current_truth": {
     "source_bridge": "PROVEN",
     "real_wrapper_refresh": "PROVEN",
     "metadata_contract": "PROVEN",
+    "latest_local_audit_availability": "AVAILABLE_USER_REPORTED",
     "installed_non_empty_registry_case": "MISSING",
     "conpty_or_real_pty_harness": "MISSING",
     "installed_mcp_e2e": "NOT_PROVEN",
@@ -95,16 +90,17 @@
   },
   "installed_terminal_acceptance": {
     "status": "BLOCKED_BY_CURRENT_NON_TTY_AUTOMATION_ENVIRONMENT",
-    "winpty_attempt": "stdin is not a tty",
+    "redirected_stdin_attempt": "INSUFFICIENT_FOR_REAL_TERMINAL_PROOF",
     "interpretation": "current automation method cannot provide the required real terminal lifecycle; this does not by itself prove a Rust application defect",
     "required_capability": "real Windows ConPTY/PTTY-capable harness"
   },
   "external_tooling_note": {
-    "birdeye_mcp": "BECAME_UNAVAILABLE_DURING_FINAL_VALIDATION_PASS",
-    "impact": "NO_EFFECT_ON_COMPLETED_LOCAL_COMPILER_AND_REPOSITORY_VALIDATION; not classified as a product implementation blocker from this checkpoint alone"
+    "birdeye_mcp_latest_audit": "AVAILABLE_USER_REPORTED",
+    "previous_unavailable_claim": "SUPERSEDED_NOT_CURRENT_PROVEN_TRUTH",
+    "impact": "MCP availability is not a current product blocker based on the latest reported audit"
   },
   "rust_completion_required": {
-    "provider_catalog_projection": "IMPLEMENTED_LOCALLY_AWAITING_FOCUSED_COMMIT_PUSH",
+    "provider_catalog_projection": "PROVIDER_SPECIFIC_ACCEPTANCE_EVIDENCE_NEEDS_REPRODUCIBLE_EXACT_TEST_FILTERS_OR_VERIFIED_COUNT_COMMAND",
     "real_non_empty_capability_registry_acceptance_case": "MISSING",
     "windows_conpty_pty_harness": "MISSING",
     "installed_mcp_e2e": "NOT_PROVEN",
@@ -141,17 +137,21 @@
     "rust_lbe_wrapper": "IMPLEMENTED",
     "rust_live_read_only_adapter": "BOUNDED_PROVEN",
     "rust_mcp_metadata_projection": "PROVEN",
-    "rust_provider_catalog_projection": "LOCAL_IMPLEMENTED_VALIDATED_NOT_COMMITTED",
+    "rust_provider_catalog_projection": "REPORTED_LOCAL_IMPLEMENTATION_PROVIDER_SPECIFIC_ACCEPTANCE_NOT_PROVEN",
     "rust_tests": "PASS_181_LOCAL_REPORTED",
+    "whole_tree_git_diff_check": "FAIL_LOCAL_REPORTED",
+    "provider_targeted_test_counts": "NOT_REPRODUCED",
+    "mcp_latest_audit": "AVAILABLE_USER_REPORTED",
     "rust_complete_cli": "INCOMPLETE",
     "conpty_pty_harness": "MISSING",
     "non_empty_authorized_registry_case": "MISSING",
     "installed_mcp_e2e": "NOT_PROVEN",
+    "product_breaking_defect": "NOT_PROVEN",
     "publication": "LOCKED"
   },
   "next_action": {
     "mode": "COMPLETION_MODE",
-    "immediate": "preserve the validated provider projection and commit/push it only as a focused change when authorized, without including unrelated worktree changes",
+    "immediate": "re-run provider-specific validation using exact test names or a verified count-producing command; do not claim whole-tree git diff --check PASS until unrelated whitespace failures are separated or corrected",
     "then": [
       "continue missing Rust client seams through existing LBE owners",
       "create or select a real authorized non-empty capability registry case",
