@@ -1,11 +1,11 @@
 # LBE Rust/Ratatui CLI — Current Project Truth
 
 **Classification:** REFERENCE_NON_CANONICAL  
-**Purpose:** Single entry point for the current LBE Rust/Ratatui integration goal, authority boundary, accepted proof, active work, and historical records.
+**Purpose:** Entry point for final-product intent, authority boundaries, current evidence, release-blocking gaps, and historical/reference routing.
 
-## Goal
+## Final product
 
-Finish the native LetterBlack Rust/Ratatui CLI as a usable client over the already-complete LBE backend. Do not rebuild backend owners that already exist.
+Build a native LetterBlack Rust/Ratatui terminal agent workspace as a client over the canonical LBE runtime.
 
 ```text
 LetterBlack Rust/Ratatui CLI
@@ -14,31 +14,16 @@ LbeWrapper / RealLbeWrapper
         ↓
 canonical LBE runtime
         ↓
-sessions, providers, tools, authorization,
-execution, evidence, ToolReceipts,
-persistence, validation, completion truth
+sessions, provider/model continuation, tools,
+authorization, governed execution, MCP/external
+capabilities, evidence, ToolReceipts,
+persistence/recovery, validation, completion truth
 ```
 
-Completion mode means: finish the missing Rust client projections and installed acceptance required for a usable CLI; defer non-critical polish and advanced roadmap items until after usable completion.
-
-## Active Completion Plan
-
-The active execution plan is:
-
-`COMPLETION_PLAN_2026-09-02.md`
-
-This plan is the current completion-mode direction for reaching:
+Authority rule:
 
 ```text
-WORKING INSTALLED LETTERBLACK CLI — READY FOR USER TESTING
-```
-
-Do not substitute older handoff documents, early read-only sequencing, or general architecture rediscovery for this completion plan unless new canonical evidence proves the plan unsafe or invalid.
-
-## Authority rule
-
-```text
-Provider reasons.
+Provider/agent reasons.
 LBE governs.
 Registered capabilities execute.
 Evidence and ToolReceipts persist.
@@ -46,31 +31,25 @@ Validation decides completion.
 Rust projects the result.
 ```
 
-Rust/Ratatui must not become a second runtime, authorization owner, tool executor, MCP transport owner, provider registry, evidence owner, receipt owner, persistence owner, or completion authority.
+Rust must not become a second provider/agent runtime, authorization owner, tool executor, MCP transport owner, evidence/receipt authority, persistence owner, validation owner, or completion authority.
 
-The real agent/tool continuation spine remains LBE-owned:
+## Read order
 
-```text
-Rust user prompt
-    ↓
-RealLbeWrapper
-    ↓
-LBE provider/runtime
-    ↓
-LBE authorization + governed tool/MCP execution
-    ↓
-LBE evidence + ToolReceipt
-    ↓
-LBE provider continuation + completion
-    ↓
-Rust event/projection
-```
+Use this order for every future implementation/status decision:
 
-Do not implement a second Rust-owned agent loop or MCP transport to achieve product completion.
+1. `README.md` — routing and current project identity.
+2. `FINAL_PRODUCT_STRUCTURE_AND_GAP_MATRIX_2026-09-02.md` — complete product structure, feature inventory, authority map, current match, and gaps.
+3. `status.json` — machine-readable GPT-K projection of current state.
+4. `COMPLETION_PLAN_2026-09-02.md` — ordered release-blocking execution plan.
+5. `LBE_TUI_INTEGRATION_FEATURE_REQUIREMENTS.md` — durable full product feature specification.
+6. Material current checkpoints — bounded corrections/evidence.
+7. `HISTORY_AND_SUPERSEDED_RECORDS.md` — stale/historical claims that must not be treated as current blockers.
 
-## Current authoritative governance interpretation
+GPT-K is projection/reference only. Canonical LBE machine governance, current source/runtime evidence, active acceptance records, current Rust/LBE repository evidence, and claim-matched installed evidence outrank GPT-K.
 
-The committed remote LBE machine gate is the present governance authority. It currently records:
+## Current canonical governance projection
+
+At LBE revision `3c615252d517ade8942ca014696906e50a7e8e4d`:
 
 ```text
 active_phase: P2_P3_GOVERNED_EXECUTION
@@ -81,132 +60,150 @@ next_phase_locked: true
 publication: LOCKED
 ```
 
-The human-readable gate has been observed to lag behind this machine state and describe the older workspace-hygiene slice. Treat that as a governance projection mismatch to reconcile, not as proof that TUI P2/P3 is unauthorized. The machine JSON and current repository/runtime evidence outrank stale human-readable projections.
+Active intent:
 
-## Accepted LBE baseline
+`LBE-INTENT-TUI-P2P3-GOVERNED-INTEGRATION-001`
 
-```text
-LBE runtime/backend authority             PROVEN_COMPLETE
-LBE CLI                                  PROVEN_COMPLETE
-R3-R6F                                   PROVEN_COMPLETE
-R7 installed end-to-end acceptance       PASS
-workspace-hygiene governed deletion      PASS
-mandatory governed mutation dispatch     PASS
-governed external capability registration PASS
-installed capability registry discovery  PASS
-publication precheck                      PASS
-```
+The machine gate outranks stale human-readable closed-state wording. A nested historical `closure.status = CLOSED` records the previously completed slice and does not close the current top-level TUI/P2P3 gate.
 
-This means the remaining product work is primarily Rust client integration and installed acceptance, not backend reconstruction.
-
-## Rust integration already proven
+## Current product classification
 
 ```text
-RealLbeWrapper boundary                  IMPLEMENTED
-attach/disconnect/reconnect projection   IMPLEMENTED + TESTED
-live read/list/glob/search               BOUNDED PROVEN
-read-only mutation denial                PROVEN
-MCP metadata bridge                      PROVEN
-MCP registry refresh                     PROVEN
-/mcp metadata projection                 IMPLEMENTED
-governed patch approval client flow      IMPLEMENTED + LOCAL TESTED
+Final product architecture              ALIGNED
+LBE backend authority                   ACCEPTED / PROVEN COMPLETE AT OWNER SCOPE
+Rust client foundation                  IMPLEMENTED / PARTIALLY INTEGRATED
+Real read-only LBE path                 BOUNDED PROVEN
+Rust patch approval client              IMPLEMENTED / LOCAL TESTED
+Provider continuation backend           ACCEPTED
+Credentialed live Rust provider flow    NOT PROVEN
+Installed Rust MCP projection           UNVERIFIED
+Full MCP governed execution chain       PARTIAL
+Writable live mutation acceptance       PENDING
+Receipt/evidence interactive projection PARTIAL / PENDING
+Real diff review                        PENDING
+Persistent Rust session resume          PENDING
+Windows ConPTY/PTTY acceptance          MISSING
+Installed core CLI E2E                  NOT PROVEN
+Project user ready                      NO
+Release ready                           NO
+Active gate                             OPEN
+Publication                             LOCKED
 ```
 
-The governed patch-approval client now waits for LBE authorization before submitting `workspace.patch`, handles ALLOW/DENY/REQUIRE_APPROVAL/ESCALATE safely, rejects foreign/duplicate authorization release, clears pending mutation state on disconnect, and does not mark the patch as running before authorization acceptance.
+Overall:
 
-The MCP bridge remains metadata-only. Rust does not own MCP transport, execution, authorization, credentials, registry authority, receipts, or evidence.
+```text
+PARTIALLY COMPLETE / COMPLETION MODE ACTIVE
+```
 
-## Remaining work for a usable CLI
+## Release-blocking completion work
 
-The active plan orders the remaining release-blocking work as:
+The required current work is:
 
-1. real provider/agent continuation through LBE;
-2. real agent-driven read-only tool-call continuation;
-3. real writable patch acceptance through the already-implemented approval flow;
-4. structured evidence/ToolReceipt projection;
-5. basic real workspace diff/patch review;
-6. core session lifecycle + persistence/resume;
-7. provider/model surface completion;
-8. live registered-tool/capability projection;
-9. non-empty MCP registry + governed external capability acceptance;
-10. reusable Windows ConPTY/PTTY harness;
-11. installed end-to-end CLI acceptance.
+1. credentialed live Rust -> LBE -> provider execution and assistant continuation;
+2. real agent-driven governed read/search tool cycle;
+3. installed authorization/approval lifecycle and approval response/resume;
+4. real writable `workspace.patch` acceptance through the existing Rust approval gate;
+5. interactive evidence/ToolReceipt projection with operation/turn/tool correlation;
+6. basic real diff/patch review linked to authorization, receipt/evidence, and validation;
+7. core Rust session lifecycle and persistent resume;
+8. provider/model discovery, selection, configuration/auth/health projection;
+9. live registered tool/capability projection;
+10. non-empty MCP registry projection and one governed external/MCP invocation;
+11. complete MCP acceptance chain: rejection, endpoint restrictions, authorization ordering, exactly-once execution, receipt/evidence, continuation, persistence, malformed/identity mismatch rejection, and Rust display;
+12. reusable Windows ConPTY/PTTY installed-test harness;
+13. full installed CLI E2E acceptance;
+14. final Rust and relevant LBE regressions with exact observed evidence.
 
-External blockers must not stop independent completion work. If real writable-session, non-empty registry, or terminal-harness evidence is temporarily unavailable, continue every independent required client seam.
+Do not leave completion mode until the normal-use installed chain is proven or a genuine external blocker remains after all independent work is complete.
 
-## Important sequencing corrections
+## Current MCP truth
 
-The following older directions are not current blockers:
+The LBE 12-point MCP/TUI acceptance gate remains OPEN:
 
-- Do not freeze the project at read-only completion before mutation; the governed patch-approval client is already implemented locally.
-- Do not make headless/JSON mode a prerequisite for first manual user-test readiness.
-- Do not build Rust-side MCP transport just because `/mcp` is metadata-only; MCP execution remains LBE-owned.
-- Do not build a duplicate Rust agent runtime; provider/tool continuation must reuse the existing LBE runtime.
-- Do not restart broad UI or architecture audits while required normal-use seams can be completed from existing contracts.
+```text
+registered MCP server in TUI                  UNVERIFIED
+unregistered capability rejection             PARTIAL
+endpoint/command/shell restriction             PARTIAL
+MCP proposal reaches LBE                      PARTIAL
+authorization before execution                PARTIAL
+denied execution count = 0                    PARTIAL
+allowed execution exactly once                PARTIAL
+receipt/evidence correlation                  PARTIAL
+provider receives governed result             PARTIAL
+complete persisted MCP event stream           UNVERIFIED
+Rust displays events without local authority  UNVERIFIED
+malformed/identity mismatch fails closed       PARTIAL
+```
 
-## Post-completion / non-blocking unless they break normal use
+Backend governed external-capability registration and installed registry discovery are accepted, but installed Rust/MCP product proof is not complete.
+
+## Documentation/governance reconciliation
+
+A current local LBE audit reports two documentation-governance gaps:
+
+1. ten current non-history Markdown files are absent from `docs/DOCUMENT_INTENT_MANIFEST.md`;
+2. stale closed-state prose remains in `COMPLETE_LBE_AGENT_RUNTIME_GATE.md` and an earlier section of `CURRENT_STATUS.md`, while machine governance and `CURRENT_IMPLEMENTATION_GATE.md` are OPEN for the TUI P2/P3 slice.
+
+Treat this as documentation reconciliation, not as proof of backend regression. Machine governance/current acceptance evidence outrank stale prose.
+
+BirdEye operational validation currently records a full registry scan as IN PROGRESS and the second unchanged scan/SHA-reuse check as NOT RUN; those do not prove MCP/LBE execution acceptance.
+
+## Accepted owners — do not rebuild
+
+Do not recreate unless newer canonical evidence proves a missing owner:
+
+- LBE authorization/policy;
+- ToolRegistry / GovernedToolOrchestrator;
+- governed workspace operations and mutation ownership;
+- provider continuation backend;
+- governed external capability/MCP registration;
+- evidence/ToolReceipt ownership;
+- session persistence/recovery;
+- validation/completion authority;
+- `RealLbeWrapper` boundary;
+- bounded live read/list/glob/search;
+- Rust MCP metadata bridge/refresh;
+- Rust governed patch-approval client state machine.
+
+## Non-blocking broader product features
+
+Unless they break normal use, these remain after first manual user-test readiness:
 
 - headless/CI JSON mode;
-- NO_COLOR refinements;
-- ASCII/wide-character edge-case polish;
-- advanced evidence-browser UX;
-- advanced receipt-browser UX;
-- background-process dashboard;
-- subagent/team UX;
+- advanced evidence/receipt browsers;
+- advanced checkpoint/undo UX;
+- broad `@` context UX;
+- subagents/teams/background work;
 - schedules/connectors expansion;
+- broad rules/skills/hooks management UX;
 - advanced code-search UI;
-- optional visual polish and exhaustive edge-case coverage.
+- process dashboard;
+- optional visual/accessibility polish;
+- Documentation Companion runtime integration.
 
-## Completion decision rule
+The isolated Documentation Companion is implemented/tested as optional code but is not runtime-integrated and must not distract the active CLI completion slice.
 
-```text
-NOT_PROVEN + required for usable CLI
-    → implement/test it
+## Reference role
 
-NOT_PROVEN + optional polish
-    → record follow-up and continue
+- **Cline:** reusable provider/session/tool/approval/MCP/diff interaction mechanics only.
+- **OpenCode:** CLI/UX ideas only.
+- **BirdEye:** local evidence/codebase capability patterns and registered capability use where LBE exposes them.
 
-actual external blocker
-    → report blocker and continue independent required work
+None replaces LBE authority or branding.
 
-safe uncertainty resolvable from existing contracts
-    → resolve and continue
-```
+## Stop condition for rediscovery
 
-Do not restart broad architecture discovery, MCP redesign, or wrapper reimplementation when the existing owner/contract is already proven.
-
-## Current evidence routing
-
-Read in this order:
-
-1. `README.md` — current project goal and authority boundary.
-2. `COMPLETION_PLAN_2026-09-02.md` — active completion-mode execution plan.
-3. `status.json` — machine-readable current projection.
-4. `LBE_TUI_INTEGRATION_FEATURE_REQUIREMENTS.md` — durable product requirements.
-5. `LBE_TUI_CURRENT_STATUS_AND_IMPLEMENTATION_PLAN_2026-08-29.md` — bounded historical integration evidence; some counts/sequencing are superseded.
-6. `LBE_TUI_AUTHORITY_AND_FINDING_RECORD_2026-08-30.md` — authority/truth methodology.
-7. `HISTORY_AND_SUPERSEDED_RECORDS.md` — older checkpoint claims that must not be treated as current blockers.
-
-Canonical truth still comes from the LBE machine gate, active source/runtime evidence, acceptance records, local workspace evidence, and GitHub repository state.
-
-## Reference-only supporting records
-
-- `BIRDEYE_REFERENCE_BOUNDARY_2026-09-01.md` — BirdEye reuse/reference boundary only.
-- `CLINE_MCP_ACTIVE_SERVER_CHECKPOINT_2026-09-01.md` — external client MCP environment checkpoint only.
-- `LBE_TUI_PROJECT_TRUTH_ATTACHMENT_CHECKPOINT_2026-08-29.md` — historical P1 attachment proof.
-- Cline — reference only for provider/session/tool/approval/MCP/diff interaction mechanics.
-- OpenCode — reference only for CLI/UX mechanics; never authority.
-
-These records are useful context but must not override current project truth.
-
-## Stop condition for discovery loops
-
-The architecture and product goal are already clear. Future work should not stop for another general review unless new evidence shows one of the following:
+Do not restart a broad architecture review unless current evidence shows:
 
 - a second authority would be created;
-- user data could be lost or corrupted;
-- the machine gate forbids the intended mutation;
-- a required canonical owner or contract genuinely does not exist;
+- user data could be lost/corrupted;
+- the machine gate forbids the intended change;
+- a required canonical owner/contract genuinely does not exist;
 - an irreversible governance decision is ambiguous.
 
-Otherwise continue until the installed LetterBlack CLI is ready for manual user testing.
+Otherwise continue toward:
+
+```text
+WORKING INSTALLED LETTERBLACK CLI — READY FOR USER TESTING
+```
