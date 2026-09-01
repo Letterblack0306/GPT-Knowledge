@@ -1,5 +1,5 @@
 {
-  "schema_version": 20,
+  "schema_version": 21,
   "project": "LBE Rust/Ratatui TUI Integration",
   "classification": "REFERENCE_NON_CANONICAL",
   "verified_at": "2026-09-02",
@@ -33,7 +33,8 @@
     "do not implement Rust MCP transport or authorization authority",
     "do not make headless/CI JSON mode a release blocker",
     "do not reopen already completed patch-approval client work",
-    "do not restart broad architecture discovery without contradictory canonical evidence"
+    "do not restart broad architecture discovery without contradictory canonical evidence",
+    "do not integrate the optional Documentation Companion during active CLI completion unless explicitly instructed"
   ],
   "current_machine_gate": {
     "active_phase": "P2_P3_GOVERNED_EXECUTION",
@@ -68,6 +69,39 @@
       "real approval-enabled mutation receipt/evidence validation"
     ],
     "sequencing_rule": "do not block independent Rust client completion work while waiting for real writable runtime evidence"
+  },
+  "documentation_companion": {
+    "checkpoint": "project-engineering/projects/lbe-tui-reference/LBE_DOCUMENTATION_COMPANION_ISOLATED_PLUGIN_CHECKPOINT_2026-09-02.md",
+    "status": "IMPLEMENTED_ISOLATED_PLUGIN_NOT_RUNTIME_INTEGRATED",
+    "purpose": "optional derived documentation projection from existing LBE-owned identifiers and lifecycle events",
+    "artifact_files": [
+      "PLUGIN_MANIFEST.json",
+      "lbe_guard_inspector/documentation_companion.py",
+      "tests/test_documentation_companion.py",
+      "docs/DOCUMENTATION_COMPANION_PLUGIN.md"
+    ],
+    "implementation": "REAL_PYTHON_CODE_CREATED",
+    "validation": {
+      "python_compile": "PASS",
+      "isolated_tests": "PASS_6_OF_6"
+    },
+    "authority_boundary": {
+      "may": ["observe", "correlate", "format", "render derived documentation"],
+      "must_not": [
+        "create canonical Intent IDs or Module IDs",
+        "authorize operations",
+        "execute tools",
+        "create evidence or receipts",
+        "validate operations",
+        "decide canonical completion",
+        "own persistence truth"
+      ]
+    },
+    "runtime_wiring": "NOT_DONE",
+    "lbe_main_modified": false,
+    "remote_feature_branch": "BLOCKED_BY_ACTIVE_LBE_MAIN_ONLY_REMOTE_REF_LOCK",
+    "integration_policy": "DEFER_UNTIL_EXPLICITLY_AUTHORIZED_AFTER_OR_OUTSIDE_ACTIVE_CLI_COMPLETION",
+    "completion_plan_impact": "NON_BLOCKING"
   },
   "mcp_current_truth": {
     "source_bridge": "PROVEN",
@@ -136,6 +170,7 @@
   },
   "post_completion_non_blocking_unless_breaking_normal_use": [
     "headless/CI JSON mode",
+    "LBE Documentation Companion runtime integration",
     "NO_COLOR refinements",
     "ASCII/wide-character edge-case polish",
     "advanced evidence-browser UX",
@@ -181,6 +216,7 @@
     "rust_live_read_only_adapter": "BOUNDED_PROVEN",
     "rust_mcp_metadata_projection": "PROVEN",
     "rust_governed_patch_approval": "IMPLEMENTED_LOCAL_TESTED_REAL_MUTATION_ACCEPTANCE_PENDING",
+    "documentation_companion": "IMPLEMENTED_ISOLATED_TESTED_NOT_INTEGRATED_NON_BLOCKING",
     "rust_complete_cli": "INCOMPLETE",
     "conpty_pty_harness": "MISSING",
     "non_empty_authorized_registry_case": "MISSING",
@@ -192,7 +228,7 @@
   "next_action": {
     "mode": "COMPLETION_MODE",
     "plan": "COMPLETION_PLAN_2026-09-02.md",
-    "immediate": "continue the release-blocking completion sequence without another broad audit; bind/project existing LBE provider/agent continuation first, then prove an agent-driven governed read-only tool cycle, while continuing independent evidence/receipt, diff, session, provider/model, tool-registry and persistence client seams",
+    "immediate": "continue the release-blocking completion sequence without another broad audit; do not divert current CLI work into Documentation Companion integration",
     "runtime_evidence_actions_when_available": [
       "prove real authorized workspace.patch mutation",
       "validate approval-enabled receipt/evidence chain",
