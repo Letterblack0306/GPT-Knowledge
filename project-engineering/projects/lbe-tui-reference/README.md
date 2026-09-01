@@ -39,11 +39,12 @@ Use this order for every future implementation/status decision:
 
 1. `README.md` — routing and current project identity.
 2. `FINAL_PRODUCT_STRUCTURE_AND_GAP_MATRIX_2026-09-02.md` — complete product structure, feature inventory, authority map, current match, and gaps.
-3. `status.json` — machine-readable GPT-K projection of current state.
-4. `COMPLETION_PLAN_2026-09-02.md` — ordered release-blocking execution plan.
-5. `LBE_TUI_INTEGRATION_FEATURE_REQUIREMENTS.md` — durable full product feature specification.
-6. Material current checkpoints — bounded corrections/evidence.
-7. `HISTORY_AND_SUPERSEDED_RECORDS.md` — stale/historical claims that must not be treated as current blockers.
+3. `RUST_P2P3_DOCUMENTATION_ALIGNMENT_CHECKPOINT_2026-09-02.md` — latest local correction for approval/receipt/evidence/diff implementation versus live acceptance.
+4. `status.json` — machine-readable GPT-K projection of current state; where older fields still say receipt/evidence/diff implementation is pending, the newer P2/P3 checkpoint supersedes those fields.
+5. `COMPLETION_PLAN_2026-09-02.md` — ordered release-blocking execution plan.
+6. `LBE_TUI_INTEGRATION_FEATURE_REQUIREMENTS.md` — durable full product feature specification.
+7. Material current checkpoints — bounded corrections/evidence.
+8. `HISTORY_AND_SUPERSEDED_RECORDS.md` — stale/historical claims that must not be treated as current blockers.
 
 GPT-K is projection/reference only. Canonical LBE machine governance, current source/runtime evidence, active acceptance records, current Rust/LBE repository evidence, and claim-matched installed evidence outrank GPT-K.
 
@@ -66,28 +67,58 @@ Active intent:
 
 The machine gate outranks stale human-readable closed-state wording. A nested historical `closure.status = CLOSED` records the previously completed slice and does not close the current top-level TUI/P2P3 gate.
 
+## Latest Rust P2/P3 implementation correction
+
+The latest local documentation alignment reports no runtime code changes and validates the existing Rust client with:
+
+```text
+cargo test --quiet       PASS — 193 tests
+cargo fmt --check        PASS
+cargo check --quiet      PASS
+git diff --check         PASS
+```
+
+The following are now classified as **IMPLEMENTED / LOCAL TESTED**, not pending implementation:
+
+- tool request/risk/authorization projection;
+- authorization-required / ALLOW / DENY handling;
+- patch review accept/reject routing;
+- typed receipt projection and `/receipts` rendering;
+- typed evidence projection and `/evidence` rendering;
+- basic diff/change projection.
+
+Their **installed/live acceptance remains open**. Local tests do not prove a real writable mutation, real approval response/resume, authoritative live receipt/evidence chain, installed diff projection, validation/completion, or full P2/P3 acceptance.
+
+The active `workspace.patch` client contract is existing-file replacement only: the target must be an existing regular file. Creating a new temporary file requires a separate LBE-owned create capability if one is registered and available.
+
 ## Current product classification
 
 ```text
-Final product architecture              ALIGNED
-LBE backend authority                   ACCEPTED / PROVEN COMPLETE AT OWNER SCOPE
-Rust client foundation                  IMPLEMENTED / PARTIALLY INTEGRATED
-Real read-only LBE path                 BOUNDED PROVEN
-Rust patch approval client              IMPLEMENTED / LOCAL TESTED
-Provider continuation backend           ACCEPTED
-Credentialed live Rust provider flow    NOT PROVEN
-Installed Rust MCP projection           UNVERIFIED
-Full MCP governed execution chain       PARTIAL
-Writable live mutation acceptance       PENDING
-Receipt/evidence interactive projection PARTIAL / PENDING
-Real diff review                        PENDING
-Persistent Rust session resume          PENDING
-Windows ConPTY/PTTY acceptance          MISSING
-Installed core CLI E2E                  NOT PROVEN
-Project user ready                      NO
-Release ready                           NO
-Active gate                             OPEN
-Publication                             LOCKED
+Final product architecture                 ALIGNED
+LBE backend authority                      ACCEPTED / PROVEN COMPLETE AT OWNER SCOPE
+Rust client foundation                     IMPLEMENTED / PARTIALLY INTEGRATED
+Real read-only LBE path                    BOUNDED PROVEN
+Rust patch approval client                 IMPLEMENTED / LOCAL TESTED
+Tool request/risk/auth projection          IMPLEMENTED / LOCAL TESTED
+Receipt projection + /receipts             IMPLEMENTED / LOCAL TESTED
+Evidence projection + /evidence             IMPLEMENTED / LOCAL TESTED
+Basic diff/change projection               IMPLEMENTED / LOCAL TESTED
+Provider continuation backend              ACCEPTED
+Credentialed live Rust provider flow       NOT PROVEN / BLOCKED CONFIGURATION
+Installed approval response/resume         UNVERIFIED
+Writable live mutation acceptance          NOT PROVEN
+Installed receipt/evidence/diff acceptance NOT PROVEN
+Full file/hunk navigation                   NOT PROVEN
+Dedicated permissions/sandbox panel         PENDING
+Installed Rust MCP projection              UNVERIFIED
+Full MCP governed execution chain          PARTIAL
+Persistent Rust session resume             PENDING
+Windows ConPTY/PTTY acceptance             MISSING
+Installed core CLI E2E                     NOT PROVEN
+Project user ready                         NO
+Release ready                              NO
+Active gate                                OPEN
+Publication                                LOCKED
 ```
 
 Overall:
@@ -96,16 +127,26 @@ Overall:
 PARTIALLY COMPLETE / COMPLETION MODE ACTIVE
 ```
 
+## Current live writable-acceptance blockers
+
+The live mutation attempt did not execute any mutation. Current blockers are:
+
+1. the canonical capability registry expected by the real Rust wrapper is not established in the current configured path;
+2. `workspace.patch` requires an existing regular file, so a nonexistent temporary acceptance file is not a valid target;
+3. a valid writable session/fixture with an explicit restoration contract is still required before the real authorization -> mutation -> receipt/evidence -> validation/completion chain can be proven.
+
+These are runtime/configuration/acceptance blockers. They are not evidence that the Rust approval, receipt, evidence, or diff client implementation is missing.
+
 ## Release-blocking completion work
 
 The required current work is:
 
-1. credentialed live Rust -> LBE -> provider execution and assistant continuation;
-2. real agent-driven governed read/search tool cycle;
-3. installed authorization/approval lifecycle and approval response/resume;
-4. real writable `workspace.patch` acceptance through the existing Rust approval gate;
-5. interactive evidence/ToolReceipt projection with operation/turn/tool correlation;
-6. basic real diff/patch review linked to authorization, receipt/evidence, and validation;
+1. establish claim-matched real runtime configuration, including the authoritative capability-registry path and usable provider/session configuration;
+2. credentialed live Rust -> LBE -> provider execution and assistant continuation;
+3. real agent-driven governed read/search tool cycle;
+4. installed authorization/approval lifecycle and approval response/resume;
+5. real writable `workspace.patch` acceptance against an already-existing disposable file with exact original hash/content and restoration contract;
+6. prove exactly-once mutation plus authoritative receipt/evidence/diff/validation/completion through the already-implemented Rust projections;
 7. core Rust session lifecycle and persistent resume;
 8. provider/model discovery, selection, configuration/auth/health projection;
 9. live registered tool/capability projection;
@@ -115,7 +156,7 @@ The required current work is:
 13. full installed CLI E2E acceptance;
 14. final Rust and relevant LBE regressions with exact observed evidence.
 
-Do not leave completion mode until the normal-use installed chain is proven or a genuine external blocker remains after all independent work is complete.
+Do not duplicate locally implemented approval/receipt/evidence/diff UI while those live proofs are being established.
 
 ## Current MCP truth
 
@@ -136,7 +177,7 @@ Rust displays events without local authority  UNVERIFIED
 malformed/identity mismatch fails closed       PARTIAL
 ```
 
-Backend governed external-capability registration and installed registry discovery are accepted, but installed Rust/MCP product proof is not complete.
+Backend governed external-capability registration and installed registry discovery are accepted at their recorded scope, but installed Rust/MCP product proof is not complete.
 
 ## Documentation/governance reconciliation
 
@@ -164,14 +205,16 @@ Do not recreate unless newer canonical evidence proves a missing owner:
 - `RealLbeWrapper` boundary;
 - bounded live read/list/glob/search;
 - Rust MCP metadata bridge/refresh;
-- Rust governed patch-approval client state machine.
+- Rust governed patch-approval client state machine;
+- Rust receipt/evidence rendering paths;
+- Rust basic diff/change projection.
 
 ## Non-blocking broader product features
 
 Unless they break normal use, these remain after first manual user-test readiness:
 
 - headless/CI JSON mode;
-- advanced evidence/receipt browsers;
+- advanced evidence/receipt browsers beyond the implemented basic renderers;
 - advanced checkpoint/undo UX;
 - broad `@` context UX;
 - subagents/teams/background work;
