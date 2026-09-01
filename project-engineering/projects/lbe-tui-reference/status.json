@@ -1,5 +1,5 @@
 {
-  "schema_version": 8,
+  "schema_version": 9,
   "project": "LBE Rust/Ratatui TUI Integration",
   "classification": "REFERENCE_NON_CANONICAL",
   "verified_at": "2026-09-01",
@@ -9,154 +9,67 @@
   "local_tui_workspace": "C:\\LBE-TUI-Lab",
   "local_lbe_workspace": "C:\\Agents-Memory-Tool-v6-integration",
   "source_revision_status": "USER_REPORTED_LOCAL_VALIDATED_REVISION_NOT_SUPPLIED",
-  "current_status": "LIVE_GOVERNED_READ_ONLY_INTEGRATION_PROVEN_MCP_PROJECTION_IMPLEMENTED_LOCAL_ACCEPTANCE_OPEN",
+  "current_status": "MCP_IMPLEMENTATION_PROVEN_RUST_VALIDATION_PASS_INSTALLED_RUNTIME_BLOCKED",
   "authority_model": {
     "lbe": "runtime, governance, authorization, execution, evidence, ToolReceipt, persistence, validation and completion authority",
     "tui": "Rust/Ratatui interface, request adapter and projection client only",
     "provider": "reasoning provider; output remains advisory and cannot become LBE authority"
   },
   "core_truth_rule": "Design defines intended behavior. Acceptance proves bounded behavior. Machine governance defines what is allowed now. Current runtime evidence defines what is true now.",
-  "provider_binding": {
-    "provider": "openai-compatible",
-    "model": "qwen/qwen3-vl-8b",
-    "lm_studio_model_available": "PASS",
-    "provider_readiness": "PASS_READY",
-    "tool_calls": "SUPPORTED",
-    "structured_output": "SUPPORTED"
-  },
-  "live_acceptance": {
-    "audit_provider_round_trip": "PASS",
-    "plan_investigation_turn": "PASS",
-    "runtime_read_only_turn": "PASS",
-    "governed_workspace_read": "PASS",
-    "authorization_before_execution": "PASS",
-    "tool_receipt_evidence_correlation": "PASS",
-    "provider_continuation": "PASS",
-    "read_only_workspace_patch_denial": "PASS",
-    "malformed_and_denied_tool_handling": "PASS",
-    "rust_real_wrapper_projection": "PASS",
-    "no_active_turns_after_acceptance": "PASS"
-  },
   "mcp_projection": {
-    "status": "IMPLEMENTED_LOCAL_VALIDATION_PASS_INSTALLED_ACCEPTANCE_NOT_PROVEN",
+    "status": "SOURCE_IMPLEMENTATION_PROVEN_INSTALLED_ACCEPTANCE_NOT_PROVEN",
     "authority_owner": "LBE installed capability registry / capabilities.list",
     "rust_bridge": "RealLbeWrapper metadata-only projection",
     "configuration": "LBE_CAPABILITY_REGISTRY",
     "invocation": "python -m lbe_guard_inspector.product_entry capabilities list --registry <path> --format json",
-    "strict_response_requirements": [
-      "ok == true",
-      "action == capabilities.list",
-      "schema_version == 1",
-      "execution_attempted == false",
-      "required integration metadata present"
-    ],
     "rust_event": "McpRegistryUpdated",
     "state_behavior": "atomically replace retained MCP schema and integration metadata",
     "ui_surface": "/mcp dynamic metadata-only projection",
-    "rendered_metadata": [
-      "integration identity",
-      "adapter/tool IDs",
-      "availability",
-      "enabled state",
-      "credential-reference presence",
-      "access/network/risk metadata",
-      "timeout/retry policy",
-      "description/rationale"
-    ],
     "local_authority_exclusions": [
       "no Rust MCP transport owner",
       "no Rust execution owner",
       "no Rust authorization owner",
       "transport/execution/authorization state not retained locally"
     ],
-    "focused_projection_test": "PASS",
+    "source_implementation": "PROVEN",
+    "rust_formatting": "PASS",
     "cargo_check": "PASS",
     "rust_full_suite": "178 passed",
-    "static_source_reread": "PASS",
-    "rustfmt_check": "NOT_PASS_TWO_FORMATTING_DIFFERENCES_IN_WRAPPER_RS",
-    "cargo_fmt": "BLOCKED_OS_ERROR_1224_USER_MAPPED_SECTION",
+    "documentation_status": "PASS",
+    "installed_lbe_runtime": "BLOCKED_SIX_REQUIRED_RUNTIME_VARIABLES_UNAVAILABLE",
     "installed_interactive_acceptance": "NOT_PROVEN"
   },
-  "proven_flow": [
-    "Provider/model",
-    "LBE persisted session",
-    "mode-specific runtime",
-    "provider request",
-    "governed tool authorization",
-    "real registered tool execution",
-    "ToolReceipt/evidence",
-    "provider continuation",
-    "completed turn",
-    "Rust/Ratatui TUI projection"
-  ],
-  "mode_acceptance": {
-    "audit": {
-      "status": "PASS",
-      "permission": "read_only",
-      "behavior": "live conversational provider round trip; no fabricated execution"
-    },
-    "plan": {
-      "status": "PASS",
-      "runtime_mode": "investigation",
-      "permission": "read_only",
-      "behavior": "provider turn completed with no tools or execution"
-    },
-    "runtime": {
-      "status": "PASS",
-      "runtime_mode": "coding",
-      "permission": "read_only",
-      "behavior": "provider requested workspace.read; LBE authorized and executed it; receipt/evidence returned; provider continuation completed"
-    }
-  },
-  "negative_acceptance": {
-    "read_only_mutation": {
-      "status": "PASS",
-      "tool": "workspace.patch",
-      "authorization": "DENY",
-      "result": "DENIED",
-      "error": "AUTHORIZATION_DENIED",
-      "handler_executed": false,
-      "workspace_mutated": false
-    },
-    "empty_tool_calls": {
-      "status": "PASS",
-      "rule": "tool_calls: [] is normalized as no tool calls; non-empty tool calls still require LBE call-ID mapping and governed execution"
-    }
+  "runtime_configuration_blocker": {
+    "status": "BLOCKED",
+    "missing_variables": [
+      "LBE_WALL_ROOT",
+      "LBE_CAPABILITY_REGISTRY",
+      "LBE_WALL_PYTHON",
+      "LBE_TARGET_WORKSPACE",
+      "LBE_WALL_DATABASE",
+      "LBE_SESSION_ID"
+    ]
   },
   "validation": {
-    "python_full_suite_historical": "813 passed",
-    "python_full_suite_duration_seconds_historical": 497.59,
-    "rust_full_suite_current_reported": "178 passed",
-    "focused_mcp_projection": "PASS",
+    "rust_formatting_current_reported": "PASS",
     "cargo_check_current_reported": "PASS",
-    "static_source_reread_current_reported": "PASS",
-    "rustfmt_check_current_reported": "NOT_PASS_TWO_FORMATTING_DIFFERENCES_IN_WRAPPER_RS",
-    "cargo_fmt_current_reported": "BLOCKED_OS_ERROR_1224_USER_MAPPED_SECTION",
-    "focused_provider_tool_governance_historical": "61 passed",
-    "malformed_denied_tool_checks_historical": "6 passed",
-    "python_compilation_historical": "PASS",
-    "git_diff_check_historical": "PASS_WITH_LINE_ENDING_WARNINGS_ONLY"
+    "rust_full_suite_current_reported": "178 passed",
+    "mcp_projection_regression": "PASS",
+    "documentation_status_current_reported": "PASS"
   },
   "remaining_unproven": [
-    "installed interactive MCP projection against the configured LBE runtime",
-    "rustfmt-clean acceptance for the current MCP edit until the mapped-file lock is cleared",
-    "write-capable governed mutation acceptance through the complete interactive TUI workflow",
+    "installed interactive MCP projection against a configured LBE runtime",
     "complete installed-package interactive TUI acceptance",
     "any broader completion claim not covered by the bounded evidence above"
   ],
   "overall_status_summary": {
-    "bounded_conversational_bridge": "COMPLETE",
-    "static_unit_validation": "PASS",
-    "live_read_only_provider_runtime": "PASS",
-    "live_governed_read_only_tool_path": "PASS",
-    "live_negative_read_only_mutation_denial": "PASS",
-    "mcp_metadata_bridge": "IMPLEMENTED_LOCAL",
-    "mcp_typed_state_projection": "IMPLEMENTED_LOCAL",
-    "mcp_dynamic_ui_projection": "IMPLEMENTED_LOCAL",
-    "mcp_regression": "PASS",
-    "mcp_installed_acceptance": "NOT_YET_PROVEN",
+    "mcp_source_implementation": "PROVEN",
+    "rust_formatting": "PASS",
+    "rust_compilation": "PASS",
     "rust_regression": "PASS_178",
-    "format_acceptance": "BLOCKED_OS_ERROR_1224",
+    "documentation_status": "PASS",
+    "installed_lbe_runtime": "BLOCKED_RUNTIME_CONFIGURATION_UNAVAILABLE",
+    "mcp_installed_acceptance": "NOT_PROVEN",
     "complete_product_level_tui_acceptance": "NOT_YET_PROVEN"
   },
   "authority_note": "GPT-Knowledge is projection/reference only. Canonical LBE source, machine governance, current workspace/runtime evidence and acceptance records remain authoritative."
