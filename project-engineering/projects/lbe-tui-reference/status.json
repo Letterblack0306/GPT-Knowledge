@@ -1,5 +1,5 @@
 {
-  "schema_version": 12,
+  "schema_version": 13,
   "project": "LBE Rust/Ratatui TUI Integration",
   "classification": "REFERENCE_NON_CANONICAL",
   "verified_at": "2026-09-01",
@@ -7,11 +7,11 @@
   "source_branch": "main",
   "source_commit": "6421726de39d9a58da6371b49f1707d8bb39fe91",
   "source_commit_message": "docs: record MCP metadata checkpoint",
-  "source_commit_remote_status": "PROVEN_PRESENT_ON_GITHUB",
+  "source_commit_remote_status": "PROVEN_HEAD_OF_ORIGIN_MAIN",
   "agent_wall_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "local_tui_workspace": "C:\\LBE-TUI-Lab",
   "local_lbe_workspace": "C:\\Agents-Memory-Tool-v6-integration",
-  "current_status": "MCP_SOURCE_REAL_WRAPPER_AND_LIVE_METADATA_REFRESH_PROVEN_COMMITTED_PUSHED_INSTALLED_INTERACTIVE_PTY_E2E_NOT_PROVEN",
+  "current_status": "MCP_SOURCE_REAL_WRAPPER_AND_LIVE_METADATA_REFRESH_PROVEN_COMMITTED_PUSHED_INSTALLED_INTERACTIVE_PTY_E2E_BLOCKED_BY_TERMINAL_HARNESS",
   "active_gate": {
     "phase": "P2_P3_GOVERNED_EXECUTION",
     "status": "OPEN"
@@ -52,6 +52,7 @@
   "documentation_checkpoint": {
     "status": "COMMITTED_AND_PUSHED",
     "commit": "6421726de39d9a58da6371b49f1707d8bb39fe91",
+    "head_equals_origin_main": "PROVEN",
     "files": [
       "Agent.md",
       "Docs/10_mcp_surface.md",
@@ -60,16 +61,25 @@
       "Docs/status.json",
       "README.md"
     ],
-    "unrelated_preexisting_changes": "PRESERVED_NOT_INCLUDED"
+    "unrelated_preexisting_changes": "PRESERVED_NOT_INCLUDED",
+    "additional_changes_in_latest_continuation": "NONE"
+  },
+  "installed_terminal_acceptance": {
+    "status": "BLOCKED_BY_MISSING_WINDOWS_PTY_HARNESS",
+    "binary": "C:\\LBE-TUI-Lab\\target\\debug\\lbe.exe",
+    "attempt_method": "redirected standard input",
+    "result": "TIMED_OUT_AND_TERMINATED",
+    "interpretation": "redirected stdin does not provide the real terminal/PTY lifecycle required by the full-screen Ratatui event reader; this does not prove an application defect",
+    "required_next_evidence": "genuine Windows terminal/PTy harness capable of driving the installed binary interactively"
   },
   "validation": {
-    "status_json_parse": "PASS",
-    "documentation_diff_check": "PASS_WITH_ONE_NON_BLOCKING_BLANK_LINE_WARNING",
     "rust_formatting": "PASS",
     "rust_compilation": "PASS",
     "rust_full_suite": "178 passed",
-    "lbe_capability_discovery": "PASS",
-    "focused_live_wrapper_mcp_tests": "PASS"
+    "lbe_mcp_registry_discovery": "PASS",
+    "rust_metadata_projection": "PROVEN",
+    "configured_real_wrapper_attachment": "PASS",
+    "configured_mcp_refresh": "PASS"
   },
   "remaining_unproven": [
     "complete installed terminal PTY/E2E interaction proving /mcp end to end",
@@ -77,13 +87,14 @@
     "any broader completion claim not covered by the bounded evidence above"
   ],
   "overall_status_summary": {
+    "repository_checkpoint_alignment": "HEAD_EQUALS_ORIGIN_MAIN_AT_6421726",
     "mcp_source_implementation": "PROVEN",
     "real_wrapper_attachment": "PROVEN",
     "real_mcp_metadata_refresh": "PROVEN",
     "rust_regression": "PASS_178",
     "documentation_checkpoint": "COMMITTED_PUSHED",
     "active_p2_p3_gate": "OPEN",
-    "mcp_installed_interactive_pty_e2e": "NOT_PROVEN",
+    "mcp_installed_interactive_pty_e2e": "NOT_PROVEN_BLOCKED_BY_TERMINAL_HARNESS",
     "complete_product_level_tui_acceptance": "NOT_YET_PROVEN"
   },
   "authority_note": "GPT-Knowledge is projection/reference only. Canonical LBE source, machine governance, current workspace/runtime evidence and acceptance records remain authoritative."
