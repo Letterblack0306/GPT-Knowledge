@@ -1,15 +1,15 @@
 {
-  "schema_version": 7,
+  "schema_version": 8,
   "project": "LBE Rust/Ratatui TUI Integration",
   "classification": "REFERENCE_NON_CANONICAL",
-  "verified_at": "2026-08-31",
+  "verified_at": "2026-09-01",
   "source_repo": "Letterblack0306/LBE_Agents_wall_Intigration",
   "source_branch": "main",
   "agent_wall_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "local_tui_workspace": "C:\\LBE-TUI-Lab",
   "local_lbe_workspace": "C:\\Agents-Memory-Tool-v6-integration",
   "source_revision_status": "USER_REPORTED_LOCAL_VALIDATED_REVISION_NOT_SUPPLIED",
-  "current_status": "LIVE_GOVERNED_READ_ONLY_INTEGRATION_PROVEN",
+  "current_status": "LIVE_GOVERNED_READ_ONLY_INTEGRATION_PROVEN_MCP_PROJECTION_IMPLEMENTED_LOCAL_ACCEPTANCE_OPEN",
   "authority_model": {
     "lbe": "runtime, governance, authorization, execution, evidence, ToolReceipt, persistence, validation and completion authority",
     "tui": "Rust/Ratatui interface, request adapter and projection client only",
@@ -36,6 +36,46 @@
     "malformed_and_denied_tool_handling": "PASS",
     "rust_real_wrapper_projection": "PASS",
     "no_active_turns_after_acceptance": "PASS"
+  },
+  "mcp_projection": {
+    "status": "IMPLEMENTED_LOCAL_VALIDATION_PASS_INSTALLED_ACCEPTANCE_NOT_PROVEN",
+    "authority_owner": "LBE installed capability registry / capabilities.list",
+    "rust_bridge": "RealLbeWrapper metadata-only projection",
+    "configuration": "LBE_CAPABILITY_REGISTRY",
+    "invocation": "python -m lbe_guard_inspector.product_entry capabilities list --registry <path> --format json",
+    "strict_response_requirements": [
+      "ok == true",
+      "action == capabilities.list",
+      "schema_version == 1",
+      "execution_attempted == false",
+      "required integration metadata present"
+    ],
+    "rust_event": "McpRegistryUpdated",
+    "state_behavior": "atomically replace retained MCP schema and integration metadata",
+    "ui_surface": "/mcp dynamic metadata-only projection",
+    "rendered_metadata": [
+      "integration identity",
+      "adapter/tool IDs",
+      "availability",
+      "enabled state",
+      "credential-reference presence",
+      "access/network/risk metadata",
+      "timeout/retry policy",
+      "description/rationale"
+    ],
+    "local_authority_exclusions": [
+      "no Rust MCP transport owner",
+      "no Rust execution owner",
+      "no Rust authorization owner",
+      "transport/execution/authorization state not retained locally"
+    ],
+    "focused_projection_test": "PASS",
+    "cargo_check": "PASS",
+    "rust_full_suite": "178 passed",
+    "static_source_reread": "PASS",
+    "rustfmt_check": "NOT_PASS_TWO_FORMATTING_DIFFERENCES_IN_WRAPPER_RS",
+    "cargo_fmt": "BLOCKED_OS_ERROR_1224_USER_MAPPED_SECTION",
+    "installed_interactive_acceptance": "NOT_PROVEN"
   },
   "proven_flow": [
     "Provider/model",
@@ -84,18 +124,25 @@
     }
   },
   "validation": {
-    "python_full_suite": "813 passed",
-    "python_full_suite_duration_seconds": 497.59,
-    "rust_full_suite": "148 passed",
-    "focused_provider_tool_governance": "61 passed",
-    "malformed_denied_tool_checks": "6 passed",
-    "python_compilation": "PASS",
-    "git_diff_check": "PASS_WITH_LINE_ENDING_WARNINGS_ONLY"
+    "python_full_suite_historical": "813 passed",
+    "python_full_suite_duration_seconds_historical": 497.59,
+    "rust_full_suite_current_reported": "178 passed",
+    "focused_mcp_projection": "PASS",
+    "cargo_check_current_reported": "PASS",
+    "static_source_reread_current_reported": "PASS",
+    "rustfmt_check_current_reported": "NOT_PASS_TWO_FORMATTING_DIFFERENCES_IN_WRAPPER_RS",
+    "cargo_fmt_current_reported": "BLOCKED_OS_ERROR_1224_USER_MAPPED_SECTION",
+    "focused_provider_tool_governance_historical": "61 passed",
+    "malformed_denied_tool_checks_historical": "6 passed",
+    "python_compilation_historical": "PASS",
+    "git_diff_check_historical": "PASS_WITH_LINE_ENDING_WARNINGS_ONLY"
   },
   "remaining_unproven": [
+    "installed interactive MCP projection against the configured LBE runtime",
+    "rustfmt-clean acceptance for the current MCP edit until the mapped-file lock is cleared",
     "write-capable governed mutation acceptance through the complete interactive TUI workflow",
-    "installed-package interactive TUI acceptance",
-    "any broader completion claim not covered by the bounded live acceptance above"
+    "complete installed-package interactive TUI acceptance",
+    "any broader completion claim not covered by the bounded evidence above"
   ],
   "overall_status_summary": {
     "bounded_conversational_bridge": "COMPLETE",
@@ -103,8 +150,13 @@
     "live_read_only_provider_runtime": "PASS",
     "live_governed_read_only_tool_path": "PASS",
     "live_negative_read_only_mutation_denial": "PASS",
-    "full_python_regression": "PASS_813",
-    "rust_regression": "PASS_148",
+    "mcp_metadata_bridge": "IMPLEMENTED_LOCAL",
+    "mcp_typed_state_projection": "IMPLEMENTED_LOCAL",
+    "mcp_dynamic_ui_projection": "IMPLEMENTED_LOCAL",
+    "mcp_regression": "PASS",
+    "mcp_installed_acceptance": "NOT_YET_PROVEN",
+    "rust_regression": "PASS_178",
+    "format_acceptance": "BLOCKED_OS_ERROR_1224",
     "complete_product_level_tui_acceptance": "NOT_YET_PROVEN"
   },
   "authority_note": "GPT-Knowledge is projection/reference only. Canonical LBE source, machine governance, current workspace/runtime evidence and acceptance records remain authoritative."
