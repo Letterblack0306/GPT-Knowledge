@@ -1,107 +1,85 @@
 {
-  "schema_version": 21,
+  "schema_version": 22,
   "project": "LBE Persistent Agent",
-  "verified_at": "2026-08-31",
+  "verified_at": "2026-09-02",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "source_branch": "main",
-  "local_workspace": "C:/Agents-Memory-Tool-v6-integration",
-  "overall_classification": "LBE_RUNTIME_OWNERS_PROVEN_CLINE_INTERFACE_APPROVED_RUST_CLIENT_BOUNDED_P2_VALIDATION_IN_PROGRESS",
-  "authority_note": "GPT-Knowledge is projection only. Canonical LBE source, machine governance, current workspace/runtime evidence and acceptance records retain authority.",
-  "core_doctrine": "Provider/agent reasons. LBE governs capabilities and consequences. Existing LBE runtime owners are reused through adapters; clients do not copy or recreate them. ToolReceipts/evidence persist. Validation decides completion.",
-  "product_identity": {
-    "product": "LBE",
-    "runtime_authority": "LBE",
-    "final_interface_direction": "Cline CLI/SDK mechanics under LBE identity/authority",
-    "cline_classification": "APPROVED_INTERFACE_DIRECTION_AND_REUSE_SOURCE",
-    "rust_classification": "BOUNDED_CLIENT_ADAPTER_PROJECTION_INTEGRATION",
-    "rust_long_term_role": "REQUIRES_RECONCILIATION",
-    "opencode_classification": "REFERENCE_REUSE_SOURCE_PINNED_AUDIT_REQUIRED"
-  },
-  "machine_state": {
-    "status": "REQUIRES_FRESH_CANONICAL_RECONCILIATION",
-    "note": "Resolve active phase/slice/implementation permission from the canonical LBE machine gate when implementation authorization is required."
+  "original_workspace": "C:/Agents-Memory-Tool-v6-integration",
+  "later_ui_workspace": "C:/LBE-TUI-Lab",
+  "later_ui_repo": "Letterblack0306/LBE_Agents_wall_Intigration",
+  "overall_classification": "RUNTIME_AUTHORITY_PROVEN_ORIGINAL_WORKSPACE_HAS_UNRESOLVED_NATIVE_UI_AND_UNCOMMITTED_SURFACE_GAPS",
+  "authority_note": "GPT-Knowledge is projection only. Canonical LBE source, machine governance, current workspace/runtime evidence and acceptance records retain authority. Local uncommitted files, branches and stashes require fresh verification before mutation.",
+  "workspace_role_correction": {
+    "original_workspace": "C:/Agents-Memory-Tool-v6-integration is the original LBE project/runtime workspace and contains historical and current integration work that must not be inferred from the later UI repo alone.",
+    "later_ui_workspace": "C:/LBE-TUI-Lab was created later for the UI/client surface. It is not the owner of canonical LBE runtime authority and does not erase or supersede original-workspace integration evidence by existence alone."
   },
   "runtime_authority": {
     "status": "ESTABLISHED_GOVERNED",
-    "owns": [
-      "workspace/session identity",
-      "mode/policy",
-      "authorization and approval authority",
-      "governed execution and mutation",
-      "ToolRegistry registration and operation identity",
-      "ToolReceipt and evidence provenance",
-      "session persistence and operational history",
-      "provider continuation boundary",
-      "validation and completion truth"
-    ]
+    "rule": "LBE owns session/workspace identity, policy, authorization, governed execution/mutation, ToolReceipts/evidence, persistence, provider continuation, validation and completion truth. UI/client surfaces remain adapters/projections."
   },
-  "canonical_runtime_owners": {
-    "workspace_tools": "PASS",
-    "authorization_governance": "PASS",
-    "memory": "PASS",
-    "sessions_persistence": "PASS",
-    "evidence_receipts": "PASS",
-    "providers_continuation": "PASS",
-    "product_entry": "PASS",
-    "rule": "These owners stay in C:/Agents-Memory-Tool-v6-integration and are invoked by clients; they are not copied into C:/LBE-TUI-Lab."
-  },
-  "tool_surface": {
-    "registered": ["workspace.read", "workspace.list", "workspace.glob", "workspace.search", "workspace.patch", "process.run_registered"],
-    "product_entry_commands": ["export", "tool", "authorization", "turn", "start", "capabilities"]
-  },
-  "tool_receipt_envelope": {
-    "status": "PROVEN",
-    "fields": ["operation_id", "tool_id", "status", "receipt_id", "authorization", "output", "evidence"],
-    "failure_fields": ["error_code", "error_message"],
-    "client_rule": "Decode LBE-owned output/evidence; do not fabricate result state locally."
-  },
-  "external_capabilities": {
-    "registration_boundary": "PASS",
-    "mcp_registration": "PASS",
-    "mcp_governed_tool_boundary": "PASS",
-    "mcp_rust_panel": "PLACEHOLDER",
-    "mcp_rust_projection": "MISSING",
-    "mcp_installed_acceptance": "NOT_PROVEN",
-    "mcp_full_live_server_acceptance": "NOT_PROVEN"
-  },
-  "reuse_first": {
-    "status": "MANDATORY_FOR_REMAINING_CAPABILITIES",
-    "rule": "Check canonical LBE ownership first. Reuse through an adapter. Reuse/adapt approved Cline mechanics next. Verify and pin OpenCode capability-specific source before direct reuse. BUILD_NEW is last resort.",
-    "cline": {
-      "classification": "APPROVED_INTERFACE_AND_PRIMARY_REUSE_ADAPT_SOURCE",
-      "source_audit": "PASS",
-      "must_not_own": ["LBE authorization", "LBE governed mutation", "LBE receipts/evidence", "LBE completion truth"]
+  "cline_integrations": {
+    "active_runtime_worker": {
+      "path": "lbe_guard_inspector/runtime/cline_worker/",
+      "consumer": "lbe_guard_inspector/runtime/cline_stdio_bridge.py",
+      "dependency": "@cline/agents@0.0.75",
+      "classification": "ACTIVE_CANONICAL_GOVERNED_PROVIDER_CONTINUATION_DO_NOT_TOUCH"
     },
-    "opencode": {
-      "classification": "REFERENCE_ONLY_UNTIL_PINNED_CAPABILITY_MATRIX",
-      "direct_reuse": "UNVERIFIED"
+    "forgotten_native_adapter": {
+      "path": "unused-in-repo/cline-cli-reference-copy-2026-08-27/cline-cli/",
+      "lbe_authored_files": [
+        "apps/cli/src/runtime/interactive/lbe-authority.ts",
+        "apps/cli/src/runtime/interactive/lbe-authority.test.ts"
+      ],
+      "reported_behavior": "LbeAuthorityBridge spawns Python LBE, sends tool.proposed/tools.describe, maps EXECUTED/DENIED/ESCALATED/FAILED and returns receipt/evidence into the CLI loop.",
+      "classification": "PARTIALLY_BUILT_UNREGISTERED_MISPLACED_STATUS_CONFLICTED",
+      "deletion_rule": "Do not silently delete as generic reference residue. Preserve and decide its status explicitly."
     }
   },
-  "rust_adapter": {
-    "status": "IMPLEMENTED_BOUNDED_REAL_WRAPPER",
-    "role": "client_adapter_projection",
-    "authoritative_invocation": "python -m lbe_guard_inspector.product_entry",
-    "remote_source_proves_lbe_command_invocation": "PASS",
-    "remote_source_proves_identity_cross_checks": "PASS",
-    "remote_source_proves_receipt/evidence_lifecycle_projection": "PASS",
-    "local_reported_workspace_read_list_output_decode": "REPORTED_LOCAL_UPDATE",
-    "local_reported_workspace_read_list_output_decode_remote_verification": "NOT_YET_VERIFIED",
-    "copy_lbe_runtime_into_rust": "REJECTED"
+  "native_surface_conflict": {
+    "status": "BLOCKING",
+    "active_evidence": "PROJECT_INTENT_LEDGER lines ~335-369 report LBE-INTENT-CLINE-NATIVE-SURFACE-INTEGRATION-001 / CLINE_NATIVE_SURFACE_INTEGRATION / RESULT ACTIVE.",
+    "quarantine_evidence": "Later ledger product-owner correction around ~390-398 reports HTML-based product UI direction and Cline/OpenTUI as reference-only/quarantined.",
+    "cross_repo_conflict": "C:/LBE-TUI-Lab/Docs/33_real_cli_ide_implementation_plan.md still points at the forgotten tree.",
+    "required_decision": "Revive/register native Cline surface as active, or formally supersede it while preserving LBE-authored bridge work as historical/reference integration evidence."
   },
-  "p2_read_only_validation": {
-    "scope": ["workspace.read", "workspace.list", "workspace.glob", "workspace.search"],
-    "status": "IN_PROGRESS_LOCAL_EVIDENCE",
-    "write_patch": "NOT_TESTED_BY_READ_ONLY_SLICE",
-    "write_patch_requirement": "real target path + replacement content + expected hash + authorization evidence"
+  "local_web_cockpit": {
+    "classification": "BUILT_AND_WIRED_LOCALLY_UNCOMMITTED_NOT_REGISTERED_AS_CURRENT_AUTHORITY",
+    "reported_files": [
+      ".ui-preview/agent_cockpit.html",
+      ".ui-preview/lbe_landing_provider_setup.html",
+      ".ui-preview/state2.sqlite3",
+      "tests/test_agent_cockpit_http.py",
+      "tests/test_governance_drift_guards.py",
+      "tests/test_runtime_commit_gate_enforcement.py",
+      "tests/test_ui_implementation_authority.py"
+    ],
+    "reported_routes": ["/", "/cockpit", "/cockpit.html", "/workspace/tree", "/roots", "/inspect", "/search"],
+    "required_disposition": "Bind to explicit UI/Home intent and commit with evidence, or classify/preserve as reference."
   },
-  "remaining_unproven": [
-    "actual retained PASS/FAIL output for the four local P2 read-only real-wrapper tests",
-    "remote verification of the reported workspace.read/workspace.list output decoding update",
-    "write-capable workspace.patch acceptance using real payload/hash evidence",
-    "Rust MCP projection and installed MCP acceptance",
-    "installed interactive client acceptance",
-    "Rust long-term product role after reconciliation with the approved Cline CLI/SDK interface direction",
-    "pinned OpenCode capability-by-capability reuse matrix"
+  "cleanup_branches": {
+    "classification": "EXIST_NOT_PROVEN_MERGED",
+    "reported": [
+      "origin/cleanup/remove-redundant-lbe-reference-copies",
+      "origin/cleanup/remove-redundant-lbe-reference-copies-v2"
+    ],
+    "rule": "Inspect before inventing a new cleanup path or deleting the forgotten tree."
+  },
+  "structural_backlog": {
+    "branches": "100+ reported; UNCLASSIFIED, each requires disposition evidence.",
+    "stashes": "Four reported reconciliation/pre-cleanup snapshots; UNRECONCILED.",
+    "protected_state_and_backups": "state DBs, .before-* and .baseline-* material remain protected/unclassified; retention decision pending.",
+    "unused_manifest_validation": "Dedicated unused-in-repo ownership/disposition validation remains a corrective requirement."
+  },
+  "corrective_order": [
+    "freshly verify canonical ledger and forgotten-tree files",
+    "resolve native-surface product-direction conflict",
+    "leave runtime/cline_worker untouched",
+    "inspect existing cleanup branches",
+    "preserve/register or formally supersede/quarantine forgotten LBE-authored native adapter",
+    "decide/register local web cockpit and tests",
+    "reconcile LBE-TUI-Lab Module 33 with canonical LBE decision",
+    "classify branches, stashes and protected state/backups separately"
   ],
-  "status_rule": "Do not turn an LBE owner PASS into a client/TUI PASS, a local reported change into remote proof, or a bounded read-only acceptance into write/product completion."
+  "detail_record": "project-engineering/projects/lbe-plan-canvas/original-workspace-gap-audit-2026-09-02.md",
+  "status_rule": "Do not collapse the active runtime Cline worker, forgotten native Cline/LBE adapter, later Rust UI workspace, or local HTML cockpit into one integration. They have different ownership and evidence status."
 }
