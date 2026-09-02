@@ -1,74 +1,176 @@
 {
-  "schema_version": 22,
+  "schema_version": 23,
   "project": "LBE Persistent Agent",
   "updated": "2026-09-02",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "source_branch": "main",
   "original_workspace": "C:/Agents-Memory-Tool-v6-integration",
   "later_ui_workspace": "C:/LBE-TUI-Lab",
-  "purpose": "Project the canonical LBE runtime and product UI direction from the original workspace. The canonical interface direction is the HTML-based LBE TUI/cockpit in the main LBE workspace; the later Rust/Ratatui workspace is a UI/reference/reuse-input workspace, not canonical product authority.",
-  "authority_rule": "Current canonical LBE source/runtime evidence and machine governance outrank this projection. Uncommitted local files, branches, stashes and protected state require fresh verification before mutation or completion claims.",
-  "core_doctrine": "Provider/agent reasons; LBE governs capabilities and consequences. Existing runtime owners are reused rather than copied. ToolReceipts/evidence persist and validation decides completion. The UI projects and requests through LBE-owned seams.",
-  "workspace_roles": {
-    "original": "C:/Agents-Memory-Tool-v6-integration owns canonical LBE runtime/project history and the canonical HTML product UI direction.",
-    "later_ui": "C:/LBE-TUI-Lab / Letterblack0306/LBE_Agents_wall_Intigration was created later for UI/client experimentation and reuse strategy. It is reference/UI-only relative to canonical LBE product authority."
+  "purpose": "Project the final LBE product plan as one persistent provider-neutral governed agent lifecycle. UI, guard packs, Cline mechanics, external integrations and historical clients are subordinate capabilities or projections, not separate product architectures.",
+  "authority_rule": "Current canonical source/configuration, local validation/runtime evidence, machine governance, active intent and acceptance evidence outrank GPT-K. This file is planning/reference projection only.",
+  "final_product_goal": "A local persistent LBE agent that can start or resume a workspace/session, reason with a selected provider, discover and request governed capabilities, execute only through LBE authorization and registered adapters, consume ToolReceipts/evidence, replan across turns, deterministically validate completion, persist/recover state, and expose the whole lifecycle through the final HTML LBE interface.",
+  "core_invariant": "Agent/provider owns cognition; LBE owns capabilities and consequences.",
+  "lifecycle_plan": [
+    {
+      "order": 1,
+      "phase": "boot",
+      "owner": "LBE",
+      "required_product_behavior": "Resolve canonical workspace, persisted session, provider/model/profile, mode/policy and installed capabilities; create or restore exactly one product session."
+    },
+    {
+      "order": 2,
+      "phase": "understand",
+      "owner": "Agent + evidence resources",
+      "required_product_behavior": "Assemble bounded current workspace/project context and evidence without replacing agent reasoning with a fixed LBE cognitive workflow."
+    },
+    {
+      "order": 3,
+      "phase": "plan",
+      "owner": "Agent/provider",
+      "required_product_behavior": "Agent independently chooses investigation strategy, capabilities and next actions; structured ReasoningPlan remains optional/specialist rather than mandatory product cognition."
+    },
+    {
+      "order": 4,
+      "phase": "execute",
+      "owner": "LBE",
+      "required_product_behavior": "Every authority-bearing capability request passes through existing policy/R6C authorization and R6E ToolRegistry/GovernedToolOrchestrator; execution returns one correlated ToolReceipt/evidence record."
+    },
+    {
+      "order": 5,
+      "phase": "validate",
+      "owner": "LBE",
+      "required_product_behavior": "Registered evidence producers and deterministic completion owners evaluate outcome; provider prose cannot establish terminal completion truth."
+    },
+    {
+      "order": 6,
+      "phase": "persist",
+      "owner": "LBE",
+      "required_product_behavior": "Persist session/task state, runtime events, receipts, evidence, recovery/checkpoint state and only evidence-gated validated memory/completion truth."
+    },
+    {
+      "order": 7,
+      "phase": "continue",
+      "owner": "Agent + LBE",
+      "required_product_behavior": "Agent consumes receipts/evidence, replans or completes; LBE preserves identity, authority boundaries, cancellation/recovery and resume across turns/restarts."
+    }
+  ],
+  "capability_model": {
+    "workspace_tools": "Registered read/mutation/process/Git capabilities execute only through LBE governance.",
+    "external_integrations": "MCP/plugin/subagent/network/hosted services materialize only as preconfigured governed registrations; provider sees schemas, never raw transport authority.",
+    "guards": "Project profile selects approved guard catalog; guards remain deterministic bounded capabilities, not the agent reasoning engine.",
+    "provider_runtime": "Provider/Cline continuation mechanics may be reused behind LBE authority; no provider-native mutation/session/completion authority.",
+    "memory": "Historical/context/validated memory supports reasoning and persistence but does not override current workspace/runtime truth."
   },
-  "runtime_boundary": {
-    "status": "PROVEN_AND_PRESERVED",
-    "active_cline_worker": "lbe_guard_inspector/runtime/cline_worker/",
-    "consumer": "lbe_guard_inspector/runtime/cline_stdio_bridge.py",
-    "dependency": "@cline/agents@0.0.75",
-    "rule": "Do not modify this worker as part of UI/reference-tree cleanup."
-  },
-  "interface_direction": {
-    "status": "CANONICAL_HTML_BASED_LBE_TUI",
-    "governance_basis": "PROJECT_INTENT_LEDGER amends the Cline surface direction to the HTML-based LBE TUI and records the product-owner correction that docs/reference/ui/lbe_runtime_console.html and docs/reference/ui/lbe_runtime_surface_preview.html are the visual/layout basis; copied Cline CLI/OpenTUI remains reference material for interaction ideas.",
+  "product_surface_plan": {
+    "final_target": "HTML-based LBE TUI/cockpit",
     "reference_surfaces": [
       "docs/reference/ui/lbe_runtime_console.html",
       "docs/reference/ui/lbe_runtime_surface_preview.html"
     ],
-    "implementation_surface": ".ui-preview/agent_cockpit.html served by server.py",
-    "rust_rule": "lbe-tui/ and C:/LBE-TUI-Lab are not canonical UI/runtime authorities."
+    "projection_rule": "Conversation/plan surfaces project agent-owned reasoning; evidence surfaces project workspace/knowledge evidence; execution/receipt/validation/history surfaces project LBE-owned truth.",
+    "current_truth": "HTML cockpit implementation, governed adapter wiring and installed acceptance remain pending.",
+    "historical_surfaces": "Textual, Rust/Ratatui and copied Cline/OpenTUI remain implementation/reference history and reuse inputs; they are not the final product authority."
   },
-  "recovered_lbe_authority_bridge": {
-    "source_path": "unused-in-repo/cline-cli-reference-copy-2026-08-27/cline-cli/apps/cli/src/runtime/interactive/lbe-authority.ts",
-    "test_path": "unused-in-repo/cline-cli-reference-copy-2026-08-27/cline-cli/apps/cli/src/runtime/interactive/lbe-authority.test.ts",
-    "classification": "LBE_AUTHORED_GOVERNED_UI_INTEGRATION_WORK_RECOVERED_FROM_MISPLACED_REFERENCE_TREE",
-    "reported_contract": "Python LBE process + tool.proposed/tools.describe + EXECUTED/DENIED/ESCALATED/FAILED mapping + receipt/evidence return.",
-    "plan_rule": "Do not revive the copied Cline CLI/OpenTUI product surface. Extract/surface/register the LBE-authored bridge as an owned integration seam for the canonical HTML product path, preserving provenance and tests."
-  },
-  "canonical_html_surface": {
-    "status": "LOCAL_BUILT_WIRED_UNCOMMITTED",
-    "surface": ".ui-preview/agent_cockpit.html plus provider landing page and governance/UI tests",
-    "reported_routes": ["/", "/cockpit", "/cockpit.html", "/workspace/tree", "/roots", "/inspect", "/search"],
-    "rule": "This is the intended product UI direction, but local uncommitted implementation is not a committed completion proof. Bind it to the canonical UI intent, commit, and validate."
-  },
-  "later_rust_ui": {
-    "status": "REFERENCE_UI_ONLY",
-    "workspace": "C:/LBE-TUI-Lab",
-    "allowed_role": "reuse strategy, comparison, client experiment, historical UI work",
-    "cross_workspace_reference": "docs/acceptance/CURRENT_IMPLEMENTATION_GATE.md may reference C:/LBE-TUI-Lab/Docs/31_cline_interop_reuse_strategy.md as an input without transferring authority.",
-    "forbidden_role": "canonical product interface owner"
-  },
-  "cleanup_and_retention": {
-    "existing_cleanup_branches": [
-      "origin/cleanup/remove-redundant-lbe-reference-copies",
-      "origin/cleanup/remove-redundant-lbe-reference-copies-v2"
+  "current_active_slice": {
+    "phase": "P2_P3_GOVERNED_EXECUTION",
+    "slice": "TUI_P2_P3_GOVERNED_EXECUTION_INTEGRATION",
+    "intent": "LBE-INTENT-TUI-P2P3-GOVERNED-INTEGRATION-001",
+    "status": "OPEN",
+    "scope": "Adapt only the active TUI request/event/snapshot boundary to existing R6C/R6E authorization, ToolRegistry, GovernedToolOrchestrator, ToolReceipt, evidence, validation and completion owners.",
+    "non_goals": [
+      "no UI redesign",
+      "no second executor",
+      "no second authorization/receipt/evidence/validation/persistence/completion owner",
+      "no unrestricted shell",
+      "no direct Cline authority",
+      "no publication",
+      "no branch/worktree creation"
     ],
-    "reference_tree_rule": "Inspect existing cleanup intent before deleting/moving copied Cline material; preserve the LBE-authored bridge/test independently from generic reference-copy disposition.",
-    "branch_inventory": "100+ reported branches require classification/disposition; do not bulk merge or delete based on names.",
-    "stashes": "Four reported reconciliation/pre-cleanup stashes require inspection before drop/recovery.",
-    "protected_material": "state DBs/backups and .before-*/.baseline-* snapshots require an explicit retention decision.",
-    "validator_gap": "Add/retain dedicated unused-in-repo ownership/disposition validation so authored integration work cannot remain silently misclassified."
+    "completion_evidence": [
+      "active intent/machine-slice binding",
+      "authorization before execution",
+      "provider receives only LBE-generated tool definitions",
+      "correlated ToolReceipt",
+      "mutation denial outside registered capabilities",
+      "read-only audit/investigation preservation",
+      "focused regression",
+      "full regression",
+      "no duplicate authority owner"
+    ]
   },
-  "next_decision_sequence": [
-    {"order":1,"id":"preserve-runtime-worker","status":"NON_NEGOTIABLE","scope":"Keep lbe_guard_inspector/runtime/cline_worker and @cline/agents runtime continuation contract unchanged."},
-    {"order":2,"id":"register-canonical-html-ui","status":"HIGH_PRIORITY","scope":"Treat .ui-preview/agent_cockpit.html and its server.py routes/tests as the canonical UI implementation path; bind to the active HTML UI intent and retain acceptance evidence."},
-    {"order":3,"id":"recover-lbe-authority-bridge","status":"HIGH_PRIORITY","scope":"Surface the LBE-authored lbe-authority.ts/test out of the generic quarantined Cline tree, preserve provenance, and register it as the governed UI integration seam without reviving Cline/OpenTUI as product UI."},
-    {"order":4,"id":"commit-and-validate-html-cockpit","status":"PENDING","scope":"Commit the intended HTML cockpit and governed UI tests only under the correct machine gate/intent; prove routes, authority boundary, receipts/evidence and runtime behavior."},
-    {"order":5,"id":"reconcile-later-ui-docs","status":"PENDING","scope":"Update LBE-TUI-Lab documentation/projections so Rust/Ratatui is explicitly later UI/reference/reuse input, not canonical interface direction."},
-    {"order":6,"id":"reference-tree-cleanup","status":"PENDING","scope":"Inspect existing cleanup branches, then deduplicate/quarantine generic copied Cline material while preserving LBE-authored integration work."},
-    {"order":7,"id":"separate-structural-cleanup","status":"PENDING","scope":"Classify branches, stashes, protected state/backups and unused-in-repo validation independently from UI implementation."}
+  "accepted_baseline": {
+    "classification": "PROVEN_ACCEPTED_RUNTIME_FOUNDATION",
+    "includes": [
+      "persistent session/provider lifecycle",
+      "governed mutation dispatch",
+      "external capability registration",
+      "installed capability registry",
+      "provider continuation",
+      "receipt/evidence projection",
+      "bounded recovery",
+      "deterministic completion/promotion",
+      "installed-package runtime composition"
+    ],
+    "rule": "Do not reopen these owners or rebuild parallel equivalents unless a separately authorized architecture change proves an unmet requirement."
+  },
+  "project_profile_guard_catalog": {
+    "status": "PASS_LOCAL_CURRENT_EVIDENCE",
+    "intent": "LBE-INTENT-PROJECT-PROFILE-GUARD-CATALOG-INTEGRATION-001",
+    "behavior": "lbe start projects project_profile and guard_catalog read-only; CEP callback resolves through the canonical cep pack; startup does not execute guards.",
+    "gate_effect": "Does not advance or close the active TUI P2/P3 slice."
+  },
+  "execution_sequence": [
+    {
+      "order": 1,
+      "id": "finish-active-governed-tui-adapter",
+      "status": "ACTIVE",
+      "scope": "Complete only the current TUI P2/P3 governed integration and prove its required evidence."
+    },
+    {
+      "order": 2,
+      "id": "close-current-slice",
+      "status": "BLOCKED_UNTIL_EVIDENCE",
+      "scope": "Checkpoint PASS only when all current-slice proof requirements are met; otherwise remain OPEN/BLOCKED."
+    },
+    {
+      "order": 3,
+      "id": "activate-final-html-ui-implementation",
+      "status": "FUTURE_SEPARATE_GATE",
+      "scope": "Create a separate intent/gate for HTML cockpit implementation and adapter wiring; do not smuggle UI redesign into the current slice."
+    },
+    {
+      "order": 4,
+      "id": "html-runtime-projection",
+      "status": "FUTURE",
+      "scope": "Bind HTML conversation, plan, evidence, execution, receipt, validation, session/history and control surfaces to existing LBE owners."
+    },
+    {
+      "order": 5,
+      "id": "installed-final-product-acceptance",
+      "status": "FUTURE",
+      "scope": "Prove the installed HTML product across boot → understand → plan → execute → validate → persist → continue, including resume/cancellation/fail-closed behavior and no duplicate authority."
+    },
+    {
+      "order": 6,
+      "id": "product-readiness-decision",
+      "status": "FUTURE",
+      "scope": "Only after installed final-product acceptance classify user-ready/release-ready state; publication remains separately governed."
+    }
   ],
-  "detail_record": "project-engineering/projects/lbe-plan-canvas/original-workspace-gap-audit-2026-09-02.md"
+  "separate_non_product_work": {
+    "later_rust_ui": "Reference/reuse input only; not an active product node.",
+    "cline_reference_tree": "Reference/archive; preserve only proven reusable LBE-authored seams when separately authorized.",
+    "branches_stashes_state": "Classify/retain/clean under separate hygiene/retention work; never bundle into product implementation."
+  },
+  "final_acceptance_predicate": [
+    "one canonical main/primary-worktree implementation path",
+    "one persisted workspace/session identity",
+    "agent/provider independently reasons and chooses registered capabilities",
+    "all authority-bearing execution is authorized and dispatched by LBE",
+    "ToolReceipt/evidence correlation survives provider continuation",
+    "deterministic validation alone establishes completion truth",
+    "state/recovery/history survives restart and resume",
+    "final HTML interface truthfully projects the same runtime owners without duplicate authority",
+    "installed user flow proves the full lifecycle at the exact accepted revision"
+  ]
 }
