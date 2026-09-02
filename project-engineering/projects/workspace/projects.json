@@ -1,5 +1,5 @@
 {
-  "schema_version": 3,
+  "schema_version": 4,
   "projects": [
     {
       "id": "portfolio",
@@ -25,9 +25,9 @@
     {
       "id": "lbe",
       "name": "LBE Persistent Agent",
-      "subtitle": "Runtime Authority Established · Rust TUI Live Governed Read-Only Path PASS",
+      "subtitle": "Persistent Governed Agent Runtime · Active TUI P2/P3 Integration · HTML Final UI Target",
       "mapped": true,
-      "active_node": "rust-tui-live-governed-integration",
+      "active_node": "tui-p2p3-governed-execution-integration",
       "plan_file": "../lbe-plan-canvas/plan.json",
       "status_file": "../lbe-plan-canvas/status.json",
       "references_file": "../lbe-plan-canvas/references.json",
@@ -35,13 +35,54 @@
       "canvas_file": "../lbe-plan-canvas/index.html",
       "reference": "../lbe-persistent-agent-wall-status.md",
       "features": [
-        {"id":"lbe-authority","title":"LBE runtime authority","classification":"ESTABLISHED_GOVERNED","detail":"LBE remains the owner of session identity, policy, authorization, governed execution, ToolReceipts/evidence, persistence, validation and completion truth."},
-        {"id":"rust-tui-client","title":"Rust/Ratatui projection client","classification":"PROVEN_LIVE_BOUNDED","detail":"The separate Rust TUI drives the existing LBE runtime through a conversational bridge without becoming a competing authority owner."},
-        {"id":"audit-plan-runtime","title":"Audit, Plan and Runtime live acceptance","classification":"PASS","detail":"Live provider turns passed for Audit, Plan/investigation and read-only Runtime modes using the persisted LBE session boundary."},
-        {"id":"governed-read","title":"Governed workspace.read end-to-end","classification":"PASS","detail":"Provider tool request flowed through LBE authorization and registered execution, produced real ToolReceipt/evidence correlation, continued the provider turn and completed in the TUI projection."},
-        {"id":"deny-path","title":"Read-only mutation denial","classification":"PASS","detail":"workspace.patch is denied before handler execution for read_only/audit_only authority; no file mutation is performed."},
-        {"id":"regression","title":"Full regression validation","classification":"PASS","detail":"Full Python suite: 813 passed. Rust suite: 148 passed. Focused provider/tool/governance and malformed/denied checks also passed."},
-        {"id":"remaining","title":"Remaining product-level proof","classification":"NOT_YET_PROVEN","detail":"Write-capable interactive mutation acceptance and installed-package interactive TUI acceptance remain separate proof slices."}
+        {
+          "id": "final-product-lifecycle",
+          "title": "Persistent governed agent lifecycle",
+          "classification": "TARGET_ALIGNED",
+          "detail": "Final product lifecycle is boot → understand → plan → execute → validate → persist → continue. Agent/provider owns reasoning and capability choice; LBE owns authority, execution, receipts/evidence, persistence and deterministic completion."
+        },
+        {
+          "id": "lbe-authority",
+          "title": "LBE runtime authority",
+          "classification": "ESTABLISHED_GOVERNED",
+          "detail": "LBE owns workspace/session identity, policy, authorization, governed dispatch, ToolReceipts/evidence, recovery, validation and completion truth."
+        },
+        {
+          "id": "runtime-baseline",
+          "title": "Accepted runtime foundation",
+          "classification": "PROVEN_ACCEPTED_BASELINE",
+          "detail": "Persistent lifecycle, governed mutation, external capability registration, installed capability registry, provider continuation, recovery, deterministic completion and installed-package composition are accepted runtime foundations."
+        },
+        {
+          "id": "active-tui-governed-integration",
+          "title": "Active TUI P2/P3 governed integration",
+          "classification": "OPEN",
+          "detail": "Current active product slice adapts the TUI request/event/snapshot boundary to existing R6C/R6E/ToolReceipt/evidence/validation/completion owners. UI redesign is explicitly out of scope for this slice."
+        },
+        {
+          "id": "html-final-ui",
+          "title": "HTML LBE product interface",
+          "classification": "FINAL_TARGET_PENDING_IMPLEMENTATION_ACCEPTANCE",
+          "detail": "HTML/CSS/JavaScript cockpit is the final product UI direction. Bounded adapter wiring and installed final-product acceptance remain pending."
+        },
+        {
+          "id": "project-profile-guards",
+          "title": "Project profile and guard catalog",
+          "classification": "PASS_LOCAL_CURRENT_EVIDENCE",
+          "detail": "lbe start projects project_profile/guard_catalog read-only; CEP callback resolves through the canonical cep pack. This does not advance or close the active TUI gate."
+        },
+        {
+          "id": "rust-reference",
+          "title": "Rust/Ratatui workspace",
+          "classification": "REFERENCE_REUSE_INPUT",
+          "detail": "C:/LBE-TUI-Lab is historical/reference/reuse input only and is not the active or final LBE product surface."
+        },
+        {
+          "id": "product-completion",
+          "title": "Final product completion",
+          "classification": "NOT_YET_PROVEN",
+          "detail": "Current completion requires the active TUI P2/P3 slice to PASS, followed by separately authorized HTML cockpit implementation/wiring and installed end-to-end final-product acceptance."
+        }
       ]
     },
     {
