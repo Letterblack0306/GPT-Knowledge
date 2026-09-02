@@ -1,103 +1,136 @@
 {
-  "schema_version": 24,
+  "schema_version": 25,
   "project": "LBE Persistent Agent",
   "verified_at": "2026-09-02",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "source_branch": "main",
   "original_workspace": "C:/Agents-Memory-Tool-v6-integration",
   "later_ui_workspace": "C:/LBE-TUI-Lab",
-  "later_ui_repo": "Letterblack0306/LBE_Agents_wall_Intigration",
-  "overall_classification": "RUNTIME_AUTHORITY_PROVEN_CANONICAL_HTML_LBE_TUI_DIRECTION_CEP_CALLBACK_INTEGRATION_PASS_RECOVERED_UI_GAPS_PENDING",
-  "authority_note": "GPT-Knowledge is projection only. Canonical LBE source, machine governance, current workspace/runtime evidence and acceptance records retain authority. Local uncommitted files still require fresh verification before mutation.",
-  "workspace_role_correction": {
-    "original_workspace": "C:/Agents-Memory-Tool-v6-integration is the canonical LBE project/runtime workspace and also owns the canonical HTML-based product UI direction.",
-    "later_ui_workspace": "C:/LBE-TUI-Lab was created later for UI/client experimentation and reuse work. It is reference/UI-only relative to canonical LBE authority and must not be treated as the canonical product interface owner."
+  "overall_classification": "CORE_RUNTIME_AUTHORITY_PROVEN_ACTIVE_TUI_P2P3_GOVERNED_INTEGRATION_OPEN_HTML_FINAL_UI_TARGET_PENDING_PRODUCTIZATION",
+  "authority_note": "GPT-Knowledge is a projection only. Current canonical source/configuration, current local validation/runtime evidence, machine governance, active intent and acceptance records outrank this file.",
+  "final_product": {
+    "definition": "Persistent provider-neutral LBE agent product in which the agent/provider owns reasoning, investigation strategy, capability selection, interpretation and replanning, while LBE owns workspace/session identity, policy, authorization, governed execution, ToolReceipts/evidence, persistence, recovery, deterministic validation and completion truth.",
+    "lifecycle": [
+      "boot",
+      "understand",
+      "plan",
+      "execute",
+      "validate",
+      "persist",
+      "continue"
+    ],
+    "interface_rule": "The product UI is a projection/control surface over the same LBE runtime authorities; it must not create a second runtime, session, provider, authorization, execution, receipt, evidence, persistence or completion owner."
+  },
+  "current_machine_state": {
+    "classification": "PROVEN_FROM_CURRENT_PROJECT_GOVERNANCE_EVIDENCE",
+    "active_phase": "P2_P3_GOVERNED_EXECUTION",
+    "active_slice": "TUI_P2_P3_GOVERNED_EXECUTION_INTEGRATION",
+    "active_intent": "LBE-INTENT-TUI-P2P3-GOVERNED-INTEGRATION-001",
+    "status": "OPEN",
+    "implementation_allowed": true,
+    "next_phase_locked": true,
+    "publication": "LOCKED",
+    "rule": "Only this bounded governed-integration slice may advance. HTML UI productization, cleanup, publication and adjacent architecture work require separate activation."
   },
   "runtime_authority": {
     "status": "ESTABLISHED_GOVERNED",
-    "rule": "LBE owns session/workspace identity, policy, authorization, governed execution/mutation, ToolReceipts/evidence, persistence, provider continuation, validation and completion truth. UI surfaces project and request through these owners."
+    "rule": "LBE owns workspace/session identity, provider/model capability truth, policy, authorization, governed dispatch, operation/receipt identity, evidence provenance, runtime-event persistence, recovery, validation and completion truth.",
+    "agent_rule": "Agent/provider reasoning remains autonomous within the registered LBE capability boundary; LBE governs capabilities and consequences rather than prescribing a fixed cognitive workflow."
   },
-  "cep_callback_integration": {
-    "classification": "IMPLEMENTED_AND_VALIDATED",
-    "canonical_pack": "cep",
-    "rule_id": "cep.callback_contract",
-    "catalog_owner": "lbe_guard_inspector/guard_catalog.py",
-    "pack_loader_owner": "rules/cep.py",
-    "executable_rule_owner": "rules/cep_callback.py",
-    "provenance_rule": "Existing YAML remains provenance; the current Python callback rule is the executable owner.",
-    "ownership_rule": "The callback implementation is registered through the canonical cep guard pack; no duplicate rule owner was introduced.",
-    "evidence_contract": "Canonical guard catalog includes the JavaScript/TypeScript evidence contract for cep.callback_contract.",
-    "runtime_path": [
-      "CEP project profile",
-      "canonical cep guard pack",
-      "cep.callback_contract",
-      "bounded live workspace scan",
-      "deterministic callback verdict",
-      "evidence-backed result"
+  "accepted_runtime_baseline": {
+    "classification": "PROVEN_ACCEPTED_BASELINE",
+    "capabilities": [
+      "persistent session/task lifecycle and resume",
+      "provider-neutral reasoning boundary",
+      "R6C authorization",
+      "R6E ToolRegistry/GovernedToolOrchestrator/ToolReceipt",
+      "governed workspace/process/Git mutation",
+      "governed external capability registration",
+      "installed capability registry",
+      "receipt/evidence projection",
+      "bounded recovery",
+      "deterministic completion and validated memory promotion",
+      "installed-package end-to-end runtime composition"
     ],
+    "rule": "Historical PASS checkpoints establish the runtime baseline but do not close the current active TUI P2/P3 integration slice."
+  },
+  "project_profile_guard_catalog": {
+    "classification": "PROVEN_LOCAL_CURRENT_EVIDENCE_REMOTE_MAIN_ALIGNMENT_NOT_REVERIFIED",
+    "intent": "LBE-INTENT-PROJECT-PROFILE-GUARD-CATALOG-INTEGRATION-001",
+    "result": "PASS",
+    "startup_rule": "lbe start projects project_profile and guard_catalog read-only; startup does not execute guards or transfer authority.",
+    "cep_callback": {
+      "rule_id": "cep.callback_contract",
+      "canonical_pack": "cep",
+      "executable_owner": "rules/cep_callback.py",
+      "pack_loader": "rules/cep.py",
+      "catalog_owner": "lbe_guard_inspector/guard_catalog.py",
+      "ownership_rule": "Reference/YAML material remains provenance/schema input; the Python rule is the executable owner and must not be duplicated."
+    },
     "validation": {
-      "cep_focused_suite": "39 passed",
-      "canonical_rule_resolution": "PASS",
-      "full_python_suite": "816 passed",
-      "new_test_files": "NONE"
-    }
+      "target_profile_regression": "1 passed",
+      "audit_controller_suite": "14 passed",
+      "focused_cli_cep": "66 passed",
+      "full_python_suite": "816 passed in 223.81s",
+      "test_file_provenance": "UNKNOWN; untracked test files are present"
+    },
+    "gate_effect": "NONE; this integration does not advance or close TUI_P2_P3_GOVERNED_EXECUTION_INTEGRATION."
   },
-  "canonical_ui_direction": {
-    "classification": "HTML_BASED_LBE_TUI_CANONICAL_DIRECTION",
-    "governance_evidence": "PROJECT_INTENT_LEDGER contains LBE-INTENT-CLINE-SURFACE-DIRECTION-001 amended to the HTML-based LBE TUI and a later product-owner correction that names docs/reference/ui/lbe_runtime_console.html and docs/reference/ui/lbe_runtime_surface_preview.html as the visual/layout basis. Cline is reference material for interaction ideas only.",
-    "canonical_reference_surfaces": ["docs/reference/ui/lbe_runtime_console.html", "docs/reference/ui/lbe_runtime_surface_preview.html"],
-    "local_product_surface": ".ui-preview/agent_cockpit.html served by server.py",
-    "rust_tui_rule": "lbe-tui/ and C:/LBE-TUI-Lab are not competing canonical product/runtime authorities."
+  "final_ui_direction": {
+    "classification": "HTML_BASED_LBE_TUI_FINAL_PRODUCT_TARGET",
+    "reference_surfaces": [
+      "docs/reference/ui/lbe_runtime_console.html",
+      "docs/reference/ui/lbe_runtime_surface_preview.html"
+    ],
+    "product_owner_correction": "Copied Cline CLI/OpenTUI is reference/archive material only; the older Textual projection is reference-only for final product UI direction.",
+    "implementation_truth": "HTML cockpit implementation, bounded governed adapter wiring and installed acceptance remain pending.",
+    "active_slice_constraint": "The currently active TUI P2/P3 slice explicitly forbids UI redesign; do not treat HTML productization as authorized by the current slice."
   },
-  "cline_integrations": {
+  "cline_boundary": {
     "active_runtime_worker": {
       "path": "lbe_guard_inspector/runtime/cline_worker/",
       "consumer": "lbe_guard_inspector/runtime/cline_stdio_bridge.py",
-      "dependency": "@cline/agents@0.0.75",
-      "classification": "ACTIVE_CANONICAL_GOVERNED_PROVIDER_CONTINUATION_DO_NOT_TOUCH"
+      "classification": "ACTIVE_GOVERNED_PROVIDER_CONTINUATION_MECHANICS",
+      "rule": "Cline mechanics remain behind LBE authority and must not become an independent product/runtime authority."
     },
-    "recovered_lbe_authority_bridge": {
-      "source_path": "unused-in-repo/cline-cli-reference-copy-2026-08-27/cline-cli/apps/cli/src/runtime/interactive/lbe-authority.ts",
-      "test_path": "unused-in-repo/cline-cli-reference-copy-2026-08-27/cline-cli/apps/cli/src/runtime/interactive/lbe-authority.test.ts",
-      "reported_behavior": "LbeAuthorityBridge spawns Python LBE, sends tool.proposed/tools.describe, maps EXECUTED/DENIED/ESCALATED/FAILED and returns receipt/evidence into the interaction loop.",
-      "classification": "LBE_AUTHORED_INTEGRATION_WORK_RECOVERED_FROM_MISPLACED_QUARANTINED_TREE",
-      "current_role": "HIGH_PRIORITY_GOVERNED_UI_INTEGRATION_ASSET_FOR_CANONICAL_HTML_PRODUCT_PATH",
-      "boundary": "The surrounding copied Cline CLI/OpenTUI tree remains reference/quarantined by product direction. The LBE-authored bridge must be surfaced and registered separately rather than discarded with generic reference material."
-    }
-  },
-  "local_web_cockpit": {
-    "classification": "CANONICAL_PRODUCT_UI_DIRECTION_LOCAL_IMPLEMENTATION_BUILT_AND_WIRED_UNCOMMITTED",
-    "reported_files": [".ui-preview/agent_cockpit.html", ".ui-preview/lbe_landing_provider_setup.html", ".ui-preview/state2.sqlite3", "tests/test_agent_cockpit_http.py", "tests/test_governance_drift_guards.py", "tests/test_runtime_commit_gate_enforcement.py", "tests/test_ui_implementation_authority.py"],
-    "reported_routes": ["/", "/cockpit", "/cockpit.html", "/workspace/tree", "/roots", "/inspect", "/search"],
-    "required_disposition": "Register the HTML cockpit and governed tests under the canonical UI intent and retain evidence before claiming committed completion."
+    "native_surface_history": "LBE-INTENT-CLINE-NATIVE-SURFACE-INTEGRATION-001 is superseded/reference-only."
   },
   "later_rust_ui": {
-    "classification": "LATER_UI_ONLY_REFERENCE_WORKSPACE",
+    "classification": "REFERENCE_REUSE_INPUT_NOT_FINAL_PRODUCT_AUTHORITY",
     "workspace": "C:/LBE-TUI-Lab",
-    "cross_workspace_reference": "docs/acceptance/CURRENT_IMPLEMENTATION_GATE.md references C:/LBE-TUI-Lab/Docs/31_cline_interop_reuse_strategy.md as reuse-strategy input.",
-    "rule": "Cross-workspace reuse input does not make LBE-TUI-Lab canonical UI authority."
+    "rule": "Rust/Ratatui work may be used as historical/reuse input but must not be projected as the active or final LBE product surface."
   },
-  "cleanup_branches": {
-    "classification": "EXIST_NOT_PROVEN_MERGED",
-    "reported": ["origin/cleanup/remove-redundant-lbe-reference-copies", "origin/cleanup/remove-redundant-lbe-reference-copies-v2"],
-    "rule": "Inspect before deleting the surrounding Cline reference payload; preserve the LBE-authored authority bridge regardless of generic reference-copy cleanup."
-  },
-  "structural_backlog": {
-    "branches": "100+ reported; UNCLASSIFIED, each requires disposition evidence.",
-    "stashes": "Four reported reconciliation/pre-cleanup snapshots; UNRECONCILED.",
-    "protected_state_and_backups": "state DBs, .before-* and .baseline-* material remain protected/unclassified; retention decision pending.",
-    "unused_manifest_validation": "Dedicated unused-in-repo ownership/disposition validation remains a corrective requirement."
-  },
-  "corrective_order": [
-    "keep lbe_guard_inspector/runtime/cline_worker untouched",
-    "preserve the validated canonical CEP callback integration and its single executable owner",
-    "treat the HTML cockpit in the original workspace as canonical UI direction",
-    "surface/register the LBE-authored lbe-authority bridge separately from the quarantined Cline reference tree",
-    "bind and commit the HTML cockpit plus governed UI tests with acceptance evidence",
-    "inspect existing cleanup branches before reference-tree cleanup",
-    "downgrade LBE-TUI-Lab to later UI/reference/reuse-input status in all project projections",
-    "classify branches, stashes and protected state/backups separately"
+  "next_required_sequence": [
+    {
+      "order": 1,
+      "id": "complete-active-tui-p2p3-governed-integration",
+      "status": "ACTIVE",
+      "scope": "Finish only the bounded request/event/snapshot adapter wiring through existing R6C/R6E/ToolReceipt/evidence/validation/completion owners and produce claim-level proof."
+    },
+    {
+      "order": 2,
+      "id": "checkpoint-and-close-active-slice",
+      "status": "LOCKED_UNTIL_PROOF",
+      "scope": "Record focused/full regression, authority-before-execution, correlated receipt, mutation denial and duplicate-authority evidence; mark the active intent/slice PASS only if all requirements are satisfied."
+    },
+    {
+      "order": 3,
+      "id": "activate-html-productization",
+      "status": "FUTURE_SEPARATE_INTENT",
+      "scope": "Only after the active slice passes, separately activate the HTML cockpit implementation/wiring/installed-acceptance work."
+    },
+    {
+      "order": 4,
+      "id": "prove-final-html-product-flow",
+      "status": "FUTURE",
+      "scope": "Prove boot → understand → plan → execute → validate → persist → continue through the installed HTML LBE product without duplicate authority."
+    },
+    {
+      "order": 5,
+      "id": "separate-structural-cleanup",
+      "status": "NON_PRODUCT_BLOCKING_SEPARATE",
+      "scope": "Handle reference-tree cleanup, branch/stash/state retention and historical UI reconciliation independently from product implementation."
+    }
   ],
-  "detail_record": "project-engineering/projects/lbe-plan-canvas/original-workspace-gap-audit-2026-09-02.md",
-  "status_rule": "Do not collapse the active runtime Cline worker, the recovered LBE-authored authority bridge, the canonical HTML cockpit, the CEP callback rule owner, or the later Rust UI workspace into one integration. The canonical product UI direction is the HTML-based LBE TUI in the original workspace."
+  "status_rule": "Do not equate accepted runtime baseline with current product completion. Current final-product completion requires the active governed-integration slice to PASS and later separately authorized HTML cockpit implementation, bounded adapter wiring and installed acceptance."
 }
