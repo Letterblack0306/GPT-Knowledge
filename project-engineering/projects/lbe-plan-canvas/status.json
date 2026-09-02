@@ -1,5 +1,5 @@
 {
-  "schema_version": 23,
+  "schema_version": 24,
   "project": "LBE Persistent Agent",
   "verified_at": "2026-09-02",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
@@ -7,7 +7,7 @@
   "original_workspace": "C:/Agents-Memory-Tool-v6-integration",
   "later_ui_workspace": "C:/LBE-TUI-Lab",
   "later_ui_repo": "Letterblack0306/LBE_Agents_wall_Intigration",
-  "overall_classification": "RUNTIME_AUTHORITY_PROVEN_CANONICAL_HTML_LBE_TUI_DIRECTION_RECOVERED_UI_INTEGRATION_GAPS_PENDING",
+  "overall_classification": "RUNTIME_AUTHORITY_PROVEN_CANONICAL_HTML_LBE_TUI_DIRECTION_CEP_CALLBACK_INTEGRATION_PASS_RECOVERED_UI_GAPS_PENDING",
   "authority_note": "GPT-Knowledge is projection only. Canonical LBE source, machine governance, current workspace/runtime evidence and acceptance records retain authority. Local uncommitted files still require fresh verification before mutation.",
   "workspace_role_correction": {
     "original_workspace": "C:/Agents-Memory-Tool-v6-integration is the canonical LBE project/runtime workspace and also owns the canonical HTML-based product UI direction.",
@@ -17,13 +17,35 @@
     "status": "ESTABLISHED_GOVERNED",
     "rule": "LBE owns session/workspace identity, policy, authorization, governed execution/mutation, ToolReceipts/evidence, persistence, provider continuation, validation and completion truth. UI surfaces project and request through these owners."
   },
+  "cep_callback_integration": {
+    "classification": "IMPLEMENTED_AND_VALIDATED",
+    "canonical_pack": "cep",
+    "rule_id": "cep.callback_contract",
+    "catalog_owner": "lbe_guard_inspector/guard_catalog.py",
+    "pack_loader_owner": "rules/cep.py",
+    "executable_rule_owner": "rules/cep_callback.py",
+    "provenance_rule": "Existing YAML remains provenance; the current Python callback rule is the executable owner.",
+    "ownership_rule": "The callback implementation is registered through the canonical cep guard pack; no duplicate rule owner was introduced.",
+    "evidence_contract": "Canonical guard catalog includes the JavaScript/TypeScript evidence contract for cep.callback_contract.",
+    "runtime_path": [
+      "CEP project profile",
+      "canonical cep guard pack",
+      "cep.callback_contract",
+      "bounded live workspace scan",
+      "deterministic callback verdict",
+      "evidence-backed result"
+    ],
+    "validation": {
+      "cep_focused_suite": "39 passed",
+      "canonical_rule_resolution": "PASS",
+      "full_python_suite": "816 passed",
+      "new_test_files": "NONE"
+    }
+  },
   "canonical_ui_direction": {
     "classification": "HTML_BASED_LBE_TUI_CANONICAL_DIRECTION",
     "governance_evidence": "PROJECT_INTENT_LEDGER contains LBE-INTENT-CLINE-SURFACE-DIRECTION-001 amended to the HTML-based LBE TUI and a later product-owner correction that names docs/reference/ui/lbe_runtime_console.html and docs/reference/ui/lbe_runtime_surface_preview.html as the visual/layout basis. Cline is reference material for interaction ideas only.",
-    "canonical_reference_surfaces": [
-      "docs/reference/ui/lbe_runtime_console.html",
-      "docs/reference/ui/lbe_runtime_surface_preview.html"
-    ],
+    "canonical_reference_surfaces": ["docs/reference/ui/lbe_runtime_console.html", "docs/reference/ui/lbe_runtime_surface_preview.html"],
     "local_product_surface": ".ui-preview/agent_cockpit.html served by server.py",
     "rust_tui_rule": "lbe-tui/ and C:/LBE-TUI-Lab are not competing canonical product/runtime authorities."
   },
@@ -45,15 +67,7 @@
   },
   "local_web_cockpit": {
     "classification": "CANONICAL_PRODUCT_UI_DIRECTION_LOCAL_IMPLEMENTATION_BUILT_AND_WIRED_UNCOMMITTED",
-    "reported_files": [
-      ".ui-preview/agent_cockpit.html",
-      ".ui-preview/lbe_landing_provider_setup.html",
-      ".ui-preview/state2.sqlite3",
-      "tests/test_agent_cockpit_http.py",
-      "tests/test_governance_drift_guards.py",
-      "tests/test_runtime_commit_gate_enforcement.py",
-      "tests/test_ui_implementation_authority.py"
-    ],
+    "reported_files": [".ui-preview/agent_cockpit.html", ".ui-preview/lbe_landing_provider_setup.html", ".ui-preview/state2.sqlite3", "tests/test_agent_cockpit_http.py", "tests/test_governance_drift_guards.py", "tests/test_runtime_commit_gate_enforcement.py", "tests/test_ui_implementation_authority.py"],
     "reported_routes": ["/", "/cockpit", "/cockpit.html", "/workspace/tree", "/roots", "/inspect", "/search"],
     "required_disposition": "Register the HTML cockpit and governed tests under the canonical UI intent and retain evidence before claiming committed completion."
   },
@@ -65,10 +79,7 @@
   },
   "cleanup_branches": {
     "classification": "EXIST_NOT_PROVEN_MERGED",
-    "reported": [
-      "origin/cleanup/remove-redundant-lbe-reference-copies",
-      "origin/cleanup/remove-redundant-lbe-reference-copies-v2"
-    ],
+    "reported": ["origin/cleanup/remove-redundant-lbe-reference-copies", "origin/cleanup/remove-redundant-lbe-reference-copies-v2"],
     "rule": "Inspect before deleting the surrounding Cline reference payload; preserve the LBE-authored authority bridge regardless of generic reference-copy cleanup."
   },
   "structural_backlog": {
@@ -79,6 +90,7 @@
   },
   "corrective_order": [
     "keep lbe_guard_inspector/runtime/cline_worker untouched",
+    "preserve the validated canonical CEP callback integration and its single executable owner",
     "treat the HTML cockpit in the original workspace as canonical UI direction",
     "surface/register the LBE-authored lbe-authority bridge separately from the quarantined Cline reference tree",
     "bind and commit the HTML cockpit plus governed UI tests with acceptance evidence",
@@ -87,5 +99,5 @@
     "classify branches, stashes and protected state/backups separately"
   ],
   "detail_record": "project-engineering/projects/lbe-plan-canvas/original-workspace-gap-audit-2026-09-02.md",
-  "status_rule": "Do not collapse the active runtime Cline worker, the recovered LBE-authored authority bridge, the canonical HTML cockpit, or the later Rust UI workspace into one integration. The canonical product UI direction is the HTML-based LBE TUI in the original workspace."
+  "status_rule": "Do not collapse the active runtime Cline worker, the recovered LBE-authored authority bridge, the canonical HTML cockpit, the CEP callback rule owner, or the later Rust UI workspace into one integration. The canonical product UI direction is the HTML-based LBE TUI in the original workspace."
 }
