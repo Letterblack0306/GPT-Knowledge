@@ -1,152 +1,155 @@
 # Original LBE Workspace Gap Audit — 2026-09-02
 
-Status: **CURRENT PROJECT-STATE PROJECTION FROM LOCAL AUDIT**
+Status: **CURRENT PROJECT-STATE PROJECTION — RECONCILED UI DIRECTION**
 
-Authority rule: this document records the supplied audit of `C:\Agents-Memory-Tool-v6-integration`. Canonical source/runtime evidence and LBE machine governance remain authoritative. Findings that depend on uncommitted local files, branches, stashes, or local filesystem state must be reverified before mutation.
+Authority rule: canonical source/runtime evidence and LBE machine governance remain authoritative. Local uncommitted files, branches, stashes, or filesystem state must be reverified before mutation.
 
 ## Workspace roles
 
-- **Original/canonical LBE workspace:** `C:\Agents-Memory-Tool-v6-integration`.
-- **Later UI-only workspace:** `C:\LBE-TUI-Lab` / `Letterblack0306/LBE_Agents_wall_Intigration`. It was created later for the UI/client surface and must not be treated as the owner of the original LBE runtime or as proof that earlier native-interface work in the original workspace never existed.
-- Existing LBE runtime authority remains in the original workspace. UI clients/adapters must not duplicate authorization, execution, receipt/evidence, persistence, validation, or completion owners.
+- **Canonical LBE workspace:** `C:\Agents-Memory-Tool-v6-integration`.
+- **Later UI/reference workspace:** `C:\LBE-TUI-Lab` / `Letterblack0306/LBE_Agents_wall_Intigration`.
+- `lbe-tui/` and `lbe-core/` are reference material, not competing product/runtime authorities.
+- The canonical product UI direction is the **HTML-based LBE TUI/cockpit in the main LBE workspace**.
+
+Current repo evidence supports this distinction:
+
+- `docs/CURRENT_STATUS.md` marks `lbe-tui/` as `reference-only, untouched`.
+- The canonical intent ledger contains `LBE-INTENT-CLINE-SURFACE-DIRECTION-001` amended to the HTML-based LBE TUI.
+- The later product-owner correction names `docs/reference/ui/lbe_runtime_console.html` and `docs/reference/ui/lbe_runtime_surface_preview.html` as the visual/layout basis and explicitly treats copied Cline CLI/OpenTUI as reference material for interaction ideas only.
 
 ## Main findings
 
-### 1. Forgotten native terminal integration — highest-value gap
+### 1. Canonical UI direction — HTML cockpit in the original workspace
 
-`unused-in-repo/cline-cli-reference-copy-2026-08-27/cline-cli/` is not merely an untouched upstream snapshot. The audited tree contains LBE-authored integration work:
+The intended product UI is not the later Rust/Ratatui workspace. The main LBE repository owns the HTML product surface.
 
-- `apps/cli/src/runtime/interactive/lbe-authority.ts`
-- `apps/cli/src/runtime/interactive/lbe-authority.test.ts`
+Canonical/reference UI basis:
 
-The reported `LbeAuthorityBridge` spawns the Python LBE runtime, sends `tool.proposed` / `tools.describe`, maps results to `EXECUTED | DENIED | ESCALATED | FAILED`, and returns LBE receipt/evidence into the CLI loop. This is partially built governed Cline→LBE adapter work and is therefore materially different from generic reference code.
+- `docs/reference/ui/lbe_runtime_console.html`
+- `docs/reference/ui/lbe_runtime_surface_preview.html`
 
-Classification: **PARTIALLY_BUILT / UNREGISTERED / MISPLACED / STATUS_CONFLICTED**.
-
-It must not be silently deleted merely because it lives under `unused-in-repo/`.
-
-### 2. Native-surface governance conflict is blocking
-
-The audit reports two conflicting owned directions in `docs/governance/PROJECT_INTENT_LEDGER.md`:
-
-- `LBE-INTENT-CLINE-NATIVE-SURFACE-INTEGRATION-001`, `MACHINE_SLICE: CLINE_NATIVE_SURFACE_INTEGRATION`, `RESULT: ACTIVE` around lines 335–369.
-- A later product-owner correction around lines 390–398 treats the product UI as HTML-based and says Cline is reference material for interaction ideas only; copied Cline CLI/OpenTUI material remains quarantined/reference-only.
-
-`C:\LBE-TUI-Lab\Docs\33_real_cli_ide_implementation_plan.md` also points back to the forgotten tree, so the later UI workspace does not by itself resolve the original-workspace conflict.
-
-Classification: **BLOCKING_DOCUMENTATION / PRODUCT-DIRECTION CONFLICT**.
-
-Required decision before relocation/deletion: either revive/register the native Cline surface as an active interface slice, or formally supersede it while preserving the LBE-authored bridge as historical/reference integration evidence.
-
-### 3. Active runtime Cline worker is separate and must remain untouched
-
-`lbe_guard_inspector/runtime/cline_worker/` is a distinct, tracked, wheel-embedded runtime seam:
-
-- `package.json` / `package-lock.json` pin `@cline/agents@0.0.75` plus related packages.
-- `worker.mjs` imports `AgentRuntime` / `createAgentRuntime` from `@cline/agents`.
-- `lbe_guard_inspector/runtime/cline_stdio_bridge.py` consumes the worker through `GovernedClineWorker`.
-
-Classification: **ACTIVE / CANONICAL GOVERNED PROVIDER-CONTINUATION SEAM / DO NOT TOUCH**.
-
-No reference-tree cleanup may modify or conflate this runtime dependency with the forgotten CLI/OpenTUI source tree.
-
-### 4. Web cockpit and governance tests exist locally but are uncommitted
-
-Reported untracked material includes:
+Reported local implementation seam:
 
 - `.ui-preview/agent_cockpit.html`
 - `.ui-preview/lbe_landing_provider_setup.html`
-- `.ui-preview/state2.sqlite3`
-- `tests/test_agent_cockpit_http.py`
-- `tests/test_governance_drift_guards.py`
-- `tests/test_runtime_commit_gate_enforcement.py`
-- `tests/test_ui_implementation_authority.py`
+- `server.py` routes `/`, `/cockpit`, `/cockpit.html`, `/workspace/tree`, `/roots`, `/inspect`, `/search`
+- governed UI/runtime tests including `tests/test_agent_cockpit_http.py`, `tests/test_governance_drift_guards.py`, `tests/test_runtime_commit_gate_enforcement.py`, and `tests/test_ui_implementation_authority.py`
 
-The audit reports `server.py` already routing `/`, `/cockpit`, `/cockpit.html`, `/workspace/tree`, `/roots`, `/inspect`, and `/search` into this surface.
+Classification: **CANONICAL PRODUCT UI DIRECTION / LOCAL IMPLEMENTATION BUILT AND WIRED / UNCOMMITTED COMPLETION NOT YET PROVEN**.
 
-Classification: **BUILT/WIRED LOCALLY, UNCOMMITTED, NOT YET REGISTERED AS CURRENT PRODUCT AUTHORITY**.
+The uncommitted state remains important: intended direction is canonical, but committed acceptance is still required before claiming completion.
 
-Disposition required: bind to an explicit UI/Home intent and commit with evidence, or classify/preserve as reference. Do not infer committed/current product status from local wiring alone.
+### 2. Recovered `LbeAuthorityBridge` — highest-value integration recovery
+
+The quarantined/reference Cline source tree contains LBE-authored integration work:
+
+- `unused-in-repo/cline-cli-reference-copy-2026-08-27/cline-cli/apps/cli/src/runtime/interactive/lbe-authority.ts`
+- `unused-in-repo/cline-cli-reference-copy-2026-08-27/cline-cli/apps/cli/src/runtime/interactive/lbe-authority.test.ts`
+
+Reported behavior:
+
+- spawns the Python LBE runtime;
+- sends `tool.proposed` / `tools.describe`;
+- maps outcomes to `EXECUTED | DENIED | ESCALATED | FAILED`;
+- returns LBE receipt/evidence into the interaction loop.
+
+Classification: **LBE-AUTHORED GOVERNED UI INTEGRATION WORK / MISPLACED INSIDE QUARANTINED REFERENCE TREE / HIGH-PRIORITY RECOVERY ASSET**.
+
+Important correction: the surrounding copied Cline CLI/OpenTUI tree is not revived as the product UI. The product direction remains HTML-based. The authored bridge/test should be surfaced, registered, and adapted into the canonical HTML product path rather than discarded as generic reference residue.
+
+### 3. Active runtime Cline worker is separate and must remain untouched
+
+`lbe_guard_inspector/runtime/cline_worker/` remains the tracked governed provider-continuation seam:
+
+- `package.json` / `package-lock.json` pin `@cline/agents@0.0.75` and related packages;
+- `worker.mjs` imports `AgentRuntime` / `createAgentRuntime`;
+- `lbe_guard_inspector/runtime/cline_stdio_bridge.py` consumes it through `GovernedClineWorker`.
+
+Classification: **ACTIVE / CANONICAL GOVERNED PROVIDER-CONTINUATION / DO NOT TOUCH**.
+
+This runtime worker, the recovered `lbe-authority.ts`, the HTML cockpit, and the later Rust UI are four distinct things.
+
+### 4. `C:\LBE-TUI-Lab` is later UI/reference work, not canonical UI authority
+
+The later Rust/Ratatui workspace is useful as historical UI work, comparison, and reuse-strategy input. It is not the canonical product interface.
+
+The main repo reportedly references it through:
+
+- `docs/acceptance/CURRENT_IMPLEMENTATION_GATE.md` → `C:\LBE-TUI-Lab\Docs\31_cline_interop_reuse_strategy.md`
+
+That cross-workspace reference is acceptable as an input. It does not transfer product/runtime authority.
+
+Classification: **LATER UI-ONLY / REFERENCE / REUSE-INPUT WORKSPACE**.
 
 ### 5. Cleanup branches already exist
 
 Reported remotes include:
 
 - `origin/cleanup/remove-redundant-lbe-reference-copies`
-- `origin/cleanup/remove-redundant-lbe-reference-copies-v2` (reported at `8eb961d…`)
+- `origin/cleanup/remove-redundant-lbe-reference-copies-v2`
 
-Classification: **EXISTING PLANNED CLEANUP / NOT PROVEN MERGED TO MAIN**.
+Classification: **EXISTING CLEANUP PATH / NOT PROVEN MERGED**.
 
-Before deleting or relocating the forgotten Cline tree, inspect these branches and determine whether their intended deduplication already gives the governed disposition.
+Before generic reference-tree cleanup, inspect these branches. Preserve the LBE-authored bridge/test independently of copied reference-code disposition.
 
 ### 6. Large branch inventory remains structurally unresolved
 
-The audit reports 100+ branches, including unfinished/product/design/release work such as:
+The audit reports 100+ branches, including unfinished/product/design/release work.
 
-- `agents/tui-redesign-incomplete-features`
-- `feat/c4-cli-runtime-surfaces`
-- `feat/c5-governed-coding-execution`
-- `design/authority-ownership-inspector-contract`
-- `feat/reasoning-proposal-*`
-- `feat/reasoning-investigation-planner`
-- `release/python-runtime-v2.0.1`
-- `release/python-runtime-v2.0.2`
+Classification: **UNCLASSIFIED STRUCTURAL INVENTORY**.
 
-Classification: **UNCLASSIFIED STRUCTURAL INVENTORY**. Presence of a branch does not prove its work should be merged. Each requires disposition evidence before mutation/closure.
+Presence of a branch is not merge authority. Each requires an evidence-backed disposition.
 
 ### 7. Protected runtime/state and baseline material remains unclassified
 
-Reported examples include:
-
-- `state/lbe-runtime.db`
-- `state/workspace.db`
-- `state/workspace.backup.db`
-- `state/*.baseline-20260724-224102`
-- `state/*.pre-audit-backup`
-- `.before-*` / `.baseline-*` files under runtime/rules areas.
+Examples include runtime DBs/backups and `.before-*` / `.baseline-*` snapshots.
 
 Classification: **PROTECTED / RETENTION DECISION PENDING**.
 
-Do not silently delete. The workspace-hygiene flow deferred these classes to an explicit retention decision.
+Do not silently delete.
 
 ### 8. Stashes contain unreconciled snapshots
 
-Reported stashes:
+Four reported pre-cleanup/reconciliation stashes remain.
 
-- `stash@{0}` workspace-hygiene-preserve-before-clean-20260825
-- `stash@{1}` codex pre-reconcile snapshot before preserving origin/main history
-- `stash@{2}` pre-governance-lock-4db97ea
-- `stash@{3}` backup partial project-scoped guard retrieval
+Classification: **UNMERGED / DISPOSITION REQUIRED**.
 
-Classification: **UNMERGED / DISPOSITION REQUIRED**. Preserve, recover, or drop only after content inspection and evidence-backed classification.
+Preserve, recover, or drop only after inspection.
 
 ## Correct current status
 
 | Area | Classification |
 |---|---|
-| Original LBE workspace | CANONICAL RUNTIME/PROJECT WORKSPACE |
-| Later `LBE-TUI-Lab` workspace | UI/CLIENT WORKSPACE CREATED LATER |
+| Original LBE workspace | CANONICAL RUNTIME + PRODUCT WORKSPACE |
+| Canonical UI direction | HTML-BASED LBE TUI / COCKPIT |
+| `.ui-preview/agent_cockpit.html` | INTENDED PRODUCT UI / LOCAL BUILT+WIRED / UNCOMMITTED |
 | `runtime/cline_worker/` | ACTIVE / CORRECT / DO NOT TOUCH |
-| Forgotten `LbeAuthorityBridge` native adapter | PARTIALLY BUILT / UNREGISTERED / MISPLACED / CONFLICTED |
-| Native Cline/OpenTUI product direction | BLOCKED ON OWNED-DOCUMENT CONFLICT |
-| Local web cockpit + tests | BUILT + WIRED / UNCOMMITTED |
-| Cleanup branches | EXIST / NOT PROVEN MERGED |
+| recovered `LbeAuthorityBridge` | LBE-AUTHORED UI INTEGRATION / MISPLACED / HIGH-PRIORITY RECOVERY |
+| copied Cline CLI/OpenTUI tree | REFERENCE / QUARANTINED PRODUCT-WISE |
+| `C:\LBE-TUI-Lab` | LATER UI-ONLY / REFERENCE / REUSE INPUT |
+| cleanup branches | EXIST / NOT PROVEN MERGED |
 | 100+ branches | UNCLASSIFIED |
-| Protected state/backups | UNCLASSIFIED / RETENTION PENDING |
-| Stashes | UNRECONCILED |
+| protected state/backups | RETENTION PENDING |
+| stashes | UNRECONCILED |
 
 ## Bounded corrective sequence
 
-1. Reverify the current ledger and local forgotten-tree files before mutation.
-2. Resolve the native-surface status conflict explicitly.
-3. Keep `lbe_guard_inspector/runtime/cline_worker/` unchanged.
-4. Inspect the existing cleanup branches before creating a new cleanup path.
-5. If the native tree is retained, move/own it outside `unused-in-repo/`, exclude `node_modules/`, and preserve the LBE-authored bridge/test with explicit provenance. If formally superseded, quarantine/preserve the bridge as historical integration evidence rather than silently deleting it.
-6. Decide/register the local web cockpit and its tests.
-7. Reconcile Module 33 in the later UI workspace with the canonical LBE decision.
-8. Classify branches, stashes, and protected state/backups separately; do not bundle them into the UI/reference-tree decision.
-9. Add/retain a validator for `unused-in-repo/` ownership/disposition so LBE-authored integration code cannot remain silently misclassified there.
+1. Leave `lbe_guard_inspector/runtime/cline_worker/` unchanged.
+2. Treat the HTML cockpit in the original workspace as the canonical UI implementation path.
+3. Surface the LBE-authored `lbe-authority.ts` and test from the generic quarantined Cline tree; preserve provenance and register/adapt them as governed UI integration work without reviving Cline/OpenTUI as the product UI.
+4. Bind the HTML cockpit, server routes, and governed UI tests to the canonical UI intent; commit and validate under the current machine gate before claiming completion.
+5. Reconcile later `LBE-TUI-Lab` docs/status so Rust/Ratatui is explicitly reference/UI/reuse input, not canonical interface authority.
+6. Inspect existing cleanup branches, then deduplicate/quarantine copied reference payload while preserving authored LBE integration work.
+7. Classify branches, stashes, and protected state/backups separately.
+8. Maintain `unused-in-repo/` ownership/disposition validation so authored project code cannot remain silently misclassified.
 
 ## Non-negotiable boundary
 
-The forgotten native UI adapter and the active runtime worker are **two different Cline integrations**. Any cleanup or product-surface decision must preserve that distinction.
+Do not collapse these four seams:
+
+1. active `runtime/cline_worker/` — governed provider continuation;
+2. recovered `lbe-authority.ts` — LBE-authored governed UI integration asset;
+3. HTML cockpit — canonical product UI direction;
+4. Rust/Ratatui workspace — later UI/reference/reuse input.
+
+The canonical product UI authority remains with the HTML-based LBE TUI in the original workspace.
