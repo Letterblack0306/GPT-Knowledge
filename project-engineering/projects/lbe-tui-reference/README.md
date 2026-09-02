@@ -26,7 +26,8 @@ Authority rule:
 Provider/agent reasons.
 LBE governs.
 Registered capabilities execute.
-Evidence and ToolReceipts persist.
+BirdEye searches/indexes through its MCP service.
+Evidence and ToolReceipts persist through LBE.
 Validation decides completion.
 Rust projects the result.
 ```
@@ -38,87 +39,136 @@ Rust must not become a second provider/agent runtime, authorization owner, tool 
 Use this order for every future implementation/status decision:
 
 1. `README.md` — routing and current project identity.
-2. `FINAL_PRODUCT_STRUCTURE_AND_GAP_MATRIX_2026-09-02.md` — complete product structure, feature inventory, authority map, current match, and gaps.
-3. `RUST_P2P3_DOCUMENTATION_ALIGNMENT_CHECKPOINT_2026-09-02.md` — latest local correction for approval/receipt/evidence/diff implementation versus live acceptance.
-4. `status.json` — machine-readable GPT-K projection of current state; where older fields still say receipt/evidence/diff implementation is pending, the newer P2/P3 checkpoint supersedes those fields.
-5. `COMPLETION_PLAN_2026-09-02.md` — ordered release-blocking execution plan.
-6. `LBE_TUI_INTEGRATION_FEATURE_REQUIREMENTS.md` — durable full product feature specification.
-7. Material current checkpoints — bounded corrections/evidence.
-8. `HISTORY_AND_SUPERSEDED_RECORDS.md` — stale/historical claims that must not be treated as current blockers.
+2. `FINAL_PRODUCT_STRUCTURE_AND_GAP_MATRIX_2026-09-02.md` — complete product structure and feature/gap map.
+3. `status.json` — machine-readable current GPT-K projection.
+4. `GOVERNED_BIRDEYE_MCP_ROUTING_CHECKPOINT_2026-09-02.md` — latest MCP implementation checkpoint and pushed commit identities.
+5. `RUST_P2P3_DOCUMENTATION_ALIGNMENT_CHECKPOINT_2026-09-02.md` — approval/receipt/evidence/diff local implementation correction.
+6. `COMPLETION_PLAN_2026-09-02.md` — ordered release-blocking execution plan.
+7. `LBE_TUI_INTEGRATION_FEATURE_REQUIREMENTS.md` — durable full-product feature specification.
+8. Material current checkpoints.
+9. `HISTORY_AND_SUPERSEDED_RECORDS.md` — stale/historical claims that must not be treated as current blockers.
 
 GPT-K is projection/reference only. Canonical LBE machine governance, current source/runtime evidence, active acceptance records, current Rust/LBE repository evidence, and claim-matched installed evidence outrank GPT-K.
 
-## Current canonical governance projection
+## Latest verified pushed implementation
 
-At LBE revision `3c615252d517ade8942ca014696906e50a7e8e4d`:
+### Rust client
 
-```text
-active_phase: P2_P3_GOVERNED_EXECUTION
-active_slice: TUI_P2_P3_GOVERNED_EXECUTION_INTEGRATION
-status: OPEN
-implementation_allowed: true
-next_phase_locked: true
-publication: LOCKED
-```
-
-Active intent:
-
-`LBE-INTENT-TUI-P2P3-GOVERNED-INTEGRATION-001`
-
-The machine gate outranks stale human-readable closed-state wording. A nested historical `closure.status = CLOSED` records the previously completed slice and does not close the current top-level TUI/P2P3 gate.
-
-## Latest Rust P2/P3 implementation correction
-
-The latest local documentation alignment reports no runtime code changes and validates the existing Rust client with:
+Repository: `Letterblack0306/LBE_Agents_wall_Intigration`
 
 ```text
-cargo test --quiet       PASS — 193 tests
-cargo fmt --check        PASS
-cargo check --quiet      PASS
-git diff --check         PASS
+commit  4be395a9dba52fa335151184bb84455931cd299b
+message Route BirdEye MCP through governed LBE path
+branch  main
 ```
 
-The following are now classified as **IMPLEMENTED / LOCAL TESTED**, not pending implementation:
+The commit exists on GitHub and the local report states `HEAD == origin/main`.
 
-- tool request/risk/authorization projection;
-- authorization-required / ALLOW / DENY handling;
-- patch review accept/reject routing;
-- typed receipt projection and `/receipts` rendering;
-- typed evidence projection and `/evidence` rendering;
-- basic diff/change projection.
+### LBE runtime
 
-Their **installed/live acceptance remains open**. Local tests do not prove a real writable mutation, real approval response/resume, authoritative live receipt/evidence chain, installed diff projection, validation/completion, or full P2/P3 acceptance.
+Repository: `Letterblack0306/LBE_Presistent_Agent_wall`
 
-The active `workspace.patch` client contract is existing-file replacement only: the target must be an existing regular file. Creating a new temporary file requires a separate LBE-owned create capability if one is registered and available.
+```text
+commit  5c3f24ca709b3b554eb24a75de5f787cb693a263
+message Add governed BirdEye MCP capability routing
+branch  main
+```
+
+The commit exists on GitHub. The local report states `HEAD == origin/main`, the LBE scoped worktree is clean, and the implementation-gate/canonical-main-worktree checks passed.
+
+## Governed BirdEye MCP architecture
+
+The current implementation is now:
+
+```text
+Rust/TUI
+→ RealLbeWrapper
+→ lbe_guard_inspector.product_entry tool mcp.birdeye.<tool>
+→ LBE ToolRegistry
+→ GovernedToolOrchestrator
+→ LBE authorization
+→ BirdEye stdio handler
+→ C:\MCP Local\Letterblack_BirdEye\mcp_server.py
+→ BirdEye result
+→ LBE ToolReceipt + evidence envelope
+→ Rust projection
+```
+
+Rust no longer directly owns BirdEye MCP execution.
+
+### BirdEye owns
+
+- BirdEye MCP service implementation;
+- SHA-256 hashing used by BirdEye;
+- SQLite indexing/search;
+- freshness/cache/index lifecycle;
+- BirdEye result production.
+
+### LBE owns
+
+- capability registration;
+- authorization/policy;
+- governed invocation;
+- operation-id idempotency;
+- canonical ToolReceipt/evidence correlation;
+- persistence;
+- provider continuation;
+- validation/completion truth.
+
+### Rust owns
+
+- typed requests/adapters;
+- interaction;
+- projection of the LBE-generated operation/status/authorization/result/receipt/evidence envelope.
+
+Do not reintroduce direct BirdEye MCP execution into Rust.
+
+## Current local implementation proof
+
+Recorded validation for the governed BirdEye routing implementation:
+
+```text
+LBE focused regression                 PASS — 75
+Rust full regression                   PASS — 205
+Rust cargo check                       PASS
+Python compileall                      PASS
+BirdEye Rust tests                     PASS — 5
+Real-wrapper MCP registry test         PASS
+Real-wrapper receipt/evidence test     PASS
+cargo fmt -- --check                   BLOCKED by pre-existing unrelated formatting drift
+```
+
+This proves implementation/local integration at the stated scope. It does not prove installed live MCP acceptance.
+
+The Rust approval/receipt/evidence/basic-diff paths also remain implemented/local-tested. Do not reimplement them merely because their installed acceptance is still open.
 
 ## Current product classification
 
 ```text
-Final product architecture                 ALIGNED
-LBE backend authority                      ACCEPTED / PROVEN COMPLETE AT OWNER SCOPE
-Rust client foundation                     IMPLEMENTED / PARTIALLY INTEGRATED
-Real read-only LBE path                    BOUNDED PROVEN
-Rust patch approval client                 IMPLEMENTED / LOCAL TESTED
-Tool request/risk/auth projection          IMPLEMENTED / LOCAL TESTED
-Receipt projection + /receipts             IMPLEMENTED / LOCAL TESTED
-Evidence projection + /evidence             IMPLEMENTED / LOCAL TESTED
-Basic diff/change projection               IMPLEMENTED / LOCAL TESTED
-Provider continuation backend              ACCEPTED
-Credentialed live Rust provider flow       NOT PROVEN / BLOCKED CONFIGURATION
-Installed approval response/resume         UNVERIFIED
-Writable live mutation acceptance          NOT PROVEN
-Installed receipt/evidence/diff acceptance NOT PROVEN
-Full file/hunk navigation                   NOT PROVEN
-Dedicated permissions/sandbox panel         PENDING
-Installed Rust MCP projection              UNVERIFIED
-Full MCP governed execution chain          PARTIAL
-Persistent Rust session resume             PENDING
-Windows ConPTY/PTTY acceptance             MISSING
-Installed core CLI E2E                     NOT PROVEN
-Project user ready                         NO
-Release ready                              NO
-Active gate                                OPEN
-Publication                                LOCKED
+Final product architecture                    ALIGNED
+LBE backend authority                         ACCEPTED / PROVEN AT OWNER SCOPE
+Rust client foundation                        IMPLEMENTED / PARTIALLY INTEGRATED
+Real read-only LBE path                       BOUNDED PROVEN
+Rust patch approval client                    IMPLEMENTED / LOCAL TESTED
+Receipt/evidence/basic diff projection        IMPLEMENTED / LOCAL TESTED
+Governed BirdEye MCP routing                  IMPLEMENTED / LOCAL VERIFIED / PUSHED
+Rust direct BirdEye execution                 REMOVED
+Credentialed live Rust provider flow          NOT PROVEN
+Writable live mutation acceptance             NOT PROVEN
+Installed approval response/resume            UNVERIFIED
+Installed BirdEye registry presence           UNVERIFIED
+Live MCP DENY zero-execution                   UNVERIFIED
+Live MCP ALLOW exactly-once                    UNVERIFIED
+Live MCP persisted event ordering             UNVERIFIED
+Live provider continuation via BirdEye        UNVERIFIED
+Installed Rust/TUI MCP acceptance             UNVERIFIED
+Persistent Rust session resume                PENDING
+Windows ConPTY/PTTY acceptance                MISSING
+Installed core CLI E2E                        NOT PROVEN
+Project user ready                            NO
+Release ready                                 NO
+Active P2/P3 gate                             OPEN
+Publication                                   LOCKED
 ```
 
 Overall:
@@ -127,68 +177,68 @@ Overall:
 PARTIALLY COMPLETE / COMPLETION MODE ACTIVE
 ```
 
+## MCP gate: what changed versus what remains
+
+### Closed at implementation/local-proof scope
+
+- Rust no longer launches BirdEye directly.
+- `mcp.birdeye.<tool>` routes through the LBE tool command.
+- LBE exposes bounded BirdEye ToolSpecs/handlers behind ToolRegistry/GovernedToolOrchestrator.
+- LBE authorization precedes the BirdEye handler at local owner-test scope.
+- unregistered capability rejection remains fail-closed at local owner-test scope.
+- Rust consumes LBE-generated status/authorization/result/receipt/evidence values.
+- operation-id idempotency remains LBE-owned.
+
+### Still required for live/installed closure
+
+1. resolve/materialize the canonical installed capability registry;
+2. prove BirdEye registration in that actual registry;
+3. prove `DENY` causes zero BirdEye invocations;
+4. prove `ALLOW` causes exactly one BirdEye invocation;
+5. capture proposal -> authorization -> execution -> result -> ToolReceipt/evidence ordering;
+6. prove complete MCP lifecycle persistence in the LBE session stream;
+7. prove provider continuation using the live BirdEye result;
+8. converge with the separate UI agent for UI-dependent event projection;
+9. run installed Rust/TUI MCP end-to-end acceptance.
+
+The MCP/P2P3 gate therefore remains OPEN. Do not convert the 75/205 local test results into an installed PASS.
+
+## Parallel UI ownership
+
+A separate UI agent owns UI implementation. Backend/integration work must continue independently.
+
+Do not duplicate UI implementation here. Only UI-dependent projection and installed UI acceptance wait for the shared compilable UI baseline.
+
 ## Current live writable-acceptance blockers
 
-The live mutation attempt did not execute any mutation. Current blockers are:
+The real writable `workspace.patch` acceptance remains separate from MCP routing. Known constraints include:
 
-1. the canonical capability registry expected by the real Rust wrapper is not established in the current configured path;
-2. `workspace.patch` requires an existing regular file, so a nonexistent temporary acceptance file is not a valid target;
-3. a valid writable session/fixture with an explicit restoration contract is still required before the real authorization -> mutation -> receipt/evidence -> validation/completion chain can be proven.
+- `workspace.patch` is existing-regular-file replacement only;
+- a safe existing disposable file and exact restoration contract are required;
+- real approval/resume/mutation/receipt/evidence/validation must be observed before PASS.
 
-These are runtime/configuration/acceptance blockers. They are not evidence that the Rust approval, receipt, evidence, or diff client implementation is missing.
+Do not create a second file-create path merely to satisfy the acceptance test.
 
 ## Release-blocking completion work
 
-The required current work is:
+Current required work includes:
 
-1. establish claim-matched real runtime configuration, including the authoritative capability-registry path and usable provider/session configuration;
-2. credentialed live Rust -> LBE -> provider execution and assistant continuation;
-3. real agent-driven governed read/search tool cycle;
-4. installed authorization/approval lifecycle and approval response/resume;
-5. real writable `workspace.patch` acceptance against an already-existing disposable file with exact original hash/content and restoration contract;
-6. prove exactly-once mutation plus authoritative receipt/evidence/diff/validation/completion through the already-implemented Rust projections;
-7. core Rust session lifecycle and persistent resume;
-8. provider/model discovery, selection, configuration/auth/health projection;
-9. live registered tool/capability projection;
-10. non-empty MCP registry projection and one governed external/MCP invocation;
-11. complete MCP acceptance chain: rejection, endpoint restrictions, authorization ordering, exactly-once execution, receipt/evidence, continuation, persistence, malformed/identity mismatch rejection, and Rust display;
-12. reusable Windows ConPTY/PTTY installed-test harness;
-13. full installed CLI E2E acceptance;
-14. final Rust and relevant LBE regressions with exact observed evidence.
-
-Do not duplicate locally implemented approval/receipt/evidence/diff UI while those live proofs are being established.
-
-## Current MCP truth
-
-The LBE 12-point MCP/TUI acceptance gate remains OPEN:
-
-```text
-registered MCP server in TUI                  UNVERIFIED
-unregistered capability rejection             PARTIAL
-endpoint/command/shell restriction             PARTIAL
-MCP proposal reaches LBE                      PARTIAL
-authorization before execution                PARTIAL
-denied execution count = 0                    PARTIAL
-allowed execution exactly once                PARTIAL
-receipt/evidence correlation                  PARTIAL
-provider receives governed result             PARTIAL
-complete persisted MCP event stream           UNVERIFIED
-Rust displays events without local authority  UNVERIFIED
-malformed/identity mismatch fails closed       PARTIAL
-```
-
-Backend governed external-capability registration and installed registry discovery are accepted at their recorded scope, but installed Rust/MCP product proof is not complete.
-
-## Documentation/governance reconciliation
-
-A current local LBE audit reports two documentation-governance gaps:
-
-1. ten current non-history Markdown files are absent from `docs/DOCUMENT_INTENT_MANIFEST.md`;
-2. stale closed-state prose remains in `COMPLETE_LBE_AGENT_RUNTIME_GATE.md` and an earlier section of `CURRENT_STATUS.md`, while machine governance and `CURRENT_IMPLEMENTATION_GATE.md` are OPEN for the TUI P2/P3 slice.
-
-Treat this as documentation reconciliation, not as proof of backend regression. Machine governance/current acceptance evidence outrank stale prose.
-
-BirdEye operational validation currently records a full registry scan as IN PROGRESS and the second unchanged scan/SHA-reuse check as NOT RUN; those do not prove MCP/LBE execution acceptance.
+1. claim-matched real provider/session/runtime configuration;
+2. real provider execution and assistant continuation;
+3. real agent-driven governed read/search cycle;
+4. installed authorization/approval response/resume;
+5. real reversible writable `workspace.patch` acceptance;
+6. core session lifecycle and persistent resume;
+7. provider/model normal-use acceptance;
+8. canonical installed capability registry with BirdEye registration;
+9. live MCP DENY zero-execution proof;
+10. live MCP ALLOW exactly-once proof;
+11. live MCP ToolReceipt/evidence correlation and persistence;
+12. live provider continuation through BirdEye result;
+13. UI-dependent MCP projection after UI-agent convergence;
+14. reusable Windows ConPTY/PTTY installed-test harness;
+15. full installed CLI E2E acceptance;
+16. final exact Rust/LBE regressions.
 
 ## Accepted owners — do not rebuild
 
@@ -196,25 +246,23 @@ Do not recreate unless newer canonical evidence proves a missing owner:
 
 - LBE authorization/policy;
 - ToolRegistry / GovernedToolOrchestrator;
-- governed workspace operations and mutation ownership;
+- governed workspace mutation ownership;
 - provider continuation backend;
-- governed external capability/MCP registration;
+- governed external capability registration;
 - evidence/ToolReceipt ownership;
 - session persistence/recovery;
 - validation/completion authority;
 - `RealLbeWrapper` boundary;
 - bounded live read/list/glob/search;
-- Rust MCP metadata bridge/refresh;
 - Rust governed patch-approval client state machine;
-- Rust receipt/evidence rendering paths;
-- Rust basic diff/change projection.
+- Rust receipt/evidence/basic diff projections;
+- governed LBE -> BirdEye MCP routing added by the 2026-09-02 commits.
 
 ## Non-blocking broader product features
 
-Unless they break normal use, these remain after first manual user-test readiness:
+Unless they break normal use, keep these after first manual user-test readiness:
 
-- headless/CI JSON mode;
-- advanced evidence/receipt browsers beyond the implemented basic renderers;
+- advanced evidence/receipt browsers;
 - advanced checkpoint/undo UX;
 - broad `@` context UX;
 - subagents/teams/background work;
@@ -225,19 +273,17 @@ Unless they break normal use, these remain after first manual user-test readines
 - optional visual/accessibility polish;
 - Documentation Companion runtime integration.
 
-The isolated Documentation Companion is implemented/tested as optional code but is not runtime-integrated and must not distract the active CLI completion slice.
-
 ## Reference role
 
-- **Cline:** reusable provider/session/tool/approval/MCP/diff interaction mechanics only.
+- **Cline:** provider/session/tool/approval/MCP/diff mechanics reference only.
 - **OpenCode:** CLI/UX ideas only.
-- **BirdEye:** local evidence/codebase capability patterns and registered capability use where LBE exposes them.
+- **BirdEye:** actual MCP search/index service behind the LBE-governed capability boundary.
 
-None replaces LBE authority or branding.
+None replaces LBE authority or LetterBlack branding.
 
 ## Stop condition for rediscovery
 
-Do not restart a broad architecture review unless current evidence shows:
+Do not restart broad architecture discovery unless current evidence shows:
 
 - a second authority would be created;
 - user data could be lost/corrupted;
