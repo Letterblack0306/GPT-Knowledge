@@ -187,3 +187,27 @@ Remaining live acceptance:
 - restart/resume final product acceptance.
 
 The next active slice is provider/Cline continuation through the existing installed Rust -> canonical LBE path. Existing provider/catalog and read/list/glob/search capabilities may be used as prerequisites, but should not become another broad proof campaign.
+
+
+## Canonical execution path to follow
+
+The project now has one explicit path-to-follow reference:
+
+`project-engineering/projects/lbe-plan-canvas/CANONICAL_AGENT_LBE_EXECUTION_PATH.md`
+
+Future implementation sequencing should follow:
+
+```text
+USER
+→ AI AGENT / CLI reason/propose
+→ NORMAL or AUDIT
+→ LBE AUTHORITY
+→ VALID DECISION: ALLOW / DENY / WAIT
+→ GOVERNED ADAPTER
+→ AUTHORIZED OPERATION
+→ TOOL RECEIPT + EVIDENCE
+→ VALIDATION
+→ completion / proof / recovery if required
+```
+
+Use this path to locate the first missing live seam. Do not reopen or rebuild already accepted layers.
