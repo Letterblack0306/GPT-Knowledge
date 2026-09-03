@@ -1,14 +1,14 @@
 {
-  "schema_version": 23,
+  "schema_version": 24,
   "project": "LBE Persistent Agent",
-  "updated": "2026-09-02",
+  "updated": "2026-09-04",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "source_branch": "main",
   "original_workspace": "C:/Agents-Memory-Tool-v6-integration",
   "later_ui_workspace": "C:/LBE-TUI-Lab",
   "purpose": "Project the final LBE product plan as one persistent provider-neutral governed agent lifecycle. UI, guard packs, Cline mechanics, external integrations and historical clients are subordinate capabilities or projections, not separate product architectures.",
   "authority_rule": "Current canonical source/configuration, local validation/runtime evidence, machine governance, active intent and acceptance evidence outrank GPT-K. This file is planning/reference projection only.",
-  "final_product_goal": "A local persistent LBE agent that can start or resume a workspace/session, reason with a selected provider, discover and request governed capabilities, execute only through LBE authorization and registered adapters, consume ToolReceipts/evidence, replan across turns, deterministically validate completion, persist/recover state, and expose the whole lifecycle through the final HTML LBE interface.",
+  "final_product_goal": "A local persistent LBE agent that can start or resume a workspace/session, reason with a selected provider, discover and request governed capabilities, execute only through LBE authorization and registered adapters, consume ToolReceipts/evidence, replan across turns, deterministically validate completion, persist/recover state, and expose the same lifecycle through whichever existing client surface reaches correct manual acceptance fastest without creating a second authority.",
   "core_invariant": "Agent/provider owns cognition; LBE owns capabilities and consequences.",
   "lifecycle_plan": [
     {
@@ -62,40 +62,43 @@
     "memory": "Historical/context/validated memory supports reasoning and persistence but does not override current workspace/runtime truth."
   },
   "product_surface_plan": {
-    "final_target": "HTML-based LBE TUI/cockpit",
+    "final_target": "UI implementation is delivery-flexible; current selected executable client is the existing Rust/Ratatui LetterBlack TUI because it is the most complete working client and is already attached to canonical LBE. HTML and copied Cline/OpenTUI remain visual/mechanics references, not mandatory product frameworks.",
+    "selected_current_client": "C:/LBE-TUI-Lab Rust/Ratatui client",
+    "selection_basis": "Reuse the most complete existing surface and do not let UI framework choice block runtime/product completion.",
     "reference_surfaces": [
       "docs/reference/ui/lbe_runtime_console.html",
-      "docs/reference/ui/lbe_runtime_surface_preview.html"
+      "docs/reference/ui/lbe_runtime_surface_preview.html",
+      "unused-in-repo/cline-cli-reference-copy-2026-08-27/"
     ],
-    "projection_rule": "Conversation/plan surfaces project agent-owned reasoning; evidence surfaces project workspace/knowledge evidence; execution/receipt/validation/history surfaces project LBE-owned truth.",
-    "current_truth": "HTML cockpit implementation, governed adapter wiring and installed acceptance remain pending.",
-    "historical_surfaces": "Textual, Rust/Ratatui and copied Cline/OpenTUI remain implementation/reference history and reuse inputs; they are not the final product authority."
+    "projection_rule": "Conversation surfaces project agent/provider reasoning; workspace/evidence/execution/receipt/validation/history surfaces project LBE-owned truth. The client must not own session persistence, authorization, execution, receipts/evidence, or completion truth.",
+    "current_truth": "Rust real LBE attachment, authoritative workspace/session projection, workspace receipt/evidence projection, interactive SubmitTask dispatch, canonical turn creation, persisted event return, Rust projection of the returned turn state, and clean quit are proven in current local evidence. Successful provider completion is blocked by ProviderError [WinError 10061].",
+    "historical_surfaces": "Python/Textual was removed. HTML cockpit remains a visual/product reference. Copied Cline/OpenTUI remains mechanics/reference only. None may create a competing runtime authority."
   },
   "current_active_slice": {
     "phase": "P2_P3_GOVERNED_EXECUTION",
     "slice": "TUI_P2_P3_GOVERNED_EXECUTION_INTEGRATION",
-    "intent": "LBE-INTENT-TUI-P2P3-GOVERNED-INTEGRATION-001",
-    "status": "OPEN",
-    "scope": "Adapt only the active TUI request/event/snapshot boundary to existing R6C/R6E authorization, ToolRegistry, GovernedToolOrchestrator, ToolReceipt, evidence, validation and completion owners.",
+    "intent": "LBE-INTENT-CLINE-CLI-LBE-RUNTIME-INTEGRATION-001",
+    "status": "IN_PROGRESS_WITH_INTERACTIVE_SUBMISSION_PROVEN",
+    "scope": "Keep the existing Rust client as a projection/control layer over canonical LBE and finish the real provider/tool-continuation/product-acceptance path without UI redesign or duplicate authority.",
+    "proven_now": [
+      "Rust TUI launches and attaches to real LBE",
+      "authoritative workspace/session/provider-model state projects into Rust",
+      "workspace.list returns LBE ToolReceipt/evidence into Rust",
+      "interactive composer emits UserRequest::SubmitTask",
+      "RealLbeWrapper invokes canonical product_entry turn",
+      "canonical LBE returns a non-empty turn_id and persisted user.message/model.turn.started/model.error events",
+      "Rust projects the same canonical turn state",
+      "clean terminal quit/restore proven in a live run"
+    ],
+    "current_blocker": "ProviderError [WinError 10061]: configured provider endpoint refuses the connection.",
     "non_goals": [
       "no UI redesign",
+      "no mandatory HTML migration",
+      "no Cline/OpenTUI revival as product runtime",
       "no second executor",
       "no second authorization/receipt/evidence/validation/persistence/completion owner",
       "no unrestricted shell",
-      "no direct Cline authority",
-      "no publication",
       "no branch/worktree creation"
-    ],
-    "completion_evidence": [
-      "active intent/machine-slice binding",
-      "authorization before execution",
-      "provider receives only LBE-generated tool definitions",
-      "correlated ToolReceipt",
-      "mutation denial outside registered capabilities",
-      "read-only audit/investigation preservation",
-      "focused regression",
-      "full regression",
-      "no duplicate authority owner"
     ]
   },
   "accepted_baseline": {
@@ -122,55 +125,51 @@
   "execution_sequence": [
     {
       "order": 1,
-      "id": "finish-active-governed-tui-adapter",
-      "status": "ACTIVE",
-      "scope": "Complete only the current TUI P2/P3 governed integration and prove its required evidence."
+      "id": "repair-provider-connectivity",
+      "status": "ACTIVE_BLOCKER",
+      "scope": "Verify reasoning-provider.json base URL/port against the actual provider listener; repair only the proven endpoint/configuration issue required for one successful canonical turn."
     },
     {
       "order": 2,
-      "id": "close-current-slice",
-      "status": "BLOCKED_UNTIL_EVIDENCE",
-      "scope": "Checkpoint PASS only when all current-slice proof requirements are met; otherwise remain OPEN/BLOCKED."
+      "id": "prove-successful-rust-lbe-turn",
+      "status": "BLOCKED_ON_PROVIDER",
+      "scope": "Submit through the existing Rust composer and prove successful provider/Cline completion returns through canonical LBE into the Rust transcript with the same session/turn identity."
     },
     {
       "order": 3,
-      "id": "activate-final-html-ui-implementation",
-      "status": "FUTURE_SEPARATE_GATE",
-      "scope": "Create a separate intent/gate for HTML cockpit implementation and adapter wiring; do not smuggle UI redesign into the current slice."
+      "id": "prove-governed-tool-continuation",
+      "status": "NEXT",
+      "scope": "Prove tool proposal -> LBE authorization -> governed execution -> ToolReceipt/evidence -> provider/Cline continuation -> Rust projection, including DENY zero execution and ALLOW exactly once."
     },
     {
       "order": 4,
-      "id": "html-runtime-projection",
-      "status": "FUTURE",
-      "scope": "Bind HTML conversation, plan, evidence, execution, receipt, validation, session/history and control surfaces to existing LBE owners."
+      "id": "prove-restart-resume-and-cancel",
+      "status": "LATER",
+      "scope": "Prove persistence/restart/resume and supported cancellation/shutdown behavior through the selected client and canonical LBE state."
     },
     {
       "order": 5,
-      "id": "installed-final-product-acceptance",
-      "status": "FUTURE",
-      "scope": "Prove the installed HTML product across boot → understand → plan → execute → validate → persist → continue, including resume/cancellation/fail-closed behavior and no duplicate authority."
-    },
-    {
-      "order": 6,
-      "id": "product-readiness-decision",
-      "status": "FUTURE",
-      "scope": "Only after installed final-product acceptance classify user-ready/release-ready state; publication remains separately governed."
+      "id": "installed-product-acceptance",
+      "status": "LATER",
+      "scope": "Prove the installed LetterBlack client across workspace/session attach, real task, tool governance, receipts/evidence, validation/completion, quit, restart, and resume at the accepted revision."
     }
   ],
   "separate_non_product_work": {
-    "later_rust_ui": "Reference/reuse input only; not an active product node.",
-    "cline_reference_tree": "Reference/archive; preserve only proven reusable LBE-authored seams when separately authorized.",
+    "html_ui": "Reference/visual source only unless a later delivery decision explicitly selects it.",
+    "cline_reference_tree": "Mechanics/reference source only; preserve proven LBE-authored seams, never use as a second authority.",
     "branches_stashes_state": "Classify/retain/clean under separate hygiene/retention work; never bundle into product implementation."
   },
   "final_acceptance_predicate": [
-    "one canonical main/primary-worktree implementation path",
+    "one canonical LBE runtime authority",
     "one persisted workspace/session identity",
+    "selected client can submit a real task and render the same canonical turn identity",
     "agent/provider independently reasons and chooses registered capabilities",
     "all authority-bearing execution is authorized and dispatched by LBE",
+    "DENY produces zero execution and ALLOW executes exactly once",
     "ToolReceipt/evidence correlation survives provider continuation",
     "deterministic validation alone establishes completion truth",
     "state/recovery/history survives restart and resume",
-    "final HTML interface truthfully projects the same runtime owners without duplicate authority",
+    "client truthfully projects runtime owners without duplicate authority",
     "installed user flow proves the full lifecycle at the exact accepted revision"
   ]
 }
