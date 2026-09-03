@@ -1,5 +1,5 @@
 {
-  "schema_version": 28,
+  "schema_version": 29,
   "project": "LBE Persistent Agent",
   "verified_at": "2026-09-04",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
@@ -197,5 +197,10 @@
     "persisted MCP event ordering",
     "installed interactive PTY/ConPTY acceptance",
     "full restart/resume product acceptance"
-  ]
+  ],
+  "canonical_execution_path": {
+    "classification": "PATH_TO_FOLLOW",
+    "document": "project-engineering/projects/lbe-plan-canvas/CANONICAL_AGENT_LBE_EXECUTION_PATH.md",
+    "rule": "All future implementation sequencing should follow USER -> agent/CLI reasoning/proposal -> Normal/Audit mode -> LBE authority -> valid ALLOW/DENY/WAIT decision -> governed adapter -> authorized operation -> ToolReceipt/evidence -> validation/completion. Work only on the first missing live seam."
+  }
 }
