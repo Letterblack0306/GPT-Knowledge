@@ -1,12 +1,12 @@
 {
-  "schema_version": 26,
+  "schema_version": 27,
   "project": "LBE Persistent Agent",
   "verified_at": "2026-09-04",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "source_branch": "main",
   "original_workspace": "C:/Agents-Memory-Tool-v6-integration",
   "later_ui_workspace": "C:/LBE-TUI-Lab",
-  "overall_classification": "RUST_CLIENT_REAL_LBE_SUBMISSION_PROVEN_PROVIDER_CONNECTIVITY_BLOCKED_FULL_TOOL_CONTINUATION_AND_INSTALLED_ACCEPTANCE_PENDING",
+  "overall_classification": "CURRENT_CLIENT_AND_PROVIDER_AVAILABLE_EXISTING_RUNTIME_BASELINE_ACCEPTED_CLINE_LBE_COMPOSITION_IS_THE_ACTIVE_IMPLEMENTATION_GAP",
   "authority_note": "GPT-Knowledge is a projection only. Current canonical source/configuration, current local validation/runtime evidence, machine governance, active intent and acceptance records outrank this file.",
   "final_product": {
     "definition": "Persistent provider-neutral LBE agent product in which the agent/provider owns reasoning, investigation strategy, capability selection, interpretation and replanning, while LBE owns workspace/session identity, policy, authorization, governed execution, ToolReceipts/evidence, persistence, recovery, deterministic validation and completion truth.",
@@ -101,30 +101,30 @@
   "next_required_sequence": [
     {
       "order": 1,
-      "id": "provider-endpoint-proof",
+      "id": "locate-first-disconnected-cline-lbe-seam",
       "status": "ACTIVE",
-      "scope": "Verify configured provider base URL/port against the actual listener and obtain one successful direct canonical LBE turn."
+      "scope": "Trace the current product_entry turn into the existing ClineReasoningBackend/GovernedClineWorker/provider continuation path and identify the first actual missing linkage. Do not re-test accepted Rust/LBE baseline merely for status."
     },
     {
       "order": 2,
-      "id": "successful-rust-turn",
-      "status": "BLOCKED_ON_PROVIDER",
-      "scope": "Repeat the same prompt through Rust and prove successful model/Cline completion is projected with the canonical turn identity."
+      "id": "complete-existing-owner-wiring",
+      "status": "NEXT",
+      "scope": "Implement only the minimum adapter/wiring needed so a Rust-submitted canonical LBE turn uses existing Cline reasoning, existing authorization/orchestration, ToolReceipt/evidence, continuation and persisted event projection."
     },
     {
       "order": 3,
-      "id": "governed-tool-continuation",
-      "status": "PENDING",
-      "scope": "Prove proposal -> authorization -> execution -> ToolReceipt/evidence -> continuation -> Rust projection, including DENY zero execution and ALLOW exactly once."
+      "id": "combined-lifecycle-acceptance",
+      "status": "NEXT",
+      "scope": "Prove only the combined lifecycle affected by the patch: user task -> Cline reasoning -> governed tool path if invoked -> continuation -> final response -> Rust projection. Do not rerun broad historical proof unless the changed seam requires it."
     },
     {
       "order": 4,
       "id": "installed-resume-acceptance",
-      "status": "PENDING",
-      "scope": "Prove quit/restart/resume, persistence/recovery, and installed end-to-end behavior."
+      "status": "LATER",
+      "scope": "After composition works, finish restart/resume and installed product acceptance as a separate slice."
     }
   ],
-  "status_rule": "Do not reopen UI selection or rebuild runtime owners. Current blocker is provider connectivity. Current local runtime/client evidence outranks stale remote publication and older UI-specific GPT-K projections.",
+  "status_rule": "Before any future LBE instruction: refresh GPT-K current plan/status/handoff, use chat history only as memory, inspect current local evidence, then issue only the smallest next implementation step. Do not reopen settled UI/provider/runtime architecture or demand redundant proof.",
   "rust_client_current": {
     "classification": "PROVEN_REAL_LBE_ATTACHMENT_AND_INTERACTIVE_SUBMIT",
     "workspace": "C:/LBE-TUI-Lab",
@@ -146,8 +146,26 @@
     "proof_turn_count_delta": "29 -> 30"
   },
   "current_blocker": {
-    "classification": "PROVIDER_CONNECTIVITY",
-    "error": "ProviderError: [WinError 10061] No connection could be made because the target machine actively refused it",
-    "meaning": "Rust input, Rust->LBE transport, canonical turn creation and event persistence are already past this boundary. Verify provider endpoint/listener before changing Rust or Cline."
+    "classification": "CLINE_LBE_RUNTIME_COMPOSITION",
+    "meaning": "The remaining project task is to complete the existing Rust -> canonical LBE -> existing Cline reasoning/tool-continuation composition using already-implemented runtime owners. Stop re-proving accepted subsystems unless a code change regresses them."
+  },
+  "project_visit_protocol": {
+    "classification": "MANDATORY_PROJECT_CONTEXT_REFRESH",
+    "rule": "On every LBE project visit and before giving any next-step implementation instruction, first read the current GPT-K project plan/status/handoff and then inspect current canonical local evidence. Do not issue implementation guidance from conversation memory alone.",
+    "required_gpt_k_files": [
+      "project-engineering/projects/lbe-plan-canvas/status.json",
+      "project-engineering/projects/lbe-plan-canvas/plan.json",
+      "project-engineering/projects/lbe-plan-canvas/CURRENT_RUNTIME_UI_HANDOFF_2026-09-04.md"
+    ],
+    "chat_history_role": "chat sessoions/Agent_Wall_001.json is memory/context for prior decisions and rationale only; it is not current implementation authority.",
+    "instruction_rule": "After the GPT-K refresh, use current local source/runtime evidence to identify only the first still-missing composition seam and provide a bounded implementation instruction. Do not re-explain settled architecture or require repetition of already accepted proof."
+  },
+  "current_provider_state": {
+    "classification": "PROVIDER_SERVICE_AVAILABLE_ROUTE_SHAPE_DIFFERS_FROM_OPENAI_COMPAT_EXPECTATION",
+    "proven_listener": "localhost:1234",
+    "proven_route": "POST /api/v1/chat",
+    "proven_model": "google/gemma-4-e4b",
+    "proven_result": "HTTP 200 with generated response",
+    "remaining_note": "The service is available. Provider availability itself is no longer the project blocker. If the current LBE provider transport expects a different route, treat that only as a local transport/config seam within the larger Cline-backed LBE composition task; do not reopen provider architecture."
   }
 }
