@@ -81,31 +81,68 @@ persisted events:
   136 model.error
 ```
 
-## Current blocker
+## Current status
+
+The earlier provider-unavailable classification is superseded.
+
+Current provider evidence:
 
 ```text
-ProviderError: [WinError 10061]
-No connection could be made because the target machine actively refused it
+localhost:1234                    PROVEN listening
+POST /api/v1/chat                 PROVEN
+google/gemma-4-e4b                PROVEN
+provider response generation      PROVEN (HTTP 200)
 ```
 
-Classification: **PROVIDER_CONNECTIVITY**
+The service is available. The project should not remain in provider-discovery mode.
 
-Do not modify Rust or Cline merely to solve this error until the configured provider endpoint/listener is verified.
+The active remaining implementation gap is:
+
+```text
+existing Rust SubmitTask
+→ canonical LBE turn
+→ existing Cline reasoning/runtime owners
+→ existing LBE governed tool/receipt/evidence owners
+→ Cline continuation
+→ persisted final response
+→ Rust projection
+```
+
+Classification: **CLINE_LBE_RUNTIME_COMPOSITION**
+
+Do not re-prove already accepted Rust/LBE/provider subsystems unless the composition patch changes them.
+
+## Mandatory project-visit protocol
+
+Before every future LBE project instruction:
+
+1. Read current GPT-K:
+   - `project-engineering/projects/lbe-plan-canvas/status.json`
+   - `project-engineering/projects/lbe-plan-canvas/plan.json`
+   - `project-engineering/projects/lbe-plan-canvas/CURRENT_RUNTIME_UI_HANDOFF_2026-09-04.md`
+2. Treat `chat sessoions/Agent_Wall_001.json` as conversation memory only.
+3. Inspect current canonical local source/runtime/governance evidence.
+4. Identify the first still-missing implementation seam.
+5. Give only the bounded next instruction for that seam.
+
+Do not provide next-step instructions from chat memory alone.
+Do not reopen settled UI/provider/authority decisions.
+Do not substitute architecture explanation for integration work.
 
 ## Next bounded sequence
 
-1. Verify provider base URL/port and actual listener.
-2. Obtain one successful direct canonical LBE provider turn.
-3. Repeat the same successful turn through the Rust client.
-4. Prove governed tool continuation:
-   - tool proposal;
-   - LBE authorization;
-   - DENY => zero execution;
-   - ALLOW => exactly once;
+1. Trace the current canonical turn into the existing Cline reasoning/continuation path and identify the first actual disconnect.
+2. Patch only that seam using existing runtime owners.
+3. Validate the combined lifecycle affected by the patch:
+   - user task;
+   - Cline reasoning;
+   - governed tool proposal/execution if invoked;
    - ToolReceipt/evidence;
-   - provider/Cline continuation;
+   - Cline continuation;
+   - persisted final response;
    - Rust projection.
-5. Prove quit/restart/resume and installed end-to-end acceptance.
+4. Stop and report the remaining first blocker.
+5. Handle restart/resume and installed end-to-end acceptance only after the composition slice works.
 
 ## Publication lag
 
