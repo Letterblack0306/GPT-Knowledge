@@ -1,12 +1,12 @@
 {
-  "schema_version": 25,
+  "schema_version": 26,
   "project": "LBE Persistent Agent",
-  "verified_at": "2026-09-02",
+  "verified_at": "2026-09-04",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "source_branch": "main",
   "original_workspace": "C:/Agents-Memory-Tool-v6-integration",
   "later_ui_workspace": "C:/LBE-TUI-Lab",
-  "overall_classification": "CORE_RUNTIME_AUTHORITY_PROVEN_ACTIVE_TUI_P2P3_GOVERNED_INTEGRATION_OPEN_HTML_FINAL_UI_TARGET_PENDING_PRODUCTIZATION",
+  "overall_classification": "RUST_CLIENT_REAL_LBE_SUBMISSION_PROVEN_PROVIDER_CONNECTIVITY_BLOCKED_FULL_TOOL_CONTINUATION_AND_INSTALLED_ACCEPTANCE_PENDING",
   "authority_note": "GPT-Knowledge is a projection only. Current canonical source/configuration, current local validation/runtime evidence, machine governance, active intent and acceptance records outrank this file.",
   "final_product": {
     "definition": "Persistent provider-neutral LBE agent product in which the agent/provider owns reasoning, investigation strategy, capability selection, interpretation and replanning, while LBE owns workspace/session identity, policy, authorization, governed execution, ToolReceipts/evidence, persistence, recovery, deterministic validation and completion truth.",
@@ -22,15 +22,14 @@
     "interface_rule": "The product UI is a projection/control surface over the same LBE runtime authorities; it must not create a second runtime, session, provider, authorization, execution, receipt, evidence, persistence or completion owner."
   },
   "current_machine_state": {
-    "classification": "PROVEN_FROM_CURRENT_PROJECT_GOVERNANCE_EVIDENCE",
+    "classification": "CURRENT_LOCAL_EVIDENCE_OUTRANKS_REMOTE_PUBLICATION",
     "active_phase": "P2_P3_GOVERNED_EXECUTION",
     "active_slice": "TUI_P2_P3_GOVERNED_EXECUTION_INTEGRATION",
-    "active_intent": "LBE-INTENT-TUI-P2P3-GOVERNED-INTEGRATION-001",
-    "status": "OPEN",
+    "status": "IN_PROGRESS",
     "implementation_allowed": true,
     "next_phase_locked": true,
-    "publication": "LOCKED",
-    "rule": "Only this bounded governed-integration slice may advance. HTML UI productization, cleanup, publication and adjacent architecture work require separate activation."
+    "publication": "REMOTE_REPOS_STALE_VS_CURRENT_LOCAL_WORK",
+    "rule": "Continue only the smallest evidence-backed runtime/product slice. UI framework selection is not a blocker."
   },
   "runtime_authority": {
     "status": "ESTABLISHED_GOVERNED",
@@ -77,14 +76,13 @@
     "gate_effect": "NONE; this integration does not advance or close TUI_P2_P3_GOVERNED_EXECUTION_INTEGRATION."
   },
   "final_ui_direction": {
-    "classification": "HTML_BASED_LBE_TUI_FINAL_PRODUCT_TARGET",
-    "reference_surfaces": [
-      "docs/reference/ui/lbe_runtime_console.html",
-      "docs/reference/ui/lbe_runtime_surface_preview.html"
-    ],
-    "product_owner_correction": "Copied Cline CLI/OpenTUI is reference/archive material only; the older Textual projection is reference-only for final product UI direction.",
-    "implementation_truth": "HTML cockpit implementation, bounded governed adapter wiring and installed acceptance remain pending.",
-    "active_slice_constraint": "The currently active TUI P2/P3 slice explicitly forbids UI redesign; do not treat HTML productization as authorized by the current slice."
+    "classification": "DELIVERY_FLEXIBLE_SELECTED_CURRENT_CLIENT_RUST_RATATUI",
+    "selected_client": "C:/LBE-TUI-Lab",
+    "selection_reason": "Most complete existing executable LetterBlack client and already proven attached to canonical LBE; reusing it is the shortest path to manual acceptance.",
+    "html_status": "Visual/product reference, not mandatory final framework.",
+    "cline_open_tui_status": "Mechanics/reference only; not product authority.",
+    "implementation_truth": "Rust real attachment and interactive SubmitTask path are proven. No UI redesign is required before continuing runtime acceptance.",
+    "authority_rule": "Client projects and requests only; LBE retains session/workspace/turn truth, authorization, execution, receipts/evidence, persistence/recovery, validation and completion."
   },
   "cline_boundary": {
     "active_runtime_worker": {
@@ -103,34 +101,53 @@
   "next_required_sequence": [
     {
       "order": 1,
-      "id": "complete-active-tui-p2p3-governed-integration",
+      "id": "provider-endpoint-proof",
       "status": "ACTIVE",
-      "scope": "Finish only the bounded request/event/snapshot adapter wiring through existing R6C/R6E/ToolReceipt/evidence/validation/completion owners and produce claim-level proof."
+      "scope": "Verify configured provider base URL/port against the actual listener and obtain one successful direct canonical LBE turn."
     },
     {
       "order": 2,
-      "id": "checkpoint-and-close-active-slice",
-      "status": "LOCKED_UNTIL_PROOF",
-      "scope": "Record focused/full regression, authority-before-execution, correlated receipt, mutation denial and duplicate-authority evidence; mark the active intent/slice PASS only if all requirements are satisfied."
+      "id": "successful-rust-turn",
+      "status": "BLOCKED_ON_PROVIDER",
+      "scope": "Repeat the same prompt through Rust and prove successful model/Cline completion is projected with the canonical turn identity."
     },
     {
       "order": 3,
-      "id": "activate-html-productization",
-      "status": "FUTURE_SEPARATE_INTENT",
-      "scope": "Only after the active slice passes, separately activate the HTML cockpit implementation/wiring/installed-acceptance work."
+      "id": "governed-tool-continuation",
+      "status": "PENDING",
+      "scope": "Prove proposal -> authorization -> execution -> ToolReceipt/evidence -> continuation -> Rust projection, including DENY zero execution and ALLOW exactly once."
     },
     {
       "order": 4,
-      "id": "prove-final-html-product-flow",
-      "status": "FUTURE",
-      "scope": "Prove boot → understand → plan → execute → validate → persist → continue through the installed HTML LBE product without duplicate authority."
-    },
-    {
-      "order": 5,
-      "id": "separate-structural-cleanup",
-      "status": "NON_PRODUCT_BLOCKING_SEPARATE",
-      "scope": "Handle reference-tree cleanup, branch/stash/state retention and historical UI reconciliation independently from product implementation."
+      "id": "installed-resume-acceptance",
+      "status": "PENDING",
+      "scope": "Prove quit/restart/resume, persistence/recovery, and installed end-to-end behavior."
     }
   ],
-  "status_rule": "Do not equate accepted runtime baseline with current product completion. Current final-product completion requires the active governed-integration slice to PASS and later separately authorized HTML cockpit implementation, bounded adapter wiring and installed acceptance."
+  "status_rule": "Do not reopen UI selection or rebuild runtime owners. Current blocker is provider connectivity. Current local runtime/client evidence outranks stale remote publication and older UI-specific GPT-K projections.",
+  "rust_client_current": {
+    "classification": "PROVEN_REAL_LBE_ATTACHMENT_AND_INTERACTIVE_SUBMIT",
+    "workspace": "C:/LBE-TUI-Lab",
+    "proven": [
+      "real LBE workspace/session attachment",
+      "authoritative provider/model projection",
+      "workspace.list receipt/evidence projection",
+      "interactive SubmitTask emission",
+      "canonical product_entry turn invocation",
+      "canonical turn_id returned",
+      "persisted user.message/model.turn.started/model.error events returned",
+      "Rust projection of the returned turn state",
+      "clean quit/terminal restore in a live run",
+      "204 Rust tests passing in the reported slice"
+    ],
+    "proof_session": "tui-fb2fe3a87da24552910a5b2d8fb45c7d",
+    "proof_turn": "turn-82439b47435248adb81d3d4d58a830fe",
+    "proof_sequence_delta": "130 -> 136",
+    "proof_turn_count_delta": "29 -> 30"
+  },
+  "current_blocker": {
+    "classification": "PROVIDER_CONNECTIVITY",
+    "error": "ProviderError: [WinError 10061] No connection could be made because the target machine actively refused it",
+    "meaning": "Rust input, Rust->LBE transport, canonical turn creation and event persistence are already past this boundary. Verify provider endpoint/listener before changing Rust or Cline."
+  }
 }
