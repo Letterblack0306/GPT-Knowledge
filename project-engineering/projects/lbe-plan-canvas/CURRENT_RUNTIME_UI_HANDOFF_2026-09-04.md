@@ -147,3 +147,43 @@ Do not substitute architecture explanation for integration work.
 ## Publication lag
 
 Published LBE and Rust GitHub repositories may lag current local work. Agents must not infer current implementation status from remote main alone when newer local evidence is available.
+
+
+## Fresh Rust workspace state — 2026-09-04
+
+```text
+workspace:     C:/LBE-TUI-Lab
+HEAD:          bd19603e794ad24d01c3098d5312a07978d3b79d
+origin/main:   bd19603e794ad24d01c3098d5312a07978d3b79d
+ahead/behind:  0 / 0
+worktrees:     1 primary
+staged:        none
+```
+
+Fresh validation:
+
+```text
+cargo test --quiet       204 passed, 0 failed
+cargo check --quiet      PASS
+cargo fmt -- --check     PASS
+git diff --check         PASS
+```
+
+Tracked and untracked dirty work remains intentionally preserved, including modified Rust/docs, deleted legacy files, a very large untracked Cline tree/partial checkouts, evidence/log files and run-lbe.bat. Do not clean or stage unrelated material to force the gate closed.
+
+## Open gate — current acceptance gap
+
+```text
+TUI_P2_P3_GOVERNED_EXECUTION_INTEGRATION = OPEN
+```
+
+Accepted baseline is not to be broadly re-proven.
+
+Remaining live acceptance:
+- provider/Cline continuation through the installed client;
+- writable mutation through live LBE authorization/approval/patch review;
+- persisted MCP event ordering;
+- installed PTY/ConPTY interaction;
+- restart/resume final product acceptance.
+
+The next active slice is provider/Cline continuation through the existing installed Rust -> canonical LBE path. Existing provider/catalog and read/list/glob/search capabilities may be used as prerequisites, but should not become another broad proof campaign.
