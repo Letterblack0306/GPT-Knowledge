@@ -1,7 +1,7 @@
 # LBE Client Integration — Reuse-First Projection Plan
 
-Status: ACTIVE_REUSE_FIRST_INTEGRATION_DIRECTION  
-Updated: 2026-08-31  
+Status: CURRENT_SELECTED_RUST_CLIENT_REUSE_DIRECTION  
+Updated: 2026-09-04  
 Projection owner: GPT-Knowledge  
 Canonical runtime authority: `Letterblack0306/LBE_Presistent_Agent_wall`  
 Rust client workspace: `C:/LBE-TUI-Lab`
@@ -19,13 +19,14 @@ The central rule is now explicit:
 ```text
 PRODUCT                  = LBE
 RUNTIME AUTHORITY        = LBE
-FINAL INTERFACE DIRECTION= Cline CLI/SDK mechanics under LBE identity/authority
-CLINE                    = approved interface/mechanics reuse source
-RUST/RATATUI             = bounded client / adapter / projection integration
+CURRENT CLIENT          = existing Rust/Ratatui LetterBlack TUI
+UI FRAMEWORK RULE        = delivery-flexible; use the existing surface that reaches correct acceptance fastest
+CLINE                    = approved reasoning/interaction mechanics source behind LBE authority
+HTML COCKPIT             = visual/product reference, not mandatory framework
 OPENCODE                 = external reuse/reference source; pinned capability audit required
 ```
 
-The long-term Rust product role must remain explicitly reconciled with the approved Cline CLI/SDK interface direction. A current Rust integration slice is not evidence that Rust owns the final product interface.
+Rust/Ratatui is the selected current client because it is the most complete existing executable LetterBlack surface and is already attached to canonical LBE. This is a delivery choice, not a transfer of runtime authority. UI technology may change later without reopening LBE authority.
 
 ## Canonical LBE owners already present
 
@@ -232,3 +233,65 @@ Prove the installed client drives canonical LBE owners and cannot bypass authori
 ## Authority boundary
 
 This file is a GPT-Knowledge projection/integration plan. It does not activate a machine gate, authorize canonical repository mutation, or turn a local client implementation into LBE runtime authority.
+
+
+## Current verified handoff — 2026-09-04
+
+Current local evidence proves the following real path:
+
+```text
+Rust composer Enter
+→ UserRequest::SubmitTask
+→ WrapperClient
+→ RealLbeWrapper::submit_conversational_turn
+→ python -m lbe_guard_inspector.product_entry turn
+→ canonical LBE session/turn
+→ persisted operational events
+→ Rust projection
+```
+
+Proven live state:
+
+- authoritative workspace/session attachment;
+- provider/model projection;
+- `workspace.list` ToolReceipt/evidence projection;
+- interactive SubmitTask dispatch;
+- canonical turn creation;
+- persisted `user.message`, `model.turn.started`, and `model.error`;
+- Rust projection of the same canonical turn state;
+- clean terminal quit/restore in a live run;
+- 204 Rust tests passing in the reported slice.
+
+Claim-matched proof:
+
+```text
+session_id        tui-fb2fe3a87da24552910a5b2d8fb45c7d
+turn_id           turn-82439b47435248adb81d3d4d58a830fe
+session_sequence  130 -> 136
+turn_count        29 -> 30
+events            134 user.message
+                  135 model.turn.started
+                  136 model.error
+```
+
+Current first failing runtime boundary:
+
+```text
+ProviderError: [WinError 10061]
+No connection could be made because the target machine actively refused it
+```
+
+Therefore the next bounded work is provider endpoint/listener verification, not UI redesign and not a new Cline/Rust/LBE architecture.
+
+After provider completion is proven, the next acceptance target is:
+
+```text
+tool proposal
+→ LBE authorization
+→ governed execution
+→ ToolReceipt/evidence
+→ provider/Cline continuation
+→ Rust projection
+```
+
+including DENY = zero execution and ALLOW = exactly once.
