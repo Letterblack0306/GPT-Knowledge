@@ -1,5 +1,5 @@
 {
-  "schema_version": 24,
+  "schema_version": 25,
   "project": "LBE Persistent Agent",
   "updated": "2026-09-04",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
@@ -7,7 +7,7 @@
   "original_workspace": "C:/Agents-Memory-Tool-v6-integration",
   "later_ui_workspace": "C:/LBE-TUI-Lab",
   "purpose": "Project the final LBE product plan as one persistent provider-neutral governed agent lifecycle. UI, guard packs, Cline mechanics, external integrations and historical clients are subordinate capabilities or projections, not separate product architectures.",
-  "authority_rule": "Current canonical source/configuration, local validation/runtime evidence, machine governance, active intent and acceptance evidence outrank GPT-K. This file is planning/reference projection only.",
+  "authority_rule": "Before every project decision or next-step instruction, refresh this GPT-K plan/status/handoff first, then inspect current canonical local source/runtime/governance evidence. GPT-K is project context/projection; local current evidence remains implementation truth. Chat-history JSON is memory only.",
   "final_product_goal": "A local persistent LBE agent that can start or resume a workspace/session, reason with a selected provider, discover and request governed capabilities, execute only through LBE authorization and registered adapters, consume ToolReceipts/evidence, replan across turns, deterministically validate completion, persist/recover state, and expose the same lifecycle through whichever existing client surface reaches correct manual acceptance fastest without creating a second authority.",
   "core_invariant": "Agent/provider owns cognition; LBE owns capabilities and consequences.",
   "lifecycle_plan": [
@@ -75,30 +75,28 @@
     "historical_surfaces": "Python/Textual was removed. HTML cockpit remains a visual/product reference. Copied Cline/OpenTUI remains mechanics/reference only. None may create a competing runtime authority."
   },
   "current_active_slice": {
-    "phase": "P2_P3_GOVERNED_EXECUTION",
-    "slice": "TUI_P2_P3_GOVERNED_EXECUTION_INTEGRATION",
-    "intent": "LBE-INTENT-CLINE-CLI-LBE-RUNTIME-INTEGRATION-001",
-    "status": "IN_PROGRESS_WITH_INTERACTIVE_SUBMISSION_PROVEN",
-    "scope": "Keep the existing Rust client as a projection/control layer over canonical LBE and finish the real provider/tool-continuation/product-acceptance path without UI redesign or duplicate authority.",
-    "proven_now": [
-      "Rust TUI launches and attaches to real LBE",
-      "authoritative workspace/session/provider-model state projects into Rust",
-      "workspace.list returns LBE ToolReceipt/evidence into Rust",
-      "interactive composer emits UserRequest::SubmitTask",
-      "RealLbeWrapper invokes canonical product_entry turn",
-      "canonical LBE returns a non-empty turn_id and persisted user.message/model.turn.started/model.error events",
-      "Rust projects the same canonical turn state",
-      "clean terminal quit/restore proven in a live run"
+    "phase": "CLINE_LBE_COMPOSITION",
+    "slice": "EXISTING_RUNTIME_COMPOSITION",
+    "status": "ACTIVE",
+    "scope": "Complete the missing composition between the already-proven Rust client/canonical LBE turn path and the already-existing Cline reasoning/tool-continuation/runtime owners. Implement the first disconnected seam; do not rebuild or re-prove accepted subsystems.",
+    "accepted_baseline": [
+      "Rust/Ratatui selected as current delivery client",
+      "Rust real LBE attachment",
+      "Rust SubmitTask to canonical LBE",
+      "canonical session/turn creation and persisted event return",
+      "workspace ToolReceipt/evidence projection",
+      "existing LBE authorization/ToolRegistry/GovernedToolOrchestrator",
+      "existing ClineReasoningBackend/GovernedClineWorker integration seam",
+      "provider service reachable on localhost:1234 via /api/v1/chat with google/gemma-4-e4b"
     ],
-    "current_blocker": "ProviderError [WinError 10061]: configured provider endpoint refuses the connection.",
+    "implementation_goal": "user task -> existing Cline reasoning -> LBE-governed capability execution/receipt/evidence -> Cline continuation -> persisted final response -> Rust projection",
     "non_goals": [
       "no UI redesign",
-      "no mandatory HTML migration",
-      "no Cline/OpenTUI revival as product runtime",
-      "no second executor",
-      "no second authorization/receipt/evidence/validation/persistence/completion owner",
-      "no unrestricted shell",
-      "no branch/worktree creation"
+      "no new provider architecture",
+      "no new Cline worker",
+      "no second session/execution/authorization/receipt/evidence owner",
+      "no broad re-verification of already accepted baseline",
+      "no architecture explanation as a substitute for implementation"
     ]
   },
   "accepted_baseline": {
@@ -125,33 +123,33 @@
   "execution_sequence": [
     {
       "order": 1,
-      "id": "repair-provider-connectivity",
-      "status": "ACTIVE_BLOCKER",
-      "scope": "Verify reasoning-provider.json base URL/port against the actual provider listener; repair only the proven endpoint/configuration issue required for one successful canonical turn."
+      "id": "refresh-project-truth-before-instruction",
+      "status": "MANDATORY_EVERY_VISIT",
+      "scope": "Read GPT-K status.json, plan.json and current handoff; use Agent_Wall_001.json only as memory; then inspect current local evidence before issuing the next implementation instruction."
     },
     {
       "order": 2,
-      "id": "prove-successful-rust-lbe-turn",
-      "status": "BLOCKED_ON_PROVIDER",
-      "scope": "Submit through the existing Rust composer and prove successful provider/Cline completion returns through canonical LBE into the Rust transcript with the same session/turn identity."
+      "id": "trace-current-cline-composition-seam",
+      "status": "ACTIVE",
+      "scope": "Trace product_entry turn -> provider_turn_runtime -> ClineReasoningBackend/GovernedClineWorker -> provider/tool continuation and identify the first real disconnect."
     },
     {
       "order": 3,
-      "id": "prove-governed-tool-continuation",
+      "id": "patch-first-disconnected-seam",
       "status": "NEXT",
-      "scope": "Prove tool proposal -> LBE authorization -> governed execution -> ToolReceipt/evidence -> provider/Cline continuation -> Rust projection, including DENY zero execution and ALLOW exactly once."
+      "scope": "Wire existing owners with the smallest change required; do not create parallel runtime owners."
     },
     {
       "order": 4,
-      "id": "prove-restart-resume-and-cancel",
-      "status": "LATER",
-      "scope": "Prove persistence/restart/resume and supported cancellation/shutdown behavior through the selected client and canonical LBE state."
+      "id": "validate-only-changed-combined-flow",
+      "status": "NEXT",
+      "scope": "Validate the combined lifecycle touched by the patch rather than re-proving all previously accepted components."
     },
     {
       "order": 5,
       "id": "installed-product-acceptance",
       "status": "LATER",
-      "scope": "Prove the installed LetterBlack client across workspace/session attach, real task, tool governance, receipts/evidence, validation/completion, quit, restart, and resume at the accepted revision."
+      "scope": "After composition is complete, finish restart/resume and installed manual acceptance."
     }
   ],
   "separate_non_product_work": {
