@@ -1,5 +1,5 @@
 {
-  "schema_version": 27,
+  "schema_version": 28,
   "project": "LBE Persistent Agent",
   "verified_at": "2026-09-04",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
@@ -22,14 +22,27 @@
     "interface_rule": "The product UI is a projection/control surface over the same LBE runtime authorities; it must not create a second runtime, session, provider, authorization, execution, receipt, evidence, persistence or completion owner."
   },
   "current_machine_state": {
-    "classification": "CURRENT_LOCAL_EVIDENCE_OUTRANKS_REMOTE_PUBLICATION",
+    "classification": "RUST_MAIN_ALIGNED_DIRTY_WORK_PRESERVED_GATE_OPEN",
     "active_phase": "P2_P3_GOVERNED_EXECUTION",
     "active_slice": "TUI_P2_P3_GOVERNED_EXECUTION_INTEGRATION",
-    "status": "IN_PROGRESS",
+    "status": "OPEN",
     "implementation_allowed": true,
-    "next_phase_locked": true,
-    "publication": "REMOTE_REPOS_STALE_VS_CURRENT_LOCAL_WORK",
-    "rule": "Continue only the smallest evidence-backed runtime/product slice. UI framework selection is not a blocker."
+    "rust_checkout": {
+      "workspace": "C:/LBE-TUI-Lab",
+      "head": "bd19603e794ad24d01c3098d5312a07978d3b79d",
+      "origin_main": "bd19603e794ad24d01c3098d5312a07978d3b79d",
+      "ahead": 0,
+      "behind": 0,
+      "worktrees": 1,
+      "staged_changes": "NONE"
+    },
+    "fresh_validation": {
+      "cargo_test": "204 passed, 0 failed",
+      "cargo_check": "PASS",
+      "cargo_fmt_check": "PASS",
+      "git_diff_check": "PASS"
+    },
+    "dirty_work_rule": "Tracked and untracked user work is intentionally preserved. Do not clean, stage, delete, commit or push unrelated material to force the gate closed."
   },
   "runtime_authority": {
     "status": "ESTABLISHED_GOVERNED",
@@ -101,53 +114,62 @@
   "next_required_sequence": [
     {
       "order": 1,
-      "id": "locate-first-disconnected-cline-lbe-seam",
+      "id": "provider-continuation-installed-client",
       "status": "ACTIVE",
-      "scope": "Trace the current product_entry turn into the existing ClineReasoningBackend/GovernedClineWorker/provider continuation path and identify the first actual missing linkage. Do not re-test accepted Rust/LBE baseline merely for status."
+      "scope": "Complete the existing Rust -> canonical LBE -> existing Cline/provider continuation path in the installed/live client. Use existing provider/catalog/read capabilities as prerequisites only; do not repeat broad proof of already accepted read/list/glob/search behavior."
     },
     {
       "order": 2,
-      "id": "complete-existing-owner-wiring",
+      "id": "writable-approval-patch-review",
       "status": "NEXT",
-      "scope": "Implement only the minimum adapter/wiring needed so a Rust-submitted canonical LBE turn uses existing Cline reasoning, existing authorization/orchestration, ToolReceipt/evidence, continuation and persisted event projection."
+      "scope": "Once continuation reaches a governed mutation proposal, prove the existing LBE authorization -> approval -> patch review -> exactly-once mutation -> ToolReceipt/evidence -> Cline continuation -> Rust projection path."
     },
     {
       "order": 3,
-      "id": "combined-lifecycle-acceptance",
-      "status": "NEXT",
-      "scope": "Prove only the combined lifecycle affected by the patch: user task -> Cline reasoning -> governed tool path if invoked -> continuation -> final response -> Rust projection. Do not rerun broad historical proof unless the changed seam requires it."
+      "id": "mcp-event-ordering",
+      "status": "LATER",
+      "scope": "Prove persisted MCP proposal/authorization/execution/result/continuation ordering through canonical LBE without client-side transport authority."
     },
     {
       "order": 4,
-      "id": "installed-resume-acceptance",
+      "id": "installed-pty-resume-acceptance",
       "status": "LATER",
-      "scope": "After composition works, finish restart/resume and installed product acceptance as a separate slice."
+      "scope": "Finish installed PTY/ConPTY interaction, quit/restart/resume, persistence/recovery and final manual product acceptance."
     }
   ],
-  "status_rule": "Before any future LBE instruction: refresh GPT-K current plan/status/handoff, use chat history only as memory, inspect current local evidence, then issue only the smallest next implementation step. Do not reopen settled UI/provider/runtime architecture or demand redundant proof.",
+  "status_rule": "Before every next instruction refresh GPT-K and current local evidence. Do not rerun accepted baseline tests or read-only proofs merely for reassurance. Drive the open gate by completing the first remaining live composition behavior.",
   "rust_client_current": {
-    "classification": "PROVEN_REAL_LBE_ATTACHMENT_AND_INTERACTIVE_SUBMIT",
+    "classification": "PROVEN_ACCEPTED_CLIENT_BASELINE_LOCAL_MAIN_ALIGNED",
     "workspace": "C:/LBE-TUI-Lab",
-    "proven": [
-      "real LBE workspace/session attachment",
-      "authoritative provider/model projection",
-      "workspace.list receipt/evidence projection",
-      "interactive SubmitTask emission",
-      "canonical product_entry turn invocation",
-      "canonical turn_id returned",
-      "persisted user.message/model.turn.started/model.error events returned",
-      "Rust projection of the returned turn state",
-      "clean quit/terminal restore in a live run",
-      "204 Rust tests passing in the reported slice"
+    "accepted": [
+      "real LBE attachment",
+      "interactive SubmitTask",
+      "canonical turn creation",
+      "persisted event return",
+      "workspace read-only adapter/receipt evidence projection",
+      "204-test local baseline"
     ],
-    "proof_session": "tui-fb2fe3a87da24552910a5b2d8fb45c7d",
-    "proof_turn": "turn-82439b47435248adb81d3d4d58a830fe",
-    "proof_sequence_delta": "130 -> 136",
-    "proof_turn_count_delta": "29 -> 30"
+    "tracked_dirty": [
+      "AGENTS.md",
+      "Docs/00_integration_alignment.md",
+      "Docs/STATUS.md",
+      "src/* modified",
+      "Agent.md deleted",
+      "README.md deleted"
+    ],
+    "untracked_notable": [
+      "cline/ approximately 185,197 files",
+      "partial/failed Cline checkout directories",
+      ".agent/evidence/CURRENT_TASK.md",
+      "mock-open.log",
+      "submit-trace.log",
+      "run-lbe.bat"
+    ],
+    "preservation_rule": "Do not clean or stage unrelated dirty/untracked work."
   },
   "current_blocker": {
-    "classification": "CLINE_LBE_RUNTIME_COMPOSITION",
-    "meaning": "The remaining project task is to complete the existing Rust -> canonical LBE -> existing Cline reasoning/tool-continuation composition using already-implemented runtime owners. Stop re-proving accepted subsystems unless a code change regresses them."
+    "classification": "LIVE_CLINE_LBE_CLIENT_COMPOSITION_ACCEPTANCE",
+    "meaning": "The gate remains open because the installed/live client has not yet demonstrated the remaining composition behaviors. Do not re-prove accepted read-only baseline unless required by the changed seam."
   },
   "project_visit_protocol": {
     "classification": "MANDATORY_PROJECT_CONTEXT_REFRESH",
@@ -167,5 +189,13 @@
     "proven_model": "google/gemma-4-e4b",
     "proven_result": "HTTP 200 with generated response",
     "remaining_note": "The service is available. Provider availability itself is no longer the project blocker. If the current LBE provider transport expects a different route, treat that only as a local transport/config seam within the larger Cline-backed LBE composition task; do not reopen provider architecture."
-  }
+  },
+  "remaining_unproven": [
+    "installed live Rust/LBE writable mutation",
+    "live approval and patch-review flow",
+    "provider/Cline continuation through the installed client",
+    "persisted MCP event ordering",
+    "installed interactive PTY/ConPTY acceptance",
+    "full restart/resume product acceptance"
+  ]
 }
