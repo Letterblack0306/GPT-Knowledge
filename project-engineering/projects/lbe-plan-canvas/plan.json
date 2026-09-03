@@ -1,5 +1,5 @@
 {
-  "schema_version": 26,
+  "schema_version": 27,
   "project": "LBE Persistent Agent",
   "updated": "2026-09-04",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
@@ -169,5 +169,10 @@
     "state/recovery/history survives restart and resume",
     "client truthfully projects runtime owners without duplicate authority",
     "installed user flow proves the full lifecycle at the exact accepted revision"
-  ]
+  ],
+  "canonical_execution_path": {
+    "status": "MANDATORY_REFERENCE_FOR_NEXT_STEP",
+    "document": "project-engineering/projects/lbe-plan-canvas/CANONICAL_AGENT_LBE_EXECUTION_PATH.md",
+    "sequencing_rule": "Use the canonical agent-to-LBE execution path as the default implementation and acceptance order. Do not jump around settled layers; identify the first missing seam and continue downward."
+  }
 }
