@@ -1,5 +1,5 @@
 {
-  "schema_version": 25,
+  "schema_version": 26,
   "project": "LBE Persistent Agent",
   "updated": "2026-09-04",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
@@ -71,33 +71,33 @@
       "unused-in-repo/cline-cli-reference-copy-2026-08-27/"
     ],
     "projection_rule": "Conversation surfaces project agent/provider reasoning; workspace/evidence/execution/receipt/validation/history surfaces project LBE-owned truth. The client must not own session persistence, authorization, execution, receipts/evidence, or completion truth.",
-    "current_truth": "Rust real LBE attachment, authoritative workspace/session projection, workspace receipt/evidence projection, interactive SubmitTask dispatch, canonical turn creation, persisted event return, Rust projection of the returned turn state, and clean quit are proven in current local evidence. Successful provider completion is blocked by ProviderError [WinError 10061].",
+    "current_truth": "Rust main checkout is aligned with origin/main at bd19603e794ad24d01c3098d5312a07978d3b79d with one worktree and no staged changes. Fresh local validation reports cargo test 204/0, cargo check PASS, cargo fmt check PASS and git diff --check PASS. Dirty tracked/untracked work is preserved. The gate remains open only for remaining live installed composition acceptance.",
     "historical_surfaces": "Python/Textual was removed. HTML cockpit remains a visual/product reference. Copied Cline/OpenTUI remains mechanics/reference only. None may create a competing runtime authority."
   },
   "current_active_slice": {
-    "phase": "CLINE_LBE_COMPOSITION",
-    "slice": "EXISTING_RUNTIME_COMPOSITION",
-    "status": "ACTIVE",
-    "scope": "Complete the missing composition between the already-proven Rust client/canonical LBE turn path and the already-existing Cline reasoning/tool-continuation/runtime owners. Implement the first disconnected seam; do not rebuild or re-prove accepted subsystems.",
+    "phase": "P2_P3_GOVERNED_EXECUTION",
+    "slice": "TUI_P2_P3_GOVERNED_EXECUTION_INTEGRATION",
+    "status": "OPEN",
+    "scope": "Finish live installed composition using the existing Rust client and canonical LBE/Cline runtime owners. Do not rebuild architecture and do not re-prove accepted read-only baseline.",
     "accepted_baseline": [
-      "Rust/Ratatui selected as current delivery client",
-      "Rust real LBE attachment",
-      "Rust SubmitTask to canonical LBE",
-      "canonical session/turn creation and persisted event return",
-      "workspace ToolReceipt/evidence projection",
-      "existing LBE authorization/ToolRegistry/GovernedToolOrchestrator",
-      "existing ClineReasoningBackend/GovernedClineWorker integration seam",
-      "provider service reachable on localhost:1234 via /api/v1/chat with google/gemma-4-e4b"
+      "Rust/Ratatui selected active client",
+      "Rust main aligned to origin/main at bd19603e794ad24d01c3098d5312a07978d3b79d",
+      "single primary worktree",
+      "no staged changes",
+      "204 Rust tests pass",
+      "cargo check/fmt/diff checks pass",
+      "interactive SubmitTask and canonical turn proof accepted",
+      "read-only RealLbeWrapper adapter path accepted/documented"
     ],
-    "implementation_goal": "user task -> existing Cline reasoning -> LBE-governed capability execution/receipt/evidence -> Cline continuation -> persisted final response -> Rust projection",
-    "non_goals": [
-      "no UI redesign",
-      "no new provider architecture",
-      "no new Cline worker",
-      "no second session/execution/authorization/receipt/evidence owner",
-      "no broad re-verification of already accepted baseline",
-      "no architecture explanation as a substitute for implementation"
-    ]
+    "remaining_acceptance": [
+      "provider/Cline continuation through installed client",
+      "live writable mutation with approval and patch review",
+      "persisted MCP event ordering",
+      "installed PTY/ConPTY acceptance",
+      "restart/resume product acceptance"
+    ],
+    "implementation_goal": "Complete provider/Cline continuation first, then the live governed writable approval/receipt/continuation flow, without adding client-side provider or authority ownership.",
+    "dirty_work_rule": "Preserve all unrelated tracked/untracked work; no cleanup/staging/commit/push to manufacture closure."
   },
   "accepted_baseline": {
     "classification": "PROVEN_ACCEPTED_RUNTIME_FOUNDATION",
@@ -125,31 +125,31 @@
       "order": 1,
       "id": "refresh-project-truth-before-instruction",
       "status": "MANDATORY_EVERY_VISIT",
-      "scope": "Read GPT-K status.json, plan.json and current handoff; use Agent_Wall_001.json only as memory; then inspect current local evidence before issuing the next implementation instruction."
+      "scope": "Read current GPT-K status/plan/handoff, then inspect current local evidence."
     },
     {
       "order": 2,
-      "id": "trace-current-cline-composition-seam",
+      "id": "complete-installed-provider-continuation",
       "status": "ACTIVE",
-      "scope": "Trace product_entry turn -> provider_turn_runtime -> ClineReasoningBackend/GovernedClineWorker -> provider/tool continuation and identify the first real disconnect."
+      "scope": "Trace and complete the current Rust -> product_entry -> existing Cline/provider continuation seam. Reuse provider/catalog/read capabilities as needed, but do not repeat broad read/list/glob/search proof."
     },
     {
       "order": 3,
-      "id": "patch-first-disconnected-seam",
+      "id": "complete-live-writable-approval-flow",
       "status": "NEXT",
-      "scope": "Wire existing owners with the smallest change required; do not create parallel runtime owners."
+      "scope": "Use the existing LBE authorization/patch review/execution/ToolReceipt/evidence path for one real writable mutation and continuation."
     },
     {
       "order": 4,
-      "id": "validate-only-changed-combined-flow",
-      "status": "NEXT",
-      "scope": "Validate the combined lifecycle touched by the patch rather than re-proving all previously accepted components."
+      "id": "mcp-ordering",
+      "status": "LATER",
+      "scope": "Prove canonical persisted MCP lifecycle ordering."
     },
     {
       "order": 5,
-      "id": "installed-product-acceptance",
+      "id": "installed-pty-resume-acceptance",
       "status": "LATER",
-      "scope": "After composition is complete, finish restart/resume and installed manual acceptance."
+      "scope": "Complete installed interactive PTY/ConPTY and restart/resume acceptance."
     }
   ],
   "separate_non_product_work": {
