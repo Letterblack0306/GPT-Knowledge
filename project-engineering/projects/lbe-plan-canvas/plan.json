@@ -1,5 +1,5 @@
 {
-  "schema_version": 27,
+  "schema_version": 28,
   "project": "LBE Persistent Agent",
   "updated": "2026-09-04",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
@@ -174,5 +174,11 @@
     "status": "MANDATORY_REFERENCE_FOR_NEXT_STEP",
     "document": "project-engineering/projects/lbe-plan-canvas/CANONICAL_AGENT_LBE_EXECUTION_PATH.md",
     "sequencing_rule": "Use the canonical agent-to-LBE execution path as the default implementation and acceptance order. Do not jump around settled layers; identify the first missing seam and continue downward."
+  },
+  "workspace_mirror": {
+    "status": "RECORDED_SUPPLEMENTARY_SOURCE",
+    "url": "https://drive.google.com/drive/folders/1T8Hv-MUhdK34V9xM9gPRq9M1UvMF1HsI?usp=sharing",
+    "role": "Mirror of important project workspaces and sync manifests for cross-checking current workspace files when direct local evidence is unavailable.",
+    "sequencing_rule": "At each project visit: refresh GPT-K -> notice workspace mirror -> inspect current canonical evidence -> issue only the next bounded instruction."
   }
 }
