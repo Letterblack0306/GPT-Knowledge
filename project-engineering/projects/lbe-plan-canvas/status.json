@@ -1,5 +1,5 @@
 {
-  "schema_version": 29,
+  "schema_version": 30,
   "project": "LBE Persistent Agent",
   "verified_at": "2026-09-04",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
@@ -173,14 +173,15 @@
   },
   "project_visit_protocol": {
     "classification": "MANDATORY_PROJECT_CONTEXT_REFRESH",
-    "rule": "On every LBE project visit and before giving any next-step implementation instruction, first read the current GPT-K project plan/status/handoff and then inspect current canonical local evidence. Do not issue implementation guidance from conversation memory alone.",
+    "rule": "On every LBE project visit and before giving any next-step implementation instruction, first read the current GPT-K project plan/status/handoff and then inspect current canonical local evidence. Do not issue implementation guidance from conversation memory alone. Also notice and use the recorded workspace mirror as supplementary current workspace evidence when relevant.",
     "required_gpt_k_files": [
       "project-engineering/projects/lbe-plan-canvas/status.json",
       "project-engineering/projects/lbe-plan-canvas/plan.json",
       "project-engineering/projects/lbe-plan-canvas/CURRENT_RUNTIME_UI_HANDOFF_2026-09-04.md"
     ],
     "chat_history_role": "chat sessoions/Agent_Wall_001.json is memory/context for prior decisions and rationale only; it is not current implementation authority.",
-    "instruction_rule": "After the GPT-K refresh, use current local source/runtime evidence to identify only the first still-missing composition seam and provide a bounded implementation instruction. Do not re-explain settled architecture or require repetition of already accepted proof."
+    "instruction_rule": "After the GPT-K refresh, use current local source/runtime evidence to identify only the first still-missing composition seam and provide a bounded implementation instruction. Do not re-explain settled architecture or require repetition of already accepted proof.",
+    "workspace_mirror": "https://drive.google.com/drive/folders/1T8Hv-MUhdK34V9xM9gPRq9M1UvMF1HsI?usp=sharing"
   },
   "current_provider_state": {
     "classification": "PROVIDER_SERVICE_AVAILABLE_ROUTE_SHAPE_DIFFERS_FROM_OPENAI_COMPAT_EXPECTATION",
@@ -202,5 +203,21 @@
     "classification": "PATH_TO_FOLLOW",
     "document": "project-engineering/projects/lbe-plan-canvas/CANONICAL_AGENT_LBE_EXECUTION_PATH.md",
     "rule": "All future implementation sequencing should follow USER -> agent/CLI reasoning/proposal -> Normal/Audit mode -> LBE authority -> valid ALLOW/DENY/WAIT decision -> governed adapter -> authorized operation -> ToolReceipt/evidence -> validation/completion. Work only on the first missing live seam."
+  },
+  "workspace_mirror": {
+    "classification": "IMPORTANT_SUPPLEMENTARY_WORKSPACE_MIRROR",
+    "url": "https://drive.google.com/drive/folders/1T8Hv-MUhdK34V9xM9gPRq9M1UvMF1HsI?usp=sharing",
+    "verified_access": "2026-09-04",
+    "verified_contents": [
+      "Agents-Memory-Tool-v6-integration",
+      "LBE-TUI-Lab",
+      "cline",
+      "Docs",
+      "src",
+      "target",
+      "workspace sync manifests"
+    ],
+    "visit_rule": "On every future LBE project visit, after refreshing GPT-K and before issuing implementation instructions, inspect this workspace mirror when current local workspace evidence is needed or unavailable. Treat it as supplementary workspace evidence; current canonical local runtime/governance evidence remains higher authority.",
+    "notice_rule": "This mirror location must be noticed as part of the GPT-K project-visit protocol."
   }
 }
