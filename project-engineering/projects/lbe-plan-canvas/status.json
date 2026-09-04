@@ -1,5 +1,5 @@
 {
-  "schema_version": 59,
+  "schema_version": 60,
   "project": "LBE Persistent Agent",
   "verified_at": "2026-09-04",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
@@ -414,5 +414,32 @@
     ],
     "github_actions_note": "Backend GitHub Actions jobs are currently failing before any workflow step starts (steps=[] and no downloadable job log), so those runs do not provide code-level failure evidence.",
     "proof_status": "UNVERIFIED"
+  },
+  "product_integration_machine_check": {
+    "classification": "IMPLEMENTED_ON_AGENT_WALL_MAIN_VALIDATION_PENDING",
+    "canonical_owner_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
+    "script": "tools/lbe_product_integration.ps1",
+    "contract_document": "docs/acceptance/LBE_PRODUCT_INTEGRATION_MACHINE_CHECK.md",
+    "published_commits": {
+      "script": "2efb61bca24efb8d60ff87e88cac03920dc8b73d",
+      "documentation": "eefddb161ff441e7290109bc1e7789195efd1611"
+    },
+    "consumes": {
+      "agent_wall_workspace": "C:/Agents-Memory-Tool-v6-integration",
+      "rust_tui_workspace": "C:/LBE-TUI-Lab",
+      "agent_wall_packaging_ref": "origin/main",
+      "rust_tui_packaging_ref": "origin/main"
+    },
+    "modes": [
+      "check",
+      "prove",
+      "build",
+      "package"
+    ],
+    "authority_rule": "This machine script is a verifier/builder/packager only. Agent Wall remains runtime authority and Rust remains client/projection.",
+    "proof_rule": "prove mode exports clean origin/main snapshots and runs focused Agent Wall approval/orchestration/product/continuation tests plus Rust cargo test/fmt checks.",
+    "packaging_rule": "build/package consume clean origin/main archives, build the Agent Wall wheel, provision governed Cline worker dependencies from the committed lockfile, build Rust release lbe.exe, emit integration-manifest.json and checksums, and produce a candidate ZIP.",
+    "release_rule": "External installed PTY/ConPTY acceptance remains separate; the script intentionally does not fabricate release-ready status without that evidence.",
+    "validation_status": "NOT_YET_EXECUTED_ON_CANONICAL_WINDOWS_MACHINE"
   }
 }
