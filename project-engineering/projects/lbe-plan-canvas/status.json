@@ -1,5 +1,5 @@
 {
-  "schema_version": 41,
+  "schema_version": 42,
   "project": "LBE Persistent Agent",
   "verified_at": "2026-09-04",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
@@ -302,22 +302,33 @@
     "prohibition": "Do not patch or clean the dirty local canonical workspace for implementation. Local is validation/evidence only unless the user explicitly changes this rule."
   },
   "reconciliation_evidence_recovery": {
-    "classification": "THIRD_GOVERNANCE_FILE_EXACTLY_RECONCILED_ON_GITHUB",
-    "github_file": "docs/acceptance/CURRENT_IMPLEMENTATION_GATE.md",
-    "github_commit": "7794d38b4c34f90be390733b2bd623ac644671ca",
-    "github_blob": "970dc83e386d8467fb9003240a4c66ce6297d584",
-    "evidence": "LoopTool published-vs-local diff exposed one leading-space formatting mismatch only; GitHub patch corrected exact local formatting.",
-    "prior_files": [
-      {
-        "path": ".lbe/governance/implementation-gates.json",
-        "validation": "exact match proven"
-      },
-      {
-        "path": "PROJECT_INDEX.md",
-        "validation": "exact match proven"
-      }
-    ],
-    "local_preservation": "No local implementation mutation performed.",
-    "next_step": "Use LoopTool to verify CURRENT_IMPLEMENTATION_GATE.md now matches local intent, then recover PROJECT_INTENT_LEDGER.md in bounded diff chunks because the full diff exceeds LoopTool output limits."
+    "classification": "INTENT_LEDGER_RECOVERY_IN_PROGRESS_CURRENT_GATE_EXACT_MATCH_PROVEN",
+    "latest_looptool_result": "PASS",
+    "authority": {
+      "local_head": "2d384455a2b5ccaae749afd1f36124930bbc9212",
+      "remote_main": "7794d38b4c34f90be390733b2bd623ac644671ca"
+    },
+    "current_implementation_gate": {
+      "path": "docs/acceptance/CURRENT_IMPLEMENTATION_GATE.md",
+      "validation": "published-vs-local diff empty",
+      "result": "EXACT_MATCH_PROVEN"
+    },
+    "project_intent_ledger": {
+      "path": "docs/governance/PROJECT_INTENT_LEDGER.md",
+      "diff_hunks": [
+        "-8,0 +9,50",
+        "-335 +385",
+        "-339,2 +389,2",
+        "-352,4 +402,4",
+        "-369 +419,2",
+        "-376 +427",
+        "-388,0 +440,41",
+        "-393 +485",
+        "-400,2 +492,56"
+      ],
+      "result": "FULL_DIFF_TRUNCATED",
+      "next_step": "Recover exact changed regions from HEAD in bounded line slices and apply each through GitHub only."
+    },
+    "local_preservation": "No local implementation mutation performed."
   }
 }
