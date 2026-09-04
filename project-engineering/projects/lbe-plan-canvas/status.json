@@ -1,5 +1,5 @@
 {
-  "schema_version": 31,
+  "schema_version": 32,
   "project": "LBE Persistent Agent",
   "verified_at": "2026-09-04",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
@@ -250,5 +250,15 @@
       "Rust formatting check: passed",
       "git diff --check passed in both repositories"
     ]
+  },
+  "remote_publication": {
+    "classification": "PUBLISHED_PROVEN_CONTINUATION_BASELINE",
+    "published_at": "2026-09-04",
+    "lbe_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
+    "lbe_main": "8765ef766dc6465cf8e7c3f361e3f5854aa4cfd1",
+    "rust_repo": "Letterblack0306/LBE_Agents_wall_Intigration",
+    "rust_main": "520f254c60512f320f82aced0d3b04b129f8b2ed",
+    "scope": "Published the existing proven provider/Cline composition and current Rust source projection needed for the completed continuation slice. Unrelated dirty files, deletions, logs, copied Cline trees and manual chat-history folders were not published.",
+    "next_sync_rule": "Local agent may fetch and fast-forward main. Preserve unrelated working-tree changes; stop on any merge refusal or unexpected diff."
   }
 }
