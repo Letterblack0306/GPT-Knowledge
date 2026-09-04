@@ -436,3 +436,16 @@ GPT-K refresh
 ```
 
 Local canonical workspaces are evidence/validation surfaces, not implementation targets. Preserve dirty user work. Do not modify, stage, clean, reset, stash, merge, rebase, or commit locally for implementation unless the user explicitly overrides this rule.
+
+
+## 2026-09-04 — Canonical product integration script v2
+
+- Agent Wall canonical integration owner remains `tools/lbe_product_integration.ps1`.
+- Published Agent Wall commit: `04a16752a47a6c4655806adf8842591939045b18`.
+- Script schema advanced to v2.
+- It now verifies the selected Rust CLI/TUI launch surface, navigation surfaces, governed command surfaces, typed request contract, and core RealLbeWrapper routes in addition to the existing runtime/approval/cross-repo checks.
+- Cline is recorded only as a behavior/reference source, pinned to `cline/cline@952df213ee654633fb3f7abda23a1c1b24e92d7f`, specifically for interactive chat, session lifecycle/resume, provider/model selection, approval control, event projection, and tool lifecycle visibility.
+- Cline branding and Cline-owned authority are explicitly excluded. LBE remains authoritative for session truth, provider policy, authorization, governed execution, receipts, evidence, validation, persistence, and completion.
+- Packaging now generates `lbe-launch.ps1`, which wires the installed Rust client to the installed LBE Python runtime and accepts explicit project/database/provider-config/capability-registry/session/model/mode parameters instead of requiring manual environment setup.
+- Deferred real-runtime scaffolding remains truthfully classified as explicitly unavailable rather than silently counted as connected.
+- This does not replace live installed acceptance. Required sequence remains `check -> prove -> package -> installed writable workspace.patch -> PTY/ConPTY -> restart/resume`.
