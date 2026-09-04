@@ -211,3 +211,32 @@ USER
 ```
 
 Use this path to locate the first missing live seam. Do not reopen or rebuild already accepted layers.
+
+
+## Workspace mirror — important project source
+
+Recorded mirror:
+
+https://drive.google.com/drive/folders/1T8Hv-MUhdK34V9xM9gPRq9M1UvMF1HsI?usp=sharing
+
+Verified accessible on 2026-09-04. It currently exposes important project material including:
+
+- Agents-Memory-Tool-v6-integration
+- LBE-TUI-Lab
+- cline
+- Docs
+- src
+- target
+- workspace sync manifests
+
+Project-visit rule:
+
+```text
+refresh GPT-K
+→ notice workspace mirror
+→ inspect current canonical/local evidence
+→ use mirror as supplementary evidence when needed
+→ provide next bounded instruction
+```
+
+The mirror is important for locating synchronized workspace state, but it does not outrank live canonical local runtime, governance, or acceptance evidence.
