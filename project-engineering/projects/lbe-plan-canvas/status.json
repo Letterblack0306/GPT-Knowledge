@@ -1,5 +1,5 @@
 {
-  "schema_version": 46,
+  "schema_version": 47,
   "project": "LBE Persistent Agent",
   "verified_at": "2026-09-04",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
@@ -302,24 +302,21 @@
     "prohibition": "Do not patch or clean the dirty local canonical workspace for implementation. Local is validation/evidence only unless the user explicitly changes this rule."
   },
   "reconciliation_evidence_recovery": {
-    "classification": "FOUR_GOVERNANCE_FILES_RECONCILED_PROVIDER_TESTS_NEXT",
+    "classification": "PROVIDER_REGISTRY_TEST_RECONCILED_FIRST_PARTY_TEST_NEXT",
     "latest_looptool_result": "PASS",
     "authority": {
       "local_head": "2d384455a2b5ccaae749afd1f36124930bbc9212",
-      "remote_main_before_patch": "5717957c0a3d6a85dc58a3eb599df90a46e98c77"
+      "remote_main_before_patch": "e83aeae4f0060f769f627ed55828ef7d4db7c7a5"
     },
-    "governance_reconciliation": {
-      ".lbe/governance/implementation-gates.json": "EXACT_MATCH_PROVEN",
-      "PROJECT_INDEX.md": "EXACT_MATCH_PROVEN",
-      "docs/acceptance/CURRENT_IMPLEMENTATION_GATE.md": "EXACT_MATCH_PROVEN",
-      "docs/governance/PROJECT_INTENT_LEDGER.md": {
-        "github_commit": "e83aeae4f0060f769f627ed55828ef7d4db7c7a5",
-        "github_blob": "4035f5c8c6f6dcd71c56b5101c0aa7adeefa8740",
-        "local_expected_blob_prefix": "4035f5c",
-        "result": "EXACT_GIT_BLOB_MATCH_EXPECTED"
-      }
+    "governance_reconciliation": "EXACT_MATCH_PROVEN_FOR_ALL_FOUR_GOVERNANCE_FILES",
+    "provider_registry_test": {
+      "path": "tests/test_provider_registry.py",
+      "github_commit": "569b7fcb454b14243dbf8e45d4035e28f4dbfb03",
+      "github_blob": "9b12dd4fe29c9c1f685306e11d88596e519ac37a",
+      "local_expected_blob": "9b12dd4fe29c9c1f685306e11d88596e519ac37a",
+      "result": "EXACT_GIT_BLOB_MATCH"
     },
     "local_preservation": "No local implementation mutation performed.",
-    "next_step": "LoopTool fetch origin/main, verify the entire governance-file diff is empty, then inspect tests/test_provider_registry.py exact diff and tests/test_first_party_reasoning_provider.py content for GitHub-only reconciliation."
+    "next_step": "LoopTool fetch origin/main, verify provider registry test exact match, then output tests/test_first_party_reasoning_provider.py in bounded full-file form for GitHub creation."
   }
 }
