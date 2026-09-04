@@ -1,5 +1,5 @@
 {
-  "schema_version": 64,
+  "schema_version": 65,
   "project": "LBE Persistent Agent",
   "verified_at": "2026-09-04",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
@@ -416,7 +416,7 @@
     "proof_status": "UNVERIFIED"
   },
   "product_integration_machine_check": {
-    "classification": "CANONICAL_PROVE_PASS_PACKAGE_PENDING",
+    "classification": "PACKAGE_WORKER_COPY_BOTTLENECK_FIXED_REPACKAGE_PENDING",
     "canonical_owner_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
     "script": "tools/lbe_product_integration.ps1",
     "contract_document": "docs/acceptance/LBE_PRODUCT_INTEGRATION_MACHINE_CHECK.md",
@@ -441,12 +441,12 @@
     "packaging_rule": "build/package consume clean origin/main archives, build the Agent Wall wheel, provision governed Cline worker dependencies from the committed lockfile, build Rust release lbe.exe, emit integration-manifest.json and checksums, and produce a candidate ZIP.",
     "release_rule": "External installed PTY/ConPTY acceptance remains separate; the script intentionally does not fabricate release-ready status without that evidence.",
     "validation_status": "CANONICAL_CHECK_AND_PROVE_NOT_YET_EXECUTED_AFTER_READONLY_DETECTOR_FIX",
-    "latest_agent_wall_main": "91b9b98b64e53b1606630bf3cfe0f632d63f1f7c",
+    "latest_agent_wall_main": "b6eb087095059f94acc65654260459c8f579a147",
     "parser_fix_commit": "b76ad4762c29527070152f84e8ab945a7a065104",
     "parser_fix": "Changed ambiguous PowerShell interpolation from $Root: to ${Root}: in tools/lbe_product_integration.ps1.",
     "worktree_gate": "RESOLVED_BY_LOCAL_VERIFICATION; obsolete extra worktree had clean tree, zero unique commits, branch tip ancestor of main, then registration removed.",
     "parse_inspection": "Published file now contains no remaining ambiguous $name: interpolation except valid scoped $env: usage.",
-    "next_step": "Run canonical package mode against the proven source pair. Do not classify release-ready until installed writable and PTY/ConPTY acceptance are separately proven.",
+    "next_step": "Fetch Agent Wall main containing b6eb087 and rerun canonical package mode against the already proven Rust main. Do not weaken proof or release gates.",
     "readonly_contract_fix_commit": "91b9b98b64e53b1606630bf3cfe0f632d63f1f7c",
     "readonly_contract_fix": "Verifier now proves Agent Wall read-only runtime presence from workspace_read/list/glob/search spec registrations and proves client routing from the four exact Rust tool IDs, replacing the false literal-only product_entry check.",
     "prior_check_result": {
@@ -490,8 +490,18 @@
       "rust_cargo_test": "PASS (204 passed)",
       "rust_cargo_fmt": "PASS"
     },
-    "package_status": "PENDING",
+    "package_status": "RETRY_REQUIRED_AFTER_CANONICAL_FIX",
     "live_patch_acceptance": "UNPROVEN",
-    "installed_pty_conpty_acceptance": "UNPROVEN"
+    "installed_pty_conpty_acceptance": "UNPROVEN",
+    "package_bottleneck_fix_commit": "b6eb087095059f94acc65654260459c8f579a147",
+    "package_bottleneck_fix": "Worker dependencies are now provisioned directly in the final package worker directory after copying worker.mjs/package.json/package-lock.json; redundant recursive node_modules copy from staging was removed.",
+    "package_observation": {
+      "prior_package_timeout_seconds": 300,
+      "runtime_wheel_present": true,
+      "worker_node_modules_present": true,
+      "rust_release_started": false,
+      "manifest_present": false,
+      "candidate_zip_present": false
+    }
   }
 }
