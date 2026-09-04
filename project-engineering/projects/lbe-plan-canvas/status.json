@@ -1,5 +1,5 @@
 {
-  "schema_version": 55,
+  "schema_version": 56,
   "project": "LBE Persistent Agent",
   "verified_at": "2026-09-04",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
@@ -335,20 +335,21 @@
   },
   "active_functional_slice": {
     "name": "LIVE_WRITABLE_APPROVAL_MUTATION",
-    "classification": "PRODUCT_ENTRY_APPROVAL_BRIDGE_PROOF_IN_PROGRESS",
+    "classification": "PRODUCT_ENTRY_APPROVAL_BRIDGE_GAP_PROVEN_CALLER_CONTRACT_INSPECTION_NEXT",
     "latest_looptool_result": {
-      "status": "FAIL",
-      "command_hash": "B30E5C72DBE0ECDE42D4EF89B979E55FA1307F808D1D667559AB446B3128DC8C",
-      "cause": "inspection command regex quoting error in Select-String; repository/runtime failure not proven"
+      "status": "PASS",
+      "command_hash": "AB171E48968A52F5C97AF04F559B8B08453786A128DFD25BE7FEACD39A5C85E0",
+      "published_main": "a336fa2e2a60cdf873d9eef59b9f1b95c6216971"
     },
-    "evidence": [
-      "The published tool parser exposes --operation-id but no --approval-id or approval decision input.",
-      "The published authorization parser separately exposes --approval-id and --decision.",
-      "GitHub search finds approval_id only in product_entry.py; no persisted approval record owner is currently referenced.",
-      "GitHub search finds approval_granted only in authorization_resolver.py, product_entry.py authorization resolution, and its tests; _tool does not currently propagate approval_granted.",
-      "SessionOperationalHistory is the existing persisted event/receipt owner and can query events by session/turn; it should be reused rather than introducing a second persistence authority."
+    "proven_findings": [
+      "The product tool parser exposes --operation-id but not --approval-id or --decision.",
+      "The authorization parser separately exposes --approval-id and --decision.",
+      "_tool constructs ToolExecutionContext and a fresh GovernedToolOrchestrator; no product-tool approval propagation is present.",
+      "_authorization can resolve with approval_granted=True, but that state is not persisted for later _tool invocation.",
+      "SessionOperationalHistory already persists runtime_operation_id and tool_receipt_id on operational events and remains the canonical persistence/history owner."
     ],
-    "suspected_first_missing_seam": "The resolved approval cannot currently be presented to the separate product-entry tool invocation. Cross-process exactly-once receipt replay is also not yet proven.",
-    "next_step": "Run a corrected read-only LoopTool inspection using literal searches and bounded source slices for _build_tool_parser, _tool, _authorization, and SessionOperationalHistory receipt/event methods."
+    "first_missing_seam": "A resolved approval is not bound and propagated across the product-entry process boundary into the governed writable tool invocation.",
+    "caution": "Do not add an unbound approval token directly to _tool until current Rust/client callers are inspected; approval must remain tied to the exact operation/request identity and must not permit payload substitution.",
+    "next_step": "Inspect current callers in LBE and Rust repos for product_entry authorization evaluate/resolve and tool invocation, including argument/operation identity mapping, before designing the persisted approval bridge."
   }
 }
