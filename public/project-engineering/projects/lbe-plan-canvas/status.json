@@ -1,85 +1,118 @@
 {
-  "schema_version": 2,
+  "schema_version": 3,
   "project": "LBE Persistent Agent",
-  "verified_at": "2026-08-22",
+  "verified_at": "2026-09-04",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "source_branch": "main",
-  "source_head": "942e494dbbf17550eb01f82caae31822d7ffbbbd",
-  "overall_classification": "COMPLETE_TUI_IMPLEMENTATION_OPEN_ACTIVE_SLICE_SOURCE_PRESENT_RUNTIME_ACCEPTANCE_UNPROVEN_PUBLICATION_PAUSED",
-  "authority_note": "This status is projected from current GitHub main, the machine gate and active acceptance document. Repository inspection proves source state, not executed local tests, installed runtime behavior or rendered acceptance.",
+  "source_head": "b6eb087095059f94acc65654260459c8f579a147",
+  "client_repo": "Letterblack0306/LBE_Agents_wall_Intigration",
+  "client_branch": "main",
+  "client_head": "1605f54b744237d6c00b3ed6b5692cbcbc3fca55",
+  "overall_classification": "CROSS_REPO_PROVE_PASS_PACKAGE_RETEST_BLOCKED_INTERACTIVE_CLI_UNVERIFIED_RELEASE_NOT_READY",
+  "authority_note": "GitHub main is published implementation authority. Local workspaces are runtime/development evidence. Google Drive is a one-way filtered downstream snapshot of local workspaces for recovery/forensics, not a peer or source of implementation authority.",
+  "evidence_sources": {
+    "github": {
+      "classification": "PROVEN_CURRENT",
+      "agent_wall_head": "b6eb087095059f94acc65654260459c8f579a147",
+      "rust_tui_head": "1605f54b744237d6c00b3ed6b5692cbcbc3fca55"
+    },
+    "drive": {
+      "classification": "PROVEN_ONE_WAY_SNAPSHOT",
+      "root_role": "downstream backup/recovery evidence",
+      "agent_wall_manifest_updated": "2026-09-04T06:06:58.599Z",
+      "agent_wall_manifest_files": 3306,
+      "rust_tui_manifest_updated": "2026-09-03T21:50:00.850Z",
+      "rust_tui_manifest_files": 6665,
+      "implementation_authority": false
+    },
+    "looptool": {
+      "classification": "CURRENT_LOCAL_EXECUTION_EVIDENCE",
+      "latest_cli_command": "cargo run --bin lbe",
+      "latest_cli_observed": "Compiling lbe-terminal v0.1.0 (C:\\LBE-TUI-Lab)",
+      "latest_cli_result": "TIMED_OUT_BEFORE_COMPILE_OR_INTERACTIVE_RESULT",
+      "duration_seconds": 1.14
+    }
+  },
   "closed": [
     {
-      "id": "r3-r6",
-      "title": "R3–R6F accepted baseline",
-      "classification": "PROVEN_PROJECT_GATE",
-      "detail": "Current machine gate records R3 through R6F as PROVEN_COMPLETE."
+      "id": "cross-repo-structural-check",
+      "title": "Canonical cross-repository structural integration",
+      "classification": "PROVEN_PASS",
+      "detail": "Canonical check reported Structural integration: True."
     },
     {
-      "id": "cli",
-      "title": "CLI control plane",
-      "classification": "PROVEN_PROJECT_GATE",
-      "detail": "Current machine gate records CLI as PROVEN_COMPLETE."
+      "id": "canonical-prove",
+      "title": "Canonical clean-snapshot proof",
+      "classification": "PROVEN_PASS",
+      "detail": "Agent focused tests: 58 passed; Rust tests: 204 passed, 0 failed; cargo fmt --check: PASS."
     },
     {
-      "id": "r7",
-      "title": "R7 installed end-to-end acceptance",
-      "classification": "PASS_PROJECT_GATE",
-      "detail": "Current machine gate records R7 installed acceptance as PASS."
+      "id": "approval-bridge-source",
+      "title": "Writable exact-operation approval bridge",
+      "classification": "IMPLEMENTED_WITH_TEST_PROOF_PRESENT",
+      "detail": "Agent Wall and Rust source include exact operation fingerprint/binding, approval ID, exact replay, idempotent receipt behavior, and payload substitution rejection."
     },
     {
-      "id": "release-readiness",
-      "title": "Release package readiness and publication precheck",
-      "classification": "PASS_BOUNDED_CLAIMS",
-      "detail": "Package contract repair, readiness acceptance and publication precheck are recorded PASS; they do not authorize current publication."
-    },
-    {
-      "id": "tui-source",
-      "title": "Typed TUI projection source",
-      "classification": "PROVEN_GITHUB_SOURCE",
-      "detail": "main 942e494d contains typed truth-preserving view models, terminal projection, Textual client code and focused tests for authorization, receipts, evidence, unknown states and structured errors."
+      "id": "package-worker-copy",
+      "title": "Package worker copy bottleneck",
+      "classification": "IMPLEMENTED_FIX",
+      "detail": "Agent Wall b6eb087 installs worker dependencies directly into the final package worker directory instead of recursively copying node_modules."
     }
   ],
-  "supported_historical": [],
   "pending": [
     {
-      "id": "active-slice",
-      "title": "TUI projection contract and view models",
-      "priority": "ACTIVE OPEN",
-      "classification": "SOURCE_PRESENT_EXECUTION_PROOF_UNVERIFIED",
-      "detail": "The exact active slice is TUI_PROJECTION_CONTRACT_AND_VIEW_MODELS. Focused tests and git diff checks required by the gate were not executed in this GitHub-only inspection."
+      "id": "package-retest",
+      "title": "Candidate package retest",
+      "priority": "ACTIVE",
+      "classification": "BLOCKED_BY_LOCAL_GIT_FILTER",
+      "detail": "git archive through LoopTool is blocked by EPIPE from required global filter C:/Users/prave/.git-tools/utf8nobom-filter.mjs before the package script is reached."
     },
     {
-      "id": "tui-sequence",
-      "title": "Remaining complete TUI sequence",
-      "priority": "NEXT",
+      "id": "interactive-cli",
+      "title": "Real Rust CLI interactive launch",
+      "priority": "ACTIVE",
+      "classification": "UNVERIFIED",
+      "detail": "cargo run --bin lbe was observed compiling, then LoopTool timed out at 1.14 seconds. No compile failure or successful TUI launch is proven."
+    },
+    {
+      "id": "live-patch-acceptance",
+      "title": "Installed writable workspace.patch acceptance",
+      "priority": "RELEASE_GATE",
       "classification": "NOT_YET_PROVEN",
-      "detail": "Objective workspace, six truthful commands, session/provider flows, structured details, capability inspection and unsupported-state handling remain later sequence items."
+      "detail": "Must prove exact-operation approval, exactly-once mutation, idempotent replay, payload-substitution rejection, and persisted receipt/event projection through the installed Rust/LBE path."
     },
     {
-      "id": "installed-runtime",
-      "title": "Installed interactive TUI acceptance",
-      "priority": "FINAL TUI GATE",
+      "id": "pty-conpty",
+      "title": "Installed PTY/ConPTY interactive acceptance",
+      "priority": "RELEASE_GATE",
       "classification": "NOT_YET_PROVEN",
-      "detail": "Windows Terminal render, exact clean artifact, distinct command behavior, governed provider/tool turn, interrupt/cancel, resize/color/NO_COLOR and regression proof remain required."
+      "detail": "A real terminal-attached installed acceptance remains required."
     },
     {
-      "id": "release-conflict",
-      "title": "2.0.3 gate text conflicts with source version",
-      "priority": "RECONCILE",
-      "classification": "DOCUMENT_CONFLICT",
-      "detail": "pyproject.toml is version 2.0.3, while release_progression still lists setting the canonical version to 2.0.3 as a remaining prerequisite."
-    },
-    {
-      "id": "publication",
-      "title": "2.0.3 publication",
-      "priority": "PAUSED",
-      "classification": "BLOCKED_BY_ACTIVE_TUI_PHASE",
-      "detail": "publish_allowed is false. Publication, tags and releases remain forbidden until the TUI phase passes and exact release prerequisites are revalidated."
+      "id": "release-ready",
+      "title": "Release readiness",
+      "priority": "BLOCKED",
+      "classification": "FALSE",
+      "detail": "Candidate packaging and installed interactive acceptance are incomplete."
     }
   ],
+  "current_environment_observations": {
+    "git_filter": {
+      "classification": "PROVEN_BLOCKER_FOR_ARCHIVE_PATH",
+      "clean": "node \"C:/Users/prave/.git-tools/utf8nobom-filter.mjs\"",
+      "smudge": "node \"C:/Users/prave/.git-tools/utf8nobom-filter.mjs\"",
+      "required": true,
+      "observed_error": "EPIPE: broken pipe, write"
+    },
+    "drive_topology": {
+      "direction": "LOCAL_WORKSPACE_TO_GOOGLE_DRIVE_ONLY",
+      "reverse_sync": false,
+      "note": "Drive divergence from GitHub is expected when the local workspace is dirty, behind, contains local-only evidence, or includes excluded/generated material."
+    }
+  },
   "next_acceptance": {
-    "question": "Does the current typed projection slice pass its focused contract without inventing authority or missing evidence?",
-    "observable": "Exact-head focused TUI/view-model tests plus git diff check, followed by the gate checkpoint required to advance.",
-    "falsifier": "Unknown or missing payloads render as success, projection code makes execution/authorization/completion decisions, focused tests fail, or evidence is not tied to exact main revision."
+    "question": "Can the real Rust CLI be built/launched through a terminal path that remains attached long enough for interactive acceptance without treating LoopTool's short execution cutoff as an LBE/Rust failure?",
+    "observable": "A terminal-attached lbe process reaches the interactive TUI using the real runtime and remains available for manual input.",
+    "falsifier": "A concrete Rust compile/link/runtime error is captured, or the real runtime fails before the TUI can accept input."
   }
 }
