@@ -1,5 +1,5 @@
 {
-  "schema_version": 62,
+  "schema_version": 63,
   "project": "LBE Persistent Agent",
   "verified_at": "2026-09-04",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
@@ -416,7 +416,7 @@
     "proof_status": "UNVERIFIED"
   },
   "product_integration_machine_check": {
-    "classification": "READONLY_FALSE_NEGATIVE_FIX_PUBLISHED_CHECK_PROVE_PENDING",
+    "classification": "CANONICAL_PROVE_PASS_PACKAGE_PENDING",
     "canonical_owner_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
     "script": "tools/lbe_product_integration.ps1",
     "contract_document": "docs/acceptance/LBE_PRODUCT_INTEGRATION_MACHINE_CHECK.md",
@@ -446,7 +446,7 @@
     "parser_fix": "Changed ambiguous PowerShell interpolation from $Root: to ${Root}: in tools/lbe_product_integration.ps1.",
     "worktree_gate": "RESOLVED_BY_LOCAL_VERIFICATION; obsolete extra worktree had clean tree, zero unique commits, branch tip ancestor of main, then registration removed.",
     "parse_inspection": "Published file now contains no remaining ambiguous $name: interpolation except valid scoped $env: usage.",
-    "next_step": "Fetch Agent Wall main containing 91b9b98, run canonical check; if structural integration passes, run canonical prove; only after prove PASS run package.",
+    "next_step": "Run canonical package mode for the proven source pair. Do not classify release-ready from package creation alone.",
     "readonly_contract_fix_commit": "91b9b98b64e53b1606630bf3cfe0f632d63f1f7c",
     "readonly_contract_fix": "Verifier now proves Agent Wall read-only runtime presence from workspace_read/list/glob/search spec registrations and proves client routing from the four exact Rust tool IDs, replacing the false literal-only product_entry check.",
     "prior_check_result": {
@@ -455,6 +455,29 @@
       "structural_integration": false,
       "only_failure": "workspace.readonly_tools = PARTIAL",
       "interpretation": "VERIFIER_FALSE_NEGATIVE"
-    }
+    },
+    "proven_source_pair": {
+      "agent_wall_origin_main": "91b9b98b64e53b1606630bf3cfe0f632d63f1f7c",
+      "rust_tui_origin_main": "1605f54b744237d6c00b3ed6b5692cbcbc3fca55"
+    },
+    "structural_integration": "PROVEN_PASS",
+    "proof_pass": "PROVEN_PASS",
+    "proof_results": {
+      "agent.focused_tests": {
+        "status": "PASS",
+        "exit_code": 0
+      },
+      "tui.cargo_test": {
+        "status": "PASS",
+        "exit_code": 0
+      },
+      "tui.cargo_fmt": {
+        "status": "PASS",
+        "exit_code": 0
+      }
+    },
+    "retained_manifest": "C:\\Users\\prave\\AppData\\Local\\Temp\\lbe-product-proof-output-1619b6a9d7534949b95266c158b083ea\\integration-manifest.json",
+    "release_ready": false,
+    "remaining_release_blocker": "Installed PTY/ConPTY acceptance remains unproven."
   }
 }
