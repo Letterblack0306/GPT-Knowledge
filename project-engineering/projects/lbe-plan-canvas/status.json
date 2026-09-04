@@ -1,5 +1,5 @@
 {
-  "schema_version": 39,
+  "schema_version": 40,
   "project": "LBE Persistent Agent",
   "verified_at": "2026-09-04",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
@@ -302,18 +302,24 @@
     "prohibition": "Do not patch or clean the dirty local canonical workspace for implementation. Local is validation/evidence only unless the user explicitly changes this rule."
   },
   "reconciliation_evidence_recovery": {
-    "classification": "SECOND_GOVERNANCE_FILE_EXACTLY_RECONCILED_ON_GITHUB",
-    "github_file": "PROJECT_INDEX.md",
-    "github_commit": "fcf5b6c8924b17db6947485be232e2be16e75471",
-    "github_blob": "4f590d76e9c8108659703dea5095e6331fa83087",
+    "classification": "THIRD_GOVERNANCE_FILE_PATCHED_ON_GITHUB_VALIDATION_PENDING",
+    "github_file": "docs/acceptance/CURRENT_IMPLEMENTATION_GATE.md",
+    "github_commit": "ff5c330e5a070d6a92fcb1500a948bb369b52375",
+    "github_blob": "37cb34b276c2daece05efd565b01c0683c6c0dc2",
     "source_evidence": "Exact origin/main..HEAD diff from LoopTool; diff check PASS",
-    "prior_file": {
-      "path": ".lbe/governance/implementation-gates.json",
-      "commit": "ae264fbd4a9af78cbaa76d0b400f43e978c246b0",
-      "blob": "6e41e383dca680d8201b43d360d2629f604871a6",
-      "validation": "published-vs-local diff empty before next patch"
-    },
+    "prior_files": [
+      {
+        "path": ".lbe/governance/implementation-gates.json",
+        "commit": "ae264fbd4a9af78cbaa76d0b400f43e978c246b0",
+        "validation": "exact match proven"
+      },
+      {
+        "path": "PROJECT_INDEX.md",
+        "commit": "fcf5b6c8924b17db6947485be232e2be16e75471",
+        "validation": "exact match proven"
+      }
+    ],
     "local_preservation": "No local implementation mutation performed.",
-    "next_step": "LoopTool fetch origin/main, verify PROJECT_INDEX.md matches local intended state, then extract docs/acceptance/CURRENT_IMPLEMENTATION_GATE.md exact diff."
+    "next_step": "LoopTool fetch origin/main, verify CURRENT_IMPLEMENTATION_GATE.md matches local intended state, then extract docs/governance/PROJECT_INTENT_LEDGER.md exact diff."
   }
 }
