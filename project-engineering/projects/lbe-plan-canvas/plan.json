@@ -1,5 +1,5 @@
 {
-  "schema_version": 28,
+  "schema_version": 29,
   "project": "LBE Persistent Agent",
   "updated": "2026-09-04",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
@@ -71,33 +71,23 @@
       "unused-in-repo/cline-cli-reference-copy-2026-08-27/"
     ],
     "projection_rule": "Conversation surfaces project agent/provider reasoning; workspace/evidence/execution/receipt/validation/history surfaces project LBE-owned truth. The client must not own session persistence, authorization, execution, receipts/evidence, or completion truth.",
-    "current_truth": "Rust main checkout is aligned with origin/main at bd19603e794ad24d01c3098d5312a07978d3b79d with one worktree and no staged changes. Fresh local validation reports cargo test 204/0, cargo check PASS, cargo fmt check PASS and git diff --check PASS. Dirty tracked/untracked work is preserved. The gate remains open only for remaining live installed composition acceptance.",
+    "current_truth": "Rust main/client baseline remains accepted. Provider/Cline continuation through the canonical LBE path is now proven complete with turn turn-f8ca04021d034ba883dda3b29695af05 ending in persisted model.message.completed then model.turn.completed and a Rust-visible completed result. The next missing canonical seam is live approval-gated writable mutation.",
     "historical_surfaces": "Python/Textual was removed. HTML cockpit remains a visual/product reference. Copied Cline/OpenTUI remains mechanics/reference only. None may create a competing runtime authority."
   },
   "current_active_slice": {
     "phase": "P2_P3_GOVERNED_EXECUTION",
-    "slice": "TUI_P2_P3_GOVERNED_EXECUTION_INTEGRATION",
-    "status": "OPEN",
-    "scope": "Finish live installed composition using the existing Rust client and canonical LBE/Cline runtime owners. Do not rebuild architecture and do not re-prove accepted read-only baseline.",
-    "accepted_baseline": [
-      "Rust/Ratatui selected active client",
-      "Rust main aligned to origin/main at bd19603e794ad24d01c3098d5312a07978d3b79d",
-      "single primary worktree",
-      "no staged changes",
-      "204 Rust tests pass",
-      "cargo check/fmt/diff checks pass",
-      "interactive SubmitTask and canonical turn proof accepted",
-      "read-only RealLbeWrapper adapter path accepted/documented"
-    ],
-    "remaining_acceptance": [
-      "provider/Cline continuation through installed client",
-      "live writable mutation with approval and patch review",
-      "persisted MCP event ordering",
-      "installed PTY/ConPTY acceptance",
-      "restart/resume product acceptance"
-    ],
-    "implementation_goal": "Complete provider/Cline continuation first, then the live governed writable approval/receipt/continuation flow, without adding client-side provider or authority ownership.",
-    "dirty_work_rule": "Preserve all unrelated tracked/untracked work; no cleanup/staging/commit/push to manufacture closure."
+    "slice": "LIVE_WRITABLE_APPROVAL_MUTATION",
+    "status": "ACTIVE",
+    "completed_prior_slice": "Provider/Cline continuation through installed Rust -> canonical LBE path",
+    "implementation_goal": "Complete one claim-matched writable mutation through existing agent proposal -> LBE authority -> approval/patch review -> exactly-once governed mutation -> ToolReceipt/evidence -> Cline continuation -> persisted completion -> Rust projection.",
+    "non_goals": [
+      "do not re-prove provider continuation",
+      "do not rebuild read/list/glob/search",
+      "do not add provider transport to Rust",
+      "do not redesign UI",
+      "do not create a second mutation/execution authority",
+      "do not stage/clean/commit unrelated dirty work"
+    ]
   },
   "accepted_baseline": {
     "classification": "PROVEN_ACCEPTED_RUNTIME_FOUNDATION",
@@ -125,31 +115,25 @@
       "order": 1,
       "id": "refresh-project-truth-before-instruction",
       "status": "MANDATORY_EVERY_VISIT",
-      "scope": "Read current GPT-K status/plan/handoff, then inspect current local evidence."
+      "scope": "Read current GPT-K status/plan/handoff/canonical execution path, notice workspace mirror, then inspect current local evidence."
     },
     {
       "order": 2,
-      "id": "complete-installed-provider-continuation",
+      "id": "complete-live-writable-approval-flow",
       "status": "ACTIVE",
-      "scope": "Trace and complete the current Rust -> product_entry -> existing Cline/provider continuation seam. Reuse provider/catalog/read capabilities as needed, but do not repeat broad read/list/glob/search proof."
+      "scope": "Use the existing LBE authorization, patch review, GovernedToolOrchestrator, ToolReceipt/evidence and Cline continuation owners for one bounded live mutation through the Rust client."
     },
     {
       "order": 3,
-      "id": "complete-live-writable-approval-flow",
-      "status": "NEXT",
-      "scope": "Use the existing LBE authorization/patch review/execution/ToolReceipt/evidence path for one real writable mutation and continuation."
-    },
-    {
-      "order": 4,
       "id": "mcp-ordering",
       "status": "LATER",
       "scope": "Prove canonical persisted MCP lifecycle ordering."
     },
     {
-      "order": 5,
+      "order": 4,
       "id": "installed-pty-resume-acceptance",
       "status": "LATER",
-      "scope": "Complete installed interactive PTY/ConPTY and restart/resume acceptance."
+      "scope": "Complete installed PTY/ConPTY and restart/resume acceptance."
     }
   ],
   "separate_non_product_work": {
