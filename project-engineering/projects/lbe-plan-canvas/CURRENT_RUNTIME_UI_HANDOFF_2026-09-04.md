@@ -416,3 +416,23 @@ Validation of that exact candidate snapshot:
 - whitespace check: PASS
 
 Publication did not occur because the local workspace push hook rejected the object-SHA refspec form. The next operational step is therefore to perform the equivalent reconciliation directly through GitHub, then use the local workspace only to fetch/inspect/test/status the published revision.
+
+
+## Mandatory operating sequence — GPT-K → LoopTool → Result → Repo Debug/Patch
+
+Effective 2026-09-04, every bounded LBE implementation/debug cycle follows:
+
+```text
+GPT-K refresh
+→ recall final product goal + authority boundary
+→ update current status classification when evidence changed
+→ LoopTool bounded local inspection/test/runtime/status command
+→ consume returned AGENT RESULT as evidence
+→ debug the canonical repository
+→ apply implementation/patch through GitHub only
+→ LoopTool validate the patched repository state
+→ update GPT-K status/plan/handoff
+→ continue only to the first remaining seam
+```
+
+Local canonical workspaces are evidence/validation surfaces, not implementation targets. Preserve dirty user work. Do not modify, stage, clean, reset, stash, merge, rebase, or commit locally for implementation unless the user explicitly overrides this rule.
