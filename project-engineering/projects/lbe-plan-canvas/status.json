@@ -1,5 +1,5 @@
 {
-  "schema_version": 43,
+  "schema_version": 44,
   "project": "LBE Persistent Agent",
   "verified_at": "2026-09-04",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
@@ -302,32 +302,19 @@
     "prohibition": "Do not patch or clean the dirty local canonical workspace for implementation. Local is validation/evidence only unless the user explicitly changes this rule."
   },
   "reconciliation_evidence_recovery": {
-    "classification": "INTENT_LEDGER_FIRST_REGION_PATCHED_ON_GITHUB",
+    "classification": "INTENT_LEDGER_SECOND_REGION_PATCHED_ON_GITHUB",
     "latest_looptool_result": "PASS",
     "authority": {
       "local_head": "2d384455a2b5ccaae749afd1f36124930bbc9212",
-      "remote_main_before_patch": "7794d38b4c34f90be390733b2bd623ac644671ca"
-    },
-    "current_implementation_gate": {
-      "validation": "published-vs-local diff empty",
-      "result": "EXACT_MATCH_PROVEN"
+      "remote_main_before_patch": "11e4ce1622fc3a037875d161822c698a438f26e3"
     },
     "project_intent_ledger": {
-      "github_commit": "11e4ce1622fc3a037875d161822c698a438f26e3",
-      "github_blob": "8b6394a042009e0735781829b82b1bb085442ff2",
-      "patched_region": "first inserted reconciliation/profile-guard-catalog block near lines 9-58",
-      "source_evidence": "Exact HEAD lines 1-70 from LoopTool",
-      "remaining_hunks": [
-        "-335 +385",
-        "-339,2 +389,2",
-        "-352,4 +402,4",
-        "-369 +419,2",
-        "-376 +427",
-        "-388,0 +440,41",
-        "-393 +485",
-        "-400,2 +492,56"
-      ],
-      "next_step": "LoopTool fetch origin/main, verify the first ledger region no longer differs, then extract bounded HEAD lines around the remaining hunk cluster near local lines 370-520."
+      "github_commit": "81405abaf66928c9daa866d439f23f75abc7bb81",
+      "github_blob": "5d8b709058b4063ba940ae7ac4406d80a626ba9b",
+      "patched_region": "native Cline surface supersession + TUI P2/P3 supersession block",
+      "source_evidence": "Exact HEAD lines 370-455 from LoopTool",
+      "remaining_scope": "Complete LBE-INTENT-CLINE-CLI-LBE-RUNTIME-INTEGRATION-001 and subsequent product-owner/UI transition records from later local HEAD lines.",
+      "next_step": "LoopTool fetch origin/main, inspect remaining ledger diff hunk headers, then extract HEAD lines 440-540 in a bounded slice."
     },
     "local_preservation": "No local implementation mutation performed."
   }
