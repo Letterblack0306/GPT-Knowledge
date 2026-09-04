@@ -1,5 +1,5 @@
 {
-  "schema_version": 61,
+  "schema_version": 62,
   "project": "LBE Persistent Agent",
   "verified_at": "2026-09-04",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
@@ -416,7 +416,7 @@
     "proof_status": "UNVERIFIED"
   },
   "product_integration_machine_check": {
-    "classification": "PARSER_FIX_PUBLISHED_CANONICAL_PROVE_PENDING",
+    "classification": "READONLY_FALSE_NEGATIVE_FIX_PUBLISHED_CHECK_PROVE_PENDING",
     "canonical_owner_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
     "script": "tools/lbe_product_integration.ps1",
     "contract_document": "docs/acceptance/LBE_PRODUCT_INTEGRATION_MACHINE_CHECK.md",
@@ -440,12 +440,21 @@
     "proof_rule": "prove mode exports clean origin/main snapshots and runs focused Agent Wall approval/orchestration/product/continuation tests plus Rust cargo test/fmt checks.",
     "packaging_rule": "build/package consume clean origin/main archives, build the Agent Wall wheel, provision governed Cline worker dependencies from the committed lockfile, build Rust release lbe.exe, emit integration-manifest.json and checksums, and produce a candidate ZIP.",
     "release_rule": "External installed PTY/ConPTY acceptance remains separate; the script intentionally does not fabricate release-ready status without that evidence.",
-    "validation_status": "CANONICAL_CHECK_AND_PROVE_NOT_YET_EXECUTED_AFTER_PARSER_FIX",
-    "latest_agent_wall_main": "b76ad4762c29527070152f84e8ab945a7a065104",
+    "validation_status": "CANONICAL_CHECK_AND_PROVE_NOT_YET_EXECUTED_AFTER_READONLY_DETECTOR_FIX",
+    "latest_agent_wall_main": "91b9b98b64e53b1606630bf3cfe0f632d63f1f7c",
     "parser_fix_commit": "b76ad4762c29527070152f84e8ab945a7a065104",
     "parser_fix": "Changed ambiguous PowerShell interpolation from $Root: to ${Root}: in tools/lbe_product_integration.ps1.",
     "worktree_gate": "RESOLVED_BY_LOCAL_VERIFICATION; obsolete extra worktree had clean tree, zero unique commits, branch tip ancestor of main, then registration removed.",
     "parse_inspection": "Published file now contains no remaining ambiguous $name: interpolation except valid scoped $env: usage.",
-    "next_step": "Fetch Agent Wall main containing b76ad476, then run tools/lbe_product_integration.ps1 check followed by prove on the canonical Windows machine without weakening any safety gate."
+    "next_step": "Fetch Agent Wall main containing 91b9b98, run canonical check; if structural integration passes, run canonical prove; only after prove PASS run package.",
+    "readonly_contract_fix_commit": "91b9b98b64e53b1606630bf3cfe0f632d63f1f7c",
+    "readonly_contract_fix": "Verifier now proves Agent Wall read-only runtime presence from workspace_read/list/glob/search spec registrations and proves client routing from the four exact Rust tool IDs, replacing the false literal-only product_entry check.",
+    "prior_check_result": {
+      "agent_wall": "b76ad4762c29527070152f84e8ab945a7a065104",
+      "rust_tui": "f1363480bd577350f64317a4814434d114d9030d",
+      "structural_integration": false,
+      "only_failure": "workspace.readonly_tools = PARTIAL",
+      "interpretation": "VERIFIER_FALSE_NEGATIVE"
+    }
   }
 }
