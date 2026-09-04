@@ -1,5 +1,5 @@
 {
-  "schema_version": 49,
+  "schema_version": 50,
   "project": "LBE Persistent Agent",
   "verified_at": "2026-09-04",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
@@ -302,16 +302,39 @@
     "prohibition": "Do not patch or clean the dirty local canonical workspace for implementation. Local is validation/evidence only unless the user explicitly changes this rule."
   },
   "reconciliation_evidence_recovery": {
-    "classification": "PUBLISHED_VALIDATION_HARNESS_ERROR",
-    "command_hash": "62ED17A506159C0E3F8FAC2221D8F89FDBEA9FA00CFABE707531BBC12A83D1B1",
-    "published_main": "2d0fa7d3e6b32acd6bda1a9b5e2a875ce182554c",
-    "evidence": [
-      "Governance files matched published origin/main.",
-      "tests/test_provider_registry.py matched published origin/main.",
-      "The local comparison for tests/test_first_party_reasoning_provider.py is not a valid equality check because local HEAD does not track that newly published path.",
-      "Pytest did not collect tests because a requested test filename does not exist in published main."
+    "classification": "PUBLISHED_TEST_INVENTORY_PROVEN_CORRECTED_VALIDATION_READY",
+    "latest_looptool_result": {
+      "status": "PASS",
+      "command_hash": "642749046F08FB88E652D1FBED44A02C8E5ED0EACC77D1876C6DE2C6F38CD291"
+    },
+    "authority": {
+      "local_head": "2d384455a2b5ccaae749afd1f36124930bbc9212",
+      "published_main": "2d0fa7d3e6b32acd6bda1a9b5e2a875ce182554c"
+    },
+    "published_test_inventory": [
+      "tests/test_background_provider_turn_runtime.py",
+      "tests/test_cline_stdio_bridge.py",
+      "tests/test_first_party_reasoning_provider.py",
+      "tests/test_professional_provider_events.py",
+      "tests/test_provider_capability_discovery.py",
+      "tests/test_provider_continuation.py",
+      "tests/test_provider_event_history.py",
+      "tests/test_provider_health.py",
+      "tests/test_provider_registry.py",
+      "tests/test_provider_turn_runtime.py",
+      "tests/test_reasoning_config.py",
+      "tests/test_reasoning_guard_planner.py",
+      "tests/test_reasoning_http_injection.py",
+      "tests/test_reasoning_planner.py",
+      "tests/test_reasoning_provider.py",
+      "tests/test_reasoning_runtime.py",
+      "tests/test_reasoning_startup.py"
     ],
-    "result": "55_TEST_PROOF_NOT_RUN",
-    "next_step": "Inspect actual published test filenames, then rerun a corrected read-only snapshot validation."
+    "exact_published_blobs": {
+      "tests/test_first_party_reasoning_provider.py": "2db5cbbd1a9eb6c7a7cd290408004648b6226ee1",
+      "tests/test_provider_registry.py": "9b12dd4fe29c9c1f685306e11d88596e519ac37a"
+    },
+    "conclusion": "The prior validation command named non-existent published test files. Repository content failure is not proven. A corrected published-snapshot validation can now use only confirmed existing test files.",
+    "next_step": "Run a fresh git-archive snapshot of origin/main and execute the confirmed provider/reasoning/continuation test set, with git diff-tree --check on origin/main. Do not compare the newly published first-party test to local HEAD because local HEAD never tracked it."
   }
 }
