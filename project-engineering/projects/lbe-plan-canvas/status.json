@@ -1,5 +1,5 @@
 {
-  "schema_version": 57,
+  "schema_version": 58,
   "project": "LBE Persistent Agent",
   "verified_at": "2026-09-04",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
@@ -348,5 +348,30 @@
       "The broad caller output was truncated before the exact writable patch/approval command sequence could be established."
     ],
     "next_step": "Narrow Rust inspection to exact workspace.patch, authorization evaluate/resolve, pending_authorization assignment, and UserRequest::Approve/Reject line ranges before changing either repository."
+  },
+  "manual_acceptance_preflight": {
+    "classification": "PACKAGE_INSTALL_SMOKE_PASS_NOT_PRODUCT_READY",
+    "looptool_command_hash": "2A76F587FB6304B4E190CEC4EA5E35E2F148A98ACC24BBBB878F02B596A48E72",
+    "source_main": "a336fa2e2a60cdf873d9eef59b9f1b95c6216971",
+    "installed_version": "2.0.3",
+    "installed_cli": "C:\\Users\\prave\\AppData\\Local\\Temp\\lbe-manual-acceptance\\venv\\Scripts\\lbe.exe",
+    "proven": [
+      "origin/main archived successfully",
+      "2.0.3 wheel built successfully",
+      "isolated venv install succeeded",
+      "installed lbe.exe resolved and --help exited successfully"
+    ],
+    "not_proven": [
+      "interactive LetterBlack CLI/TUI launch",
+      "Cline AgentRuntime worker startup in this exact installed environment",
+      "provider/model load",
+      "real session create/resume",
+      "live agent turn",
+      "approval-gated workspace mutation",
+      "receipt/evidence projection",
+      "quit/restart/resume"
+    ],
+    "observation": "Installed top-level help currently presents the legacy control-plane command set; product_entry hidden commands such as start/turn/tool/authorization are not advertised by that top-level help output.",
+    "next_step": "Use the already-installed exact wheel only for read-only installed-runtime preflight: inspect product_entry start help, verify packaged Cline worker assets and @cline/agents availability, and discover existing session/provider configuration before any interactive launch."
   }
 }
