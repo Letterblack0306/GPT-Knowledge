@@ -1,5 +1,5 @@
 {
-  "schema_version": 38,
+  "schema_version": 39,
   "project": "LBE Persistent Agent",
   "verified_at": "2026-09-04",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
@@ -302,15 +302,18 @@
     "prohibition": "Do not patch or clean the dirty local canonical workspace for implementation. Local is validation/evidence only unless the user explicitly changes this rule."
   },
   "reconciliation_evidence_recovery": {
-    "classification": "FIRST_GOVERNANCE_FILE_EXACTLY_RECONCILED_ON_GITHUB",
-    "github_file": ".lbe/governance/implementation-gates.json",
-    "github_commit": "ae264fbd4a9af78cbaa76d0b400f43e978c246b0",
-    "github_blob": "6e41e383dca680d8201b43d360d2629f604871a6",
-    "local_expected_blob_prefix": "6e41e38",
-    "local_sha256": "EBC84F7DBB94EB6EFC68E80088E75D204045C388AEF979FCA2DA66FDB2E2495B",
-    "prior_validation": "LoopTool diff check PASS; published-vs-local diff showed semantic equality but key-order mismatch only.",
-    "resolution": "Reordered selected_reasoning_agent to the exact local canonical position through GitHub. GitHub blob now matches the local intended Git blob.",
+    "classification": "SECOND_GOVERNANCE_FILE_EXACTLY_RECONCILED_ON_GITHUB",
+    "github_file": "PROJECT_INDEX.md",
+    "github_commit": "fcf5b6c8924b17db6947485be232e2be16e75471",
+    "github_blob": "4f590d76e9c8108659703dea5095e6331fa83087",
+    "source_evidence": "Exact origin/main..HEAD diff from LoopTool; diff check PASS",
+    "prior_file": {
+      "path": ".lbe/governance/implementation-gates.json",
+      "commit": "ae264fbd4a9af78cbaa76d0b400f43e978c246b0",
+      "blob": "6e41e383dca680d8201b43d360d2629f604871a6",
+      "validation": "published-vs-local diff empty before next patch"
+    },
     "local_preservation": "No local implementation mutation performed.",
-    "next_step": "LoopTool fetch origin/main and verify empty diff for implementation-gates.json, then extract PROJECT_INDEX.md exact diff."
+    "next_step": "LoopTool fetch origin/main, verify PROJECT_INDEX.md matches local intended state, then extract docs/acceptance/CURRENT_IMPLEMENTATION_GATE.md exact diff."
   }
 }
