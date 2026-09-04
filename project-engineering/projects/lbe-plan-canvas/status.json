@@ -1,12 +1,12 @@
 {
-  "schema_version": 66,
+  "schema_version": 67,
   "project": "LBE Persistent Agent",
   "verified_at": "2026-09-04",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "source_branch": "main",
   "original_workspace": "C:/Agents-Memory-Tool-v6-integration",
   "later_ui_workspace": "C:/LBE-TUI-Lab",
-  "overall_classification": "STRUCTURAL_INTEGRATION_PASS_PORTABLE_INSTALLER_IMPLEMENTED_LIVE_ACCEPTANCE_OPEN",
+  "overall_classification": "CLINE_USER_SURFACE_CORRECTED_RUST_REFERENCE_MACHINE_MAP_STALE_LIVE_ACCEPTANCE_OPEN",
   "authority_note": "GPT-Knowledge is a projection only. Current canonical source/configuration, current local validation/runtime evidence, machine governance, active intent and acceptance records outrank this file.",
   "final_product": {
     "definition": "Persistent provider-neutral LBE agent product in which the agent/provider owns reasoning, investigation strategy, capability selection, interpretation and replanning, while LBE owns workspace/session identity, policy, authorization, governed execution, ToolReceipts/evidence, persistence, recovery, deterministic validation and completion truth.",
@@ -19,7 +19,7 @@
       "persist",
       "continue"
     ],
-    "interface_rule": "The product UI is a projection/control surface over the same LBE runtime authorities; it must not create a second runtime, session, provider, authorization, execution, receipt, evidence, persistence or completion owner."
+    "interface_rule": "Accepted user-facing interface = embedded Cline CLI/TUI under C:/LBE-TUI-Lab/cline/apps/cli launched by run-cline-lbe.ps1. Rust/Ratatui is a separate prototype/reference/integration client. Both remain subordinate to LBE runtime authority."
   },
   "current_machine_state": {
     "classification": "RUST_MAIN_ALIGNED_DIRTY_WORK_PRESERVED_GATE_OPEN",
@@ -89,13 +89,12 @@
     "gate_effect": "NONE; this integration does not advance or close TUI_P2_P3_GOVERNED_EXECUTION_INTEGRATION."
   },
   "final_ui_direction": {
-    "classification": "DELIVERY_FLEXIBLE_SELECTED_CURRENT_CLIENT_RUST_RATATUI",
-    "selected_client": "C:/LBE-TUI-Lab",
-    "selection_reason": "Most complete existing executable LetterBlack client and already proven attached to canonical LBE; reusing it is the shortest path to manual acceptance.",
-    "html_status": "Visual/product reference, not mandatory final framework.",
-    "cline_open_tui_status": "Mechanics/reference only; not product authority.",
-    "implementation_truth": "Rust real attachment and interactive SubmitTask path are proven. No UI redesign is required before continuing runtime acceptance.",
-    "authority_rule": "Client projects and requests only; LBE retains session/workspace/turn truth, authorization, execution, receipts/evidence, persistence/recovery, validation and completion."
+    "classification": "CLINE_CLI_TUI_ACCEPTED_USER_FACING_SURFACE_RUST_REFERENCE",
+    "selected_client": "C:/LBE-TUI-Lab/cline/apps/cli",
+    "entrypoint": "C:/LBE-TUI-Lab/cline/apps/cli/src/index.ts",
+    "launcher": "C:/LBE-TUI-Lab/run-cline-lbe.ps1",
+    "rust_status": "C:/LBE-TUI-Lab/src + run-lbe.bat = reference/integration prototype only",
+    "authority_rule": "LBE remains sole runtime authority; Cline and Rust are clients/mechanics surfaces only."
   },
   "cline_boundary": {
     "active_runtime_worker": {
@@ -133,33 +132,10 @@
   ],
   "status_rule": "Before every next instruction refresh GPT-K and current local evidence. Do not rerun accepted baseline tests or read-only proofs merely for reassurance. Drive the open gate by completing the first remaining live composition behavior.",
   "rust_client_current": {
-    "classification": "PROVEN_ACCEPTED_CLIENT_BASELINE_LOCAL_MAIN_ALIGNED",
+    "classification": "REFERENCE_INTEGRATION_CLIENT_NOT_PRIMARY_USER_SURFACE",
     "workspace": "C:/LBE-TUI-Lab",
-    "accepted": [
-      "real LBE attachment",
-      "interactive SubmitTask",
-      "canonical turn creation",
-      "persisted event return",
-      "workspace read-only adapter/receipt evidence projection",
-      "204-test local baseline"
-    ],
-    "tracked_dirty": [
-      "AGENTS.md",
-      "Docs/00_integration_alignment.md",
-      "Docs/STATUS.md",
-      "src/* modified",
-      "Agent.md deleted",
-      "README.md deleted"
-    ],
-    "untracked_notable": [
-      "cline/ approximately 185,197 files",
-      "partial/failed Cline checkout directories",
-      ".agent/evidence/CURRENT_TASK.md",
-      "mock-open.log",
-      "submit-trace.log",
-      "run-lbe.bat"
-    ],
-    "preservation_rule": "Do not clean or stage unrelated dirty/untracked work."
+    "role": "Rust/Ratatui reference/integration client used for bounded contract and integration experiments; not product-surface acceptance authority.",
+    "preservation_rule": "Preserve current dirty/unpublished Rust work and do not use Rust acceptance as proof of Cline CLI user experience."
   },
   "current_blocker": {
     "classification": "IMPLEMENTED_PENDING_VALIDATION",
@@ -559,5 +535,42 @@
     ],
     "release_ready": false,
     "supersession_rule": "This block supersedes older current-head/current-blocker fields when they conflict. Historical checkpoints remain useful as history but must not be treated as current heads."
+  },
+  "interface_reconciliation": {
+    "classification": "PROVEN_CURRENT_LOCAL_MIRROR_AND_AGENT_WALL_ALIGNMENT",
+    "user_facing_surface": {
+      "path": "C:/LBE-TUI-Lab/cline/apps/cli",
+      "entry": "C:/LBE-TUI-Lab/cline/apps/cli/src/index.ts",
+      "launcher": "C:/LBE-TUI-Lab/run-cline-lbe.ps1",
+      "role": "Actual accepted interactive/headless CLI/TUI product surface"
+    },
+    "rust_reference": {
+      "path": "C:/LBE-TUI-Lab/src/main.rs",
+      "binary": "lbe",
+      "launcher": "C:/LBE-TUI-Lab/run-lbe.bat",
+      "role": "Prototype/reference/integration client; not accepted Cline CLI user experience"
+    },
+    "runtime_authority": {
+      "path": "C:/Agents-Memory-Tool-v6-integration",
+      "role": "Canonical LBE runtime/governance authority"
+    },
+    "stale_machine_map": {
+      "path": "C:/LBE-TUI-Lab/Docs/status.json",
+      "classification": "STALE_INTERFACE_CLASSIFICATION",
+      "stale_claim": "Rust/Ratatui active interface / remaining implementation path",
+      "corrected_claim": "Cline CLI/TUI active user-facing path; Rust/Ratatui reference/integration client",
+      "planning_rule": "Do not rely on this machine map for interface sequencing until reconciled."
+    },
+    "runtime_flow": [
+      "User",
+      "Cline CLI/TUI",
+      "Cline keyboard/action handlers",
+      "Cline runtime/session layer",
+      "bounded LBE adapter",
+      "LBE product entry/runtime",
+      "authorization/governed execution/ToolReceipt/evidence",
+      "Cline event/session projection",
+      "user-visible terminal output"
+    ]
   }
 }
