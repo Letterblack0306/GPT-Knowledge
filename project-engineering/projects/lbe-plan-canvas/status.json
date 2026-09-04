@@ -1,5 +1,5 @@
 {
-  "schema_version": 32,
+  "schema_version": 33,
   "project": "LBE Persistent Agent",
   "verified_at": "2026-09-04",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
@@ -260,5 +260,41 @@
     "rust_main": "520f254c60512f320f82aced0d3b04b129f8b2ed",
     "scope": "Published the existing proven provider/Cline composition and current Rust source projection needed for the completed continuation slice. Unrelated dirty files, deletions, logs, copied Cline trees and manual chat-history folders were not published.",
     "next_sync_rule": "Local agent may fetch and fast-forward main. Preserve unrelated working-tree changes; stop on any merge refusal or unexpected diff."
+  },
+  "project_operating_rule": {
+    "classification": "MANDATORY_GITHUB_IMPLEMENTATION_LOCAL_VALIDATION",
+    "rule": "For this LBE project, implementation/patch/debug/repository mutation is performed through GitHub against the canonical repository. The local canonical workspace is preserved for testing, runtime/status inspection, diffs, and validation evidence only unless the user explicitly changes this rule.",
+    "local_rule": "Do not modify, stage, clean, reset, stash, merge, rebase, or commit the dirty local canonical workspace for implementation work. LoopTool/local commands are for bounded read/validate/test/status operations.",
+    "github_rule": "Use canonical GitHub main for implementation and repository fixes. Validate the resulting committed snapshot locally before advancing acceptance.",
+    "goal_recall_rule": "Before every LBE action, recall the final product goal and canonical ownership boundary, refresh GPT-K status/plan/handoff, then inspect current evidence.",
+    "gpt_k_update_rule": "After material project-state changes, update GPT-K plan/status/handoff so the projection records the current proven state and next blocker."
+  },
+  "repository_reconciliation": {
+    "classification": "CANDIDATE_VALIDATED_PUSH_BLOCKED_BY_LOCAL_HOOK",
+    "local_head": "2d384455a2b5ccaae749afd1f36124930bbc9212",
+    "remote_main": "8765ef766dc6465cf8e7c3f361e3f5854aa4cfd1",
+    "merge_base": "5c3f24ca709b3b554eb24a75de5f787cb693a263",
+    "virtual_merge_tree": "09da06e18e2573dc8bd2f4ec243d5b7344ba72ed",
+    "validated_candidate_tree": "a7c03d262b387d0a9830102b0e98b4c592430fce",
+    "validated_candidate_commit": "90106c167da9b4fa4eeb6462a1524cebca5caf5a",
+    "candidate_scope": [
+      "lbe_guard_inspector/cline_reasoning_provider.py",
+      "lbe_guard_inspector/coding_reasoning_provider.py",
+      "lbe_guard_inspector/first_party_reasoning_provider.py",
+      "lbe_guard_inspector/guard_catalog.py",
+      "lbe_guard_inspector/product_entry.py",
+      "lbe_guard_inspector/provider_registry.py",
+      "lbe_guard_inspector/provider_turn_runtime.py",
+      "tests/test_first_party_reasoning_provider.py",
+      "tests/test_provider_registry.py"
+    ],
+    "validation": [
+      "exact candidate snapshot provider imports: PASS",
+      "exact candidate snapshot focused provider/runtime/product/bridge tests: 55 passed",
+      "first-party provider focused local test: 8 passed",
+      "candidate whitespace check: PASS"
+    ],
+    "blocker": "Local push hook rejected an object-SHA refspec even though the target was refs/heads/main. No publication occurred.",
+    "next_rule": "Complete reconciliation directly through GitHub repository mutation, then use local/LoopTool only to fetch/inspect/test/status the published state."
   }
 }
