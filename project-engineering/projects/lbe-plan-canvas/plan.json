@@ -1,5 +1,5 @@
 {
-  "schema_version": 30,
+  "schema_version": 31,
   "project": "LBE Persistent Agent",
   "updated": "2026-09-04",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
@@ -176,5 +176,20 @@
     "implementation": "Perform implementation, patching, debugging changes, commits, and canonical repository mutation through GitHub main.",
     "local": "Use C:/Agents-Memory-Tool-v6-integration and LoopTool for bounded tests, runtime/status checks, diffs, inspection, and validation evidence only. Preserve dirty local user work and do not mutate it for implementation.",
     "completion_rule": "After GitHub changes, validate the exact published/candidate snapshot locally before marking a slice complete."
+  },
+  "project_workflow_protocol": {
+    "status": "MANDATORY",
+    "sequence": [
+      "GPT-K refresh",
+      "goal recall",
+      "current status update",
+      "LoopTool bounded local evidence command",
+      "AGENT RESULT evaluation",
+      "repository debug",
+      "GitHub-only patch/implementation",
+      "LoopTool validation of patched repository state",
+      "GPT-K status/plan/handoff update"
+    ],
+    "scope_rule": "Work only on the first missing canonical seam. Do not reopen settled architecture or expand unrelated scope."
   }
 }
