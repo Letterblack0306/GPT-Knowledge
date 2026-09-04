@@ -1,5 +1,5 @@
 {
-  "schema_version": 58,
+  "schema_version": 59,
   "project": "LBE Persistent Agent",
   "verified_at": "2026-09-04",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
@@ -373,5 +373,21 @@
     ],
     "observation": "Installed top-level help currently presents the legacy control-plane command set; product_entry hidden commands such as start/turn/tool/authorization are not advertised by that top-level help output.",
     "next_step": "Use the already-installed exact wheel only for read-only installed-runtime preflight: inspect product_entry start help, verify packaged Cline worker assets and @cline/agents availability, and discover existing session/provider configuration before any interactive launch."
+  },
+  "installed_cline_preflight": {
+    "classification": "HARNESS_IMPORT_ISOLATION_FAILURE_NOT_PRODUCT_FAILURE",
+    "looptool_command_hash": "03BD7097EA30EDCF4BDB3F6D66FF2D4D3DDBC47A2EA57D1F49EDC3397FE44F89",
+    "proven": [
+      "installed lbe start --help is available",
+      "worker.mjs/package.json/node_modules/@cline/agents exist in the source checkout path that was accidentally imported",
+      "Node version is v26.7.0"
+    ],
+    "harness_defects": [
+      "Python ran from the repository working directory, so import lbe_guard_inspector resolved the source checkout instead of the isolated venv site-packages.",
+      "The worker-path command used lbe_guard_inspector.file instead of lbe_guard_inspector.__file__, causing AttributeError.",
+      "Because worker path resolution failed, Node import('@cline/agents') ran from the repository root and ERR_MODULE_NOT_FOUND does not test the installed worker graph."
+    ],
+    "conclusion": "No installed Cline worker failure is proven by this command.",
+    "next_step": "Run a corrected preflight from outside the repository, assert lbe_guard_inspector resolves inside the isolated venv site-packages, then import @cline/agents from that exact installed worker directory."
   }
 }
