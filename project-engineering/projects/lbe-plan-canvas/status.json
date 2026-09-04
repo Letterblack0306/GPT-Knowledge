@@ -1,5 +1,5 @@
 {
-  "schema_version": 34,
+  "schema_version": 35,
   "project": "LBE Persistent Agent",
   "verified_at": "2026-09-04",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
@@ -270,32 +270,21 @@
     "gpt_k_update_rule": "After material project-state changes, update GPT-K plan/status/handoff so the projection records the current proven state and next blocker."
   },
   "repository_reconciliation": {
-    "classification": "CANDIDATE_VALIDATED_PUSH_BLOCKED_BY_LOCAL_HOOK",
+    "classification": "VALIDATED_UNPUBLISHED_GITHUB_RECONCILIATION_PENDING",
     "local_head": "2d384455a2b5ccaae749afd1f36124930bbc9212",
     "remote_main": "8765ef766dc6465cf8e7c3f361e3f5854aa4cfd1",
-    "merge_base": "5c3f24ca709b3b554eb24a75de5f787cb693a263",
     "virtual_merge_tree": "09da06e18e2573dc8bd2f4ec243d5b7344ba72ed",
-    "validated_candidate_tree": "a7c03d262b387d0a9830102b0e98b4c592430fce",
     "validated_candidate_commit": "90106c167da9b4fa4eeb6462a1524cebca5caf5a",
-    "candidate_scope": [
-      "lbe_guard_inspector/cline_reasoning_provider.py",
-      "lbe_guard_inspector/coding_reasoning_provider.py",
-      "lbe_guard_inspector/first_party_reasoning_provider.py",
-      "lbe_guard_inspector/guard_catalog.py",
-      "lbe_guard_inspector/product_entry.py",
-      "lbe_guard_inspector/provider_registry.py",
-      "lbe_guard_inspector/provider_turn_runtime.py",
-      "tests/test_first_party_reasoning_provider.py",
-      "tests/test_provider_registry.py"
-    ],
+    "validated_candidate_tree": "a7c03d262b387d0a9830102b0e98b4c592430fce",
     "validation": [
-      "exact candidate snapshot provider imports: PASS",
-      "exact candidate snapshot focused provider/runtime/product/bridge tests: 55 passed",
-      "first-party provider focused local test: 8 passed",
-      "candidate whitespace check: PASS"
+      "provider imports PASS",
+      "55 focused tests passed",
+      "whitespace validation PASS"
     ],
-    "blocker": "Local push hook rejected an object-SHA refspec even though the target was refs/heads/main. No publication occurred.",
-    "next_rule": "Complete reconciliation directly through GitHub repository mutation, then use local/LoopTool only to fetch/inspect/test/status the published state."
+    "publication_result": "BLOCKED",
+    "blocker": "Local workspace push lock requires refs/heads/main as the push source; raw commit-SHA source refspec was rejected. origin/main and local HEAD remained unchanged.",
+    "local_preservation": "No checkout, merge, rebase, reset, stash, clean, or working-tree rewrite occurred.",
+    "next_step": "Reconstruct/publish the validated reconciliation through GitHub only, using local/LoopTool read-only evidence to recover the local-only governance/test content required for the GitHub patch."
   },
   "mandatory_execution_protocol": {
     "classification": "GPTK_GOAL_STATUS_LOOPTOOL_RESULT_REPO_DEBUG_PATCH",
