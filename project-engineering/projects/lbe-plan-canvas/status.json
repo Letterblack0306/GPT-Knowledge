@@ -1,5 +1,5 @@
 {
-  "schema_version": 52,
+  "schema_version": 53,
   "project": "LBE Persistent Agent",
   "verified_at": "2026-09-04",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
@@ -335,9 +335,24 @@
   },
   "active_functional_slice": {
     "name": "LIVE_WRITABLE_APPROVAL_MUTATION",
-    "classification": "INSPECTION_IN_PROGRESS",
-    "evidence_from_latest_looptool": "Approval/authorization/tool orchestration owners are present on published main, but the broad grep output was truncated.",
-    "suspected_first_missing_seam": "Approval-granted state is represented by AuthorizationRequest.approval_granted, while ToolExecutionContext/invoke currently appear not to propagate it; ESCALATED receipts are cached by operation_id, so approval replay may remain permanently escalated. Requires bounded local proof before implementation.",
-    "next_step": "Run a narrow read-only LoopTool inspection of AuthorizationRequest, ToolExecutionContext, GovernedToolOrchestrator.invoke, and the escalation/idempotency tests."
+    "classification": "FIRST_SEAM_IMPLEMENTED_VALIDATION_PENDING",
+    "evidence": {
+      "looptool_command_hash": "1FA8E9A9AA154A12FACE8BE212DF243D2CDE92916B39346B42177740DCFFBBFD",
+      "finding": "Approval state existed in AuthorizationRequest but was not propagated through ToolExecutionContext, and escalated receipts were terminally cached by operation_id."
+    },
+    "implementation": {
+      "runtime_commit": "521c6beb297003e64fa75c96f97a50d8a92c36c4",
+      "runtime_blob": "df2342d5f84b04456f6ed37dbbab3a662525e6b6",
+      "test_commit": "a336fa2e2a60cdf873d9eef59b9f1b95c6216971",
+      "test_blob": "bc46e011ee02e94c9b90773ee3323ef8f3e318f4",
+      "behavior": [
+        "ToolExecutionContext now carries approval_granted.",
+        "Approved retries of an ESCALATED operation may re-enter authorization.",
+        "Original operation identity, tool id, arguments, and non-approval context are bound before resume.",
+        "Executed/denied/failed receipts remain idempotent and are never re-executed.",
+        "Approved resume is tested to execute exactly once."
+      ]
+    },
+    "next_step": "LoopTool fetch origin/main and run focused authorization/tool-orchestration/provider-continuation tests plus whitespace check from a published snapshot."
   }
 }
