@@ -320,3 +320,32 @@ agent proposes bounded mutation
 ```
 
 Do not reopen provider continuation unless a later change regresses it.
+
+
+## Remote publication checkpoint
+
+The proven continuation baseline has now been published to the canonical GitHub mains.
+
+```text
+LBE backend:
+Letterblack0306/LBE_Presistent_Agent_wall
+main = 8765ef766dc6465cf8e7c3f361e3f5854aa4cfd1
+
+Rust client:
+Letterblack0306/LBE_Agents_wall_Intigration
+main = 520f254c60512f320f82aced0d3b04b129f8b2ed
+```
+
+Published backend scope includes the existing Cline/provider composition, provider registry/turn runtime, product-entry finalization wait, and guard-catalog Cargo metadata support.
+
+Published Rust scope includes the current proven source projection under `src/`.
+
+Not published:
+- unrelated AGENTS.md changes;
+- Agent.md / README.md deletions;
+- copied/partial Cline trees;
+- logs;
+- manual conversation-history folders;
+- local provider configuration containing machine-specific endpoint/model state.
+
+The local agent may now fetch and fast-forward to remote main. Preserve unrelated dirty work and stop if Git reports an overwrite/conflict instead of forcing synchronization.
