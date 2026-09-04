@@ -240,3 +240,83 @@ refresh GPT-K
 ```
 
 The mirror is important for locating synchronized workspace state, but it does not outrank live canonical local runtime, governance, or acceptance evidence.
+
+
+## Provider/Cline continuation slice — COMPLETE
+
+Current continuation acceptance is complete.
+
+```text
+session_id = tui-fb2fe3a87da24552910a5b2d8fb45c7d
+turn_id    = turn-f8ca04021d034ba883dda3b29695af05
+```
+
+First disconnected seam:
+
+```text
+ClineReasoningBackend runtime.start
+→ sent api_key: null
+→ GovernedClineWorker rejected present-but-empty credential
+→ INVALID_RUNTIME_CONFIG
+```
+
+The repair reused existing owners and did not add a second provider/runtime authority.
+
+Changed implementation/configuration:
+- lbe_guard_inspector/cline_reasoning_provider.py
+- reasoning-provider.json
+- lbe_guard_inspector/guard_catalog.py
+- lbe_guard_inspector/product_entry.py
+- C:/LBE-TUI-Lab/src/main.rs
+
+Successful canonical result:
+
+```text
+180 model.message.completed
+181 model.turn.completed
+status = completed
+outcome = COMPLETED
+```
+
+Rust headless projection:
+
+```text
+status  = completed
+type    = result
+turn_id = turn-f8ca04021d034ba883dda3b29695af05
+```
+
+Focused validation reported:
+- canonical continuation/provider/product tests: 50 passed;
+- Rust tests: 204 passed;
+- Rust formatting: passed;
+- git diff --check: passed in both repositories.
+
+### Canonical-path position
+
+The project has moved past:
+
+```text
+USER
+→ agent reasoning/proposal
+→ canonical LBE turn
+→ existing Cline/provider continuation
+→ persisted model completion
+→ Rust projection
+```
+
+The first missing live seam is now:
+
+```text
+agent proposes bounded mutation
+→ LBE AUTHORITY
+→ approval / patch review
+→ governed adapter
+→ exactly-once mutation
+→ ToolReceipt + evidence
+→ Cline continuation
+→ validation/completion
+→ Rust projection
+```
+
+Do not reopen provider continuation unless a later change regresses it.
