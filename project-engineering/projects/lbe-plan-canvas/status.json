@@ -1,5 +1,5 @@
 {
-  "schema_version": 45,
+  "schema_version": 46,
   "project": "LBE Persistent Agent",
   "verified_at": "2026-09-04",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
@@ -302,20 +302,24 @@
     "prohibition": "Do not patch or clean the dirty local canonical workspace for implementation. Local is validation/evidence only unless the user explicitly changes this rule."
   },
   "reconciliation_evidence_recovery": {
-    "classification": "INTENT_LEDGER_THIRD_REGION_PATCHED_ON_GITHUB",
+    "classification": "FOUR_GOVERNANCE_FILES_RECONCILED_PROVIDER_TESTS_NEXT",
     "latest_looptool_result": "PASS",
     "authority": {
       "local_head": "2d384455a2b5ccaae749afd1f36124930bbc9212",
-      "remote_main_before_patch": "81405abaf66928c9daa866d439f23f75abc7bb81"
+      "remote_main_before_patch": "5717957c0a3d6a85dc58a3eb599df90a46e98c77"
     },
-    "project_intent_ledger": {
-      "github_commit": "5717957c0a3d6a85dc58a3eb599df90a46e98c77",
-      "github_blob": "90074ea05b0f66ccfb47f3124b9daaa3c83e101e",
-      "patched_region": "active Cline CLI/LBE runtime intent + historical HTML correction + UI technology scope correction",
-      "source_evidence": "Exact HEAD lines 440-540 from LoopTool",
-      "remaining_scope": "Complete LBE-INTENT-CLINE-REASONING-AGENT-SELECTION-001 and any final trailing ledger differences.",
-      "next_step": "LoopTool fetch origin/main, inspect remaining hunk headers, then extract HEAD lines 520-610."
+    "governance_reconciliation": {
+      ".lbe/governance/implementation-gates.json": "EXACT_MATCH_PROVEN",
+      "PROJECT_INDEX.md": "EXACT_MATCH_PROVEN",
+      "docs/acceptance/CURRENT_IMPLEMENTATION_GATE.md": "EXACT_MATCH_PROVEN",
+      "docs/governance/PROJECT_INTENT_LEDGER.md": {
+        "github_commit": "e83aeae4f0060f769f627ed55828ef7d4db7c7a5",
+        "github_blob": "4035f5c8c6f6dcd71c56b5101c0aa7adeefa8740",
+        "local_expected_blob_prefix": "4035f5c",
+        "result": "EXACT_GIT_BLOB_MATCH_EXPECTED"
+      }
     },
-    "local_preservation": "No local implementation mutation performed."
+    "local_preservation": "No local implementation mutation performed.",
+    "next_step": "LoopTool fetch origin/main, verify the entire governance-file diff is empty, then inspect tests/test_provider_registry.py exact diff and tests/test_first_party_reasoning_provider.py content for GitHub-only reconciliation."
   }
 }
