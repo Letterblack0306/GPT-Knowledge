@@ -1,5 +1,5 @@
 {
-  "schema_version": 47,
+  "schema_version": 48,
   "project": "LBE Persistent Agent",
   "verified_at": "2026-09-04",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
@@ -302,21 +302,23 @@
     "prohibition": "Do not patch or clean the dirty local canonical workspace for implementation. Local is validation/evidence only unless the user explicitly changes this rule."
   },
   "reconciliation_evidence_recovery": {
-    "classification": "PROVIDER_REGISTRY_TEST_RECONCILED_FIRST_PARTY_TEST_NEXT",
+    "classification": "RECONCILIATION_CONTENT_PUBLISHED_VALIDATION_PENDING",
     "latest_looptool_result": "PASS",
-    "authority": {
-      "local_head": "2d384455a2b5ccaae749afd1f36124930bbc9212",
-      "remote_main_before_patch": "e83aeae4f0060f769f627ed55828ef7d4db7c7a5"
-    },
     "governance_reconciliation": "EXACT_MATCH_PROVEN_FOR_ALL_FOUR_GOVERNANCE_FILES",
     "provider_registry_test": {
       "path": "tests/test_provider_registry.py",
-      "github_commit": "569b7fcb454b14243dbf8e45d4035e28f4dbfb03",
-      "github_blob": "9b12dd4fe29c9c1f685306e11d88596e519ac37a",
-      "local_expected_blob": "9b12dd4fe29c9c1f685306e11d88596e519ac37a",
+      "result": "EXACT_GIT_BLOB_MATCH",
+      "blob": "9b12dd4fe29c9c1f685306e11d88596e519ac37a"
+    },
+    "first_party_reasoning_provider_test": {
+      "path": "tests/test_first_party_reasoning_provider.py",
+      "github_commit": "2d0fa7d3e6b32acd6bda1a9b5e2a875ce182554c",
+      "github_blob": "2db5cbbd1a9eb6c7a7cd290408004648b6226ee1",
+      "local_expected_blob": "2db5cbbd1a9eb6c7a7cd290408004648b6226ee1",
+      "local_sha256": "CD7F859B71464F267C91BED2CBCC9221307C1B1178C292800F2893ABC1F946F8",
       "result": "EXACT_GIT_BLOB_MATCH"
     },
     "local_preservation": "No local implementation mutation performed.",
-    "next_step": "LoopTool fetch origin/main, verify provider registry test exact match, then output tests/test_first_party_reasoning_provider.py in bounded full-file form for GitHub creation."
+    "next_step": "LoopTool fetch origin/main and run the focused reconciliation snapshot test suite against the published GitHub state, plus diff checks and remaining path comparison."
   }
 }
