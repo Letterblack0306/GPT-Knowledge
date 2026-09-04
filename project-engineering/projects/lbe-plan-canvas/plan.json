@@ -1,5 +1,5 @@
 {
-  "schema_version": 29,
+  "schema_version": 30,
   "project": "LBE Persistent Agent",
   "updated": "2026-09-04",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
@@ -7,7 +7,7 @@
   "original_workspace": "C:/Agents-Memory-Tool-v6-integration",
   "later_ui_workspace": "C:/LBE-TUI-Lab",
   "purpose": "Project the final LBE product plan as one persistent provider-neutral governed agent lifecycle. UI, guard packs, Cline mechanics, external integrations and historical clients are subordinate capabilities or projections, not separate product architectures.",
-  "authority_rule": "Before every project decision or next-step instruction, refresh this GPT-K plan/status/handoff first, then inspect current canonical local source/runtime/governance evidence. GPT-K is project context/projection; local current evidence remains implementation truth. Chat-history JSON is memory only.",
+  "authority_rule": "Before every project decision or next-step instruction, recall the final LBE product goal, refresh current GPT-K plan/status/handoff/canonical execution path, then inspect current evidence. GPT-K is a projection; current canonical repository/runtime/governance evidence remains implementation truth.",
   "final_product_goal": "A local persistent LBE agent that can start or resume a workspace/session, reason with a selected provider, discover and request governed capabilities, execute only through LBE authorization and registered adapters, consume ToolReceipts/evidence, replan across turns, deterministically validate completion, persist/recover state, and expose the same lifecycle through whichever existing client surface reaches correct manual acceptance fastest without creating a second authority.",
   "core_invariant": "Agent/provider owns cognition; LBE owns capabilities and consequences.",
   "lifecycle_plan": [
@@ -113,24 +113,30 @@
   "execution_sequence": [
     {
       "order": 1,
-      "id": "refresh-project-truth-before-instruction",
+      "id": "refresh-goal-project-truth-before-action",
       "status": "MANDATORY_EVERY_VISIT",
-      "scope": "Read current GPT-K status/plan/handoff/canonical execution path, notice workspace mirror, then inspect current local evidence."
+      "scope": "Recall the final product goal and ownership boundary; read current GPT-K status/plan/handoff/canonical execution path; notice workspace mirror; then inspect current canonical evidence."
     },
     {
       "order": 2,
+      "id": "reconcile-canonical-main-through-github",
+      "status": "ACTIVE_OPERATIONAL_BLOCKER",
+      "scope": "Publish the already validated reconciliation through GitHub without mutating the dirty local workspace. Then validate the published revision locally."
+    },
+    {
+      "order": 3,
       "id": "complete-live-writable-approval-flow",
       "status": "ACTIVE",
       "scope": "Use the existing LBE authorization, patch review, GovernedToolOrchestrator, ToolReceipt/evidence and Cline continuation owners for one bounded live mutation through the Rust client."
     },
     {
-      "order": 3,
+      "order": 4,
       "id": "mcp-ordering",
       "status": "LATER",
       "scope": "Prove canonical persisted MCP lifecycle ordering."
     },
     {
-      "order": 4,
+      "order": 5,
       "id": "installed-pty-resume-acceptance",
       "status": "LATER",
       "scope": "Complete installed PTY/ConPTY and restart/resume acceptance."
@@ -164,5 +170,11 @@
     "url": "https://drive.google.com/drive/folders/1T8Hv-MUhdK34V9xM9gPRq9M1UvMF1HsI?usp=sharing",
     "role": "Mirror of important project workspaces and sync manifests for cross-checking current workspace files when direct local evidence is unavailable.",
     "sequencing_rule": "At each project visit: refresh GPT-K -> notice workspace mirror -> inspect current canonical evidence -> issue only the next bounded instruction."
+  },
+  "implementation_location_policy": {
+    "classification": "GITHUB_IMPLEMENTATION_LOCAL_VALIDATION_ONLY",
+    "implementation": "Perform implementation, patching, debugging changes, commits, and canonical repository mutation through GitHub main.",
+    "local": "Use C:/Agents-Memory-Tool-v6-integration and LoopTool for bounded tests, runtime/status checks, diffs, inspection, and validation evidence only. Preserve dirty local user work and do not mutate it for implementation.",
+    "completion_rule": "After GitHub changes, validate the exact published/candidate snapshot locally before marking a slice complete."
   }
 }
