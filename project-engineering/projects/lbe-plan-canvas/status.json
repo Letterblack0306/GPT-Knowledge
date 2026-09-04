@@ -1,12 +1,12 @@
 {
-  "schema_version": 65,
+  "schema_version": 66,
   "project": "LBE Persistent Agent",
   "verified_at": "2026-09-04",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "source_branch": "main",
   "original_workspace": "C:/Agents-Memory-Tool-v6-integration",
   "later_ui_workspace": "C:/LBE-TUI-Lab",
-  "overall_classification": "WRITABLE_APPROVAL_BRIDGE_IMPLEMENTED_PENDING_CLAIM_MATCHED_VALIDATION",
+  "overall_classification": "STRUCTURAL_INTEGRATION_PASS_PORTABLE_INSTALLER_IMPLEMENTED_LIVE_ACCEPTANCE_OPEN",
   "authority_note": "GPT-Knowledge is a projection only. Current canonical source/configuration, current local validation/runtime evidence, machine governance, active intent and acceptance records outrank this file.",
   "final_product": {
     "definition": "Persistent provider-neutral LBE agent product in which the agent/provider owns reasoning, investigation strategy, capability selection, interpretation and replanning, while LBE owns workspace/session identity, policy, authorization, governed execution, ToolReceipts/evidence, persistence, recovery, deterministic validation and completion truth.",
@@ -503,5 +503,61 @@
       "manifest_present": false,
       "candidate_zip_present": false
     }
+  },
+  "latest_cross_source_reconciliation": {
+    "classification": "CURRENT_SUPERSEDING_RECONCILIATION",
+    "recorded_at": "2026-09-04",
+    "checkpoint": "project-engineering/projects/lbe-plan-canvas/REPO_DRIVE_FINAL_PRODUCT_RECONCILIATION_2026-09-04.md",
+    "canonical_remote_heads": {
+      "agent_wall_main": "9ed8940ff6cb8954f968550636dea3ced090a8d0",
+      "rust_main": "1605f54b744237d6c00b3ed6b5692cbcbc3fca55"
+    },
+    "gpt_k_pre_update_head": "362eaf07c816af748d0db5c1ac91836f2d250278",
+    "latest_local_rust_observation": {
+      "head": "9c4647bbf27ad17150c7719ae7e6fdd4f605e917",
+      "ahead": 2,
+      "behind": 15,
+      "working_tree": "DIRTY_PRESERVED",
+      "birdeye_workspace_resolution": "FAILED_UNKNOWN_WORKSPACE_ROOT",
+      "direct_git_inspection": "SUCCEEDED"
+    },
+    "google_drive_mirror": {
+      "classification": "ACTUAL_SYNCHRONIZED_LOCAL_WORKSPACE_MIRROR",
+      "topology": "C:/ workspaces -> D:/GPT_Local mirror -> Google Drive project mirror",
+      "agent_wall_manifest_updated_at": "2026-09-04T10:14:30.029Z",
+      "rust_manifest_updated_at": "2026-09-03T21:50:00.859Z",
+      "rust_mirror_status": "STALE_RELATIVE_TO_LATER_GITHUB_AND_LOCAL_EVIDENCE"
+    },
+    "portable_installer": {
+      "classification": "IMPLEMENTED",
+      "commit": "9ed8940ff6cb8954f968550636dea3ced090a8d0",
+      "generated_configuration": [
+        "config/runtime.json",
+        "config/capability-registry.json",
+        "config/mcp.json"
+      ],
+      "launch_behavior": "lbe-launch.ps1 consumes installed MCP configuration and exports LBE_BIRDEYE_MCP_PYTHON/LBE_BIRDEYE_MCP_SERVER when configured."
+    },
+    "final_product": {
+      "product": "LetterBlack LBE persistent governed agent",
+      "client": "Rust/Ratatui LBE client",
+      "runtime_authority": "LBE_Presistent_Agent_wall",
+      "cline_role": "Reasoning/continuation mechanics and behavioral reference behind LBE authority; no branding or second authority.",
+      "birdeye_role": "Governed MCP/index/workspace evidence capability behind LBE ToolRegistry/authorization.",
+      "html_role": "Reference/design only.",
+      "textual_role": "Retired as final product UI."
+    },
+    "current_first_missing_seam": "INSTALLED_LIVE_WRITABLE_APPROVAL_MUTATION",
+    "remaining_release_acceptance": [
+      "live approval -> workspace.patch",
+      "DENY zero execution and ALLOW exactly-once execution",
+      "ToolReceipt/evidence identity correlation through continuation",
+      "installed MCP invocation and persisted event ordering",
+      "installed PTY/ConPTY",
+      "restart/resume",
+      "fresh complete installed end-to-end product run"
+    ],
+    "release_ready": false,
+    "supersession_rule": "This block supersedes older current-head/current-blocker fields when they conflict. Historical checkpoints remain useful as history but must not be treated as current heads."
   }
 }
