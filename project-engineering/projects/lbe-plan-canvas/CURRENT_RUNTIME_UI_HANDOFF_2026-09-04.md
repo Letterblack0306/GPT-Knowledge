@@ -504,3 +504,48 @@ Release readiness remains **NO**.
 
 Canonical reconciliation checkpoint:
 `project-engineering/projects/lbe-plan-canvas/REPO_DRIVE_FINAL_PRODUCT_RECONCILIATION_2026-09-04.md`
+
+
+## 2026-09-04 — Corrected product-surface ownership: Cline active, Rust reference
+
+This correction supersedes earlier statements in this handoff that described Rust/Ratatui as the selected current user-facing client.
+
+Verified from the synchronized local workspace mirror and Agent Wall current status:
+
+```text
+ACTUAL USER-FACING CLI/TUI
+C:\LBE-TUI-Lab\cline\apps\cli
+entry: C:\LBE-TUI-Lab\cline\apps\cli\src\index.ts
+
+INTEGRATED LAUNCHER
+C:\LBE-TUI-Lab\run-cline-lbe.ps1
+
+CANONICAL RUNTIME AUTHORITY
+C:\Agents-Memory-Tool-v6-integration
+
+RUST REFERENCE / INTEGRATION CLIENT
+C:\LBE-TUI-Lab\src\main.rs
+binary: lbe
+launcher: C:\LBE-TUI-Lab\run-lbe.bat
+```
+
+The synchronized local `Agent.md` now explicitly states that the accepted user-facing CLI is the embedded Cline CLI and that the Rust binary is a separate client/reference implementation. The synchronized `Docs/00_integration_alignment.md` repeats the same distinction and requires future user-flow, keyboard, MCP, Skills, provider, and installed CLI acceptance to begin from the Cline path.
+
+Agent Wall `docs/CURRENT_STATUS.md` independently records:
+
+```text
+FINAL INTERFACE TECHNOLOGY = Cline CLI/SDK
+LBE RUNTIME AUTHORITY      = unchanged
+```
+
+Therefore:
+
+```text
+Cline CLI/TUI = accepted user-facing product surface
+Rust/Ratatui  = reference/integration client
+LBE runtime   = sole authority
+```
+
+`C:\LBE-TUI-Lab\Docs\status.json` remains a stale machine-readable module map because it still classifies Rust/Ratatui as the active interface. Do not use that stale interface classification for future implementation planning until the machine map is reconciled.
+
+The current release acceptance sequence remains open; however, future installed CLI/PTY/MCP/session UX acceptance must target the Cline path, not substitute Rust-client proof for Cline product-surface proof.
