@@ -1,5 +1,5 @@
 {
-  "schema_version": 63,
+  "schema_version": 64,
   "project": "LBE Persistent Agent",
   "verified_at": "2026-09-04",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
@@ -446,7 +446,7 @@
     "parser_fix": "Changed ambiguous PowerShell interpolation from $Root: to ${Root}: in tools/lbe_product_integration.ps1.",
     "worktree_gate": "RESOLVED_BY_LOCAL_VERIFICATION; obsolete extra worktree had clean tree, zero unique commits, branch tip ancestor of main, then registration removed.",
     "parse_inspection": "Published file now contains no remaining ambiguous $name: interpolation except valid scoped $env: usage.",
-    "next_step": "Run canonical package mode for the proven source pair. Do not classify release-ready from package creation alone.",
+    "next_step": "Run canonical package mode against the proven source pair. Do not classify release-ready until installed writable and PTY/ConPTY acceptance are separately proven.",
     "readonly_contract_fix_commit": "91b9b98b64e53b1606630bf3cfe0f632d63f1f7c",
     "readonly_contract_fix": "Verifier now proves Agent Wall read-only runtime presence from workspace_read/list/glob/search spec registrations and proves client routing from the four exact Rust tool IDs, replacing the false literal-only product_entry check.",
     "prior_check_result": {
@@ -460,7 +460,7 @@
       "agent_wall_origin_main": "91b9b98b64e53b1606630bf3cfe0f632d63f1f7c",
       "rust_tui_origin_main": "1605f54b744237d6c00b3ed6b5692cbcbc3fca55"
     },
-    "structural_integration": "PROVEN_PASS",
+    "structural_integration": true,
     "proof_pass": "PROVEN_PASS",
     "proof_results": {
       "agent.focused_tests": {
@@ -478,6 +478,20 @@
     },
     "retained_manifest": "C:\\Users\\prave\\AppData\\Local\\Temp\\lbe-product-proof-output-1619b6a9d7534949b95266c158b083ea\\integration-manifest.json",
     "release_ready": false,
-    "remaining_release_blocker": "Installed PTY/ConPTY acceptance remains unproven."
+    "remaining_release_blocker": "Installed PTY/ConPTY acceptance remains unproven.",
+    "proven_pair": {
+      "agent_wall_origin_main": "91b9b98b64e53b1606630bf3cfe0f632d63f1f7c",
+      "rust_tui_origin_main": "1605f54b744237d6c00b3ed6b5692cbcbc3fca55"
+    },
+    "canonical_check": "PASS",
+    "canonical_prove": "PASS",
+    "proof_summary": {
+      "agent_focused_tests": "PASS (58 passed)",
+      "rust_cargo_test": "PASS (204 passed)",
+      "rust_cargo_fmt": "PASS"
+    },
+    "package_status": "PENDING",
+    "live_patch_acceptance": "UNPROVEN",
+    "installed_pty_conpty_acceptance": "UNPROVEN"
   }
 }
