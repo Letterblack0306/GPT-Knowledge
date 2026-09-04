@@ -1,5 +1,5 @@
 {
-  "schema_version": 42,
+  "schema_version": 43,
   "project": "LBE Persistent Agent",
   "verified_at": "2026-09-04",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
@@ -302,21 +302,22 @@
     "prohibition": "Do not patch or clean the dirty local canonical workspace for implementation. Local is validation/evidence only unless the user explicitly changes this rule."
   },
   "reconciliation_evidence_recovery": {
-    "classification": "INTENT_LEDGER_RECOVERY_IN_PROGRESS_CURRENT_GATE_EXACT_MATCH_PROVEN",
+    "classification": "INTENT_LEDGER_FIRST_REGION_PATCHED_ON_GITHUB",
     "latest_looptool_result": "PASS",
     "authority": {
       "local_head": "2d384455a2b5ccaae749afd1f36124930bbc9212",
-      "remote_main": "7794d38b4c34f90be390733b2bd623ac644671ca"
+      "remote_main_before_patch": "7794d38b4c34f90be390733b2bd623ac644671ca"
     },
     "current_implementation_gate": {
-      "path": "docs/acceptance/CURRENT_IMPLEMENTATION_GATE.md",
       "validation": "published-vs-local diff empty",
       "result": "EXACT_MATCH_PROVEN"
     },
     "project_intent_ledger": {
-      "path": "docs/governance/PROJECT_INTENT_LEDGER.md",
-      "diff_hunks": [
-        "-8,0 +9,50",
+      "github_commit": "11e4ce1622fc3a037875d161822c698a438f26e3",
+      "github_blob": "8b6394a042009e0735781829b82b1bb085442ff2",
+      "patched_region": "first inserted reconciliation/profile-guard-catalog block near lines 9-58",
+      "source_evidence": "Exact HEAD lines 1-70 from LoopTool",
+      "remaining_hunks": [
         "-335 +385",
         "-339,2 +389,2",
         "-352,4 +402,4",
@@ -326,8 +327,7 @@
         "-393 +485",
         "-400,2 +492,56"
       ],
-      "result": "FULL_DIFF_TRUNCATED",
-      "next_step": "Recover exact changed regions from HEAD in bounded line slices and apply each through GitHub only."
+      "next_step": "LoopTool fetch origin/main, verify the first ledger region no longer differs, then extract bounded HEAD lines around the remaining hunk cluster near local lines 370-520."
     },
     "local_preservation": "No local implementation mutation performed."
   }
