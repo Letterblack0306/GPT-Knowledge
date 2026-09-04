@@ -196,3 +196,34 @@ RELEASE_READY                      = NO
 ```
 
 Do not reopen provider architecture, UI framework choice, read-only tools, or settled authority ownership merely for reassurance. Continue from the first missing live seam.
+
+
+## Superseding interface-role reconciliation
+
+The earlier checkpoint statement that Rust/Ratatui is the selected user-facing client is superseded.
+
+Current evidence establishes:
+
+```text
+Cline CLI/TUI
+C:\LBE-TUI-Lab\cline\apps\cli
+= accepted user-facing interface
+
+run-cline-lbe.ps1
+= integrated Cline + LBE launcher
+
+C:\Agents-Memory-Tool-v6-integration
+= canonical LBE runtime/governance authority
+
+C:\LBE-TUI-Lab\src\main.rs
+= Rust/Ratatui reference/integration client
+
+C:\LBE-TUI-Lab\run-lbe.bat
+= Rust reference launcher
+```
+
+The synchronized local `Agent.md` and `Docs/00_integration_alignment.md` both record this corrected role split. Agent Wall `docs/CURRENT_STATUS.md` also records Cline CLI/SDK as final interface technology.
+
+`C:\LBE-TUI-Lab\Docs\status.json` remains stale because it still promotes Rust/Ratatui as the active interface. Until reconciled, it is not authoritative for interface planning.
+
+Future user-facing acceptance must use the Cline path. Rust tests and Rust runtime evidence remain useful only for the bounded reference/integration claims they actually prove.
