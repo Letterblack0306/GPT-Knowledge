@@ -1,5 +1,5 @@
 {
-  "schema_version": 35,
+  "schema_version": 36,
   "project": "LBE Persistent Agent",
   "verified_at": "2026-09-04",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
@@ -300,5 +300,16 @@
       "update GPT-K again with proven result, blocker, and next seam"
     ],
     "prohibition": "Do not patch or clean the dirty local canonical workspace for implementation. Local is validation/evidence only unless the user explicitly changes this rule."
+  },
+  "reconciliation_evidence_recovery": {
+    "classification": "IN_PROGRESS_READ_ONLY_LOCAL_EXTRACTION",
+    "latest_result": "PASS",
+    "authority": {
+      "local_head": "2d384455a2b5ccaae749afd1f36124930bbc9212",
+      "remote_main": "8765ef766dc6465cf8e7c3f361e3f5854aa4cfd1"
+    },
+    "implementation_gates_sha256": "EBC84F7DBB94EB6EFC68E80088E75D204045C388AEF979FCA2DA66FDB2E2495B",
+    "note": "Full implementation-gates file output was truncated by LoopTool. Do not reconstruct from truncated prose. Recover the exact per-file diff in bounded commands, then apply the equivalent repository mutation through GitHub only.",
+    "next_step": "Read exact origin/main..HEAD diff for .lbe/governance/implementation-gates.json only."
   }
 }
