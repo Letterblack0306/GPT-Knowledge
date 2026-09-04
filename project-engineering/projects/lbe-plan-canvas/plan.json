@@ -1,5 +1,5 @@
 {
-  "schema_version": 31,
+  "schema_version": 32,
   "project": "LBE Persistent Agent",
   "updated": "2026-09-04",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
@@ -62,7 +62,7 @@
     "memory": "Historical/context/validated memory supports reasoning and persistence but does not override current workspace/runtime truth."
   },
   "product_surface_plan": {
-    "final_target": "UI implementation is delivery-flexible; current selected executable client is the existing Rust/Ratatui LetterBlack TUI because it is the most complete working client and is already attached to canonical LBE. HTML and copied Cline/OpenTUI remain visual/mechanics references, not mandatory product frameworks.",
+    "final_target": "One LetterBlack LBE product: Rust/Ratatui is the selected current user-facing client; LBE_Presistent_Agent_wall is the sole canonical runtime/governance authority. Cline is mechanics/reasoning reference behind LBE authority; BirdEye is a governed MCP/index capability; HTML is reference-only; Python/Textual is retired as final product UI.",
     "selected_current_client": "C:/LBE-TUI-Lab Rust/Ratatui client",
     "selection_basis": "Reuse the most complete existing surface and do not let UI framework choice block runtime/product completion.",
     "reference_surfaces": [
@@ -71,7 +71,7 @@
       "unused-in-repo/cline-cli-reference-copy-2026-08-27/"
     ],
     "projection_rule": "Conversation surfaces project agent/provider reasoning; workspace/evidence/execution/receipt/validation/history surfaces project LBE-owned truth. The client must not own session persistence, authorization, execution, receipts/evidence, or completion truth.",
-    "current_truth": "Rust main/client baseline remains accepted. Provider/Cline continuation through the canonical LBE path is now proven complete with turn turn-f8ca04021d034ba883dda3b29695af05 ending in persisted model.message.completed then model.turn.completed and a Rust-visible completed result. The next missing canonical seam is live approval-gated writable mutation.",
+    "current_truth": "Canonical GitHub heads are Agent Wall 9ed8940ff6cb8954f968550636dea3ced090a8d0 and Rust client 1605f54b744237d6c00b3ed6b5692cbcbc3fca55. Portable installer/configuration is implemented. Structural integration remains accepted; release readiness is still blocked by installed writable approval/mutation, exactly-once correlation, MCP ordering, PTY/ConPTY, restart/resume, and final installed acceptance.",
     "historical_surfaces": "Python/Textual was removed. HTML cockpit remains a visual/product reference. Copied Cline/OpenTUI remains mechanics/reference only. None may create a competing runtime authority."
   },
   "current_active_slice": {
@@ -166,10 +166,14 @@
     "sequencing_rule": "Use the canonical agent-to-LBE execution path as the default implementation and acceptance order. Do not jump around settled layers; identify the first missing seam and continue downward."
   },
   "workspace_mirror": {
-    "status": "RECORDED_SUPPLEMENTARY_SOURCE",
+    "status": "SYNCHRONIZED_LOCAL_WORKSPACE_MIRROR",
     "url": "https://drive.google.com/drive/folders/1T8Hv-MUhdK34V9xM9gPRq9M1UvMF1HsI?usp=sharing",
-    "role": "Mirror of important project workspaces and sync manifests for cross-checking current workspace files when direct local evidence is unavailable.",
-    "sequencing_rule": "At each project visit: refresh GPT-K -> notice workspace mirror -> inspect current canonical evidence -> issue only the next bounded instruction."
+    "role": "Mirror of C:/Agents-Memory-Tool-v6-integration and C:/LBE-TUI-Lab via D:/GPT_Local with sync manifests. Use for supplementary local-workspace inspection when direct local evidence is unavailable.",
+    "freshness": {
+      "agent_wall": "2026-09-04T10:14:30.029Z",
+      "rust_client": "2026-09-03T21:50:00.859Z"
+    },
+    "authority": "GitHub is canonical for published source identity. Current local/runtime/governance evidence is canonical for live acceptance. Drive mirror is supplementary and may contain unpublished local state. GPT-K is projection."
   },
   "implementation_location_policy": {
     "classification": "GITHUB_IMPLEMENTATION_LOCAL_VALIDATION_ONLY",
@@ -191,5 +195,62 @@
       "GPT-K status/plan/handoff update"
     ],
     "scope_rule": "Work only on the first missing canonical seam. Do not reopen settled architecture or expand unrelated scope."
+  },
+  "current_cross_source_truth": {
+    "classification": "PROVEN_CROSS_SOURCE_RECONCILIATION",
+    "recorded_at": "2026-09-04",
+    "canonical_remote_heads": {
+      "agent_wall": {
+        "repository": "Letterblack0306/LBE_Presistent_Agent_wall",
+        "branch": "main",
+        "head": "9ed8940ff6cb8954f968550636dea3ced090a8d0",
+        "latest_change": "Portable environment-aware product installer"
+      },
+      "rust_client": {
+        "repository": "Letterblack0306/LBE_Agents_wall_Intigration",
+        "branch": "main",
+        "head": "1605f54b744237d6c00b3ed6b5692cbcbc3fca55",
+        "latest_change": "Published Rust approval bridge source baseline"
+      }
+    },
+    "latest_local_observation": {
+      "rust_workspace": "C:/LBE-TUI-Lab",
+      "head": "9c4647bbf27ad17150c7719ae7e6fdd4f605e917",
+      "relation_to_origin_main": "ahead 2, behind 15",
+      "working_tree": "DIRTY_PRESERVED",
+      "evidence_role": "Observed agent execution log; local state is not canonical remote publication truth."
+    },
+    "google_drive_mirror": {
+      "url": "https://drive.google.com/drive/folders/1T8Hv-MUhdK34V9xM9gPRq9M1UvMF1HsI?usp=sharing",
+      "role": "Synchronized mirror of local workspaces through D:/GPT_Local plus per-workspace sync manifests; not merely planning/reference storage.",
+      "agent_wall_manifest_updated_at": "2026-09-04T10:14:30.029Z",
+      "rust_manifest_updated_at": "2026-09-03T21:50:00.859Z",
+      "agent_wall_classification": "RECENT_SUPPLEMENTARY_LOCAL_WORKSPACE_SNAPSHOT",
+      "rust_classification": "STALE_RELATIVE_TO_LATER_GITHUB_AND_LOCAL_EVIDENCE",
+      "authority_rule": "For published source identity GitHub wins. For unpublished local state, a newer mirror may be informative but must remain LOCAL/UNPUBLISHED and cannot be promoted to canonical remote truth."
+    },
+    "portable_installer": {
+      "status": "IMPLEMENTED_ON_AGENT_WALL_MAIN",
+      "commit": "9ed8940ff6cb8954f968550636dea3ced090a8d0",
+      "owner": "tools/lbe_product_integration.ps1",
+      "installed_configuration": [
+        "config/runtime.json",
+        "config/capability-registry.json",
+        "config/mcp.json"
+      ],
+      "behavior": "Installed launcher resolves BirdEye MCP server/python from generated configuration or environment and keeps environment-specific paths outside the portable product contract.",
+      "product_rule": "Portable installed configuration is part of final-product delivery; developer-machine fallback paths are not canonical product identity."
+    },
+    "first_missing_seam": "INSTALLED_LIVE_WRITABLE_APPROVAL_MUTATION",
+    "remaining_acceptance_order": [
+      "INSTALLED_LIVE_WRITABLE_APPROVAL_MUTATION",
+      "EXACTLY_ONCE_MUTATION_AND_RECEIPT_EVIDENCE_CORRELATION",
+      "MCP_INSTALLED_LIFECYCLE_ORDERING",
+      "PTY_CONPTY_INTERACTION",
+      "RESTART_RESUME",
+      "FINAL_INSTALLED_END_TO_END"
+    ],
+    "release_ready": false,
+    "checkpoint": "project-engineering/projects/lbe-plan-canvas/REPO_DRIVE_FINAL_PRODUCT_RECONCILIATION_2026-09-04.md"
   }
 }
