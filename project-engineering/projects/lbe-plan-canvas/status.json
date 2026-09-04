@@ -1,5 +1,5 @@
 {
-  "schema_version": 40,
+  "schema_version": 41,
   "project": "LBE Persistent Agent",
   "verified_at": "2026-09-04",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
@@ -302,24 +302,22 @@
     "prohibition": "Do not patch or clean the dirty local canonical workspace for implementation. Local is validation/evidence only unless the user explicitly changes this rule."
   },
   "reconciliation_evidence_recovery": {
-    "classification": "THIRD_GOVERNANCE_FILE_PATCHED_ON_GITHUB_VALIDATION_PENDING",
+    "classification": "THIRD_GOVERNANCE_FILE_EXACTLY_RECONCILED_ON_GITHUB",
     "github_file": "docs/acceptance/CURRENT_IMPLEMENTATION_GATE.md",
-    "github_commit": "ff5c330e5a070d6a92fcb1500a948bb369b52375",
-    "github_blob": "37cb34b276c2daece05efd565b01c0683c6c0dc2",
-    "source_evidence": "Exact origin/main..HEAD diff from LoopTool; diff check PASS",
+    "github_commit": "7794d38b4c34f90be390733b2bd623ac644671ca",
+    "github_blob": "970dc83e386d8467fb9003240a4c66ce6297d584",
+    "evidence": "LoopTool published-vs-local diff exposed one leading-space formatting mismatch only; GitHub patch corrected exact local formatting.",
     "prior_files": [
       {
         "path": ".lbe/governance/implementation-gates.json",
-        "commit": "ae264fbd4a9af78cbaa76d0b400f43e978c246b0",
         "validation": "exact match proven"
       },
       {
         "path": "PROJECT_INDEX.md",
-        "commit": "fcf5b6c8924b17db6947485be232e2be16e75471",
         "validation": "exact match proven"
       }
     ],
     "local_preservation": "No local implementation mutation performed.",
-    "next_step": "LoopTool fetch origin/main, verify CURRENT_IMPLEMENTATION_GATE.md matches local intended state, then extract docs/governance/PROJECT_INTENT_LEDGER.md exact diff."
+    "next_step": "Use LoopTool to verify CURRENT_IMPLEMENTATION_GATE.md now matches local intent, then recover PROJECT_INTENT_LEDGER.md in bounded diff chunks because the full diff exceeds LoopTool output limits."
   }
 }
