@@ -349,3 +349,70 @@ Not published:
 - local provider configuration containing machine-specific endpoint/model state.
 
 The local agent may now fetch and fast-forward to remote main. Preserve unrelated dirty work and stop if Git reports an overwrite/conflict instead of forcing synchronization.
+
+
+## Operating rule — GitHub implementation, local validation only
+
+Effective 2026-09-04:
+
+```text
+GitHub canonical repository
+= implementation
+= patches
+= debugging changes
+= commits/ref updates
+= repository fixes
+
+Local canonical workspace + LoopTool
+= tests
+= runtime checks
+= status
+= diffs/inspection
+= validation evidence
+```
+
+The dirty local canonical workspace must be preserved. Do not use local implementation commands to modify, stage, clean, reset, stash, merge, rebase, or commit project files unless the user explicitly changes this rule.
+
+Before every LBE action, first recall the product goal:
+
+```text
+persistent provider-neutral LBE agent
+agent/provider owns cognition
+LBE owns identity, policy, authorization, governed execution,
+ToolReceipts/evidence, persistence/recovery, validation/completion truth
+client projects/requests only
+```
+
+Then refresh current GPT-K plan/status/handoff/canonical execution path and inspect current evidence. After any material state change, update GPT-K so the project projection remains current.
+
+### Current repository reconciliation checkpoint
+
+The local and remote LBE histories diverged from:
+
+```text
+merge-base = 5c3f24ca709b3b554eb24a75de5f787cb693a263
+local      = 2d384455a2b5ccaae749afd1f36124930bbc9212
+remote     = 8765ef766dc6465cf8e7c3f361e3f5854aa4cfd1
+```
+
+A clean virtual merge was proven:
+
+```text
+tree = 09da06e18e2573dc8bd2f4ec243d5b7344ba72ed
+```
+
+A narrowed candidate was then built to include the provider/runtime publication plus the verified provider tests and normalized guard-catalog line endings:
+
+```text
+candidate tree   = a7c03d262b387d0a9830102b0e98b4c592430fce
+candidate commit = 90106c167da9b4fa4eeb6462a1524cebca5caf5a
+```
+
+Validation of that exact candidate snapshot:
+
+- provider imports: PASS
+- focused provider/runtime/product/bridge suite: 55 passed
+- first-party provider focused local suite: 8 passed
+- whitespace check: PASS
+
+Publication did not occur because the local workspace push hook rejected the object-SHA refspec form. The next operational step is therefore to perform the equivalent reconciliation directly through GitHub, then use the local workspace only to fetch/inspect/test/status the published revision.
