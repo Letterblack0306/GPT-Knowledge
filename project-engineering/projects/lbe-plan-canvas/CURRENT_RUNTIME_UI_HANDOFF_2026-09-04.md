@@ -449,3 +449,58 @@ Local canonical workspaces are evidence/validation surfaces, not implementation 
 - Packaging now generates `lbe-launch.ps1`, which wires the installed Rust client to the installed LBE Python runtime and accepts explicit project/database/provider-config/capability-registry/session/model/mode parameters instead of requiring manual environment setup.
 - Deferred real-runtime scaffolding remains truthfully classified as explicitly unavailable rather than silently counted as connected.
 - This does not replace live installed acceptance. Required sequence remains `check -> prove -> package -> installed writable workspace.patch -> PTY/ConPTY -> restart/resume`.
+
+
+## 2026-09-04 — Repository + Drive + final-product reconciliation
+
+A newer cross-source reconciliation supersedes older current-head/current-blocker statements in this handoff where they conflict.
+
+Canonical GitHub heads now verified:
+
+```text
+Agent Wall main = 9ed8940ff6cb8954f968550636dea3ced090a8d0
+Rust main       = 1605f54b744237d6c00b3ed6b5692cbcbc3fca55
+```
+
+The Agent Wall head implements the portable environment-aware installer. Installed configuration now includes `config/runtime.json`, `config/capability-registry.json`, and `config/mcp.json`; `lbe-launch.ps1` consumes installed MCP configuration rather than making a developer-machine path part of the product contract.
+
+Google Drive is confirmed to be an actual synchronized local-workspace mirror, not merely reference storage:
+
+```text
+C:/ workspaces
+→ D:/GPT_Local mirror
+→ Google Drive project mirror
+```
+
+Observed manifest freshness:
+
+```text
+Agent Wall = 2026-09-04T10:14:30.029Z
+Rust       = 2026-09-03T21:50:00.859Z
+```
+
+The Rust Drive snapshot is stale relative to later GitHub/local evidence. The actual agent log later observed `C:/LBE-TUI-Lab` at `9c4647bbf27ad17150c7719ae7e6fdd4f605e917`, ahead 2 / behind 15, dirty and preserved. BirdEye failed to resolve that workspace root, while direct Git inspection succeeded; this is a BirdEye configuration/resolution failure, not evidence that the workspace is absent.
+
+Final product remains one LBE product:
+
+```text
+Rust/Ratatui = user-facing request/projection client
+LBE Agent Wall = sole runtime/governance authority
+Cline = reasoning/continuation mechanics + behavioral reference
+BirdEye = governed MCP/index capability
+HTML = reference only
+Python/Textual = retired final-product direction
+```
+
+First remaining live seam:
+
+```text
+INSTALLED_LIVE_WRITABLE_APPROVAL_MUTATION
+```
+
+Then prove exactly-once mutation/receipt correlation, MCP lifecycle ordering, PTY/ConPTY, restart/resume, and one fresh installed end-to-end run.
+
+Release readiness remains **NO**.
+
+Canonical reconciliation checkpoint:
+`project-engineering/projects/lbe-plan-canvas/REPO_DRIVE_FINAL_PRODUCT_RECONCILIATION_2026-09-04.md`
