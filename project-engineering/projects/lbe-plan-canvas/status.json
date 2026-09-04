@@ -1,5 +1,5 @@
 {
-  "schema_version": 33,
+  "schema_version": 34,
   "project": "LBE Persistent Agent",
   "verified_at": "2026-09-04",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
@@ -296,5 +296,20 @@
     ],
     "blocker": "Local push hook rejected an object-SHA refspec even though the target was refs/heads/main. No publication occurred.",
     "next_rule": "Complete reconciliation directly through GitHub repository mutation, then use local/LoopTool only to fetch/inspect/test/status the published state."
+  },
+  "mandatory_execution_protocol": {
+    "classification": "GPTK_GOAL_STATUS_LOOPTOOL_RESULT_REPO_DEBUG_PATCH",
+    "sequence": [
+      "refresh GPT-K status/plan/handoff/canonical execution path",
+      "recall final product goal and ownership boundary",
+      "update current status classification if material evidence changed",
+      "use LoopTool for bounded local inspection/test/runtime/status validation",
+      "consume the returned AGENT RESULT as current evidence",
+      "debug the canonical repository from that evidence",
+      "apply implementation/patches through GitHub only",
+      "re-run bounded local validation with LoopTool against the resulting repository state",
+      "update GPT-K again with proven result, blocker, and next seam"
+    ],
+    "prohibition": "Do not patch or clean the dirty local canonical workspace for implementation. Local is validation/evidence only unless the user explicitly changes this rule."
   }
 }
