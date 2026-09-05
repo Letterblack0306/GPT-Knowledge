@@ -2,7 +2,7 @@
 
 ## Authority and routing
 
-- Reconciled projection: 2026-08-31
+- Reconciled projection: 2026-09-05
 - Runtime/governance repository: `Letterblack0306/LBE_Presistent_Agent_wall`
 - Rust/Ratatui TUI repository: `Letterblack0306/LBE_Agents_wall_Intigration`
 - LBE workspace: `C:\Agents-Memory-Tool-v6-integration`
@@ -22,7 +22,9 @@ The interface projects the result.
 
 LBE remains the established authority for workspace/session identity, mode/policy, authorization, governed execution, operation identity, receipts/evidence, persistence, validation and completion.
 
-The Rust/Ratatui TUI is a separate client/projection repository. It does not recreate LBE runtime or governance authority.
+The active user-facing product is the **LBE CLI/TUI**. Its current implementation mechanics are the bundled Cline CLI under `C:\LBE-TUI-Lab\cline\apps\cli`, while LBE remains the sole runtime/governance authority. Cline owns cognition/provider/model/delegated-agent mechanics only; it must not become a second owner for workspace/session truth, authorization, governed execution, persistence, receipts/evidence, validation, or completion.
+
+The Rust/Ratatui surface in `C:\LBE-TUI-Lab\src` remains a reference/integration client. It does not recreate LBE runtime or governance authority and is not the primary product UI.
 
 ## Truth hierarchy
 
@@ -131,4 +133,116 @@ Read-only mutation denial                 PASS
 Full Python regression                    813 PASS
 Rust regression                           148 PASS
 Complete product-level TUI acceptance     NOT YET PROVEN
+```
+
+
+## Authoritative product verification and packaging workflow
+
+The canonical repository already contains a versioned machine verifier/package harness:
+
+```text
+Letterblack0306/LBE_Presistent_Agent_wall
+tools/lbe_product_integration.ps1
+```
+
+As of backend commit `9853e93fe2697f8538fa50b4bc9a3a4fa1e1386e`, this script remains the single product-integration verifier rather than creating a parallel acceptance harness.
+
+Supported modes:
+
+```text
+check
+prove
+build
+package
+```
+
+Source policy:
+
+```text
+check/prove
+    -> may validate the assembled local worktree
+
+build/package
+    -> forced to origin/main
+    -> cannot package uncommitted local state
+```
+
+The verifier now covers the current product boundary:
+
+```text
+LBE runtime authority
++ LBE CLI/TUI product identity
++ bundled Cline agent/provider/model/delegated-agent mechanics
++ Rust/Ratatui reference-client boundary
+```
+
+Current machine checks include:
+
+- canonical repository/worktree identity;
+- LBE product-entry and governed-tool contracts;
+- ChildAgentRun lifecycle owner reuse;
+- `child_agent create|started|complete|failed|cancel` product seam;
+- focused child lifecycle/product-seam test presence;
+- Cline -> LBE child spawn admission;
+- LBE-governed child proxy-only tool surface;
+- native child-tool bypass checks at the LBE integration seam;
+- recursive-spawn default-deny markers;
+- child started/terminal lifecycle projection;
+- LBE-only visible branding contract;
+- suppression of premature `/team` exposure;
+- Python focused/regression proof;
+- Cline focused tests and TypeScript typecheck;
+- Rust regression/fmt checks;
+- build/package blocking when structural or proof gates fail.
+
+Packaging already emits:
+
+```text
+integration-manifest.json
+checksums.json
+LetterBlack-LBE-2.0.3-win-x64-candidate.zip
+```
+
+The package mode now re-opens the produced archive and verifies every recorded file SHA-256 and byte size against `checksums.json`. Machine evidence is written to:
+
+```text
+package-verification.json
+```
+
+A package-integrity PASS still does not fabricate live installed acceptance. Provider completion, real delegated-child execution, real cancellation, receipt/evidence correlation, parent continuation, and installed interactive behavior remain separate runtime proof requirements.
+
+## Current child-agent integration state
+
+Current local engineering evidence reported on 2026-09-05:
+
+```text
+existing ChildAgentRun lifecycle owner            PROVEN locally
+child_agent product command seam                  PROVEN locally
+Cline -> LBE spawn admission adapter              IMPLEMENTED / locally tested
+LBE-governed child tool surface                   LOCALLY TESTED
+native Cline child tools disabled in seam         LOCALLY TESTED
+recursive spawn default denial                    LOCALLY TESTED
+canonical LBE child identity chain                LOCALLY TESTED
+real running-child cancellation                   UNVERIFIED
+child ToolReceipt/evidence end-to-end             NOT PROVEN
+parent continuation from persisted child result   NOT PROVEN
+installed live child spawn                        NOT PROVEN
+full subagent feature                             NOT APPROVED
+```
+
+Important repository-state qualifier: the verifier update above is on canonical GitHub `main`, but the newest child-agent backend/client implementation was developed in dirty/diverged local workspaces and must not be represented as published canonical source until reconciled and committed through the repository workflow.
+
+## Verification invariant
+
+```text
+focused test PASS
+    != full product PASS
+
+package hash PASS
+    != installed runtime PASS
+
+installed live proof
+    + required receipts/evidence
+    + completion/cancellation truth
+    = only then eligible for product acceptance
 ```
