@@ -1,12 +1,12 @@
 {
-  "schema_version": 67,
+  "schema_version": 68,
   "project": "LBE Persistent Agent",
-  "verified_at": "2026-09-04",
+  "verified_at": "2026-09-06",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "source_branch": "main",
   "original_workspace": "C:/Agents-Memory-Tool-v6-integration",
   "later_ui_workspace": "C:/LBE-TUI-Lab",
-  "overall_classification": "CLINE_USER_SURFACE_CORRECTED_RUST_REFERENCE_MACHINE_MAP_STALE_LIVE_ACCEPTANCE_OPEN",
+  "overall_classification": "PARENT_CONTINUATION_DEEP_CORRELATION_GATE_OPEN_FOCUSED_ADAPTER_VALIDATION_FAIL",
   "authority_note": "GPT-Knowledge is a projection only. Current canonical source/configuration, current local validation/runtime evidence, machine governance, active intent and acceptance records outrank this file.",
   "final_product": {
     "definition": "Persistent provider-neutral LBE agent product in which the agent/provider owns reasoning, investigation strategy, capability selection, interpretation and replanning, while LBE owns workspace/session identity, policy, authorization, governed execution, ToolReceipts/evidence, persistence, recovery, deterministic validation and completion truth.",
@@ -22,10 +22,10 @@
     "interface_rule": "Accepted user-facing interface = embedded Cline CLI/TUI under C:/LBE-TUI-Lab/cline/apps/cli launched by run-cline-lbe.ps1. Rust/Ratatui is a separate prototype/reference/integration client. Both remain subordinate to LBE runtime authority."
   },
   "current_machine_state": {
-    "classification": "RUST_MAIN_ALIGNED_DIRTY_WORK_PRESERVED_GATE_OPEN",
-    "active_phase": "P2_P3_GOVERNED_EXECUTION",
-    "active_slice": "TUI_P2_P3_GOVERNED_EXECUTION_INTEGRATION",
-    "status": "OPEN",
+    "classification": "FOCUSED_ADAPTER_VALIDATION_FAIL_REMAIN_ON_SLICE",
+    "active_phase": "PARENT_CONTINUATION_AND_DEEP_CORRELATION",
+    "active_slice": "FOCUSED_ADAPTER_VALIDATION",
+    "status": "FAIL",
     "implementation_allowed": true,
     "rust_checkout": {
       "workspace": "C:/LBE-TUI-Lab",
@@ -42,7 +42,13 @@
       "cargo_fmt_check": "PASS",
       "git_diff_check": "PASS"
     },
-    "dirty_work_rule": "Tracked and untracked user work is intentionally preserved. Do not clean, stage, delete, commit or push unrelated material to force the gate closed."
+    "dirty_work_rule": "Tracked and untracked user work is intentionally preserved. Do not clean, stage, delete, commit or push unrelated material to force the gate closed.",
+    "gate_id": "PARENT_CONTINUATION_AND_DEEP_CORRELATION_ACCEPTANCE",
+    "failure_summary": "12/15 focused adapter tests pass; 3 fail in delegated failure -> child_agent.failed mapping through LBE.",
+    "failure_classification": "ADAPTER_LOGIC_FAILURE_MAPPING_REMEDIATION_REQUIRED",
+    "adapter_logic_regression": "NOT BROADLY DEMONSTRATED; three claim-matched failure-mapping cases remain failing",
+    "advance_allowed": false,
+    "required_status_for_advance": "PASS"
   },
   "runtime_authority": {
     "status": "ESTABLISHED_GOVERNED",
@@ -113,21 +119,33 @@
   "next_required_sequence": [
     {
       "order": 1,
-      "id": "writable-approval-patch-review",
-      "status": "ACTIVE",
-      "scope": "Follow the canonical path at the first missing seam: agent proposes one bounded writable change -> LBE authority resolves approval -> Rust shows patch review -> approval decision -> exactly-once governed mutation -> ToolReceipt/evidence -> provider/Cline continuation -> persisted completion -> Rust projection."
+      "id": "focused-adapter-validation-remediation",
+      "status": "ACTIVE_FAIL",
+      "scope": "Repair only the three delegated failure -> child_agent.failed through LBE cases, then rerun bunx vitest run src/runtime/lbe-tool-adapter.test.ts and require 15/15."
     },
     {
       "order": 2,
-      "id": "mcp-event-ordering",
-      "status": "LATER",
-      "scope": "After writable mutation is complete, prove persisted MCP lifecycle ordering through canonical LBE."
+      "id": "live-parent-child-parent-proof",
+      "status": "LOCKED_PENDING_15_OF_15",
+      "scope": "Capture provider_tool_call_id -> lbe_call_id -> child_run_id -> runtime_operation_id -> tool_receipt_id -> persisted ChildAgentRun result -> parent continuation -> parent completion."
     },
     {
       "order": 3,
-      "id": "installed-pty-resume-acceptance",
+      "id": "live-cancellation-terminality-proof",
+      "status": "PENDING",
+      "scope": "For the same child_run_id prove CANCELLED, no later COMPLETED, and no successful parent continuation from the cancelled run."
+    },
+    {
+      "order": 4,
+      "id": "canonical-verifier-proof",
+      "status": "PENDING",
+      "scope": "Run existing tools/lbe_product_integration.ps1 in prove mode; repair only the existing harness if harness capture itself blocks proof."
+    },
+    {
+      "order": 5,
+      "id": "installed-pty-final-product-acceptance",
       "status": "LATER",
-      "scope": "Finish installed PTY/ConPTY interaction and restart/resume final product acceptance."
+      "scope": "Only after the parent-continuation/deep-correlation gate closes."
     }
   ],
   "status_rule": "Before every next instruction refresh GPT-K and current local evidence. Do not rerun accepted baseline tests or read-only proofs merely for reassurance. Drive the open gate by completing the first remaining live composition behavior.",
@@ -138,8 +156,8 @@
     "preservation_rule": "Preserve current dirty/unpublished Rust work and do not use Rust acceptance as proof of Cline CLI user experience."
   },
   "current_blocker": {
-    "classification": "IMPLEMENTED_PENDING_VALIDATION",
-    "meaning": "The product-entry approval-to-writable-operation bridge and Rust exact-operation replay path are now implemented on canonical GitHub main. Claim-matched backend/Rust/local live validation is still required before marking LIVE_APPROVED_WORKSPACE_PATCH or cross-process exactly-once mutation PROVEN."
+    "classification": "FOCUSED_ADAPTER_VALIDATION_FAIL",
+    "meaning": "Three focused adapter cases fail because delegated failure is not yet mapped correctly to child_agent.failed through LBE. Live parent->child->parent proof remains locked until 15/15."
   },
   "project_visit_protocol": {
     "classification": "MANDATORY_PROJECT_CONTEXT_REFRESH",
@@ -162,14 +180,12 @@
     "remaining_note": "The service is available. Provider availability itself is no longer the project blocker. If the current LBE provider transport expects a different route, treat that only as a local transport/config seam within the larger Cline-backed LBE composition task; do not reopen provider architecture."
   },
   "remaining_unproven": [
-    "claim-matched backend approval bridge tests at current main",
-    "Rust cargo test/check/fmt at current main",
-    "installed live Rust/LBE writable mutation",
-    "live approval and patch-review flow",
-    "cross-process exactly-once mutation",
-    "persisted MCP event ordering",
+    "focused adapter suite 15/15",
+    "live parent->child->parent persisted-result continuation",
+    "live cancellation terminality negative proof",
+    "canonical verifier prove-mode PASS",
     "installed interactive PTY/ConPTY acceptance",
-    "full restart/resume product acceptance"
+    "final installed product acceptance"
   ],
   "canonical_execution_path": {
     "classification": "PATH_TO_FOLLOW",
@@ -572,5 +588,31 @@
       "Cline event/session projection",
       "user-visible terminal output"
     ]
+  },
+  "machine_driven_continuation": {
+    "classification": "MANDATORY",
+    "rule": "The machine plan is the execution plan. Agents do not ask which predeclared next step to execute.",
+    "transitions": {
+      "PENDING": "CONTINUE_ACTIVE_SLICE",
+      "IMPLEMENTED": "RUN_DECLARED_VALIDATION",
+      "UNVERIFIED": "CONTINUE_REQUIRED_PROOF_IF_RUNNABLE",
+      "PASS": "ADVANCE_TO_DECLARED_NEXT_SLICE",
+      "FAIL": "REMAIN_AND_EXPOSE_FAILED_CRITERIA",
+      "BLOCKED": "REMAIN_AND_EXPOSE_EXACT_BLOCKER"
+    },
+    "current_effect": "FOCUSED_ADAPTER_VALIDATION is FAIL, therefore remain on this slice and remediate the three failed cases; do not activate live proof."
+  },
+  "current_correlation_contract": {
+    "chain": [
+      "provider_tool_call_id",
+      "lbe_call_id",
+      "child_run_id",
+      "runtime_operation_id",
+      "tool_receipt_id",
+      "persisted_child_result",
+      "parent_continuation",
+      "parent_completion"
+    ],
+    "rule": "Identifiers must be explicit and stable for one delegated operation; do not reconstruct links from ordering, timestamps, text matching, or nearest-event heuristics."
   }
 }
