@@ -549,3 +549,80 @@ LBE runtime   = sole authority
 `C:\LBE-TUI-Lab\Docs\status.json` remains a stale machine-readable module map because it still classifies Rust/Ratatui as the active interface. Do not use that stale interface classification for future implementation planning until the machine map is reconciled.
 
 The current release acceptance sequence remains open; however, future installed CLI/PTY/MCP/session UX acceptance must target the Cline path, not substitute Rust-client proof for Cline product-surface proof.
+
+
+## 2026-09-06 — Superseding current machine checkpoint: focused adapter validation FAIL
+
+This section supersedes older "current gate", "first remaining seam", and next-step statements in this handoff where they conflict. Historical checkpoints above remain historical evidence only.
+
+```text
+GATE         = PARENT_CONTINUATION_AND_DEEP_CORRELATION_ACCEPTANCE
+PHASE        = PARENT_CONTINUATION_AND_DEEP_CORRELATION
+CURRENT      = FOCUSED_ADAPTER_VALIDATION
+STATUS       = FAIL
+RESULT       = 12/15 passed, 3 failed
+ADVANCE      = NO
+```
+
+Current failed behavior:
+
+```text
+delegated failure
+→ expected child_agent.failed mapping through LBE
+→ 3 focused adapter cases fail
+```
+
+Classification: **ADAPTER_LOGIC_FAILURE_MAPPING_REMEDIATION_REQUIRED**. The earlier env-isolation-only classification is superseded for the current failure. Do not claim broad adapter regression beyond these three claim-matched cases.
+
+Machine continuation is mandatory:
+
+```text
+PENDING      -> continue active declared work
+IMPLEMENTED  -> run declared validation
+UNVERIFIED   -> continue proof if runnable
+PASS         -> advance to declared next slice
+FAIL         -> remain and expose failed criteria
+BLOCKED      -> remain and expose exact blocker
+```
+
+The agent must not ask the user which predeclared next step to execute. Because the current slice is FAIL, the only valid continuation is to repair the three failure-mapping cases and rerun:
+
+```text
+bunx vitest run src/runtime/lbe-tool-adapter.test.ts
+required result = 15/15
+```
+
+Only after 15/15 may the machine activate:
+
+```text
+LIVE_PARENT_CHILD_PARENT_PROOF
+-> LIVE_CANCELLATION_TERMINALITY_PROOF
+-> CANONICAL_VERIFIER_PROOF
+-> GATE_CLOSURE
+```
+
+Correlation acceptance remains:
+
+```text
+provider_tool_call_id
+-> lbe_call_id
+-> child_run_id
+-> runtime_operation_id
+-> tool_receipt_id
+-> persisted ChildAgentRun result
+-> parent continuation
+-> parent completion
+```
+
+No link may be reconstructed from event ordering, timestamps, text matching, or nearest-event inference.
+
+Cancellation negative proof remains:
+
+```text
+same child_run_id:
+CANCELLED
+AND no later COMPLETED
+AND no successful parent continuation from the cancelled run
+```
+
+Out of scope for this gate: `/team`, UI redesign, general Git divergence reconciliation. PTY/ConPTY and final installed product acceptance remain later gates. Release readiness remains **NO**.
