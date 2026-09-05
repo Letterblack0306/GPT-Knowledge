@@ -2,7 +2,7 @@
 
 ## Authority
 
-- Last reconciled: 2026-08-22
+- Last reconciled: 2026-09-05
 - Project repository: `Letterblack0306/LBE_Presistent_Agent_wall`
 - This page routes work; it does not create acceptance state or authorize a slice.
 
@@ -57,3 +57,46 @@ Keep exact project chronology, gate state, commands, hashes, and acceptance evid
 repository. GPT-Knowledge retains only this routing pointer plus reusable architecture and UI
 references. When current state changes, update the LBE canonical documents first, then this
 mirror and plan-canvas navigation records.
+
+## Product verifier route
+
+For current LBE CLI/TUI integration, do not create a parallel ad-hoc acceptance harness before checking the canonical product verifier:
+
+```text
+Letterblack0306/LBE_Presistent_Agent_wall
+tools/lbe_product_integration.ps1
+```
+
+Current modes:
+
+```text
+check
+prove
+build
+package
+```
+
+Use:
+
+```text
+check/prove
+    -> current assembled local worktree when validating in-development slices
+
+build/package
+    -> origin/main only
+    -> structural checks + proof suite must PASS
+    -> package archive is re-opened and SHA-256/size verified
+```
+
+The verifier now includes the current LBE CLI/Cline delegated-agent boundary and visible LBE branding contract. Missing live runtime prerequisites remain BLOCKED/UNPROVEN; they are not converted to PASS.
+
+Current product-role routing:
+
+```text
+LBE CLI/TUI = active user-facing product
+Cline       = embedded provider/model/reasoning/delegated-agent mechanics
+LBE runtime = session/governance/tool/evidence/completion authority
+Rust        = reference/integration client
+```
+
+When the local implementation is ahead of canonical GitHub, use worktree proof only for that assembled state. Do not call it package/release proof until the required source is reconciled to `origin/main` and the package mode passes.
