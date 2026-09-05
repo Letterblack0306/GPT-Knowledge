@@ -2,7 +2,7 @@
 
 ## Knowledge metadata
 
-- Last reviewed: 2026-08-13
+- Last reviewed: 2026-09-05
 - Scope: reusing Cline SDK/runtime layers inside a provider-neutral governed professional agent runtime
 - Canonical use: read with `professional-agent-runtime-cli-and-provider-architecture.md` and `unified-agent-engineering-methods.md`
 - Evidence basis: current `cline/cline` SDK architecture and Apache-2.0 repository license, plus the established LBE runtime/governance architecture
@@ -238,7 +238,17 @@ completion status
 
 ## 6. CLI/TUI implication
 
-Reusing Cline underneath does **not** imply reusing Cline's visible CLI/TUI.
+The current LBE product direction reuses the bundled Cline CLI/TUI implementation mechanics **under LBE product identity** rather than treating the Cline UI as an external branded product.
+
+That does not transfer authority. The user-facing product remains:
+
+```text
+LBE
+Lockstep Boundry Engine
+LETTERBLACK
+```
+
+Cline may remain visible internally in source/module/package identifiers, but visible product strings, onboarding, status labels, help/exit language, and command-surface identity must remain LBE-owned.
 
 The product UI should remain a projection of the governed runtime's normalized ordered interaction:
 
@@ -254,21 +264,22 @@ validation
 final response
 ```
 
-Architecture:
+Current architecture:
 
 ```text
-LBE / governed TUI
+LBE CLI/TUI product surface
         |
-agent-control + event API
+bundled Cline CLI mechanics
+(provider/model/auth/reasoning/delegated-agent execution)
         |
-Session / Turn / Item runtime
+bounded LBE adapter
         |
-normalized model events
-        |
-Cline adapter (@cline/llms / optional @cline/agents)
+LBE session/policy/authorization/tool/evidence/completion owners
 ```
 
-This preserves product identity while reusing mature backend plumbing.
+Rust/Ratatui remains a reference/integration client, not the primary product UI.
+
+This preserves LBE product identity while reusing mature Cline mechanics.
 
 ---
 
@@ -344,3 +355,67 @@ Only implement parallel provider plumbing from scratch where the answer is no or
 ## Final rule
 
 **Reuse mature agent-engine plumbing where it is separable. Never outsource governance authority merely to save implementation effort. Keep the runtime contract and TUI product-owned, normalize third-party events at the boundary, and make the embedded engine replaceable.**
+
+
+## 10. Delegated-agent / subagent reuse boundary
+
+Direct source inspection confirmed Cline already provides delegated-agent/spawn mechanics, including the spawn-agent and delegated-agent seams used by its runtime. LBE must not implement a second agent scheduler or child reasoning engine.
+
+Correct split:
+
+```text
+Cline owns:
+- delegated-agent creation/execution mechanics
+- provider/model reasoning loop
+- AbortSignal/runtime execution control
+
+LBE owns:
+- whether child creation is admitted
+- canonical ChildAgentRun identity
+- parent/child lineage
+- session/workspace authority
+- governed child capability set
+- lifecycle persistence
+- ToolReceipt/evidence
+- terminalization/completion truth
+```
+
+The intended runtime flow is:
+
+```text
+Cline requests delegated child
+    -> LBE child_agent.create admission
+    -> LBE returns canonical child identifiers
+    -> Cline executes its existing delegated-agent mechanics
+    -> child receives only LBE-governed proxy tools
+    -> Cline reports started/result/abort
+    -> LBE persists started/terminal state + evidence
+    -> parent continuation consumes persisted LBE result
+```
+
+Native Cline child-tool construction must not become an alternative execution path. Recursive spawn remains denied unless explicitly authorized by the LBE integration policy.
+
+## 11. Product verifier integration
+
+The canonical LBE repository already owns a versioned verifier/package harness:
+
+```text
+tools/lbe_product_integration.ps1
+```
+
+As of 2026-09-05, the harness was updated to reflect this architecture rather than adding a parallel verifier.
+
+It now distinguishes:
+
+```text
+check/prove  -> current assembled worktree may be validated
+build/package -> forced to origin/main
+```
+
+and checks the LBE/Cline child-agent boundary, LBE-only branding, proof suites, package manifest/checksums, and archive integrity.
+
+The verifier is still not allowed to turn unavailable runtime proof into PASS. Real child execution, cancellation, receipt/evidence correlation, parent continuation, and installed interactive acceptance remain separate observed-runtime gates.
+
+## Final rule update
+
+**Reuse Cline's mature provider and delegated-agent mechanics where separable. Keep LBE as the sole authority for sessions, capabilities, consequences, evidence, validation, and completion. The user-facing surface is LBE-branded even when Cline implementation mechanics are embedded underneath.**
