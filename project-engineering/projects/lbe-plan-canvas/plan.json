@@ -1,5 +1,5 @@
 {
-  "schema_version": 33,
+  "schema_version": 34,
   "project": "LBE Persistent Agent",
   "updated": "2026-09-04",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
@@ -279,5 +279,102 @@
         "stale_machine_map": "C:/LBE-TUI-Lab/Docs/status.json"
       }
     }
+  },
+  "verified_at": "2026-09-06",
+  "current_execution_state": {
+    "gate_id": "PARENT_CONTINUATION_AND_DEEP_CORRELATION_ACCEPTANCE",
+    "active_phase": "PARENT_CONTINUATION_AND_DEEP_CORRELATION",
+    "current_slice": "FOCUSED_ADAPTER_VALIDATION",
+    "status": "FAIL",
+    "observed": "12/15 passed; 3 failed",
+    "failure": "Delegated failure -> child_agent.failed mapping through LBE fails in three focused adapter cases.",
+    "classification": "ADAPTER_LOGIC_FAILURE_MAPPING_REMEDIATION_REQUIRED",
+    "advance_allowed": false,
+    "remediation": "Repair only the three failed failure-mapping cases and rerun the same focused adapter suite to 15/15.",
+    "next_after_pass": "LIVE_PARENT_CHILD_PARENT_PROOF"
+  },
+  "machine_execution_plan": {
+    "rule": "Machine plan is execution plan; no Q&A for predeclared next steps.",
+    "state_transitions": {
+      "PENDING": "continue",
+      "IMPLEMENTED": "validate",
+      "UNVERIFIED": "continue proof if runnable",
+      "PASS": "advance",
+      "FAIL": "remain and expose failed criteria",
+      "BLOCKED": "remain and expose exact blocker"
+    },
+    "ordered_slices": [
+      {
+        "order": 1,
+        "id": "PARENT_CONTINUATION_IMPLEMENTATION",
+        "status": "IMPLEMENTED"
+      },
+      {
+        "order": 2,
+        "id": "DEEP_CORRELATION_PROPAGATION",
+        "status": "IMPLEMENTED_NOT_YET_LIVE_PROVEN"
+      },
+      {
+        "order": 3,
+        "id": "FOCUSED_ADAPTER_VALIDATION",
+        "status": "FAIL",
+        "required": "15/15"
+      },
+      {
+        "order": 4,
+        "id": "LIVE_PARENT_CHILD_PARENT_PROOF",
+        "status": "LOCKED"
+      },
+      {
+        "order": 5,
+        "id": "LIVE_CANCELLATION_TERMINALITY_PROOF",
+        "status": "PENDING"
+      },
+      {
+        "order": 6,
+        "id": "CANONICAL_VERIFIER_PROOF",
+        "status": "PENDING"
+      },
+      {
+        "order": 7,
+        "id": "GATE_CLOSURE",
+        "status": "PENDING"
+      }
+    ],
+    "out_of_scope": [
+      "/team exposure",
+      "UI redesign",
+      "general Git divergence reconciliation",
+      "publication/release"
+    ],
+    "later_gate": [
+      "PTY/ConPTY installed acceptance",
+      "final installed product acceptance"
+    ]
+  },
+  "correlation_acceptance": {
+    "chain": [
+      "provider_tool_call_id",
+      "lbe_call_id",
+      "child_run_id",
+      "runtime_operation_id",
+      "tool_receipt_id",
+      "persisted ChildAgentRun result",
+      "parent continuation",
+      "parent completion"
+    ],
+    "forbid_heuristics": [
+      "event ordering",
+      "timestamps",
+      "text matching",
+      "nearest-event inference"
+    ]
+  },
+  "cancellation_acceptance": {
+    "required": [
+      "CANCELLED observed for same child_run_id",
+      "no later COMPLETED for that child_run_id",
+      "no successful parent continuation from cancelled run"
+    ]
   }
 }
