@@ -1,12 +1,12 @@
 {
-  "schema_version": 72,
+  "schema_version": 73,
   "project": "LBE Persistent Agent",
   "verified_at": "2026-09-06",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "source_branch": "main",
   "original_workspace": "C:/Agents-Memory-Tool-v6-integration",
   "later_ui_workspace": "C:/LBE-TUI-Lab",
-  "overall_classification": "PASS_WITH_OPEN_GATES_CHECKOUT_INTEGRITY_AND_INSTALLED_PTY_BLOCKED",
+  "overall_classification": "PASS_WITH_INTERACTIVE_CLINE_TTY_ACCEPTANCE_BLOCKED",
   "authority_note": "GPT-Knowledge is a projection only. Current canonical source/configuration, current local validation/runtime evidence, machine governance, active intent and acceptance records outrank this file.",
   "final_product": {
     "definition": "Persistent provider-neutral LBE agent product in which the agent/provider owns reasoning, investigation strategy, capability selection, interpretation and replanning, while LBE owns workspace/session identity, policy, authorization, governed execution, ToolReceipts/evidence, persistence, recovery, deterministic validation and completion truth.",
@@ -144,31 +144,24 @@
     "preservation_rule": "Preserve current dirty/unpublished Rust work and do not use Rust acceptance as proof of Cline CLI user experience."
   },
   "current_blocker": {
-    "classification": "BLOCKED_CANONICAL_LOCAL_CHECKOUT_CANNOT_REPRODUCE_PUBLISHED_RUNTIME",
+    "classification": "BLOCKED_INTERACTIVE_CLINE_TTY_ACCEPTANCE",
     "primary": {
-      "workspace": "C:/Agents-Memory-Tool-v6-integration",
-      "git_integrity": [
-        "invalid HEAD",
-        "invalid origin/main",
-        "invalid stash ref",
-        "missing Git objects",
-        "fsck reports widespread desktop.ini object corruption"
-      ],
-      "source_integrity": [
-        "lbe_guard_inspector/runtime/cline_stdio_bridge.py present",
-        "lbe_guard_inspector/cline_reasoning_provider.py missing locally",
-        "bridge tests fail collection with ModuleNotFoundError"
-      ],
-      "canonical_remote_truth": "GitHub main a17b014 contains both cline_stdio_bridge.py and cline_reasoning_provider.py."
-    },
-    "secondary": {
-      "classification": "BLOCKED_INSTALLED_PTY_CONPTY_ACCEPTANCE_UNPROVEN",
-      "evidence": [
-        "Docs/13_lifecycle_acceptance.md records no working PTY harness",
-        "previous cmd.exe probe failed with 0xC0000142"
+      "blocker": "TTY_REQUIRED",
+      "effect": "Current headless validation environment cannot provide terminal stdin/stdout required by the accepted Cline CLI/TUI interactive mode.",
+      "not_blocked": [
+        "LBE runtime availability",
+        "session lifecycle",
+        "provider catalog discovery",
+        "static build/test validation",
+        "LBE visual-surface implementation"
       ]
     },
-    "effect": "Do not close/advance the machine gate or activate installed PTY/ConPTY acceptance until a trustworthy runnable checkout/install can reproduce the published runtime."
+    "supersedes": [
+      "corrupt canonical local checkout as active blocker",
+      "missing provider catalog as active blocker",
+      "missing runtime fixture as active blocker"
+    ],
+    "next_step": "Run run-cline-lbe.ps1 from a real terminal against C:/Agents-Memory-Tool-v6-validation and capture interactive session/turn/tool/receipt/exit evidence."
   },
   "project_visit_protocol": {
     "classification": "MANDATORY_PROJECT_CONTEXT_REFRESH",
@@ -191,11 +184,12 @@
     "remaining_note": "The service is available. Provider availability itself is no longer the project blocker. If the current LBE provider transport expects a different route, treat that only as a local transport/config seam within the larger Cline-backed LBE composition task; do not reopen provider architecture."
   },
   "remaining_unproven": [
-    "live RealLbeWrapper fixture-dependent acceptance for the current Rust adapter surface",
-    "installed PTY/ConPTY lifecycle acceptance",
-    "installed provider catalog/model binding",
-    "remaining UNVERIFIED/PARTIALLY_WIRED product-surface capabilities from Docs/38",
-    "final installed product acceptance"
+    "interactive Cline CLI/TUI launch under a real TTY",
+    "interactive provider-backed turn through the accepted Cline product surface",
+    "interactive governed tool/approval flow through the accepted Cline product surface",
+    "interactive ToolReceipt/evidence projection and correlation",
+    "clean PTY/ConPTY exit and terminal restoration",
+    "final installed end-to-end product acceptance"
   ],
   "canonical_execution_path": {
     "classification": "PATH_TO_FOLLOW",
@@ -773,5 +767,49 @@
         "note": "Real installed provider/model binding remains to be proven."
       }
     ]
+  },
+  "current_published_cli_state_2026_09_06": {
+    "classification": "PUBLISHED_STATIC_AND_RUNTIME_BASELINE_PASS_INTERACTIVE_TTY_BLOCKED",
+    "rust_client_repo": "Letterblack0306/LBE_Agents_wall_Intigration",
+    "origin_main": "29a6d32",
+    "published_commits": [
+      "b951302 Fix Cargo.toml edition 2024->2021",
+      "67891bf Update capability diff: 202 tests pass with --test-threads=1",
+      "29a6d32 docs: Update capability diff with live runtime validation results"
+    ],
+    "build": "PASS — cargo check: 0 errors / 42 warnings",
+    "tests": {
+      "result": "PASS — 202 passed / 0 failed / 2 ignored",
+      "condition": "--test-threads=1",
+      "note": "Parallel execution previously exposed shared-state test isolation pollution; serial execution is the accepted current regression condition."
+    },
+    "live_runtime": {
+      "clean_validation_clone": "C:/Agents-Memory-Tool-v6-validation",
+      "runtime_available": "PROVEN",
+      "session_lifecycle": "PROVEN",
+      "session_persistence": "PROVEN",
+      "session_resume": "PROVEN",
+      "provider_catalog": "PROVEN — 11 providers",
+      "provider_routing": "PROVEN through prior live runtime evidence"
+    },
+    "visual_surface": {
+      "status": "COMPLETE per published current project status",
+      "product_surface": "C:/LBE-TUI-Lab/cline/apps/cli",
+      "branding_rule": "LBE visual identity; Cline mechanics may be reused but Cline branding/visual identity is not the product target",
+      "evidence_note": "Recorded from current published project status supplied after origin/main 29a6d32; visual acceptance should still be distinguished from interactive TTY runtime acceptance."
+    },
+    "interactive_acceptance": {
+      "cline_tui": "BLOCKED",
+      "blocker": "TTY_REQUIRED",
+      "classification": "ENVIRONMENT_ACCEPTANCE_BLOCKER_NOT_CODE_FAILURE",
+      "affected": [
+        "interactive Cline TUI launch",
+        "interactive provider-backed turn through accepted product surface",
+        "interactive governed tool flow",
+        "interactive ToolReceipt/evidence projection",
+        "clean terminal exit/restoration proof"
+      ]
+    },
+    "release_ready": false
   }
 }
