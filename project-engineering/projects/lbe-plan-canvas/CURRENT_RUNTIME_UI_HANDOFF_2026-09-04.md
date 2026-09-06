@@ -686,3 +686,86 @@ close parent-continuation gate bookkeeping
 ```
 
 Do not reopen the completed parent-continuation proof chain unless a later change produces claim-matched regression evidence.
+
+
+## 2026-09-06 — Transition blocked by canonical checkout integrity and missing installed PTY/ConPTY proof
+
+This checkpoint supersedes the earlier assumption that the next product gate could be activated immediately after parent-continuation proof publication.
+
+Published truth remains:
+
+```text
+GitHub main = a17b014
+PARENT_CONTINUATION_AND_DEEP_CORRELATION_ACCEPTANCE
+published status = OPEN
+READY_FOR_GATE_CLOSURE = YES
+all ordered slices = PASS
+NEXT_PRODUCT_SLICE = INSTALLED_PTY_CONPTY_AND_FINAL_PRODUCT_ACCEPTANCE
+```
+
+The completed parent-continuation proof chain is not reopened by the local checkout failure.
+
+### Primary blocker — canonical local checkout cannot reproduce published runtime
+
+Observed in `C:/Agents-Memory-Tool-v6-integration`:
+
+```text
+invalid HEAD
+invalid origin/main
+invalid stash ref
+missing Git objects
+fsck reports widespread desktop.ini object corruption
+```
+
+The local source is also incomplete:
+
+```text
+lbe_guard_inspector/runtime/cline_stdio_bridge.py     PRESENT
+lbe_guard_inspector/cline_reasoning_provider.py       MISSING LOCALLY
+bridge tests                                           FAIL COLLECTION / ModuleNotFoundError
+```
+
+Canonical GitHub `main` at the published state contains both modules, so the missing local provider adapter is checkout corruption/incompleteness, not evidence that the published runtime lacks the implementation.
+
+### Client evidence
+
+```text
+cargo test = 203 passed, 2 failed
+```
+
+The two failures are UI rendering assertions in the dirty client checkout:
+
+- `audit_mode_renders_a_real_read_only_projection_screen`
+- `welcome_frame_prioritizes_home_controls_at_80_by_24`
+
+These failures do not invalidate the previously proven parent-continuation runtime chain. UI work remains allowed and non-blocking except where a specific acceptance gate requires UI evidence.
+
+### Secondary blocker — installed PTY/ConPTY acceptance remains unproven
+
+`C:/LBE-TUI-Lab/Docs/13_lifecycle_acceptance.md` records no working PTY harness, and the previous `cmd.exe` probe failed with `0xC0000142`. Therefore installed PTY/ConPTY lifecycle acceptance is still **UNPROVEN**.
+
+### Machine classification
+
+```text
+PRODUCT CHECK
+PASS_WITH_OPEN_GATES
+
+PARENT_CONTINUATION_GATE
+READY_FOR_GATE_CLOSURE
+published status remains OPEN
+
+NEXT INSTALLED PTY/CONPTY GATE
+NOT ACTIVATED
+
+PRIMARY BLOCKER
+canonical local checkout cannot reproduce published runtime
+
+SECONDARY BLOCKER
+installed PTY/ConPTY lifecycle proof unavailable
+```
+
+### Required continuation
+
+Do not reset, clean, rebase, or overwrite the corrupt original workspace. Preserve unrelated dirty/untracked user work.
+
+The next machine action is to establish a trustworthy runnable validation surface for published `a17b014` — preferably a clean validation clone or isolated installed artifact — and prove that it contains the published provider/bridge modules and can run the claim-matched backend validation. Only then may the installed PTY/ConPTY and final-product acceptance gate be activated.
