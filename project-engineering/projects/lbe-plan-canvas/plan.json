@@ -1,5 +1,5 @@
 {
-  "schema_version": 39,
+  "schema_version": 40,
   "project": "LBE Persistent Agent",
   "updated": "2026-09-06",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
@@ -450,46 +450,25 @@
     ]
   },
   "current_cli_execution_plan": {
-    "classification": "INTERACTIVE_TTY_ACCEPTANCE_IS_NEXT_ACTIVE_GATE",
-    "published_baseline": {
-      "origin_main": "29a6d32",
-      "build": "PASS — 0 errors / 42 warnings",
-      "tests": "PASS — 202/0/2 with --test-threads=1",
-      "lbe_runtime": "PROVEN AVAILABLE",
-      "provider_catalog": "PROVEN — 11 providers",
-      "session_lifecycle": "PROVEN",
-      "lbe_visual_surface": "COMPLETE per current published project status"
-    },
-    "do_not_reopen": [
-      "clean validation clone creation",
-      "LBE CLI load",
-      "session create/list/inspect/resume",
-      "provider catalog enumeration",
-      "Rust static build/test baseline",
-      "LBE visual redesign as an open implementation task"
-    ],
+    "classification": "LBE_VISUAL_SHELL_REWORK_ACTIVE_THEN_TTY_ACCEPTANCE",
     "active_gate": {
-      "id": "INTERACTIVE_CLINE_TTY_ACCEPTANCE",
-      "status": "BLOCKED_BY_CURRENT_ENVIRONMENT",
-      "blocker": "TTY_REQUIRED",
-      "execution_command": "C:/LBE-TUI-Lab/run-cline-lbe.ps1 -AgentWallRoot C:/Agents-Memory-Tool-v6-validation -Workspace C:/LBE-TUI-Lab",
-      "required_proof": [
-        "accepted LBE visual surface renders in the real terminal",
-        "canonical LBE session identity visible/consistent",
-        "provider/model projection visible",
-        "one successful interactive provider-backed turn",
-        "one governed tool proposal and result",
-        "authorization/approval behavior where applicable",
-        "ToolReceipt/evidence correlation",
-        "session continuation/resume behavior",
-        "clean quit and terminal restoration"
+      "id": "CLINE_LBE_STRUCTURAL_VISUAL_DIFFERENTIATION",
+      "status": "FAIL_CURRENT_IMPLEMENTATION",
+      "target": "Replace the skin-only Cline-derived landing composition with the finalized minimal LBE runtime shell without changing LBE runtime authority.",
+      "required": [
+        "remove centered hero/TrackedRobot-style landing composition",
+        "persistent top runtime header with LBE/workspace/model/mode/git/context",
+        "single conversation/execution timeline",
+        "3-line active raw process viewport",
+        "click to expand full emitted process output",
+        "auto-collapse completed processes to one line",
+        "[I] composer identity and bouncing activity bar",
+        "context usage meter"
       ]
     },
-    "continuation_rule": "Do not treat TTY absence as a code defect. Continue all non-TTY static/source work if needed, but final interactive acceptance must remain open until a real TTY run supplies claim-matched evidence.",
-    "final_gate": {
-      "id": "FINAL_INSTALLED_END_TO_END",
-      "status": "LOCKED",
-      "unlock_condition": "interactive Cline TTY acceptance PASS"
+    "next_gate": {
+      "id": "INTERACTIVE_CLINE_TTY_ACCEPTANCE",
+      "status": "PENDING_AFTER_VISUAL_REWORK"
     }
   }
 }
