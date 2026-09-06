@@ -626,3 +626,63 @@ AND no successful parent continuation from the cancelled run
 ```
 
 Out of scope for this gate: `/team`, UI redesign, general Git divergence reconciliation. PTY/ConPTY and final installed product acceptance remain later gates. Release readiness remains **NO**.
+
+
+## 2026-09-06 — Parent-continuation gate proven and published; Cline-vs-LBE audit handoff
+
+This section supersedes the earlier 2026-09-06 focused-adapter FAIL checkpoint and any older statement that treats P2/P3 as the current machine gate.
+
+Canonical published Agent Wall state:
+
+```text
+main = a17b014
+PARENT_CONTINUATION_AND_DEEP_CORRELATION_ACCEPTANCE
+READY_FOR_GATE_CLOSURE = YES
+NEXT_PRODUCT_SLICE = INSTALLED_PTY_CONPTY_AND_FINAL_PRODUCT_ACCEPTANCE
+```
+
+Recorded proof chain:
+
+```text
+PARENT_CONTINUATION_IMPLEMENTATION          PASS
+DEEP_CORRELATION_PROPAGATION                PASS
+FOCUSED_ADAPTER_VALIDATION                  PASS — 15/15
+LIVE_PARENT_CHILD_PARENT_PROOF              PASS
+LIVE_CANCELLATION_TERMINALITY_PROOF         PASS
+CANONICAL_VERIFIER_PROOF                    PASS
+```
+
+The original local workspace remains intentionally dirty/untracked in unrelated areas. Publication was performed from a clean clone and the original workspace was preserved. Do not clean/reset/rebase/stage unrelated local work merely to align it with published main.
+
+### Cline-vs-LBE capability diff
+
+Audit result: **PASS**.
+
+Reuse/adapt Cline mechanics where compatible for provider adapters, provider/model metadata, streaming/event loops, tool-call continuation, interception hooks, session persistence, checkpoint/undo, cancellation, interrupt steering, MCP, CLI/TUI mechanics, background processes, and compaction.
+
+Do not adopt Cline as canonical authority for filesystem/editor mutation, shell/process execution, or overlapping direct-tool execution authority.
+
+LBE remains sole owner of workspace/session/turn identity, authorization/policy, governed execution, ToolReceipts/evidence, canonical persistence/recovery, validation, and completion truth.
+
+First missing dependency identified by the audit:
+
+```text
+LBE_TO_CLINE_AGENTRUNTIME_GOVERNANCE_ADAPTER
+classification = ADAPT
+```
+
+That is the first implementation seam for the next agent. Dirty-workspace reconciliation is not product work and should occur only if a concrete validation operation is blocked by checkout alignment.
+
+### UI scope correction
+
+UI work is **allowed and non-blocking**. Layout, interaction, branding, event projection, and other client-surface improvements may be updated at any time provided they do not create a second runtime/governance authority or falsify acceptance state. UI acceptance proof is required only when the active gate calls for it. The Python/Textual terminal UI path remains retired/reference-only.
+
+### Next sequence
+
+```text
+close parent-continuation gate bookkeeping
+→ adapt LBE-to-Cline AgentRuntime governance seam
+→ INSTALLED_PTY_CONPTY_AND_FINAL_PRODUCT_ACCEPTANCE
+```
+
+Do not reopen the completed parent-continuation proof chain unless a later change produces claim-matched regression evidence.
