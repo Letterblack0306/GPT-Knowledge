@@ -1,5 +1,5 @@
 {
-  "schema_version": 37,
+  "schema_version": 38,
   "project": "LBE Persistent Agent",
   "updated": "2026-09-06",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
@@ -345,48 +345,9 @@
     ]
   },
   "cline_vs_lbe_diff_audit": {
-    "status": "PARTIAL",
-    "source_boundary_audit": "SUBSTANTIALLY_COMPLETE",
-    "complete_product_capability_diff": "NOT_COMPLETE",
-    "objective": "Finish the Cline-vs-LBE product capability difference matrix without reopening already-proven provider continuation or transferring any LBE authority to Cline.",
-    "completed_source_scope": [
-      "provider adapters",
-      "provider/model metadata",
-      "streaming/event loops",
-      "tool-call continuation",
-      "interception hooks",
-      "session persistence",
-      "checkpoint/undo",
-      "runtime/model event stream",
-      "cancellation",
-      "interrupt steering",
-      "MCP",
-      "CLI/TUI",
-      "background processes",
-      "context/compaction",
-      "native filesystem/editor mutation rejection",
-      "native shell/process execution rejection"
-    ],
-    "bounded_integration_already_proven": "Cline AgentRuntime continuation through existing LBE GovernedToolOrchestrator/ToolReceipt path; do not rerun as a substitute for the remaining diff.",
-    "remaining_product_rows": [
-      "approval UX/mechanics",
-      "usage/token/cost projection",
-      "history/session navigation",
-      "headless/JSON execution",
-      "error projection",
-      "retry semantics",
-      "timeout semantics",
-      "thinking/reasoning controls",
-      "hooks/extensions/plugin lifecycle",
-      "workspace/project selection",
-      "terminal/composer/key interaction",
-      "provider/model picker UX",
-      "session restore UX",
-      "MCP configuration UX",
-      "event ordering/projection completeness",
-      "background task lifecycle ownership",
-      "native overlapping tool-disablement proof"
-    ],
+    "status": "COMPLETE_AT_CAPABILITY_MAPPING_LEVEL",
+    "complete_product_capability_diff": "MAPPING_COMPLETE_LIVE_ACCEPTANCE_OPEN",
+    "objective": "Use the completed Cline-vs-LBE diff as the implementation roadmap; continue filling fixable adapter/runtime seams and retain only genuinely unsupported capabilities.",
     "classifications_to_use": [
       "PRESENT_IN_LBE",
       "REUSED_FROM_CLINE",
@@ -397,6 +358,95 @@
       "STALE_REFERENCE_ONLY",
       "UNVERIFIED"
     ],
-    "sequencing_rule": "Complete only the remaining product/runtime-mechanics rows. For every row identify exact Cline owner, exact current LBE owner/state, bypass/duplication risk, reuse/adapt/exclude decision, and claim-matched proof. Do not mark the whole diff PASS from the narrower source matrix."
+    "remaining_live_or_product_proof": [
+      "usage/token/cost/budget/rate-limit projection",
+      "headless JSON schema",
+      "retry/timeout semantics",
+      "thinking/reasoning controls",
+      "plugin/hooks/automation lifecycle",
+      "event ordering completeness",
+      "background task lifecycle",
+      "error projection",
+      "session restore UX",
+      "MCP configuration UX",
+      "live RealLbeWrapper fixture-dependent paths",
+      "installed provider catalog",
+      "PTY/ConPTY",
+      "final installed product acceptance"
+    ],
+    "sequencing_rule": "Do not reopen settled Cline provider-continuation architecture. Use the diff to implement missing mappings/capabilities, justify genuine exclusions, then validate live and installed behavior."
+  },
+  "current_rust_adapter_plan": {
+    "classification": "MAPPING_COMPLETE_LIVE_ACCEPTANCE_PENDING",
+    "source_mapping": {
+      "status": "COMPLETE",
+      "implemented_methods": 24,
+      "unsupported_individual_requests": 13,
+      "unsupported_categories": 7,
+      "total_request_variants_classified": 37,
+      "document": "C:/LBE-TUI-Lab/Docs/38_complete_cline_lbe_capability_diff.md"
+    },
+    "validation": {
+      "cargo_check": "PASS — 0 errors / 42 dead-code warnings",
+      "cargo_test": "199 passed / 3 live-fixture-dependent failures / 2 ignored",
+      "full_test_suite": "NOT PASS",
+      "non_live_regression": "PASS for the 199 passing tests",
+      "live_fixture_paths": "UNPROVEN"
+    },
+    "local_changes": {
+      "staged": [
+        "Cargo.toml",
+        "Docs/38_complete_cline_lbe_capability_diff.md"
+      ],
+      "cargo_change": "edition 2024 -> 2021 recorded as local compatibility correction",
+      "agent_mode_fix": "AgentMode::Regular -> AgentMode::Build in four wrapper.rs occurrences",
+      "worktree": "14 modified, 1 deleted AGENTS.md, 18 untracked; preserve unrelated work"
+    },
+    "unsupported_request_rule": [
+      "Do not stop merely because a RealLbeWrapper request is marked unsupported.",
+      "For each unsupported request, trace the current LBE owner and public/runtime entrypoint.",
+      "If the operation exists and only the adapter is missing, implement the adapter and validate it.",
+      "If the backend seam is missing but the capability is required, add the smallest seam through the existing LBE authority owner.",
+      "If the request is obsolete, stale, intentionally excluded, or genuinely deferred, record the exact reason/evidence and continue.",
+      "Do not create duplicate session/provider/authorization/execution/evidence/completion authority."
+    ],
+    "next_sequence": [
+      {
+        "order": 1,
+        "id": "PRESERVE_STATIC_VALIDATION",
+        "status": "PASS",
+        "action": "Do not rerun cargo check or the 199 non-live tests merely for reassurance unless source changes."
+      },
+      {
+        "order": 2,
+        "id": "RESOLVE_REMAINING_UNSUPPORTED_REQUESTS_WHERE_FIXABLE",
+        "status": "ACTIVE",
+        "action": "Continue request-by-request investigation and implementation without user back-and-forth; skip only genuinely unsupported/deferred/stale requests with evidence."
+      },
+      {
+        "order": 3,
+        "id": "REAL_LBE_WRAPPER_LIVE_FIXTURE_ACCEPTANCE",
+        "status": "BLOCKED_OR_PENDING",
+        "action": "When the real LBE fixture is available, rerun the three fixture-dependent tests and prove representative session, turn, workspace, authorization/mutation, abort and diagnostics paths."
+      },
+      {
+        "order": 4,
+        "id": "INSTALLED_PROVIDER_CATALOG_BINDING",
+        "status": "PENDING",
+        "action": "Prove real installed provider/model catalog binding through the accepted LBE/Cline product path."
+      },
+      {
+        "order": 5,
+        "id": "INSTALLED_PTY_CONPTY_ACCEPTANCE",
+        "status": "PENDING",
+        "action": "Prove startup, interaction, resize/control behavior, clean exit and terminal restoration in the installed accepted product surface."
+      },
+      {
+        "order": 6,
+        "id": "FINAL_INSTALLED_PRODUCT_ACCEPTANCE",
+        "status": "LOCKED",
+        "action": "Advance only after the relevant live and installed gates pass."
+      }
+    ]
   }
 }
