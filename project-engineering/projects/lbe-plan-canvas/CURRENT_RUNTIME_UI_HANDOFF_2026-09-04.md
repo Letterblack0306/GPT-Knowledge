@@ -769,3 +769,61 @@ installed PTY/ConPTY lifecycle proof unavailable
 Do not reset, clean, rebase, or overwrite the corrupt original workspace. Preserve unrelated dirty/untracked user work.
 
 The next machine action is to establish a trustworthy runnable validation surface for published `a17b014` — preferably a clean validation clone or isolated installed artifact — and prove that it contains the published provider/bridge modules and can run the claim-matched backend validation. Only then may the installed PTY/ConPTY and final-product acceptance gate be activated.
+
+## 2026-09-06 — Cline-vs-LBE product capability diff corrected to PARTIAL
+
+This checkpoint supersedes the earlier broad statement in this handoff that the complete `Cline-vs-LBE capability diff` was PASS.
+
+The canonical Agent Wall source audit at `docs/research/CLINE_CORE_REUSE_BOUNDARY_MATRIX.md` is substantial and complete for its declared source-audit scope. It classifies provider adapters/model metadata/streaming, tool continuation/interception, native mutation and shell exclusion, session persistence, checkpoint/undo, event streaming, cancellation, interrupt/steering, MCP, CLI/TUI, background processes and compaction.
+
+The bounded Cline AgentRuntime continuation integration is already PASS and must not be reopened merely to finish this audit. The accepted ownership remains:
+
+```text
+Cline = provider / reasoning / continuation / client mechanics
+LBE   = workspace/session/turn identity, policy, authorization,
+        governed execution, ToolReceipt/evidence, persistence/recovery,
+        validation and completion truth
+```
+
+However, the broader product capability diff requested for the final LBE product remains **PARTIAL**. The following rows still require explicit Cline-current-source vs LBE-current-owner comparison:
+
+- approval interaction UX/mechanics versus LBE approval authority;
+- usage/token/cost projection;
+- history/session navigation UX;
+- headless/JSON execution;
+- error projection completeness;
+- retry and timeout semantics/ownership;
+- thinking/reasoning controls;
+- hooks/extensions/plugin lifecycle;
+- workspace/project selection;
+- terminal/composer/key interaction;
+- provider/model picker UX;
+- session restore UX details;
+- MCP configuration UX;
+- event ordering/projection completeness;
+- background task lifecycle ownership;
+- proof that overlapping native Cline mutating/execution tools are disabled in the accepted LBE product path.
+
+Required classifications for the finished product diff:
+
+```text
+PRESENT_IN_LBE
+REUSED_FROM_CLINE
+PARTIALLY_WIRED
+MISSING_AND_RELEVANT
+INTENTIONALLY_EXCLUDED
+DUPLICATE_AUTHORITY_RISK
+STALE_REFERENCE_ONLY
+UNVERIFIED
+```
+
+Current classification:
+
+```text
+CLINE SOURCE REUSE BOUNDARY AUDIT       SUBSTANTIALLY COMPLETE
+BOUNDED AGENTRUNTIME CONTINUATION       PROVEN / PASS
+COMPLETE CLINE↔LBE PRODUCT DIFF         PARTIAL
+NEXT AUDIT WORK                         REMAINING PRODUCT/RUNTIME-MECHANICS ROWS
+```
+
+Do not mark the complete product diff PASS until these remaining rows are explicitly resolved from current evidence. Do not substitute Rust-client proof for the accepted Cline CLI/TUI product surface, and do not transfer any LBE authority to Cline while closing the remaining rows.
