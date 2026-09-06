@@ -1,5 +1,5 @@
 {
-  "schema_version": 73,
+  "schema_version": 74,
   "project": "LBE Persistent Agent",
   "verified_at": "2026-09-06",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
@@ -144,24 +144,15 @@
     "preservation_rule": "Preserve current dirty/unpublished Rust work and do not use Rust acceptance as proof of Cline CLI user experience."
   },
   "current_blocker": {
-    "classification": "BLOCKED_INTERACTIVE_CLINE_TTY_ACCEPTANCE",
+    "classification": "ACTIVE_UI_STRUCTURAL_DIFFERENTIATION_AND_INTERACTIVE_ACCEPTANCE",
     "primary": {
-      "blocker": "TTY_REQUIRED",
-      "effect": "Current headless validation environment cannot provide terminal stdin/stdout required by the accepted Cline CLI/TUI interactive mode.",
-      "not_blocked": [
-        "LBE runtime availability",
-        "session lifecycle",
-        "provider catalog discovery",
-        "static build/test validation",
-        "LBE visual-surface implementation"
-      ]
+      "blocker": "LBE_VISUAL_SHELL_NOT_DISTINCT",
+      "effect": "Current product surface must not be accepted as visually complete until the centered Cline hero/composer composition is replaced by the finalized minimal LBE runtime shell."
     },
-    "supersedes": [
-      "corrupt canonical local checkout as active blocker",
-      "missing provider catalog as active blocker",
-      "missing runtime fixture as active blocker"
-    ],
-    "next_step": "Run run-cline-lbe.ps1 from a real terminal against C:/Agents-Memory-Tool-v6-validation and capture interactive session/turn/tool/receipt/exit evidence."
+    "secondary": {
+      "blocker": "TTY_ACCEPTANCE_REMAINS_OPEN",
+      "effect": "After structural UI implementation, validate the accepted shell and governed runtime lifecycle in a real terminal."
+    }
   },
   "project_visit_protocol": {
     "classification": "MANDATORY_PROJECT_CONTEXT_REFRESH",
@@ -793,10 +784,20 @@
       "provider_routing": "PROVEN through prior live runtime evidence"
     },
     "visual_surface": {
-      "status": "COMPLETE per published current project status",
-      "product_surface": "C:/LBE-TUI-Lab/cline/apps/cli",
-      "branding_rule": "LBE visual identity; Cline mechanics may be reused but Cline branding/visual identity is not the product target",
-      "evidence_note": "Recorded from current published project status supplied after origin/main 29a6d32; visual acceptance should still be distinguished from interactive TTY runtime acceptance."
+      "status": "NOT_ACCEPTED",
+      "classification": "BRANDING_COMPLETE_STRUCTURAL_DIFFERENTIATION_FAIL",
+      "reason": "Real terminal screenshots show the accepted Cline CLI surface still retains the recognizable centered Cline hero/composer composition. Logo/color changes and the left rail are insufficient for distinct LBE product identity.",
+      "required_target": [
+        "persistent LBE workspace/model/mode/git/context header hierarchy",
+        "conversation and execution in one timeline",
+        "active process shows at most three raw emitted runtime lines",
+        "single-click expands full emitted process history",
+        "completed processes collapse to one summary line",
+        "[I] composer identity with bouncing active-process indicator",
+        "context-window usage projection",
+        "remove centered permanent hero/TrackedRobot-style home composition"
+      ],
+      "proof_source": "User-supplied real-terminal screenshots plus previously finalized minimal-LBE UI behavior."
     },
     "interactive_acceptance": {
       "cline_tui": "BLOCKED",
