@@ -1,12 +1,12 @@
 {
-  "schema_version": 69,
+  "schema_version": 70,
   "project": "LBE Persistent Agent",
   "verified_at": "2026-09-06",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "source_branch": "main",
   "original_workspace": "C:/Agents-Memory-Tool-v6-integration",
   "later_ui_workspace": "C:/LBE-TUI-Lab",
-  "overall_classification": "PARENT_CONTINUATION_GATE_PROVEN_READY_FOR_CLOSURE_NEXT_INSTALLED_FINAL_ACCEPTANCE",
+  "overall_classification": "PASS_WITH_OPEN_GATES_CHECKOUT_INTEGRITY_AND_INSTALLED_PTY_BLOCKED",
   "authority_note": "GPT-Knowledge is a projection only. Current canonical source/configuration, current local validation/runtime evidence, machine governance, active intent and acceptance records outrank this file.",
   "final_product": {
     "definition": "Persistent provider-neutral LBE agent product in which the agent/provider owns reasoning, investigation strategy, capability selection, interpretation and replanning, while LBE owns workspace/session identity, policy, authorization, governed execution, ToolReceipts/evidence, persistence, recovery, deterministic validation and completion truth.",
@@ -22,21 +22,21 @@
     "interface_rule": "Accepted user-facing interface = embedded Cline CLI/TUI under C:/LBE-TUI-Lab/cline/apps/cli launched by run-cline-lbe.ps1. Rust/Ratatui is a separate prototype/reference/integration client. Both remain subordinate to LBE runtime authority."
   },
   "current_machine_state": {
-    "classification": "READY_FOR_GATE_CLOSURE",
+    "classification": "READY_FOR_GATE_CLOSURE_BLOCKED_FROM_NEXT_ACTIVATION",
     "source_repo_commit": "a17b014",
     "active_phase": "PARENT_CONTINUATION_AND_DEEP_CORRELATION",
     "active_slice": "PERSISTED_CHILD_RESULT_PARENT_CONTINUATION_AND_CORRELATION",
     "gate_id": "PARENT_CONTINUATION_AND_DEEP_CORRELATION_ACCEPTANCE",
     "status": "READY_FOR_GATE_CLOSURE",
-    "implementation_allowed": true,
+    "published_gate_status": "OPEN",
     "next_product_slice": "INSTALLED_PTY_CONPTY_AND_FINAL_PRODUCT_ACCEPTANCE",
+    "next_product_slice_activated": false,
     "proof": {
       "FOCUSED_ADAPTER_VALIDATION": "PASS — 15/15",
       "LIVE_PARENT_CHILD_PARENT_PROOF": "PASS",
       "LIVE_CANCELLATION_TERMINALITY_PROOF": "PASS",
       "CANONICAL_VERIFIER_PROOF": "PASS"
-    },
-    "dirty_workspace_rule": "Original local workspace retains unrelated dirty/untracked work and must not be overwritten merely to align with published main."
+    }
   },
   "runtime_authority": {
     "status": "ESTABLISHED_GOVERNED",
@@ -107,22 +107,33 @@
   "next_required_sequence": [
     {
       "order": 1,
-      "id": "gate-closure",
-      "status": "READY",
-      "scope": "Close PARENT_CONTINUATION_AND_DEEP_CORRELATION_ACCEPTANCE using the already-proven ordered-slice results; do not rerun completed proof merely for reassurance."
+      "id": "preserve-published-proof",
+      "status": "PASS",
+      "scope": "Do not reopen the completed parent-continuation proof chain unless claim-matched regression evidence appears."
     },
     {
       "order": 2,
-      "id": "lbe-to-cline-agentruntime-governance-adapter",
-      "status": "ACTIVE_NEXT_DEPENDENCY",
-      "classification": "ADAPT",
-      "scope": "Adapt Cline AgentRuntime mechanics behind LBE authority. Preserve LBE ownership of identity, authorization, governed execution, receipts, evidence, persistence, validation, and completion."
+      "id": "restore-runnable-canonical-validation-surface",
+      "status": "BLOCKED_ACTIVE",
+      "scope": "Recover a trustworthy checkout/install of published main a17b014 without overwriting unrelated dirty user work. Prefer a clean validation clone or isolated installed artifact over destructive repair of the corrupt original checkout."
     },
     {
       "order": 3,
-      "id": "installed-pty-conpty-final-product-acceptance",
-      "status": "NEXT_PRODUCT_SLICE",
-      "scope": "Run installed Cline CLI/TUI PTY/ConPTY and final product acceptance after the governance adapter seam is satisfied."
+      "id": "verify-runtime-reproduction",
+      "status": "PENDING",
+      "scope": "Verify the restored validation surface contains cline_reasoning_provider.py, cline_stdio_bridge.py, imports/bridge tests collect and pass, and reproduces the published runtime."
+    },
+    {
+      "order": 4,
+      "id": "activate-installed-pty-conpty-final-acceptance",
+      "status": "LOCKED",
+      "scope": "Only after the runnable canonical validation surface is proven."
+    },
+    {
+      "order": 5,
+      "id": "installed-pty-conpty-lifecycle-proof",
+      "status": "PENDING",
+      "scope": "Establish a working PTY/ConPTY harness and complete installed lifecycle acceptance; previous cmd.exe 0xC0000142 probe is not acceptance."
     }
   ],
   "status_rule": "Before every next instruction refresh GPT-K and current local evidence. Do not rerun accepted baseline tests or read-only proofs merely for reassurance. Drive the open gate by completing the first remaining live composition behavior.",
@@ -133,10 +144,31 @@
     "preservation_rule": "Preserve current dirty/unpublished Rust work and do not use Rust acceptance as proof of Cline CLI user experience."
   },
   "current_blocker": {
-    "classification": "FIRST_MISSING_DEPENDENCY_FROM_CLINE_VS_LBE_AUDIT",
-    "dependency": "LBE_TO_CLINE_AGENTRUNTIME_GOVERNANCE_ADAPTER",
-    "disposition": "ADAPT",
-    "meaning": "Parent-continuation proof is complete. The first remaining product dependency identified by the current Cline-vs-LBE audit is the LBE-to-Cline AgentRuntime governance adapter."
+    "classification": "BLOCKED_CANONICAL_LOCAL_CHECKOUT_CANNOT_REPRODUCE_PUBLISHED_RUNTIME",
+    "primary": {
+      "workspace": "C:/Agents-Memory-Tool-v6-integration",
+      "git_integrity": [
+        "invalid HEAD",
+        "invalid origin/main",
+        "invalid stash ref",
+        "missing Git objects",
+        "fsck reports widespread desktop.ini object corruption"
+      ],
+      "source_integrity": [
+        "lbe_guard_inspector/runtime/cline_stdio_bridge.py present",
+        "lbe_guard_inspector/cline_reasoning_provider.py missing locally",
+        "bridge tests fail collection with ModuleNotFoundError"
+      ],
+      "canonical_remote_truth": "GitHub main a17b014 contains both cline_stdio_bridge.py and cline_reasoning_provider.py."
+    },
+    "secondary": {
+      "classification": "BLOCKED_INSTALLED_PTY_CONPTY_ACCEPTANCE_UNPROVEN",
+      "evidence": [
+        "Docs/13_lifecycle_acceptance.md records no working PTY harness",
+        "previous cmd.exe probe failed with 0xC0000142"
+      ]
+    },
+    "effect": "Do not close/advance the machine gate or activate installed PTY/ConPTY acceptance until a trustworthy runnable checkout/install can reproduce the published runtime."
   },
   "project_visit_protocol": {
     "classification": "MANDATORY_PROJECT_CONTEXT_REFRESH",
@@ -159,8 +191,8 @@
     "remaining_note": "The service is available. Provider availability itself is no longer the project blocker. If the current LBE provider transport expects a different route, treat that only as a local transport/config seam within the larger Cline-backed LBE composition task; do not reopen provider architecture."
   },
   "remaining_unproven": [
-    "LBE-to-Cline AgentRuntime governance adapter",
-    "installed PTY/ConPTY acceptance on the accepted Cline CLI/TUI surface",
+    "trustworthy local/isolated reproduction of published main a17b014",
+    "installed PTY/ConPTY lifecycle acceptance",
     "final installed product acceptance"
   ],
   "canonical_execution_path": {
@@ -629,5 +661,15 @@
   "ui_scope": {
     "classification": "UI_WORK_ALLOWED_NON_BLOCKING",
     "rule": "UI implementation and polish may be updated at any time within the accepted client surface. UI acceptance evidence is only required when the active product gate calls for it. Python/Textual terminal UI remains retired/reference-only."
+  },
+  "validation_snapshot": {
+    "backend_focus": "Published parent-continuation proof remains PASS; no regression inferred from corrupt local checkout.",
+    "client_cargo": "203 passed, 2 failed",
+    "client_failures": [
+      "audit_mode_renders_a_real_read_only_projection_screen",
+      "welcome_frame_prioritizes_home_controls_at_80_by_24"
+    ],
+    "client_failure_classification": "UI rendering assertions in dirty client checkout; not sufficient to invalidate completed parent-continuation proof.",
+    "installed_pty_conpty": "UNPROVEN"
   }
 }
