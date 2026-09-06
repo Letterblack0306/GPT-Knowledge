@@ -1,5 +1,5 @@
 {
-  "schema_version": 70,
+  "schema_version": 71,
   "project": "LBE Persistent Agent",
   "verified_at": "2026-09-06",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
@@ -191,6 +191,7 @@
     "remaining_note": "The service is available. Provider availability itself is no longer the project blocker. If the current LBE provider transport expects a different route, treat that only as a local transport/config seam within the larger Cline-backed LBE composition task; do not reopen provider architecture."
   },
   "remaining_unproven": [
+    "complete Cline-vs-LBE product capability diff",
     "trustworthy local/isolated reproduction of published main a17b014",
     "installed PTY/ConPTY lifecycle acceptance",
     "final installed product acceptance"
@@ -671,5 +672,58 @@
     ],
     "client_failure_classification": "UI rendering assertions in dirty client checkout; not sufficient to invalidate completed parent-continuation proof.",
     "installed_pty_conpty": "UNPROVEN"
+  },
+  "cline_vs_lbe_product_diff": {
+    "classification": "PARTIAL_PRODUCT_CAPABILITY_DIFF_REMAINING",
+    "source_audit": {
+      "classification": "SUBSTANTIALLY_COMPLETE_FOR_DECLARED_REUSE_BOUNDARY_SCOPE",
+      "canonical_matrix": "LBE_Presistent_Agent_wall/docs/research/CLINE_CORE_REUSE_BOUNDARY_MATRIX.md",
+      "audited_cline_revision": "8bbdde2a5c1f972864fe1b954f639c21fac61a40",
+      "note": "The existing matrix classifies its declared source-audit capability families, but it is not the complete Cline-vs-LBE product capability parity/difference audit."
+    },
+    "proven_integration": {
+      "classification": "PASS_BOUNDED",
+      "capability": "Cline AgentRuntime provider/tool continuation behind LBE governance",
+      "checkpoint": "LBE_Presistent_Agent_wall/docs/acceptance/LBE_CLINE_PROVIDER_CONTINUATION_CHECKPOINT.md",
+      "preserved_boundary": "Cline owns provider/continuation mechanics; LBE owns identity, authorization, governed execution, ToolReceipt/evidence, persistence, validation and completion."
+    },
+    "completed_matrix_rows": [
+      "provider adapters",
+      "provider/model capability metadata and probes",
+      "provider-native streaming",
+      "tool-call parsing and continuation",
+      "pre-tool interception",
+      "native filesystem/editor mutation exclusion",
+      "native shell/process execution exclusion",
+      "session persistence",
+      "checkpoint/undo",
+      "runtime/model event stream",
+      "cancellation",
+      "interrupt/steering",
+      "MCP",
+      "CLI/TUI",
+      "background processes",
+      "context/compaction"
+    ],
+    "remaining_explicit_product_diff_rows": [
+      "approval interaction UX/mechanics versus LBE approval authority",
+      "usage/token/cost projection",
+      "history/session navigation UX",
+      "headless/JSON execution surface",
+      "error projection completeness",
+      "retry behavior and ownership",
+      "timeout behavior and ownership",
+      "thinking/reasoning controls",
+      "hooks/extensions/plugin lifecycle",
+      "workspace/project selection",
+      "terminal/composer interaction",
+      "provider/model picker UX",
+      "session restore UX details",
+      "MCP configuration UX",
+      "event ordering/projection completeness",
+      "background task lifecycle ownership",
+      "proof that overlapping native Cline mutating/execution tools are disabled in the accepted product path"
+    ],
+    "rule": "Do not classify the complete Cline-vs-LBE product diff as PASS until the remaining rows are explicitly audited against current Cline source and current LBE owners. Do not repeat already-proven provider-continuation acceptance merely to complete this diff."
   }
 }
