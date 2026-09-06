@@ -1,5 +1,5 @@
 {
-  "schema_version": 71,
+  "schema_version": 72,
   "project": "LBE Persistent Agent",
   "verified_at": "2026-09-06",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
@@ -191,9 +191,10 @@
     "remaining_note": "The service is available. Provider availability itself is no longer the project blocker. If the current LBE provider transport expects a different route, treat that only as a local transport/config seam within the larger Cline-backed LBE composition task; do not reopen provider architecture."
   },
   "remaining_unproven": [
-    "complete Cline-vs-LBE product capability diff",
-    "trustworthy local/isolated reproduction of published main a17b014",
+    "live RealLbeWrapper fixture-dependent acceptance for the current Rust adapter surface",
     "installed PTY/ConPTY lifecycle acceptance",
+    "installed provider catalog/model binding",
+    "remaining UNVERIFIED/PARTIALLY_WIRED product-surface capabilities from Docs/38",
     "final installed product acceptance"
   ],
   "canonical_execution_path": {
@@ -674,56 +675,103 @@
     "installed_pty_conpty": "UNPROVEN"
   },
   "cline_vs_lbe_product_diff": {
-    "classification": "PARTIAL_PRODUCT_CAPABILITY_DIFF_REMAINING",
-    "source_audit": {
-      "classification": "SUBSTANTIALLY_COMPLETE_FOR_DECLARED_REUSE_BOUNDARY_SCOPE",
-      "canonical_matrix": "LBE_Presistent_Agent_wall/docs/research/CLINE_CORE_REUSE_BOUNDARY_MATRIX.md",
-      "audited_cline_revision": "8bbdde2a5c1f972864fe1b954f639c21fac61a40",
-      "note": "The existing matrix classifies its declared source-audit capability families, but it is not the complete Cline-vs-LBE product capability parity/difference audit."
+    "classification": "CAPABILITY_DIFF_COMPLETE_MAPPING_LIVE_ACCEPTANCE_OPEN",
+    "document": "C:/LBE-TUI-Lab/Docs/38_complete_cline_lbe_capability_diff.md",
+    "real_lbe_wrapper": {
+      "implemented_methods": 24,
+      "unsupported_individual_requests": 13,
+      "unsupported_capability_categories": 7,
+      "dispatch_coverage": "37 request variants classified",
+      "rule": "Unsupported requests must remain justified by current LBE capability/ownership evidence. Fix adapter/backend seams when genuinely available and relevant; retain unsupported status only for genuine exclusions/deferred contracts."
     },
-    "proven_integration": {
-      "classification": "PASS_BOUNDED",
-      "capability": "Cline AgentRuntime provider/tool continuation behind LBE governance",
-      "checkpoint": "LBE_Presistent_Agent_wall/docs/acceptance/LBE_CLINE_PROVIDER_CONTINUATION_CHECKPOINT.md",
-      "preserved_boundary": "Cline owns provider/continuation mechanics; LBE owns identity, authorization, governed execution, ToolReceipt/evidence, persistence, validation and completion."
-    },
-    "completed_matrix_rows": [
-      "provider adapters",
-      "provider/model capability metadata and probes",
-      "provider-native streaming",
-      "tool-call parsing and continuation",
-      "pre-tool interception",
-      "native filesystem/editor mutation exclusion",
-      "native shell/process execution exclusion",
-      "session persistence",
-      "checkpoint/undo",
-      "runtime/model event stream",
-      "cancellation",
-      "interrupt/steering",
-      "MCP",
-      "CLI/TUI",
-      "background processes",
-      "context/compaction"
-    ],
-    "remaining_explicit_product_diff_rows": [
-      "approval interaction UX/mechanics versus LBE approval authority",
-      "usage/token/cost projection",
-      "history/session navigation UX",
-      "headless/JSON execution surface",
-      "error projection completeness",
-      "retry behavior and ownership",
-      "timeout behavior and ownership",
+    "source_mapping_status": "COMPLETE",
+    "live_runtime_acceptance": "PENDING",
+    "native_cline_tool_disablement": "PROVEN per current local diff record",
+    "agent_mode_build_fix": "IMPLEMENTED_LOCAL — AgentMode::Regular -> AgentMode::Build in four wrapper.rs occurrences",
+    "remaining_unverified_product_behaviors": [
+      "usage/token projection",
+      "token count display",
+      "cost calculation",
+      "budget warnings",
+      "rate limit projection",
+      "headless JSON schema",
+      "retry/timeout semantics",
       "thinking/reasoning controls",
-      "hooks/extensions/plugin lifecycle",
-      "workspace/project selection",
-      "terminal/composer interaction",
-      "provider/model picker UX",
-      "session restore UX details",
-      "MCP configuration UX",
-      "event ordering/projection completeness",
-      "background task lifecycle ownership",
-      "proof that overlapping native Cline mutating/execution tools are disabled in the accepted product path"
+      "plugin system",
+      "lifecycle hooks",
+      "file-based hooks",
+      "automation events",
+      "event ordering completeness"
     ],
-    "rule": "Do not classify the complete Cline-vs-LBE product diff as PASS until the remaining rows are explicitly audited against current Cline source and current LBE owners. Do not repeat already-proven provider-continuation acceptance merely to complete this diff."
+    "remaining_partial_product_behaviors": [
+      "background task lifecycle",
+      "error projection",
+      "session restore UX",
+      "MCP configuration UX"
+    ],
+    "rule": "Capability/source mapping completion does not equal live installed product acceptance."
+  },
+  "rust_client_validation_2026_09_06": {
+    "classification": "STATIC_PASS_LIVE_FIXTURE_TESTS_BLOCKED",
+    "workspace": "C:/LBE-TUI-Lab",
+    "build": {
+      "cargo_check": "PASS",
+      "errors": 0,
+      "warnings": 42,
+      "warning_classification": "dead code"
+    },
+    "tests": {
+      "command": "cargo test",
+      "passed": 199,
+      "failed": 3,
+      "ignored": 2,
+      "full_suite_classification": "NOT_FULL_PASS",
+      "failed_tests_classification": "LIVE_LBE_FIXTURE_DEPENDENT / UNPROVEN",
+      "rule": "Do not report the full cargo test invocation as PASS while three tests fail. The 199 non-live tests are proven passing; the three live-fixture paths remain unproven until a real fixture is available."
+    },
+    "cargo_manifest_change": {
+      "file": "C:/LBE-TUI-Lab/Cargo.toml",
+      "observed_change": "edition = 2024 -> edition = 2021",
+      "classification": "LOCAL_COMPATIBILITY_BUILD_CORRECTION",
+      "note": "Record the observed compatibility change only; do not encode the unsupported claim that Rust edition 2024 is inherently unstable."
+    },
+    "staged_changes": {
+      "classification": "STAGED_LOCAL_UNPUBLISHED",
+      "paths": [
+        "Cargo.toml",
+        "Docs/38_complete_cline_lbe_capability_diff.md"
+      ],
+      "summary": "Cargo compatibility correction plus completed capability-diff documentation are staged locally. Staging is not publication or canonical GitHub truth."
+    },
+    "remaining_worktree": {
+      "classification": "DIRTY_PRESERVED",
+      "modified_files": 14,
+      "deleted_files": 1,
+      "deleted_paths": [
+        "AGENTS.md"
+      ],
+      "untracked_entries": 18,
+      "rule": "Preserve unrelated dirty work. Do not clean/reset/stash/rebase or bundle it into publication merely to align the workspace."
+    }
+  },
+  "current_rust_open_gates": {
+    "classification": "OPEN",
+    "gates": [
+      {
+        "id": "REAL_LBE_WRAPPER_LIVE_ATTACHMENT",
+        "status": "BLOCKED_OR_UNPROVEN",
+        "blocker": "Current local validation reports the required live LBE runtime fixture unavailable for the three failing tests."
+      },
+      {
+        "id": "INSTALLED_PTY_CONPTY_LIFECYCLE",
+        "status": "PENDING",
+        "note": "Parent-child-parent correlation proof is already complete; this gate concerns installed interactive lifecycle/terminal acceptance."
+      },
+      {
+        "id": "INSTALLED_PROVIDER_CATALOG_BINDING",
+        "status": "PENDING",
+        "note": "Real installed provider/model binding remains to be proven."
+      }
+    ]
   }
 }
