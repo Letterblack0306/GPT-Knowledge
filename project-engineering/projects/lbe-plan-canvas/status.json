@@ -1,12 +1,12 @@
 {
-  "schema_version": 68,
+  "schema_version": 69,
   "project": "LBE Persistent Agent",
   "verified_at": "2026-09-06",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "source_branch": "main",
   "original_workspace": "C:/Agents-Memory-Tool-v6-integration",
   "later_ui_workspace": "C:/LBE-TUI-Lab",
-  "overall_classification": "PARENT_CONTINUATION_DEEP_CORRELATION_GATE_OPEN_FOCUSED_ADAPTER_VALIDATION_FAIL",
+  "overall_classification": "PARENT_CONTINUATION_GATE_PROVEN_READY_FOR_CLOSURE_NEXT_INSTALLED_FINAL_ACCEPTANCE",
   "authority_note": "GPT-Knowledge is a projection only. Current canonical source/configuration, current local validation/runtime evidence, machine governance, active intent and acceptance records outrank this file.",
   "final_product": {
     "definition": "Persistent provider-neutral LBE agent product in which the agent/provider owns reasoning, investigation strategy, capability selection, interpretation and replanning, while LBE owns workspace/session identity, policy, authorization, governed execution, ToolReceipts/evidence, persistence, recovery, deterministic validation and completion truth.",
@@ -22,33 +22,21 @@
     "interface_rule": "Accepted user-facing interface = embedded Cline CLI/TUI under C:/LBE-TUI-Lab/cline/apps/cli launched by run-cline-lbe.ps1. Rust/Ratatui is a separate prototype/reference/integration client. Both remain subordinate to LBE runtime authority."
   },
   "current_machine_state": {
-    "classification": "FOCUSED_ADAPTER_VALIDATION_FAIL_REMAIN_ON_SLICE",
+    "classification": "READY_FOR_GATE_CLOSURE",
+    "source_repo_commit": "a17b014",
     "active_phase": "PARENT_CONTINUATION_AND_DEEP_CORRELATION",
-    "active_slice": "FOCUSED_ADAPTER_VALIDATION",
-    "status": "FAIL",
-    "implementation_allowed": true,
-    "rust_checkout": {
-      "workspace": "C:/LBE-TUI-Lab",
-      "head": "bd19603e794ad24d01c3098d5312a07978d3b79d",
-      "origin_main": "bd19603e794ad24d01c3098d5312a07978d3b79d",
-      "ahead": 0,
-      "behind": 0,
-      "worktrees": 1,
-      "staged_changes": "NONE"
-    },
-    "fresh_validation": {
-      "cargo_test": "204 passed, 0 failed",
-      "cargo_check": "PASS",
-      "cargo_fmt_check": "PASS",
-      "git_diff_check": "PASS"
-    },
-    "dirty_work_rule": "Tracked and untracked user work is intentionally preserved. Do not clean, stage, delete, commit or push unrelated material to force the gate closed.",
+    "active_slice": "PERSISTED_CHILD_RESULT_PARENT_CONTINUATION_AND_CORRELATION",
     "gate_id": "PARENT_CONTINUATION_AND_DEEP_CORRELATION_ACCEPTANCE",
-    "failure_summary": "12/15 focused adapter tests pass; 3 fail in delegated failure -> child_agent.failed mapping through LBE.",
-    "failure_classification": "ADAPTER_LOGIC_FAILURE_MAPPING_REMEDIATION_REQUIRED",
-    "adapter_logic_regression": "NOT BROADLY DEMONSTRATED; three claim-matched failure-mapping cases remain failing",
-    "advance_allowed": false,
-    "required_status_for_advance": "PASS"
+    "status": "READY_FOR_GATE_CLOSURE",
+    "implementation_allowed": true,
+    "next_product_slice": "INSTALLED_PTY_CONPTY_AND_FINAL_PRODUCT_ACCEPTANCE",
+    "proof": {
+      "FOCUSED_ADAPTER_VALIDATION": "PASS — 15/15",
+      "LIVE_PARENT_CHILD_PARENT_PROOF": "PASS",
+      "LIVE_CANCELLATION_TERMINALITY_PROOF": "PASS",
+      "CANONICAL_VERIFIER_PROOF": "PASS"
+    },
+    "dirty_workspace_rule": "Original local workspace retains unrelated dirty/untracked work and must not be overwritten merely to align with published main."
   },
   "runtime_authority": {
     "status": "ESTABLISHED_GOVERNED",
@@ -119,33 +107,22 @@
   "next_required_sequence": [
     {
       "order": 1,
-      "id": "focused-adapter-validation-remediation",
-      "status": "ACTIVE_FAIL",
-      "scope": "Repair only the three delegated failure -> child_agent.failed through LBE cases, then rerun bunx vitest run src/runtime/lbe-tool-adapter.test.ts and require 15/15."
+      "id": "gate-closure",
+      "status": "READY",
+      "scope": "Close PARENT_CONTINUATION_AND_DEEP_CORRELATION_ACCEPTANCE using the already-proven ordered-slice results; do not rerun completed proof merely for reassurance."
     },
     {
       "order": 2,
-      "id": "live-parent-child-parent-proof",
-      "status": "LOCKED_PENDING_15_OF_15",
-      "scope": "Capture provider_tool_call_id -> lbe_call_id -> child_run_id -> runtime_operation_id -> tool_receipt_id -> persisted ChildAgentRun result -> parent continuation -> parent completion."
+      "id": "lbe-to-cline-agentruntime-governance-adapter",
+      "status": "ACTIVE_NEXT_DEPENDENCY",
+      "classification": "ADAPT",
+      "scope": "Adapt Cline AgentRuntime mechanics behind LBE authority. Preserve LBE ownership of identity, authorization, governed execution, receipts, evidence, persistence, validation, and completion."
     },
     {
       "order": 3,
-      "id": "live-cancellation-terminality-proof",
-      "status": "PENDING",
-      "scope": "For the same child_run_id prove CANCELLED, no later COMPLETED, and no successful parent continuation from the cancelled run."
-    },
-    {
-      "order": 4,
-      "id": "canonical-verifier-proof",
-      "status": "PENDING",
-      "scope": "Run existing tools/lbe_product_integration.ps1 in prove mode; repair only the existing harness if harness capture itself blocks proof."
-    },
-    {
-      "order": 5,
-      "id": "installed-pty-final-product-acceptance",
-      "status": "LATER",
-      "scope": "Only after the parent-continuation/deep-correlation gate closes."
+      "id": "installed-pty-conpty-final-product-acceptance",
+      "status": "NEXT_PRODUCT_SLICE",
+      "scope": "Run installed Cline CLI/TUI PTY/ConPTY and final product acceptance after the governance adapter seam is satisfied."
     }
   ],
   "status_rule": "Before every next instruction refresh GPT-K and current local evidence. Do not rerun accepted baseline tests or read-only proofs merely for reassurance. Drive the open gate by completing the first remaining live composition behavior.",
@@ -156,8 +133,10 @@
     "preservation_rule": "Preserve current dirty/unpublished Rust work and do not use Rust acceptance as proof of Cline CLI user experience."
   },
   "current_blocker": {
-    "classification": "FOCUSED_ADAPTER_VALIDATION_FAIL",
-    "meaning": "Three focused adapter cases fail because delegated failure is not yet mapped correctly to child_agent.failed through LBE. Live parent->child->parent proof remains locked until 15/15."
+    "classification": "FIRST_MISSING_DEPENDENCY_FROM_CLINE_VS_LBE_AUDIT",
+    "dependency": "LBE_TO_CLINE_AGENTRUNTIME_GOVERNANCE_ADAPTER",
+    "disposition": "ADAPT",
+    "meaning": "Parent-continuation proof is complete. The first remaining product dependency identified by the current Cline-vs-LBE audit is the LBE-to-Cline AgentRuntime governance adapter."
   },
   "project_visit_protocol": {
     "classification": "MANDATORY_PROJECT_CONTEXT_REFRESH",
@@ -180,11 +159,8 @@
     "remaining_note": "The service is available. Provider availability itself is no longer the project blocker. If the current LBE provider transport expects a different route, treat that only as a local transport/config seam within the larger Cline-backed LBE composition task; do not reopen provider architecture."
   },
   "remaining_unproven": [
-    "focused adapter suite 15/15",
-    "live parent->child->parent persisted-result continuation",
-    "live cancellation terminality negative proof",
-    "canonical verifier prove-mode PASS",
-    "installed interactive PTY/ConPTY acceptance",
+    "LBE-to-Cline AgentRuntime governance adapter",
+    "installed PTY/ConPTY acceptance on the accepted Cline CLI/TUI surface",
     "final installed product acceptance"
   ],
   "canonical_execution_path": {
@@ -614,5 +590,44 @@
       "parent_completion"
     ],
     "rule": "Identifiers must be explicit and stable for one delegated operation; do not reconstruct links from ordering, timestamps, text matching, or nearest-event heuristics."
+  },
+  "cline_reuse_audit": {
+    "classification": "PASS_WITH_FIRST_MISSING_DEPENDENCY",
+    "first_missing_dependency": "LBE_TO_CLINE_AGENTRUNTIME_GOVERNANCE_ADAPTER",
+    "first_missing_dependency_disposition": "ADAPT",
+    "reuse_or_adapt": [
+      "provider adapters",
+      "provider/model metadata",
+      "streaming/event loops",
+      "tool-call continuation",
+      "interception hooks",
+      "session persistence",
+      "checkpoint/undo",
+      "cancellation",
+      "interrupt steering",
+      "MCP mechanics",
+      "CLI/TUI mechanics",
+      "background processes",
+      "compaction"
+    ],
+    "reject_as_authority": [
+      "filesystem/editor mutation",
+      "shell/process execution",
+      "overlapping direct tool authority"
+    ],
+    "lbe_sole_authority": [
+      "workspace/session/turn identity",
+      "authorization and policy",
+      "governed execution",
+      "ToolReceipts and evidence",
+      "canonical persistence and recovery",
+      "validation",
+      "completion truth"
+    ],
+    "rule": "Cline supplies mechanics where compatible; LBE remains canonical authority. Reuse must not create a second executor, session owner, authorization owner, receipt/evidence owner, or completion owner."
+  },
+  "ui_scope": {
+    "classification": "UI_WORK_ALLOWED_NON_BLOCKING",
+    "rule": "UI implementation and polish may be updated at any time within the accepted client surface. UI acceptance evidence is only required when the active product gate calls for it. Python/Textual terminal UI remains retired/reference-only."
   }
 }
