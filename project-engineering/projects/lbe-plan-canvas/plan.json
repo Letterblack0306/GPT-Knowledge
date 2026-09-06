@@ -1,5 +1,5 @@
 {
-  "schema_version": 34,
+  "schema_version": 35,
   "project": "LBE Persistent Agent",
   "updated": "2026-09-04",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
@@ -284,73 +284,41 @@
   "current_execution_state": {
     "gate_id": "PARENT_CONTINUATION_AND_DEEP_CORRELATION_ACCEPTANCE",
     "active_phase": "PARENT_CONTINUATION_AND_DEEP_CORRELATION",
-    "current_slice": "FOCUSED_ADAPTER_VALIDATION",
-    "status": "FAIL",
-    "observed": "12/15 passed; 3 failed",
-    "failure": "Delegated failure -> child_agent.failed mapping through LBE fails in three focused adapter cases.",
-    "classification": "ADAPTER_LOGIC_FAILURE_MAPPING_REMEDIATION_REQUIRED",
-    "advance_allowed": false,
-    "remediation": "Repair only the three failed failure-mapping cases and rerun the same focused adapter suite to 15/15.",
-    "next_after_pass": "LIVE_PARENT_CHILD_PARENT_PROOF"
+    "current_slice": "PERSISTED_CHILD_RESULT_PARENT_CONTINUATION_AND_CORRELATION",
+    "status": "READY_FOR_GATE_CLOSURE",
+    "canonical_commit": "a17b014",
+    "ordered_slice_results": {
+      "PARENT_CONTINUATION_IMPLEMENTATION": "PASS",
+      "DEEP_CORRELATION_PROPAGATION": "PASS",
+      "FOCUSED_ADAPTER_VALIDATION": "PASS",
+      "LIVE_PARENT_CHILD_PARENT_PROOF": "PASS",
+      "LIVE_CANCELLATION_TERMINALITY_PROOF": "PASS",
+      "CANONICAL_VERIFIER_PROOF": "PASS"
+    },
+    "next_product_slice": "INSTALLED_PTY_CONPTY_AND_FINAL_PRODUCT_ACCEPTANCE"
   },
   "machine_execution_plan": {
-    "rule": "Machine plan is execution plan; no Q&A for predeclared next steps.",
-    "state_transitions": {
-      "PENDING": "continue",
-      "IMPLEMENTED": "validate",
-      "UNVERIFIED": "continue proof if runnable",
-      "PASS": "advance",
-      "FAIL": "remain and expose failed criteria",
-      "BLOCKED": "remain and expose exact blocker"
-    },
+    "rule": "Machine plan is the execution plan; no Q&A for predeclared next steps.",
     "ordered_slices": [
       {
         "order": 1,
-        "id": "PARENT_CONTINUATION_IMPLEMENTATION",
-        "status": "IMPLEMENTED"
+        "id": "PARENT_CONTINUATION_AND_DEEP_CORRELATION_GATE_CLOSURE",
+        "status": "READY"
       },
       {
         "order": 2,
-        "id": "DEEP_CORRELATION_PROPAGATION",
-        "status": "IMPLEMENTED_NOT_YET_LIVE_PROVEN"
+        "id": "LBE_TO_CLINE_AGENTRUNTIME_GOVERNANCE_ADAPTER",
+        "status": "NEXT",
+        "classification": "ADAPT"
       },
       {
         "order": 3,
-        "id": "FOCUSED_ADAPTER_VALIDATION",
-        "status": "FAIL",
-        "required": "15/15"
-      },
-      {
-        "order": 4,
-        "id": "LIVE_PARENT_CHILD_PARENT_PROOF",
-        "status": "LOCKED"
-      },
-      {
-        "order": 5,
-        "id": "LIVE_CANCELLATION_TERMINALITY_PROOF",
-        "status": "PENDING"
-      },
-      {
-        "order": 6,
-        "id": "CANONICAL_VERIFIER_PROOF",
-        "status": "PENDING"
-      },
-      {
-        "order": 7,
-        "id": "GATE_CLOSURE",
-        "status": "PENDING"
+        "id": "INSTALLED_PTY_CONPTY_AND_FINAL_PRODUCT_ACCEPTANCE",
+        "status": "NEXT_PRODUCT_SLICE"
       }
     ],
-    "out_of_scope": [
-      "/team exposure",
-      "UI redesign",
-      "general Git divergence reconciliation",
-      "publication/release"
-    ],
-    "later_gate": [
-      "PTY/ConPTY installed acceptance",
-      "final installed product acceptance"
-    ]
+    "ui_rule": "UI implementation/polish is allowed and non-blocking; only acceptance claims are gate-scoped. Python/Textual terminal UI remains retired/reference-only.",
+    "dirty_workspace_rule": "Do not reconcile/clean the original dirty workspace unless a concrete validation step requires alignment; preserve unrelated local work."
   },
   "correlation_acceptance": {
     "chain": [
@@ -375,6 +343,45 @@
       "CANCELLED observed for same child_run_id",
       "no later COMPLETED for that child_run_id",
       "no successful parent continuation from cancelled run"
+    ]
+  },
+  "cline_vs_lbe_diff_audit": {
+    "status": "PASS",
+    "objective": "Reuse mature Cline mechanics where compatible while preserving LBE as sole runtime/governance authority.",
+    "first_missing_dependency": {
+      "id": "LBE_TO_CLINE_AGENTRUNTIME_GOVERNANCE_ADAPTER",
+      "classification": "ADAPT",
+      "status": "NEXT"
+    },
+    "reuse_adapt": [
+      "provider adapters",
+      "provider/model metadata",
+      "streaming/event loops",
+      "tool-call continuation",
+      "interception hooks",
+      "session persistence",
+      "checkpoint/undo",
+      "cancellation",
+      "interrupt steering",
+      "MCP",
+      "CLI/TUI",
+      "background processes",
+      "compaction"
+    ],
+    "reject_canonical_authority": [
+      "filesystem/editor mutation",
+      "shell/process execution",
+      "overlapping direct tool authority"
+    ],
+    "preserve_lbe_authority": [
+      "identity",
+      "authorization",
+      "governed execution",
+      "receipts",
+      "evidence",
+      "persistence",
+      "validation",
+      "completion"
     ]
   }
 }
