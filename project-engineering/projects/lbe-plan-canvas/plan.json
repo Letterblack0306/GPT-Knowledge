@@ -1,7 +1,7 @@
 {
-  "schema_version": 36,
+  "schema_version": 37,
   "project": "LBE Persistent Agent",
-  "updated": "2026-09-04",
+  "updated": "2026-09-06",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "source_branch": "main",
   "original_workspace": "C:/Agents-Memory-Tool-v6-integration",
@@ -345,14 +345,11 @@
     ]
   },
   "cline_vs_lbe_diff_audit": {
-    "status": "PASS",
-    "objective": "Reuse mature Cline mechanics where compatible while preserving LBE as sole runtime/governance authority.",
-    "first_missing_dependency": {
-      "id": "LBE_TO_CLINE_AGENTRUNTIME_GOVERNANCE_ADAPTER",
-      "classification": "ADAPT",
-      "status": "NEXT"
-    },
-    "reuse_adapt": [
+    "status": "PARTIAL",
+    "source_boundary_audit": "SUBSTANTIALLY_COMPLETE",
+    "complete_product_capability_diff": "NOT_COMPLETE",
+    "objective": "Finish the Cline-vs-LBE product capability difference matrix without reopening already-proven provider continuation or transferring any LBE authority to Cline.",
+    "completed_source_scope": [
       "provider adapters",
       "provider/model metadata",
       "streaming/event loops",
@@ -360,27 +357,46 @@
       "interception hooks",
       "session persistence",
       "checkpoint/undo",
+      "runtime/model event stream",
       "cancellation",
       "interrupt steering",
       "MCP",
       "CLI/TUI",
       "background processes",
-      "compaction"
+      "context/compaction",
+      "native filesystem/editor mutation rejection",
+      "native shell/process execution rejection"
     ],
-    "reject_canonical_authority": [
-      "filesystem/editor mutation",
-      "shell/process execution",
-      "overlapping direct tool authority"
+    "bounded_integration_already_proven": "Cline AgentRuntime continuation through existing LBE GovernedToolOrchestrator/ToolReceipt path; do not rerun as a substitute for the remaining diff.",
+    "remaining_product_rows": [
+      "approval UX/mechanics",
+      "usage/token/cost projection",
+      "history/session navigation",
+      "headless/JSON execution",
+      "error projection",
+      "retry semantics",
+      "timeout semantics",
+      "thinking/reasoning controls",
+      "hooks/extensions/plugin lifecycle",
+      "workspace/project selection",
+      "terminal/composer/key interaction",
+      "provider/model picker UX",
+      "session restore UX",
+      "MCP configuration UX",
+      "event ordering/projection completeness",
+      "background task lifecycle ownership",
+      "native overlapping tool-disablement proof"
     ],
-    "preserve_lbe_authority": [
-      "identity",
-      "authorization",
-      "governed execution",
-      "receipts",
-      "evidence",
-      "persistence",
-      "validation",
-      "completion"
-    ]
+    "classifications_to_use": [
+      "PRESENT_IN_LBE",
+      "REUSED_FROM_CLINE",
+      "PARTIALLY_WIRED",
+      "MISSING_AND_RELEVANT",
+      "INTENTIONALLY_EXCLUDED",
+      "DUPLICATE_AUTHORITY_RISK",
+      "STALE_REFERENCE_ONLY",
+      "UNVERIFIED"
+    ],
+    "sequencing_rule": "Complete only the remaining product/runtime-mechanics rows. For every row identify exact Cline owner, exact current LBE owner/state, bypass/duplication risk, reuse/adapt/exclude decision, and claim-matched proof. Do not mark the whole diff PASS from the narrower source matrix."
   }
 }
