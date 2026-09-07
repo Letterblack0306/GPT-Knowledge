@@ -118,26 +118,52 @@ The earlier full-suite timeout uncertainty is resolved; the full Python suite su
 
 ## Backend local recovery status — 2026-09-07
 
-Latest local evidence reports:
+Three-way comparison has narrowed the backend recovery issue.
 
 ```text
 integration checkout:
 C:\Agents-Memory-Tool-v6-integration
-local HEAD = 815dfc0
-working files = recovered/intact (local report)
+local HEAD = 815dfc03e256b5...
+relevant canonical files = staged for deletion
 
 validation checkout:
 C:\Agents-Memory-Tool-v6-validation
-local HEAD = a17b014
-working/index files = broadly deleted (local report)
+HEAD = a17b0144269b...
 
 canonical GitHub backend main:
 03a90ce22222c0e3ab4fd1c9a9629b3a1f7daa7e
 ```
 
-The phrase `815dfc0 synced` is not accepted as current-remote truth because canonical GitHub main is `03a90ce`. A fresh local fetch and ancestry check is required before treating the recovered integration checkout as synchronized.
+Four previously suspected validation-only files are byte-identical across integration HEAD, validation HEAD, and canonical origin/main:
 
-Four files reported available in validation but deleted in the integration working tree are present on canonical GitHub main, so validation is not their sole recoverable source. Validation deletion remains deferred until genuinely unique local evidence is ruled out.
+```text
+docs/acceptance/LBE_PRODUCT_INTEGRATION_MACHINE_CHECK.md
+lbe_guard_inspector/cline_reasoning_provider.py
+lbe_guard_inspector/coding_reasoning_provider.py
+lbe_guard_inspector/first_party_reasoning_provider.py
+```
+
+The integration index stages deletion of those four plus at least:
+
+```text
+tests/test_first_party_reasoning_provider.py
+tools/lbe_product_integration.ps1
+```
+
+The latter two also exist on canonical GitHub main.
+
+Current evidence classification:
+
+```text
+canonical recovery source                  origin/main
+validation unique-source claim             FALSE for the compared files
+staged deletion state                      PROVEN LOCALLY
+deletion rationale                         UNVERIFIED
+deletion accepted by current architecture  NOT PROVEN
+safe to commit staged deletions            BLOCKED pending review
+```
+
+Do not restore or commit these paths automatically. First determine why they were staged and whether current runtime owners, tests, verifier contracts, or machine governance still require them.
 
 ## Current product gates
 
