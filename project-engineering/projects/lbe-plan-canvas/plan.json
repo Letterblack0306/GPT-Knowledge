@@ -1,5 +1,5 @@
 {
-  "schema_version": 43,
+  "schema_version": 44,
   "project": "LBE Persistent Agent",
   "updated": "2026-09-07",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
@@ -110,13 +110,13 @@
   "execution_sequence": [
     {
       "order": 0,
-      "id": "backend-recovered-checkout-reconciliation",
-      "status": "REQUIRED_BEFORE_BACKEND_MUTATION",
-      "scope": "Fetch and reconcile recovered integration HEAD 815dfc0 against canonical backend main 03a90ce without overwriting recovered working state; determine intent of deleted canonical files."
+      "id": "review-staged-backend-deletions",
+      "status": "BLOCKED_ACTIVE_RECOVERY_REVIEW",
+      "scope": "Determine why canonical provider/verifier/test files are staged for deletion in the recovered integration index. Do not commit or restore until current owner/gate intent is established."
     },
     {
       "order": 1,
-      "id": "client-acquisition-entrypoint-reconciliation",
+      "id": "reconcile-client-acquisition-entrypoint",
       "status": "BLOCKED_ACTIVE_PRODUCT_GATE",
       "scope": "Reconcile canonical remote launcher/source expectation with the actual local Cline acquisition path and prove reproducible launch."
     },
@@ -211,29 +211,39 @@
       }
     },
     "latest_local_observation": {
-      "classification": "RECOVERY_STATE_REQUIRES_REMOTE_RECONCILIATION",
+      "classification": "THREE_WAY_RECOVERY_COMPARISON_COMPLETE",
       "integration_checkout": {
         "path": "C:/Agents-Memory-Tool-v6-integration",
-        "reported_head": "815dfc0",
-        "reported_working_state": "RECOVERED_INTACT",
-        "remote_sync_classification": "UNVERIFIED_CONTRADICTED_BY_CANONICAL_REMOTE_03a90ce_UNTIL_FETCH"
+        "reported_head": "815dfc03e256b5...",
+        "staged_deletions": [
+          "docs/acceptance/LBE_PRODUCT_INTEGRATION_MACHINE_CHECK.md",
+          "lbe_guard_inspector/cline_reasoning_provider.py",
+          "lbe_guard_inspector/coding_reasoning_provider.py",
+          "lbe_guard_inspector/first_party_reasoning_provider.py",
+          "tests/test_first_party_reasoning_provider.py",
+          "tools/lbe_product_integration.ps1"
+        ],
+        "classification": "STAGED_LOCAL_DELETION_CANDIDATE"
       },
       "validation_checkout": {
         "path": "C:/Agents-Memory-Tool-v6-validation",
-        "reported_head": "a17b014",
-        "reported_working_state": "SOURCE_AND_INDEX_BROADLY_DELETED",
-        "deletion_disposition": "DEFER_UNTIL_UNIQUE_LOCAL_EVIDENCE_CHECK"
+        "head": "a17b0144269bcb...",
+        "role": "SECONDARY_COMPARISON_SURFACE_NOT_UNIQUE_RECOVERY_SOURCE_FOR_COMPARED_FILES"
       },
-      "four_reported_validation_files": {
-        "paths": [
+      "canonical_remote": {
+        "head": "03a90ce22222c0e3ab4fd1c9a9629b3a1f7daa7e",
+        "role": "CANONICAL_RECOVERY_SOURCE"
+      },
+      "three_way_content_result": {
+        "files": [
           "docs/acceptance/LBE_PRODUCT_INTEGRATION_MACHINE_CHECK.md",
           "lbe_guard_inspector/cline_reasoning_provider.py",
           "lbe_guard_inspector/coding_reasoning_provider.py",
           "lbe_guard_inspector/first_party_reasoning_provider.py"
         ],
-        "canonical_remote_main": "PRESENT",
-        "conclusion": "VALIDATION_NOT_SOLE_RECOVERY_SOURCE"
-      }
+        "result": "BYTE_IDENTICAL_ACROSS_INTEGRATION_HEAD_VALIDATION_HEAD_ORIGIN_MAIN"
+      },
+      "decision": "REVIEW_STAGED_DELETION_RATIONALE_BEFORE_RESTORE_OR_COMMIT"
     },
     "google_drive_mirror": {
       "url": "https://drive.google.com/drive/folders/1T8Hv-MUhdK34V9xM9gPRq9M1UvMF1HsI?usp=sharing",
@@ -288,7 +298,14 @@
     ],
     "local_reported_fact": "run-cline-lbe.ps1 resolves npm-installed cline via Get-Command cline",
     "next_product_slice": "CLINE_LBE_STRUCTURAL_VISUAL_DIFFERENTIATION",
-    "next_product_slice_activated": false
+    "next_product_slice_activated": false,
+    "backend_recovery_prerequisite": {
+      "status": "BLOCKED_PENDING_DELETION_RATIONALE",
+      "canonical_source": "origin/main",
+      "copy_from_validation_required": false,
+      "restore_from_origin_main_if_deletion_rejected": true,
+      "commit_staged_deletions_allowed": false
+    }
   },
   "machine_execution_plan": {
     "rule": "FAIL/BLOCKED remains on the current transition. Do not activate the next gate until claim-matched evidence closes the active gate.",
