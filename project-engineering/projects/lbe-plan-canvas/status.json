@@ -1,5 +1,5 @@
 {
-  "schema_version": 78,
+  "schema_version": 79,
   "project": "LBE Persistent Agent",
   "verified_at": "2026-09-07",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
@@ -22,10 +22,10 @@
     "interface_rule": "Accepted user-facing interface = LBE CLI/TUI under C:/LBE-TUI-Lab/cline/apps/cli, launched by run-cline-lbe.ps1. Cline provides embedded mechanics; Rust/Ratatui is reference/integration only; LBE remains sole runtime/governance authority."
   },
   "current_machine_state": {
-    "classification": "CLIENT_ACQUISITION_RECONCILIATION_REQUIRED",
+    "classification": "PRODUCTION_CLI_BINDING_REQUIRED",
     "active_phase": "LBE_CLI_PRODUCT_RECONCILIATION",
-    "active_slice": "CLIENT_ACQUISITION_AND_ENTRYPOINT_RECONCILIATION",
-    "status": "BLOCKED_BY_CROSS_SOURCE_DRIFT",
+    "active_slice": "PRODUCTION_CLI_AND_CLINE_PROVIDER_BINDING",
+    "status": "BLOCKED_BY_CLIENT_ACQUISITION_AND_PROVIDER_BINDING_GAP",
     "next_product_slice": "CLINE_LBE_STRUCTURAL_VISUAL_DIFFERENTIATION",
     "next_product_slice_activated": false
   },
@@ -778,5 +778,26 @@
     ],
     "deletion_rationale": "UNVERIFIED",
     "safe_next_action": "INSPECT_WHY_STAGED_AND_CHECK_CURRENT_OWNER_GATE_DEPENDENCIES"
+  },
+  "production_cli_requirement": {
+    "classification": "LOCKED",
+    "product": "LBE CLI/TUI",
+    "provider_model_experience": "Cline-owned",
+    "runtime_authority": "LBE-owned",
+    "diagnostic_only": [
+      "python server.py",
+      "internal node dist/index.js",
+      "manual reasoning-provider.json editing",
+      "direct backend command-runner probes"
+    ],
+    "production_ready_when": [
+      "canonical launcher resolves client",
+      "Cline provider/auth/model selection works in CLI",
+      "selected model binds to LBE session",
+      "normal conversation flows through LBE",
+      "governed tool/approval flow works",
+      "ToolReceipt/evidence/continuation return to CLI",
+      "installed quit/restart/resume passes"
+    ]
   }
 }
