@@ -676,3 +676,70 @@ release-ready                                     NO
 ```
 
 Do not promote the local PASS report into GPT-K current product truth until the implementation, machine-gate transition, acceptance records, and package/install evidence are reconciled to canonical source and independently match the final product contract. In particular, verify that any Textual UI still satisfies the locked product requirement that Cline provider/model/reasoning mechanics are embedded underneath the single `lbe` entrypoint and that no parallel Python product authority is introduced.
+
+
+## Provider configuration binding — verified source path 2026-09-08
+
+Canonical source inspection narrowed the provider-config path used by the Rust `RealLbeWrapper`.
+
+```text
+LBE_PROVIDER_CONFIG environment variable
+        ↓
+RealLbeWrapper.provider_config
+        ↓
+--provider-config <that exact path>
+        ↓
+lbe_guard_inspector.product_entry
+        ↓
+provider.check / turn
+```
+
+This is distinct from the backend server startup configuration:
+
+```text
+config.json
+→ reasoning_provider_config
+→ server.py
+→ reasoning-provider.json
+```
+
+The two paths must not be conflated.
+
+Current canonical `run-cline-lbe.ps1` sets:
+
+```text
+LBE_RUNTIME
+LBE_WALL_ROOT
+LBE_WALL_PYTHON
+LBE_WALL_DATABASE
+LBE_SESSION_ID
+LBE_PROJECT_WORKSPACE_ID
+LBE_TARGET_WORKSPACE
+```
+
+but does **not** set `LBE_PROVIDER_CONFIG`.
+
+Classification:
+
+```text
+RealLbeWrapper provider source                 PROVEN = LBE_PROVIDER_CONFIG
+--provider-config propagation                  PROVEN
+config.json → server.py reasoning config       PROVEN / separate path
+reasoning-provider.json → RealLbeWrapper       UNVERIFIED
+canonical run-cline-lbe.ps1 sets provider env  NO
+active local lbe launcher provider path         UNVERIFIED
+```
+
+A placeholder value such as `replace-with-provider-model-id` is only an active product defect if the live `LBE_PROVIDER_CONFIG` resolves to that file.
+
+Next bounded diagnostic:
+
+```text
+trace lbe.ps1 / lbe.bat / installer/profile
+→ inspect live LBE_PROVIDER_CONFIG
+→ resolve exact provider config path
+→ verify provider/model values
+→ only then modify configuration if required
+```
+
+Do not treat `reasoning-provider.json` as the root cause until that live binding is proven.
