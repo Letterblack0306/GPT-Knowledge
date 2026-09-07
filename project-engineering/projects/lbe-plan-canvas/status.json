@@ -1,5 +1,5 @@
 {
-  "schema_version": 82,
+  "schema_version": 83,
   "project": "LBE Persistent Agent",
   "verified_at": "2026-09-07",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
@@ -142,10 +142,10 @@
     "preservation_rule": "Preserve current dirty/unpublished Rust work and do not use Rust acceptance as proof of Cline CLI user experience."
   },
   "current_blocker": {
-    "classification": "FINAL_PRODUCT_ENTRYPOINT_NOT_YET_COMPOSED",
-    "working_internal_parts": "session creation/status, installed lbe command, interactive TUI surface, npm-installed Cline CLI, LBE runtime/package components",
-    "missing_product_seam": "the `lbe` command does not yet automatically compose those parts into the final LBE-branded coding IDE with in-product Cline provider/model binding",
-    "required_resolution": "make `lbe` the only normal user command"
+    "classification": "SINGLE_COMMAND_PRODUCT_RUNTIME_COMPOSITION_NOT_YET_PROVEN_END_TO_END",
+    "progress": "System-wide/current-user `lbe` launcher is now reported implemented.",
+    "remaining": "Prove that `lbe` itself opens the complete LBE coding IDE, binds Cline provider/model into the authoritative LBE session, and requires no separate developer orchestration.",
+    "secondary": "Canonical repository publication/reproducibility of the launcher files must also be reconciled if these files are only local."
   },
   "project_visit_protocol": {
     "classification": "MANDATORY_PROJECT_CONTEXT_REFRESH",
@@ -829,6 +829,22 @@
       "no manual reasoning-provider.json"
     ],
     "provider_model": "selected/authenticated from inside the product using embedded Cline mechanics",
-    "current_verdict": "NOT_READY_TO_USE"
+    "current_verdict": "NOT_READY_TO_USE_UNTIL_FRESH_SINGLE_COMMAND_PRODUCT_ACCEPTANCE"
+  },
+  "single_command_launcher_local": {
+    "classification": "LOCAL_REPORTED_IMPLEMENTED",
+    "user_command": "lbe",
+    "launchers": [
+      "C:/LBE-TUI-Lab/lbe.bat",
+      "C:/LBE-TUI-Lab/lbe.ps1"
+    ],
+    "path_installer": "C:/LBE-TUI-Lab/install-lbe-path.ps1",
+    "user_path": "C:/LBE-TUI-Lab",
+    "reported_usage": [
+      "lbe",
+      "lbe C:/myproject"
+    ],
+    "effect": "The `lbe` command is reported available from any terminal for the current user and resolves to the LBE-TUI-Lab launcher.",
+    "evidence_boundary": "This is user/local reported state; final proof still requires a fresh terminal launch showing that `lbe` opens the complete LBE coding IDE product."
   }
 }
