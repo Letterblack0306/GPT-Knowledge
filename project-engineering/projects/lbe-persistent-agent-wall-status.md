@@ -283,6 +283,42 @@ That command is the intended final user entrypoint.
 
 Therefore a local proof that one of those internal components works is not the final UX contract. The acceptance question is simply whether a normal installed user can type `lbe` and enter the complete coding IDE product.
 
+## Local `lbe` command launcher — 2026-09-07
+
+Latest local report adds the intended single-command launcher surface:
+
+```text
+C:\LBE-TUI-Lab\lbe.bat
+C:\LBE-TUI-Lab\lbe.ps1
+C:\LBE-TUI-Lab\install-lbe-path.ps1
+```
+
+The current user's PATH is reported to include:
+
+```text
+C:\LBE-TUI-Lab
+```
+
+Reported user syntax:
+
+```text
+lbe
+lbe C:\myproject
+```
+
+Classification:
+
+```text
+single-command launcher files      LOCAL_REPORTED IMPLEMENTED
+user PATH exposure                 LOCAL_REPORTED IMPLEMENTED
+fresh-terminal command resolution  NOT YET INDEPENDENTLY PROVEN
+complete LBE IDE startup           NOT YET PROVEN
+Cline provider/model session bind  STILL OPEN
+canonical publication              UNVERIFIED if launcher changes remain local
+```
+
+This is meaningful progress because it matches the locked final-product entry contract. It does not by itself close product acceptance: the decisive proof is a fresh terminal invoking only `lbe` and entering the complete LBE coding IDE with no separate server, internal Node command, session command, or manual provider configuration.
+
 ## Current product gates
 
 Do not promote source implementation, focused tests, or historical acceptance into a claim that the current product shell or installed product is accepted.
