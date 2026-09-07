@@ -1,5 +1,5 @@
 {
-  "schema_version": 45,
+  "schema_version": 46,
   "project": "LBE Persistent Agent",
   "updated": "2026-09-07",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
@@ -94,9 +94,9 @@
   },
   "current_active_slice": {
     "phase": "LBE_CLI_PRODUCT_RECONCILIATION",
-    "slice": "PRODUCTION_CLI_AND_CLINE_PROVIDER_BINDING",
-    "status": "BLOCKED_BY_CLIENT_ACQUISITION_AND_PROVIDER_BINDING_GAP",
-    "implementation_goal": "Make the canonical LBE CLI launch directly into the Cline-backed provider/model experience and bind the selected model into the LBE-governed session without requiring manual backend command-runner setup.",
+    "slice": "CLINE_PROVIDER_MODEL_TO_LBE_SESSION_BINDING",
+    "status": "BLOCKED_ACTIVE",
+    "implementation_goal": "Use the real LBE CLI/TUI path with Cline provider/model UX; when the user selects/logs into a provider and chooses a model, persist/bind that selection into the authoritative LBE session and route the conversation through the existing LBE-governed runtime.",
     "next_gate": "CLINE_LBE_STRUCTURAL_VISUAL_DIFFERENTIATION"
   },
   "accepted_baseline": {
@@ -124,32 +124,38 @@
     {
       "order": 0,
       "id": "review-staged-backend-deletions",
-      "status": "BLOCKED_ACTIVE_RECOVERY_REVIEW",
-      "scope": "Resolve staged canonical backend deletions because they currently break runtime imports and include the canonical verifier."
+      "status": "OPEN_RECOVERY_REVIEW",
+      "scope": "Preserve and resolve the staged deletion rationale separately; provider modules currently needed by runtime must remain available for the active CLI path."
     },
     {
       "order": 1,
-      "id": "production-cli-cline-provider-binding",
+      "id": "cline-provider-model-session-binding",
       "status": "BLOCKED_ACTIVE_PRODUCT_GATE",
-      "scope": "Reconcile canonical launcher/client acquisition and wire Cline provider/auth/model selection into the LBE session path. Normal use must not require server.py, internal node commands, or manual reasoning-provider.json editing."
+      "scope": "Wire Cline provider/auth/model selection to LBE provider/session state. No manual reasoning-provider.json or backend command-runner workflow in normal use."
     },
     {
       "order": 2,
-      "id": "lbe-structural-visual-differentiation",
-      "status": "PENDING",
-      "scope": "Apply/verify the finalized minimal LBE shell on the actual production CLI surface."
+      "id": "canonical-launcher-reconciliation",
+      "status": "REQUIRED_FOR_PRODUCTION_ACCEPTANCE",
+      "scope": "Publish the locally working npm-installed Cline resolution or another canonical reproducible acquisition path so clean-clone/installed launch matches local behavior."
     },
     {
       "order": 3,
-      "id": "interactive-cli-tty-acceptance",
+      "id": "lbe-structural-visual-differentiation",
       "status": "PENDING",
-      "scope": "Run a real interactive provider-backed conversational turn and governed tool flow through the production CLI."
+      "scope": "Render the complete LBE-branded CLI/TUI shell over the real Cline-backed product path."
     },
     {
       "order": 4,
+      "id": "interactive-production-cli-acceptance",
+      "status": "PENDING",
+      "scope": "From a real terminal: launch LBE, select provider/model through Cline, complete a normal governed turn, project receipts/evidence, and verify clean exit/resume."
+    },
+    {
+      "order": 5,
       "id": "installed-end-to-end",
       "status": "LOCKED",
-      "scope": "Prove installed launch, provider/model selection, governed execution, receipts/evidence, quit/restart/resume."
+      "scope": "Final installed production-ready acceptance."
     }
   ],
   "separate_non_product_work": {
