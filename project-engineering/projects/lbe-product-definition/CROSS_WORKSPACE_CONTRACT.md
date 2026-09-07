@@ -50,6 +50,54 @@ Rust/Ratatui
     = reference/integration client
 ```
 
+## Current backend workspace recovery state
+
+Latest local recovery evidence reports two local checkouts of the same backend repository:
+
+```text
+C:\Agents-Memory-Tool-v6-integration
+    remote: Letterblack0306/LBE_Presistent_Agent_wall
+    local HEAD: 815dfc0
+    working files: reported intact/recovered
+
+C:\Agents-Memory-Tool-v6-validation
+    remote: Letterblack0306/LBE_Presistent_Agent_wall
+    local HEAD: a17b014
+    working/index source: reported broadly deleted
+```
+
+Current canonical GitHub `main` is:
+
+```text
+03a90ce22222c0e3ab4fd1c9a9629b3a1f7daa7e
+parent = a17b0144269bcb93f2c8d1ec230a1468b0ff271a
+```
+
+Therefore `815dfc0 (synced)` must **not** be treated as synchronized to current canonical `origin/main` until a fresh local fetch/rev-parse proves that relation.
+
+Four files reported present in the validation checkout but deleted from the integration working tree are also present on canonical GitHub `main`:
+
+```text
+docs/acceptance/LBE_PRODUCT_INTEGRATION_MACHINE_CHECK.md
+lbe_guard_inspector/cline_reasoning_provider.py
+lbe_guard_inspector/coding_reasoning_provider.py
+lbe_guard_inspector/first_party_reasoning_provider.py
+```
+
+So the validation checkout is **not the sole surviving source** of those files. Its deletion is still deferred until unique local/runtime/config evidence is checked, but those four files are recoverable from canonical GitHub.
+
+Recovery rule:
+
+```text
+preserve recovered integration working state
+→ fetch/reconcile 815dfc0 against current origin/main
+→ determine whether deleted files are intentional or damage
+→ compare validation for genuinely unique local evidence
+→ only then archive/delete validation if safe
+```
+
+Do not copy validation into integration blindly, and do not restore files merely because they exist in another checkout; first establish deletion intent and canonical ancestry.
+
 ## Client acquisition / entrypoint status
 
 Current canonical GitHub inspection found:
@@ -80,6 +128,28 @@ LOCAL NPM CLIENT PATH         LOCAL_REPORTED
 ```
 
 Do not change the locked product boundary merely because the acquisition path is unresolved.
+
+## Product-surface evidence separation
+
+Cross-workspace feature inventories must distinguish three surfaces:
+
+```text
+A. LBE backend Python CLI/runtime controls
+B. Rust/Ratatui reference/integration client
+C. current LBE CLI/TUI product surface using Cline mechanics
+```
+
+Backend command availability or Rust `UserRequest`/panel coverage does **not** by itself prove the current LBE CLI/TUI exposes or has live-accepted the same user-facing feature.
+
+Use claim-specific columns:
+
+```text
+backend owner/runtime      -> PROVEN / IMPLEMENTED / UNVERIFIED
+Rust reference client      -> IMPLEMENTED / PROVEN only for its own claim
+current LBE CLI/TUI        -> separately PROVEN or UNVERIFIED
+```
+
+This prevents a large Rust feature inventory from being misreported as accepted Cline-based product capability.
 
 ## Backend gate vs client gate mapping
 
