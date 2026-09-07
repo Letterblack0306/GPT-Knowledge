@@ -1,18 +1,44 @@
 import { copyFile, mkdir, readFile, readdir, rm, stat, writeFile } from 'node:fs/promises';
 import { dirname, extname, relative, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { execFile } from 'node:child_process';
+import { promisify } from 'node:util';
 
+const execFileAsync = promisify(execFile);
 const repoRoot = fileURLToPath(new URL('../', import.meta.url));
 const out = resolve(repoRoot, 'public');
 const rawRoot = resolve(out, 'raw');
+const externalRoot = resolve(repoRoot, '.external-src');
 
 const allowedExtensions = new Set([
   '.md', '.txt', '.json', '.js', '.mjs', '.cjs', '.ts', '.tsx', '.jsx', '.py',
   '.html', '.css', '.yml', '.yaml', '.toml', '.ini', '.cfg', '.sh', '.ps1',
   '.bat', '.rs', '.go', '.java', '.c', '.h', '.cpp', '.hpp', '.xml', '.sql'
 ]);
-const excludedDirectories = new Set(['.git', '.vercel', 'node_modules', 'public']);
+
+const excludedDirectories = new Set([
+  '.git', '.vercel', '.external-src', 'node_modules', 'public', 'release', 'dist',
+  'build', 'coverage', '.cache'
+]);
+
 const excludedFiles = new Set(['package-lock.json']);
+const sensitivePathParts = [
+  /(^|\/).env(?:\.|$)/i,
+  /(^|\/)secrets?(\/|$)/i,
+  /(^|\/)credentials?(\/|$)/i,
+  /(^|\/)private[-_.]?keys?(\/|$)/i,
+  /(^|\/)id_rsa(?:\.|$)/i,
+  /(^|\/)id_ed25519(?:\.|$)/i
+];
+
+const sensitiveContentPatterns = [
+  /-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----/,
+  /\bgithub_pat_[A-Za-z0-9_]{20,}\b/,
+  /\bghp_[A-Za-z0-9]{20,}\b/,
+  /\bsk-(?:proj-)?[A-Za-z0-9_-]{20,}\b/,
+  /\bxox[baprs]-[A-Za-z0-9-]{20,}\b/
+];
+
 const maxFileBytes = 2 * 1024 * 1024;
 
 function webPath(path) {
@@ -29,47 +55,151 @@ function languageFor(path) {
   })[ext] || 'text';
 }
 
-async function collectTextFiles(dir, files = []) {
+function isSensitivePath(path) {
+  return sensitivePathParts.some(pattern => pattern.test(path));
+}
+
+async function isSensitiveContent(path) {
+  try {
+    const text = await readFile(path, 'utf8');
+    return sensitiveContentPatterns.some(pattern => pattern.test(text));
+  } catch {
+    return true;
+  }
+}
+
+async function collectTextFiles(dir, files = [], baseDir = dir) {
   for (const entry of await readdir(dir, { withFileTypes: true })) {
     if (entry.isDirectory() && excludedDirectories.has(entry.name)) continue;
     const full = resolve(dir, entry.name);
+
     if (entry.isDirectory()) {
-      await collectTextFiles(full, files);
+      await collectTextFiles(full, files, baseDir);
       continue;
     }
+
     if (!entry.isFile() || excludedFiles.has(entry.name)) continue;
+
+    const rel = webPath(relative(baseDir, full));
+    if (isSensitivePath(rel)) continue;
+
     const ext = extname(entry.name).toLowerCase();
     if (!allowedExtensions.has(ext)) continue;
+
     const info = await stat(full);
     if (info.size > maxFileBytes) continue;
-    files.push({ full, size: info.size });
+    if (await isSensitiveContent(full)) continue;
+
+    files.push({ full, size: info.size, rel });
   }
+
   return files;
 }
 
-await rm(out, { recursive: true, force: true });
-await mkdir(rawRoot, { recursive: true });
+async function downloadPrivateRepo(owner, repo, ref, destination) {
+  const token = process.env.GITHUB_TOKEN?.trim();
+  if (!token) {
+    return { ok: false, reason: 'GITHUB_TOKEN_NOT_SET' };
+  }
 
-const sourceFiles = await collectTextFiles(repoRoot);
-const catalog = [];
+  const response = await fetch(
+    `https://api.github.com/repos/${owner}/${repo}/tarball/${encodeURIComponent(ref)}`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: 'application/vnd.github+json',
+        'User-Agent': 'gpt-k-readonly-builder',
+        'X-GitHub-Api-Version': '2022-11-28'
+      },
+      redirect: 'follow'
+    }
+  );
 
-for (const item of sourceFiles) {
-  const rel = webPath(relative(repoRoot, item.full));
-  const destination = resolve(rawRoot, ...rel.split('/'));
+  if (!response.ok) {
+    return { ok: false, reason: `GITHUB_HTTP_${response.status}` };
+  }
+
+  await rm(destination, { recursive: true, force: true });
+  await mkdir(destination, { recursive: true });
+
+  const archive = resolve(externalRoot, `${repo}.tar.gz`);
+  const bytes = Buffer.from(await response.arrayBuffer());
+  await writeFile(archive, bytes);
+  await execFileAsync('tar', ['-xzf', archive, '-C', destination, '--strip-components=1']);
+  await rm(archive, { force: true });
+
+  return { ok: true };
+}
+
+async function publishFile(item, exposedPath, sourceRepo, catalog) {
+  const destination = resolve(rawRoot, ...exposedPath.split('/'));
   await mkdir(dirname(destination), { recursive: true });
   await copyFile(item.full, destination);
+
   catalog.push({
-    path: rel,
-    raw: '/raw/' + rel.split('/').map(encodeURIComponent).join('/'),
-    language: languageFor(rel),
+    repository: sourceRepo,
+    path: exposedPath,
+    source_path: item.rel,
+    raw: '/raw/' + exposedPath.split('/').map(encodeURIComponent).join('/'),
+    language: languageFor(item.rel),
     bytes: item.size
   });
 }
 
+await rm(out, { recursive: true, force: true });
+await rm(externalRoot, { recursive: true, force: true });
+await mkdir(rawRoot, { recursive: true });
+await mkdir(externalRoot, { recursive: true });
+
+const catalog = [];
+const sources = [];
+
+const gptkFiles = await collectTextFiles(repoRoot, [], repoRoot);
+for (const item of gptkFiles) {
+  await publishFile(item, item.rel, 'Letterblack0306/GPT-Knowledge', catalog);
+}
+
+sources.push({
+  repository: 'Letterblack0306/GPT-Knowledge',
+  status: 'included',
+  files: gptkFiles.length
+});
+
+const brewDir = resolve(externalRoot, 'brew');
+const brewFetch = await downloadPrivateRepo('Letterblack0306', 'brew', 'main', brewDir);
+
+if (brewFetch.ok) {
+  const brewFiles = await collectTextFiles(brewDir, [], brewDir);
+
+  for (const item of brewFiles) {
+    await publishFile(
+      item,
+      `repos/brew/${item.rel}`,
+      'Letterblack0306/brew',
+      catalog
+    );
+  }
+
+  sources.push({
+    repository: 'Letterblack0306/brew',
+    status: 'included',
+    files: brewFiles.length
+  });
+} else {
+  sources.push({
+    repository: 'Letterblack0306/brew',
+    status: 'skipped',
+    reason: brewFetch.reason,
+    files: 0
+  });
+}
+
 catalog.sort((a, b) => a.path.localeCompare(b.path));
+
 await writeFile(resolve(out, 'catalog.json'), JSON.stringify({
   mode: 'read-only',
   generated_at: new Date().toISOString(),
+  sources,
   files: catalog
 }, null, 2) + '\n', 'utf8');
 
@@ -83,7 +213,7 @@ const html = String.raw`<!doctype html>
 <style>
 :root{color-scheme:dark;--bg:#0d0f12;--panel:#13161b;--line:#272c35;--muted:#8f98a7;--text:#eef1f5;--accent:#b9c6d8}
 *{box-sizing:border-box}html,body{height:100%;margin:0}body{font:14px/1.45 ui-monospace,SFMono-Regular,Consolas,"Liberation Mono",monospace;background:var(--bg);color:var(--text)}
-.shell{height:100%;display:grid;grid-template-columns:minmax(260px,330px) 1fr}
+.shell{height:100%;display:grid;grid-template-columns:minmax(260px,350px) 1fr}
 .sidebar{border-right:1px solid var(--line);background:var(--panel);display:flex;flex-direction:column;min-height:0}
 .brand{padding:16px;border-bottom:1px solid var(--line)}.brand strong{display:block;font-size:15px}.brand span{color:var(--muted);font-size:12px}
 .search{padding:12px;border-bottom:1px solid var(--line)}input{width:100%;padding:9px 10px;background:#0b0d10;color:var(--text);border:1px solid var(--line);border-radius:6px;outline:none}
@@ -97,7 +227,7 @@ const html = String.raw`<!doctype html>
 <body>
 <div class="shell">
   <aside class="sidebar">
-    <div class="brand"><strong>GPT-K Source</strong><span>READ ONLY · static source projection</span></div>
+    <div class="brand"><strong>GPT-K Source</strong><span>READ ONLY · GPT-K + Brew source projection</span></div>
     <div class="search"><input id="search" type="search" placeholder="Filter files…" autocomplete="off"></div>
     <div id="files" class="files" aria-label="Source files"></div>
   </aside>
@@ -121,13 +251,13 @@ let catalog=[];let selected='';
 function formatBytes(n){if(n<1024)return n+' B';if(n<1048576)return (n/1024).toFixed(1)+' KB';return (n/1048576).toFixed(1)+' MB'}
 function renderList(){
   const q=searchEl.value.trim().toLowerCase();
-  const visible=catalog.filter(f=>!q||f.path.toLowerCase().includes(q));
+  const visible=catalog.filter(f=>!q||f.path.toLowerCase().includes(q)||(f.repository||'').toLowerCase().includes(q));
   filesEl.replaceChildren(...visible.map(f=>{
-    const b=document.createElement('button');b.className='file'+(f.path===selected?' active':'');b.type='button';b.textContent=f.path;b.title=f.path;b.onclick=()=>openFile(f);return b;
+    const b=document.createElement('button');b.className='file'+(f.path===selected?' active':'');b.type='button';b.textContent=f.path;b.title=(f.repository?f.repository+' · ':'')+f.path;b.onclick=()=>openFile(f);return b;
   }));
 }
 async function openFile(file,push=true){
-  selected=file.path;renderList();pathEl.textContent=file.path;metaEl.textContent=file.language+' · '+formatBytes(file.bytes);
+  selected=file.path;renderList();pathEl.textContent=file.path;metaEl.textContent=(file.repository||'source')+' · '+file.language+' · '+formatBytes(file.bytes);
   rawEl.href=file.raw;rawEl.setAttribute('aria-disabled','false');codeEl.textContent='Loading…';
   try{
     const r=await fetch(file.raw,{cache:'no-store'});if(!r.ok)throw new Error('HTTP '+r.status);
@@ -148,4 +278,9 @@ fetch('/catalog.json',{cache:'no-store'}).then(r=>r.json()).then(data=>{
 </html>`;
 
 await writeFile(resolve(out, 'index.html'), html + '\n', 'utf8');
-console.log(`Published ${catalog.length} read-only source files.`);
+
+const sourceSummary = sources.map(source =>
+  `${source.repository}=${source.status}:${source.files}${source.reason ? ':' + source.reason : ''}`
+).join(' | ');
+
+console.log(`Published ${catalog.length} read-only source files. ${sourceSummary}`);
