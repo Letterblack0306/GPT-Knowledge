@@ -1,5 +1,5 @@
 {
-  "schema_version": 44,
+  "schema_version": 45,
   "project": "LBE Persistent Agent",
   "updated": "2026-09-07",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
@@ -77,13 +77,26 @@
       "local_launcher_report": "LOCAL_REPORTED: Get-Command cline resolves npm-installed client",
       "product_role": "UNCHANGED: LBE CLI/TUI user-facing, Cline embedded mechanics, LBE runtime sole authority, Rust reference/integration"
     },
-    "historical_surfaces": "Rust/Ratatui remains a valuable reference/integration client. HTML remains reference/design material. Python/Textual is not the accepted final product UI."
+    "historical_surfaces": "Rust/Ratatui remains a valuable reference/integration client. HTML remains reference/design material. Python/Textual is not the accepted final product UI.",
+    "production_user_path": {
+      "classification": "LOCKED_PRODUCT_REQUIREMENT",
+      "entry": "LBE CLI/TUI canonical launcher",
+      "provider_model_owner": "Cline CLI/provider/model experience",
+      "authority_owner": "LBE runtime",
+      "normal_user_must_not_require": [
+        "python server.py",
+        "internal node dist/index.js invocation",
+        "manual reasoning-provider.json endpoint/model editing",
+        "direct backend command-runner workflow"
+      ],
+      "acceptance": "Production readiness requires provider/model selection and a full governed conversational turn through the real CLI/TUI from an installed or clean product surface."
+    }
   },
   "current_active_slice": {
     "phase": "LBE_CLI_PRODUCT_RECONCILIATION",
-    "slice": "CLIENT_ACQUISITION_AND_ENTRYPOINT_RECONCILIATION",
-    "status": "BLOCKED_BY_CROSS_SOURCE_DRIFT",
-    "implementation_goal": "Establish one canonical, reproducible Cline client acquisition/launch path for LBE without changing the locked authority boundary.",
+    "slice": "PRODUCTION_CLI_AND_CLINE_PROVIDER_BINDING",
+    "status": "BLOCKED_BY_CLIENT_ACQUISITION_AND_PROVIDER_BINDING_GAP",
+    "implementation_goal": "Make the canonical LBE CLI launch directly into the Cline-backed provider/model experience and bind the selected model into the LBE-governed session without requiring manual backend command-runner setup.",
     "next_gate": "CLINE_LBE_STRUCTURAL_VISUAL_DIFFERENTIATION"
   },
   "accepted_baseline": {
@@ -112,31 +125,31 @@
       "order": 0,
       "id": "review-staged-backend-deletions",
       "status": "BLOCKED_ACTIVE_RECOVERY_REVIEW",
-      "scope": "Determine why canonical provider/verifier/test files are staged for deletion in the recovered integration index. Do not commit or restore until current owner/gate intent is established."
+      "scope": "Resolve staged canonical backend deletions because they currently break runtime imports and include the canonical verifier."
     },
     {
       "order": 1,
-      "id": "reconcile-client-acquisition-entrypoint",
+      "id": "production-cli-cline-provider-binding",
       "status": "BLOCKED_ACTIVE_PRODUCT_GATE",
-      "scope": "Reconcile canonical remote launcher/source expectation with the actual local Cline acquisition path and prove reproducible launch."
+      "scope": "Reconcile canonical launcher/client acquisition and wire Cline provider/auth/model selection into the LBE session path. Normal use must not require server.py, internal node commands, or manual reasoning-provider.json editing."
     },
     {
       "order": 2,
       "id": "lbe-structural-visual-differentiation",
-      "status": "PENDING_AFTER_CLIENT_RECONCILIATION",
-      "scope": "Apply/verify the finalized minimal LBE runtime shell on the actual accepted client surface."
+      "status": "PENDING",
+      "scope": "Apply/verify the finalized minimal LBE shell on the actual production CLI surface."
     },
     {
       "order": 3,
-      "id": "interactive-cline-tty-acceptance",
+      "id": "interactive-cli-tty-acceptance",
       "status": "PENDING",
-      "scope": "Run the reconciled LBE CLI in a real terminal and capture rendered/runtime evidence."
+      "scope": "Run a real interactive provider-backed conversational turn and governed tool flow through the production CLI."
     },
     {
       "order": 4,
-      "id": "final-installed-end-to-end",
+      "id": "installed-end-to-end",
       "status": "LOCKED",
-      "scope": "Final acceptance only after remaining backend/runtime/verifier gates are closed."
+      "scope": "Prove installed launch, provider/model selection, governed execution, receipts/evidence, quit/restart/resume."
     }
   ],
   "separate_non_product_work": {
