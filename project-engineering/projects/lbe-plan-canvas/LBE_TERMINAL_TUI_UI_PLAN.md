@@ -1,297 +1,288 @@
-# LBE Client Integration — Reuse-First Projection Plan
+# LBE CLI/TUI — Final Product Aim
 
-Status: CURRENT_SELECTED_RUST_CLIENT_REUSE_DIRECTION  
-Updated: 2026-09-04  
-Projection owner: GPT-Knowledge  
-Canonical runtime authority: `Letterblack0306/LBE_Presistent_Agent_wall`  
-Rust client workspace: `C:/LBE-TUI-Lab`
+Status: CURRENT PRODUCT UI AIM  
+Updated: 2026-09-07  
+Product: **LBE — Lockstep Boundry Engine**  
+User-facing surface: `C:/LBE-TUI-Lab/cline/apps/cli`  
+Launcher: `C:/LBE-TUI-Lab/run-cline-lbe.ps1`  
+Runtime authority: `Letterblack0306/LBE_Presistent_Agent_wall`
 
-## Purpose
+## Product aim
 
-Record the current client integration direction without turning GPT-Knowledge or the Rust workspace into runtime authority.
+Build one minimal, evidence-truthful terminal product in which the agent can reason and act continuously while LBE visibly owns the boundary between proposal and consequence.
 
-The central rule is now explicit:
+The product must feel like **LBE**, not a re-skinned Cline client.
 
-> **The canonical LBE runtime owners already exist. Clients invoke them and project their results. They do not copy or recreate them.**
+Core invariant:
 
-## Product and interface decision
+> **Agent/provider owns cognition. LBE owns capabilities and consequences.**
+
+Product role:
 
 ```text
-PRODUCT                  = LBE
-RUNTIME AUTHORITY        = LBE
-CURRENT CLIENT          = existing Rust/Ratatui LetterBlack TUI
-UI FRAMEWORK RULE        = delivery-flexible; use the existing surface that reaches correct acceptance fastest
-CLINE                    = approved reasoning/interaction mechanics source behind LBE authority
-HTML COCKPIT             = visual/product reference, not mandatory framework
-OPENCODE                 = external reuse/reference source; pinned capability audit required
+LBE CLI/TUI
+    = user-facing product
+
+Cline
+    = embedded provider/model/auth/reasoning/delegated-agent mechanics
+
+LBE runtime
+    = sole owner of session/workspace truth, policy, authorization,
+      ToolRegistry, governed execution, receipts/evidence,
+      persistence/recovery, validation and completion truth
+
+Rust/Ratatui
+    = reference/integration client only
 ```
 
-Rust/Ratatui is the selected current client because it is the most complete existing executable LetterBlack surface and is already attached to canonical LBE. This is a delivery choice, not a transfer of runtime authority. UI technology may change later without reopening LBE authority.
+## Final interaction model
 
-## Canonical LBE owners already present
-
-The authoritative LBE workspace contains the runtime owners required by the planned integration:
-
-- workspace tools and governed execution: `runtime/tool_orchestration.py`, `runtime/governed_coding.py`, `product_entry.py`;
-- authorization/governance: `runtime/authorization_resolver.py`, `runtime/mode_controller.py`, `runtime/completion_gate.py`, `runtime/validation_command_policy.py`;
-- memory: `session_memory_runtime.py`, `memory/store.py`, `memory/models.py`, `memory/promoter.py`, `memory/context.py`, `memory/operational_history.py`, `memory/memory_schema.sql`;
-- sessions/persistence: `session_lifecycle.py`, `persistent_turn_control.py`, `recovery.py`, `memory/store.py`;
-- evidence/receipts: `evidence_service.py`, `runtime/completion_evidence_producers.py`, `memory/completion_evidence.py`, `runtime/tool_orchestration.py`;
-- providers/continuation: `provider_registry.py`, `provider_continuation.py`, `provider_turn_runtime.py`, `reasoning_provider.py`, `runtime/cline_stdio_bridge.py`;
-- product-level entrypoint: `product_entry.py`.
-
-Current governed tool surface includes:
+Permanent surface has only four regions:
 
 ```text
-workspace.read
-workspace.list
-workspace.glob
-workspace.search
-workspace.patch
-process.run_registered
+1. compact runtime header
+2. one ordered conversation/execution timeline
+3. composer
+4. compact footer/status
 ```
 
-Current product entry exposes the existing command families:
+Everything else is transient or expandable.
+
+### Target shell
 
 ```text
-export
-tool
-authorization
-turn
-start
-capabilities
+LBE · <workspace> · <model> · <PLAN/AUDIT>                 git <branch> · <diff>
+                                                          ctx [ ||||........ ]
+
+
+conversation / execution timeline
+
+✓ workspace.read  product_entry.py  180ms
+
+› current process
+  raw emitted event line 1
+  raw emitted event line 2
+  raw emitted event line 3
+
+
+[I]  Message LBE…
+____________________________________________________________________________
+
+ctx <usage> · <active mode>                                      Ctrl+K
+____________________________________________________________________________
 ```
 
-## Tool receipt/result contract
+## Visual hierarchy
 
-The canonical LBE tool response is owned by LBE and includes:
+High prominence:
+
+- `LBE`;
+- workspace;
+- actual conversation;
+- active process/output;
+- input/composer.
+
+Muted / secondary (~50% visual intensity):
+
+- model;
+- PLAN/AUDIT;
+- Git branch/diff;
+- context usage;
+- footer metadata;
+- shortcut hints.
+
+Color communicates state, not decoration.
+
+No mascot.  
+No large permanent hero.  
+No large ASCII splash in the active shell.  
+No Cline product branding.  
+No dashboard clutter.  
+No permanent Agents/Tools/Evidence/Settings panels.  
+No fake runtime status.
+
+## Active process behavior
+
+Only the currently active process may occupy the expanded live viewport.
+
+Default live viewport:
 
 ```text
-receipt/result
-├── operation_id
-├── tool_id
-├── status
-├── receipt_id
-├── authorization
-├── output
-├── evidence
-├── error_code       (failure path)
-└── error_message    (failure path)
+maximum 3 raw emitted runtime/event lines
 ```
 
-Clients must decode the LBE-owned `output` and `evidence`. They must not reconstruct workspace truth, invent receipt IDs, or create parallel execution state.
+As new lines arrive, the viewport follows the newest three.
 
-## Rust RealLbeWrapper role
-
-`RealLbeWrapper` is the correct integration seam:
+Single click:
 
 ```text
-UserRequest
+expand complete available emitted process/event output
+```
+
+When the next process starts, the previous one auto-collapses:
+
+```text
+✓ workspace.read  product_entry.py  180ms
+```
+
+This keeps chronology visible without turning the terminal into stacked diagnostic panels.
+
+The process view may show raw runtime/tool/event evidence already emitted by the system. It must not expose hidden model chain-of-thought.
+
+## Composer and activity identity
+
+Idle:
+
+```text
+[I]  Message LBE…
+```
+
+Active execution replaces the compact idle identity with a horizontally bouncing indicator:
+
+```text
+[|                ]
+[        |         ]
+[               |  ]
+[                 |]
+[               |  ]
+[        |         ]
+[|                ]
+```
+
+This is the LBE activity signature. It is not a generic spinner.
+
+## Context indicator
+
+Top-right:
+
+```text
+ctx [ ||||........ ]
+```
+
+represents real context-window usage only.
+
+It must derive from actual runtime/model context accounting. It is not task progress.
+
+## Timeline rule
+
+Conversation, tools, delegated children, approvals, denials, validation and completion appear in one ordered stream.
+
+Example:
+
+```text
+YOU
+Inspect parent continuation.
+
+LBE
+Checking the runtime path.
+
+✓ workspace.read  lbe-tool-adapter.ts  34ms
+✓ child  inspect continuation  2.3s
+
+LBE
+The persisted child result is available...
+```
+
+Do not create permanent parallel panels for agents, tools or evidence.
+
+## Child-agent projection
+
+Normal collapsed form:
+
+```text
+✓ child  inspect continuation  2.3s
+```
+
+Active form follows the same three-line process rule.
+
+Expanded details may expose authoritative identifiers such as:
+
+```text
+child_run_id
+child_session_id
+spawn_operation_id
+provider_tool_call_id
+lbe_call_id
+runtime_operation_id
+tool_receipt_id
+```
+
+only when those values actually exist in runtime evidence.
+
+## Approval / mutation
+
+Authority-bearing actions interrupt the same timeline at the point of consequence.
+
+No separate permanent approval dashboard.
+
+A mutation must remain visibly tied to LBE authorization, exact operation identity, resulting ToolReceipt/evidence and validation.
+
+## Keyboard direction
+
+Current intended compact map:
+
+```text
+Ctrl+K / Cmd+K    command palette
+Ctrl+C / Cmd+C    copy
+Ctrl+Q / Cmd+Q    quit
+Ctrl+I            interrupt current turn
+Ctrl+X            cancel active child/run
+Ctrl+S            steer
+Ctrl+L            clear conversation
+Tab               mode
+Esc               dismiss/close contextual surface
+```
+
+Distinct interrupt-vs-cancel runtime semantics must be proven separately; key presence alone is not proof.
+
+## Acceptance boundary
+
+Source implementation is not visual acceptance.
+
+Required proof order:
+
+```text
+CLINE_LBE_STRUCTURAL_VISUAL_DIFFERENTIATION
     ↓
-RealLbeWrapper
+real terminal / TTY rendering
     ↓
-python -m lbe_guard_inspector.product_entry ...
+interactive governed runtime flow
     ↓
-canonical LBE owner
+claim-matched receipts/evidence
     ↓
-ToolReceipt / output / evidence / control result
-    ↓
-Rust typed event/snapshot projection
-    ↓
-TUI
+installed end-to-end acceptance
 ```
 
-Current remote source proves that the real wrapper invokes authoritative LBE commands, validates session/workspace identity, and projects receipt/evidence lifecycle state.
+Acceptable UI proof:
 
-A local update was reported that makes `workspace.read` and `workspace.list` consume data from the LBE-owned `output` object. Until that exact change is present in the remote Rust source, GPT-Knowledge classifies it as:
+- real terminal screenshot;
+- PTY/ConPTY capture;
+- rendered component snapshot;
+- runtime recording.
+
+Generated mockups are design references only.
+
+## Current gate
 
 ```text
-LOCAL_REPORTED_NOT_YET_REMOTE_VERIFIED
+CLINE_LBE_STRUCTURAL_VISUAL_DIFFERENTIATION
+status: FAIL_CURRENT_IMPLEMENTATION
 ```
 
-## P2 read-only acceptance
+The current product must not be accepted merely because branding changed. The active shell must satisfy the structural target above before interactive TTY acceptance becomes the next gate.
 
-The correct bounded P2 validation order is:
+## Non-goals
 
-```text
-workspace.read
-workspace.list
-workspace.glob
-workspace.search
-```
+Do not:
 
-These operations may prove the real-wrapper **read-only P2 slice** when retained execution evidence shows PASS and receipt/output/evidence correlation.
+- rebuild LBE runtime authority in the client;
+- replace Cline provider/model/reasoning mechanics unnecessarily;
+- promote Rust/Ratatui back to primary product status;
+- add a second child lifecycle/session/receipt/evidence owner;
+- add fake terminal telemetry;
+- create another verifier instead of extending the canonical one;
+- treat UI source presence as rendered proof.
 
-They do **not** prove `workspace.patch`.
+## Final product test
 
-A real patch test requires:
-
-```text
-explicit target path
-+ exact replacement content
-+ expected current hash
-+ applicable authorization evidence
-```
-
-No synthetic patch payload should be invented merely to advance status.
-
-## MCP/external capability ownership
-
-LBE already has a PASS bounded registration/governed-execution boundary for MCP, plugin, subagent, network and hosted-service capabilities.
-
-Correct MCP path:
-
-```text
-ExternalCapabilityRegistration(MCP)
-    ↓
-ToolSpec / ToolHandler
-    ↓
-ToolRegistry
-    ↓
-R6C authorization
-    ↓
-R6E GovernedToolOrchestrator
-    ↓
-ToolReceipt / evidence
-    ↓
-provider continuation
-    ↓
-persisted LBE event/history
-    ↓
-client projection
-```
-
-Do not build a second MCP executor in Rust.
-
-Current Rust MCP classification remains:
-
-```text
-/mcp surface             = PLACEHOLDER
-MCP typed projection     = MISSING
-installed MCP acceptance = NOT PROVEN
-full live MCP acceptance = NOT PROVEN
-```
-
-## Mandatory reuse decision gate
-
-Before implementing a missing client capability:
-
-1. `LBE_REUSE` — does the canonical LBE runtime already own it?
-2. `CLINE_REUSE` / `CLINE_ADAPT` — can approved Cline mechanics expose it without replacing LBE authority?
-3. `OPENCODE_VERIFY_THEN_REUSE_OR_ADAPT` — only after pinned capability-specific source validation.
-4. `WRAP_EXISTING` — can an existing owner be exposed through a bounded adapter?
-5. `RUST_UI_ONLY` — is only presentation/navigation missing?
-6. `LBE_NATIVE_REQUIRED` — is the missing piece uniquely an LBE authority requirement?
-7. `REJECT` / `UNVERIFIED`.
-8. `BUILD_NEW_LAST_RESORT`.
-
-## Explicitly rejected directions
-
-- copying `lbe_guard_inspector` runtime owners into `C:/LBE-TUI-Lab`;
-- adding a second workspace/process executor in Rust;
-- adding a second authorization resolver or receipt/evidence owner;
-- creating Rust-side persistence for canonical LBE session/event truth;
-- creating an MCP executor outside the existing LBE ToolRegistry/R6C/R6E path;
-- treating Cline/OpenCode native approvals as LBE authorization;
-- upgrading local reported changes to remote/source proof without verification;
-- upgrading read-only P2 evidence into write-capable acceptance.
-
-## Remaining sequence
-
-### 1. Finish bounded P2 read-only proof
-
-Retain PASS/FAIL evidence for `workspace.read`, `workspace.list`, `workspace.glob`, and `workspace.search` against the configured real LBE session.
-
-### 2. Reconcile the client capability matrix
-
-For every missing feature record:
-
-```text
-capability
-→ canonical LBE owner
-→ approved Cline mechanic
-→ optional verified OpenCode mechanic
-→ request/control mapping
-→ LBE command/protocol
-→ receipt/output/event mapping
-→ client projection
-→ acceptance proof
-```
-
-### 3. Prove write-capable governed mutation separately
-
-Use a real file/payload/hash and preserve the existing LBE `workspace.patch` authority path.
-
-### 4. Complete MCP/client projections only after backend ownership is mapped
-
-Build projection and interaction surfaces over existing LBE owners; do not rebuild backend capability infrastructure.
-
-### 5. Installed interactive acceptance
-
-Prove the installed client drives canonical LBE owners and cannot bypass authorization, receipts, evidence, persistence, or completion.
-
-## Authority boundary
-
-This file is a GPT-Knowledge projection/integration plan. It does not activate a machine gate, authorize canonical repository mutation, or turn a local client implementation into LBE runtime authority.
-
-
-## Current verified handoff — 2026-09-04
-
-Current local evidence proves the following real path:
-
-```text
-Rust composer Enter
-→ UserRequest::SubmitTask
-→ WrapperClient
-→ RealLbeWrapper::submit_conversational_turn
-→ python -m lbe_guard_inspector.product_entry turn
-→ canonical LBE session/turn
-→ persisted operational events
-→ Rust projection
-```
-
-Proven live state:
-
-- authoritative workspace/session attachment;
-- provider/model projection;
-- `workspace.list` ToolReceipt/evidence projection;
-- interactive SubmitTask dispatch;
-- canonical turn creation;
-- persisted `user.message`, `model.turn.started`, and `model.error`;
-- Rust projection of the same canonical turn state;
-- clean terminal quit/restore in a live run;
-- 204 Rust tests passing in the reported slice.
-
-Claim-matched proof:
-
-```text
-session_id        tui-fb2fe3a87da24552910a5b2d8fb45c7d
-turn_id           turn-82439b47435248adb81d3d4d58a830fe
-session_sequence  130 -> 136
-turn_count        29 -> 30
-events            134 user.message
-                  135 model.turn.started
-                  136 model.error
-```
-
-Current first failing runtime boundary:
-
-```text
-ProviderError: [WinError 10061]
-No connection could be made because the target machine actively refused it
-```
-
-Therefore the next bounded work is provider endpoint/listener verification, not UI redesign and not a new Cline/Rust/LBE architecture.
-
-After provider completion is proven, the next acceptance target is:
-
-```text
-tool proposal
-→ LBE authorization
-→ governed execution
-→ ToolReceipt/evidence
-→ provider/Cline continuation
-→ Rust projection
-```
-
-including DENY = zero execution and ALLOW = exactly once.
+The product aim is met when a user can launch **LBE**, converse naturally, see one truthful ordered execution timeline, understand when LBE is acting or blocking, inspect evidence when needed, resume persistent work, and complete governed agent tasks without exposure to duplicate runtime authority or Cline-branded product structure.
