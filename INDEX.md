@@ -29,6 +29,16 @@ Project / feature request
 
 The implementation plan does not override live project truth. If its predicted owner, file, dependency, or sequence is disproven by inspection, update the plan and follow the evidence.
 
+### Brew current runtime architecture status
+
+For questions specifically about Brew's current reasoning/runtime architecture, canonical `/query -> runTurn()` authority, auxiliary planners/agents, legacy subagent/team surfaces, execution-router classification, PR #442 reconciliation, or whether a module should be kept/quarantined/removed, additionally load:
+
+- `project-engineering/projects/brew-runtime-architecture-status-2026-09-07.md`
+- `project-engineering/projects/brew/status.json` for the compact machine-readable current projection
+- `project-engineering/projects/brew/plan.json` for the current reconciliation/acceptance sequence
+
+This is a source-grounded project status record, not runtime proof. Revalidate current Brew `main`, local workspace identity when relevant, runtime behavior, and CI before promoting static findings into implementation or release claims.
+
 ### LBE Persistent Agent project status
 
 For questions specifically about the current LBE Guard Inspector / reasoning-layer workspace, its implementation progress, canonical local workspace, merged milestones, or next roadmap boundary, additionally load:
