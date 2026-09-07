@@ -218,6 +218,48 @@ Developer probes such as `python server.py`, direct internal `node dist/index.js
 
 The product is not production-ready until the canonical launcher can start the intended CLI from an installed/clean surface, the user can load/select a model through Cline's provider/model experience, and a normal conversation completes through LBE without requiring manual backend startup/configuration steps.
 
+## Local production CLI progress — 2026-09-07
+
+Latest local runtime evidence narrows the production CLI gap:
+
+```text
+run-cline-lbe.ps1 launcher       WORKING LOCALLY for session creation
+lbe session create              WORKING LOCALLY
+lbe session status              WORKING LOCALLY
+lbe tui                         INTERACTIVE-TERMINAL PATH AVAILABLE
+npm-installed Cline CLI         AVAILABLE LOCALLY
+LBE package                     2.0.3 INSTALLED
+```
+
+Reported sessions include:
+
+```text
+cline-f48ed18ebdb0413586fe622074cc9975
+cline-20d877a5318c41a6be08d2ffd4c7f6a6
+```
+
+This means local CLI/session plumbing is no longer the only missing seam. The first functional product gap is now:
+
+```text
+Cline provider/auth/model selection
+        ↓
+authoritative LBE provider/session binding
+        ↓
+normal conversational turn through LBE
+```
+
+Current reported limitation:
+
+```text
+observed LBE provider registry = openai-compatible only
+Cline provider -> LBE session binding = NOT WIRED
+provider select -> real Cline-backed backend/model = NOT YET PROVEN
+```
+
+The direct `lbe tui` invocation remains a useful runtime/control surface, but production acceptance still targets the canonical LBE launcher and full LBE-branded Cline-backed CLI/TUI. A production-ready user must not be required to choose between backend commands, start a separate server manually, or hand-edit provider configuration.
+
+These are local runtime observations, not yet clean-clone/canonical publication proof.
+
 ## Current product gates
 
 Do not promote source implementation, focused tests, or historical acceptance into a claim that the current product shell or installed product is accepted.
