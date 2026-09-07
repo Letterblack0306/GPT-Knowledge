@@ -117,7 +117,16 @@
         "LBE repository relationship",
         "RealLbeWrapper status",
         "backend frontend gate mapping",
-        "LBE compatibility contract"
+        "LBE compatibility contract",
+        "Brew",
+        "Brew runtime",
+        "Brew architecture",
+        "Brew canonical query",
+        "Brew runTurn",
+        "Brew planner",
+        "Brew workspace agent",
+        "Brew execution router",
+        "Brew PR 442"
       ],
       "canonical": [
         "project-engineering/project-feature-implementation-plan.md"
@@ -173,6 +182,11 @@
         ],
         "lbe-cross-workspace-contract": [
           "project-engineering/projects/lbe-product-definition/CROSS_WORKSPACE_CONTRACT.md"
+        ],
+        "brew-current-runtime-architecture": [
+          "project-engineering/projects/brew-runtime-architecture-status-2026-09-07.md",
+          "project-engineering/projects/brew/status.json",
+          "project-engineering/projects/brew/plan.json"
         ]
       }
     },
@@ -514,6 +528,7 @@
     }
   },
   "routingRules": [
+    "For current Brew reasoning/runtime architecture, canonical /query -> runTurn() authority, auxiliary planner/agent surfaces, execution-router classification, legacy subagent/team compatibility, or PR #442 reconciliation, additionally load project-engineering/projects/brew-runtime-architecture-status-2026-09-07.md plus project-engineering/projects/brew/status.json and plan.json, then revalidate current Brew main and runtime before acting.",
     "When Letterblack_BirdEye, local workspace evidence, local-vs-remote drift, workspace identity, revision status, indexed local search/inspection, or governed local command execution is relevant, load project-engineering/letterblack-birdeye-local-evidence-and-governed-execution.md. Use BirdEye for local evidence and policy-governed argv execution; use GitHub for canonical remote repository/PR/patch truth; use runtime-specific tools for behavior requiring live user-visible proof.",
     "For any project or feature implementation, extension, replacement, integration, migration, planning, or learning task, load project-engineering/project-feature-implementation-plan.md before domain-specific knowledge.",
     "For repository/project checkpoints, before-any-change verification, SHA/diff review, local-vs-remote drift, GPT-Knowledge source_head/classification synchronization, deployment/live-surface verification, or completion-state reconciliation, additionally load project-engineering/repository-status-checkpointing-and-live-surface-reconciliation.md. Reconcile source, local validation, project projection, and live/deployed surfaces before the next engineering mutation.",
