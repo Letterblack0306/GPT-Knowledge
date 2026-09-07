@@ -1,5 +1,5 @@
 {
-  "schema_version": 49,
+  "schema_version": 50,
   "project": "LBE Persistent Agent",
   "updated": "2026-09-07",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
@@ -95,9 +95,9 @@
   },
   "current_active_slice": {
     "phase": "LBE_CLI_PRODUCT_RECONCILIATION",
-    "slice": "SINGLE_COMMAND_LBE_CODING_IDE_COMPOSITION",
-    "status": "LOCAL_LAUNCHER_IMPLEMENTED_ACCEPTANCE_PENDING",
-    "implementation_goal": "`lbe` is now the intended user command. Complete and prove the internal composition so a fresh terminal `lbe` invocation opens the full LBE coding IDE CLI/TUI with Cline provider/model binding and LBE-governed runtime, without any separate user-run scripts or backend commands.",
+    "slice": "REAL_RUNTIME_CLINE_BINDING_AND_FULL_IDE_COMPOSITION",
+    "status": "BLOCKED_ACTIVE",
+    "implementation_goal": "Replace the demonstrated preview/command-panel shell with the actual single-command product composition: `lbe` must enter REAL LBE runtime, embed Cline provider/auth/model mechanics, expose accepted MCP/evidence/memory/skills through LBE, and provide the complete LBE coding IDE interaction surface without requiring a separately launched/configured Cline session.",
     "next_gate": "FULL_LBE_CODING_IDE_INTERACTIVE_ACCEPTANCE"
   },
   "accepted_baseline": {
@@ -126,43 +126,49 @@
       "order": 0,
       "id": "review-staged-backend-deletions",
       "status": "OPEN_RECOVERY_REVIEW",
-      "scope": "Resolve staged backend deletions without losing current runtime/provider/verifier owners."
+      "scope": "Resolve staged backend deletions affecting canonical provider/runtime/verifier owners."
     },
     {
       "order": 1,
       "id": "single-command-lbe-launcher",
       "status": "LOCAL_REPORTED_IMPLEMENTED",
-      "scope": "User-level PATH now reportedly resolves `lbe` through C:/LBE-TUI-Lab launchers."
+      "scope": "`lbe` resolves from the user's terminal through C:/LBE-TUI-Lab."
     },
     {
       "order": 2,
-      "id": "single-command-runtime-composition",
-      "status": "ACTIVE",
-      "scope": "Ensure the `lbe` launcher automatically creates/resumes authoritative session, starts/attaches required runtime, loads Cline provider/auth/model mechanics, and opens the complete LBE coding IDE UI."
+      "id": "real-runtime-attachment",
+      "status": "BLOCKED_ACTIVE",
+      "scope": "`lbe` must show/use authoritative REAL runtime, not PREVIEW."
     },
     {
       "order": 3,
-      "id": "provider-model-in-product",
-      "status": "PENDING_WITHIN_COMPOSITION",
-      "scope": "Provider login/selection/model selection must work inside LBE and bind to the authoritative session."
+      "id": "embedded-cline-provider-model-binding",
+      "status": "BLOCKED_ACTIVE",
+      "scope": "Cline provider/auth/model mechanics must be embedded behind `lbe` and bind to the authoritative LBE session; no separately launched/configured Cline dependency."
     },
     {
       "order": 4,
-      "id": "complete-lbe-ui",
-      "status": "PENDING_WITHIN_COMPOSITION",
-      "scope": "The actual `lbe` surface must use the accepted LBE brand/style/logo and coding IDE interaction design."
+      "id": "lbe-capability-surface",
+      "status": "PENDING",
+      "scope": "Evidence, memory, skills, MCP/BirdEye, governance, receipts, tools and accepted agent capabilities must be live through LBE, not panels that report standalone-unavailable."
     },
     {
       "order": 5,
-      "id": "full-interactive-product-acceptance",
+      "id": "complete-lbe-coding-ide-ui",
       "status": "PENDING",
-      "scope": "From a fresh terminal invoke only `lbe`; prove normal conversation/coding, governed tools/approvals, evidence/receipts, persistence/resume, and clean terminal lifecycle."
+      "scope": "Actual LBE-branded structural coding IDE UI must be demonstrated; colors/logo alone are not acceptance."
     },
     {
       "order": 6,
+      "id": "full-interactive-product-acceptance",
+      "status": "PENDING",
+      "scope": "Fresh terminal → `lbe` only → provider/model selection → normal coding turn → governed tool/approval → ToolReceipt/evidence → persistence/restart/resume → clean exit."
+    },
+    {
+      "order": 7,
       "id": "installed-product-release",
       "status": "LOCKED",
-      "scope": "Publish/package and re-prove the same single-command behavior from a clean installed environment."
+      "scope": "Publish/package and re-prove same one-command product from a clean installed environment."
     }
   ],
   "separate_non_product_work": {
