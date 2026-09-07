@@ -368,6 +368,70 @@ READY_TO_USE                            NO
 
 Color changes, labels, or panel availability are not visual/product acceptance. The final product remains the single `lbe` command entering the complete LBE-branded coding IDE with REAL runtime and embedded Cline mechanics.
 
+## BirdEye bounded retrieval runtime proof — 2026-09-07
+
+A real MCP stdio runtime validation was completed against:
+
+```text
+python mcp_server.py --stdio
+→ initialize
+→ tools/call
+→ invoke("birdeye_inspect", arguments)
+→ birdeye_inspect(...)
+→ inspect_file(...)
+→ decoded content[0].text
+```
+
+Observed MCP identity:
+
+```text
+server: birdeye 0.1.0
+protocol: 2024-11-05
+```
+
+Validation target:
+
+```text
+gpt-knowledge/ai-agents/studies/aider-repository-cognition.md
+98 lines
+3853 bytes
+```
+
+Results:
+
+```text
+full-file inspect                  PASS
+bounded inspect lines 5-10         PASS
+1-based inclusive range semantics  PASS
+line_range reporting               PASS
+full/ranged SHA identity           PASS
+start_line=0 rejection             PASS
+start_line>end_line rejection      PASS
+range beyond EOF rejection         PASS
+no unrelated working-tree changes  PASS
+```
+
+The full and ranged response SHA was:
+
+```text
+2d1977e8a8626f6cd724a2b498e5dee3c2b366783b6f11b6a7ff26545bc5244f
+```
+
+Classification:
+
+```text
+BirdEye bounded retrieval implementation       PROVEN
+actual MCP stdio transport path                PROVEN
+full-file behavior preserved                   PROVEN
+bounded 1-based inclusive retrieval            PROVEN
+invalid range fail-closed behavior             PROVEN
+runtime validation mutation                    NONE
+LBE -> BirdEye governed product integration    NOT PROVEN BY THIS TEST
+final `lbe` product MCP behavior              NOT PROVEN BY THIS TEST
+```
+
+This proof closes the BirdEye bounded-retrieval implementation question itself. It must not be promoted to proof that the final LBE product already invokes BirdEye through LBE authorization/ToolRegistry/ToolReceipt or that `/memory`, `/skills`, or `/evidence` are live in the single-command product.
+
 ## Current product gates
 
 Do not promote source implementation, focused tests, or historical acceptance into a claim that the current product shell or installed product is accepted.
