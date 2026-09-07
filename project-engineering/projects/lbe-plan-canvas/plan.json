@@ -1,5 +1,5 @@
 {
-  "schema_version": 42,
+  "schema_version": 43,
   "project": "LBE Persistent Agent",
   "updated": "2026-09-07",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
@@ -109,10 +109,16 @@
   },
   "execution_sequence": [
     {
+      "order": 0,
+      "id": "backend-recovered-checkout-reconciliation",
+      "status": "REQUIRED_BEFORE_BACKEND_MUTATION",
+      "scope": "Fetch and reconcile recovered integration HEAD 815dfc0 against canonical backend main 03a90ce without overwriting recovered working state; determine intent of deleted canonical files."
+    },
+    {
       "order": 1,
       "id": "client-acquisition-entrypoint-reconciliation",
-      "status": "BLOCKED_ACTIVE",
-      "scope": "Reconcile canonical remote launcher and source/package expectation with the actual local npm-installed Cline path; prove clean-clone/client launch reproducibility."
+      "status": "BLOCKED_ACTIVE_PRODUCT_GATE",
+      "scope": "Reconcile canonical remote launcher/source expectation with the actual local Cline acquisition path and prove reproducible launch."
     },
     {
       "order": 2,
@@ -130,7 +136,7 @@
       "order": 4,
       "id": "final-installed-end-to-end",
       "status": "LOCKED",
-      "scope": "Final acceptance only after remaining runtime/correlation/verifier gates are closed."
+      "scope": "Final acceptance only after remaining backend/runtime/verifier gates are closed."
     }
   ],
   "separate_non_product_work": {
@@ -205,8 +211,29 @@
       }
     },
     "latest_local_observation": {
-      "classification": "HISTORICAL_ONLY_REVALIDATE_BEFORE_USE",
-      "note": "Older ahead/behind and dirty-worktree observations are retained as history only; they are not current repository-state claims."
+      "classification": "RECOVERY_STATE_REQUIRES_REMOTE_RECONCILIATION",
+      "integration_checkout": {
+        "path": "C:/Agents-Memory-Tool-v6-integration",
+        "reported_head": "815dfc0",
+        "reported_working_state": "RECOVERED_INTACT",
+        "remote_sync_classification": "UNVERIFIED_CONTRADICTED_BY_CANONICAL_REMOTE_03a90ce_UNTIL_FETCH"
+      },
+      "validation_checkout": {
+        "path": "C:/Agents-Memory-Tool-v6-validation",
+        "reported_head": "a17b014",
+        "reported_working_state": "SOURCE_AND_INDEX_BROADLY_DELETED",
+        "deletion_disposition": "DEFER_UNTIL_UNIQUE_LOCAL_EVIDENCE_CHECK"
+      },
+      "four_reported_validation_files": {
+        "paths": [
+          "docs/acceptance/LBE_PRODUCT_INTEGRATION_MACHINE_CHECK.md",
+          "lbe_guard_inspector/cline_reasoning_provider.py",
+          "lbe_guard_inspector/coding_reasoning_provider.py",
+          "lbe_guard_inspector/first_party_reasoning_provider.py"
+        ],
+        "canonical_remote_main": "PRESENT",
+        "conclusion": "VALIDATION_NOT_SOLE_RECOVERY_SOURCE"
+      }
     },
     "google_drive_mirror": {
       "url": "https://drive.google.com/drive/folders/1T8Hv-MUhdK34V9xM9gPRq9M1UvMF1HsI?usp=sharing",
@@ -240,14 +267,12 @@
     "release_ready": false,
     "checkpoint": "project-engineering/projects/lbe-plan-canvas/REPO_DRIVE_FINAL_PRODUCT_RECONCILIATION_2026-09-04.md",
     "interface_reconciliation": {
-      "classification": "CURRENT_LBE_PRODUCT_ROLE",
-      "corrected_roles": {
-        "user_facing_cli_tui": "C:/LBE-TUI-Lab/cline/apps/cli",
-        "integrated_launcher": "C:/LBE-TUI-Lab/run-cline-lbe.ps1",
-        "runtime_authority": "C:/Agents-Memory-Tool-v6-integration",
-        "rust_reference_integration_client": "C:/LBE-TUI-Lab/src/main.rs",
-        "rust_reference_launcher": "C:/LBE-TUI-Lab/run-lbe.bat"
-      }
+      "classification": "PRODUCT_ROLE_LOCKED_EXACT_CLIENT_PATH_UNRESOLVED",
+      "user_facing_product": "LBE CLI/TUI",
+      "cline_role": "embedded provider/model/reasoning/delegated-agent mechanics",
+      "runtime_authority": "C:/Agents-Memory-Tool-v6-integration",
+      "rust_reference": "C:/LBE-TUI-Lab/src/main.rs",
+      "exact_cline_source_or_acquisition": "BLOCKED_PENDING_LOCAL_REMOTE_RECONCILIATION"
     }
   },
   "verified_at": "2026-09-07",
