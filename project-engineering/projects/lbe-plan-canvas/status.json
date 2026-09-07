@@ -1,5 +1,5 @@
 {
-  "schema_version": 83,
+  "schema_version": 84,
   "project": "LBE Persistent Agent",
   "verified_at": "2026-09-07",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
@@ -23,9 +23,9 @@
     "entrypoint": "lbe"
   },
   "current_machine_state": {
-    "classification": "SINGLE_COMMAND_PRODUCT_COMPOSITION_REQUIRED",
+    "classification": "SINGLE_COMMAND_PRODUCT_COMPOSITION_INCOMPLETE",
     "active_phase": "LBE_CLI_PRODUCT_RECONCILIATION",
-    "active_slice": "SINGLE_COMMAND_LBE_CODING_IDE_COMPOSITION",
+    "active_slice": "REAL_RUNTIME_CLINE_BINDING_AND_FULL_IDE_COMPOSITION",
     "status": "BLOCKED_ACTIVE",
     "next_product_slice": "FULL_LBE_CODING_IDE_INTERACTIVE_ACCEPTANCE",
     "next_product_slice_activated": false
@@ -142,10 +142,10 @@
     "preservation_rule": "Preserve current dirty/unpublished Rust work and do not use Rust acceptance as proof of Cline CLI user experience."
   },
   "current_blocker": {
-    "classification": "SINGLE_COMMAND_PRODUCT_RUNTIME_COMPOSITION_NOT_YET_PROVEN_END_TO_END",
-    "progress": "System-wide/current-user `lbe` launcher is now reported implemented.",
-    "remaining": "Prove that `lbe` itself opens the complete LBE coding IDE, binds Cline provider/model into the authoritative LBE session, and requires no separate developer orchestration.",
-    "secondary": "Canonical repository publication/reproducibility of the launcher files must also be reconciled if these files are only local."
+    "classification": "PREVIEW_SHELL_AND_EXTERNAL_CLINE_DEPENDENCY",
+    "primary": "Current demonstrated `lbe` path reports RUNTIME: PREVIEW rather than authoritative real-runtime attachment.",
+    "secondary": "BirdEye/evidence/memory/skills capabilities are reported unavailable in standalone `lbe` and only available when inside separately configured Cline.",
+    "tertiary": "No current proof that provider/model selection and a governed coding turn are bound end-to-end inside `lbe`."
   },
   "project_visit_protocol": {
     "classification": "MANDATORY_PROJECT_CONTEXT_REFRESH",
@@ -829,7 +829,7 @@
       "no manual reasoning-provider.json"
     ],
     "provider_model": "selected/authenticated from inside the product using embedded Cline mechanics",
-    "current_verdict": "NOT_READY_TO_USE_UNTIL_FRESH_SINGLE_COMMAND_PRODUCT_ACCEPTANCE"
+    "current_verdict": "NOT_READY_TO_USE"
   },
   "single_command_launcher_local": {
     "classification": "LOCAL_REPORTED_IMPLEMENTED",
@@ -846,5 +846,31 @@
     ],
     "effect": "The `lbe` command is reported available from any terminal for the current user and resolves to the LBE-TUI-Lab launcher.",
     "evidence_boundary": "This is user/local reported state; final proof still requires a fresh terminal launch showing that `lbe` opens the complete LBE coding IDE product."
+  },
+  "latest_cli_demo": {
+    "classification": "LOCAL_REPORTED_PARTIAL_DEMO_NOT_PRODUCT_ACCEPTANCE",
+    "reported_working": [
+      "lbe launcher command resolves",
+      "/mode display/switching",
+      "/audit",
+      "/governance",
+      "/help"
+    ],
+    "reported_partial": [
+      "/skills panel renders but MCP unavailable in standalone",
+      "/memory panel renders but MCP unavailable in standalone",
+      "/evidence panel renders but MCP unavailable in standalone"
+    ],
+    "decisive_observations": [
+      "session output reported RUNTIME: PREVIEW",
+      "BirdEye functions reported available only when running inside Cline with BirdEye MCP configured",
+      "demo was exercised through scripted -Arguments invocations rather than a full interactive coding session"
+    ],
+    "rejected_claims": [
+      "LBE CLI is fully operational",
+      "all planned product features are ready",
+      "standalone lbe is final accepted product"
+    ],
+    "rule": "Panels, commands, colors, or preview-mode output do not prove the final coding IDE. Final acceptance requires `lbe` alone to enter REAL runtime, embedded Cline provider/model selection, governed coding execution, receipts/evidence, persistence/resume, and accepted LBE UI under an interactive terminal."
   }
 }
