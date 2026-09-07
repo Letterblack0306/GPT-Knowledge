@@ -319,6 +319,55 @@ canonical publication              UNVERIFIED if launcher changes remain local
 
 This is meaningful progress because it matches the locked final-product entry contract. It does not by itself close product acceptance: the decisive proof is a fresh terminal invoking only `lbe` and entering the complete LBE coding IDE with no separate server, internal Node command, session command, or manual provider configuration.
 
+## Latest `lbe` CLI demo classification — 2026-09-07
+
+The latest local demo proves useful shell progress but does **not** establish final product readiness.
+
+Reported working surfaces:
+
+```text
+lbe command resolution
+/mode display and switching
+/audit
+/governance
+/help
+```
+
+Reported partial surfaces:
+
+```text
+/skills     panel renders; MCP unavailable standalone
+/memory     panel renders; MCP unavailable standalone
+/evidence   panel renders; MCP unavailable standalone
+```
+
+The decisive runtime output included:
+
+```text
+RUNTIME: PREVIEW
+```
+
+and the report states BirdEye functions are available when running **inside Cline with BirdEye MCP configured**.
+
+Therefore the claim "LBE CLI is fully operational" is rejected for final-product acceptance.
+
+Current classification:
+
+```text
+single-command shell/launcher          IMPLEMENTED LOCALLY
+command panels                         PARTIALLY WORKING
+authoritative REAL runtime             NOT PROVEN; demo says PREVIEW
+embedded Cline provider/model binding  NOT PROVEN
+standalone BirdEye/MCP integration     NOT WORKING in reported demo
+evidence/memory/skills live behavior   NOT PROVEN
+complete coding IDE behavior           NOT PROVEN
+structural LBE UI acceptance           NOT PROVEN
+interactive coding acceptance          NOT PROVEN
+READY_TO_USE                            NO
+```
+
+Color changes, labels, or panel availability are not visual/product acceptance. The final product remains the single `lbe` command entering the complete LBE-branded coding IDE with REAL runtime and embedded Cline mechanics.
+
 ## Current product gates
 
 Do not promote source implementation, focused tests, or historical acceptance into a claim that the current product shell or installed product is accepted.
