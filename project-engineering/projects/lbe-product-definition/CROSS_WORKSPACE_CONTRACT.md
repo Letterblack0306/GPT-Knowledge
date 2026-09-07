@@ -131,71 +131,35 @@ Do not copy from validation merely to restore canonical content, and do not dele
 
 ## Production CLI user path
 
-The final product must be exercised through the real **LBE CLI/TUI product path**, not through backend command-runner probes.
-
-Normal production use is:
+The canonical end-user contract is:
 
 ```text
-user launches LBE CLI/TUI
-    ↓
-embedded Cline CLI/provider/model experience
-    ↓
-Cline provider authentication / provider selection / model selection
-    ↓
-bounded LBE adapter/session bridge
-    ↓
-LBE authorization / governed tools / receipts / evidence / persistence / validation / completion
-    ↓
-results projected back in the same CLI/TUI
+terminal
+> lbe
+        ↓
+complete LBE coding IDE CLI/TUI
 ```
 
-The following are **diagnostic/developer surfaces only** and must not be treated as the production user workflow:
+The Python package already declares `lbe = lbe_guard_inspector.product_entry:main` as the installed command entry. The final product must make that command the single orchestration boundary for the user.
+
+Internally, `lbe` may start or attach backend/runtime workers, create or resume the authoritative session, load the embedded Cline provider/model/auth mechanics, and connect the product UI. Those internal steps must not become separate instructions for the user.
+
+The currently existing `run-cline-lbe.ps1`, direct `lbe_guard_inspector.cli` commands, `server.py`, and internal Node/Cline launch commands are implementation/developer surfaces. They are useful evidence while assembling the product, but they are **not** the final user entrypoint.
+
+The final product flow is:
 
 ```text
-python server.py --port ...
-node dist/index.js from an internal package directory
-manual reasoning-provider.json endpoint editing
-direct backend tool/authorization commands
-isolated provider HTTP probes
+lbe
+→ LBE coding IDE CLI/TUI
+→ provider login / provider selection / model selection through embedded Cline mechanics
+→ one persistent LBE session
+→ conversation / coding / plan / audit
+→ LBE-governed tools, approvals, MCP/external capabilities, child-agent mechanics where accepted
+→ ToolReceipts/evidence/validation/completion
+→ persistence / restart / resume
 ```
 
-These may diagnose lower-level seams, but production readiness requires the real CLI to own the user interaction and Cline to own provider/model loading internally while LBE retains consequence authority.
-
-A production-ready acceptance claim therefore requires at minimum:
-
-```text
-1. canonical LBE CLI launcher resolves without manual source-path surgery
-2. Cline provider/auth/model selection is available from the CLI experience
-3. selected model is bound into the LBE session through the bounded adapter
-4. a normal conversational turn executes through LBE
-5. governed tool proposals route through LBE authorization
-6. receipts/evidence/continuation project back in the CLI
-7. quit/restart/resume works from the installed product
-8. no manual server.py or internal node command is required for normal use
-```
-
-Manual `reasoning-provider.json` editing is not an accepted production UX requirement. If retained internally, it is implementation/configuration plumbing only and must be populated or derived by the product/runtime integration rather than by the end user during normal CLI use.
-
-## Single-output production contract
-
-The final product has one normal user-facing output surface: the complete LBE CLI/TUI.
-
-Internal backend processes, adapters, provider workers, registries, verifiers, and diagnostic CLIs may exist as implementation details, but they must not fragment the normal user workflow into multiple terminals or require the user to understand internal ownership boundaries.
-
-The production contract is:
-
-```text
-ONE ENTRYPOINT
-    → ONE LBE CLI/TUI
-    → ONE coherent session
-    → provider/model selection inside the product
-    → all governed agent behavior inside the product
-    → one visible chronology of conversation, execution, approvals, evidence and completion
-```
-
-Agent/developer behavior must not convert an incomplete product into an interactive troubleshooting dialogue with the user. If implementation is incomplete, the engineering agent should inspect evidence, implement the missing accepted scope, validate it, and continue until blocked by a genuine external dependency or explicit governance restriction.
-
-"Ready to use" is therefore a final acceptance verdict, not a request for the user to choose diagnostic commands.
+The user should not have to choose which internal client, script, backend process, or configuration file to run.
 
 ## Client acquisition / entrypoint status
 
