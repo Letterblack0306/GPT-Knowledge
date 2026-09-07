@@ -259,6 +259,47 @@ wrapper source implementation    IMPLEMENTED
 live runtime attachment          PROVEN only with claim-matched runtime evidence
 ```
 
+
+
+## RealLbeWrapper provider-config binding
+
+Current canonical Rust source establishes this exact provider-config chain:
+
+```text
+LBE_PROVIDER_CONFIG
+    ↓
+RealLbeWrapper::new()
+    ↓
+provider_config: Option<PathBuf>
+    ↓
+--provider-config <path>
+    ↓
+lbe_guard_inspector.product_entry provider.check / turn
+```
+
+This is **not** the same path as backend `server.py` startup configuration:
+
+```text
+config.json
+    ↓
+reasoning_provider_config
+    ↓
+reasoning-provider.json
+```
+
+Canonical `run-cline-lbe.ps1` currently does not export `LBE_PROVIDER_CONFIG`.
+
+Therefore:
+
+```text
+reasoning-provider.json is active RealLbeWrapper config   UNVERIFIED
+RealLbeWrapper uses LBE_PROVIDER_CONFIG                   PROVEN
+canonical launcher supplies LBE_PROVIDER_CONFIG           NO
+active local launcher may supply it elsewhere             UNVERIFIED
+```
+
+Provider-config debugging must first resolve the live `LBE_PROVIDER_CONFIG` path. A placeholder model ID in any candidate JSON is not sufficient to prove that file is active.
+
 ## Installed runtime relationship
 
 An installed runtime such as `C:\LBE_RUNTIME_PY312` must not be treated as current merely because the directory exists.
