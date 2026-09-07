@@ -111,6 +111,54 @@ Preserve the intentional spelling **Boundry**.
 
 ---
 
+## Ready-To-Use Means Complete Product
+
+When the user asks whether LBE is **ready to use**, that phrase has a strict product meaning.
+
+It does **not** mean:
+
+- a backend server starts;
+- one provider call works;
+- a session can be created;
+- a Rust reference client works;
+- a developer can manually run several commands;
+- an agent can ask the user which command, service, config file, or test harness to launch next;
+- a partial feature set is available behind diagnostics.
+
+**Ready to use means the complete planned LBE product is assembled, aligned, designed, implemented, validated, installed, and usable through one normal product entrypoint.**
+
+The user experience must be:
+
+```text
+launch LBE
+    ↓
+one complete LBE-branded CLI/TUI
+    ↓
+provider login / provider selection / model selection
+    ↓
+conversation / planning / audit / coding
+    ↓
+governed tools / approvals / processes / subagents / MCP / memory
+    ↓
+evidence / receipts / validation / completion
+    ↓
+persistent session / restart / resume
+```
+
+No separate backend server window, internal package command, manual provider JSON editing, hidden command-runner workflow, or developer-only setup is part of normal production use.
+
+The final CLI/TUI must present the planned LBE interface and product identity, including the LBE visual system, logo/brand, conversation/execution timeline, provider/model state, governed execution state, approvals when policy requires them, evidence/receipt projections, persistence and session state, and the other accepted planned product capabilities.
+
+A product-ready claim is allowed only when there are **no unresolved implementation, integration, design, ownership, packaging, installation, configuration, runtime, or acceptance gaps within the accepted final-product scope**.
+
+If any accepted product capability is still missing, mock-only, reference-only, unbound, manually configured, unvalidated, or dependent on the user running diagnostic commands, the correct answer is:
+
+```text
+NOT READY TO USE
+```
+
+not "partially ready", "ready except for", or an instruction asking the user what to run next.
+
 ## Evidence Rule
 
 This document defines product identity and ownership. It is not runtime acceptance evidence.
