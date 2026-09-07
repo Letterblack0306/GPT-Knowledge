@@ -872,5 +872,35 @@
       "standalone lbe is final accepted product"
     ],
     "rule": "Panels, commands, colors, or preview-mode output do not prove the final coding IDE. Final acceptance requires `lbe` alone to enter REAL runtime, embedded Cline provider/model selection, governed coding execution, receipts/evidence, persistence/resume, and accepted LBE UI under an interactive terminal."
+  },
+  "updated": "2026-09-08",
+  "ui_contract_2026_09_08": {
+    "classification": "CANONICAL_UI_POLICY_LOCKED",
+    "canonical_document": "project-engineering/projects/lbe-plan-canvas/LBE_TERMINAL_TUI_UI_PLAN.md",
+    "product_surface": "LBE CLI/TUI",
+    "modes": [
+      "PLAN",
+      "ACT",
+      "AUDIT"
+    ],
+    "audit_mode": "REQUIRED_ADDITIONAL_MODE",
+    "ui_minimalism": "LOCKED",
+    "normal_ui_excludes": [
+      "evidence/proof panels",
+      "runtime technical panels",
+      "receipt IDs",
+      "operation/correlation IDs",
+      "child lifecycle IDs",
+      "raw authorization records",
+      "raw governance records",
+      "validation/proof metadata",
+      "internal event dumps"
+    ],
+    "technical_truth_location": "Persisted LBE workspace/runtime/logs/receipts/evidence and canonical verifier; agent may inspect these when needed.",
+    "user_visible_exception": "Show only concise information necessary for user decisions such as approval/rejection, actionable failures, or explicitly requested diagnostics.",
+    "textual_tui": "INVALID_AS_PRODUCT_ACCEPTANCE_WHEN_FAKE_MESSAGES_OR_RECEIPTS_ARE_USED; historical/diagnostic prototype only.",
+    "generated_visuals": "REFERENCE_ONLY_NOT_PROOF",
+    "current_gate": "BLOCKED_INTERACTIVE_CLINE_TTY_ACCEPTANCE",
+    "acceptance_target": "Real run-cline-lbe/LBE CLI path under a real terminal with embedded Cline mechanics and authoritative LBE runtime."
   }
 }
