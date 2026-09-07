@@ -1,5 +1,5 @@
 {
-  "schema_version": 77,
+  "schema_version": 78,
   "project": "LBE Persistent Agent",
   "verified_at": "2026-09-07",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
@@ -98,9 +98,9 @@
   "next_required_sequence": [
     {
       "order": 0,
-      "id": "reconcile-recovered-backend-checkout",
-      "status": "REQUIRED_BEFORE_BACKEND_MUTATION",
-      "scope": "Fresh-fetch origin/main, compare 815dfc0 with 03a90ce, preserve recovered working state, and inspect deleted canonical files."
+      "id": "review-staged-backend-deletions",
+      "status": "BLOCKED_ACTIVE",
+      "scope": "Establish deletion rationale and affected current owners/tests/verifier contracts before changing the index or working tree."
     },
     {
       "order": 1,
@@ -750,26 +750,33 @@
     "release_ready": false
   },
   "repository_recovery": {
-    "classification": "RECOVERED_INTEGRATION_REMOTE_SYNC_UNVERIFIED",
+    "classification": "THREE_WAY_COMPARE_COMPLETE_STAGED_DELETION_REVIEW_REQUIRED",
     "integration": {
       "path": "C:/Agents-Memory-Tool-v6-integration",
-      "reported_head": "815dfc0",
-      "reported_working_files": "INTACT",
-      "canonical_remote_main": "03a90ce22222c0e3ab4fd1c9a9629b3a1f7daa7e",
-      "sync_status": "UNVERIFIED"
+      "reported_head": "815dfc03e256b5...",
+      "staged_deletion_state": "PROVEN_LOCALLY"
     },
     "validation": {
       "path": "C:/Agents-Memory-Tool-v6-validation",
-      "reported_head": "a17b014",
-      "reported_working_files": "BROADLY_DELETED",
-      "delete_status": "DEFER"
+      "head": "a17b0144269bcb...",
+      "unique_source_for_compared_files": false,
+      "delete_status": "DEFER_UNTIL_ALL_UNIQUE_EVIDENCE_CHECKED"
     },
-    "reported_validation_only_locally_but_present_on_remote": [
+    "canonical_remote": {
+      "head": "03a90ce22222c0e3ab4fd1c9a9629b3a1f7daa7e",
+      "recovery_role": "CANONICAL"
+    },
+    "byte_identical_three_way": [
       "docs/acceptance/LBE_PRODUCT_INTEGRATION_MACHINE_CHECK.md",
       "lbe_guard_inspector/cline_reasoning_provider.py",
       "lbe_guard_inspector/coding_reasoning_provider.py",
       "lbe_guard_inspector/first_party_reasoning_provider.py"
     ],
-    "recovery_rule": "Do not delete validation or restore/copy files blindly. First reconcile integration against current origin/main and establish deletion intent; validation is not the sole source of these four files."
+    "additional_staged_deletions_present_on_origin_main": [
+      "tests/test_first_party_reasoning_provider.py",
+      "tools/lbe_product_integration.ps1"
+    ],
+    "deletion_rationale": "UNVERIFIED",
+    "safe_next_action": "INSPECT_WHY_STAGED_AND_CHECK_CURRENT_OWNER_GATE_DEPENDENCIES"
   }
 }
