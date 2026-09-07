@@ -165,6 +165,41 @@ safe to commit staged deletions            BLOCKED pending review
 
 Do not restore or commit these paths automatically. First determine why they were staged and whether current runtime owners, tests, verifier contracts, or machine governance still require them.
 
+## Runtime impact of staged provider deletion — 2026-09-07
+
+A direct local runtime attempt from `C:\Agents-Memory-Tool-v6-integration` failed during import:
+
+```text
+python server.py --port 8766
+ModuleNotFoundError:
+No module named 'lbe_guard_inspector.coding_reasoning_provider'
+```
+
+The failure path is:
+
+```text
+server.py
+→ reasoning_runtime.py
+→ provider_registry.py
+→ coding_reasoning_provider.py
+```
+
+This proves the staged deletion is not merely cosmetic repository state: the missing provider module currently prevents the backend server from starting in that working tree.
+
+Classification:
+
+```text
+staged deletion state                     PROVEN
+runtime break caused by missing provider  PROVEN
+deletion rationale                        UNVERIFIED
+safe to commit deletion                   BLOCKED
+temporary runtime restoration             MAY BE USED ONLY WITH INDEX-PRESERVING METHOD
+```
+
+Important Git semantics: `git checkout HEAD -- <path>` updates both the working tree and index, so it would **unstage/reject the staged deletion** for those paths. It must not be described as preserving the staged deletion.
+
+If runtime-only restoration is required while preserving the index state for investigation, use an index-preserving worktree-only method and verify the cached deletion still exists afterward. Any such local restoration remains a temporary diagnostic step, not acceptance of the deletion.
+
 ## Current product gates
 
 Do not promote source implementation, focused tests, or historical acceptance into a claim that the current product shell or installed product is accepted.
