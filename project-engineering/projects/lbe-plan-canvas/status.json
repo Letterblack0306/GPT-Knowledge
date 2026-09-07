@@ -1,5 +1,5 @@
 {
-  "schema_version": 79,
+  "schema_version": 80,
   "project": "LBE Persistent Agent",
   "verified_at": "2026-09-07",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
@@ -22,10 +22,10 @@
     "interface_rule": "Accepted user-facing interface = LBE CLI/TUI under C:/LBE-TUI-Lab/cline/apps/cli, launched by run-cline-lbe.ps1. Cline provides embedded mechanics; Rust/Ratatui is reference/integration only; LBE remains sole runtime/governance authority."
   },
   "current_machine_state": {
-    "classification": "PRODUCTION_CLI_BINDING_REQUIRED",
+    "classification": "PRODUCTION_CLI_PROVIDER_BINDING_REQUIRED",
     "active_phase": "LBE_CLI_PRODUCT_RECONCILIATION",
-    "active_slice": "PRODUCTION_CLI_AND_CLINE_PROVIDER_BINDING",
-    "status": "BLOCKED_BY_CLIENT_ACQUISITION_AND_PROVIDER_BINDING_GAP",
+    "active_slice": "CLINE_PROVIDER_MODEL_TO_LBE_SESSION_BINDING",
+    "status": "BLOCKED_BY_PROVIDER_BINDING_GAP",
     "next_product_slice": "CLINE_LBE_STRUCTURAL_VISUAL_DIFFERENTIATION",
     "next_product_slice_activated": false
   },
@@ -141,15 +141,10 @@
     "preservation_rule": "Preserve current dirty/unpublished Rust work and do not use Rust acceptance as proof of Cline CLI user experience."
   },
   "current_blocker": {
-    "classification": "CANONICAL_CLIENT_PATH_MISMATCH",
-    "primary": {
-      "blocker": "CANONICAL_REMOTE_MISSING_CLINE_SUBTREE",
-      "effect": "Remote run-cline-lbe.ps1 defaults to a vendored cline.exe under a subtree that does not exist on canonical main."
-    },
-    "secondary": {
-      "blocker": "LOCAL_REMOTE_LAUNCHER_DRIFT",
-      "effect": "Local report says npm-installed cline is used; canonical GitHub launcher does not currently match that behavior."
-    }
+    "classification": "CLINE_PROVIDER_SESSION_BINDING_MISSING",
+    "proven_or_reported_local_progress": "launcher/session creation and interactive LBE TUI entry are available locally",
+    "missing_product_seam": "select/login provider and model in Cline, then bind that selected provider/model to the authoritative LBE session without manual backend configuration",
+    "secondary_canonical_issue": "canonical remote launcher still requires reconciliation with the locally working npm-installed Cline path before clean-clone production acceptance"
   },
   "project_visit_protocol": {
     "classification": "MANDATORY_PROJECT_CONTEXT_REFRESH",
@@ -799,5 +794,26 @@
       "ToolReceipt/evidence/continuation return to CLI",
       "installed quit/restart/resume passes"
     ]
+  },
+  "production_cli_local_runtime": {
+    "classification": "LOCAL_RUNTIME_PARTIAL_PRODUCT_PATH_WORKING_PROVIDER_BINDING_MISSING",
+    "reported_working": [
+      "run-cline-lbe.ps1 creates LBE sessions",
+      "lbe session create",
+      "lbe session status",
+      "lbe tui requires/opens only in an interactive terminal",
+      "npm-installed Cline CLI is available",
+      "LBE package 2.0.3 is installed"
+    ],
+    "reported_sessions": [
+      "cline-f48ed18ebdb0413586fe622074cc9975",
+      "cline-20d877a5318c41a6be08d2ffd4c7f6a6"
+    ],
+    "current_gap": [
+      "LBE provider registry exposes openai-compatible only in the observed path",
+      "Cline provider/model selection is not bound into the LBE session",
+      "provider select does not yet resolve to a real Cline-backed provider/model runtime"
+    ],
+    "classification_rule": "These are local runtime observations. They narrow the first product seam but do not prove canonical clean-clone or installed production readiness."
   }
 }
