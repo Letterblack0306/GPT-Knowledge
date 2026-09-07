@@ -1,5 +1,5 @@
 {
-  "schema_version": 47,
+  "schema_version": 48,
   "project": "LBE Persistent Agent",
   "updated": "2026-09-07",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
@@ -8,7 +8,7 @@
   "later_ui_workspace": "C:/LBE-TUI-Lab",
   "purpose": "Project the final LBE product plan as one persistent provider-neutral governed agent lifecycle. UI, guard packs, Cline mechanics, external integrations and historical clients are subordinate capabilities or projections, not separate product architectures.",
   "authority_rule": "Before every project decision or next-step instruction, recall the final LBE product goal, refresh current GPT-K plan/status/handoff/canonical execution path, then inspect current evidence. GPT-K is a projection; current canonical repository/runtime/governance evidence remains implementation truth.",
-  "final_product_goal": "One complete production-ready LBE CLI/TUI product. The user launches a single LBE entrypoint and receives the full LBE-branded interface with Cline provider/auth/model mechanics embedded behind it, all accepted planned agent/runtime capabilities integrated through LBE authority, persistent sessions and resume, governed tools/approvals/MCP/subagents/memory, evidence/receipts/validation/completion, packaging/install behavior, and no manual backend server, internal command runner, provider JSON editing, or multi-terminal developer workflow required for normal use.",
+  "final_product_goal": "An installed LBE coding IDE CLI/TUI launched by typing `lbe` in a terminal. The `lbe` command is the single user entrypoint and automatically composes current workspace resolution, authoritative session create/resume, required LBE runtime components, embedded Cline provider/auth/model/reasoning mechanics, governed execution, receipts/evidence, persistence, validation/completion, and the complete LBE-branded coding IDE UI. The user does not run server.py, run-cline-lbe.ps1, internal Node commands, backend session commands, or provider JSON setup for normal use.",
   "core_invariant": "Agent/provider owns cognition; LBE owns capabilities and consequences.",
   "lifecycle_plan": [
     {
@@ -62,10 +62,10 @@
     "memory": "Historical/context/validated memory supports reasoning and persistence but does not override current workspace/runtime truth."
   },
   "product_surface_plan": {
-    "final_target": "One complete LBE-branded production CLI/TUI. Cline provider/auth/model/reasoning mechanics are embedded and not exposed as a separate product. LBE remains sole authority. All accepted planned capabilities converge into this single user surface.",
+    "final_target": "Typing `lbe` in a terminal opens the complete LBE-branded coding IDE CLI/TUI. Cline mechanics and backend runtime components are internal implementation details.",
     "selected_current_client": "LBE CLI/TUI — exact source/acquisition path MISALIGNED_PENDING_RECONCILIATION",
-    "selected_launcher": "C:/LBE-TUI-Lab/run-cline-lbe.ps1",
-    "entrypoint": "UNVERIFIED_CURRENTLY: previously documented C:/LBE-TUI-Lab/cline/apps/cli/src/index.ts is absent from canonical remote",
+    "selected_launcher": "installed `lbe` command via lbe_guard_inspector.product_entry:main",
+    "entrypoint": "lbe_guard_inspector.product_entry:main (installed command: lbe)",
     "rust_reference_client": "C:/LBE-TUI-Lab/src/main.rs",
     "rust_reference_launcher": "C:/LBE-TUI-Lab/run-lbe.bat",
     "projection_rule": "Cline CLI/TUI and Rust reference clients may request and project state only. LBE_Presistent_Agent_wall remains sole owner of workspace/session identity, provider truth, policy, authorization, ToolRegistry, governed execution, MCP registration, ToolReceipt/evidence, persistence/recovery, validation and completion truth.",
@@ -75,7 +75,8 @@
       "canonical_remote_begin_directory": "MISSING",
       "canonical_remote_launcher": "PRESENT but defaults to missing cline/apps/cli/dist/cli-windows-x64/bin/cline.exe",
       "local_launcher_report": "LOCAL_REPORTED: Get-Command cline resolves npm-installed client",
-      "product_role": "UNCHANGED: LBE CLI/TUI user-facing, Cline embedded mechanics, LBE runtime sole authority, Rust reference/integration"
+      "product_role": "UNCHANGED: LBE CLI/TUI user-facing, Cline embedded mechanics, LBE runtime sole authority, Rust reference/integration",
+      "final_product_entrypoint": "lbe"
     },
     "historical_surfaces": "Rust/Ratatui, backend CLIs, server.py, internal Node entrypoints, HTML previews, and diagnostic command surfaces are reference/developer/internal surfaces only. None can substitute for final product readiness.",
     "production_user_path": {
@@ -94,10 +95,10 @@
   },
   "current_active_slice": {
     "phase": "LBE_CLI_PRODUCT_RECONCILIATION",
-    "slice": "CLINE_PROVIDER_MODEL_TO_LBE_SESSION_BINDING",
+    "slice": "SINGLE_COMMAND_LBE_CODING_IDE_COMPOSITION",
     "status": "BLOCKED_ACTIVE",
-    "implementation_goal": "Use the real LBE CLI/TUI path with Cline provider/model UX; when the user selects/logs into a provider and chooses a model, persist/bind that selection into the authoritative LBE session and route the conversation through the existing LBE-governed runtime.",
-    "next_gate": "CLINE_LBE_STRUCTURAL_VISUAL_DIFFERENTIATION"
+    "implementation_goal": "Make the installed `lbe` command automatically compose the authoritative LBE runtime and embedded Cline provider/model client into the complete LBE coding IDE CLI/TUI, eliminating user-facing developer scripts and manual orchestration.",
+    "next_gate": "FULL_LBE_CODING_IDE_INTERACTIVE_ACCEPTANCE"
   },
   "accepted_baseline": {
     "classification": "PROVEN_ACCEPTED_RUNTIME_FOUNDATION",
@@ -125,37 +126,37 @@
       "order": 0,
       "id": "review-staged-backend-deletions",
       "status": "OPEN_RECOVERY_REVIEW",
-      "scope": "Preserve and resolve the staged deletion rationale separately; provider modules currently needed by runtime must remain available for the active CLI path."
+      "scope": "Resolve staged deletions that affect provider/runtime/verifier owners without losing current evidence."
     },
     {
       "order": 1,
-      "id": "cline-provider-model-session-binding",
+      "id": "single-command-lbe-composition",
       "status": "BLOCKED_ACTIVE_PRODUCT_GATE",
-      "scope": "Wire Cline provider/auth/model selection to LBE provider/session state. No manual reasoning-provider.json or backend command-runner workflow in normal use."
+      "scope": "`lbe` must be the one installed user command that creates/resumes session, starts/attaches runtime, loads embedded Cline provider/model mechanics, and opens the full LBE coding IDE CLI/TUI."
     },
     {
       "order": 2,
-      "id": "canonical-launcher-reconciliation",
-      "status": "REQUIRED_FOR_PRODUCTION_ACCEPTANCE",
-      "scope": "Publish the locally working npm-installed Cline resolution or another canonical reproducible acquisition path so clean-clone/installed launch matches local behavior."
+      "id": "provider-model-in-product",
+      "status": "PENDING_WITHIN_COMPOSITION",
+      "scope": "Provider login/selection/model selection must work from inside the LBE UI and bind to the authoritative LBE session."
     },
     {
       "order": 3,
-      "id": "lbe-structural-visual-differentiation",
-      "status": "PENDING",
-      "scope": "Render the complete LBE-branded CLI/TUI shell over the real Cline-backed product path."
+      "id": "complete-lbe-ui",
+      "status": "PENDING_WITHIN_COMPOSITION",
+      "scope": "Apply the accepted LBE brand/style/logo and complete coding IDE interaction surface to the actual `lbe` product."
     },
     {
       "order": 4,
-      "id": "interactive-production-cli-acceptance",
+      "id": "full-interactive-product-acceptance",
       "status": "PENDING",
-      "scope": "From a real terminal: launch LBE, select provider/model through Cline, complete a normal governed turn, project receipts/evidence, and verify clean exit/resume."
+      "scope": "From a normal terminal run only `lbe`; prove conversation, coding, plan/audit, governed tools/approvals, evidence/receipts, persistence/resume, terminal lifecycle, and accepted integrated capabilities."
     },
     {
       "order": 5,
-      "id": "installed-end-to-end",
+      "id": "installed-product-release",
       "status": "LOCKED",
-      "scope": "Final installed production-ready acceptance."
+      "scope": "Package/install and re-prove the same single-command behavior from a clean installed environment."
     }
   ],
   "separate_non_product_work": {
@@ -441,19 +442,21 @@
     }
   },
   "ready_to_use_contract": {
-    "classification": "LOCKED_USER_ACCEPTANCE_MEANING",
-    "verdict_rule": "READY_TO_USE may be reported only when every accepted final-product capability is implemented, aligned, designed, integrated, packaged/installed as applicable, and claim-matched acceptance has passed with no unresolved gaps.",
-    "single_output": "One complete LBE-branded CLI/TUI is the normal user surface.",
-    "forbidden_as_final_user_workflow": [
-      "ask user what command to run next",
-      "manual server.py startup",
-      "internal node/package command runner",
+    "classification": "LOCKED_SINGLE_COMMAND_PRODUCT_CONTRACT",
+    "user_action": "Open terminal, type `lbe`, press Enter.",
+    "expected_result": "Complete LBE coding IDE CLI/TUI opens.",
+    "single_entrypoint": "lbe",
+    "internal_only": [
+      "run-cline-lbe.ps1",
+      "python server.py",
+      "python -m lbe_guard_inspector.cli ...",
+      "node dist/index.js",
       "manual reasoning-provider.json editing",
-      "separate diagnostic terminals",
-      "reference Rust UI as substitute product",
-      "mock-only or partial feature presented as ready"
+      "manual session create/status orchestration"
     ],
-    "agent_execution_rule": "Engineering agents should continue through the accepted plan without repeatedly asking the user to choose commands or explain the next step. Stop only for a genuine external dependency, explicit governance restriction, destructive-operation approval when required, or evidence that changes the accepted scope.",
-    "not_ready_rule": "Any unresolved accepted-scope implementation, integration, design, packaging, configuration, runtime, or acceptance gap means NOT_READY_TO_USE."
+    "startup_responsibility": "The lbe product entrypoint must automatically start/attach/compose required backend/runtime/client/provider-worker/session components.",
+    "provider_experience": "Provider login/selection/model selection is presented inside the LBE product using embedded Cline mechanics.",
+    "authority": "LBE remains sole authority for identity, policy, authorization, execution, receipts/evidence, persistence, validation and completion.",
+    "verdict_rule": "READY_TO_USE only when `lbe` from a normal installed environment enters the complete product without developer orchestration."
   }
 }
