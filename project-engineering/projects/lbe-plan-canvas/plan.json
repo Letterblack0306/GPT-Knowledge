@@ -1,7 +1,7 @@
 {
-  "schema_version": 40,
+  "schema_version": 41,
   "project": "LBE Persistent Agent",
-  "updated": "2026-09-06",
+  "updated": "2026-09-07",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "source_branch": "main",
   "original_workspace": "C:/Agents-Memory-Tool-v6-integration",
@@ -70,28 +70,30 @@
     "rust_reference_launcher": "C:/LBE-TUI-Lab/run-lbe.bat",
     "projection_rule": "Cline CLI/TUI and Rust reference clients may request and project state only. LBE_Presistent_Agent_wall remains sole owner of workspace/session identity, provider truth, policy, authorization, ToolRegistry, governed execution, MCP registration, ToolReceipt/evidence, persistence/recovery, validation and completion truth.",
     "source_reconciliation": {
-      "local_mirror_agent_md": "PROVEN_CLINE_USER_FACING_RUST_REFERENCE",
-      "local_mirror_integration_alignment": "PROVEN_CLINE_USER_FACING_RUST_REFERENCE",
-      "agent_wall_current_status": "FINAL_INTERFACE_TECHNOLOGY_CLINE_CLI_SDK",
-      "rust_remote_docs_status_json": "STALE_INTERFACE_CLASSIFICATION"
+      "classification": "RECONCILED_CURRENT_PRODUCT_ROLE",
+      "lbe_cli_tui": "C:/LBE-TUI-Lab/cline/apps/cli = active user-facing product surface",
+      "cline": "embedded provider/model/reasoning/delegated-agent mechanics",
+      "lbe_runtime": "C:/Agents-Memory-Tool-v6-integration = sole runtime/governance authority",
+      "rust_ratatui": "C:/LBE-TUI-Lab/src = reference/integration client"
     },
-    "stale_machine_map": "C:/LBE-TUI-Lab/Docs/status.json still classifies Rust/Ratatui as the active interface and must not be used for product-surface planning until reconciled.",
     "historical_surfaces": "Rust/Ratatui remains a valuable reference/integration client. HTML remains reference/design material. Python/Textual is not the accepted final product UI."
   },
   "current_active_slice": {
-    "phase": "P2_P3_GOVERNED_EXECUTION",
-    "slice": "LIVE_WRITABLE_APPROVAL_MUTATION",
-    "status": "ACTIVE",
-    "completed_prior_slice": "Provider/Cline continuation through installed Rust -> canonical LBE path",
-    "implementation_goal": "Complete one claim-matched writable mutation through existing agent proposal -> LBE authority -> approval/patch review -> exactly-once governed mutation -> ToolReceipt/evidence -> Cline continuation -> persisted completion -> Rust projection.",
-    "non_goals": [
-      "do not re-prove provider continuation",
-      "do not rebuild read/list/glob/search",
-      "do not add provider transport to Rust",
-      "do not redesign UI",
-      "do not create a second mutation/execution authority",
-      "do not stage/clean/commit unrelated dirty work"
-    ]
+    "phase": "LBE_CLI_PRODUCT_ACCEPTANCE",
+    "slice": "CLINE_LBE_STRUCTURAL_VISUAL_DIFFERENTIATION",
+    "status": "ACTIVE_FAIL_CURRENT_IMPLEMENTATION",
+    "implementation_goal": "Replace the skin-only centered Cline hero/composer composition with the finalized minimal LBE runtime shell while preserving current provider/model/reasoning/runtime mechanics and LBE authority.",
+    "required": [
+      "persistent LBE/workspace/model/mode/git/context hierarchy",
+      "single conversation/execution timeline",
+      "three-line active raw process viewport",
+      "click-to-expand emitted process output",
+      "completed-process one-line collapse",
+      "[I] composer identity",
+      "bouncing activity indicator",
+      "context usage projection"
+    ],
+    "next_gate": "INTERACTIVE_CLINE_TTY_ACCEPTANCE"
   },
   "accepted_baseline": {
     "classification": "PROVEN_ACCEPTED_RUNTIME_FOUNDATION",
@@ -116,40 +118,34 @@
   },
   "execution_sequence": [
     {
-      "order": 0,
-      "id": "reconcile-cline-active-interface-machine-map",
-      "status": "REQUIRED_BEFORE_INTERFACE_PLANNING",
-      "scope": "Treat Cline CLI/TUI as the accepted user-facing path and Rust/Ratatui as reference/integration. Do not plan from C:/LBE-TUI-Lab/Docs/status.json until its stale interface classification is reconciled."
-    },
-    {
       "order": 1,
-      "id": "refresh-goal-project-truth-before-action",
-      "status": "MANDATORY_EVERY_VISIT",
-      "scope": "Recall the final product goal and ownership boundary; read current GPT-K status/plan/handoff/canonical execution path; notice workspace mirror; then inspect current canonical evidence."
+      "id": "lbe-structural-visual-differentiation",
+      "status": "ACTIVE",
+      "scope": "Make the accepted LBE CLI structurally distinct from the upstream Cline centered hero/composer composition without changing runtime authority."
     },
     {
       "order": 2,
-      "id": "reconcile-canonical-main-through-github",
-      "status": "ACTIVE_OPERATIONAL_BLOCKER",
-      "scope": "Publish the already validated reconciliation through GitHub without mutating the dirty local workspace. Then validate the published revision locally."
+      "id": "interactive-cline-tty-acceptance",
+      "status": "PENDING_AFTER_VISUAL_REWORK",
+      "scope": "Run run-cline-lbe.ps1 in a real Windows terminal and capture actual rendered/product-runtime evidence."
     },
     {
       "order": 3,
-      "id": "complete-live-writable-approval-flow",
-      "status": "ACTIVE",
-      "scope": "Use the existing LBE authorization, patch review, GovernedToolOrchestrator, ToolReceipt/evidence and Cline continuation owners for one bounded live mutation through the Rust client."
+      "id": "parent-continuation-and-deep-correlation",
+      "status": "OPEN_UNLESS_CURRENT_CANONICAL_EVIDENCE_CLOSES_IT",
+      "scope": "Require persisted child result -> parent continuation plus provider_tool_call_id/lbe_call_id/runtime_operation_id/tool_receipt_id correlation."
     },
     {
       "order": 4,
-      "id": "mcp-ordering",
-      "status": "LATER",
-      "scope": "Prove canonical persisted MCP lifecycle ordering."
+      "id": "canonical-verifier-prove",
+      "status": "OPEN_UNLESS_CURRENT_HARNESS_PASS_IS_CAPTURED",
+      "scope": "Run the canonical tools/lbe_product_integration.ps1 prove path and preserve trustworthy machine PASS/FAIL/BLOCKED evidence."
     },
     {
       "order": 5,
-      "id": "installed-pty-resume-acceptance",
-      "status": "LATER",
-      "scope": "Complete installed PTY/ConPTY and restart/resume acceptance."
+      "id": "installed-end-to-end",
+      "status": "LOCKED",
+      "scope": "Final installed product acceptance only after all prior blocking gates pass."
     }
   ],
   "separate_non_product_work": {
@@ -208,27 +204,24 @@
   },
   "current_cross_source_truth": {
     "classification": "PROVEN_CROSS_SOURCE_RECONCILIATION",
-    "recorded_at": "2026-09-04",
+    "recorded_at": "2026-09-07",
     "canonical_remote_heads": {
       "agent_wall": {
         "repository": "Letterblack0306/LBE_Presistent_Agent_wall",
         "branch": "main",
-        "head": "9ed8940ff6cb8954f968550636dea3ced090a8d0",
-        "latest_change": "Portable environment-aware product installer"
+        "head": "03a90ce22222c0e3ab4fd1c9a9629b3a1f7daa7e",
+        "latest_change": "Reject skin-only Cline UI as LBE visual acceptance"
       },
-      "rust_client": {
+      "product_integration": {
         "repository": "Letterblack0306/LBE_Agents_wall_Intigration",
         "branch": "main",
-        "head": "1605f54b744237d6c00b3ed6b5692cbcbc3fca55",
-        "latest_change": "Published Rust approval bridge source baseline"
+        "head": "29a6d32148186401ca764348d68a1bca9b31aee7",
+        "latest_change": "Capability diff/live runtime validation documentation baseline"
       }
     },
     "latest_local_observation": {
-      "rust_workspace": "C:/LBE-TUI-Lab",
-      "head": "9c4647bbf27ad17150c7719ae7e6fdd4f605e917",
-      "relation_to_origin_main": "ahead 2, behind 15",
-      "working_tree": "DIRTY_PRESERVED",
-      "evidence_role": "Observed agent execution log; local state is not canonical remote publication truth."
+      "classification": "HISTORICAL_ONLY_REVALIDATE_BEFORE_USE",
+      "note": "Older ahead/behind and dirty-worktree observations are retained as history only; they are not current repository-state claims."
     },
     "google_drive_mirror": {
       "url": "https://drive.google.com/drive/folders/1T8Hv-MUhdK34V9xM9gPRq9M1UvMF1HsI?usp=sharing",
@@ -251,73 +244,67 @@
       "behavior": "Installed launcher resolves BirdEye MCP server/python from generated configuration or environment and keeps environment-specific paths outside the portable product contract.",
       "product_rule": "Portable installed configuration is part of final-product delivery; developer-machine fallback paths are not canonical product identity."
     },
-    "first_missing_seam": "INSTALLED_LIVE_WRITABLE_APPROVAL_MUTATION",
+    "first_missing_seam": "CLINE_LBE_STRUCTURAL_VISUAL_DIFFERENTIATION",
     "remaining_acceptance_order": [
-      "INSTALLED_LIVE_WRITABLE_APPROVAL_MUTATION",
-      "EXACTLY_ONCE_MUTATION_AND_RECEIPT_EVIDENCE_CORRELATION",
-      "MCP_INSTALLED_LIFECYCLE_ORDERING",
-      "PTY_CONPTY_INTERACTION",
-      "RESTART_RESUME",
+      "CLINE_LBE_STRUCTURAL_VISUAL_DIFFERENTIATION",
+      "INTERACTIVE_CLINE_TTY_ACCEPTANCE",
+      "PARENT_CONTINUATION_AND_DEEP_CORRELATION_IF_STILL_OPEN",
+      "CANONICAL_VERIFIER_PROVE_IF_STILL_OPEN",
       "FINAL_INSTALLED_END_TO_END"
     ],
     "release_ready": false,
     "checkpoint": "project-engineering/projects/lbe-plan-canvas/REPO_DRIVE_FINAL_PRODUCT_RECONCILIATION_2026-09-04.md",
     "interface_reconciliation": {
-      "classification": "PROVEN_CLINE_ACTIVE_RUST_REFERENCE",
-      "evidence": [
-        "Google Drive mirror C:/LBE-TUI-Lab/Agent.md updated 2026-09-04",
-        "Google Drive mirror C:/LBE-TUI-Lab/Docs/00_integration_alignment.md updated 2026-09-04",
-        "Google Drive mirror C:/LBE-TUI-Lab/run-cline-lbe.ps1",
-        "Agent Wall docs/CURRENT_STATUS.md final interface technology = Cline CLI/SDK"
-      ],
+      "classification": "CURRENT_LBE_PRODUCT_ROLE",
       "corrected_roles": {
         "user_facing_cli_tui": "C:/LBE-TUI-Lab/cline/apps/cli",
         "integrated_launcher": "C:/LBE-TUI-Lab/run-cline-lbe.ps1",
         "runtime_authority": "C:/Agents-Memory-Tool-v6-integration",
         "rust_reference_integration_client": "C:/LBE-TUI-Lab/src/main.rs",
-        "rust_reference_launcher": "C:/LBE-TUI-Lab/run-lbe.bat",
-        "stale_machine_map": "C:/LBE-TUI-Lab/Docs/status.json"
+        "rust_reference_launcher": "C:/LBE-TUI-Lab/run-lbe.bat"
       }
     }
   },
-  "verified_at": "2026-09-06",
+  "verified_at": "2026-09-07",
   "current_execution_state": {
-    "gate_id": "PARENT_CONTINUATION_AND_DEEP_CORRELATION_ACCEPTANCE",
-    "current_status": "READY_FOR_GATE_CLOSURE",
-    "published_gate_status": "OPEN",
-    "canonical_commit": "a17b014",
-    "ordered_slices": "ALL_PASS",
-    "next_product_slice": "INSTALLED_PTY_CONPTY_AND_FINAL_PRODUCT_ACCEPTANCE",
+    "gate_id": "CLINE_LBE_STRUCTURAL_VISUAL_DIFFERENTIATION",
+    "current_status": "FAIL_CURRENT_IMPLEMENTATION",
+    "canonical_backend_commit": "03a90ce22222c0e3ab4fd1c9a9629b3a1f7daa7e",
+    "canonical_product_integration_commit": "29a6d32148186401ca764348d68a1bca9b31aee7",
+    "next_product_slice": "INTERACTIVE_CLINE_TTY_ACCEPTANCE",
     "next_product_slice_activated": false,
-    "blocker": "Canonical local checkout is corrupt/incomplete and cannot reproduce published runtime; installed PTY/ConPTY acceptance is also unproven."
+    "blocker": "Current source/render evidence still matches a recognizable centered Cline hero/composer shell; LBE structural differentiation must pass first."
   },
   "machine_execution_plan": {
-    "rule": "FAIL/BLOCKED remains on current transition and exposes exact blocker; do not falsely activate the next product gate.",
+    "rule": "FAIL/BLOCKED remains on the current transition. Do not activate the next gate until claim-matched evidence closes the active gate.",
     "ordered_slices": [
       {
         "order": 1,
-        "id": "PARENT_CONTINUATION_PROOF_CHAIN",
-        "status": "PASS"
+        "id": "CLINE_LBE_STRUCTURAL_VISUAL_DIFFERENTIATION",
+        "status": "FAIL_CURRENT_IMPLEMENTATION"
       },
       {
         "order": 2,
-        "id": "CANONICAL_VALIDATION_SURFACE_RECOVERY",
-        "status": "BLOCKED_ACTIVE",
-        "required": [
-          "preserve original dirty workspace",
-          "obtain trustworthy runnable copy of published a17b014",
-          "verify required provider/bridge modules are present",
-          "verify backend bridge/provider tests collect and run"
-        ]
+        "id": "INTERACTIVE_CLINE_TTY_ACCEPTANCE",
+        "status": "PENDING_AFTER_VISUAL_REWORK"
       },
       {
         "order": 3,
-        "id": "INSTALLED_PTY_CONPTY_AND_FINAL_PRODUCT_ACCEPTANCE",
+        "id": "PARENT_CONTINUATION_AND_DEEP_CORRELATION",
+        "status": "OPEN_IF_NOT_ALREADY_CLOSED_BY_CURRENT_CANONICAL_EVIDENCE"
+      },
+      {
+        "order": 4,
+        "id": "CANONICAL_VERIFIER_PROVE",
+        "status": "OPEN_IF_NOT_ALREADY_CLOSED_BY_CURRENT_CANONICAL_EVIDENCE"
+      },
+      {
+        "order": 5,
+        "id": "FINAL_INSTALLED_END_TO_END",
         "status": "LOCKED"
       }
     ],
-    "recovery_rule": "Do not reset/clean/rebase the corrupt original workspace. Use a clean clone, isolated validation checkout, or installed artifact for claim-matched validation unless a non-destructive repair can be proven safe.",
-    "ui_rule": "UI work remains allowed; the two current Rust rendering test failures are secondary evidence and do not redefine runtime authority."
+    "ui_rule": "UI implementation may proceed on the accepted Cline-based LBE CLI surface. Rust/Ratatui remains reference/integration only."
   },
   "correlation_acceptance": {
     "chain": [
@@ -377,77 +364,8 @@
     "sequencing_rule": "Do not reopen settled Cline provider-continuation architecture. Use the diff to implement missing mappings/capabilities, justify genuine exclusions, then validate live and installed behavior."
   },
   "current_rust_adapter_plan": {
-    "classification": "MAPPING_COMPLETE_LIVE_ACCEPTANCE_PENDING",
-    "source_mapping": {
-      "status": "COMPLETE",
-      "implemented_methods": 24,
-      "unsupported_individual_requests": 13,
-      "unsupported_categories": 7,
-      "total_request_variants_classified": 37,
-      "document": "C:/LBE-TUI-Lab/Docs/38_complete_cline_lbe_capability_diff.md"
-    },
-    "validation": {
-      "cargo_check": "PASS — 0 errors / 42 dead-code warnings",
-      "cargo_test": "199 passed / 3 live-fixture-dependent failures / 2 ignored",
-      "full_test_suite": "NOT PASS",
-      "non_live_regression": "PASS for the 199 passing tests",
-      "live_fixture_paths": "UNPROVEN"
-    },
-    "local_changes": {
-      "staged": [
-        "Cargo.toml",
-        "Docs/38_complete_cline_lbe_capability_diff.md"
-      ],
-      "cargo_change": "edition 2024 -> 2021 recorded as local compatibility correction",
-      "agent_mode_fix": "AgentMode::Regular -> AgentMode::Build in four wrapper.rs occurrences",
-      "worktree": "14 modified, 1 deleted AGENTS.md, 18 untracked; preserve unrelated work"
-    },
-    "unsupported_request_rule": [
-      "Do not stop merely because a RealLbeWrapper request is marked unsupported.",
-      "For each unsupported request, trace the current LBE owner and public/runtime entrypoint.",
-      "If the operation exists and only the adapter is missing, implement the adapter and validate it.",
-      "If the backend seam is missing but the capability is required, add the smallest seam through the existing LBE authority owner.",
-      "If the request is obsolete, stale, intentionally excluded, or genuinely deferred, record the exact reason/evidence and continue.",
-      "Do not create duplicate session/provider/authorization/execution/evidence/completion authority."
-    ],
-    "next_sequence": [
-      {
-        "order": 1,
-        "id": "PRESERVE_STATIC_VALIDATION",
-        "status": "PASS",
-        "action": "Do not rerun cargo check or the 199 non-live tests merely for reassurance unless source changes."
-      },
-      {
-        "order": 2,
-        "id": "RESOLVE_REMAINING_UNSUPPORTED_REQUESTS_WHERE_FIXABLE",
-        "status": "ACTIVE",
-        "action": "Continue request-by-request investigation and implementation without user back-and-forth; skip only genuinely unsupported/deferred/stale requests with evidence."
-      },
-      {
-        "order": 3,
-        "id": "REAL_LBE_WRAPPER_LIVE_FIXTURE_ACCEPTANCE",
-        "status": "BLOCKED_OR_PENDING",
-        "action": "When the real LBE fixture is available, rerun the three fixture-dependent tests and prove representative session, turn, workspace, authorization/mutation, abort and diagnostics paths."
-      },
-      {
-        "order": 4,
-        "id": "INSTALLED_PROVIDER_CATALOG_BINDING",
-        "status": "PENDING",
-        "action": "Prove real installed provider/model catalog binding through the accepted LBE/Cline product path."
-      },
-      {
-        "order": 5,
-        "id": "INSTALLED_PTY_CONPTY_ACCEPTANCE",
-        "status": "PENDING",
-        "action": "Prove startup, interaction, resize/control behavior, clean exit and terminal restoration in the installed accepted product surface."
-      },
-      {
-        "order": 6,
-        "id": "FINAL_INSTALLED_PRODUCT_ACCEPTANCE",
-        "status": "LOCKED",
-        "action": "Advance only after the relevant live and installed gates pass."
-      }
-    ]
+    "classification": "HISTORICAL_REFERENCE_ONLY",
+    "rule": "Rust/Ratatui integration remains useful reference evidence but does not drive current LBE CLI product acceptance."
   },
   "current_cli_execution_plan": {
     "classification": "LBE_VISUAL_SHELL_REWORK_ACTIVE_THEN_TTY_ACCEPTANCE",
