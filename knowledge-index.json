@@ -109,7 +109,10 @@
         "LBE terminal acceptance",
         "ChildAgentRun",
         "child_agent",
-        "subagent acceptance"
+        "subagent acceptance",
+        "what is LBE",
+        "LBE product definition",
+        "LBE product identity"
       ],
       "canonical": [
         "project-engineering/project-feature-implementation-plan.md"
@@ -159,6 +162,9 @@
         ],
         "lbe-current-acceptance-routing": [
           "project-engineering/projects/lbe-persistent-agent-c5-r7-acceptance-routing.md"
+        ],
+        "lbe-product-definition": [
+          "project-engineering/projects/lbe-product-definition/WHAT_IS_LBE.md"
         ]
       }
     },
@@ -504,6 +510,7 @@
     "For any project or feature implementation, extension, replacement, integration, migration, planning, or learning task, load project-engineering/project-feature-implementation-plan.md before domain-specific knowledge.",
     "For repository/project checkpoints, before-any-change verification, SHA/diff review, local-vs-remote drift, GPT-Knowledge source_head/classification synchronization, deployment/live-surface verification, or completion-state reconciliation, additionally load project-engineering/repository-status-checkpointing-and-live-surface-reconciliation.md. Reconcile source, local validation, project projection, and live/deployed surfaces before the next engineering mutation.",
     "When a repository contains or mentions a change-documentation gate, agent intent declaration, .ai/intent.json, module registry, module-health check, maintenance warning/caution, protected-surface documentation, or break-glass rule, additionally load project-engineering/governed-repository-change-documentation-and-module-health.md before editing. First understand why the repository uses the mechanism, which parts are blocking versus warning-only, and the repository-specific contract. Do not bypass, weaken, or mechanically copy the Adobe_AI_Generations-04 gate stack.",
+    "For questions about what LBE is, product identity, product boundary, or the meaning of Lockstep Boundry Engine, load project-engineering/projects/lbe-product-definition/WHAT_IS_LBE.md first, then use the current LBE status/acceptance documents for implementation state.",
     "For current LBE product role, C:\\\\LBE-TUI-Lab, LBE CLI/TUI, run-cline-lbe.ps1, visual-shell, ChildAgentRun/subagent, verifier, or terminal-acceptance questions, load project-engineering/projects/lbe-persistent-agent-wall-status.md and project-engineering/projects/lbe-persistent-agent-c5-r7-acceptance-routing.md before generic Letterblack MCP ecosystem material. project-engineering/letterblack-mcp-ecosystem-and-routing.md is an ecosystem snapshot and must not redefine the current LBE product surface or turn its 2026-09-01 process observations into present-state claims without fresh runtime evidence.",
     "For LBE Persistent Agent status, progress, workspace, or roadmap-boundary questions, additionally load project-engineering/projects/lbe-persistent-agent-wall-status.md, then revalidate the live repository before acting.",
     "For Access Browser Agent R3, ambiguous durable recovery, reconciliation receipts, rendered recovery acceptance, R4 protected-context acceptance, or current completion status, additionally load project-engineering/projects/access-browser-agent-r3-recovery-status-2026-08-16.md, then revalidate the current Access repository, project-owned current-position documents, runtime evidence, and GitHub before acting.",
