@@ -2,7 +2,7 @@
 
 ## Authority
 
-- Last reconciled: 2026-09-05
+- Last reconciled: 2026-09-07
 - Project repository: `Letterblack0306/LBE_Presistent_Agent_wall`
 - This page routes work; it does not create acceptance state or authorize a slice.
 
@@ -22,18 +22,26 @@ Use this order before LBE work:
 ## Current route
 
 ```text
-R7_INSTALLED_END_TO_END_ACCEPTANCE: PASS
-active phase: TERMINAL_WORKSPACE_PRODUCT_IMPLEMENTATION
-active slice: VISIBLE_TRUTHFUL_TERMINAL_WORKSPACE_FOUNDATION
-terminal-workspace foundation: OPEN
-publication preparation: PAUSED (target 2.0.3 retained)
-publish: locked
-architecture changes: allowed only in the active foundation scope
+LBE CLI/TUI product role: CURRENT
+Cline embedded mechanics: CURRENT
+LBE runtime authority: CURRENT
+Rust/Ratatui: REFERENCE / INTEGRATION
+
+active product gate:
+CLINE_LBE_STRUCTURAL_VISUAL_DIFFERENTIATION
+status: FAIL_CURRENT_IMPLEMENTATION
+
+next gate:
+INTERACTIVE_CLINE_TTY_ACCEPTANCE
+status: PENDING_AFTER_VISUAL_REWORK
+
+release ready: NO
 ```
 
-The historical installed coding-composition failure is repaired evidence, not the current state.
-Do not route work as `R7 FAIL`, do not reopen accepted R6C/R6E owners, and do not claim the
-terminal workspace or PyPI publication is complete.
+The current backend verifier explicitly rejects a skin-only Cline landing composition. Branding alone is insufficient. The accepted product must first satisfy the minimal LBE runtime-shell structure before TTY acceptance is promoted.
+
+Historical R7, terminal-workspace, writable-approval, repository-divergence, and 2026-09-01 MCP-process observations remain useful history only unless fresh canonical evidence makes them current again.
+
 
 ## Product-direction check
 
