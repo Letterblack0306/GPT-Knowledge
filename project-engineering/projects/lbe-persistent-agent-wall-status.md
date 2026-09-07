@@ -270,6 +270,17 @@ installed parent→child→parent acceptance               NOT YET ACCEPTED
 
 Do not reopen child lifecycle architecture merely because older history said the owner was absent. That statement was corrected after direct inspection of the existing memory/operational-history owner.
 
+## Stale-state corrections
+
+Do not carry the following historical observations forward as current product blockers without fresh evidence:
+
+- `LIVE RUNTIME EXCLUSIVITY = FAIL` with `mcp-filesystem-server.exe`, Context7 MCP, and Playwright MCP is a 2026-09-01 runtime snapshot from the generic MCP ecosystem audit. It requires a fresh process audit before reuse as a present-state LBE claim.
+- The historical backend Git topology `ahead 4 / behind 33` is not a current repository-state claim. Revalidate the local backend worktree before using it.
+- A full bundled Cline source tree is not itself evidence of an authority-boundary violation. The relevant invariant is whether Cline can bypass LBE ownership for session/governance/tools/evidence/completion.
+- Debug-file clutter and minimal `.gitignore` are hygiene concerns, not active product-acceptance gates unless they directly break build/package/verification.
+- `RealLbeWrapper` source implementation and method coverage do not imply live runtime attachment. Treat source presence as IMPLEMENTED and live attachment as separately PROVEN/UNVERIFIED according to current runtime evidence.
+- The Rust/Ratatui reference client must not be promoted back to primary product status merely because its wrapper/runtime integration is mature.
+
 ## Verification invariant
 
 ```text
