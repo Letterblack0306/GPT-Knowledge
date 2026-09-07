@@ -1,5 +1,5 @@
 {
-  "schema_version": 46,
+  "schema_version": 47,
   "project": "LBE Persistent Agent",
   "updated": "2026-09-07",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
@@ -8,7 +8,7 @@
   "later_ui_workspace": "C:/LBE-TUI-Lab",
   "purpose": "Project the final LBE product plan as one persistent provider-neutral governed agent lifecycle. UI, guard packs, Cline mechanics, external integrations and historical clients are subordinate capabilities or projections, not separate product architectures.",
   "authority_rule": "Before every project decision or next-step instruction, recall the final LBE product goal, refresh current GPT-K plan/status/handoff/canonical execution path, then inspect current evidence. GPT-K is a projection; current canonical repository/runtime/governance evidence remains implementation truth.",
-  "final_product_goal": "A local persistent LBE agent that can start or resume a workspace/session, reason with a selected provider, discover and request governed capabilities, execute only through LBE authorization and registered adapters, consume ToolReceipts/evidence, replan across turns, deterministically validate completion, persist/recover state, and expose the same lifecycle through whichever existing client surface reaches correct manual acceptance fastest without creating a second authority.",
+  "final_product_goal": "One complete production-ready LBE CLI/TUI product. The user launches a single LBE entrypoint and receives the full LBE-branded interface with Cline provider/auth/model mechanics embedded behind it, all accepted planned agent/runtime capabilities integrated through LBE authority, persistent sessions and resume, governed tools/approvals/MCP/subagents/memory, evidence/receipts/validation/completion, packaging/install behavior, and no manual backend server, internal command runner, provider JSON editing, or multi-terminal developer workflow required for normal use.",
   "core_invariant": "Agent/provider owns cognition; LBE owns capabilities and consequences.",
   "lifecycle_plan": [
     {
@@ -62,7 +62,7 @@
     "memory": "Historical/context/validated memory supports reasoning and persistence but does not override current workspace/runtime truth."
   },
   "product_surface_plan": {
-    "final_target": "The user-facing product remains the LBE CLI/TUI with Cline embedded mechanics under LBE runtime authority. The exact client acquisition/source location is currently under reconciliation: canonical GitHub main does not contain the previously documented cline/apps/cli subtree, while a newer local report says run-cline-lbe.ps1 resolves an npm-installed cline command.",
+    "final_target": "One complete LBE-branded production CLI/TUI. Cline provider/auth/model/reasoning mechanics are embedded and not exposed as a separate product. LBE remains sole authority. All accepted planned capabilities converge into this single user surface.",
     "selected_current_client": "LBE CLI/TUI — exact source/acquisition path MISALIGNED_PENDING_RECONCILIATION",
     "selected_launcher": "C:/LBE-TUI-Lab/run-cline-lbe.ps1",
     "entrypoint": "UNVERIFIED_CURRENTLY: previously documented C:/LBE-TUI-Lab/cline/apps/cli/src/index.ts is absent from canonical remote",
@@ -77,7 +77,7 @@
       "local_launcher_report": "LOCAL_REPORTED: Get-Command cline resolves npm-installed client",
       "product_role": "UNCHANGED: LBE CLI/TUI user-facing, Cline embedded mechanics, LBE runtime sole authority, Rust reference/integration"
     },
-    "historical_surfaces": "Rust/Ratatui remains a valuable reference/integration client. HTML remains reference/design material. Python/Textual is not the accepted final product UI.",
+    "historical_surfaces": "Rust/Ratatui, backend CLIs, server.py, internal Node entrypoints, HTML previews, and diagnostic command surfaces are reference/developer/internal surfaces only. None can substitute for final product readiness.",
     "production_user_path": {
       "classification": "LOCKED_PRODUCT_REQUIREMENT",
       "entry": "LBE CLI/TUI canonical launcher",
@@ -439,5 +439,21 @@
       "id": "INTERACTIVE_CLINE_TTY_ACCEPTANCE",
       "status": "PENDING_AFTER_VISUAL_REWORK"
     }
+  },
+  "ready_to_use_contract": {
+    "classification": "LOCKED_USER_ACCEPTANCE_MEANING",
+    "verdict_rule": "READY_TO_USE may be reported only when every accepted final-product capability is implemented, aligned, designed, integrated, packaged/installed as applicable, and claim-matched acceptance has passed with no unresolved gaps.",
+    "single_output": "One complete LBE-branded CLI/TUI is the normal user surface.",
+    "forbidden_as_final_user_workflow": [
+      "ask user what command to run next",
+      "manual server.py startup",
+      "internal node/package command runner",
+      "manual reasoning-provider.json editing",
+      "separate diagnostic terminals",
+      "reference Rust UI as substitute product",
+      "mock-only or partial feature presented as ready"
+    ],
+    "agent_execution_rule": "Engineering agents should continue through the accepted plan without repeatedly asking the user to choose commands or explain the next step. Stop only for a genuine external dependency, explicit governance restriction, destructive-operation approval when required, or evidence that changes the accepted scope.",
+    "not_ready_rule": "Any unresolved accepted-scope implementation, integration, design, packaging, configuration, runtime, or acceptance gap means NOT_READY_TO_USE."
   }
 }
