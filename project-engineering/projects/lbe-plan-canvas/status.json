@@ -1,5 +1,5 @@
 {
-  "schema_version": 76,
+  "schema_version": 77,
   "project": "LBE Persistent Agent",
   "verified_at": "2026-09-07",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
@@ -97,22 +97,28 @@
   },
   "next_required_sequence": [
     {
+      "order": 0,
+      "id": "reconcile-recovered-backend-checkout",
+      "status": "REQUIRED_BEFORE_BACKEND_MUTATION",
+      "scope": "Fresh-fetch origin/main, compare 815dfc0 with 03a90ce, preserve recovered working state, and inspect deleted canonical files."
+    },
+    {
       "order": 1,
       "id": "reconcile-client-acquisition",
-      "status": "BLOCKED_ACTIVE",
-      "scope": "Choose and publish one canonical reproducible client acquisition path: bundled source/binary or npm-installed cline resolution, preserving LBE authority."
+      "status": "BLOCKED_ACTIVE_PRODUCT_GATE",
+      "scope": "Publish one canonical reproducible LBE CLI/Cline acquisition path."
     },
     {
       "order": 2,
-      "id": "prove-clean-clone-launch",
+      "id": "prove-clean-client-launch",
       "status": "PENDING",
-      "scope": "Prove the published launcher can resolve and start the intended Cline client from a clean validation surface."
+      "scope": "Prove the published launcher resolves and starts the intended client from a clean validation surface."
     },
     {
       "order": 3,
       "id": "lbe-visual-structural-differentiation",
-      "status": "PENDING_AFTER_RECONCILIATION",
-      "scope": "Validate the finalized LBE shell against the actual client surface."
+      "status": "PENDING",
+      "scope": "Validate the finalized minimal LBE shell on the actual product surface."
     },
     {
       "order": 4,
@@ -742,5 +748,28 @@
       ]
     },
     "release_ready": false
+  },
+  "repository_recovery": {
+    "classification": "RECOVERED_INTEGRATION_REMOTE_SYNC_UNVERIFIED",
+    "integration": {
+      "path": "C:/Agents-Memory-Tool-v6-integration",
+      "reported_head": "815dfc0",
+      "reported_working_files": "INTACT",
+      "canonical_remote_main": "03a90ce22222c0e3ab4fd1c9a9629b3a1f7daa7e",
+      "sync_status": "UNVERIFIED"
+    },
+    "validation": {
+      "path": "C:/Agents-Memory-Tool-v6-validation",
+      "reported_head": "a17b014",
+      "reported_working_files": "BROADLY_DELETED",
+      "delete_status": "DEFER"
+    },
+    "reported_validation_only_locally_but_present_on_remote": [
+      "docs/acceptance/LBE_PRODUCT_INTEGRATION_MACHINE_CHECK.md",
+      "lbe_guard_inspector/cline_reasoning_provider.py",
+      "lbe_guard_inspector/coding_reasoning_provider.py",
+      "lbe_guard_inspector/first_party_reasoning_provider.py"
+    ],
+    "recovery_rule": "Do not delete validation or restore/copy files blindly. First reconcile integration against current origin/main and establish deletion intent; validation is not the sole source of these four files."
   }
 }
