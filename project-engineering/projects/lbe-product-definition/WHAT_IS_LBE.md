@@ -111,53 +111,60 @@ Preserve the intentional spelling **Boundry**.
 
 ---
 
-## Ready-To-Use Means Complete Product
+## Final Product Entry Contract
 
-When the user asks whether LBE is **ready to use**, that phrase has a strict product meaning.
-
-It does **not** mean:
-
-- a backend server starts;
-- one provider call works;
-- a session can be created;
-- a Rust reference client works;
-- a developer can manually run several commands;
-- an agent can ask the user which command, service, config file, or test harness to launch next;
-- a partial feature set is available behind diagnostics.
-
-**Ready to use means the complete planned LBE product is assembled, aligned, designed, implemented, validated, installed, and usable through one normal product entrypoint.**
-
-The user experience must be:
+The final LBE product is a **single installed terminal command**:
 
 ```text
-launch LBE
-    ↓
-one complete LBE-branded CLI/TUI
-    ↓
-provider login / provider selection / model selection
-    ↓
-conversation / planning / audit / coding
-    ↓
-governed tools / approvals / processes / subagents / MCP / memory
-    ↓
-evidence / receipts / validation / completion
-    ↓
-persistent session / restart / resume
+user opens terminal
+user types: lbe
+press Enter
+        ↓
+LBE coding IDE CLI/TUI opens
 ```
 
-No separate backend server window, internal package command, manual provider JSON editing, hidden command-runner workflow, or developer-only setup is part of normal production use.
+That is the normal product entrypoint.
 
-The final CLI/TUI must present the planned LBE interface and product identity, including the LBE visual system, logo/brand, conversation/execution timeline, provider/model state, governed execution state, approvals when policy requires them, evidence/receipt projections, persistence and session state, and the other accepted planned product capabilities.
-
-A product-ready claim is allowed only when there are **no unresolved implementation, integration, design, ownership, packaging, installation, configuration, runtime, or acceptance gaps within the accepted final-product scope**.
-
-If any accepted product capability is still missing, mock-only, reference-only, unbound, manually configured, unvalidated, or dependent on the user running diagnostic commands, the correct answer is:
+The user must **not** need to know about or run:
 
 ```text
-NOT READY TO USE
+run-cline-lbe.ps1
+python server.py
+python -m lbe_guard_inspector.cli ...
+node dist/index.js
+reasoning-provider.json
+internal session-create commands
+backend worker commands
+separate runtime terminals
 ```
 
-not "partially ready", "ready except for", or an instruction asking the user what to run next.
+Those may exist internally for development, packaging, diagnostics, or implementation, but the installed `lbe` command must compose them automatically where needed.
+
+The visible product after `lbe` launches is the complete **LBE coding IDE CLI/TUI**, using LBE branding and interaction design. Cline provider/model/auth/reasoning mechanics are embedded behind that surface; they are not a second user-facing product.
+
+Expected startup composition:
+
+```text
+lbe
+ ↓
+resolve current workspace
+ ↓
+create/resume authoritative LBE session
+ ↓
+start/attach required LBE runtime components internally
+ ↓
+load Cline provider/auth/model capabilities
+ ↓
+open complete LBE coding IDE CLI/TUI
+ ↓
+user selects/signs into provider and selects model as needed
+ ↓
+normal conversation / coding / plan / audit
+ ↓
+all authority-bearing actions route through LBE governance
+```
+
+"Ready to use" therefore means the user can type `lbe` and enter the final coding IDE product directly, with no developer orchestration required.
 
 ## Evidence Rule
 
