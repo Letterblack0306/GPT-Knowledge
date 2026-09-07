@@ -3,11 +3,20 @@
   "framework": null,
   "buildCommand": "npm run build",
   "outputDirectory": "public",
-  "redirects": [
+  "headers": [
     {
-      "source": "/",
-      "destination": "/project-engineering/projects/workspace/",
-      "permanent": false
+      "source": "/raw/(.*)",
+      "headers": [
+        { "key": "Content-Type", "value": "text/plain; charset=utf-8" },
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Cache-Control", "value": "public, max-age=300" }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex" }
+      ]
     }
   ]
 }
