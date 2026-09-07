@@ -3,114 +3,102 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>LBE Project Authority Canvas</title>
+<title>LBE Final Product Aim</title>
 <style>
-:root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#171717;background:#ebe7df;--paper:#fffaf3;--line:#cfc6b9;--muted:#6c655c;--green:#275d4b;--orange:#b85025;--red:#8f3030;--blue:#245d78}*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#f5f1e9,#e8e2d8)}header{position:sticky;top:0;z-index:20;background:#f5f1e9f2;backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}.head{max-width:1500px;margin:auto;padding:14px 20px;display:flex;justify-content:space-between;gap:16px;align-items:center}.brand{font-size:23px;font-weight:900;letter-spacing:-.045em}.sub{font-size:11px;color:var(--muted);margin-top:3px}.tabs{display:flex;gap:7px;flex-wrap:wrap}button{border:1px solid #bfb5a8;background:var(--paper);border-radius:999px;padding:8px 11px;font-size:11px;cursor:pointer}button.active{background:#171717;color:#fff;border-color:#171717}main{max-width:1500px;margin:auto;padding:18px 20px 40px}.summary{display:grid;grid-template-columns:repeat(6,1fr);gap:9px;margin-bottom:14px}.card,.section{background:var(--paper);border:1px solid var(--line);border-radius:15px}.card{padding:11px}.card b{display:block;font-size:9px;letter-spacing:.09em;text-transform:uppercase;color:#756d63;margin-bottom:4px}.card span{font-size:12px;font-weight:800;line-height:1.35}.section{padding:18px;margin-bottom:12px}.section h2{margin:0 0 8px;font-size:18px}.section h3{margin:12px 0 6px;font-size:13px}.section p,.section li,.section td,.section th{font-size:11px;line-height:1.55;color:#59534c}.view{display:none}.view.active{display:block}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.mini{background:#fff;border:1px solid #d8d0c5;border-radius:13px;padding:12px}.mini p{margin:4px 0}.law{background:#171717;color:#f8f4ec;border-radius:13px;padding:14px;font:11px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace;white-space:pre-wrap}.pill{display:inline-block;border:1px solid #c8c0b4;border-radius:999px;padding:3px 7px;font-size:8px;font-weight:850;letter-spacing:.05em;text-transform:uppercase}.green{color:var(--green)}.orange{color:var(--orange)}.red{color:var(--red)}.blue{color:var(--blue)}.authority{border-left:4px solid var(--green)}.warning{border-left:4px solid var(--orange)}.integration{border-left:4px solid var(--blue)}.timeline{display:grid;gap:8px}.row{display:grid;grid-template-columns:260px 190px 1fr;gap:10px;padding:9px 0;border-bottom:1px solid #e0d8cd}.row:last-child{border-bottom:0}.row b,.row div{font-size:10px}.footer{font-size:9px;color:#746d64;margin-top:14px}@media(max-width:1100px){.summary{grid-template-columns:repeat(3,1fr)}}@media(max-width:800px){.grid2,.grid3{grid-template-columns:1fr}.row{grid-template-columns:1fr}.head{align-items:flex-start;flex-direction:column}}@media(max-width:580px){main{padding:12px}.summary{grid-template-columns:1fr}.brand{font-size:19px}}
+:root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#e8eaed;background:#090b0d;--panel:#0e1114;--line:#252a30;--muted:#7c838c;--soft:#a7adb5;--accent:#d94b52;--ok:#76c893;--warn:#d9a441}
+*{box-sizing:border-box}body{margin:0;background:#090b0d;color:#e8eaed}header{position:sticky;top:0;z-index:10;background:#090b0df2;border-bottom:1px solid var(--line)}.head{max-width:1440px;margin:auto;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;gap:20px}.brand{font-weight:850;letter-spacing:-.03em}.brand small{display:block;color:var(--muted);font-size:10px;font-weight:500;letter-spacing:.03em;margin-top:3px}.tabs{display:flex;gap:6px;flex-wrap:wrap}button{background:transparent;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:7px 10px;cursor:pointer;font-size:11px}button.active{color:#fff;border-color:#555d66}main{max-width:1440px;margin:auto;padding:18px 20px 48px}.summary{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:12px}.card,.section{border:1px solid var(--line);background:var(--panel);border-radius:12px}.card{padding:11px}.card b{display:block;color:var(--muted);font-size:9px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px}.card span{font-size:12px;font-weight:700}.section{padding:18px;margin-bottom:10px}.section h2{margin:0 0 10px;font-size:17px}.section h3{margin:14px 0 6px;font-size:12px;color:var(--soft)}.section p,.section li{font-size:11px;line-height:1.6;color:var(--soft)}.law{background:#080a0c;border:1px solid #20252a;border-radius:10px;padding:14px;font:11px/1.65 ui-monospace,SFMono-Regular,Menlo,monospace;white-space:pre-wrap;color:#d9dde2}.goal{border-left:3px solid var(--accent)}.ok{color:var(--ok)}.warn{color:var(--warn)}.muted{color:var(--muted)}.view{display:none}.view.active{display:block}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.mini{border:1px solid var(--line);border-radius:10px;padding:12px;background:#0b0e11}.sequence{display:grid;gap:7px}.row{display:grid;grid-template-columns:260px 190px 1fr;gap:12px;padding:9px 0;border-bottom:1px solid #1c2126;font-size:10px}.pill{display:inline-block;padding:3px 7px;border:1px solid #3a4148;border-radius:999px;font-size:8px;letter-spacing:.06em}.footer{color:var(--muted);font-size:9px;margin-top:12px}@media(max-width:900px){.summary{grid-template-columns:1fr 1fr}.grid2{grid-template-columns:1fr}.row{grid-template-columns:1fr}}@media(max-width:560px){.summary{grid-template-columns:1fr}.head{align-items:flex-start;flex-direction:column}}
 </style>
 </head>
 <body>
-<header><div class="head"><div><div class="brand">LBE · Project Authority Canvas</div><div class="sub">Canonical LBE runtime owners · approved Cline interface direction · bounded Rust client projection · evidence-bound acceptance</div></div><div class="tabs"><button class="active" data-view="overview">Overview</button><button data-view="owners">Runtime owners</button><button data-view="adapter">Rust adapter</button><button data-view="mcp">MCP</button><button data-view="reuse">Reuse</button><button data-view="remaining">Remaining</button><button id="refresh">Refresh</button></div></div></header>
+<header><div class="head"><div class="brand">LBE · Final Product Aim<small>Lockstep Boundry Engine · LetterBlack</small></div><div class="tabs"><button class="active" data-view="aim">Aim</button><button data-view="shell">UI shell</button><button data-view="boundary">Product boundary</button><button data-view="gates">Gates</button><button id="refresh">Refresh</button></div></div></header>
 <main>
 <section class="summary">
-<div class="card"><b>Product</b><span id="product">Loading…</span></div>
-<div class="card"><b>Runtime authority</b><span id="authority">Loading…</span></div>
-<div class="card"><b>Final interface</b><span id="finalInterface">Loading…</span></div>
-<div class="card"><b>Rust client</b><span id="rustStatus">Loading…</span></div>
-<div class="card"><b>MCP backend</b><span id="mcpStatus">Loading…</span></div>
-<div class="card"><b>Machine gate</b><span id="gate">Loading…</span></div>
+<div class="card"><b>Product</b><span>LBE CLI/TUI</span></div>
+<div class="card"><b>Embedded mechanics</b><span>Cline</span></div>
+<div class="card"><b>Authority</b><span>LBE runtime</span></div>
+<div class="card"><b>Reference client</b><span>Rust/Ratatui</span></div>
+<div class="card"><b>Release</b><span id="release">Loading…</span></div>
 </section>
 
-<div id="overview" class="view active">
-<section class="section authority"><h2>Current architecture</h2><p id="doctrine"></p><div class="law" id="identityLaw"></div></section>
-<section class="section integration"><h2>Integration law</h2><div class="law">UserRequest
-    ↓
-RealLbeWrapper / approved client adapter
-    ↓
-canonical LBE product / control / runtime command
-    ↓
-existing LBE owner
-    ↓
-ToolReceipt / output / evidence / control result
-    ↓
-typed client projection
-    ↓
-UI
+<div id="aim" class="view active">
+<section class="section goal"><h2>What we are building</h2><p>One minimal, evidence-truthful terminal agent product where the agent/provider owns cognition and LBE owns capabilities and consequences.</p><div class="law">USER
+ ↓
+LBE CLI/TUI
+ ↓
+embedded Cline provider/model/reasoning/delegated-agent mechanics
+ ↓
+bounded LBE adapter
+ ↓
+LBE runtime authority
+ ↓
+authorization → governed execution → ToolReceipt/evidence
+ ↓
+persistent result / continuation / deterministic completion
+ ↓
+one truthful terminal timeline</div></section>
+<section class="section"><h2>Final user experience</h2><div class="law">LBE · workspace · model · PLAN/AUDIT                  git branch · diff
+                                                     ctx [ ||||........ ]
 
-DO NOT copy canonical LBE runtime implementation into a client workspace.</div></section>
-<section class="section warning"><h2>Current evidence boundaries</h2><ul id="unproven"></ul></section>
-<section class="section"><h2>Project nodes</h2><div id="nodes" class="timeline"></div></section>
+conversation / execution timeline
+
+✓ completed process  target  duration
+
+› active process
+  emitted line 1
+  emitted line 2
+  emitted line 3
+
+[I]  Message LBE…
+────────────────────────────────────────────────────────────────────────────
+
+ctx usage · active mode                                      Ctrl+K</div></section>
 </div>
 
-<div id="owners" class="view">
-<section class="section authority"><h2>LBE-owned authority</h2><ul id="ownerList"></ul></section>
-<section class="section"><h2>Canonical runtime components</h2><div id="ownerComponents" class="grid3"></div></section>
-<section class="section"><h2>Registered tool surface</h2><div class="law" id="tools"></div></section>
-<section class="section"><h2>LBE tool result envelope</h2><div class="law" id="receipt"></div></section>
+<div id="shell" class="view">
+<section class="section"><h2>Permanent regions</h2><div class="grid2"><div class="mini"><h3>1 · Runtime header</h3><p>LBE/workspace prominent. Model, mode, Git and context muted.</p></div><div class="mini"><h3>2 · Ordered timeline</h3><p>Conversation, tools, child agents, approvals, evidence and results share one chronology.</p></div><div class="mini"><h3>3 · Composer</h3><p>[I] when idle. Horizontally bouncing activity indicator while active.</p></div><div class="mini"><h3>4 · Footer</h3><p>Context usage, active mode and Ctrl+K only; secondary metadata stays quiet.</p></div></div></section>
+<section class="section"><h2>Process behavior</h2><div class="law">current process  → max 3 raw emitted lines
+single click     → expand complete available output
+next process     → previous auto-collapses
+completed row    → one-line summary
+hidden model CoT → never exposed</div></section>
+<section class="section"><h2>Do not carry forward</h2><p>No permanent hero/mascot, no large active-shell ASCII logo, no Agents/Tools/Evidence dashboards, no fake telemetry, no Cline product branding, no generated mockup treated as runtime proof.</p></section>
 </div>
 
-<div id="adapter" class="view">
-<section class="section authority"><h2>RealLbeWrapper</h2><p id="adapterRole"></p><div class="law" id="adapterInvoke"></div></section>
-<section class="section grid2"><div class="mini"><h3>Remote-proven</h3><ul id="adapterProven"></ul></div><div class="mini"><h3>Local reported / not remote verified</h3><p id="adapterLocal"></p></div></section>
-<section class="section warning"><h2>P2 read-only acceptance</h2><p id="p2Status"></p><div class="law" id="p2Scope"></div></section>
+<div id="boundary" class="view">
+<section class="section"><h2>Locked ownership</h2><div class="law">LBE CLI/TUI = user-facing product
+
+Cline = provider/model/auth/reasoning/delegated-agent mechanics
+
+LBE runtime = session/workspace truth
+              policy + authorization
+              ToolRegistry + governed execution
+              receipts/evidence
+              persistence/recovery
+              validation/completion truth
+
+Rust/Ratatui = reference/integration client only</div></section>
 </div>
 
-<div id="mcp" class="view">
-<section class="section authority"><h2>MCP ownership</h2><div class="law">ExternalCapabilityRegistration(MCP)
-    ↓
-ToolSpec / ToolHandler
-    ↓
-ToolRegistry
-    ↓
-R6C authorization
-    ↓
-R6E GovernedToolOrchestrator
-    ↓
-ToolReceipt / evidence
-    ↓
-provider continuation
-    ↓
-persisted LBE event/history
-    ↓
-client projection</div></section>
-<section class="section"><h2>Current MCP status</h2><div id="mcpChecks" class="grid3"></div></section>
+<div id="gates" class="view">
+<section class="section"><h2>Current acceptance sequence</h2><div id="sequence" class="sequence"></div></section>
+<section class="section"><h2>Current blocker</h2><div class="law" id="blocker">Loading…</div></section>
 </div>
 
-<div id="reuse" class="view">
-<section class="section authority"><h2>Reuse-first rule</h2><p id="reuseRule"></p></section>
-<section class="section grid2"><div class="mini"><h3>Cline</h3><p id="cline"></p></div><div class="mini"><h3>OpenCode</h3><p id="opencode"></p></div></section>
-<section class="section warning"><h2>Do not recreate</h2><ul id="noRecreate"></ul></section>
-</div>
-
-<div id="remaining" class="view">
-<section class="section"><h2>Remaining evidence-backed sequence</h2><div id="sequence" class="timeline"></div></section>
-</div>
-<div class="footer">GPT-Knowledge is projection only. Canonical LBE source, machine governance, runtime evidence and acceptance checkpoints remain authoritative.</div>
+<div class="footer">GPT-K is a projection. Current repository/runtime/governance evidence remains authoritative.</div>
 </main>
 <script>
-const $=s=>document.querySelector(s);const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));const li=a=>(a||[]).map(x=>`<li>${esc(x)}</li>`).join('');
-async function load(){const t='?t='+Date.now();const [plan,status]=await Promise.all([fetch('plan.json'+t).then(r=>r.json()),fetch('status.json'+t).then(r=>r.json())]);
-$('#product').textContent=status.product_identity?.product||plan.product_identity?.product||'LBE';
-$('#authority').textContent=status.runtime_authority?.status||plan.runtime_authority?.status||'Unknown';
-$('#finalInterface').textContent=status.product_identity?.final_interface_direction||plan.product_identity?.final_interface_direction||'Unknown';
-$('#rustStatus').textContent=status.product_identity?.rust_classification||plan.product_identity?.rust_role||'Unknown';
-$('#mcpStatus').textContent=status.external_capabilities?.mcp_registration||plan.external_capabilities?.mcp_backend||'Unknown';
-$('#gate').textContent=status.machine_state?.status||plan.machine_gate?.status||'Unknown';
-$('#doctrine').textContent=status.core_doctrine||plan.core_doctrine||'';
-$('#identityLaw').textContent=`PRODUCT = ${status.product_identity?.product||'LBE'}\nRUNTIME AUTHORITY = ${status.product_identity?.runtime_authority||'LBE'}\nFINAL INTERFACE DIRECTION = ${status.product_identity?.final_interface_direction||''}\nCLINE = ${status.product_identity?.cline_classification||''}\nRUST = ${status.product_identity?.rust_classification||''}\nOPENCODE = ${status.product_identity?.opencode_classification||''}`;
-$('#unproven').innerHTML=li(status.remaining_unproven);
-$('#nodes').innerHTML=(plan.nodes||[]).map(n=>`<div class="row"><b>${esc(n.title)}</b><div><span class="pill ${n.priority==='PASS'||n.priority==='CANONICAL'||n.priority==='APPROVED'?'green':String(n.priority).includes('NOT PROVEN')||n.priority==='UNVERIFIED'?'orange':'blue'}">${esc(n.priority)}</span></div><div>${esc(n.lane)} · ${esc(n.status)}</div></div>`).join('');
-$('#ownerList').innerHTML=li(status.runtime_authority?.owns||plan.runtime_authority?.owners);
-const comps=plan.runtime_authority?.authoritative_components||{};$('#ownerComponents').innerHTML=Object.entries(comps).map(([k,v])=>`<div class="mini"><h3>${esc(k.replaceAll('_',' '))}</h3><p>${esc(Array.isArray(v)?v.join(' · '):v)}</p></div>`).join('');
-$('#tools').textContent=(status.tool_surface?.registered||plan.runtime_authority?.registered_workspace_capabilities||[]).join('\n');
-const r=status.tool_receipt_envelope||plan.tool_receipt_contract||{};$('#receipt').textContent=(r.fields||[]).join('\n')+'\n'+(r.failure_fields||[]).join('\n');
-$('#adapterRole').textContent=plan.rust_adapter?.role||status.rust_adapter?.role||'';$('#adapterInvoke').textContent=plan.rust_adapter?.authoritative_invocation||status.rust_adapter?.authoritative_invocation||'';
-$('#adapterProven').innerHTML=li([`LBE command invocation: ${status.rust_adapter?.remote_source_proves_lbe_command_invocation}`,`Identity cross-checks: ${status.rust_adapter?.remote_source_proves_identity_cross_checks}`,`Receipt/evidence lifecycle projection: ${status.rust_adapter?.['remote_source_proves_receipt/evidence_lifecycle_projection']}`]);
-$('#adapterLocal').textContent=`${status.rust_adapter?.local_reported_workspace_read_list_output_decode||''} · remote verification: ${status.rust_adapter?.local_reported_workspace_read_list_output_decode_remote_verification||''}`;
-$('#p2Status').textContent=status.p2_read_only_validation?.status||'';$('#p2Scope').textContent=(status.p2_read_only_validation?.scope||[]).join('\n')+`\n\nworkspace.patch = ${status.p2_read_only_validation?.write_patch||''}`;
-$('#mcpChecks').innerHTML=Object.entries(status.external_capabilities||{}).map(([k,v])=>`<div class="mini"><b>${esc(k.replaceAll('_',' '))}</b><p>${esc(v)}</p></div>`).join('');
-$('#reuseRule').textContent=status.reuse_first?.rule||plan.reuse_first_policy?.rule||'';$('#cline').textContent=`${status.reuse_first?.cline?.classification||''} · audit ${status.reuse_first?.cline?.source_audit||''}`;$('#opencode').textContent=`${status.reuse_first?.opencode?.classification||''} · direct reuse ${status.reuse_first?.opencode?.direct_reuse||''}`;$('#noRecreate').innerHTML=li(plan.reuse_first_policy?.prohibited_recreation);
-$('#sequence').innerHTML=(plan.remaining_product_sequence||[]).map(x=>`<div class="row"><b>${esc(x.order+'. '+x.id)}</b><div><span class="pill ${String(x.status).includes('NOT')?'orange':'blue'}">${esc(x.status)}</span></div><div>${esc(x.scope)}</div></div>`).join('');}
-document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-view]').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));b.classList.add('active');$('#'+b.dataset.view).classList.add('active')});$('#refresh').onclick=load;load().catch(e=>{console.error(e);$('#gate').textContent='Projection load failed'});
+const $=s=>document.querySelector(s);
+async function load(){
+ const t='?t='+Date.now();
+ const [plan,status]=await Promise.all([fetch('plan.json'+t).then(r=>r.json()),fetch('status.json'+t).then(r=>r.json())]);
+ $('#release').textContent=status.latest_cross_source_reconciliation?.release_ready?'READY':'NOT READY';
+ const seq=status.next_required_sequence||plan.execution_sequence||[];
+ $('#sequence').innerHTML=seq.map(x=>'<div class="row"><b>'+String(x.order)+'. '+String(x.id)+'</b><div><span class="pill">'+String(x.status)+'</span></div><div>'+String(x.scope||'')+'</div></div>').join('');
+ const b=status.current_blocker?.primary?.blocker||plan.current_execution_state?.blocker||'No blocker projected';
+ $('#blocker').textContent=b;
+}
+document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-view]').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));b.classList.add('active');$('#'+b.dataset.view).classList.add('active')});
+$('#refresh').onclick=load;load().catch(e=>{$('#blocker').textContent='Projection load failed: '+e.message});
 </script>
 </body>
 </html>
