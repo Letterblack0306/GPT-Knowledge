@@ -281,6 +281,41 @@ Do not carry the following historical observations forward as current product bl
 - `RealLbeWrapper` source implementation and method coverage do not imply live runtime attachment. Treat source presence as IMPLEMENTED and live attachment as separately PROVEN/UNVERIFIED according to current runtime evidence.
 - The Rust/Ratatui reference client must not be promoted back to primary product status merely because its wrapper/runtime integration is mature.
 
+## Current client-source reconciliation — 2026-09-07
+
+Fresh canonical GitHub inspection found a material client-source mismatch:
+
+```text
+Letterblack0306/LBE_Agents_wall_Intigration main
+    cline/ directory                    MISSING
+    begin/ directory                    MISSING
+    Chat histroy/ directory             MISSING
+    run-cline-lbe.ps1                   PRESENT
+```
+
+The canonical remote launcher currently defaults to:
+
+```text
+cline\apps\cli\dist\cli-windows-x64\bin\cline.exe
+```
+
+but the `cline/` subtree is absent from canonical `main`. Therefore the canonical remote cannot currently prove a self-contained bundled Cline CLI surface.
+
+A newer local-workspace report says the local launcher instead resolves an npm-installed `cline` command with `Get-Command cline`. That local behavior is **LOCAL_REPORTED** and differs from canonical GitHub. Until reconciled, the exact client acquisition/entry path is classified:
+
+```text
+LBE CLI/TUI product role               CURRENT
+Cline embedded mechanics               CURRENT
+exact bundled source path              MISALIGNED / NOT PRESENT ON REMOTE
+local npm-installed client path        LOCAL_REPORTED
+canonical remote launcher              BROKEN_BY_MISSING_DEFAULT_CLIENT_PATH
+clean-clone product reconstruction     BLOCKED
+```
+
+This does not reopen the product ownership boundary. It does block claims that `C:\LBE-TUI-Lab\cline\apps\cli` currently exists in the canonical product repository or that a clean clone can launch the accepted client without additional reconciliation.
+
+Historical chat-export paths under `Chat histroy/` are not product runtime dependencies. Missing copies should be treated as documentation/provenance cleanup, not as a runtime feature blocker, unless a current canonical document explicitly requires them for acceptance.
+
 ## Verification invariant
 
 ```text
