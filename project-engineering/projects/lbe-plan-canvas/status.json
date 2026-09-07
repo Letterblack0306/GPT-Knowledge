@@ -1,5 +1,5 @@
 {
-  "schema_version": 81,
+  "schema_version": 82,
   "project": "LBE Persistent Agent",
   "verified_at": "2026-09-07",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
@@ -19,14 +19,15 @@
       "persist",
       "continue"
     ],
-    "interface_rule": "Accepted user-facing interface = LBE CLI/TUI under C:/LBE-TUI-Lab/cline/apps/cli, launched by run-cline-lbe.ps1. Cline provides embedded mechanics; Rust/Ratatui is reference/integration only; LBE remains sole runtime/governance authority."
+    "interface_rule": "Installed user opens a terminal and types `lbe`; that single command opens the complete LBE coding IDE CLI/TUI. Backend/server/client/provider-worker/session orchestration is internal.",
+    "entrypoint": "lbe"
   },
   "current_machine_state": {
-    "classification": "PRODUCTION_CLI_PROVIDER_BINDING_REQUIRED",
+    "classification": "SINGLE_COMMAND_PRODUCT_COMPOSITION_REQUIRED",
     "active_phase": "LBE_CLI_PRODUCT_RECONCILIATION",
-    "active_slice": "CLINE_PROVIDER_MODEL_TO_LBE_SESSION_BINDING",
-    "status": "BLOCKED_BY_PROVIDER_BINDING_GAP",
-    "next_product_slice": "CLINE_LBE_STRUCTURAL_VISUAL_DIFFERENTIATION",
+    "active_slice": "SINGLE_COMMAND_LBE_CODING_IDE_COMPOSITION",
+    "status": "BLOCKED_ACTIVE",
+    "next_product_slice": "FULL_LBE_CODING_IDE_INTERACTIVE_ACCEPTANCE",
     "next_product_slice_activated": false
   },
   "runtime_authority": {
@@ -141,10 +142,10 @@
     "preservation_rule": "Preserve current dirty/unpublished Rust work and do not use Rust acceptance as proof of Cline CLI user experience."
   },
   "current_blocker": {
-    "classification": "CLINE_PROVIDER_SESSION_BINDING_MISSING",
-    "proven_or_reported_local_progress": "launcher/session creation and interactive LBE TUI entry are available locally",
-    "missing_product_seam": "select/login provider and model in Cline, then bind that selected provider/model to the authoritative LBE session without manual backend configuration",
-    "secondary_canonical_issue": "canonical remote launcher still requires reconciliation with the locally working npm-installed Cline path before clean-clone production acceptance"
+    "classification": "FINAL_PRODUCT_ENTRYPOINT_NOT_YET_COMPOSED",
+    "working_internal_parts": "session creation/status, installed lbe command, interactive TUI surface, npm-installed Cline CLI, LBE runtime/package components",
+    "missing_product_seam": "the `lbe` command does not yet automatically compose those parts into the final LBE-branded coding IDE with in-product Cline provider/model binding",
+    "required_resolution": "make `lbe` the only normal user command"
   },
   "project_visit_protocol": {
     "classification": "MANDATORY_PROJECT_CONTEXT_REFRESH",
@@ -817,23 +818,17 @@
     "classification_rule": "These are local runtime observations. They narrow the first product seam but do not prove canonical clean-clone or installed production readiness."
   },
   "ready_to_use_definition": {
-    "classification": "LOCKED",
-    "meaning": "Complete final product, not partial runtime availability.",
-    "required": [
-      "single canonical LBE product entrypoint",
-      "complete LBE-branded CLI/TUI design and interaction surface",
-      "Cline provider/auth/model experience embedded and bound to authoritative LBE session",
-      "all accepted planned runtime/tool/approval/MCP/subagent/memory/persistence/evidence/receipt/validation/completion capabilities integrated",
-      "clean installed/production launch with no manual backend setup",
-      "claim-matched end-to-end acceptance with no unresolved accepted-scope gaps"
+    "classification": "LOCKED_SINGLE_COMMAND_PRODUCT",
+    "user_action": "type `lbe`",
+    "expected_result": "complete LBE coding IDE CLI/TUI opens and is usable",
+    "no_user_orchestration": [
+      "no run-cline-lbe.ps1",
+      "no server.py",
+      "no internal node command",
+      "no manual Python session commands",
+      "no manual reasoning-provider.json"
     ],
-    "user_should_not_be_asked_to": [
-      "choose internal commands",
-      "start backend servers manually",
-      "run internal node packages",
-      "edit provider JSON manually",
-      "decide which partial client to use"
-    ],
+    "provider_model": "selected/authenticated from inside the product using embedded Cline mechanics",
     "current_verdict": "NOT_READY_TO_USE"
   }
 }
