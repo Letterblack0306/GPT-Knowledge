@@ -1,5 +1,5 @@
 {
-  "schema_version": 41,
+  "schema_version": 42,
   "project": "LBE Persistent Agent",
   "updated": "2026-09-07",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
@@ -62,38 +62,29 @@
     "memory": "Historical/context/validated memory supports reasoning and persistence but does not override current workspace/runtime truth."
   },
   "product_surface_plan": {
-    "final_target": "The accepted user-facing product surface is the embedded Cline CLI/TUI under C:/LBE-TUI-Lab/cline/apps/cli, launched through C:/LBE-TUI-Lab/run-cline-lbe.ps1 and bounded by the canonical LBE runtime. Rust/Ratatui under C:/LBE-TUI-Lab/src is a separate prototype/reference/integration client, not the accepted user-facing product surface.",
-    "selected_current_client": "C:/LBE-TUI-Lab/cline/apps/cli",
+    "final_target": "The user-facing product remains the LBE CLI/TUI with Cline embedded mechanics under LBE runtime authority. The exact client acquisition/source location is currently under reconciliation: canonical GitHub main does not contain the previously documented cline/apps/cli subtree, while a newer local report says run-cline-lbe.ps1 resolves an npm-installed cline command.",
+    "selected_current_client": "LBE CLI/TUI — exact source/acquisition path MISALIGNED_PENDING_RECONCILIATION",
     "selected_launcher": "C:/LBE-TUI-Lab/run-cline-lbe.ps1",
-    "entrypoint": "C:/LBE-TUI-Lab/cline/apps/cli/src/index.ts",
+    "entrypoint": "UNVERIFIED_CURRENTLY: previously documented C:/LBE-TUI-Lab/cline/apps/cli/src/index.ts is absent from canonical remote",
     "rust_reference_client": "C:/LBE-TUI-Lab/src/main.rs",
     "rust_reference_launcher": "C:/LBE-TUI-Lab/run-lbe.bat",
     "projection_rule": "Cline CLI/TUI and Rust reference clients may request and project state only. LBE_Presistent_Agent_wall remains sole owner of workspace/session identity, provider truth, policy, authorization, ToolRegistry, governed execution, MCP registration, ToolReceipt/evidence, persistence/recovery, validation and completion truth.",
     "source_reconciliation": {
-      "classification": "RECONCILED_CURRENT_PRODUCT_ROLE",
-      "lbe_cli_tui": "C:/LBE-TUI-Lab/cline/apps/cli = active user-facing product surface",
-      "cline": "embedded provider/model/reasoning/delegated-agent mechanics",
-      "lbe_runtime": "C:/Agents-Memory-Tool-v6-integration = sole runtime/governance authority",
-      "rust_ratatui": "C:/LBE-TUI-Lab/src = reference/integration client"
+      "classification": "CLIENT_SOURCE_PATH_DRIFT",
+      "canonical_remote_cline_directory": "MISSING",
+      "canonical_remote_begin_directory": "MISSING",
+      "canonical_remote_launcher": "PRESENT but defaults to missing cline/apps/cli/dist/cli-windows-x64/bin/cline.exe",
+      "local_launcher_report": "LOCAL_REPORTED: Get-Command cline resolves npm-installed client",
+      "product_role": "UNCHANGED: LBE CLI/TUI user-facing, Cline embedded mechanics, LBE runtime sole authority, Rust reference/integration"
     },
     "historical_surfaces": "Rust/Ratatui remains a valuable reference/integration client. HTML remains reference/design material. Python/Textual is not the accepted final product UI."
   },
   "current_active_slice": {
-    "phase": "LBE_CLI_PRODUCT_ACCEPTANCE",
-    "slice": "CLINE_LBE_STRUCTURAL_VISUAL_DIFFERENTIATION",
-    "status": "ACTIVE_FAIL_CURRENT_IMPLEMENTATION",
-    "implementation_goal": "Replace the skin-only centered Cline hero/composer composition with the finalized minimal LBE runtime shell while preserving current provider/model/reasoning/runtime mechanics and LBE authority.",
-    "required": [
-      "persistent LBE/workspace/model/mode/git/context hierarchy",
-      "single conversation/execution timeline",
-      "three-line active raw process viewport",
-      "click-to-expand emitted process output",
-      "completed-process one-line collapse",
-      "[I] composer identity",
-      "bouncing activity indicator",
-      "context usage projection"
-    ],
-    "next_gate": "INTERACTIVE_CLINE_TTY_ACCEPTANCE"
+    "phase": "LBE_CLI_PRODUCT_RECONCILIATION",
+    "slice": "CLIENT_ACQUISITION_AND_ENTRYPOINT_RECONCILIATION",
+    "status": "BLOCKED_BY_CROSS_SOURCE_DRIFT",
+    "implementation_goal": "Establish one canonical, reproducible Cline client acquisition/launch path for LBE without changing the locked authority boundary.",
+    "next_gate": "CLINE_LBE_STRUCTURAL_VISUAL_DIFFERENTIATION"
   },
   "accepted_baseline": {
     "classification": "PROVEN_ACCEPTED_RUNTIME_FOUNDATION",
@@ -119,33 +110,27 @@
   "execution_sequence": [
     {
       "order": 1,
-      "id": "lbe-structural-visual-differentiation",
-      "status": "ACTIVE",
-      "scope": "Make the accepted LBE CLI structurally distinct from the upstream Cline centered hero/composer composition without changing runtime authority."
+      "id": "client-acquisition-entrypoint-reconciliation",
+      "status": "BLOCKED_ACTIVE",
+      "scope": "Reconcile canonical remote launcher and source/package expectation with the actual local npm-installed Cline path; prove clean-clone/client launch reproducibility."
     },
     {
       "order": 2,
-      "id": "interactive-cline-tty-acceptance",
-      "status": "PENDING_AFTER_VISUAL_REWORK",
-      "scope": "Run run-cline-lbe.ps1 in a real Windows terminal and capture actual rendered/product-runtime evidence."
+      "id": "lbe-structural-visual-differentiation",
+      "status": "PENDING_AFTER_CLIENT_RECONCILIATION",
+      "scope": "Apply/verify the finalized minimal LBE runtime shell on the actual accepted client surface."
     },
     {
       "order": 3,
-      "id": "parent-continuation-and-deep-correlation",
-      "status": "OPEN_UNLESS_CURRENT_CANONICAL_EVIDENCE_CLOSES_IT",
-      "scope": "Require persisted child result -> parent continuation plus provider_tool_call_id/lbe_call_id/runtime_operation_id/tool_receipt_id correlation."
+      "id": "interactive-cline-tty-acceptance",
+      "status": "PENDING",
+      "scope": "Run the reconciled LBE CLI in a real terminal and capture rendered/runtime evidence."
     },
     {
       "order": 4,
-      "id": "canonical-verifier-prove",
-      "status": "OPEN_UNLESS_CURRENT_HARNESS_PASS_IS_CAPTURED",
-      "scope": "Run the canonical tools/lbe_product_integration.ps1 prove path and preserve trustworthy machine PASS/FAIL/BLOCKED evidence."
-    },
-    {
-      "order": 5,
-      "id": "installed-end-to-end",
+      "id": "final-installed-end-to-end",
       "status": "LOCKED",
-      "scope": "Final installed product acceptance only after all prior blocking gates pass."
+      "scope": "Final acceptance only after remaining runtime/correlation/verifier gates are closed."
     }
   ],
   "separate_non_product_work": {
@@ -267,13 +252,18 @@
   },
   "verified_at": "2026-09-07",
   "current_execution_state": {
-    "gate_id": "CLINE_LBE_STRUCTURAL_VISUAL_DIFFERENTIATION",
-    "current_status": "FAIL_CURRENT_IMPLEMENTATION",
-    "canonical_backend_commit": "03a90ce22222c0e3ab4fd1c9a9629b3a1f7daa7e",
+    "gate_id": "CLIENT_ACQUISITION_AND_ENTRYPOINT_RECONCILIATION",
+    "current_status": "BLOCKED_BY_CROSS_SOURCE_DRIFT",
     "canonical_product_integration_commit": "29a6d32148186401ca764348d68a1bca9b31aee7",
-    "next_product_slice": "INTERACTIVE_CLINE_TTY_ACCEPTANCE",
-    "next_product_slice_activated": false,
-    "blocker": "Current source/render evidence still matches a recognizable centered Cline hero/composer shell; LBE structural differentiation must pass first."
+    "canonical_remote_facts": [
+      "cline/ missing",
+      "begin/ missing",
+      "run-cline-lbe.ps1 present",
+      "launcher defaults to missing vendored cline.exe"
+    ],
+    "local_reported_fact": "run-cline-lbe.ps1 resolves npm-installed cline via Get-Command cline",
+    "next_product_slice": "CLINE_LBE_STRUCTURAL_VISUAL_DIFFERENTIATION",
+    "next_product_slice_activated": false
   },
   "machine_execution_plan": {
     "rule": "FAIL/BLOCKED remains on the current transition. Do not activate the next gate until claim-matched evidence closes the active gate.",
