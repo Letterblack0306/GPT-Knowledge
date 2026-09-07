@@ -129,6 +129,53 @@ preserve current integration index/worktree
 
 Do not copy from validation merely to restore canonical content, and do not delete validation solely because these files are recoverable elsewhere; first rule out genuinely unique local/runtime/config evidence.
 
+## Production CLI user path
+
+The final product must be exercised through the real **LBE CLI/TUI product path**, not through backend command-runner probes.
+
+Normal production use is:
+
+```text
+user launches LBE CLI/TUI
+    ↓
+embedded Cline CLI/provider/model experience
+    ↓
+Cline provider authentication / provider selection / model selection
+    ↓
+bounded LBE adapter/session bridge
+    ↓
+LBE authorization / governed tools / receipts / evidence / persistence / validation / completion
+    ↓
+results projected back in the same CLI/TUI
+```
+
+The following are **diagnostic/developer surfaces only** and must not be treated as the production user workflow:
+
+```text
+python server.py --port ...
+node dist/index.js from an internal package directory
+manual reasoning-provider.json endpoint editing
+direct backend tool/authorization commands
+isolated provider HTTP probes
+```
+
+These may diagnose lower-level seams, but production readiness requires the real CLI to own the user interaction and Cline to own provider/model loading internally while LBE retains consequence authority.
+
+A production-ready acceptance claim therefore requires at minimum:
+
+```text
+1. canonical LBE CLI launcher resolves without manual source-path surgery
+2. Cline provider/auth/model selection is available from the CLI experience
+3. selected model is bound into the LBE session through the bounded adapter
+4. a normal conversational turn executes through LBE
+5. governed tool proposals route through LBE authorization
+6. receipts/evidence/continuation project back in the CLI
+7. quit/restart/resume works from the installed product
+8. no manual server.py or internal node command is required for normal use
+```
+
+Manual `reasoning-provider.json` editing is not an accepted production UX requirement. If retained internally, it is implementation/configuration plumbing only and must be populated or derived by the product/runtime integration rather than by the end user during normal CLI use.
+
 ## Client acquisition / entrypoint status
 
 Current canonical GitHub inspection found:
