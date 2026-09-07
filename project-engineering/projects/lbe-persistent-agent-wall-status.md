@@ -200,6 +200,24 @@ Important Git semantics: `git checkout HEAD -- <path>` updates both the working 
 
 If runtime-only restoration is required while preserving the index state for investigation, use an index-preserving worktree-only method and verify the cached deletion still exists afterward. Any such local restoration remains a temporary diagnostic step, not acceptance of the deletion.
 
+## Production CLI acceptance rule — 2026-09-07
+
+The user-facing acceptance target is the real LBE CLI/TUI, not a backend command runner.
+
+```text
+PRODUCTION USER PATH
+LBE CLI/TUI
+→ Cline provider/auth/model selection
+→ LBE session/runtime bridge
+→ LBE-governed execution
+→ ToolReceipt/evidence/continuation
+→ same CLI/TUI
+```
+
+Developer probes such as `python server.py`, direct internal `node dist/index.js`, raw provider HTTP calls, or hand-editing `reasoning-provider.json` may establish lower-level evidence only. They do not satisfy product acceptance and must not be prescribed as the normal end-user workflow.
+
+The product is not production-ready until the canonical launcher can start the intended CLI from an installed/clean surface, the user can load/select a model through Cline's provider/model experience, and a normal conversation completes through LBE without requiring manual backend startup/configuration steps.
+
 ## Current product gates
 
 Do not promote source implementation, focused tests, or historical acceptance into a claim that the current product shell or installed product is accepted.
