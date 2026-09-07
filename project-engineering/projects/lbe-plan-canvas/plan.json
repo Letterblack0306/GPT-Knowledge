@@ -1,5 +1,5 @@
 {
-  "schema_version": 50,
+  "schema_version": 51,
   "project": "LBE Persistent Agent",
   "updated": "2026-09-08",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
@@ -501,5 +501,22 @@
     "active_mode_display": "PLAN | ACT | AUDIT",
     "technical_detail_rule": "Show technical internals only when required for a user decision, explicitly requested diagnostics, or agent/verifier inspection outside the normal product UI.",
     "textual_status": "HISTORICAL_DIAGNOSTIC_PROTOTYPE_NOT_PRODUCT_UI"
+  },
+  "provider_config_trace_plan": {
+    "classification": "BOUNDED_DIAGNOSTIC_BEFORE_PROVIDER_CONFIG_MUTATION",
+    "proven_chain": [
+      "LBE_PROVIDER_CONFIG env",
+      "RealLbeWrapper.provider_config",
+      "--provider-config",
+      "lbe_guard_inspector.product_entry provider.check / turn"
+    ],
+    "separate_chain": [
+      "config.json reasoning_provider_config",
+      "server.py startup",
+      "reasoning-provider.json"
+    ],
+    "next_action": "Inspect local lbe.ps1, lbe.bat, install/profile launchers, and live process environment to determine the exact LBE_PROVIDER_CONFIG path used by the installed lbe product.",
+    "acceptance": "Record the resolved path and verify that provider/model values in that file match the authoritative LBE session/provider selection.",
+    "stop_rule": "If no launcher sets LBE_PROVIDER_CONFIG, classify provider binding as incomplete and repair launcher/product-entry composition rather than manually editing an arbitrary provider JSON file."
   }
 }
