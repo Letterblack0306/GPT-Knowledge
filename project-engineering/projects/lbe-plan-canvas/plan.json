@@ -1,7 +1,7 @@
 {
   "schema_version": 50,
   "project": "LBE Persistent Agent",
-  "updated": "2026-09-07",
+  "updated": "2026-09-08",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "source_branch": "main",
   "original_workspace": "C:/Agents-Memory-Tool-v6-integration",
@@ -94,11 +94,11 @@
     }
   },
   "current_active_slice": {
-    "phase": "LBE_CLI_PRODUCT_RECONCILIATION",
-    "slice": "REAL_RUNTIME_CLINE_BINDING_AND_FULL_IDE_COMPOSITION",
+    "phase": "INTERACTIVE_LBE_CLI_ACCEPTANCE",
+    "slice": "REAL_TERMINAL_CANONICAL_LBE_UI",
     "status": "BLOCKED_ACTIVE",
-    "implementation_goal": "Replace the demonstrated preview/command-panel shell with the actual single-command product composition: `lbe` must enter REAL LBE runtime, embed Cline provider/auth/model mechanics, expose accepted MCP/evidence/memory/skills through LBE, and provide the complete LBE coding IDE interaction surface without requiring a separately launched/configured Cline session.",
-    "next_gate": "FULL_LBE_CODING_IDE_INTERACTIVE_ACCEPTANCE"
+    "implementation_goal": "Prove the canonical minimal LBE CLI/TUI under a real terminal with embedded Cline mechanics and LBE authority. Do not use Textual shell behavior or fake receipts/messages as product acceptance.",
+    "next_gate": "BLOCKED_INTERACTIVE_CLINE_TTY_ACCEPTANCE"
   },
   "accepted_baseline": {
     "classification": "PROVEN_ACCEPTED_RUNTIME_FOUNDATION",
@@ -470,5 +470,36 @@
     "provider_experience": "Provider login/selection/model selection is presented inside the LBE product using embedded Cline mechanics.",
     "authority": "LBE remains sole authority for identity, policy, authorization, execution, receipts/evidence, persistence, validation and completion.",
     "verdict_rule": "READY_TO_USE only when `lbe` from a normal installed environment enters the complete product without developer orchestration."
+  },
+  "ui_product_contract": {
+    "status": "LOCKED_CANONICAL",
+    "canonical_document": "project-engineering/projects/lbe-plan-canvas/LBE_TERMINAL_TUI_UI_PLAN.md",
+    "maintenance_rule": "All current LBE UI requirements must be maintained in the canonical UI contract. Historical/reference/checkpoint notes may link to it but must not become competing UI authority.",
+    "surface_rule": "Minimal user-facing product UI. Internal evidence, receipts, operation IDs, lifecycle IDs, raw governance records, proof metadata and runtime dumps remain available to agent/verifier/workspace inspection but are not normal UI content.",
+    "permanent_regions": [
+      "compact header",
+      "single conversation/work timeline",
+      "composer",
+      "compact footer"
+    ],
+    "forbidden_permanent_panels": [
+      "Evidence",
+      "Runtime",
+      "Agents",
+      "Tools",
+      "Governance",
+      "Settings",
+      "Objective",
+      "Receipts",
+      "Diagnostics"
+    ],
+    "modes": {
+      "PLAN": "Reasoning/planning/review without authority-bearing mutation.",
+      "ACT": "Normal governed execution mode.",
+      "AUDIT": "Inspection/verification mode using the same LBE authority; checks workspace, implementation claims, gates, tests and runtime truth without becoming a second runtime."
+    },
+    "active_mode_display": "PLAN | ACT | AUDIT",
+    "technical_detail_rule": "Show technical internals only when required for a user decision, explicitly requested diagnostics, or agent/verifier inspection outside the normal product UI.",
+    "textual_status": "HISTORICAL_DIAGNOSTIC_PROTOTYPE_NOT_PRODUCT_UI"
   }
 }
