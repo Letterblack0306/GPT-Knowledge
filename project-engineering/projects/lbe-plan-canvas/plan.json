@@ -1,5 +1,5 @@
 {
-  "schema_version": 48,
+  "schema_version": 49,
   "project": "LBE Persistent Agent",
   "updated": "2026-09-07",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
@@ -96,8 +96,8 @@
   "current_active_slice": {
     "phase": "LBE_CLI_PRODUCT_RECONCILIATION",
     "slice": "SINGLE_COMMAND_LBE_CODING_IDE_COMPOSITION",
-    "status": "BLOCKED_ACTIVE",
-    "implementation_goal": "Make the installed `lbe` command automatically compose the authoritative LBE runtime and embedded Cline provider/model client into the complete LBE coding IDE CLI/TUI, eliminating user-facing developer scripts and manual orchestration.",
+    "status": "LOCAL_LAUNCHER_IMPLEMENTED_ACCEPTANCE_PENDING",
+    "implementation_goal": "`lbe` is now the intended user command. Complete and prove the internal composition so a fresh terminal `lbe` invocation opens the full LBE coding IDE CLI/TUI with Cline provider/model binding and LBE-governed runtime, without any separate user-run scripts or backend commands.",
     "next_gate": "FULL_LBE_CODING_IDE_INTERACTIVE_ACCEPTANCE"
   },
   "accepted_baseline": {
@@ -126,37 +126,43 @@
       "order": 0,
       "id": "review-staged-backend-deletions",
       "status": "OPEN_RECOVERY_REVIEW",
-      "scope": "Resolve staged deletions that affect provider/runtime/verifier owners without losing current evidence."
+      "scope": "Resolve staged backend deletions without losing current runtime/provider/verifier owners."
     },
     {
       "order": 1,
-      "id": "single-command-lbe-composition",
-      "status": "BLOCKED_ACTIVE_PRODUCT_GATE",
-      "scope": "`lbe` must be the one installed user command that creates/resumes session, starts/attaches runtime, loads embedded Cline provider/model mechanics, and opens the full LBE coding IDE CLI/TUI."
+      "id": "single-command-lbe-launcher",
+      "status": "LOCAL_REPORTED_IMPLEMENTED",
+      "scope": "User-level PATH now reportedly resolves `lbe` through C:/LBE-TUI-Lab launchers."
     },
     {
       "order": 2,
-      "id": "provider-model-in-product",
-      "status": "PENDING_WITHIN_COMPOSITION",
-      "scope": "Provider login/selection/model selection must work from inside the LBE UI and bind to the authoritative LBE session."
+      "id": "single-command-runtime-composition",
+      "status": "ACTIVE",
+      "scope": "Ensure the `lbe` launcher automatically creates/resumes authoritative session, starts/attaches required runtime, loads Cline provider/auth/model mechanics, and opens the complete LBE coding IDE UI."
     },
     {
       "order": 3,
-      "id": "complete-lbe-ui",
+      "id": "provider-model-in-product",
       "status": "PENDING_WITHIN_COMPOSITION",
-      "scope": "Apply the accepted LBE brand/style/logo and complete coding IDE interaction surface to the actual `lbe` product."
+      "scope": "Provider login/selection/model selection must work inside LBE and bind to the authoritative session."
     },
     {
       "order": 4,
-      "id": "full-interactive-product-acceptance",
-      "status": "PENDING",
-      "scope": "From a normal terminal run only `lbe`; prove conversation, coding, plan/audit, governed tools/approvals, evidence/receipts, persistence/resume, terminal lifecycle, and accepted integrated capabilities."
+      "id": "complete-lbe-ui",
+      "status": "PENDING_WITHIN_COMPOSITION",
+      "scope": "The actual `lbe` surface must use the accepted LBE brand/style/logo and coding IDE interaction design."
     },
     {
       "order": 5,
+      "id": "full-interactive-product-acceptance",
+      "status": "PENDING",
+      "scope": "From a fresh terminal invoke only `lbe`; prove normal conversation/coding, governed tools/approvals, evidence/receipts, persistence/resume, and clean terminal lifecycle."
+    },
+    {
+      "order": 6,
       "id": "installed-product-release",
       "status": "LOCKED",
-      "scope": "Package/install and re-prove the same single-command behavior from a clean installed environment."
+      "scope": "Publish/package and re-prove the same single-command behavior from a clean installed environment."
     }
   ],
   "separate_non_product_work": {
