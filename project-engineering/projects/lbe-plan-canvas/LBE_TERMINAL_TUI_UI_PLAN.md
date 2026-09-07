@@ -3,8 +3,8 @@
 Status: CURRENT PRODUCT UI AIM  
 Updated: 2026-09-07  
 Product: **LBE — Lockstep Boundry Engine**  
-User-facing surface: `C:/LBE-TUI-Lab/cline/apps/cli`  
-Launcher: `C:/LBE-TUI-Lab/run-cline-lbe.ps1`  
+User-facing surface: **LBE CLI/TUI** — exact Cline client source/acquisition path currently under reconciliation  
+Launcher: `C:/LBE-TUI-Lab/run-cline-lbe.ps1` (canonical remote currently defaults to a missing vendored Cline path; local report says npm-installed `cline` is resolved instead)  
 Runtime authority: `Letterblack0306/LBE_Presistent_Agent_wall`
 
 ## Product aim
@@ -265,11 +265,14 @@ Generated mockups are design references only.
 ## Current gate
 
 ```text
+CLIENT_ACQUISITION_AND_ENTRYPOINT_RECONCILIATION
+status: BLOCKED_BY_CROSS_SOURCE_DRIFT
+
+next:
 CLINE_LBE_STRUCTURAL_VISUAL_DIFFERENTIATION
-status: FAIL_CURRENT_IMPLEMENTATION
 ```
 
-The current product must not be accepted merely because branding changed. The active shell must satisfy the structural target above before interactive TTY acceptance becomes the next gate.
+First establish one canonical reproducible Cline client acquisition/launch path. The product must still satisfy the structural LBE target above before interactive TTY acceptance.
 
 ## Non-goals
 
