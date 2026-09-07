@@ -330,3 +330,220 @@ BIRDEYE HANDSHAKE / SKILLS     PASS
 LIVE RUNTIME EXCLUSIVITY       FAIL
 PRODUCTION READY               NOT YET PROVEN
 ```
+
+
+---
+
+## BirdEye MCP architecture and workspace-state audit — 2026-09-07
+
+### Scope and evidence guard
+
+This section records the supplied 2026-09-07 read-only audit of the local BirdEye MCP architecture under `C:\MCP Local`.
+
+It is a dated evidence snapshot. It does not make `C:\MCP Local` a Git repository, does not prove later runtime state, and does not override fresher local/runtime evidence.
+
+### Workspace-state result
+
+`C:\MCP Local` was reported as **not a Git repository**:
+
+```text
+git -C C:\MCP Local status
+fatal: not a git repository
+```
+
+Therefore:
+
+```text
+Git repository status       BLOCKED
+Branch                      N/A
+Modified/untracked status   N/A
+Previous MCP additions      CANNOT VERIFY FROM GIT HISTORY
+```
+
+Do not claim the local MCP workspace is clean from Git evidence while this remains true.
+
+### Canonical local architecture identified
+
+| Component | Current file / owner |
+|---|---|
+| MCP server entry point | `mcp_server.py` |
+| MCP tool registration | `mcp_server.py` |
+| MCP tool dispatch | `mcp_server.py` |
+| Workspace search | `agent.py` |
+| File inspection | `agent.py` |
+| Workspace identity | `workspace_identity.py` |
+| EYES query DB access | `eye_query.py` |
+| EYES durable data DB access | `eye_database.py` |
+| Workspace query projection | `eye_Databa/eye_workspace_query_01.db` |
+| Workspace durable ledger/data | `eye_Databa/eye_workspace_data_01.db` |
+
+### Proven runtime path
+
+The supplied audit traced the existing MCP retrieval path as:
+
+```text
+MCP client
+  -> mcp_server.py: serve_stdio()
+  -> mcp_server.py: invoke()
+  -> registered BirdEye handler
+  -> agent.py workspace/search or inspection function
+  -> eye_query.py / EYES query projection
+  -> bounded search result or file inspection result
+```
+
+Specific supplied line references at audit time:
+
+```text
+mcp_server.py: serve_stdio()       line 1106
+mcp_server.py: invoke()            line 805
+mcp_server.py: birdeye_roots()     line 868
+mcp_server.py: birdeye_status()    line 990
+mcp_server.py: birdeye_search()    line 1071
+mcp_server.py: birdeye_inspect()   line 1095
+agent.py: inspect_file()           line 1104
+agent.py: search_workspace()       line 1179
+eye_query.py: connect_query()      line 47
+eye_query.py: health()             line 686
+```
+
+Treat these line numbers as snapshot locators, not stable API contracts.
+
+### Existing MCP retrieval capability
+
+The audit found that indexed BirdEye retrieval is **already exposed** through existing MCP tools.
+
+Primary tool:
+
+`birdeye_search`
+
+Reported input contract:
+
+```json
+{
+  "query": "string (required)",
+  "max_results": "integer 1-200 (default 25)",
+  "extensions": "string (comma-separated)",
+  "roots": "string (comma-separated)",
+  "path_prefix": "string",
+  "verify_freshness": "boolean"
+}
+```
+
+Reported result fields include:
+
+- `root`
+- `path`
+- `score`
+- `size`
+- `line`
+- `snippet`
+- `sha256`
+- `version_status`
+- `source_class`
+- `root_class`
+
+Related existing tools include:
+
+- `birdeye_inspect`
+- `birdeye_roots`
+- `birdeye_status`
+- `knowledge_read`
+- `knowledge_route`
+- `eyes_rebuild`
+- `eyes_retirement`
+
+### Retrieval behavior assessment
+
+| Capability | 2026-09-07 classification |
+|---|---|
+| Query by lexical/term search and scoring | IMPLEMENTED |
+| Resolve indexed workspace/file | IMPLEMENTED |
+| Return bounded relevant snippets | IMPLEMENTED / PARTIAL for arbitrary chunks |
+| Avoid loading whole documents during search | IMPLEMENTED |
+| Arbitrary line-range retrieval | NOT IMPLEMENTED |
+| Full-file inspection | IMPLEMENTED |
+| Preserve SHA-256 identity | IMPLEMENTED |
+| Preserve root/source trust classifications | IMPLEMENTED |
+
+The search path reportedly returns a snippet around the best match rather than the entire document. The audit described this as approximately ±2 lines and bounded to roughly 1200 characters.
+
+`birdeye_inspect` is different: it returns full file content.
+
+### Current gap
+
+There is **no proven need for a new MCP tool for basic indexed retrieval**.
+
+`birdeye_search` already provides the required consolidated MCP path for finding relevant indexed workspace context without loading whole documents.
+
+The remaining narrow gap is only if the caller requires **explicit arbitrary line-range retrieval** after search.
+
+At audit time, no existing MCP contract accepted:
+
+```text
+path + start_line + end_line
+```
+
+for targeted partial inspection.
+
+### Minimal-change rule
+
+For ordinary indexed retrieval:
+
+```text
+MINIMAL CHANGE REQUIRED: NO CHANGE REQUIRED
+```
+
+Use the existing path:
+
+```text
+agent/client
+  -> BirdEye MCP
+  -> birdeye_search
+  -> indexed workspace query
+  -> bounded snippet + line + SHA/trust metadata
+```
+
+Do not create a new launcher, orchestrator, preflight framework, parallel runtime, protocol layer, or duplicate retrieval MCP tool.
+
+If explicit line-range retrieval becomes a real requirement, the audit recommends only a narrow extension of the existing inspection path:
+
+1. extend `agent.py: inspect_file()` with optional `start_line` / `end_line`;
+2. extend the existing `birdeye_inspect` MCP schema/handler in `mcp_server.py`;
+3. preserve the existing full-file behavior when no range is supplied;
+4. preserve whole-file SHA-256 identity and existing root/path validation;
+5. validate through the existing MCP server path.
+
+This is an enhancement to the existing owner, not justification for a new architecture.
+
+### Evidence classification snapshot
+
+| Component | Classification |
+|---|---|
+| MCP server entry point | PROVEN |
+| Tool registry | PROVEN |
+| Tool dispatch | PROVEN |
+| `birdeye_search` handler | PROVEN |
+| `birdeye_search` contract | PROVEN |
+| `search_workspace()` implementation | PROVEN |
+| EYES workspace query projection | PROVEN |
+| Snippet extraction | PROVEN |
+| Search-result line tracking | PROVEN |
+| SHA-256 preservation | PROVEN |
+| `root_class` / `source_class` trust tags | PROVEN |
+| Arbitrary section/line-range retrieval | NOT IMPLEMENTED |
+| Git-based workspace cleanliness | BLOCKED |
+
+### Architectural consequence
+
+The 2026-09-07 audit strengthens the existing routing rule in this document:
+
+> BirdEye MCP is already the consolidated local retrieval surface. Extend existing handlers only when a demonstrated capability gap exists.
+
+For scoped MCP work:
+
+1. inspect the existing registry and handler first;
+2. prefer `birdeye_search` for indexed context retrieval;
+3. use `birdeye_inspect` only when full-file inspection is actually required;
+4. do not add duplicate retrieval tools;
+5. treat new launchers/orchestrators/preflight layers as scope-drift signals;
+6. create no parallel runtime architecture for a retrieval feature already owned by BirdEye.
