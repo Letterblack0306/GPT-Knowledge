@@ -52,30 +52,23 @@ Rust/Ratatui
 
 ## Current backend workspace recovery state
 
-Latest local recovery evidence reports two local checkouts of the same backend repository:
+Three-way local/canonical comparison now establishes the recovery state more precisely.
 
 ```text
 C:\Agents-Memory-Tool-v6-integration
     remote: Letterblack0306/LBE_Presistent_Agent_wall
-    local HEAD: 815dfc0
-    working files: reported intact/recovered
+    local HEAD: 815dfc03e256b5...
+    relevant deletions: STAGED IN INDEX, not committed
 
 C:\Agents-Memory-Tool-v6-validation
     remote: Letterblack0306/LBE_Presistent_Agent_wall
-    local HEAD: a17b014
-    working/index source: reported broadly deleted
+    HEAD: a17b0144269bcb...
+
+canonical GitHub main:
+    03a90ce22222c0e3ab4fd1c9a9629b3a1f7daa7e
 ```
 
-Current canonical GitHub `main` is:
-
-```text
-03a90ce22222c0e3ab4fd1c9a9629b3a1f7daa7e
-parent = a17b0144269bcb93f2c8d1ec230a1468b0ff271a
-```
-
-Therefore `815dfc0 (synced)` must **not** be treated as synchronized to current canonical `origin/main` until a fresh local fetch/rev-parse proves that relation.
-
-Four files reported present in the validation checkout but deleted from the integration working tree are also present on canonical GitHub `main`:
+For these four files:
 
 ```text
 docs/acceptance/LBE_PRODUCT_INTEGRATION_MACHINE_CHECK.md
@@ -84,19 +77,57 @@ lbe_guard_inspector/coding_reasoning_provider.py
 lbe_guard_inspector/first_party_reasoning_provider.py
 ```
 
-So the validation checkout is **not the sole surviving source** of those files. Its deletion is still deferred until unique local/runtime/config evidence is checked, but those four files are recoverable from canonical GitHub.
+the content is reported **byte-for-byte identical** in:
+
+```text
+integration HEAD 815dfc03...
+validation HEAD a17b014...
+origin/main 03a90ce...
+```
+
+The integration index stages their deletion:
+
+```text
+D  docs/acceptance/LBE_PRODUCT_INTEGRATION_MACHINE_CHECK.md
+D  lbe_guard_inspector/cline_reasoning_provider.py
+D  lbe_guard_inspector/coding_reasoning_provider.py
+D  lbe_guard_inspector/first_party_reasoning_provider.py
+```
+
+Additional canonical files are also reported staged for deletion locally:
+
+```text
+D  tests/test_first_party_reasoning_provider.py
+D  tools/lbe_product_integration.ps1
+```
+
+Both additional paths are present on current canonical GitHub main.
+
+### Classification
+
+```text
+origin/main                         = canonical recovery source
+validation                         = not the unique source of these files
+copy validation -> integration     = not required
+integration staged deletions       = explicit staged local state
+deletion rationale/acceptance      = UNVERIFIED
+restore/delete decision            = BLOCKED pending review of why they were staged
+```
+
+A staged deletion proves that the index contains a deletion candidate. It does **not** by itself prove the deletion is architecturally intended, accepted by governance, or safe to commit.
 
 Recovery rule:
 
 ```text
-preserve recovered integration working state
-→ fetch/reconcile 815dfc0 against current origin/main
-→ determine whether deleted files are intentional or damage
-→ compare validation for genuinely unique local evidence
-→ only then archive/delete validation if safe
+preserve current integration index/worktree
+→ inspect provenance/reason for staged deletions
+→ compare against current machine gate and active owner docs
+→ if deletion is not accepted, restore from canonical origin/main
+→ if deletion is accepted, prove replacement ownership and affected tests/verifier behavior
+→ only then decide validation-checkout disposition
 ```
 
-Do not copy validation into integration blindly, and do not restore files merely because they exist in another checkout; first establish deletion intent and canonical ancestry.
+Do not copy from validation merely to restore canonical content, and do not delete validation solely because these files are recoverable elsewhere; first rule out genuinely unique local/runtime/config evidence.
 
 ## Client acquisition / entrypoint status
 
