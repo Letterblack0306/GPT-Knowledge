@@ -1,12 +1,12 @@
 {
-  "schema_version": 80,
+  "schema_version": 81,
   "project": "LBE Persistent Agent",
   "verified_at": "2026-09-07",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "source_branch": "main",
   "original_workspace": "C:/Agents-Memory-Tool-v6-integration",
   "later_ui_workspace": "C:/LBE-TUI-Lab",
-  "overall_classification": "CLIENT_SOURCE_PATH_DRIFT_BLOCKS_CANONICAL_REPRODUCTION",
+  "overall_classification": "NOT_READY_TO_USE_UNTIL_COMPLETE_FINAL_PRODUCT_ACCEPTANCE",
   "authority_note": "GPT-Knowledge is a projection only. Current canonical source/configuration, current local validation/runtime evidence, machine governance, active intent and acceptance records outrank this file.",
   "final_product": {
     "definition": "Persistent provider-neutral LBE agent product in which the agent/provider owns reasoning, investigation strategy, capability selection, interpretation and replanning, while LBE owns workspace/session identity, policy, authorization, governed execution, ToolReceipts/evidence, persistence, recovery, deterministic validation and completion truth.",
@@ -815,5 +815,25 @@
       "provider select does not yet resolve to a real Cline-backed provider/model runtime"
     ],
     "classification_rule": "These are local runtime observations. They narrow the first product seam but do not prove canonical clean-clone or installed production readiness."
+  },
+  "ready_to_use_definition": {
+    "classification": "LOCKED",
+    "meaning": "Complete final product, not partial runtime availability.",
+    "required": [
+      "single canonical LBE product entrypoint",
+      "complete LBE-branded CLI/TUI design and interaction surface",
+      "Cline provider/auth/model experience embedded and bound to authoritative LBE session",
+      "all accepted planned runtime/tool/approval/MCP/subagent/memory/persistence/evidence/receipt/validation/completion capabilities integrated",
+      "clean installed/production launch with no manual backend setup",
+      "claim-matched end-to-end acceptance with no unresolved accepted-scope gaps"
+    ],
+    "user_should_not_be_asked_to": [
+      "choose internal commands",
+      "start backend servers manually",
+      "run internal node packages",
+      "edit provider JSON manually",
+      "decide which partial client to use"
+    ],
+    "current_verdict": "NOT_READY_TO_USE"
   }
 }
