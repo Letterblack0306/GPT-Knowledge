@@ -1,7 +1,7 @@
 {
-  "schema_version": 84,
+  "schema_version": 85,
   "project": "LBE Persistent Agent",
-  "verified_at": "2026-09-07",
+  "verified_at": "2026-09-08",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "source_branch": "main",
   "original_workspace": "C:/Agents-Memory-Tool-v6-integration",
@@ -165,7 +165,10 @@
     "proven_route": "POST /api/v1/chat",
     "proven_model": "google/gemma-4-e4b",
     "proven_result": "HTTP 200 with generated response",
-    "remaining_note": "The service is available. Provider availability itself is no longer the project blocker. If the current LBE provider transport expects a different route, treat that only as a local transport/config seam within the larger Cline-backed LBE composition task; do not reopen provider architecture."
+    "remaining_note": "The service is available. Provider availability itself is no longer the project blocker. If the current LBE provider transport expects a different route, treat that only as a local transport/config seam within the larger Cline-backed LBE composition task; do not reopen provider architecture.",
+    "config_binding_note": "RealLbeWrapper provider config source is LBE_PROVIDER_CONFIG, not config.json. Canonical run-cline-lbe.ps1 does not set LBE_PROVIDER_CONFIG. Active local launcher binding remains UNVERIFIED.",
+    "active_config_path": "UNVERIFIED",
+    "active_config_trace_required": true
   },
   "remaining_unproven": [
     "interactive Cline CLI/TUI launch under a real TTY",
@@ -902,5 +905,39 @@
     "generated_visuals": "REFERENCE_ONLY_NOT_PROOF",
     "current_gate": "BLOCKED_INTERACTIVE_CLINE_TTY_ACCEPTANCE",
     "acceptance_target": "Real run-cline-lbe/LBE CLI path under a real terminal with embedded Cline mechanics and authoritative LBE runtime."
+  },
+  "provider_config_binding": {
+    "classification": "PROVEN_SOURCE_BINDING_ACTIVE_LIVE_PATH_UNVERIFIED",
+    "rust_real_wrapper_source": "C:/LBE-TUI-Lab/src/wrapper.rs",
+    "source_rule": "RealLbeWrapper reads provider configuration from the LBE_PROVIDER_CONFIG environment variable into provider_config.",
+    "backend_invocation_rule": "RealLbeWrapper passes that exact path as --provider-config to lbe_guard_inspector.product_entry for provider.check and turn execution.",
+    "fail_closed_behavior": "If LBE_PROVIDER_CONFIG is absent, the real provider/turn path fails closed with 'LBE_PROVIDER_CONFIG is not configured'.",
+    "server_config_path": {
+      "config_field": "reasoning_provider_config",
+      "example_value": "reasoning-provider.json",
+      "consumer": "server.py startup handler",
+      "classification": "SEPARATE_CONFIG_PATH"
+    },
+    "launcher_evidence": {
+      "canonical_launcher": "C:/LBE-TUI-Lab/run-cline-lbe.ps1",
+      "sets_lbe_provider_config": false,
+      "sets": [
+        "LBE_RUNTIME",
+        "LBE_WALL_ROOT",
+        "LBE_WALL_PYTHON",
+        "LBE_WALL_DATABASE",
+        "LBE_SESSION_ID",
+        "LBE_PROJECT_WORKSPACE_ID",
+        "LBE_TARGET_WORKSPACE"
+      ]
+    },
+    "reasoning_provider_json": {
+      "workspace": "C:/Agents-Memory-Tool-v6-integration/reasoning-provider.json",
+      "relation_to_server_startup": "SUPPORTED_BY_CONFIG_PATTERN",
+      "relation_to_real_lbe_wrapper": "NOT_PROVEN",
+      "placeholder_risk": "A placeholder model ID is an active defect only if the live LBE_PROVIDER_CONFIG resolves to this file."
+    },
+    "next_required_inspection": "Trace the live value of LBE_PROVIDER_CONFIG through lbe.ps1, lbe.bat, installer/profile scripts, and the launched process environment before modifying reasoning-provider.json.",
+    "prohibition": "Do not assume config.json/reasoning_provider_config controls RealLbeWrapper. Do not edit reasoning-provider.json as a root-cause fix until the active LBE_PROVIDER_CONFIG path is proven."
   }
 }
