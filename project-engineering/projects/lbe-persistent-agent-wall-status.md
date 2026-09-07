@@ -34,7 +34,7 @@ The interface projects the result.
 
 LBE remains the established authority for workspace/session identity, mode/policy, authorization, governed execution, operation identity, receipts/evidence, persistence, validation and completion.
 
-The active user-facing product is the **LBE CLI/TUI**. Its current implementation mechanics are the bundled Cline CLI under `C:\LBE-TUI-Lab\cline\apps\cli`, while LBE remains the sole runtime/governance authority. Cline owns cognition/provider/model/delegated-agent mechanics only; it must not become a second owner for workspace/session truth, authorization, governed execution, persistence, receipts/evidence, validation, or completion.
+The active user-facing product is the **LBE CLI/TUI**. It reuses Cline provider/model/reasoning/delegated-agent mechanics while LBE remains the sole runtime/governance authority. The exact current Cline client acquisition/source path is under reconciliation: canonical product-repository `main` does not contain the previously documented `cline/apps/cli` subtree, while newer local evidence reports an npm-installed `cline` launch path. Do not promote either path to canonical until reconciled.
 
 The Rust/Ratatui surface in `C:\LBE-TUI-Lab\src` remains a reference/integration client. It does not recreate LBE runtime or governance authority and is not the primary product UI.
 
@@ -115,6 +115,29 @@ git diff --check                      PASS with line-ending warnings only
 ```
 
 The earlier full-suite timeout uncertainty is resolved; the full Python suite subsequently completed successfully.
+
+## Backend local recovery status — 2026-09-07
+
+Latest local evidence reports:
+
+```text
+integration checkout:
+C:\Agents-Memory-Tool-v6-integration
+local HEAD = 815dfc0
+working files = recovered/intact (local report)
+
+validation checkout:
+C:\Agents-Memory-Tool-v6-validation
+local HEAD = a17b014
+working/index files = broadly deleted (local report)
+
+canonical GitHub backend main:
+03a90ce22222c0e3ab4fd1c9a9629b3a1f7daa7e
+```
+
+The phrase `815dfc0 synced` is not accepted as current-remote truth because canonical GitHub main is `03a90ce`. A fresh local fetch and ancestry check is required before treating the recovered integration checkout as synchronized.
+
+Four files reported available in validation but deleted in the integration working tree are present on canonical GitHub main, so validation is not their sole recoverable source. Validation deletion remains deferred until genuinely unique local evidence is ruled out.
 
 ## Current product gates
 
