@@ -1,76 +1,110 @@
-# LBE CLI/TUI — Final Product Aim
+# LBE CLI/TUI — Canonical Product UI Contract
 
-Status: CURRENT PRODUCT UI AIM  
-Updated: 2026-09-07  
+Status: **CURRENT / CANONICAL UI CONTRACT**  
+Updated: 2026-09-08  
 Product: **LBE — Lockstep Boundry Engine**  
-User-facing surface: **LBE CLI/TUI** — exact Cline client source/acquisition path currently under reconciliation  
-Launcher: `C:/LBE-TUI-Lab/run-cline-lbe.ps1` (canonical remote currently defaults to a missing vendored Cline path; local report says npm-installed `cline` is resolved instead)  
-Runtime authority: `Letterblack0306/LBE_Presistent_Agent_wall`
+User-facing surface: **LBE CLI/TUI**  
+Runtime authority: **LBE runtime**  
+Embedded mechanics: **Cline provider/auth/model/reasoning/delegated-agent mechanics**
 
-## Product aim
+## Authority
 
-Build one minimal, evidence-truthful terminal product in which the agent can reason and act continuously while LBE visibly owns the boundary between proposal and consequence.
+This document is the single canonical GPT-K location for LBE product UI behavior.
 
-The product must feel like **LBE**, not a re-skinned Cline client.
+Do not distribute current UI requirements across ad-hoc handoff notes, historical TUI references, checkpoint notes, or implementation commentary. Those may preserve history, but current UI truth must be maintained here and referenced from `plan.json` and `status.json`.
 
-Core invariant:
+Historical Rust/Ratatui, Textual, HTML, Cline-native, and generated mockup UI material is reference-only unless this document explicitly adopts a behavior.
 
-> **Agent/provider owns cognition. LBE owns capabilities and consequences.**
+## Product principle
 
-Product role:
+The user needs a minimal coding-agent interface, not a governance debugger.
+
+Internal LBE proof/evidence/runtime mechanics must exist and remain inspectable by the agent, verifier, workspace tooling, logs, and persisted runtime state. They are not normal user-facing UI content.
+
+### Do not surface technical internals by default
+
+The normal UI must not show or dedicate panels to:
+
+- ToolReceipt IDs;
+- `provider_tool_call_id`;
+- `lbe_call_id`;
+- `runtime_operation_id`;
+- operation IDs;
+- child lifecycle IDs;
+- authorization records;
+- evidence chains;
+- proof/checkpoint metadata;
+- internal event names;
+- raw governance records;
+- internal validation objects;
+- technical runtime state dumps.
+
+The agent can retrieve these from the workspace/runtime when needed. The canonical verifier can inspect them for acceptance. They do not belong in the normal product surface.
+
+The only exception is information required for a direct user decision, such as a concise approval/rejection prompt or a clear actionable failure.
+
+## Modes
+
+LBE must support three user modes:
 
 ```text
-LBE CLI/TUI
-    = user-facing product
-
-Cline
-    = embedded provider/model/auth/reasoning/delegated-agent mechanics
-
-LBE runtime
-    = sole owner of session/workspace truth, policy, authorization,
-      ToolRegistry, governed execution, receipts/evidence,
-      persistence/recovery, validation and completion truth
-
-Rust/Ratatui
-    = reference/integration client only
+PLAN
+ACT
+AUDIT
 ```
 
-## Final interaction model
+### PLAN
 
-Permanent surface has only four regions:
+For investigation, reasoning, planning, review, and proposed next actions without authority-bearing mutation.
+
+### ACT
+
+The normal execution mode. The agent may request governed capabilities and perform authorized work through LBE.
+
+### AUDIT
+
+An additional LBE-specific mode for inspection and verification. It focuses on checking current workspace state, implementation claims, acceptance/gate status, diffs, tests, and runtime truth without treating historical PASS or model prose as proof.
+
+AUDIT is not a second runtime and not a separate agent architecture. It is a product mode using the same LBE authority and capability system with an inspection-oriented policy.
+
+The UI should display the active mode compactly as `PLAN`, `ACT`, or `AUDIT`.
+
+## Permanent surface
+
+Only four permanent regions:
 
 ```text
-1. compact runtime header
-2. one ordered conversation/execution timeline
+1. compact header
+2. one conversation/work timeline
 3. composer
-4. compact footer/status
+4. compact footer
 ```
 
-Everything else is transient or expandable.
+No permanent Agents, Tools, Evidence, Runtime, Governance, Settings, Objective, Receipt, or Diagnostics panels.
 
-### Target shell
+## Target shell
 
 ```text
-LBE · <workspace> · <model> · <PLAN/AUDIT>                 git <branch> · <diff>
-                                                          ctx [ ||||........ ]
+LBE · <workspace> · <model> · <PLAN/ACT/AUDIT>             git <branch> · <diff>
+                                                          [ ||||........ ]
 
 
-conversation / execution timeline
+conversation / work timeline
 
-✓ workspace.read  product_entry.py  180ms
-
-› current process
-  raw emitted event line 1
-  raw emitted event line 2
-  raw emitted event line 3
+Reading product_entry.py…
+Updating provider integration…
+Waiting for approval…
+Completed.
 
 
 [I]  Message LBE…
 ____________________________________________________________________________
 
-ctx <usage> · <active mode>                                      Ctrl+K
+ctx <usage> · <mode>                                      Ctrl+K
 ____________________________________________________________________________
 ```
+
+This is a behavioral layout, not runtime screenshot evidence.
 
 ## Visual hierarchy
 
@@ -78,58 +112,55 @@ High prominence:
 
 - `LBE`;
 - workspace;
-- actual conversation;
-- active process/output;
-- input/composer.
+- conversation;
+- current user-relevant work;
+- composer.
 
-Muted / secondary (~50% visual intensity):
+Muted / secondary, approximately 50% visual intensity:
 
 - model;
-- PLAN/AUDIT;
+- active mode;
 - Git branch/diff;
 - context usage;
 - footer metadata;
 - shortcut hints.
 
-Color communicates state, not decoration.
-
 No mascot.  
-No large permanent hero.  
-No large ASCII splash in the active shell.  
+No permanent hero.  
+No large ASCII identity in the active shell.  
 No Cline product branding.  
 No dashboard clutter.  
-No permanent Agents/Tools/Evidence/Settings panels.  
-No fake runtime status.
+No fake telemetry.  
+No decorative evidence/runtime panels.
 
-## Active process behavior
+## Timeline behavior
 
-Only the currently active process may occupy the expanded live viewport.
+The timeline should explain work in human language, not expose internal protocol records.
 
-Default live viewport:
-
-```text
-maximum 3 raw emitted runtime/event lines
-```
-
-As new lines arrive, the viewport follows the newest three.
-
-Single click:
+Preferred:
 
 ```text
-expand complete available emitted process/event output
+Reading product_entry.py…
+Checking provider configuration…
+Updating the adapter…
+Running tests…
+Completed.
 ```
 
-When the next process starts, the previous one auto-collapses:
+Avoid normal-user output such as:
 
 ```text
-✓ workspace.read  product_entry.py  180ms
+agent.child.started
+runtime_operation_id=...
+authorization=ALLOW
+receipt_id=...
 ```
 
-This keeps chronology visible without turning the terminal into stacked diagnostic panels.
+Conversation and user-relevant execution status stay in one chronological surface.
 
-The process view may show raw runtime/tool/event evidence already emitted by the system. It must not expose hidden model chain-of-thought.
+Completed work should collapse naturally to concise human-readable summaries. Current work may show a small bounded live status area, but it should not become a raw event console.
 
-## Composer and activity identity
+## Composer / activity identity
 
 Idle:
 
@@ -137,7 +168,7 @@ Idle:
 [I]  Message LBE…
 ```
 
-Active execution replaces the compact idle identity with a horizontally bouncing indicator:
+During active work, the compact identity may become the established horizontal LBE activity indicator:
 
 ```text
 [|                ]
@@ -149,77 +180,45 @@ Active execution replaces the compact idle identity with a horizontally bouncing
 [|                ]
 ```
 
-This is the LBE activity signature. It is not a generic spinner.
+The animation means LBE is processing/working. It must be driven by real activity state.
 
 ## Context indicator
 
 Top-right:
 
 ```text
-ctx [ ||||........ ]
+[ ||||........ ]
 ```
 
-represents real context-window usage only.
+represents actual context-window usage only. It is not task progress.
 
-It must derive from actual runtime/model context accounting. It is not task progress.
+## Approvals
 
-## Timeline rule
+Approvals remain user-facing because they require a user decision.
 
-Conversation, tools, delegated children, approvals, denials, validation and completion appear in one ordered stream.
-
-Example:
+Keep them concise and contextual:
 
 ```text
-YOU
-Inspect parent continuation.
-
-LBE
-Checking the runtime path.
-
-✓ workspace.read  lbe-tool-adapter.ts  34ms
-✓ child  inspect continuation  2.3s
-
-LBE
-The persisted child result is available...
+Update src/runtime/foo.ts?
+[Approve] [Reject]
 ```
 
-Do not create permanent parallel panels for agents, tools or evidence.
+Do not expose receipt IDs, operation IDs, policy internals, or evidence chains unless the user explicitly asks for technical diagnostics.
 
-## Child-agent projection
+## Technical inspection
 
-Normal collapsed form:
+Technical proof remains available outside the normal UI through:
 
-```text
-✓ child  inspect continuation  2.3s
-```
+- LBE workspace/runtime state;
+- persisted receipts/evidence;
+- logs;
+- canonical verifier;
+- agent inspection tools;
+- explicit diagnostic/audit requests.
 
-Active form follows the same three-line process rule.
-
-Expanded details may expose authoritative identifiers such as:
-
-```text
-child_run_id
-child_session_id
-spawn_operation_id
-provider_tool_call_id
-lbe_call_id
-runtime_operation_id
-tool_receipt_id
-```
-
-only when those values actually exist in runtime evidence.
-
-## Approval / mutation
-
-Authority-bearing actions interrupt the same timeline at the point of consequence.
-
-No separate permanent approval dashboard.
-
-A mutation must remain visibly tied to LBE authorization, exact operation identity, resulting ToolReceipt/evidence and validation.
+AUDIT mode may summarize findings for the user, but it should still avoid dumping internal IDs unless directly useful or explicitly requested.
 
 ## Keyboard direction
-
-Current intended compact map:
 
 ```text
 Ctrl+K / Cmd+K    command palette
@@ -229,63 +228,66 @@ Ctrl+I            interrupt current turn
 Ctrl+X            cancel active child/run
 Ctrl+S            steer
 Ctrl+L            clear conversation
-Tab               mode
-Esc               dismiss/close contextual surface
+Tab               mode selection/cycle
+Esc               dismiss contextual surface
 ```
 
-Distinct interrupt-vs-cancel runtime semantics must be proven separately; key presence alone is not proof.
+Mode selection must include PLAN, ACT, and AUDIT.
 
-## Acceptance boundary
-
-Source implementation is not visual acceptance.
-
-Required proof order:
+## Product boundary
 
 ```text
-CLINE_LBE_STRUCTURAL_VISUAL_DIFFERENTIATION
-    ↓
-real terminal / TTY rendering
-    ↓
-interactive governed runtime flow
-    ↓
-claim-matched receipts/evidence
-    ↓
-installed end-to-end acceptance
+LBE CLI/TUI
+    = user-facing product
+
+Cline
+    = embedded provider/model/auth/reasoning/delegated-agent mechanics
+
+LBE runtime
+    = sole authority for session/workspace truth, policy,
+      authorization, governed execution, receipts/evidence,
+      persistence/recovery, validation and completion
+
+Rust/Ratatui
+    = reference/integration client
+
+Textual
+    = historical/diagnostic prototype, not final product UI
+
+HTML / generated visuals
+    = design/reference only, never runtime proof
 ```
 
-Acceptable UI proof:
+## Acceptance
+
+Source implementation is not rendered acceptance.
+
+Acceptable visual/runtime evidence:
 
 - real terminal screenshot;
 - PTY/ConPTY capture;
 - rendered component snapshot;
 - runtime recording.
 
-Generated mockups are design references only.
+Generated mockups are never proof.
 
-## Current gate
-
-```text
-CLIENT_ACQUISITION_AND_ENTRYPOINT_RECONCILIATION
-status: BLOCKED_BY_CROSS_SOURCE_DRIFT
-
-next:
-CLINE_LBE_STRUCTURAL_VISUAL_DIFFERENTIATION
-```
-
-First establish one canonical reproducible Cline client acquisition/launch path. The product must still satisfy the structural LBE target above before interactive TTY acceptance.
+Current interactive gate remains the real terminal LBE CLI path, not Textual shell tests.
 
 ## Non-goals
 
 Do not:
 
-- rebuild LBE runtime authority in the client;
-- replace Cline provider/model/reasoning mechanics unnecessarily;
-- promote Rust/Ratatui back to primary product status;
-- add a second child lifecycle/session/receipt/evidence owner;
-- add fake terminal telemetry;
-- create another verifier instead of extending the canonical one;
+- make Evidence or Runtime permanent UI sections;
+- expose technical proof IDs as normal product content;
+- resurrect Textual/Rust as the primary product surface;
+- turn AUDIT into a second runtime;
+- add a second lifecycle/session/receipt/evidence owner;
+- display fabricated agent messages, receipts, runtime status, or telemetry;
+- create random UI requirement notes instead of updating this canonical contract;
 - treat UI source presence as rendered proof.
 
-## Final product test
+## Final UX test
 
-The product aim is met when a user can launch **LBE**, converse naturally, see one truthful ordered execution timeline, understand when LBE is acting or blocking, inspect evidence when needed, resume persistent work, and complete governed agent tasks without exposure to duplicate runtime authority or Cline-branded product structure.
+A normal user should be able to open LBE, choose PLAN/ACT/AUDIT as needed, converse naturally, understand what the agent is doing at a human level, approve consequential actions when required, and continue working without being exposed to internal governance/proof machinery.
+
+The machinery remains real, authoritative, and inspectable — it simply stays out of the user's way.
