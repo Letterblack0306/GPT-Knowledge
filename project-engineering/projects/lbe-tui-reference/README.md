@@ -1,3 +1,8 @@
+> **CURRENT AUTHORITY NOTICE (2026-09-08)**  
+> This directory is historical/reference material. It is not the current LBE product UI authority.  
+> Current UI requirements are maintained only in `project-engineering/projects/lbe-plan-canvas/LBE_TERMINAL_TUI_UI_PLAN.md`.  
+> The active product surface is LBE CLI/TUI with PLAN, ACT, and AUDIT modes. Textual and Rust/Ratatui UI material here must not be promoted back to the primary product surface without an explicit architecture change.
+
 # LBE Rust/Ratatui CLI — Current Project Truth
 
 **Classification:** REFERENCE_NON_CANONICAL  
