@@ -176,6 +176,27 @@ A production-ready acceptance claim therefore requires at minimum:
 
 Manual `reasoning-provider.json` editing is not an accepted production UX requirement. If retained internally, it is implementation/configuration plumbing only and must be populated or derived by the product/runtime integration rather than by the end user during normal CLI use.
 
+## Single-output production contract
+
+The final product has one normal user-facing output surface: the complete LBE CLI/TUI.
+
+Internal backend processes, adapters, provider workers, registries, verifiers, and diagnostic CLIs may exist as implementation details, but they must not fragment the normal user workflow into multiple terminals or require the user to understand internal ownership boundaries.
+
+The production contract is:
+
+```text
+ONE ENTRYPOINT
+    → ONE LBE CLI/TUI
+    → ONE coherent session
+    → provider/model selection inside the product
+    → all governed agent behavior inside the product
+    → one visible chronology of conversation, execution, approvals, evidence and completion
+```
+
+Agent/developer behavior must not convert an incomplete product into an interactive troubleshooting dialogue with the user. If implementation is incomplete, the engineering agent should inspect evidence, implement the missing accepted scope, validate it, and continue until blocked by a genuine external dependency or explicit governance restriction.
+
+"Ready to use" is therefore a final acceptance verdict, not a request for the user to choose diagnostic commands.
+
 ## Client acquisition / entrypoint status
 
 Current canonical GitHub inspection found:
