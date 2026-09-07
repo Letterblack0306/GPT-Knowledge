@@ -646,3 +646,33 @@ installed live proof
     + completion/cancellation truth
     = only then eligible for product acceptance
 ```
+
+
+## Unpublished local final-acceptance claim — 2026-09-08
+
+A local workspace report claims that `INSTALLED_PTY_CONPTY_AND_FINAL_PRODUCT_ACCEPTANCE` has been closed PASS with 23/23 local verdicts, including single-command launch, real runtime attachment, provider/model binding, governed coding, receipt/evidence projection, terminal exit, and restart/resume. The same report says a new Python Textual product UI (`lbe_guard_inspector/textual_tui.py`) and matching acceptance records were created locally.
+
+This claim is **not yet canonical remote truth**. Fresh inspection of `Letterblack0306/LBE_Presistent_Agent_wall@main` at commit `03a90ce22222c0e3ab4fd1c9a9629b3a1f7daa7e` shows:
+
+```text
+lbe_guard_inspector/textual_tui.py                                  MISSING
+docs/acceptance/INSTALLED_PTY_CONPTY_AND_FINAL_PRODUCT_ACCEPTANCE_GATE.md  MISSING
+pyproject.toml                                                      no Textual dependency
+.lbe/governance/implementation-gates.json                           active phase still OPEN:
+                                                                  PARENT_CONTINUATION_AND_DEEP_CORRELATION
+docs/acceptance/CURRENT_IMPLEMENTATION_GATE.md                      OPEN — READY FOR GATE CLOSURE
+```
+
+Therefore classify the local report as:
+
+```text
+local final-acceptance implementation/report     LOCAL_REPORTED
+local 23/23 verdict                              LOCAL_REPORTED
+canonical GitHub publication                     NOT PRESENT
+canonical machine gate closure                   NOT PRESENT
+Textual UI on canonical main                      NOT PRESENT
+final installed product acceptance               UNVERIFIED CANONICALLY
+release-ready                                     NO
+```
+
+Do not promote the local PASS report into GPT-K current product truth until the implementation, machine-gate transition, acceptance records, and package/install evidence are reconciled to canonical source and independently match the final product contract. In particular, verify that any Textual UI still satisfies the locked product requirement that Cline provider/model/reasoning mechanics are embedded underneath the single `lbe` entrypoint and that no parallel Python product authority is introduced.
