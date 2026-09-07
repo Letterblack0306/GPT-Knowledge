@@ -260,6 +260,29 @@ The direct `lbe tui` invocation remains a useful runtime/control surface, but pr
 
 These are local runtime observations, not yet clean-clone/canonical publication proof.
 
+## Final installed user entrypoint — corrected 2026-09-07
+
+The final product contract is simpler than the current developer/integration workflow:
+
+```text
+user opens terminal
+> lbe
+        ↓
+complete LBE coding IDE CLI/TUI opens
+```
+
+The installed Python package already declares:
+
+```text
+lbe = lbe_guard_inspector.product_entry:main
+```
+
+That command is the intended final user entrypoint.
+
+`run-cline-lbe.ps1`, direct `lbe_guard_inspector.cli` invocations, `server.py`, internal Node entrypoints, manual session commands, and manual provider JSON configuration are developer/integration mechanisms only. Final product readiness requires the `lbe` entrypoint to compose the required runtime/session/Cline provider-model/client pieces internally and open the complete LBE-branded coding IDE surface.
+
+Therefore a local proof that one of those internal components works is not the final UX contract. The acceptance question is simply whether a normal installed user can type `lbe` and enter the complete coding IDE product.
+
 ## Current product gates
 
 Do not promote source implementation, focused tests, or historical acceptance into a claim that the current product shell or installed product is accepted.
