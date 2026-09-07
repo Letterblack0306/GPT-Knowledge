@@ -1,135 +1,131 @@
 {
   "schema_version": 1,
   "project": "Brew",
-  "verified_at": "2026-08-22",
+  "verified_at": "2026-09-07",
   "source_repo": "Letterblack0306/brew",
-  "source_branch": "agent/canonical-runtime-operation-authority-20260812",
-  "source_head": "486a9b433ead59a470e511236139e8201ed292ba",
-  "base_branch": "main",
-  "base_head": "a6342ff3fc0943ade2cc8bde62d79f94952f24ce",
+  "source_branch": "main",
+  "source_head": "579e5ee3648a06533d6dc5b110ae64cb1aaf3490",
   "pull_request": 442,
-  "overall_classification": "LOCAL_UPSTREAM_ALIGNED_DIRTY_P2_CLI_SESSION_REPAIR_IN_PROGRESS_VALIDATION_UNPROVEN",
-  "authority_note": "LoopTool command AE1C8619D58E17AD16E7BFFC55100AA8A1DE1BD2F243FAE61C202C6A105D29CA proves the local workspace identity, upstream alignment, one-worktree state, dirty repair surface, and continuation-gate position. Product/runtime success is not inferred from the command PASS.",
-  "closed": [
+  "pull_request_head": "486a9b433ead59a470e511236139e8201ed292ba",
+  "pull_request_compare_to_main": {
+    "status": "diverged",
+    "ahead_by": 78,
+    "behind_by": 4
+  },
+  "evidence_level": "STATIC_TRACE_CONFIRMED",
+  "current_status_record": "project-engineering/projects/brew-runtime-architecture-status-2026-09-07.md",
+  "overall_classification": "CANONICAL_QUERY_ALIGNED_AUXILIARY_SEMANTIC_DRIFT_REMAINS_RELEASE_UNPROVEN",
+  "authority_note": "This projection is grounded in current remote Brew main source inspection. It does not prove local worktree state, installed runtime, live behavior, CI, or release readiness.",
+  "proven_static": [
     {
-      "id": "architecture",
-      "title": "Canonical reasoning/runtime authority direction",
-      "classification": "PROVEN_PROJECT_CONTRACT",
-      "detail": "PR #442 and its architecture authorities define one persistent reasoning agent and canonical runtime without moving deterministic execution/policy/evidence ownership into the model."
+      "id": "canonical-query",
+      "title": "Canonical /query reasoning path",
+      "classification": "STATIC_TRACE_CONFIRMED",
+      "detail": "handleCanonicalQueryRoute invokes runTurn with explicit workspaceRoot and stateRoot; brew-runner reports single-agent bounded_multi_step_tool_loop and returns plan:null on the canonical path."
     },
     {
-      "id": "provider-turn",
-      "title": "Provider-backed canonical text turn",
-      "classification": "RUNTIME_PROVEN_RECORDED",
-      "detail": "The project records a real canonical /query response through LM Studio and qwen/qwen3-vl-8b for the observed interaction."
+      "id": "hot-reload-main",
+      "title": "Local-tool hot reload exists on main",
+      "classification": "SOURCE_CONFIRMED",
+      "detail": "Current main is 579e5ee3 test: cover local tool hot reload; the prior feature/test slice is present on remote main."
     },
     {
-      "id": "p0-boundary",
-      "title": "P0 operation-correlation boundary",
-      "classification": "PROVEN_BOUNDARY",
-      "detail": "The earliest identity-loss boundary was established at createProviderAdapter(generateResponse) output handoff, with brew/runner/brew-runner.mjs as the minimal owner."
-    },
-    {
-      "id": "p1-correlation",
-      "title": "P1 operation correlation",
-      "classification": "RUNTIME_PROVEN_RECORDED",
-      "detail": "At accepted runtime revision 1d74031d, all four model lifecycle events carried the exact /query operationId; WRONG_OPERATION_ID_COUNT=0."
-    },
-    {
-      "id": "p2-lifecycle-map",
-      "title": "P2 CLI session authority boundary",
-      "classification": "PROVEN_LOCAL_BOUNDARY",
-      "detail": "The obsolete SessionStore and canonical thread-state/sessions namespace have incompatible lifecycle semantics; the smallest active conflicting owner is the CLI SessionService adapter boundary."
+      "id": "loop-infrastructure",
+      "title": "AgentLoop is mechanical infrastructure",
+      "classification": "STATIC_TRACE_CONFIRMED",
+      "detail": "AgentLoop receives injected planner/executor/verifier responsibilities; semantic authority depends on the caller/planner rather than the loop class itself."
     }
   ],
-  "supported_historical": [
+  "mixed_or_drift": [
     {
-      "id": "old-gpt-record",
-      "title": "17 August GPT-Knowledge Brew record",
-      "classification": "SUPERSEDED_BY_CURRENT_PR_HEAD",
-      "detail": "The prior projection referenced head 169bc635 and an open correlation defect. Current PR head is 486a9b43 and records P1 correlation closed."
+      "id": "dispatch-handlers",
+      "title": "dispatch-handlers mixes bounded and semantic/legacy surfaces",
+      "classification": "MIXED",
+      "action": "Split bounded capability handlers from workspace-agent and legacy subagent/team compatibility handlers."
+    },
+    {
+      "id": "workspace-agent",
+      "title": "Workspace autonomous planner loop",
+      "classification": "AUXILIARY_SEMANTIC_AUTHORITY",
+      "action": "Quarantine/collapse unless intentionally supported as a separate maintenance reasoning surface."
+    },
+    {
+      "id": "provider-planner",
+      "title": "Provider-backed auxiliary next-action planner",
+      "classification": "AUXILIARY_SEMANTIC_AUTHORITY",
+      "action": "Fold into canonical reasoning unless explicitly retained as a separate scoped reasoning surface."
+    },
+    {
+      "id": "next-action-planner",
+      "title": "Deterministic goal-to-next-action planner",
+      "classification": "AUXILIARY_SEMANTIC_AUTHORITY",
+      "action": "Keep only as bounded fixture/helper if needed; do not classify as execution-only."
+    },
+    {
+      "id": "main-agent",
+      "title": "Parallel intent/intelligence/execution surface",
+      "classification": "PARALLEL_SEMANTIC_SURFACE",
+      "action": "Reconcile with runTurn authority before treating as supported."
+    },
+    {
+      "id": "execution-router",
+      "title": "Message-derived execution-tier routing",
+      "classification": "MIXED_NEEDS_BOUNDARY_REVIEW",
+      "action": "Trace whether fast/semi/safe/full only optimizes an established action or changes semantic planning/execution authority."
+    }
+  ],
+  "compatibility_debt": [
+    {
+      "id": "subagent-engine",
+      "classification": "LEGACY_FAIL_CLOSED",
+      "action": "Remove only after legacy callers are removed and no supported consumer remains."
+    },
+    {
+      "id": "team-coordinator",
+      "classification": "LEGACY_FAIL_CLOSED",
+      "action": "Remove only after legacy callers are removed and no supported consumer remains."
+    },
+    {
+      "id": "agent-dispatch",
+      "classification": "LEGACY_AUXILIARY_REACHABLE_SURFACE",
+      "action": "Do not call dead yet; brew/start.js imports executeDispatch, so complete request/import consumer tracing first."
     }
   ],
   "pending": [
     {
-      "id": "p2-repair",
-      "title": "CLI SessionService authority repair",
-      "priority": "P2 ACTIVE",
-      "classification": "DIRTY_IMPLEMENTATION_IN_PROGRESS",
-      "detail": "Local modifications exist in .ai/continuation-gate.json, brew/cli/services/session-service.mjs, docs/status/ACTIVE_CHANGELOG.md and focused test files, with additional untracked evidence/audit/test files. Nothing is yet committed or promoted as accepted."
+      "id": "caller-proof",
+      "priority": "P0",
+      "classification": "REQUIRED",
+      "detail": "Finish caller/reachability proof for mixed and compatibility surfaces before deletion."
     },
     {
-      "id": "p2-validation",
-      "title": "P2 repair acceptance",
-      "priority": "REQUIRED BEFORE ADVANCE",
-      "classification": "UNPROVEN",
-      "detail": "Prove canonical session reads, no legacy status/resumedAt/active-session.json writes, truthful Brew status, canonical /query persistence, unchanged operation/message correlation, focused/composition/runtime/regression evidence, and exact revision."
+      "id": "pr442-reconciliation",
+      "priority": "P0",
+      "classification": "OPEN",
+      "detail": "PR #442 remains draft and diverged from main by 78 ahead / 4 behind; classify unique, superseded, and still-required changes."
     },
     {
-      "id": "branch-main-divergence",
-      "title": "Feature branch versus main",
-      "priority": "BEFORE MERGE",
-      "classification": "UPSTREAM_ALIGNED_MAIN_DIVERGED",
-      "detail": "Local branch is exactly aligned with its feature upstream (0 ahead/0 behind) at 486a9b43. origin/main is a6342ff3; feature-to-main reconciliation and merge readiness remain unproven."
-    },
-    {
-      "id": "turn-id",
-      "title": "Canonical durable turnId ownership",
-      "priority": "P2",
+      "id": "installed-runtime",
+      "priority": "P1",
       "classification": "UNVERIFIED",
-      "detail": "No global turnId owner or semantics are proven. Do not add one from schema inference."
+      "detail": "Installed-runtime identity and cold-start/restart behavior are not proven by this source review."
     },
     {
-      "id": "tool-loop",
-      "title": "Live provider tool execution composition",
-      "priority": "P3",
-      "classification": "NOT_YET_PROVEN",
-      "detail": "Provider-native tool call → governed host execution → receipt → provider continuation and persistent ordered item lifecycle remain open."
+      "id": "ci",
+      "priority": "P1",
+      "classification": "UNVERIFIED",
+      "detail": "Current-head GitHub Actions/CI acceptance is not proven by this source review."
     },
     {
       "id": "recovery",
-      "title": "Cancellation and restart recovery",
-      "priority": "P3",
-      "classification": "NOT_YET_PROVEN",
-      "detail": "Cancellation/error attribution and crash/restart/resume exactly-once behavior remain open."
-    },
-    {
-      "id": "integrations",
-      "title": "Dynamic tools, Browser and Telegram E2E",
-      "priority": "P3",
-      "classification": "NOT_YET_PROVEN",
-      "detail": "Dynamic tool lifecycle/reuse, browser E2E, and Telegram account delivery E2E remain open."
-    },
-    {
-      "id": "release",
-      "title": "Installed runtime, CI and release readiness",
-      "priority": "LOCKED",
-      "classification": "NOT_YET_PROVEN",
-      "detail": "Installed-runtime acceptance and full current-head CI/release acceptance remain unproven."
-    },
-    {
-      "id": "harness-adoption",
-      "title": "DeepSeek Harness compatibility and adoption",
-      "priority": "REFERENCE / BLOCKED",
-      "classification": "ADOPTION_UNPROVEN",
-      "detail": "Compatibility audit found adapter requirements for provider routing, tools/capabilities, sessions/persistence, receipts/evidence, and UI projection. Workspace identity/confinement must remain Brew-owned; no verified Harness equivalent for Brew approvals/governance was established. Resource-policy (13), autonomy (10), and memory/session (18) tests passed, but the Harness executable/package was absent and no governed Brew-style Harness task ran. Do not replace Brew runtime authority."
+      "priority": "P1",
+      "classification": "UNVERIFIED",
+      "detail": "Crash/restart/resume and exactly-once consequential execution remain runtime acceptance work."
     }
   ],
   "next_acceptance": {
-    "question": "Does the bounded CLI SessionService repair remove the legacy session authority without regressing canonical query persistence or operation/message correlation?",
-    "observable": "Focused CLI session tests plus Brew status, canonical /query persistence, operation/message correlation, composition, runtime, regression, clean diff review, and exact-revision evidence.",
-    "falsifier": "Legacy status/resumedAt/active-session.json state is still written, canonical records are mutated incompatibly, Brew status fabricates an active session, query correlation regresses, or evidence is not tied to the exact accepted revision."
-  },
-  "local_evidence": {
-    "command_hash": "AE1C8619D58E17AD16E7BFFC55100AA8A1DE1BD2F243FAE61C202C6A105D29CA",
-    "workspace": "G:\\Developments\\38_Brew_Creative_Agent\\brew",
-    "branch": "agent/canonical-runtime-operation-authority-20260812",
-    "head": "486a9b433ead59a470e511236139e8201ed292ba",
-    "upstream": "origin/agent/canonical-runtime-operation-authority-20260812",
-    "ahead": 0,
-    "behind": 0,
-    "origin_main": "a6342ff3fc0943ade2cc8bde62d79f94952f24ce",
-    "worktrees": 1,
-    "working_tree": "DIRTY"
+    "question": "Which remaining auxiliary/legacy surfaces are actually reachable from supported startup/request paths, and which of those independently own semantic decisions?",
+    "observable": "Caller/import/route trace from declared startup to each mixed or compatibility module, with semantic decision and user-visible consequence classified separately.",
+    "falsifier": "A module classified as dead has a supported runtime consumer, or a module classified as execution-only changes user-intent/semantic next-action selection."
   }
 }
