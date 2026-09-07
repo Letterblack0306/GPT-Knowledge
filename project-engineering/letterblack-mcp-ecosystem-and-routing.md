@@ -4,6 +4,26 @@ Updated: 2026-09-01
 
 ## Purpose
 
+## Snapshot scope guard
+
+The live-process findings in this document are a **2026-09-01 snapshot**. They are historical evidence unless the process/runtime audit is freshly rerun. Do not use the listed `mcp-filesystem-server.exe`, Context7 MCP, Playwright MCP, port, or process-exclusivity results as current-state claims on a later date without new runtime evidence.
+
+This document is also **not the current LBE product-status map**. For LBE product role, `C:\LBE-TUI-Lab`, LBE CLI/TUI, bundled Cline mechanics, Rust/Ratatui role, ChildAgentRun/subagent state, product verifier, visual-shell gate, or terminal acceptance, route first to:
+
+```text
+project-engineering/projects/lbe-persistent-agent-wall-status.md
+project-engineering/projects/lbe-persistent-agent-c5-r7-acceptance-routing.md
+```
+
+Current LBE product-role invariant:
+
+```text
+LBE CLI/TUI = user-facing product
+Cline       = embedded provider/model/reasoning/delegated-agent mechanics
+LBE runtime = sole session/governance/tool/evidence/completion authority
+Rust        = reference/integration client
+```
+
 This document defines the current Letterblack local-agent ecosystem, ownership boundaries, client routing direction, and the distinction between configuration validity and live runtime validity.
 
 It is a routing/ownership reference, not runtime truth. Current local source, registered MCP tools, live process state, validation receipts, repository state, and runtime evidence outrank this document.
