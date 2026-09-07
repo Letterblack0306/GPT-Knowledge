@@ -2,12 +2,24 @@
 
 ## Authority and routing
 
-- Reconciled projection: 2026-09-05
+- Reconciled projection: 2026-09-07
 - Runtime/governance repository: `Letterblack0306/LBE_Presistent_Agent_wall`
-- Rust/Ratatui TUI repository: `Letterblack0306/LBE_Agents_wall_Intigration`
+- LBE product/integration repository: `Letterblack0306/LBE_Agents_wall_Intigration`
 - LBE workspace: `C:\Agents-Memory-Tool-v6-integration`
-- TUI workspace: `C:\LBE-TUI-Lab`
+- Product/integration workspace: `C:\LBE-TUI-Lab`
 - Authority: this document is a GPT-Knowledge projection only. Current LBE source, machine governance, workspace/runtime evidence and raw acceptance records remain authoritative.
+
+## Current canonical remote heads
+
+```text
+LBE runtime/governance main:
+03a90ce22222c0e3ab4fd1c9a9629b3a1f7daa7e
+
+LBE product/integration main:
+29a6d32148186401ca764348d68a1bca9b31aee7
+```
+
+These are remote-source identity checkpoints only. Current local workspace/runtime evidence still outranks them for unpublished local state.
 
 ## Core architecture
 
@@ -104,15 +116,41 @@ git diff --check                      PASS with line-ending warnings only
 
 The earlier full-suite timeout uncertainty is resolved; the full Python suite subsequently completed successfully.
 
-## Remaining unproven product-level slices
+## Current product gates
 
-Do not promote the bounded live acceptance into a claim that every TUI workflow is complete.
+Do not promote source implementation, focused tests, or historical acceptance into a claim that the current product shell or installed product is accepted.
 
-Still requiring separate proof:
+Current canonical product-verifier state places **structural LBE visual differentiation before interactive TTY acceptance**.
 
-1. write-capable governed mutation through the full editor → diff review → approval → `workspace.patch` → validation → receipt workflow;
-2. installed-package interactive TUI acceptance;
-3. any broader product-level completion claim not directly covered by current evidence.
+```text
+CLINE_LBE_STRUCTURAL_VISUAL_DIFFERENTIATION
+    status: FAIL_CURRENT_IMPLEMENTATION
+    ↓
+INTERACTIVE_CLINE_TTY_ACCEPTANCE
+    status: PENDING_AFTER_VISUAL_REWORK
+    ↓
+parent continuation / deep receipt-provider correlation
+    OPEN unless separately proven
+    ↓
+canonical verifier prove
+    OPEN unless current harness result is captured
+    ↓
+FINAL_INSTALLED_END_TO_END
+    LOCKED
+```
+
+The structural UI gate requires the active product surface to be more than a renamed/recolored Cline landing page. The accepted target is the minimal LBE runtime shell:
+
+- persistent LBE/workspace/model/mode/git/context hierarchy;
+- one conversation/execution timeline;
+- bounded three-line active raw process viewport;
+- click-to-expand emitted process output;
+- completed-process auto-collapse to one line;
+- `[I]` composer identity;
+- bouncing activity indicator;
+- context-usage projection.
+
+A real Windows terminal/TTY run remains required after this source-level visual gate passes.
 
 ## Machine-governance note
 
@@ -122,17 +160,18 @@ This GPT-K reconciliation does not invent the current active machine slice. When
 
 ```text
 LBE runtime authority                    ESTABLISHED / GOVERNED
-Rust/Ratatui authority boundary           DEFINED
-Conversational bridge                     COMPLETE for bounded slice
-Live Audit                                PASS
-Live Plan / investigation                 PASS
-Live Runtime / read-only                  PASS
-Governed workspace.read                   PASS
-Receipt/evidence + provider continuation  PASS
-Read-only mutation denial                 PASS
-Full Python regression                    813 PASS
-Rust regression                           148 PASS
-Complete product-level TUI acceptance     NOT YET PROVEN
+LBE CLI/TUI product role                 ESTABLISHED
+Cline embedded mechanics                 ESTABLISHED
+Rust/Ratatui role                        REFERENCE / INTEGRATION
+Child lifecycle authority                PROVEN
+Minimal LBE visual contract              DOCUMENTED
+Current visual structural verifier       FAIL_CURRENT_IMPLEMENTATION
+Interactive Cline TTY acceptance         PENDING AFTER VISUAL REWORK
+Parent continuation                      OPEN / claim-matched proof required
+Deep receipt/provider correlation        OPEN / claim-matched proof required
+Canonical verifier prove                 OPEN unless current harness PASS is captured
+Final installed end-to-end               LOCKED
+Release ready                            NO
 ```
 
 
@@ -213,24 +252,23 @@ A package-integrity PASS still does not fabricate live installed acceptance. Pro
 
 ## Current child-agent integration state
 
-Current local engineering evidence reported on 2026-09-05:
+Current project truth no longer treats the ChildAgentRun owner as absent.
 
 ```text
-existing ChildAgentRun lifecycle owner            PROVEN locally
-child_agent product command seam                  PROVEN locally
-Cline -> LBE spawn admission adapter              IMPLEMENTED / locally tested
-LBE-governed child tool surface                   LOCALLY TESTED
-native Cline child tools disabled in seam         LOCALLY TESTED
-recursive spawn default denial                    LOCALLY TESTED
-canonical LBE child identity chain                LOCALLY TESTED
-real running-child cancellation                   UNVERIFIED
-child ToolReceipt/evidence end-to-end             NOT PROVEN
-parent continuation from persisted child result   NOT PROVEN
-installed live child spawn                        NOT PROVEN
-full subagent feature                             NOT APPROVED
+ChildAgentRun lifecycle owner                         PROVEN
+parent/child lineage and lifecycle events             PROVEN
+child_agent product command seam                      IMPLEMENTED / accepted in current architecture
+Cline delegated-agent mechanics                       ESTABLISHED reuse seam
+LBE-governed child capability boundary                ESTABLISHED design/implementation direction
+native Cline child-tool authority                     FORBIDDEN
+recursive spawn default                               DENY unless explicitly LBE-authorized
+
+parent continuation from persisted child result       OPEN unless separately proven
+deep provider/LBE/operation/receipt correlation       OPEN unless separately proven
+installed parent→child→parent acceptance               NOT YET ACCEPTED
 ```
 
-Important repository-state qualifier: the verifier update above is on canonical GitHub `main`, but the newest child-agent backend/client implementation was developed in dirty/diverged local workspaces and must not be represented as published canonical source until reconciled and committed through the repository workflow.
+Do not reopen child lifecycle architecture merely because older history said the owner was absent. That statement was corrected after direct inspection of the existing memory/operational-history owner.
 
 ## Verification invariant
 
