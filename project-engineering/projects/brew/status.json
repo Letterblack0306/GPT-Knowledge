@@ -1,131 +1,145 @@
 {
   "schema_version": 1,
   "project": "Brew",
-  "verified_at": "2026-09-07",
+  "verified_at": "2026-09-08",
   "source_repo": "Letterblack0306/brew",
-  "source_branch": "main",
-  "source_head": "579e5ee3648a06533d6dc5b110ae64cb1aaf3490",
-  "pull_request": 442,
-  "pull_request_head": "486a9b433ead59a470e511236139e8201ed292ba",
-  "pull_request_compare_to_main": {
-    "status": "diverged",
-    "ahead_by": 78,
-    "behind_by": 4
+  "source_branch": "agent/canonical-runtime-operation-authority-20260812",
+  "source_head": "2071e47e2dbc27dbe6e4d5dc9f7efc7d987569eb",
+  "default_branch_observed": {
+    "branch": "main",
+    "head": "579e5ee3648a06533d6dc5b110ae64cb1aaf3490"
   },
-  "evidence_level": "STATIC_TRACE_CONFIRMED",
-  "current_status_record": "project-engineering/projects/brew-runtime-architecture-status-2026-09-07.md",
-  "overall_classification": "CANONICAL_QUERY_ALIGNED_AUXILIARY_SEMANTIC_DRIFT_REMAINS_RELEASE_UNPROVEN",
-  "authority_note": "This projection is grounded in current remote Brew main source inspection. It does not prove local worktree state, installed runtime, live behavior, CI, or release readiness.",
-  "proven_static": [
+  "evidence_level": "REPOSITORY_DEEP_RESEARCH_CONFIRMED",
+  "current_status_record": "project-engineering/projects/brew/BREW_DRIFT_RECOVERY_AND_UPSTREAM_REUSE_2026-09-08.md",
+  "overall_classification": "CANONICAL_RUNTIME_DIRECTION_VALID__SECONDARY_AUTHORITY_DRIFT_ACTIVE__REFERENCE_REUSE_REQUIRED__RELEASE_UNPROVEN",
+  "authority_note": "This GPT-K record projects repository research. Current Brew source/runtime, exact local revision, live provider/tool behavior, CI, and installed-runtime evidence outrank it.",
+  "active_gate": {
+    "id": "drift-recovery-reference-reuse",
+    "priority": "P0",
+    "question": "Which reachable Brew surfaces still own semantic decisions or weaker success/failure contracts outside the canonical turn, and what is the smallest owner correction using proven upstream patterns?",
+    "reference_catalogue": [
+      "Hermes: channel/gateway continuity and narrow core",
+      "Cline: provider/model empty-response semantics",
+      "Codex: Session/Turn/Item and typed lifecycle separation",
+      "OpenHands: event-driven agent runtime and observations",
+      "LobeHub: provider/model/MCP/integration registries"
+    ]
+  },
+  "proven_current_findings": [
     {
-      "id": "canonical-query",
-      "title": "Canonical /query reasoning path",
-      "classification": "STATIC_TRACE_CONFIRMED",
-      "detail": "handleCanonicalQueryRoute invokes runTurn with explicit workspaceRoot and stateRoot; brew-runner reports single-agent bounded_multi_step_tool_loop and returns plan:null on the canonical path."
+      "id": "telegram-semantic-bypass",
+      "classification": "ACTIVE_SECOND_RESPONSE_AUTHORITY",
+      "detail": "Telegram contains deterministic natural-language handling before canonical turn execution."
     },
     {
-      "id": "hot-reload-main",
-      "title": "Local-tool hot reload exists on main",
-      "classification": "SOURCE_CONFIRMED",
-      "detail": "Current main is 579e5ee3 test: cover local tool hot reload; the prior feature/test slice is present on remote main."
+      "id": "telegram-empty-success",
+      "classification": "ACTIVE_FALSE_SUCCESS_FALLBACK",
+      "detail": "Telegram contains a successful-sounding empty-response fallback."
     },
     {
-      "id": "loop-infrastructure",
-      "title": "AgentLoop is mechanical infrastructure",
-      "classification": "STATIC_TRACE_CONFIRMED",
-      "detail": "AgentLoop receives injected planner/executor/verifier responsibilities; semantic authority depends on the caller/planner rather than the loop class itself."
+      "id": "provider-tool-empty-success",
+      "classification": "ACTIVE_WEAK_RESPONSE_CONTRACT",
+      "detail": "The provider tool-call no-tool branch can normalize empty content into successful conversation."
+    },
+    {
+      "id": "legacy-start-provider-fabrication",
+      "classification": "COMPATIBILITY_DEBT_FALSE_SUCCESS",
+      "detail": "brew/start.js contains provider fallback behavior contradicted by the canonical runner's placeholder rejection."
+    },
+    {
+      "id": "main-agent-duplicate-response",
+      "classification": "DUPLICATE_SEMANTIC_SURFACE",
+      "detail": "The main-agent response module can convert MODEL_RESPONSE_REQUIRED into successful empty chat, while canonical HTTP aliases already bypass it."
+    },
+    {
+      "id": "whatsapp-fallback-conflation",
+      "classification": "TRANSPORT_ERROR_CONFLATION",
+      "detail": "WhatsApp fixed fallbacks blur no-response, route failure and assistant output."
+    },
+    {
+      "id": "generic-response-fallback",
+      "classification": "INVALID_AGENT_PROVENANCE",
+      "detail": "Generic no-response fallback is represented as agent source rather than runtime/provider failure."
     }
   ],
-  "mixed_or_drift": [
+  "legacy_or_dormant": [
     {
-      "id": "dispatch-handlers",
-      "title": "dispatch-handlers mixes bounded and semantic/legacy surfaces",
-      "classification": "MIXED",
-      "action": "Split bounded capability handlers from workspace-agent and legacy subagent/team compatibility handlers."
+      "id": "response-decision-layer",
+      "classification": "ORPHANED_HARDCODED_RESPONDER",
+      "action": "Prove no supported caller, then quarantine/remove; do not reconnect."
     },
     {
-      "id": "workspace-agent",
-      "title": "Workspace autonomous planner loop",
-      "classification": "AUXILIARY_SEMANTIC_AUTHORITY",
-      "action": "Quarantine/collapse unless intentionally supported as a separate maintenance reasoning surface."
+      "id": "brew-chat-agent",
+      "classification": "ORPHANED_KEYWORD_RESPONDER",
+      "action": "Prove no supported caller, then quarantine/remove."
     },
     {
-      "id": "provider-planner",
-      "title": "Provider-backed auxiliary next-action planner",
-      "classification": "AUXILIARY_SEMANTIC_AUTHORITY",
-      "action": "Fold into canonical reasoning unless explicitly retained as a separate scoped reasoning surface."
+      "id": "scenario-router",
+      "classification": "DORMANT_DETERMINISTIC_SEMANTIC_ROUTER",
+      "action": "Keep outside canonical natural-language reasoning path."
     },
     {
-      "id": "next-action-planner",
-      "title": "Deterministic goal-to-next-action planner",
-      "classification": "AUXILIARY_SEMANTIC_AUTHORITY",
-      "action": "Keep only as bounded fixture/helper if needed; do not classify as execution-only."
-    },
-    {
-      "id": "main-agent",
-      "title": "Parallel intent/intelligence/execution surface",
-      "classification": "PARALLEL_SEMANTIC_SURFACE",
-      "action": "Reconcile with runTurn authority before treating as supported."
-    },
-    {
-      "id": "execution-router",
-      "title": "Message-derived execution-tier routing",
-      "classification": "MIXED_NEEDS_BOUNDARY_REVIEW",
-      "action": "Trace whether fast/semi/safe/full only optimizes an established action or changes semantic planning/execution authority."
-    }
-  ],
-  "compatibility_debt": [
-    {
-      "id": "subagent-engine",
+      "id": "subagent-team",
       "classification": "LEGACY_FAIL_CLOSED",
-      "action": "Remove only after legacy callers are removed and no supported consumer remains."
-    },
-    {
-      "id": "team-coordinator",
-      "classification": "LEGACY_FAIL_CLOSED",
-      "action": "Remove only after legacy callers are removed and no supported consumer remains."
-    },
-    {
-      "id": "agent-dispatch",
-      "classification": "LEGACY_AUXILIARY_REACHABLE_SURFACE",
-      "action": "Do not call dead yet; brew/start.js imports executeDispatch, so complete request/import consumer tracing first."
+      "action": "Do not rebuild; preserve fail-closed behavior until consumers are removed."
     }
   ],
-  "pending": [
+  "upstream_reuse": [
     {
-      "id": "caller-proof",
-      "priority": "P0",
-      "classification": "REQUIRED",
-      "detail": "Finish caller/reachability proof for mixed and compatibility surfaces before deletion."
+      "repo": "NousResearch/hermes-agent",
+      "use": "channel adapters, gateway continuity, tools/skills/memory integration patterns",
+      "decision": "ADAPT_BOUNDARY_NOT_WHOLE_RUNTIME"
     },
     {
-      "id": "pr442-reconciliation",
-      "priority": "P0",
-      "classification": "OPEN",
-      "detail": "PR #442 remains draft and diverged from main by 78 ahead / 4 behind; classify unique, superseded, and still-required changes."
+      "repo": "cline/cline",
+      "use": "provider/model response normalization and genuine empty-response failure/retry semantics",
+      "decision": "REUSE_INVARIANT"
     },
     {
-      "id": "installed-runtime",
-      "priority": "P1",
-      "classification": "UNVERIFIED",
-      "detail": "Installed-runtime identity and cold-start/restart behavior are not proven by this source review."
+      "repo": "openai/codex",
+      "use": "Session/Turn/Item-style lifecycle, typed events, approvals/sandbox/cancellation",
+      "decision": "ADAPT_PROTOCOL_PATTERN"
     },
     {
-      "id": "ci",
-      "priority": "P1",
-      "classification": "UNVERIFIED",
-      "detail": "Current-head GitHub Actions/CI acceptance is not proven by this source review."
+      "repo": "OpenHands/OpenHands",
+      "use": "event-driven reasoning/action/observation runtime, explicit lifecycle state, workspace abstraction",
+      "decision": "ADAPT_RUNTIME_PATTERN"
     },
     {
-      "id": "recovery",
-      "priority": "P1",
-      "classification": "UNVERIFIED",
-      "detail": "Crash/restart/resume and exactly-once consequential execution remain runtime acceptance work."
+      "repo": "lobehub/lobehub",
+      "use": "provider/model registries, readiness, MCP/integration lifecycle, normalized errors",
+      "decision": "ADAPT_REGISTRY_PATTERN"
     }
   ],
-  "next_acceptance": {
-    "question": "Which remaining auxiliary/legacy surfaces are actually reachable from supported startup/request paths, and which of those independently own semantic decisions?",
-    "observable": "Caller/import/route trace from declared startup to each mixed or compatibility module, with semantic decision and user-visible consequence classified separately.",
-    "falsifier": "A module classified as dead has a supported runtime consumer, or a module classified as execution-only changes user-intent/semantic next-action selection."
-  }
+  "next_sequence": [
+    "Unify model-turn success/failure invariant across active adapters",
+    "Remove Telegram natural-language semantic bypass while preserving explicit runtime commands",
+    "Remove Telegram empty-success fallback",
+    "Reject provider tool-call empty/no-tool success",
+    "Make surviving brew/start.js provider failure truthful and migrate consumers",
+    "Prove/quarantine duplicate main-agent and legacy response authorities",
+    "Reconcile one Session/Turn/Item owner",
+    "Prove provider-native tool continuation",
+    "Prove cancel/restart/resume/exactly-once",
+    "Only then expand deferred MCP/skills/scheduler/browser/desktop capabilities",
+    "Installed-runtime and current-head CI acceptance"
+  ],
+  "do_not_recreate": [
+    "channel-specific natural-language agents",
+    "provider-specific semantic routers",
+    "custom empty-response conventions",
+    "a second Session/Turn/Item persistence system",
+    "a second planner/controller outside canonical turn",
+    "parallel tool registries when the canonical capability registry can be extended",
+    "revived multi-agent/subagent/team orchestration without a newly proven requirement"
+  ],
+  "acceptance_falsifiers": [
+    "No ok:true assistant result with empty text and zero model tool activity",
+    "Telegram ordinary natural language invokes canonical turn exactly once",
+    "Telegram explicit runtime commands remain deterministic",
+    "No externally reachable successful [Brew processed] placeholder",
+    "No runtime/provider fallback persisted as agent-authored reasoning",
+    "Supported chat surfaces converge on the canonical turn",
+    "One durable owner for Session/Turn/Item identity"
+  ]
 }
