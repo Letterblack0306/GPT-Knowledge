@@ -250,6 +250,7 @@ let catalog=[];let selected='';
 
 function formatBytes(n){if(n<1024)return n+' B';if(n<1048576)return (n/1024).toFixed(1)+' KB';return (n/1048576).toFixed(1)+' MB'}
 function groupFor(file){
+  if(file.path==='project-engineering/projects/brew/BREW_DRIFT_RECOVERY_AND_UPSTREAM_REUSE_2026-09-08.md')return 'Brew — Start Here';
   if(file.path.startsWith('GPT_Ref/'))return 'GPT Reference (GPT_Ref)';
   if(!file.path.includes('/'))return 'GPT-K Root';
   return file.path.split('/',1)[0];
@@ -259,7 +260,7 @@ function renderList(){
   const visible=catalog.filter(f=>!q||f.path.toLowerCase().includes(q)||(f.repository||'').toLowerCase().includes(q));
   const groups=new Map();
   for(const f of visible){const g=groupFor(f);if(!groups.has(g))groups.set(g,[]);groups.get(g).push(f)}
-  const ordered=[...groups.entries()].sort(([a],[b])=>a==='GPT Reference (GPT_Ref)'?-1:b==='GPT Reference (GPT_Ref)'?1:a.localeCompare(b));
+  const ordered=[...groups.entries()].sort(([a],[b])=>a==='Brew — Start Here'?-1:b==='Brew — Start Here'?1:a==='GPT Reference (GPT_Ref)'?-1:b==='GPT Reference (GPT_Ref)'?1:a.localeCompare(b));
   const nodes=[];
   for(const [group,items] of ordered){
     const label=document.createElement('div');label.className='group-label';label.textContent=group;nodes.push(label);
@@ -281,7 +282,7 @@ searchEl.addEventListener('input',renderList);
 fetch('/catalog.json',{cache:'no-store'}).then(r=>r.json()).then(data=>{
   catalog=Array.isArray(data.files)?data.files:[];renderList();
   const requested=new URL(location.href).searchParams.get('file');
-  const initial=catalog.find(f=>f.path===requested)||catalog.find(f=>f.path==='GPT_Ref/GPT_REF.md')||catalog.find(f=>f.path==='000_START_HERE.md')||catalog[0];
+  const initial=catalog.find(f=>f.path===requested)||catalog.find(f=>f.path==='project-engineering/projects/brew/BREW_DRIFT_RECOVERY_AND_UPSTREAM_REUSE_2026-09-08.md')||catalog.find(f=>f.path==='GPT_Ref/GPT_REF.md')||catalog.find(f=>f.path==='000_START_HERE.md')||catalog[0];
   if(initial)openFile(initial,false);
 }).catch(err=>{filesEl.textContent='Catalog unavailable: '+err.message});
 </script>
