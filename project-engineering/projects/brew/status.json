@@ -23,7 +23,8 @@
       "Codex: Session/Turn/Item and typed lifecycle separation",
       "OpenHands: event-driven agent runtime and observations",
       "LobeHub: provider/model/MCP/integration registries"
-    ]
+    ],
+    "local_first_falsifier": "Before acting on any revision-sensitive remote finding, prove local HEAD and local file/import state. A mismatch classifies the report as reference evidence only for that finding."
   },
   "proven_current_findings": [
     {
@@ -141,5 +142,14 @@
     "No runtime/provider fallback persisted as agent-authored reasoning",
     "Supported chat surfaces converge on the canonical turn",
     "One durable owner for Session/Turn/Item identity"
-  ]
+  ],
+  "evidence_boundary": {
+    "classification": "REMOTE_REFERENCE_NOT_LOCAL_RUNTIME_PROOF",
+    "rule": "Exact local workspace revision, filesystem, imports, and live runtime evidence outrank remote reference observations for local implementation decisions.",
+    "revision_sensitive_correction": {
+      "remote_observation": "The researched remote architectural revision contains fail-closed subagent-engine.mjs and team-coordinator.mjs.",
+      "local_observation": "The current local checkout reported by the implementation agent still reports those files missing and dispatch-handlers import failure.",
+      "conclusion": "Treat the states as revision-divergent until exact local HEAD/file reconciliation proves otherwise. Do not overwrite local truth with the remote report."
+    }
+  }
 }
