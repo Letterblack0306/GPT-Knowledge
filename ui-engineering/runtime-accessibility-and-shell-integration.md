@@ -75,6 +75,45 @@ UI changes rebuilt on an old branch can silently drop already-proven renderer, e
 4. compare branches and verify the UI branch is a strict descendant;
 5. change only the intended UI-layer files.
 
+## Reference map for agent-product UI sections
+
+When building or repairing an agent-product UI, use upstream references by the actual UI area being implemented. Do not wait for the upstream project name to be mentioned.
+
+| UI section / product area | Reference source | What to study | Typical target behavior |
+| --- | --- | --- | --- |
+| Workspace / project selector | DeepSeek Harness | explicit workspace selection, readiness gating, selected-workspace visibility | user cannot start workspace-bound work against an unknown/unready workspace |
+| AI Providers | DeepSeek Harness + Hermes | runtime provider/model configuration, switching, status projection | current provider/model/config is visible and changes use the active runtime owner |
+| Model Routing / Fallback | Hermes + DeepSeek Harness | provider-neutral model selection and runtime switching | routing reflects runtime truth instead of hard-coded model assumptions |
+| Telegram / Messaging | Hermes + OpenClaw | gateway integration status, messaging onboarding, platform-specific health | configured/reachable/authenticated/healthy state is visible without creating a second agent |
+| Connectors / Integrations | Hermes | integrations hub, per-integration status, migration/import patterns | connector lifecycle and health are visible and tied to the authoritative runtime integration |
+| Integration Lifecycle | Hermes + OpenClaw | setup/onboarding, connect/disconnect, migration, gateway lifecycle | lifecycle state is explicit and recoverable |
+| Runtime / Diagnostics | DeepSeek Harness + Hermes | runtime readiness, approvals, gateway/platform status | operator can see whether the runtime is ready, blocked, awaiting approval, or unhealthy |
+| Safety / Approvals | DeepSeek Harness | user-visible approval boundary and blocked-operation feedback | approval state is visible and actions remain governed |
+| Memory / Skills / Context | Hermes | separation of memory, skills/procedures, project context and integrations | UI does not collapse distinct persistence/knowledge concepts into one ambiguous surface |
+| Setup / Onboarding | OpenClaw | local-first installation, setup and gateway composition | first-run flow establishes required runtime/configuration state before normal use |
+| Advanced JSON / Raw Config | Hermes + DeepSeek Harness | truthful runtime/config projection | raw/advanced views reflect real backend state and keep secrets redacted |
+| Status cards / health indicators | Hermes | platform-specific status separated from configuration | configured != reachable != authenticated != healthy |
+
+For detailed comparative notes, load:
+
+- `ai-agents/studies/agent-harness-reference-sources-2026-09-08.md`
+- `ai-agents/studies/hermes-memory-skills-agent-loop.md` when memory/skills/persistence behavior is in scope
+
+### Active UI-use rule
+
+For a concrete UI gap:
+
+```text
+identify the current UI section
+  -> identify its backend/runtime owner
+  -> select the matching reference row above
+  -> inspect only that upstream pattern
+  -> adapt the smallest useful behavior
+  -> validate UI -> API -> runtime -> visible result
+```
+
+The reference is a design/implementation aid, not authority. Current product source/runtime remains authoritative.
+
 ## Validation sequence
 
 Run structural validation first:
