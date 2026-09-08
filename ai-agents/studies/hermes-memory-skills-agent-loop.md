@@ -4,7 +4,7 @@
 
 - Source project: `NousResearch/hermes-agent`
 - Primary sources: official Hermes documentation and repository feature/reference docs
-- Last reviewed: 2026-08-07
+- Last reviewed: 2026-09-08
 - Confidence: high for documented behavior
 - Applies to: persistent agents, skills, memory, toolsets, delegation, context discovery, messaging continuity
 
@@ -162,6 +162,7 @@ Persistent agent quality comes from disciplined separation of tools, skills, mem
 
 ## Sources
 
+- https://hermes-agent.ai/integrations
 - https://hermes-agent.nousresearch.com/docs/
 - https://hermes-agent.nousresearch.com/docs/user-guide/features/overview/
 - https://hermes-agent.nousresearch.com/docs/user-guide/features/tools/
