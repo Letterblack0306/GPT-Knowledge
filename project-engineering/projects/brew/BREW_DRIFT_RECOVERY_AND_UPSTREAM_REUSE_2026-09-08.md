@@ -16,9 +16,34 @@ current Brew runtime/source evidence
 
 ## Current repository refs observed during the audit
 
-- Brew default branch `main`: `579e5ee3648a06533d6dc5b110ae64cb1aaf3490`
-- Brew active architectural branch `agent/canonical-runtime-operation-authority-20260812`: `2071e47e2dbc27dbe6e4d5dc9f7efc7d987569eb`
-- The architectural branch is the stronger source for the current canonical-runtime migration. Do not infer installed/local state from this record.
+- Remote Brew default branch observed during research: `main` at `579e5ee3648a06533d6dc5b110ae64cb1aaf3490`
+- Remote architectural branch observed during research: `agent/canonical-runtime-operation-authority-20260812` at `2071e47e2dbc27dbe6e4d5dc9f7efc7d987569eb`
+- These are remote reference observations only. They do not establish the current local checkout revision, file set, installed runtime, or live behavior.
+
+## Evidence-boundary correction
+
+This report is **reference/report evidence, not current local-runtime proof**.
+
+Revision-sensitive findings must be resolved against the exact workspace being changed. In particular:
+
+- the remote architectural revision inspected during research contains fail-closed `subagent-engine.mjs` and `team-coordinator.mjs`;
+- the current local checkout reported by the implementation agent still has those files missing and produces `ERR_MODULE_NOT_FOUND` through `dispatch-handlers.mjs`;
+- therefore the remote finding does **not** invalidate the local failure. It proves only that repository revisions differ;
+- local filesystem/import/runtime evidence remains authoritative for the local workspace until its exact HEAD and file set are independently reconciled with the remote revision.
+
+Required classification:
+
+```text
+REMOTE_REFERENCE_STATE != LOCAL_WORKSPACE_STATE
+
+remote branch evidence:
+  useful for architecture/history/reference comparison
+
+local exact revision + filesystem + runtime:
+  authority for local mutation and acceptance
+```
+
+Do not patch the local workspace based on a remote file's existence until exact-revision reconciliation proves that the file should be present locally.
 
 ## Executive diagnosis
 
