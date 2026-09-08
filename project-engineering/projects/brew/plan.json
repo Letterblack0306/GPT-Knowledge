@@ -1,92 +1,112 @@
 {
   "schema_version": 1,
   "project": "Brew",
-  "purpose": "Structured projection of Brew's current architecture reconciliation and acceptance gates. Navigation state only; live repository/runtime evidence remains authoritative.",
-  "authority_rule": "Current Brew main source, exact local workspace revision, runtime evidence, CI, and project-owned checkpoints outrank this projection.",
-  "updated": "2026-09-07",
+  "purpose": "Structured projection of Brew's canonical-runtime drift recovery, reference reuse, and acceptance gates. Navigation state only; current Brew repository/runtime evidence remains authoritative.",
+  "authority_rule": "Current Brew runtime/source, exact revision, live evidence, CI, and project-owned checkpoints outrank this GPT-K projection. Upstream references challenge implementation design but do not become Brew authority.",
+  "updated": "2026-09-08",
   "source_repo": "Letterblack0306/brew",
-  "source_branch": "main",
-  "source_head": "579e5ee3648a06533d6dc5b110ae64cb1aaf3490",
-  "current_status_record": "project-engineering/projects/brew-runtime-architecture-status-2026-09-07.md",
-  "active_node": "auxiliary-authority-triage",
+  "source_branch": "agent/canonical-runtime-operation-authority-20260812",
+  "source_head": "2071e47e2dbc27dbe6e4d5dc9f7efc7d987569eb",
+  "default_branch_observed": {
+    "branch": "main",
+    "head": "579e5ee3648a06533d6dc5b110ae64cb1aaf3490"
+  },
+  "current_status_record": "project-engineering/projects/brew/BREW_DRIFT_RECOVERY_AND_UPSTREAM_REUSE_2026-09-08.md",
+  "active_node": "drift-recovery-reference-reuse",
   "nodes": [
     {
       "id": "architecture",
       "lane": "Authority",
-      "title": "One reasoning agent and deterministic runtime boundaries",
+      "title": "One reasoning agent and one canonical runtime",
       "status": "proven",
-      "summary": "Current project contract keeps semantic reasoning with the model while runtime owns execution, policy, identity, state, evidence, and recovery."
+      "summary": "Semantic reasoning remains model-owned; runtime owns identity, policy, execution, state, evidence, validation and recovery."
     },
     {
       "id": "canonical-query",
-      "lane": "Closed Static Evidence",
-      "title": "Canonical /query -> runTurn path",
+      "lane": "Authority",
+      "title": "Canonical conversational turn path",
       "status": "proven",
-      "summary": "Current main statically confirms /query invokes runTurn with explicit workspaceRoot/stateRoot and the runner identifies the canonical loop as single-agent."
+      "summary": "Supported HTTP chat aliases converge toward the canonical query/runTurn path; this remains the response authority to preserve."
     },
     {
-      "id": "auxiliary-authority-triage",
+      "id": "drift-recovery-reference-reuse",
       "lane": "Active Gate",
-      "title": "Classify auxiliary semantic and legacy surfaces",
+      "title": "Recover drift and converge on upstream-proven contracts",
       "status": "current",
       "priority": "P0",
-      "summary": "Trace dispatch-handlers, agent-dispatch, workspace-agent, active-read/provider planners, main-agent connector, and execution-router by actual caller/reachability and semantic authority."
+      "summary": "Remove reachable secondary semantic authorities and weaker success/failure contracts. Reuse/adapt Hermes, Cline, Codex, OpenHands and LobeHub patterns instead of recreating agent infrastructure."
     },
     {
-      "id": "execution-router-boundary",
-      "lane": "Architecture Review",
-      "title": "Execution-router semantic boundary",
+      "id": "provider-result-invariant",
+      "lane": "P0 Correctness",
+      "title": "One model-turn success invariant",
       "status": "warning",
       "priority": "P0",
-      "summary": "routeExecution uses optimization mode, keyword matching, and message length. Prove whether tier selection only optimizes an established action or changes semantic planning/execution authority."
+      "summary": "Every active adapter must reject empty assistant output when there is no model tool activity and must preserve provider/runtime failures without fabricating assistant text."
     },
     {
-      "id": "legacy-removal",
-      "lane": "Cleanup",
-      "title": "Remove fail-closed legacy subagent/team debt after caller proof",
-      "status": "blocked",
-      "priority": "P1",
-      "summary": "subagent-engine and team-coordinator should remain fail-closed until legacy handlers and supported consumers are removed."
-    },
-    {
-      "id": "pr442-reconcile",
-      "lane": "Repository Authority",
-      "title": "Reconcile PR #442 with current main",
-      "status": "blocked",
+      "id": "telegram-transport-only",
+      "lane": "P0 Correctness",
+      "title": "Telegram is transport, not a second agent",
+      "status": "warning",
       "priority": "P0",
-      "summary": "PR #442 remains draft/diverged: 78 commits ahead and 4 behind current main. Classify unique, superseded, and still-required work before merge/closure."
+      "summary": "Ordinary natural-language Telegram input must reach the canonical turn exactly once; only explicit runtime/transport commands remain deterministic."
     },
     {
-      "id": "tool-revision-integrity",
-      "lane": "Runtime Acceptance",
-      "title": "Dynamic local-tool revision identity",
+      "id": "legacy-response-quarantine",
+      "lane": "P0 Correctness",
+      "title": "Quarantine duplicate response authorities",
       "status": "next",
-      "priority": "P1",
-      "summary": "Hot reload is on main; exact loaded tool/manifest revision should be attributable in execution evidence before stronger dynamic-tool claims."
+      "priority": "P0",
+      "summary": "Prove consumers before retaining main-agent/direct-response, response-decision, brew-chat-agent, scenario-router and other stale semantic surfaces."
     },
     {
-      "id": "cold-start",
-      "lane": "Runtime Acceptance",
-      "title": "Installed cold-start and restart proof",
+      "id": "session-turn-item",
+      "lane": "P1 Runtime",
+      "title": "Canonical Session / Turn / Item lifecycle",
       "status": "next",
       "priority": "P1",
-      "summary": "Prove canonical state root, readiness, runtime truth, clean shutdown, restart, and state rediscovery on the actual installed runtime."
+      "summary": "Adopt Codex/OpenHands-style lifecycle separation without creating a second persistence authority."
+    },
+    {
+      "id": "capability-registry",
+      "lane": "P1 Runtime",
+      "title": "Canonical capability registry and health",
+      "status": "next",
+      "priority": "P1",
+      "summary": "Extend existing Brew capability ownership using Hermes/LobeHub registry patterns; configured is not equivalent to ready."
+    },
+    {
+      "id": "provider-continuation",
+      "lane": "P1 Runtime",
+      "title": "Provider-native tool continuation",
+      "status": "next",
+      "priority": "P1",
+      "summary": "Prove model call -> governed tool -> evidence -> provider continuation -> final non-empty response."
     },
     {
       "id": "recovery",
-      "lane": "Runtime Acceptance",
-      "title": "Cancellation/restart/exactly-once recovery",
+      "lane": "P1 Runtime",
+      "title": "Cancellation / restart / resume / exactly-once",
       "status": "next",
       "priority": "P1",
-      "summary": "Consequential retries and crash/resume behavior need operation-bound live evidence."
+      "summary": "Use explicit identity and runtime events; do not infer recovery or completion from loop termination."
+    },
+    {
+      "id": "deferred-capabilities",
+      "lane": "P2 Recovered Features",
+      "title": "MCP, skills, scheduler, browser/desktop and knowledge expansion",
+      "status": "blocked",
+      "priority": "P2",
+      "summary": "Recover planned capabilities after canonical response/lifecycle authority is stable; adapt upstream patterns rather than adding parallel managers."
     },
     {
       "id": "ci-release",
       "lane": "Release",
-      "title": "Current-head CI and release acceptance",
+      "title": "Installed runtime + current-head CI acceptance",
       "status": "blocked",
       "priority": "LOCKED",
-      "summary": "Do not infer CI, installed runtime, or release readiness from source/focused tests."
+      "summary": "No release claim until installed runtime, live acceptance and current-head CI are proven."
     }
   ],
   "edges": [
@@ -97,41 +117,56 @@
     },
     {
       "from": "canonical-query",
-      "to": "auxiliary-authority-triage",
+      "to": "drift-recovery-reference-reuse",
       "type": "reconciliation"
     },
     {
-      "from": "auxiliary-authority-triage",
-      "to": "execution-router-boundary",
-      "type": "review"
+      "from": "drift-recovery-reference-reuse",
+      "to": "provider-result-invariant",
+      "type": "p0"
     },
     {
-      "from": "auxiliary-authority-triage",
-      "to": "legacy-removal",
-      "type": "caller-proof"
+      "from": "drift-recovery-reference-reuse",
+      "to": "telegram-transport-only",
+      "type": "p0"
     },
     {
-      "from": "auxiliary-authority-triage",
-      "to": "pr442-reconcile",
-      "type": "authority"
+      "from": "provider-result-invariant",
+      "to": "legacy-response-quarantine",
+      "type": "cleanup"
     },
     {
-      "from": "pr442-reconcile",
-      "to": "tool-revision-integrity",
-      "type": "acceptance"
+      "from": "telegram-transport-only",
+      "to": "legacy-response-quarantine",
+      "type": "cleanup"
     },
     {
-      "from": "tool-revision-integrity",
-      "to": "cold-start",
-      "type": "acceptance"
+      "from": "legacy-response-quarantine",
+      "to": "session-turn-item",
+      "type": "convergence"
     },
     {
-      "from": "cold-start",
+      "from": "session-turn-item",
+      "to": "capability-registry",
+      "type": "runtime"
+    },
+    {
+      "from": "capability-registry",
+      "to": "provider-continuation",
+      "type": "runtime"
+    },
+    {
+      "from": "provider-continuation",
       "to": "recovery",
       "type": "acceptance"
     },
     {
       "from": "recovery",
+      "to": "deferred-capabilities",
+      "type": "unlock"
+    },
+    {
+      "from": "deferred-capabilities",
       "to": "ci-release",
       "type": "acceptance"
     }
