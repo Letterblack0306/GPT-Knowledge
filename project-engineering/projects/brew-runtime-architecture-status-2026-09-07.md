@@ -191,3 +191,346 @@ This review does not prove:
 - that any candidate dead module has zero external/runtime consumers.
 
 Do not promote this static architecture trace into those claims.
+
+
+---
+
+## Runtime validation update — 2026-09-08
+
+### Scope and authority
+
+This section records live/local Brew validation evidence supplied on 2026-09-08 against:
+
+```text
+workspace: G:\Developments\38_Brew_Creative_Agent\brew
+branch: agent/canonical-runtime-operation-authority-20260812
+HEAD: 486a9b433ead59a470e511236139e8201ed292ba
+phase: P2_CANONICAL_SESSION_TURN_ITEM_LIFECYCLE
+mutation state: PATCH_ALLOWED
+```
+
+The local worktree was heavily dirty during this validation. Therefore these results describe the tested local working tree, not pristine HEAD and not remote `main`.
+
+Current source, current local runtime, exact command receipts, and later repository evidence outrank this dated record.
+
+### LoopTool / relay evidence rule reinforced
+
+The browser relay repeatedly imposed a foreground execution limit of roughly 1.1 seconds. Therefore:
+
+```text
+LoopTool COMMAND STATUS=FAIL
++ EXIT CODE 124
++ TIMED OUT=true
+```
+
+must not be interpreted automatically as a Brew failure.
+
+When the child test/runtime command emitted a complete semantic result before the relay timeout, that semantic result was used. When no semantic result existed, the check remained `INCONCLUSIVE / TEST_HARNESS_TIMEOUT`.
+
+A detached-command wrapper was introduced for long-running build/deploy/runtime validation. An early wrapper incorrectly captured stale `%ERRORLEVEL%`; later commands corrected this by using `cmd /V:ON` and delayed expansion `!ERRORLEVEL!`. Do not reuse the stale-exit-code pattern.
+
+### Focused P2 SessionService acceptance
+
+The current continuation-gate question was:
+
+> Does the bounded CLI SessionService repair remove the obsolete runtime-memory session lifecycle writer while preserving canonical session reads, status behavior, /query persistence, and existing operation/checkpoint identity semantics?
+
+Focused evidence:
+
+```text
+scripts/cli-session-authority.test.mjs
+tests: 2
+pass: 2
+fail: 0
+```
+
+Proven behavior:
+
+- SessionService list/get read the canonical session store.
+- active/resume remain explicit unsupported boundaries.
+- obsolete legacy session lifecycle state is not created.
+
+Additional focused acceptance:
+
+```text
+scripts/canonical-query-agent-route.test.mjs
+scripts/canonical-query-gateway.test.mjs
+scripts/agent-loop-checkpoint-integrity.test.mjs
+scripts/agent-tool-loop-operation-evidence.test.mjs
+
+tests: 17
+pass: 17
+fail: 0
+```
+
+This proves the tested local working tree preserved:
+
+- canonical `/query` route behavior;
+- active gateway `/query` dispatch;
+- checkpoint integrity and identity handling;
+- canonical session / operation / job / iteration identity propagation;
+- tool request/receipt identity continuity;
+- evidence-reference validation;
+- recovery-checkpoint behavior.
+
+Classification: **FOCUSED TEST PROOF — PASS**.
+
+### Wider regression evidence
+
+A wider bounded regression run reported:
+
+```text
+tests: 23
+pass: 23
+fail: 0
+cancelled: 0
+skipped: 0
+```
+
+The outer relay later returned timeout/124, but Node had already emitted a complete passing test summary. Treat the Brew test result as PASS and the outer relay status as a harness artifact.
+
+Covered areas included:
+
+- canonical startup excluding retired dispatch modules;
+- current bounded dispatch/capability surface;
+- canonical capability catalog;
+- UI/gateway canonical capability route;
+- no semantic keyword routing before canonical Brew turn;
+- canonical chat/query delegation;
+- provider prompt/context contract;
+- provider selection truth;
+- UI turn/ingress contracts.
+
+Classification: **WIDER REGRESSION — PASS for the executed test set**.
+
+### Guards and static/runtime-structure checks
+
+Verified PASS results:
+
+```text
+npm run check:runtime
+npm run guard:resource-policy
+npm run guard:event-contract
+npm run guard:import-boundaries
+npm run test:runtime-reachability
+npm run audit:runtime-reachability
+npm run guard:runtime-reachability
+npm run test:runtime-observability-route
+npm run guard:startup-workspace
+```
+
+Notable evidence:
+
+```text
+resource-policy registry entries: 48
+resource-policy invalid declarations: 0
+resource-policy warnings: 0
+
+event-contract findings: 0
+
+runtime reachability:
+  entrypoints found: 4/4
+  edgeCount: 320
+  unresolvedImports: 0
+  activeLegacyAuthority: 0
+  legacyCompatibilityImports: 0
+  legacyCompatibilitySurfaces: 0
+```
+
+The reachability audit still explicitly warns that non-literal dynamic imports require separate runtime inspection.
+
+### UI production build
+
+The first foreground build attempts were killed by the relay timeout and were correctly treated as inconclusive.
+
+A detached Vite build later emitted:
+
+```text
+vite v8.1.4
+1764 modules transformed
+built in 373-412ms
+```
+
+with a valid production bundle under `runtime-ui/`.
+
+The build emitted a non-blocking Node deprecation warning for `module.register()`.
+
+Classification: **UI BUILD — PASS**.
+
+### Installed-runtime deployment defect 1: Git hook prepare script
+
+Initial installed-runtime health failed because:
+
+```text
+C:\Users\prave\.Brew\workspace
+```
+
+did not contain:
+
+```text
+brew\agent\orchestrator-server.mjs
+```
+
+The repo-owned deploy path was then exercised.
+
+The first real deployment failed during `npm install` in the deployed non-Git workspace:
+
+```text
+package.json prepare
+  -> node scripts/install-continuation-git-hooks.mjs
+  -> git rev-parse --is-inside-work-tree
+  -> fatal: not a git repository
+  -> npm install fails
+  -> deployment aborts
+```
+
+Proven defective owner:
+
+```text
+scripts/install-continuation-git-hooks.mjs
+```
+
+The local working-tree repair changed behavior to:
+
+```text
+CI=true            -> skip hook installation
+Git checkout       -> configure core.hooksPath=.githooks
+non-Git deployment -> skip hook installation successfully
+```
+
+Focused acceptance:
+
+```text
+SOURCE_EXIT=0
+HOOKS_PATH=.githooks
+NONGIT_EXIT=0
+GIT_HOOK_INSTALLER_ACCEPTANCE=PASS
+```
+
+After this repair, detached deployment completed successfully:
+
+```text
+runtime syntax: PASS
+UI build: PASS
+npm install: PASS
+0 vulnerabilities
+command policy synchronized
+Deployment complete
+DEPLOY_VERDICT=PROVEN_PASS
+```
+
+Classification: **DEPLOYMENT BLOCKER 1 — PROVEN, REPAIRED LOCALLY, FOCUSED ACCEPTANCE PASS, DEPLOYMENT PASS**.
+
+### Installed-runtime startup defect 2: workspace retrieval index assumed Git
+
+After successful deployment, `runtime:health` still failed.
+
+The generated runtime-health report proved the runtime reached:
+
+```text
+Brew running on http://127.0.0.1:8600
+```
+
+and then aborted during workspace-index bootstrap:
+
+```text
+ensureWorkspaceIndexReady()
+  -> WorkspaceRetrievalIndex.rebuild()
+  -> loadGitKnownFiles()
+  -> git ls-files --cached --others --exclude-standard
+  -> fatal: not a git repository
+  -> runtime startup fails
+```
+
+Proven defective owner:
+
+```text
+brew/agents/workspace-agent/core/workspace-retrieval-index.mjs
+```
+
+The local working-tree repair preserved Git-backed discovery and added a non-Git fallback:
+
+```text
+Git workspace
+  -> git ls-files
+  -> existing index filters
+
+non-Git deployed workspace
+  -> filesystem enumeration
+  -> same isIndexablePath()/isTextFile() filtering
+  -> same WorkspaceRetrievalIndex owner
+```
+
+Focused non-Git acceptance proved:
+
+```text
+rebuild ok: true
+knownFiles: 3
+indexed: 2
+skipped: 1
+failed: 0
+integrity.ok: true
+retrieval.mode: lexical
+```
+
+The expected initial Git probe still printed a non-fatal "not a git repository" message to stderr before fallback; this is noise, not a functional failure.
+
+Existing regression acceptance:
+
+```text
+runtime bootstrap repairs the workspace retrieval index before readiness
+tests: 1
+pass: 1
+fail: 0
+```
+
+Classification: **RUNTIME BLOCKER 2 — PROVEN, REPAIRED LOCALLY, FOCUSED NON-GIT ACCEPTANCE PASS, EXISTING REGRESSION PASS**.
+
+### Current unresolved boundary
+
+A third detached redeploy was launched after the workspace-index repair:
+
+```text
+brew-deploy3
+```
+
+but the LoopTool relay itself returned a timeout before a completion result was retrieved.
+
+Therefore the current authoritative classification is:
+
+```text
+source/static checks                              PASS
+focused SessionService acceptance                 PASS
+focused query/checkpoint/operation acceptance     PASS
+wider executed regression set                     PASS
+resource/event/import/startup guards              PASS
+runtime reachability static audit/enforcement     PASS
+runtime observability route tests                 PASS
+UI production build                               PASS
+deployment blocker 1 repair                       FOCUSED PASS
+deployment after blocker 1                        PROVEN PASS
+runtime blocker 2 repair                          FOCUSED PASS
+runtime blocker 2 existing regression             PASS
+
+redeploy after blocker 2                          INCONCLUSIVE / HARNESS TIMEOUT
+live runtime health after blocker 2 redeploy      NOT YET PROVEN
+runtime:truth                                      NOT YET RUN
+runtime:query                                      NOT YET RUN
+relay:check                                        NOT YET RUN
+runtime:browser-truth                              NOT YET RUN
+browser:evidence                                   NOT YET RUN
+full Brew end-to-end verdict                       NOT PROVEN
+```
+
+Do not claim Brew is end-to-end complete until the patched runtime is successfully redeployed and live runtime, canonical query, relay, and browser evidence layers all pass.
+
+### Repository-state warning
+
+The two local repairs above were made in the dirty local Brew worktree during evidence-driven debugging:
+
+```text
+scripts/install-continuation-git-hooks.mjs
+brew/agents/workspace-agent/core/workspace-retrieval-index.mjs
+```
+
+This GPT-K record does not prove that those repairs were committed or pushed to the Brew repository. GitHub/repository truth must be checked separately before treating either repair as durable project truth.
