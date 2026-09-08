@@ -52,7 +52,7 @@ Use the most current applicable evidence in this order:
 
 BirdEye is the local shared capability layer for indexed workspace evidence, GPT-Knowledge, skills, and memory. Consumers should use the shared MCP capability rather than implementing agent-specific copies of the same reference logic.
 
-Expected reference flow:
+Reference flow:
 
 ```text
 agent / client
@@ -62,6 +62,13 @@ agent / client
   -> expand only when required
   -> reason / act using current evidence
 ```
+
+Current BirdEye MCP access already supports this without a new agent-specific MCP tool:
+
+- Bounded reference query: `birdeye_search` with `roots="gpt-knowledge"` and `path_prefix="GPT_Ref/"`.
+- Complete reference read when explicitly needed: `knowledge_read` with `reference="GPT_Ref/GPT_REF.md"`.
+
+The local GPT-Knowledge checkout must contain the current `GPT_Ref/GPT_REF.md` file before BirdEye can index/query it.
 
 ### Skills
 
@@ -88,7 +95,7 @@ Direct reference view:
 
 `https://gpt-knowledge.vercel.app/?file=GPT_Ref/GPT_REF.md`
 
-The base GPT-K Vercel page should land on this document by default so users and agents start from the same reference surface.
+The base GPT-K Vercel page lands on this document by default so users and agents start from the same reference surface.
 
 ## Maintenance rule
 
@@ -102,14 +109,26 @@ When a new canonical project reference, shared capability, authority rule, or im
 
 ## MCP contract
 
-The local MCP layer should expose a dedicated read/query path for this file so every MCP-capable agent can obtain the same first-stop reference without loading all GPT-Knowledge content.
+Use the existing shared BirdEye capabilities rather than creating per-agent MCP ownership.
 
-Desired behavior:
+For normal reference lookup:
 
 ```text
-reference query
-  -> local GPT-Knowledge/GPT_Ref/GPT_REF.md
-  -> bounded matching snippets + path/provenance/hash when available
+birdeye_search(
+  query=<current task/reference need>,
+  roots="gpt-knowledge",
+  path_prefix="GPT_Ref/"
+)
 ```
 
-If no query is supplied, the MCP reference capability may return the complete compact `GPT_REF.md` document.
+This should return only relevant bounded snippets from the reference document.
+
+When the complete compact reference document is explicitly required:
+
+```text
+knowledge_read(
+  reference="GPT_Ref/GPT_REF.md"
+)
+```
+
+All agents should converge on the same stable local path and the same Vercel reference surface.
