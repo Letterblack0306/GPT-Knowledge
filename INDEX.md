@@ -263,6 +263,10 @@ Load:
 - `letterblack-branding/industrial-dark-ui-system.md` only for Letterblack-branded products
 - project-specific design guidance when present
 
+For agent-product UI sections such as Workspace, AI Providers, Model Routing, Telegram/Messaging, Connectors, Integration Lifecycle, Runtime/Diagnostics, Safety/Approvals, Memory/Skills, Setup/Onboarding, Advanced JSON, or health/status cards, also use the UI reference map inside `ui-engineering/runtime-accessibility-and-shell-integration.md`.
+
+That map routes each UI section to the most relevant DeepSeek Harness, OpenClaw, or Hermes reference pattern and then back to the current product's authoritative backend/runtime owner.
+
 Use the project/feature first-reference route before these when implementing or learning a project feature.
 
 ## Motion design
