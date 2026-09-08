@@ -217,7 +217,7 @@ const html = String.raw`<!doctype html>
 .sidebar{border-right:1px solid var(--line);background:var(--panel);display:flex;flex-direction:column;min-height:0}
 .brand{padding:16px;border-bottom:1px solid var(--line)}.brand strong{display:block;font-size:15px}.brand span{color:var(--muted);font-size:12px}
 .search{padding:12px;border-bottom:1px solid var(--line)}input{width:100%;padding:9px 10px;background:#0b0d10;color:var(--text);border:1px solid var(--line);border-radius:6px;outline:none}
-.files{overflow:auto;padding:6px}.file{display:block;width:100%;border:0;background:transparent;color:#cfd5de;text-align:left;padding:7px 8px;border-radius:5px;cursor:pointer;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:inherit}.file:hover,.file.active{background:#20252d;color:#fff}
+.files{overflow:auto;padding:6px}.group-label{padding:10px 8px 4px;color:#7f8998;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase}.file{display:block;width:100%;border:0;background:transparent;color:#cfd5de;text-align:left;padding:7px 8px;border-radius:5px;cursor:pointer;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:inherit}.file:hover,.file.active{background:#20252d;color:#fff}
 .main{min-width:0;display:flex;flex-direction:column;min-height:0}.top{min-height:58px;padding:11px 16px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:14px}.path{min-width:0;flex:1}.path strong{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.meta{color:var(--muted);font-size:12px}
 .raw{color:var(--accent);text-decoration:none;border:1px solid var(--line);border-radius:6px;padding:7px 9px;white-space:nowrap}.raw[aria-disabled="true"]{visibility:hidden}
 .viewer{overflow:auto;flex:1}.code{margin:0;padding:16px 0;counter-reset:line;min-width:max-content}.line{display:block;padding:0 18px 0 70px;position:relative;white-space:pre}.line:before{counter-increment:line;content:counter(line);position:absolute;left:0;width:54px;text-align:right;color:#5f6977;user-select:none}.empty{padding:24px;color:var(--muted)}
@@ -249,12 +249,23 @@ const codeEl=document.getElementById('code');
 let catalog=[];let selected='';
 
 function formatBytes(n){if(n<1024)return n+' B';if(n<1048576)return (n/1024).toFixed(1)+' KB';return (n/1048576).toFixed(1)+' MB'}
+function groupFor(file){
+  if(file.path.startsWith('GPT_Ref/'))return 'GPT Reference (GPT_Ref)';
+  if(!file.path.includes('/'))return 'GPT-K Root';
+  return file.path.split('/',1)[0];
+}
 function renderList(){
   const q=searchEl.value.trim().toLowerCase();
   const visible=catalog.filter(f=>!q||f.path.toLowerCase().includes(q)||(f.repository||'').toLowerCase().includes(q));
-  filesEl.replaceChildren(...visible.map(f=>{
-    const b=document.createElement('button');b.className='file'+(f.path===selected?' active':'');b.type='button';b.textContent=f.path;b.title=(f.repository?f.repository+' · ':'')+f.path;b.onclick=()=>openFile(f);return b;
-  }));
+  const groups=new Map();
+  for(const f of visible){const g=groupFor(f);if(!groups.has(g))groups.set(g,[]);groups.get(g).push(f)}
+  const ordered=[...groups.entries()].sort(([a],[b])=>a==='GPT Reference (GPT_Ref)'?-1:b==='GPT Reference (GPT_Ref)'?1:a.localeCompare(b));
+  const nodes=[];
+  for(const [group,items] of ordered){
+    const label=document.createElement('div');label.className='group-label';label.textContent=group;nodes.push(label);
+    for(const f of items){const b=document.createElement('button');b.className='file'+(f.path===selected?' active':'');b.type='button';b.textContent=f.path;b.title=(f.repository?f.repository+' · ':'')+f.path;b.onclick=()=>openFile(f);nodes.push(b)}
+  }
+  filesEl.replaceChildren(...nodes);
 }
 async function openFile(file,push=true){
   selected=file.path;renderList();pathEl.textContent=file.path;metaEl.textContent=(file.repository||'source')+' · '+file.language+' · '+formatBytes(file.bytes);
@@ -270,7 +281,7 @@ searchEl.addEventListener('input',renderList);
 fetch('/catalog.json',{cache:'no-store'}).then(r=>r.json()).then(data=>{
   catalog=Array.isArray(data.files)?data.files:[];renderList();
   const requested=new URL(location.href).searchParams.get('file');
-  const initial=catalog.find(f=>f.path===requested)||catalog.find(f=>f.path==='000_START_HERE.md')||catalog[0];
+  const initial=catalog.find(f=>f.path===requested)||catalog.find(f=>f.path==='GPT_Ref/GPT_REF.md')||catalog.find(f=>f.path==='000_START_HERE.md')||catalog[0];
   if(initial)openFile(initial,false);
 }).catch(err=>{filesEl.textContent='Catalog unavailable: '+err.message});
 </script>
