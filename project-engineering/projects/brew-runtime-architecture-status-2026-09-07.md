@@ -534,3 +534,155 @@ brew/agents/workspace-agent/core/workspace-retrieval-index.mjs
 ```
 
 This GPT-K record does not prove that those repairs were committed or pushed to the Brew repository. GitHub/repository truth must be checked separately before treating either repair as durable project truth.
+
+
+---
+
+## GitHub promotion and Telegram approval restoration — 2026-09-08
+
+### Canonical Brew branch updated
+
+Branch:
+
+```text
+agent/canonical-runtime-operation-authority-20260812
+```
+
+Observed branch head after source promotion:
+
+```text
+5fe146e74c0aa2e20158fdd650bf574e596662ad
+```
+
+The branch now contains the two earlier locally proven runtime repairs that were previously absent from GitHub:
+
+1. `scripts/install-continuation-git-hooks.mjs`
+   - non-Git deployed/runtime installs skip local Git hook installation instead of failing `npm install`.
+   - source checkout still configures `core.hooksPath=.githooks`.
+   - promoted commit: `736a22e6c4c847f6d841a9116901ea857374a916`.
+
+2. `brew/agents/workspace-agent/core/workspace-retrieval-index.mjs`
+   - Git workspaces retain `git ls-files` discovery.
+   - non-Git deployed workspaces fall back to bounded filesystem enumeration with the existing indexability/text filters.
+   - promoted commit: `5fe146e74c0aa2e20158fdd650bf574e596662ad`.
+
+These were already focused-tested locally before promotion, but the exact new GitHub branch head has not yet been pulled and revalidated locally. Therefore classify:
+
+```text
+GitHub source promotion: PROVEN
+exact post-pull local validation: PENDING
+post-pull deployed runtime health: PENDING
+```
+
+### Telegram historical-config finding
+
+Repository history before the May 2026 flatten contained:
+
+```text
+TELEGRAM_ENABLED
+TELEGRAM_BOT_TOKEN
+TELEGRAM_CHAT_ID
+TELEGRAM_DELIVERY_MODE
+```
+
+and historical Telegram integration configuration also contained real bot-token values.
+
+Do **not** restore or re-copy historical committed secret values. Treat those historical tokens as secret material and use environment-backed configuration only.
+
+The canonical branch already used the safer names:
+
+```text
+BREW_TELEGRAM_BOT_TOKEN
+BREW_TELEGRAM_OWNER_USER_ID
+BREW_TELEGRAM_ALLOWED_CHAT_IDS
+```
+
+The Telegram config parser has now been updated to preserve compatibility with the historical `TELEGRAM_BOT_TOKEN` / `TELEGRAM_CHAT_ID` environment names without logging or serializing token values.
+
+A safe `.env.example` was added with empty placeholders only.
+
+### Telegram approval authority correction
+
+The canonical branch contained:
+
+- `brew/runtime/telegram/approval-queue.mjs`;
+- `execApprovals` configuration;
+- canonical Telegram runtime;
+- canonical runner `onToolRequest` hook.
+
+But the approval queue was not wired into the active Telegram runtime, and `execApprovals.enabled` was false.
+
+The old P0.4b branch specification required executable Telegram work to stop before execution and wait for a real configured approver.
+
+The new implementation avoids reintroducing legacy keyword/scenario routing. Instead it uses the canonical runner boundary:
+
+```text
+Telegram message
+  -> canonical Brew reasoning turn
+  -> model chooses tool
+  -> runAgentToolLoop.onToolRequest
+  -> Telegram approval queue stages pending job
+  -> Telegram sends:
+       Approval required...
+       Job: <jobId>
+       /approve <jobId>
+       /deny <jobId>
+  -> tool execution is stopped before registry.executeTool()
+```
+
+On `/approve <jobId>`, only a configured approver user ID may authorize the request. The stored original request is replayed through the canonical Telegram turn authority; that approved replay does not install the pre-tool Telegram approval callback again.
+
+This preserves:
+
+```text
+one reasoning authority
+one canonical runner
+approval at the actual pre-tool execution boundary
+no semantic keyword classifier
+no legacy Telegram gateway authority
+```
+
+Telegram-related GitHub commits during this source update included:
+
+```text
+f9bed50dae0146de97a8bb995df9ced5c3743baf  enable configured execution approvals
+177590b3aa3cf7235dd75a659016416bf1db374b  expose canonical pre-tool approval hook
+72444461e0d34815853ee077c3337ac51358570c  gate canonical tool execution on chat approval
+59da340947db25ad51e474cdc2b7e88075a95a8a  wire approval queue into active runtime
+25f49c6bc037cbee6785a3d3d8e60fcbbf94d104  restore safe legacy env configuration fallback
+c1378660313a7bf083f380acfd83426b661b62e3  add focused Telegram approval runtime tests
+fe16b9544f2fa993299c66a561a5143052f1fef4  add legacy Telegram env compatibility test
+ddad48bf9c257c9d3a402ba321928419c93b168d  add safe Telegram env example
+```
+
+### Required next evidence
+
+Do not claim Telegram confirmation is working yet.
+
+Required next sequence:
+
+```text
+local fetch/pull exact canonical branch
+  -> prove local HEAD equals remote branch head
+  -> focused Telegram config parser test
+  -> focused Telegram runtime approval tests
+  -> Telegram canonical-authority / active-entrypoint regressions
+  -> runtime syntax/static guards
+  -> deploy
+  -> runtime:health
+  -> Telegram child ready
+  -> live Telegram request that selects a tool
+  -> receive approval prompt in Telegram
+  -> /approve <jobId>
+  -> prove tool executes only after approval
+  -> final response returns to originating Telegram chat
+```
+
+Until that sequence completes:
+
+```text
+Telegram source wiring: IMPLEMENTED IN GITHUB
+Telegram focused tests on new branch head: NOT YET RUN LOCALLY
+Telegram live confirmation message: NOT YET PROVEN
+Brew full end-to-end completion: NOT PROVEN
+```
