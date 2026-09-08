@@ -200,6 +200,12 @@ Agent reports done too early
 
 Only after choosing the method should a source implementation be consulted, for example Aider for repo-map implementation ideas, Claude Code for interactive investigation patterns, Codex for execution/approval patterns, Hermes for persistence/skills, LobeHub for provider/knowledge registries, or OpenHands for event-driven autonomous runtime patterns.
 
+For current comparative references covering DeepSeek Harness workspace/model/operator flows, OpenClaw local/personal-agent product composition, and Hermes messaging/integration/runtime patterns, load only when those concrete upstream examples are relevant:
+
+- `ai-agents/studies/agent-harness-reference-sources-2026-09-08.md`
+
+This is source-specific research provenance. It does not override the active target project's architecture or runtime evidence.
+
 ## LM Studio or local-provider work
 
 Load:
