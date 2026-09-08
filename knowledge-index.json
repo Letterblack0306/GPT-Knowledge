@@ -468,7 +468,22 @@
         "renderer",
         "navigation",
         "panel",
-        "electron ui"
+        "electron ui",
+        "workspace selector",
+        "AI Providers",
+        "provider settings",
+        "model routing",
+        "fallback chain",
+        "Telegram settings",
+        "messaging settings",
+        "connectors",
+        "integration lifecycle",
+        "runtime diagnostics",
+        "safety approvals",
+        "memory skills UI",
+        "setup onboarding",
+        "advanced JSON",
+        "health status card"
       ],
       "canonical": [
         "ui-engineering/runtime-accessibility-and-shell-integration.md"
@@ -479,6 +494,10 @@
         ],
         "letterblack-branding": [
           "letterblack-branding/industrial-dark-ui-system.md"
+        ],
+        "agent-harness-ui-references": [
+          "ai-agents/studies/agent-harness-reference-sources-2026-09-08.md",
+          "ai-agents/studies/hermes-memory-skills-agent-loop.md"
         ]
       }
     },
@@ -578,6 +597,7 @@
     "Stop loading knowledge once there is enough context to inspect the live workspace/runtime.",
     "Project-specific guidance and live runtime evidence take precedence over this routing metadata.",
     "If no domain matches confidently, inspect the project first rather than loading unrelated knowledge.",
-    "When a Brew gap concerns workspace readiness, provider/model settings, Telegram or messaging status/config, local-agent onboarding, integration health, memory/skills/context boundaries, or persistent-agent operator flows, consult ai-agents/studies/agent-harness-reference-sources-2026-09-08.md after identifying the live Brew owner. Use the matching DeepSeek Harness, OpenClaw, or Hermes pattern as an implementation candidate, not merely a citation, then validate the real Brew path."
+    "When a Brew gap concerns workspace readiness, provider/model settings, Telegram or messaging status/config, local-agent onboarding, integration health, memory/skills/context boundaries, or persistent-agent operator flows, consult ai-agents/studies/agent-harness-reference-sources-2026-09-08.md after identifying the live Brew owner. Use the matching DeepSeek Harness, OpenClaw, or Hermes pattern as an implementation candidate, not merely a citation, then validate the real Brew path.",
+    "For agent-product UI work, map the requested section before loading references: Workspace -> DeepSeek Harness; AI Providers/Model Routing -> DeepSeek Harness + Hermes; Telegram/Messaging -> Hermes + OpenClaw; Connectors/Integration Lifecycle -> Hermes; Runtime/Diagnostics/Safety -> DeepSeek Harness + Hermes; Memory/Skills/Context -> Hermes; Setup/Onboarding -> OpenClaw; Advanced JSON/status cards -> Hermes + DeepSeek Harness. Use ui-engineering/runtime-accessibility-and-shell-integration.md as the UI map, then inspect the live product owner and implement only the matching behavior."
   ]
 }
