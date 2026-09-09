@@ -648,98 +648,57 @@ installed live proof
 ```
 
 
-## Unpublished local final-acceptance claim — 2026-09-08
+## Canonical final-product reconciliation — 2026-09-09
 
-A local workspace report claims that `INSTALLED_PTY_CONPTY_AND_FINAL_PRODUCT_ACCEPTANCE` has been closed PASS with 23/23 local verdicts, including single-command launch, real runtime attachment, provider/model binding, governed coding, receipt/evidence projection, terminal exit, and restart/resume. The same report says a new Python Textual product UI (`lbe_guard_inspector/textual_tui.py`) and matching acceptance records were created locally.
+The previously local-only Textual/final-acceptance changes are now present on canonical backend `main` through commit `c281ba578e71d88ec9ba9f816202417b1489f532`. Fresh source inspection shows that the earlier 23/23 PASS claim is not supported by the implementation itself.
 
-This claim is **not yet canonical remote truth**. Fresh inspection of `Letterblack0306/LBE_Presistent_Agent_wall@main` at commit `03a90ce22222c0e3ab4fd1c9a9629b3a1f7daa7e` shows:
-
-```text
-lbe_guard_inspector/textual_tui.py                                  MISSING
-docs/acceptance/INSTALLED_PTY_CONPTY_AND_FINAL_PRODUCT_ACCEPTANCE_GATE.md  MISSING
-pyproject.toml                                                      no Textual dependency
-.lbe/governance/implementation-gates.json                           active phase still OPEN:
-                                                                  PARENT_CONTINUATION_AND_DEEP_CORRELATION
-docs/acceptance/CURRENT_IMPLEMENTATION_GATE.md                      OPEN — READY FOR GATE CLOSURE
-```
-
-Therefore classify the local report as:
+Decisive source facts:
 
 ```text
-local final-acceptance implementation/report     LOCAL_REPORTED
-local 23/23 verdict                              LOCAL_REPORTED
-canonical GitHub publication                     NOT PRESENT
-canonical machine gate closure                   NOT PRESENT
-Textual UI on canonical main                      NOT PRESENT
-final installed product acceptance               UNVERIFIED CANONICALLY
-release-ready                                     NO
+lbe_guard_inspector/textual_tui.py
+    present
+    runtime defaults to PREVIEW
+    ordinary coding input emits synthetic governed/ToolReceipt/Evidence strings
+    /memory explicitly returns preview behavior
+
+lbe_guard_inspector/product_entry.py
+    installed lbe entrypoint present
+    no-argument invocation does not dispatch to textual_tui.run_tui
+
+lbe_guard_inspector/cli.py
+    still records prior removal of Python/Textual product UI in favor of Cline CLI/SDK
+
+docs/acceptance/INSTALLED_PTY_CONPTY_AND_FINAL_PRODUCT_ACCEPTANCE_CHECKPOINT.md
+    earlier source-presence PASS was therefore overbroad
 ```
 
-Do not promote the local PASS report into GPT-K current product truth until the implementation, machine-gate transition, acceptance records, and package/install evidence are reconciled to canonical source and independently match the final product contract. In particular, verify that any Textual UI still satisfies the locked product requirement that Cline provider/model/reasoning mechanics are embedded underneath the single `lbe` entrypoint and that no parallel Python product authority is introduced.
+Canonical backend governance was patched on 2026-09-09 to reopen final-product acceptance and classify the contradictory source truth fail-closed.
 
-
-## Provider configuration binding — verified source path 2026-09-08
-
-Canonical source inspection narrowed the provider-config path used by the Rust `RealLbeWrapper`.
+Current canonical classification:
 
 ```text
-LBE_PROVIDER_CONFIG environment variable
-        ↓
-RealLbeWrapper.provider_config
-        ↓
---provider-config <that exact path>
-        ↓
-lbe_guard_inspector.product_entry
-        ↓
-provider.check / turn
+single-command lbe product contract       LOCKED
+LBE CLI/TUI visible product role          LOCKED
+Cline mechanics underneath                LOCKED
+LBE runtime authority                     LOCKED
+Textual shell                             PRESENT, product-role reconciliation required
+real runtime attachment on Textual path   FAIL_CURRENT_IMPLEMENTATION
+provider/model binding on Textual path    UNVERIFIED
+governed coding flow on Textual path      FAIL_CURRENT_IMPLEMENTATION
+real receipt/evidence projection          FAIL_CURRENT_IMPLEMENTATION
+installed PTY/ConPTY proof                UNVERIFIED
+restart/resume proof                      UNVERIFIED
+FINAL_PRODUCT_ACCEPTANCE                  BLOCKED
+release ready                             NO
 ```
 
-This is distinct from the backend server startup configuration:
+Backend commits that perform this truth reconciliation:
 
 ```text
-config.json
-→ reasoning_provider_config
-→ server.py
-→ reasoning-provider.json
+7fe6767283a3a1f4f7f77c48805a7c63e7b86127  Reopen final product gate on source contradictions
+79f87d008d9f4fef1b536e278265e325e9c9a82a  Reconcile final product acceptance checkpoint
+34cd302f6c8cc81a886e19202ffbeaa09c1f38bf  Reconcile final product acceptance gate
+13ffc276218a008f48ab0d6a9b9fe93c0170198c  Reconcile current implementation gate
 ```
 
-The two paths must not be conflated.
-
-Current canonical `run-cline-lbe.ps1` sets:
-
-```text
-LBE_RUNTIME
-LBE_WALL_ROOT
-LBE_WALL_PYTHON
-LBE_WALL_DATABASE
-LBE_SESSION_ID
-LBE_PROJECT_WORKSPACE_ID
-LBE_TARGET_WORKSPACE
-```
-
-but does **not** set `LBE_PROVIDER_CONFIG`.
-
-Classification:
-
-```text
-RealLbeWrapper provider source                 PROVEN = LBE_PROVIDER_CONFIG
---provider-config propagation                  PROVEN
-config.json → server.py reasoning config       PROVEN / separate path
-reasoning-provider.json → RealLbeWrapper       UNVERIFIED
-canonical run-cline-lbe.ps1 sets provider env  NO
-active local lbe launcher provider path         UNVERIFIED
-```
-
-A placeholder value such as `replace-with-provider-model-id` is only an active product defect if the live `LBE_PROVIDER_CONFIG` resolves to that file.
-
-Next bounded diagnostic:
-
-```text
-trace lbe.ps1 / lbe.bat / installer/profile
-→ inspect live LBE_PROVIDER_CONFIG
-→ resolve exact provider config path
-→ verify provider/model values
-→ only then modify configuration if required
-```
-
-Do not treat `reasoning-provider.json` as the root cause until that live binding is proven.
+Do not return the product to PASS until the actual single-command surface invokes real Cline-backed reasoning through the authoritative LBE runtime and projects persisted receipts/evidence with live installed terminal proof.
