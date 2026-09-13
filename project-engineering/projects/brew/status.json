@@ -1,155 +1,167 @@
 {
   "schema_version": 1,
   "project": "Brew",
-  "verified_at": "2026-09-08",
+  "verified_at": "2026-09-14",
   "source_repo": "Letterblack0306/brew",
-  "source_branch": "agent/canonical-runtime-operation-authority-20260812",
-  "source_head": "2071e47e2dbc27dbe6e4d5dc9f7efc7d987569eb",
+  "source_branch": "main",
+  "source_head": "39da8df909e6e7cc84cf770fcc04c3e959808506",
   "default_branch_observed": {
     "branch": "main",
-    "head": "579e5ee3648a06533d6dc5b110ae64cb1aaf3490"
+    "head": "39da8df909e6e7cc84cf770fcc04c3e959808506"
   },
-  "evidence_level": "REPOSITORY_DEEP_RESEARCH_CONFIRMED",
-  "current_status_record": "project-engineering/projects/brew/BREW_DRIFT_RECOVERY_AND_UPSTREAM_REUSE_2026-09-08.md",
-  "overall_classification": "CANONICAL_RUNTIME_DIRECTION_VALID__SECONDARY_AUTHORITY_DRIFT_ACTIVE__REFERENCE_REUSE_REQUIRED__RELEASE_UNPROVEN",
-  "authority_note": "This GPT-K record projects repository research. Current Brew source/runtime, exact local revision, live provider/tool behavior, CI, and installed-runtime evidence outrank it.",
-  "active_gate": {
-    "id": "drift-recovery-reference-reuse",
-    "priority": "P0",
-    "question": "Which reachable Brew surfaces still own semantic decisions or weaker success/failure contracts outside the canonical turn, and what is the smallest owner correction using proven upstream patterns?",
-    "reference_catalogue": [
-      "Hermes: channel/gateway continuity and narrow core",
-      "Cline: provider/model empty-response semantics",
-      "Codex: Session/Turn/Item and typed lifecycle separation",
-      "OpenHands: event-driven agent runtime and observations",
-      "LobeHub: provider/model/MCP/integration registries"
+  "evidence_level": "LOCAL_REPOSITORY_AND_TEST_EVIDENCE_CONFIRMED",
+  "overall_classification": "MODEL_OWNED_REASONING_PATH_ESTABLISHED__SEMANTIC_TOOL_PRESELECTION_REMOVED__FULL_RUNTIME_PROOF_STILL_PENDING",
+  "authority_note": "This GPT-K record reflects verified Brew repository state and local test evidence through 2026-09-14. Current source/runtime, exact local revision, live provider/tool behavior, CI, and installed-runtime evidence continue to outrank this record.",
+  "canonical_architecture": {
+    "semantic_owner": "ONE_REASONING_MODEL",
+    "flow": [
+      "user_request",
+      "reasoning_model",
+      "governed_executable_tool_registry",
+      "policy_and_permission_checks",
+      "tool_execution",
+      "receipt_and_evidence_return",
+      "same_reasoning_model_decides_next_step",
+      "verification",
+      "final_answer"
     ],
-    "local_first_falsifier": "Before acting on any revision-sensitive remote finding, prove local HEAD and local file/import state. A mismatch classifies the report as reference evidence only for that finding."
+    "runtime_deterministic_owners": [
+      "security",
+      "permissions",
+      "workspace_containment",
+      "approvals_and_policy",
+      "schema_validation",
+      "tool_execution",
+      "receipts",
+      "persistence_checkpoints_and_recovery",
+      "verification"
+    ],
+    "forbidden_semantic_authorities": [
+      "request_intent_classifier_before_model",
+      "scenario_router_for_ordinary_natural_language",
+      "heuristic_task_tool_preselection",
+      "second_planner_or_controller_outside_canonical_turn",
+      "deterministic_completion_judge_replacing_model_reasoning"
+    ]
   },
-  "proven_current_findings": [
+  "verified_changes": [
     {
-      "id": "telegram-semantic-bypass",
-      "classification": "ACTIVE_SECOND_RESPONSE_AUTHORITY",
-      "detail": "Telegram contains deterministic natural-language handling before canonical turn execution."
+      "commit": "a8f4425cc99e85ce4d769fc76077946d9f8fc5bf",
+      "classification": "PROVEN_SOURCE_AND_TEST",
+      "change": "Removed active request-semantic tool preselection from the runner foundation. The canonical reasoning loop now receives the full governed executable registry instead of a regex/token-scored subset. Deleted the obsolete task-tool-selection module, response-decision-layer, and stale runtime build script; removed stale workflow reference."
     },
     {
-      "id": "telegram-empty-success",
-      "classification": "ACTIVE_FALSE_SUCCESS_FALLBACK",
-      "detail": "Telegram contains a successful-sounding empty-response fallback."
+      "commit": "4a5cb5345b20c335c9c1c359e09bf1bcc6c0439a",
+      "classification": "PROVEN_SOURCE_AND_TEST",
+      "change": "Added regression coverage that rejects semantic tool preselection, semantic router/planner re-entry into the canonical runner, and tool-selection telemetry being used as an execution capability boundary."
     },
     {
-      "id": "provider-tool-empty-success",
-      "classification": "ACTIVE_WEAK_RESPONSE_CONTRACT",
-      "detail": "The provider tool-call no-tool branch can normalize empty content into successful conversation."
-    },
-    {
-      "id": "legacy-start-provider-fabrication",
-      "classification": "COMPATIBILITY_DEBT_FALSE_SUCCESS",
-      "detail": "brew/start.js contains provider fallback behavior contradicted by the canonical runner's placeholder rejection."
-    },
-    {
-      "id": "main-agent-duplicate-response",
-      "classification": "DUPLICATE_SEMANTIC_SURFACE",
-      "detail": "The main-agent response module can convert MODEL_RESPONSE_REQUIRED into successful empty chat, while canonical HTTP aliases already bypass it."
-    },
-    {
-      "id": "whatsapp-fallback-conflation",
-      "classification": "TRANSPORT_ERROR_CONFLATION",
-      "detail": "WhatsApp fixed fallbacks blur no-response, route failure and assistant output."
-    },
-    {
-      "id": "generic-response-fallback",
-      "classification": "INVALID_AGENT_PROVENANCE",
-      "detail": "Generic no-response fallback is represented as agent source rather than runtime/provider failure."
+      "commit": "39da8df909e6e7cc84cf770fcc04c3e959808506",
+      "classification": "PROVEN_SOURCE_AND_TEST",
+      "change": "Aligned the dynamic prompt tool catalogue with the native tool loop by using describeForModel({ includeUnavailable: false }); the model now sees the governed executable tool set consistently in both context and native tool schemas."
     }
   ],
-  "legacy_or_dormant": [
+  "canonical_runtime_findings": [
     {
-      "id": "response-decision-layer",
-      "classification": "ORPHANED_HARDCODED_RESPONDER",
-      "action": "Prove no supported caller, then quarantine/remove; do not reconnect."
+      "id": "agent-tool-loop-model-owned",
+      "classification": "PROVEN_SOURCE",
+      "detail": "brew/runtime/agents/agent-tool-loop.mjs sends the governed tool catalogue to the provider, accepts native model tool actions, executes through the registry, returns receipts/evidence to the same loop, and requires evidence-backed finalization after tool use."
     },
     {
-      "id": "brew-chat-agent",
-      "classification": "ORPHANED_KEYWORD_RESPONDER",
-      "action": "Prove no supported caller, then quarantine/remove."
+      "id": "runner-foundation-no-semantic-preselection",
+      "classification": "PROVEN_SOURCE_AND_REGRESSION_TEST",
+      "detail": "prepareRunnerFoundationTurn no longer calls createTaskToolRegistryView or requestHints. It returns the governed executable registry and selectedTools is compatibility telemetry representing all exposed executable tools, not heuristic semantic selection."
     },
     {
-      "id": "scenario-router",
-      "classification": "DORMANT_DETERMINISTIC_SEMANTIC_ROUTER",
-      "action": "Keep outside canonical natural-language reasoning path."
+      "id": "project-registry-governance",
+      "classification": "PROVEN_SOURCE",
+      "detail": "Project registry filtering remains a deterministic permission/configuration boundary over allowed or disabled tools and does not interpret user request semantics."
     },
     {
-      "id": "subagent-team",
+      "id": "plugin-registry-governance",
+      "classification": "PROVEN_SOURCE",
+      "detail": "Plugin registry composition exposes active plugin tools and delegates execution without taking semantic request ownership."
+    },
+    {
+      "id": "subagent-runtime",
       "classification": "LEGACY_FAIL_CLOSED",
-      "action": "Do not rebuild; preserve fail-closed behavior until consumers are removed."
+      "detail": "The legacy subagent runtime remains intentionally disabled and fail-closed; it is not a live second reasoning authority in the canonical path."
+    },
+    {
+      "id": "scenario-router-natural-language-path",
+      "classification": "RUNTIME_DEAD_FOR_CANONICAL_NATURAL_LANGUAGE_BASED_ON_CURRENT_SOURCE_TRACE",
+      "detail": "The natural-language classifyScenario path was found only in tests. Canonical start.js uses classifyExplicitCommand for explicit slash/URL syntax and ordinary natural language falls through to the LLM reasoning loop."
     }
   ],
-  "upstream_reuse": [
+  "validation": {
+    "full_test_command": "npm test",
+    "suite_count": 107,
+    "test_count": 411,
+    "passed": 411,
+    "failed": 0,
+    "skipped": 0,
+    "todo": 0,
+    "diff_check": "PASS",
+    "classification": "REPOSITORY_TEST_PROOF_NOT_LIVE_END_TO_END_RUNTIME_PROOF"
+  },
+  "branch_cleanup": {
+    "superseded_branch": "audit/model-owned-reasoning-cleanup-20260914",
+    "remote_deleted": true,
+    "reason": "Useful architecture behavior and regression coverage were incorporated into main; direct comparison showed no remaining material architecture gap worth preserving."
+  },
+  "remaining_audit_targets": [
     {
-      "repo": "NousResearch/hermes-agent",
-      "use": "channel adapters, gateway continuity, tools/skills/memory integration patterns",
-      "decision": "ADAPT_BOUNDARY_NOT_WHOLE_RUNTIME"
+      "id": "active-read-agent",
+      "status": "REACHABILITY_NOT_YET_CLASSIFIED",
+      "evidence": "Full test suite still contains 'active read agent owns supported inspection intents'.",
+      "next_check": "Trace imports/callers from canonical runner before changing or deleting."
     },
     {
-      "repo": "cline/cline",
-      "use": "provider/model response normalization and genuine empty-response failure/retry semantics",
-      "decision": "REUSE_INVARIANT"
+      "id": "provider-planner",
+      "status": "REACHABILITY_NOT_YET_CLASSIFIED",
+      "evidence": "Full test suite still contains provider-planner behavior tests.",
+      "next_check": "Determine whether this is canonical, compatibility-only, or dead code."
     },
     {
-      "repo": "openai/codex",
-      "use": "Session/Turn/Item-style lifecycle, typed events, approvals/sandbox/cancellation",
-      "decision": "ADAPT_PROTOCOL_PATTERN"
+      "id": "deterministic-fallback",
+      "status": "REACHABILITY_NOT_YET_CLASSIFIED",
+      "evidence": "Full test suite still exercises bounded deterministic workspace inspection and repeated-provider-action fallback behavior.",
+      "next_check": "Separate safety/recovery mechanics from semantic next-action ownership and remove only semantic authority if active."
     },
     {
-      "repo": "OpenHands/OpenHands",
-      "use": "event-driven reasoning/action/observation runtime, explicit lifecycle state, workspace abstraction",
-      "decision": "ADAPT_RUNTIME_PATTERN"
-    },
-    {
-      "repo": "lobehub/lobehub",
-      "use": "provider/model registries, readiness, MCP/integration lifecycle, normalized errors",
-      "decision": "ADAPT_REGISTRY_PATTERN"
+      "id": "planner-target-sanitization",
+      "status": "REACHABILITY_NOT_YET_CLASSIFIED",
+      "evidence": "Planner target sanitization remains covered by tests.",
+      "next_check": "Classify whether it is a path-safety normalization boundary or part of an active semantic planner."
     }
-  ],
-  "next_sequence": [
-    "Unify model-turn success/failure invariant across active adapters",
-    "Remove Telegram natural-language semantic bypass while preserving explicit runtime commands",
-    "Remove Telegram empty-success fallback",
-    "Reject provider tool-call empty/no-tool success",
-    "Make surviving brew/start.js provider failure truthful and migrate consumers",
-    "Prove/quarantine duplicate main-agent and legacy response authorities",
-    "Reconcile one Session/Turn/Item owner",
-    "Prove provider-native tool continuation",
-    "Prove cancel/restart/resume/exactly-once",
-    "Only then expand deferred MCP/skills/scheduler/browser/desktop capabilities",
-    "Installed-runtime and current-head CI acceptance"
   ],
   "do_not_recreate": [
+    "request-semantic regex or token tool selection before the model",
     "channel-specific natural-language agents",
     "provider-specific semantic routers",
-    "custom empty-response conventions",
-    "a second Session/Turn/Item persistence system",
-    "a second planner/controller outside canonical turn",
-    "parallel tool registries when the canonical capability registry can be extended",
+    "a second planner/controller outside the canonical turn",
+    "deterministic completion authority replacing model evidence judgment",
+    "parallel tool registries when the canonical governed registry can be extended",
     "revived multi-agent/subagent/team orchestration without a newly proven requirement"
   ],
   "acceptance_falsifiers": [
-    "No ok:true assistant result with empty text and zero model tool activity",
-    "Telegram ordinary natural language invokes canonical turn exactly once",
-    "Telegram explicit runtime commands remain deterministic",
-    "No externally reachable successful [Brew processed] placeholder",
-    "No runtime/provider fallback persisted as agent-authored reasoning",
-    "Supported chat surfaces converge on the canonical turn",
-    "One durable owner for Session/Turn/Item identity"
+    "Any ordinary natural-language request is semantically routed before the canonical reasoning model.",
+    "Any heuristic request classifier hides otherwise executable tools from the model.",
+    "selectedTools telemetry becomes an execution boundary or TOOL_NOT_SELECTED_FOR_TASK-style gate.",
+    "Dynamic prompt advertises tools that the native model tool schema marks unavailable.",
+    "A second planner/controller decides semantic next actions outside the canonical reasoning turn.",
+    "A completion claim after tool use cannot be linked to recorded receipt/evidence identity."
   ],
   "evidence_boundary": {
-    "classification": "REMOTE_REFERENCE_NOT_LOCAL_RUNTIME_PROOF",
-    "rule": "Exact local workspace revision, filesystem, imports, and live runtime evidence outrank remote reference observations for local implementation decisions.",
-    "revision_sensitive_correction": {
-      "remote_observation": "The researched remote architectural revision contains fail-closed subagent-engine.mjs and team-coordinator.mjs.",
-      "local_observation": "The current local checkout reported by the implementation agent still reports those files missing and dispatch-handlers import failure.",
-      "conclusion": "Treat the states as revision-divergent until exact local HEAD/file reconciliation proves otherwise. Do not overwrite local truth with the remote report."
-    }
+    "classification": "CURRENT_LOCAL_REPOSITORY_AND_TEST_EVIDENCE__LIVE_RUNTIME_PROOF_INCOMPLETE",
+    "rule": "Repository/source and test evidence establish the current architecture and regressions at commit 39da8df9, but do not by themselves prove installed-runtime, real-provider, browser, adapter, restart/resume, or user-visible end-to-end behavior.",
+    "next_required_runtime_proof": [
+      "one correlated ordinary user request through the canonical runner",
+      "native provider tool selection from the full governed executable catalogue",
+      "tool_call_id to receipt_id to verification evidence linkage",
+      "same-model continuation after the tool result",
+      "truthful failure when execution or verification fails",
+      "no semantic interception by remaining legacy paths"
+    ]
   }
 }
