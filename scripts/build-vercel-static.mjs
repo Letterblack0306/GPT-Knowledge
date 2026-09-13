@@ -219,6 +219,7 @@ const html = String.raw`<!doctype html>
 .search{padding:12px;border-bottom:1px solid var(--line)}input{width:100%;padding:9px 10px;background:#0b0d10;color:var(--text);border:1px solid var(--line);border-radius:6px;outline:none}
 .files{overflow:auto;padding:6px}.group-label{padding:10px 8px 4px;color:#7f8998;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase}.file{display:block;width:100%;border:0;background:transparent;color:#cfd5de;text-align:left;padding:7px 8px;border-radius:5px;cursor:pointer;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:inherit}.file:hover,.file.active{background:#20252d;color:#fff}
 .main{min-width:0;display:flex;flex-direction:column;min-height:0}.top{min-height:58px;padding:11px 16px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:14px}.path{min-width:0;flex:1}.path strong{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.meta{color:var(--muted);font-size:12px}
+.goal{padding:12px 16px;border-bottom:1px solid var(--line);background:#101319;color:#dce3ec}.goal strong{display:block;margin-bottom:3px;color:#fff}.goal span{color:#aab4c2;font-size:12px}
 .raw{color:var(--accent);text-decoration:none;border:1px solid var(--line);border-radius:6px;padding:7px 9px;white-space:nowrap}.raw[aria-disabled="true"]{visibility:hidden}
 .viewer{overflow:auto;flex:1}.code{margin:0;padding:16px 0;counter-reset:line;min-width:max-content}.line{display:block;padding:0 18px 0 70px;position:relative;white-space:pre}.line:before{counter-increment:line;content:counter(line);position:absolute;left:0;width:54px;text-align:right;color:#5f6977;user-select:none}.empty{padding:24px;color:var(--muted)}
 @media(max-width:760px){.shell{grid-template-columns:1fr}.sidebar{height:40vh;border-right:0;border-bottom:1px solid var(--line)}}
@@ -236,6 +237,7 @@ const html = String.raw`<!doctype html>
       <div class="path"><strong id="path">Select a file</strong><span id="meta" class="meta">No execution, editing, upload, save, or mutation controls are exposed.</span></div>
       <a id="raw" class="raw" aria-disabled="true" target="_blank" rel="noopener">Raw text</a>
     </header>
+    <div class="goal"><strong>Brew end-state</strong><span>One persistent reasoning agent receives the request, reasons through the active provider, sees truthful capabilities, chooses tools when useful, executes through runtime policy, continues from real evidence, and returns the result. Features are capabilities — never separate personalities, routers, supervisors, keyword workflows, or decision-makers.</span></div>
     <div class="viewer"><pre id="code" class="code"><span class="empty">Choose a source file from the left.</span></pre></div>
   </main>
 </div>
