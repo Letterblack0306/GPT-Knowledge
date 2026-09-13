@@ -1,0 +1,30 @@
+name: GPT Ref Catalogue
+
+on:
+  pull_request:
+    paths:
+      - 'GPT_Ref/**'
+      - 'scripts/validate-gpt-ref-catalog.mjs'
+      - 'package.json'
+  push:
+    branches: [main]
+    paths:
+      - 'GPT_Ref/**'
+      - 'scripts/validate-gpt-ref-catalog.mjs'
+      - 'package.json'
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npm run test:gpt-ref
