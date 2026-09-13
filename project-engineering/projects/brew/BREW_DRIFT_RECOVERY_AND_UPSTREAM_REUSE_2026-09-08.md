@@ -61,6 +61,10 @@ secondary adapter reimplements a weaker version
 split authority and false-success drift
 ```
 
+## Brew end-state goal
+
+**One persistent Brew agent receives the user request, reasons dynamically through the active provider, sees truthful capabilities, chooses tools when useful, executes through runtime policy, continues from real evidence, and returns the result. Features are capabilities available to Brew — never separate personalities, routers, supervisors, keyword workflows, or decision-makers. Roadmaps are candidate lists; live one-agent behavior is the authority.**
+
 ## P0 active correctness / authority defects
 
 | Responsibility | Brew path | Current classification | Drift |
