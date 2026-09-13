@@ -65,17 +65,98 @@ split authority and false-success drift
 
 **One persistent Brew agent receives the user request, reasons dynamically through the active provider, sees truthful capabilities, chooses tools when useful, executes through runtime policy, continues from real evidence, and returns the result. Features are capabilities available to Brew — never separate personalities, routers, supervisors, keyword workflows, or decision-makers. Roadmaps are candidate lists; live one-agent behavior is the authority.**
 
+## 2026-09-13 governed-memory acceptance update
+
+The governed-memory amendments were implemented in the existing Brew memory/runtime owners without introducing a second agent, semantic router, or parallel memory subsystem.
+
+### Proven changes
+
+- `brew/agent/memory/memory-record.mjs`
+  - `project_fact`, `decision`, and `solution` now require explicit `projectId`.
+  - unbound sessions exclude those project classes from active retrieval.
+  - unauthorized `verified` records are downgraded to `inferred`.
+  - verification-authority metadata is retained.
+- `brew/agent/memory/memory-curation-store.mjs`
+  - `verifyMemory()` requires validation evidence or explicit user confirmation.
+  - `setMemoryState(..., 'verified')` requires the same authority.
+  - verification provenance is retained.
+- `brew/memory-plus/memory-plus-service.mjs`
+  - contract coverage now binds project memory explicitly for reads and writes.
+- `brew/runtime/chat/cross-session-search.mjs`
+  - supports explicit workspace-root filtering and controlled multi-root retrieval.
+  - returned conversations retain workspace provenance.
+- `brew/runtime/agents/runner-foundation-integration.mjs`
+  - passes active workspace and explicit workspace-root scopes into retrieval.
+  - injects project provenance into model context.
+  - marks prior conversation as same-workspace evidence.
+  - allows explicit caller-provided cross-project comparison scopes without semantic routing.
+- `brew/runner/brew-runner.mjs`
+  - persists `workspaceRoot` in session/message metadata.
+  - supplies project/workspace provenance to reasoning context.
+
+### Governed-memory invariant now enforced
+
+```text
+explicit project/workspace binding
+  -> trust-state eligibility
+  -> expiry/supersession exclusion
+  -> same-workspace retrieval by default
+  -> ranking/search
+  -> provenance-bearing model context
+```
+
+Memory remains context, never authority. It cannot grant project identity, workspace authority, provider access, tool availability, permissions, approval, or execution authority. Live runtime/project/capability authorities win over conflicting memory.
+
+### Falsifiers reported passing
+
+- unbound session excludes `project_fact`, `decision`, and `solution`;
+- unauthorized verified project memory cannot remain verified;
+- same-topic evidence from another workspace is excluded by default;
+- workspace provenance is retained on surfaced evidence;
+- existing Telegram natural-language requests still reach the canonical runner;
+- empty provider responses still fail with `EMPTY_PROVIDER_RESPONSE`;
+- no semantic scenario-router remains in the active source tree.
+
+### Validation reported from the exact local implementation pass
+
+```text
+focused memory tests     18 passed / 0 failed
+full npm test            433 passed / 0 failed / 0 cancelled
+full-suite termination   clean (~33s)
+check:blockers           PASS
+runtime imports          PASS
+agent-machine scan       PASS
+```
+
+This evidence is user-supplied local-runtime evidence. GPT-K records it as the current reported state; exact local revision/dirty-state/installed-runtime identity still governs any later mutation or release claim.
+
+### Remaining evidence boundaries
+
+- live Telegram acceptance was not rerun in the governed-memory implementation turn;
+- installed-runtime acceptance remains unproven;
+- CI/release acceptance remains unproven;
+- provider-native continuation/crash-resume remains unproven;
+- explicit natural-language cross-project comparison is implemented at the retrieval API boundary but not yet proven through live conversational acceptance;
+- BirdEye/GPT-Knowledge transport was blocked by `Transport closed` / cache miss;
+- Session/Turn/Item lifecycle work remains intentionally not started.
+
+### Current next-gate rule
+
+Do not select a roadmap feature by name. Complete remaining live acceptance first, then inspect the actual lifecycle/persistence owner gap before beginning Session/Turn/Item work.
+
 ## P0 active correctness / authority defects
 
-| Responsibility | Brew path | Current classification | Drift |
+The table below is historical audit context from 2026-09-08. Several items have since been remediated; the 2026-09-13 acceptance update above is newer evidence and overrides stale classifications here where they conflict.
+
+| Responsibility | Brew path | Audit classification | Drift at audit time |
 | --- | --- | --- | --- |
-| Telegram natural-language handling | `brew/runtime/telegram/telegram-turn.mjs` | ACTIVE_SECOND_RESPONSE_AUTHORITY | Regex/keyword conversational replies bypass the canonical reasoning turn for greetings, identity, tools, known facts, and workspace questions. |
-| Telegram empty completion | `brew/runtime/telegram/telegram-turn.mjs` | ACTIVE_FALSE_SUCCESS_FALLBACK | Can render "The agent completed without a response." instead of preserving an empty-model invariant failure. |
-| Provider tool-call no-tool branch | `brew/runtime/server/gateway-server.mjs` | ACTIVE_WEAK_RESPONSE_CONTRACT | Can return `ok:true` with empty `reply` when no tool call exists. |
-| Legacy provider fabrication | `brew/start.js` | COMPATIBILITY_DEBT_FALSE_SUCCESS | Historically returns successful `[Brew processed]` output on inference failure; the canonical runner explicitly rejects that placeholder. |
-| Main-agent direct response | `brew/runtime/main-agent/response-system.mjs` | DUPLICATE_SEMANTIC_SURFACE | Converts `MODEL_RESPONSE_REQUIRED` direct-response failure into successful empty chat at module level. Canonical HTTP aliases already bypass this subsystem. |
-| WhatsApp fallbacks | `brew/gateway/whatsapp/*` | TRANSPORT_ERROR_CONFLATION | Fixed "No response generated" strings blur empty output, routing failure, and successful assistant output. |
-| Generic response fallback | `brew/runtime/response/response-fallback.mjs` | INVALID_AGENT_PROVENANCE | Presents "No response generated" with `source:'agent'` instead of a runtime/provider failure class. |
+| Telegram natural-language handling | `brew/runtime/telegram/telegram-turn.mjs` | ACTIVE_SECOND_RESPONSE_AUTHORITY | Regex/keyword conversational replies bypassed the canonical reasoning turn for greetings, identity, tools, known facts, and workspace questions. |
+| Telegram empty completion | `brew/runtime/telegram/telegram-turn.mjs` | ACTIVE_FALSE_SUCCESS_FALLBACK | Could render "The agent completed without a response." instead of preserving an empty-model invariant failure. |
+| Provider tool-call no-tool branch | `brew/runtime/server/gateway-server.mjs` | ACTIVE_WEAK_RESPONSE_CONTRACT | Could return `ok:true` with empty `reply` when no tool call existed. |
+| Legacy provider fabrication | `brew/start.js` | COMPATIBILITY_DEBT_FALSE_SUCCESS | Historically returned successful `[Brew processed]` output on inference failure; the canonical runner rejected that placeholder. |
+| Main-agent direct response | `brew/runtime/main-agent/response-system.mjs` | DUPLICATE_SEMANTIC_SURFACE | Converted `MODEL_RESPONSE_REQUIRED` direct-response failure into successful empty chat at module level. Canonical HTTP aliases already bypassed this subsystem. |
+| WhatsApp fallbacks | `brew/gateway/whatsapp/*` | TRANSPORT_ERROR_CONFLATION | Fixed "No response generated" strings blurred empty output, routing failure, and successful assistant output. |
+| Generic response fallback | `brew/runtime/response/response-fallback.mjs` | INVALID_AGENT_PROVENANCE | Presented "No response generated" with `source:'agent'` instead of a runtime/provider failure class. |
 
 ## Legacy / stale surfaces
 
@@ -83,9 +164,9 @@ split authority and false-success drift
 | --- | --- | --- |
 | `brew/behavior/response-decision-layer.mjs` | ORPHANED_HARDCODED_RESPONDER | Prove no supported consumer, then quarantine/remove. Do not reconnect. |
 | `brew/runtime/chat/brew-chat-agent.mjs` | ORPHANED_KEYWORD_RESPONDER | Prove no supported consumer, then quarantine/remove. |
-| `brew/runtime/agents/scenario-router.mjs` | DORMANT_DETERMINISTIC_SEMANTIC_ROUTER | Keep out of canonical reasoning path unless a bounded runtime-command use is explicitly proven. |
-| `brew/runtime/agents/dispatch-handlers.mjs` | LEGACY_DIRECT_HANDLER_SURFACE | At the current architectural branch its subagent/team dependencies exist as fail-closed compatibility modules. Do not rebuild multi-agent authority. |
-| `subagent-engine.mjs` / `team-coordinator.mjs` | LEGACY_FAIL_CLOSED | Preserve fail-closed behavior until callers are removed; do not revive. |
+| `brew/runtime/agents/scenario-router.mjs` | REMOVED / no active semantic router in current reported local state | Do not recreate. |
+| `brew/runtime/agents/dispatch-handlers.mjs` | LEGACY_DIRECT_HANDLER_SURFACE | Keep disabled/unreachable unless an explicit supported consumer is proven. |
+| `subagent-engine.mjs` / `team-coordinator.mjs` | LEGACY / fail-closed-or-absent by revision | Do not revive multi-agent authority. |
 
 ## Recovered intended architecture
 
@@ -242,61 +323,65 @@ GPT-K routes the question to a suitable upstream; the upstream repository must s
 | Responsibility | Brew current position | Upstream first reference | Recommendation |
 | --- | --- | --- | --- |
 | Canonical reasoning loop | Exists and should remain authority | OpenHands + Codex | PRESERVE_AND_CONVERGE |
-| Provider/model adapters | Multiple paths; canonical path strongest | Cline + LobeHub | ADAPT_AND_CENTRALIZE |
-| Empty response semantics | Correct in canonical runner, weaker downstream | Cline | REUSE_INVARIANT |
-| Session/Turn/Item | Partially reconciled; durable ownership still gate work | Codex | ADAPT_PROTOCOL_PATTERN |
-| Operation/tool-call identity | Existing operation correlation work | Codex/OpenHands | PRESERVE_AND_EXTEND |
-| Tool registry/health | Existing capability surfaces, more reconciliation needed | Hermes + LobeHub | ADAPT_REGISTRY_PATTERN |
-| Workspace/files | Existing governed tools | Codex/OpenHands | PRESERVE; add typed capability contracts only where missing |
-| Terminal/background process | Planned/progressive | Codex/OpenHands/Hermes | ADAPT_EXISTING_LIFECYCLE_PATTERNS |
-| Git tooling | Planned capability surface | Codex/Aider | ADAPT; do not invent generic shell wrappers for common Git truth |
-| Browser/computer use | Existing Browser work and deferred acceptance | OpenHands/Hermes + dedicated browser references | PRESERVE boundary, adapt runtime lifecycle |
-| MCP/plugins/integrations | Deferred/partial | Hermes + LobeHub | ADAPT_REGISTRY_AND_HEALTH; keep optional |
-| Skills | Existing/planned | Hermes + Codex skills | ADAPT_PROGRESSIVE_DISCLOSURE |
-| Persistent/project memory | Existing but authority boundaries need discipline | Hermes | ADAPT_LAYERING; memory is not evidence |
-| Context/compaction | Planned | Hermes/OpenHands | ADAPT |
-| Checkpoints/resume/recovery | Planned and partially implemented | Codex/OpenHands/Hermes | ADAPT_EVENT_AND_IDENTITY_MODEL |
-| Approvals/sandbox/security | Existing governed intent | Codex/OpenHands | ADAPT_TYPED_POLICY_BOUNDARY |
-| Validation/evidence/completion | Strong Letterblack-specific authority | Codex/OpenHands + LBE evidence study | PRESERVE_LBE_STYLE_AUTHORITY |
-| Steering/cancel/interrupt | Planned | Hermes/Codex | ADAPT |
-| Messaging adapters | Telegram active drift; WhatsApp fallback drift | Hermes | CONVERGE_TO_TRANSPORT_ONLY |
-| Scheduled jobs/automation | Deferred | Hermes | ADAPT_LATER, not core gate |
-| Multi-agent/subagent/team | Intentionally disabled | none needed | DO_NOT_RECREATE |
-| Observability/events | Existing trajectory/event work | Codex/OpenHands | ADAPT_NORMALIZED_EVENTS |
-| Startup/readiness | Active reconciliation | LobeHub/provider health + existing Brew readiness | PRESERVE_ONE_STARTUP_AUTHORITY |
+| Provider/model adapters | Canonical response invariants proven in focused/current regression gates; live continuation/crash-resume still open | Cline + LobeHub | PRESERVE_AND_VALIDATE_LIVE |
+| Empty response semantics | Proven across current regression gates | Cline | PRESERVE_INVARIANT |
+| Session/Turn/Item | Not started; durable owner investigation remains the next lifecycle gate | Codex | TRACE_OWNER_BEFORE_IMPLEMENTING |
+| Operation/tool-call identity | Existing operation correlation work | Codex/OpenHands | PRESERVE_AND_EXTEND only after owner proof |
+| Tool registry/health | Existing capability surfaces | Hermes + LobeHub | PRESERVE; live health remains authoritative |
+| Workspace/files | Existing governed tools | Codex/OpenHands | PRESERVE; provenance-bound workspace scope required |
+| Terminal/background process | Existing/progressive | Codex/OpenHands/Hermes | ADAPT_EXISTING_LIFECYCLE_PATTERNS only if a proven gap remains |
+| Git tooling | Existing/planned capability surface | Codex/Aider | ADAPT; do not invent generic wrappers where current owner suffices |
+| Browser/computer use | Existing Browser work and deferred acceptance | OpenHands/Hermes + dedicated browser references | PRESERVE boundary, validate runtime lifecycle |
+| MCP/plugins/integrations | Deferred/partial | Hermes + LobeHub | DEFER until current acceptance/lifecycle gates close |
+| Skills | Existing/planned | Hermes + Codex skills | ADAPT_PROGRESSIVE_DISCLOSURE only when needed |
+| Persistent/project memory | Governed project/workspace isolation and verification authority now reported proven | Hermes | PRESERVE_GOVERNED_MEMORY; prove live cross-project conversation behavior |
+| Context/compaction | Planned | Hermes/OpenHands | DEFER until owner gap is proven |
+| Checkpoints/resume/recovery | Planned and partially implemented | Codex/OpenHands/Hermes | ADAPT_EVENT_AND_IDENTITY_MODEL after lifecycle owner proof |
+| Approvals/sandbox/security | Existing governed intent | Codex/OpenHands | PRESERVE_TYPED_POLICY_BOUNDARY |
+| Validation/evidence/completion | Strong Letterblack-specific authority | Codex/OpenHands + LBE evidence study | PRESERVE_EVIDENCE_AUTHORITY |
+| Steering/cancel/interrupt | Planned | Hermes/Codex | DEFER until lifecycle owner proof |
+| Messaging adapters | Semantic bypass remediation reported proven; live Telegram tool/duplicate-response acceptance remains open | Hermes | VALIDATE_LIVE_TRANSPORT_ONLY_BEHAVIOR |
+| Scheduled jobs/automation | Existing scheduler infrastructure but not the current architectural gate | Hermes | DO_NOT_EXPAND |
+| Multi-agent/subagent/team | Intentionally disabled/removed from active semantic routing | none needed | DO_NOT_RECREATE |
+| Observability/events | Existing trajectory/event work | Codex/OpenHands | TRACE current owner before extension |
+| Startup/readiness | Isolated-state startup and blocker/runtime-import gates reported green | LobeHub/provider health + existing Brew readiness | PRESERVE_ONE_STARTUP_AUTHORITY |
 
 ## Prioritized implementation sequence
 
 ### P0 — correctness and authority
 
-1. Unify the successful model-turn invariant across all active adapters.
-2. Remove Telegram semantic natural-language bypass while preserving explicit runtime commands.
-3. Remove Telegram empty-success wording.
-4. Make `/api/provider/tool-call` reject empty/no-tool completion.
-5. Make any surviving `brew/start.js` provider failure truthful; do not emit `[Brew processed]`.
-6. Prove whether duplicate main-agent/legacy response modules have supported consumers; quarantine rather than polishing dead architecture.
-7. Ensure WhatsApp/generic fallbacks remain runtime/transport failures and are never persisted as model-authored assistant reasoning.
+Current reported state: the original response-contract remediation steps are proven or quarantined, and governed-memory project/workspace isolation is now also proven by focused and full-suite regression evidence.
+
+Remaining P0 acceptance is live rather than architectural:
+
+1. rerun Telegram ordinary-language acceptance against the current build;
+2. prove exactly-one visible completion per Telegram input;
+3. prove real tool receipt -> provider continuation -> grounded Telegram result;
+4. prove explicit cross-project comparison keeps both provenance labels and never aliases one project as another;
+5. preserve the governed-memory exclusions and verification-authority falsifiers.
 
 ### P1 — architectural convergence
 
-1. One canonical response/result contract.
-2. One durable Session/Turn/Item owner.
-3. One operation/tool-call identity model.
-4. One capability/tool registry with availability/health.
-5. One normalized runtime event vocabulary.
-6. Provider-native tool continuation with live evidence.
-7. Cancellation, restart, resume and exactly-once acceptance.
+Do not begin by creating Session/Turn/Item structures from the roadmap. First trace the active lifecycle/persistence writers and determine which current component owns session/conversation durability.
+
+Only after owner proof:
+
+1. establish one durable Session/Turn/Item owner if the current runtime lacks one;
+2. reconcile operation/tool-call identity with that owner;
+3. normalize runtime event vocabulary where an actual gap is proven;
+4. prove provider-native continuation, cancellation, restart, resume, and exactly-once execution.
 
 ### P2 — recovered planned capability work
 
 After P0/P1:
 - MCP/plugin lifecycle;
-- scheduler/automation;
 - deeper browser/desktop capabilities;
-- project knowledge lifecycle;
+- project knowledge lifecycle expansion;
 - skill/context expansion;
 - Git/workspace typed capabilities;
 - installed-runtime acceptance and CI/release proof.
+
+Roadmap order is not implementation authority. Live owner evidence decides the next bounded slice.
 
 ## Do not recreate
 
@@ -308,6 +393,7 @@ Do not create new Brew-specific implementations for these concerns before exhaus
 - a second Session/Turn/Item system;
 - another planner/controller outside the canonical turn;
 - another tool registry if the canonical capability registry can be extended;
+- another memory store/retrieval authority when the governed memory owners can be hardened;
 - another messaging gateway core;
 - a new skills format when AgentSkills/Codex/Hermes-compatible progressive disclosure is sufficient;
 - a new generic provider abstraction where Cline/LobeHub patterns can be adapted;
@@ -340,26 +426,37 @@ Legacy reasoning/dispatch surfaces are either proven reachable, explicitly fail 
 
 Rule G
 New capabilities extend the existing canonical runtime; they do not create a second reasoning authority.
+
+Rule H
+Project/workspace memory is explicitly scoped before ranking; unbound sessions cannot retrieve project_fact/decision/solution records.
+
+Rule I
+Only explicit user confirmation or runtime validation evidence may establish verified memory authority.
+
+Rule J
+Cross-project retrieval requires explicit widening and retains visible provenance; foreign-project evidence never becomes active-project self-context.
 ```
 
 ## Immediate active gate
 
-**BREW_DRIFT_RECOVERY_AND_REFERENCE_REUSE**
+**BREW_LIVE_ACCEPTANCE_BEFORE_LIFECYCLE**
 
 Question:
 
-> Which currently reachable Brew surfaces still own semantic decisions or weaker success/failure contracts outside the canonical turn, and what is the smallest owner correction that converges each onto the canonical runtime using proven upstream patterns?
+> Does the current one-agent runtime preserve governed project context, truthful tool continuation, and exactly-once conversational behavior through the live user-facing surfaces before any Session/Turn/Item implementation begins?
 
 Required evidence before closing the gate:
-- exact active route/import reachability;
-- focused falsifier for each corrected owner;
-- no successful empty assistant response without tool activity;
-- Telegram ordinary language invokes canonical turn exactly once;
+
+- Telegram ordinary language invokes the canonical turn exactly once;
 - explicit Telegram runtime commands remain deterministic;
-- no `[Brew processed]` externally reachable success;
-- no runtime/provider fallback persisted as agent-authored reasoning;
-- current-head regression and live acceptance evidence.
+- real tool requests produce a real execution/denial receipt before Brew narrates the outcome;
+- provider continuation consumes the matching observation and produces the final answer;
+- no duplicate Telegram completion is emitted for one update;
+- Brew self-analysis does not substitute same-topic Handsoff/other-project evidence for Brew evidence;
+- explicit cross-project comparison can widen retrieval while retaining provenance;
+- governed-memory trust/project exclusions remain green;
+- full regression and blocker gates remain green at the exact tested revision.
 
 ## Current classification
 
-`CANONICAL_RUNTIME_DIRECTION_VALID__SECONDARY_AUTHORITY_DRIFT_ACTIVE__REFERENCE_REUSE_REQUIRED__RELEASE_UNPROVEN`
+`ONE_AGENT_DIRECTION_VALID__RESPONSE_CONTRACT_REMEDIATED__GOVERNED_MEMORY_PROVEN__LIVE_TELEGRAM_AND_CONTINUATION_ACCEPTANCE_OPEN__SESSION_TURN_ITEM_DEFERRED__RELEASE_UNPROVEN`
