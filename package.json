@@ -3,7 +3,8 @@
   "private": true,
   "scripts": {
     "build": "node scripts/build-vercel-static.mjs",
-    "test": "node scripts/test-birdeye-projections.mjs"
+    "test": "node scripts/validate-gpt-ref-catalog.mjs && node scripts/test-birdeye-projections.mjs",
+    "test:gpt-ref": "node scripts/validate-gpt-ref-catalog.mjs"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.30.0",
