@@ -51,7 +51,7 @@ Runtime / Browser / Provider
   -> live behavior proof
 ```
 
-The validated MCP Local architecture reports **52 required PASS / 0 FAIL** and keeps BirdEye as the consolidated enabled Letterblack MCP route for the checked clients. Duplicate direct Memory routes, separate Skills routes, broad filesystem bypasses, and legacy competing MCP routes are absent or disabled.
+The validated MCP Local architecture reports **53 required PASS / 0 FAIL** and keeps BirdEye as the consolidated enabled Letterblack MCP route for the checked clients. Duplicate direct Memory routes, separate Skills routes, broad filesystem bypasses, and legacy competing MCP routes are absent or disabled.
 
 BirdEye may expose a capability without becoming the canonical owner of the underlying source. Memory remains the historical owner, Skills remain the curated methodology/content owner, GPT-Knowledge remains the durable project/method projection owner, and GitHub remains remote repository truth.
 
@@ -89,6 +89,12 @@ The canonical rule is **method first, source second**. Diagnose the actual failu
 
 Documents under `ai-agents/studies/`, `ai-agents/cli-agent-reference-study-map.md`, and `ai-agents/reference-derived-agent-architecture.md` remain research provenance and implementation references. They are not competing operating modes.
 
+### Curated upstream agent references
+
+Use [`GPT_Ref/GPT_REF.md`](GPT_Ref/GPT_REF.md) when the task needs a **real upstream agent repository** to compare against before implementing or redesigning a subsystem. `GPT_Ref` is deliberately narrow: it contains the human catalogue, the machine-readable [`agent-references.json`](GPT_Ref/agent-references.json), and its maintenance contract only.
+
+Do not place project status, Brew reports, memory, copied source, research transcripts, or arbitrary documents in `GPT_Ref/`. Long-form comparative research belongs under `ai-agents/studies/`; project-specific truth belongs under the relevant project namespace; live truth belongs in the current workspace/runtime.
+
 For Letterblack debugging involving authority, guards, policy, proof, blocked actions, or completion boundaries, selectively load [`ai-agents/letterblack-governance-debugging-references.md`](ai-agents/letterblack-governance-debugging-references.md). It routes to [LBE Core](https://github.com/Letterblack0306/LetterBlack-LBE-Core) for governed execution boundaries and [LB Guards & Rules](https://github.com/Letterblack0306/LB_Guards_Rules) for workspace trust, guard contracts, and current-HEAD proof. It is optional and must not be preloaded for unrelated debugging.
 
 ## Letterblack branding entry point
@@ -113,6 +119,7 @@ Use [`motion-design/house-style.md`](motion-design/house-style.md) as the defaul
 
 ## Current knowledge domains
 
+- `GPT_Ref/` — curated external agent-repository catalogue only; validated against a machine-readable manifest and strict folder scope.
 - `ai-agents/` — unified agent engineering methods plus source-specific research provenance and selective Letterblack governance/debugging references.
 - `letterblack-branding/` — canonical Industrial Dark Letterblack UI branding, operational screen system, UI/icon reference catalogue.
 - `browser-agents/` — browser access models, CDP and connector patterns, target management, browser tools, security, screenshots, and verification.
