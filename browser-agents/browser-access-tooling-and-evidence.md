@@ -303,7 +303,7 @@ A capability is considered implemented only when it is:
 
 End-to-end claims require a correlated real user/runtime path and must not be inferred from disconnected component tests.
 
-## 12. Access Browser Agent current verified project status — 2026-09-13
+## 12. Access Browser Agent current verified project status — 2026-09-16
 
 Repository:
 
@@ -311,56 +311,122 @@ Repository:
 Letterblack0306/Accecc_Browser_Agent
 ```
 
-Current verified remote commit:
+Desktop handoff branch:
 
 ```text
-3ed538c9c2820db66758c399b1545bb1e9be376d
-Use Cline provider config and harden run state
+fix/browser-target-role-routing-20260916
 ```
 
-The commit is present on `origin/main` and introduces source-level integration for:
-
-- Cline-managed provider configuration through `ClineProviderConfigStore`;
-- protection against copying Cline-managed profiles into local IDE provider settings;
-- local runtime run-state hardening via shared terminal/run status ownership;
-- stop/cancel epoch invalidation to prevent stale loop continuation after cancellation boundaries;
-- additional provider/run-state contract tests;
-- ignore rules for local provider/runtime settings that may contain credentials or machine-local paths.
-
-Reported local validation for this commit before push:
+Current verified remote head:
 
 ```text
-npm run check:agent-led                  PASS
-node --test test/run-state-contract-smoke.js   3/3 PASS
-node test/e2e-live-runtime.js            60/60 PASS
-changed-file syntax checks               PASS
-git diff --cached --check                PASS
+37b8d5becb42556b4a361fbfa13773f46a3fe610
+fix: complete managed chrome launcher integration
 ```
 
-These validations establish source/runtime-contract confidence for the tested paths, but they do **not** establish complete product acceptance.
-
-Current evidence classification:
+Branch state verified on GitHub at handoff:
 
 ```text
-source commit on remote main            PROVEN
-Cline provider-config integration       IMPLEMENTED
-run-state hardening                     IMPLEMENTED
-contract/smoke test coverage            PASS (reported local execution)
-real Cline provider health              UNVERIFIED
-rendered Electron UI acceptance         UNVERIFIED
-installed end-user UX acceptance        UNVERIFIED
+base main: 3ed538c9c2820db66758c399b1545bb1e9be376d
+branch ahead of main: 2 commits
+branch behind main: 0 commits
 ```
 
-The remaining live blocker reported from the workspace is dependency corruption / failed dependency reinstall on Windows (`errno -4094`), which prevents using the current environment as proof of real Cline provider health and rendered Electron UI behavior.
-
-Two intentionally excluded local artifacts were reported after the commit:
+The two handoff commits are:
 
 ```text
-.agent/audit/
-access-agent-2026-09-12T02-29-20-315Z-1c169114.jsonl
+73671d528e43c5d55257ad1cd947da7c465d4d8b
+feat: bind browser actions to target roles
+
+37b8d5becb42556b4a361fbfa13773f46a3fe610
+fix: complete managed chrome launcher integration
 ```
 
-They were not committed or pushed.
+### Implemented on the handoff branch
+
+Source review verifies the following implementation exists on the branch:
+
+- explicit browser target roles: `instruction` and `work`;
+- target selection by `targetId`, exact `targetUrl`, or `targetRole`;
+- fail-closed handling for unassigned/missing requested targets;
+- live browser tool exposure for `browse`, `snapshot`, `click`, `type`, `press`, and `waitForChange`;
+- tool correlation through `sessionId`, `turnId`, and `toolCallId`;
+- post-action verification for navigation, click, typing, key press, and state-change waits;
+- repeated-action non-progress detection with terminal `BLOCKED_NON_PROGRESS` behavior;
+- renderer/main IPC for target listing and role assignment;
+- managed-Chrome launcher helpers `validateBrowserExecutableSetting`, `isCdpEndpointAlive`, and `normalizeDebugPort`;
+- configured debug-port propagation into Chrome launch arguments;
+- launcher smoke coverage wired into the normal `npm test` → `npm run check` → `check:agent-led` path.
+
+### Current evidence classification
+
+```text
+remote handoff branch exists                         PROVEN
+remote head 37b8d5b exists                          PROVEN
+branch +2 / behind 0 relative to main               PROVEN
+instruction/work target-role routing                IMPLEMENTED
+click/type/press/waitForChange live tool surface    IMPLEMENTED
+non-progress guard                                  IMPLEMENTED
+tool correlation                                    IMPLEMENTED
+managed Chrome missing-helper integration           FIXED
+debug-port source propagation                       FIXED
+launcher smoke in standard check path               IMPLEMENTED
+reported local npm test / full check                REPORTED PASS
+GitHub commit status contexts for 37b8d5b           NONE OBSERVED
+real visible ChatGPT → site → ChatGPT E2E            UNVERIFIED
+concurrent multi-session target-role isolation       UNVERIFIED
+```
+
+### Remaining source/test gaps noted at handoff
+
+The branch should not be treated as final product acceptance yet.
+
+1. `test/chrome-launcher-smoke.js` verifies debug-port normalization and CDP endpoint liveness, but does not directly capture `spawn()` arguments and assert that `launchManagedChrome(..., 9222)` emits `--remote-debugging-port=9222`.
+2. `test/runtime-hardening-regression.js` exists but was not observed in the normal `npm test` chain at the verified handoff commit.
+3. `validateBrowserExecutableSetting()` verifies existence/file-ness for explicit paths but does not establish browser identity or an approved Chrome/Chromium/Edge allowlist.
+4. The visible two-target workflow remains the final acceptance gate:
+
+```text
+ChatGPT instruction target
+→ receive/read instruction
+→ preserve exact instruction target
+→ operate a separate external work target
+→ observe/verify work result
+→ return to exact ChatGPT target
+→ type report
+→ send
+→ verify report delivery/state change
+→ continue from new instruction
+```
+
+### Laptop → desktop handoff state
+
+The Browser Agent changes were produced/verified on the laptop and preserved remotely before cleanup.
+
+User-reported laptop cleanup:
+
+```text
+REMOVED
+D:\Repos\Browsers agent\_Accecc_Browser_Agent_remote_check_20260916
+
+REMAINING LAPTOP FOLDERS
+D:\Repos\Browsers agent\Browser_Access
+D:\Repos\Browsers agent\codex-research
+```
+
+The removed folder was a redundant verification clone. The GitHub branch above is the preserved development handoff and should be treated as the remote continuation point for desktop work.
+
+Desktop continuation invariant:
+
+```text
+fetch origin
+→ switch to fix/browser-target-role-routing-20260916
+→ fast-forward/verify HEAD 37b8d5becb42556b4a361fbfa13773f46a3fe610
+→ verify clean working tree
+→ continue development from that state
+```
+
+Do not infer deletion of any remaining laptop folder merely because the remote branch exists. Cleanup status for laptop-local paths is user-reported unless separately verified on that machine.
 
 ### Status interpretation rule
 
