@@ -452,3 +452,85 @@ UX PASS
 ```
 
 A feature must not be described as fully working merely because one bounded test says PASS. Final product claims require claim-matched installed and user-visible evidence.
+
+## 13. Browser Agent truth-reconciliation rule — 2026-09-16
+
+Project truth must be reconciled from multiple evidence classes rather than copied from one source.
+
+Authoritative evidence inputs:
+
+```text
+1. current Browser Agent repository state
+   - commits / refs / source files / tests
+
+2. current real-machine runtime evidence
+   - rendered Electron UI
+   - real workspace path
+   - real managed Chrome/CDP process
+   - actual logs and failure receipts
+
+3. GPT-Knowledge project records
+   - distilled architecture/status/history
+
+4. synced Google Drive chat/session history
+   - chat_Print dated ChatGPT exports
+   - Browser Agent sync manifest
+   - historical conversation context and prior decisions
+```
+
+Google Drive chat/session exports are **historical evidence**, not automatic current truth. They are used to recover prior intent, decisions, earlier status claims, and contradictions. An older chat statement must not override newer repository or runtime evidence.
+
+Likewise, repository implementation is not automatically runtime proof. Source can establish `IMPLEMENTED`; only claim-matched real execution can establish `PROVEN` runtime behavior.
+
+When sources disagree, preserve the disagreement explicitly:
+
+```text
+repo says X
+chat history says Y
+runtime shows Z
+→ classify each source by date/scope/evidence
+→ do not silently reconcile
+→ current claim follows the strongest claim-matched evidence
+```
+
+For Browser Agent work, check the current repository and relevant Drive chat/session records before updating GPT-K when the historical context can materially affect the conclusion.
+
+### Current live-runtime failure evidence
+
+Latest user-provided real Electron runtime evidence shows two active failures:
+
+```text
+Workspace UI/runtime state: C:\
+agent:start error: EPERM: operation not permitted, mkdir 'C:\'
+
+managed Chrome:
+Chrome exited early (code 0)
+repeated launch retries failed
+```
+
+Classification:
+
+```text
+real Electron UI launched                 PROVEN
+Electron preload API available            PROVEN
+PTY shell launched                        PROVEN
+intended Browser Agent workspace binding  FAIL
+agent:start real path                     FAIL
+managed Chrome real launch                FAIL
+ChatGPT → work target → ChatGPT E2E        BLOCKED
+product acceptance                        NOT PASSED
+```
+
+Current debugging doctrine is failure-focused:
+
+```text
+observed failure
+→ trace exact runtime owner/call path
+→ prove wrong state/value and its origin
+→ identify falsifier
+→ make smallest correct fix
+→ rerun the same real path
+→ prove that specific failure disappeared
+```
+
+Do not spend acceptance effort re-proving already-passed smoke/unit/headless checks. Smoke or synthetic tests may support diagnosis, but they cannot substitute for real-machine UI/runtime acceptance.
