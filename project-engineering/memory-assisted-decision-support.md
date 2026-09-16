@@ -123,6 +123,8 @@ Examples include a historically rejected path that is active again, a feature re
 
 Current evidence still wins for present-state claims, but the contradiction may expose a real defect or architecture drift worth investigating.
 
+For consequential present-state decisions, unresolved contradiction should block silent promotion of historical/indexed information into current truth. If current authoritative evidence is missing, remain `UNVERIFIED` / `INSUFFICIENT_EVIDENCE` rather than filling the gap from Memory.
+
 ## Evidence precedence
 
 For present-state decisions:
@@ -138,6 +140,65 @@ live runtime
 
 For a question specifically about what happened historically, the historical source is authoritative for that historical fact, subject to provenance/context.
 
+## Executable worked example — LBE Guard Inspector
+
+The repository `Letterblack0306/LBE_Presistent_Agent_wall` implements a concrete evidence-boundary pattern that is directly relevant to Memory-vs-current-state decisions.
+
+Its evidence package separates:
+
+```text
+indexed_reference_evidence
+current_workspace_evidence
+```
+
+Evidence records carry fields including `authority`, `verified`, and `classification`. The current guard-evaluation policy establishes these relevant invariants:
+
+1. indexed-only rule results cannot become workspace `PASS` or `FAIL`;
+2. a rule result lacking current workspace evidence references is downgraded to `INSUFFICIENT_EVIDENCE`;
+3. contradictions between indexed/reference evidence and current workspace evidence prevent an unsupported `PASS`.
+
+Representative implementation and proof surfaces:
+
+```text
+lbe_guard_inspector/evidence_service.py
+lbe_guard_inspector/guard_inspector.py
+schemas/evidence_package.schema.json
+tests/test_evidence_service.py
+tests/test_guard_inspector.py
+tests/test_guard_runner.py
+```
+
+This is a worked implementation pattern, not a universal numeric scoring standard. The exact `authority` values are local to the Guard Inspector's evidence model and must not be copied as generic Memory weights.
+
+The reusable decision invariant is:
+
+```text
+reference/history can inform
+reference/history cannot prove current state
+
+current claim
+→ require current authoritative evidence
+
+reference/current contradiction
+→ block unsupported promotion
+→ investigate or remain evidence-insufficient
+```
+
+Applied to Memory:
+
+```text
+Memory
+= historical/reference context
+
+current workspace/runtime/GitHub
+= present-state evidence
+
+Memory/current contradiction
+= investigation signal, not automatic override in either direction
+```
+
+This extends the precedence list into an executable decision pattern: do not merely rank sources; also fail closed when the stronger evidence required for a claim is absent or contradicted.
+
 ## Useful output
 
 Keep the result short:
@@ -151,6 +212,9 @@ WHY IT MATTERS:
 
 CURRENT REALITY:
 - what source/runtime shows now
+
+CONTRADICTION:
+- none / resolved / unresolved
 
 DECISION IMPACT:
 - continue / revise / reject / investigate
@@ -167,6 +231,8 @@ Do not turn every recall into a large report.
 - Investigate material contradictions between historical decisions and current reality instead of silently discarding either side.
 - Prefer current workspace/runtime evidence for claims about present behavior.
 - Do not create a new feature merely because an old conversation mentioned it.
+- Do not import evidence-authority numbers from another implementation as universal source weights.
+- When current authoritative evidence required for a present-state claim is absent, remain `UNVERIFIED` / `INSUFFICIENT_EVIDENCE`.
 
 ## Example
 
