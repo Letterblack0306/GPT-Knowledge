@@ -26,6 +26,7 @@ Do not use Memory for every routine task.
 QUESTION
 → recall relevant Memory
 → recover provenance + chronology
+→ reconcile current worktree / branches / PRs
 → verify current BirdEye workspace/runtime/GitHub evidence
 → compare history with current reality
 → decide
@@ -52,6 +53,55 @@ live runtime
 > model inference
 ```
 
+## Git provenance boundary
+
+Historical evidence and current repository evidence must retain exact Git provenance.
+
+Before using a remembered plan, branch result, PR result, or code fragment to support a present-state claim, establish where it actually lives:
+
+```text
+worktree path
+branch
+HEAD SHA
+upstream
+local dirty/staged/untracked state when relevant
+remote branch
+PR number + head/base SHA when relevant
+```
+
+Never merge these conceptually unless Git proves they coexist.
+
+```text
+change in worktree A
+!= change in worktree B
+
+local branch commit
+!= main
+!= origin/main
+!= merged PR
+
+open PR
+= pending candidate work
+!= current base-branch implementation
+```
+
+If a historical Memory result refers to work that may have existed on another branch, worktree, PR, patch, snapshot, or stale clone, verify that exact source before treating it as current implementation.
+
+Relevant candidate states should be classified independently as:
+
+```text
+CANONICAL_CURRENT
+PENDING_PR
+UNMERGED_BRANCH
+DIRTY_LOCAL_ONLY
+SUPERSEDED
+HISTORICAL_ONLY
+CONFLICTING
+UNKNOWN
+```
+
+Do not ignore a relevant open PR or branch merely because the active worktree does not contain the change. Conversely, do not claim the feature is implemented merely because it exists in a pending branch/PR.
+
 ## Retrieval
 
 Use BirdEye Memory capabilities when available:
@@ -75,6 +125,7 @@ If historical Memory and current reality disagree materially:
 ```text
 verify both sides
 → check chronology/supersession
+→ check branch/worktree/PR provenance
 → classify expected evolution vs incomplete migration vs regression/reintroduced behavior vs unresolved contradiction
 ```
 
@@ -129,6 +180,9 @@ For Memory-assisted decisions, Memory is analogous to historical/reference conte
 - A Memory hit proves something was recorded, not that it is still true.
 - Check whether a plan was accepted, rejected, corrected, or superseded.
 - Never let historical Memory silently override current source/runtime evidence.
+- Never mix worktree, branch, remote-branch, or PR states into one current-state claim without proving their relationship.
+- Do not ignore relevant pending branches/PRs when determining whether work already exists.
+- Do not treat pending branches/PRs as merged implementation truth.
 - Do not invent history when retrieval fails.
 - Do not dump the full archive into context.
 - Do not convert implementation-specific evidence scores from another system into universal precedence weights.
@@ -140,6 +194,7 @@ Keep results concise:
 
 ```text
 RECALLED: prior plan/decision
+PROVENANCE: worktree / branch / PR / historical source
 WHY IT MATTERS: relevant reasoning/constraint
 CURRENT REALITY: current evidence
 CONTRADICTION: none / resolved / unresolved
