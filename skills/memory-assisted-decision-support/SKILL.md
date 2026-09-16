@@ -80,6 +80,50 @@ verify both sides
 
 Current evidence wins for present-state claims, but the disagreement may reveal a real defect or architecture drift.
 
+Do not silently promote a historical/indexed claim into current truth when current evidence is missing or contradictory. For consequential decisions, unresolved contradiction is a reason to investigate or remain evidence-insufficient, not a reason to choose whichever source is more convenient.
+
+## Executable worked example — LBE Guard Inspector
+
+`Letterblack0306/LBE_Presistent_Agent_wall` contains an executable form of this evidence-boundary doctrine.
+
+Its evidence package separates:
+
+```text
+indexed_reference_evidence
+current_workspace_evidence
+```
+
+and carries evidence metadata such as `authority`, `verified`, and `classification`. Its guard-evaluation policy enforces stronger present-state requirements:
+
+- indexed-only rule results cannot claim workspace `PASS` or `FAIL`;
+- a rule result without current workspace evidence references is downgraded to `INSUFFICIENT_EVIDENCE`;
+- contradictions between indexed/reference evidence and current workspace evidence prevent an unsupported `PASS`.
+
+Relevant implementation/reference surfaces include:
+
+- `lbe_guard_inspector/evidence_service.py`
+- `lbe_guard_inspector/guard_inspector.py`
+- `schemas/evidence_package.schema.json`
+- `tests/test_evidence_service.py`
+- `tests/test_guard_inspector.py`
+- `tests/test_guard_runner.py`
+
+Use this as a **worked implementation pattern**, not as a universal numeric scoring contract. The exact `authority` numbers belong to that repository's evidence model. The reusable invariant is:
+
+```text
+historical/indexed/reference evidence
+≠ present-state proof
+
+present-state claim
+→ require current authoritative evidence
+
+reference/current contradiction
+→ block unsupported promotion
+→ investigate or remain evidence-insufficient
+```
+
+For Memory-assisted decisions, Memory is analogous to historical/reference context: valuable for intent, chronology, and contradiction discovery, but never sufficient by itself to prove current implementation or runtime state.
+
 ## Safeguards
 
 - A Memory hit proves something was recorded, not that it is still true.
@@ -87,6 +131,8 @@ Current evidence wins for present-state claims, but the disagreement may reveal 
 - Never let historical Memory silently override current source/runtime evidence.
 - Do not invent history when retrieval fails.
 - Do not dump the full archive into context.
+- Do not convert implementation-specific evidence scores from another system into universal precedence weights.
+- When current authoritative evidence is absent, prefer `UNVERIFIED` / `INSUFFICIENT_EVIDENCE` over an inferred present-state claim.
 
 ## Output
 
@@ -96,6 +142,7 @@ Keep results concise:
 RECALLED: prior plan/decision
 WHY IT MATTERS: relevant reasoning/constraint
 CURRENT REALITY: current evidence
+CONTRADICTION: none / resolved / unresolved
 DECISION IMPACT: continue / revise / reject / investigate
 ```
 
