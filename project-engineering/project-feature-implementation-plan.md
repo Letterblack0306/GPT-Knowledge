@@ -2,7 +2,7 @@
 
 ## Knowledge metadata
 
-- Last reviewed: 2026-08-17
+- Last reviewed: 2026-09-16
 - Purpose: canonical first reference for learning an existing project or feature and planning any implementation, extension, replacement, or significant change
 - Scope: cross-domain; applies before browser, agent, UI, provider, motion, branding, or other implementation-specific knowledge
 - Authority: planning guide only; live project source, runtime evidence, and project-specific instructions remain higher authority
@@ -17,6 +17,7 @@ Begin by learning what actually exists, establish the implementation boundary, t
 Request
   -> project / feature learning
   -> active-owner discovery
+  -> Git topology reconciliation
   -> requirement + acceptance contract
   -> impact and dependency map
   -> implementation sequence
@@ -39,7 +40,12 @@ Record or prove:
 ```text
 project/repository
 workspace root
+active worktree
 active branch/revision
+upstream/tracking branch
+local ahead/behind relationship
+open relevant pull requests
+other relevant local/remote branches
 runtime/environment
 entry points
 relevant package/module boundaries
@@ -47,9 +53,80 @@ project-specific instructions
 current feature owner
 ```
 
-Do not assume that a similarly named repository, file, class, route, UI control, or document is the active implementation.
+Do not assume that a similarly named repository, file, class, route, UI control, document, branch, PR, or worktree is the active implementation.
 
 If the project identity or active revision cannot be established, planning remains provisional.
+
+## 1.1 Mandatory Git topology reconciliation
+
+Before making a project-state claim, proposing a merge, reusing work, deleting a branch/worktree, or mutating source, reconcile the relevant Git topology.
+
+At minimum establish:
+
+```text
+CURRENT WORKTREE
+  absolute path
+  HEAD
+  branch
+  dirty/staged/untracked state
+  upstream
+  ahead/behind
+
+OTHER WORKTREES
+  path
+  branch/HEAD
+  purpose if known
+  dirty state when relevant
+
+LOCAL BRANCHES
+  branch
+  HEAD
+  relation to canonical branch
+
+REMOTE BRANCHES
+  branch
+  HEAD
+  relation to canonical branch
+
+OPEN PULL REQUESTS
+  PR number
+  head branch/SHA
+  base branch/SHA
+  draft/open state
+  mergeability when relevant
+  changed-file scope
+```
+
+Do not collapse these into one undifferentiated "repo state".
+
+Hard rules:
+
+- A file found in one worktree is not evidence that the same file/state exists in another worktree.
+- A commit on a local branch is not evidence that it is on `main`, on the remote, or in an open PR.
+- A remote branch is not evidence that its changes are merged into the canonical branch.
+- An open PR is not implementation truth for its base branch until merged; it is pending candidate work.
+- A closed/unmerged PR is historical candidate work, not current source truth.
+- A merged PR proves integration only into the recorded base revision; verify the current branch has not since superseded or reverted it.
+- Dirty worktree changes must be classified separately from committed branch history.
+- Stashes, detached HEADs, secondary worktrees, generated snapshots, exported patches, and preservation branches must not silently become canonical authority.
+- Never combine code from multiple branches/worktrees/PRs into a single narrative as though all changes coexist unless the comparison or merge has been explicitly proven.
+- Before declaring work missing, inspect relevant branches/PRs when there is evidence the feature may be pending elsewhere.
+- Before declaring work implemented, prove which branch/revision/worktree contains it and whether that revision is the active/canonical one.
+
+When multiple candidates exist, classify each independently:
+
+```text
+CANONICAL_CURRENT
+PENDING_PR
+UNMERGED_BRANCH
+DIRTY_LOCAL_ONLY
+SUPERSEDED
+HISTORICAL_ONLY
+CONFLICTING
+UNKNOWN
+```
+
+If topology cannot be reconciled safely, stop destructive/merge actions and report the exact ambiguity instead of selecting a branch or worktree by assumption.
 
 ---
 
@@ -74,6 +151,7 @@ Feature
   runtime evidence
   known defects/gaps
   legacy or parallel implementations
+  branch/PR/worktree provenance for any candidate implementation
 ```
 
 The learning record is evidence-backed. Documentation, prior memory, and GPT-Knowledge may guide discovery but do not replace source/runtime inspection.
@@ -128,15 +206,17 @@ Check:
 5. UI/view owner where applicable;
 6. persistence/configuration owner;
 7. validation/test owner;
-8. legacy or compatibility paths.
+8. legacy or compatibility paths;
+9. pending branch/PR implementation that may already own the requested change.
 
-Before adding a new module or abstraction, prove that the required capability does not already exist in another active path.
+Before adding a new module or abstraction, prove that the required capability does not already exist in another active path or pending integration path.
 
 Default preference:
 
 ```text
 extend active authority
   > repair active authority
+  > reconcile already-existing pending work
   > consolidate duplicate authority
   > introduce new authority only when architecture requires it
 ```
@@ -161,6 +241,7 @@ build/package/export surfaces
 tests
 runtime startup/lifecycle
 documentation or migration
+branches/PRs/worktrees that contain overlapping work
 ```
 
 Classify each affected surface as:
@@ -190,6 +271,7 @@ what dependency or state transition is involved
 what can fail
 how failure is surfaced
 how the result will be validated
+what branch/worktree/PR owns the change until integration
 ```
 
 Do not choose a design merely because it is newer, more abstract, cleaner in isolation, or used by another project.
@@ -206,15 +288,16 @@ Recommended sequence:
 
 ```text
 1. establish reproduction or current-state evidence
-2. add/update focused regression or contract tests when appropriate
-3. change the authoritative owner
-4. wire registration/routing/state dependencies
-5. update dependent UI/config/adapters only where required
-6. run focused validation
-7. run bounded duplicate/parallel-path scan
-8. run broader regression validation
-9. exercise the actual runtime/user path
-10. capture completion evidence
+2. reconcile active worktree/branch/remote/PR topology
+3. add/update focused regression or contract tests when appropriate
+4. change the authoritative owner
+5. wire registration/routing/state dependencies
+6. update dependent UI/config/adapters only where required
+7. run focused validation
+8. run bounded duplicate/parallel-path scan
+9. run broader regression validation
+10. exercise the actual runtime/user path
+11. capture completion evidence
 ```
 
 Do not mechanically require tests-first when the task is documentation-only, visual-only, exploratory, or cannot be represented meaningfully by an automated test. The validation method must fit the claim.
@@ -342,6 +425,8 @@ For non-trivial project or feature work, the working plan should be representabl
 ```text
 Target
   project / revision / runtime
+  worktree / branch / upstream
+  relevant PRs / overlapping branches
 
 Learned current state
   active owner
@@ -432,4 +517,4 @@ Domain knowledge refines the implementation method; it does not redefine the act
 
 ## Final rule
 
-**Learn the active project and feature first. Plan against proven ownership and observable acceptance criteria. Implement the smallest architecture-consistent change. For multi-owner capabilities, separately prove composition from the real entry point. Complete only with evidence matching the claim.**
+**Learn the active project and feature first. Reconcile the active worktree, branches, upstream, and relevant PRs without mixing their evidence. Plan against proven ownership and observable acceptance criteria. Implement the smallest architecture-consistent change. For multi-owner capabilities, separately prove composition from the real entry point. Complete only with evidence matching the claim.**
