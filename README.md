@@ -4,7 +4,7 @@ A versioned, reusable engineering knowledge base for research-backed design, dev
 
 ## Load order
 
-Always begin with [`000_START_HERE.md`](000_START_HERE.md). When prior plans, decisions, rejected ideas, unfinished work, or historical contradictions may materially affect a decision, route through [`001_MEMORY_DECISION_SUPPORT.md`](001_MEMORY_DECISION_SUPPORT.md). Then use [`knowledge-index.json`](knowledge-index.json) for deterministic routing or [`INDEX.md`](INDEX.md) as its human-readable companion.
+Always begin with [`000_START_HERE.md`](000_START_HERE.md). When prior plans, decisions, rejected ideas, unfinished work, or historical contradictions may materially affect a decision, route through [`001_MEMORY_DECISION_SUPPORT.md`](001_MEMORY_DECISION_SUPPORT.md). Then use [`knowledge-index.json`](knowledge-index.json) for deterministic file/domain routing, [`knowledge-sections.json`](knowledge-sections.json) when a trigger maps to a stable section, or [`INDEX.md`](INDEX.md) as the human-readable companion.
 
 Do not preload every domain. Knowledge guides decisions; it does not replace live workspace or runtime inspection.
 
