@@ -38,7 +38,7 @@
         "old plan contradicts current implementation"
       ],
       "file": "project-engineering/memory-assisted-decision-support.md",
-      "anchor": "#contradictions-are-signals",
+      "anchor": "#contradiction-handling",
       "purpose": "Treat history/current-state disagreement as a signal to investigate provenance, supersession, drift, or regression."
     },
     {
@@ -50,7 +50,7 @@
         "memory retrieval miss"
       ],
       "file": "project-engineering/memory-assisted-decision-support.md",
-      "anchor": "#zero-result-does-not-prove-never-discussed",
+      "anchor": "#retrieval-behavior",
       "purpose": "Retry with bounded alternate terms/scopes before concluding history is absent."
     }
   ]
