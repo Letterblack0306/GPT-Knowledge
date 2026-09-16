@@ -1,15 +1,17 @@
 ---
 name: memory-assisted-decision-support
-description: "Use historical Memory selectively to recover prior plans, decisions, rejected ideas, and reasoning before making consequential project decisions; then verify against current workspace/runtime truth."
+description: "Use historical Memory selectively to recover prior plans, decisions, rejected ideas, reasoning, contradictions, and unfinished work before consequential project decisions; verify against current workspace/runtime/GitHub truth."
 ---
 
 # Memory-Assisted Decision Support
 
 ## Purpose
 
-Use historical Memory when an important decision may benefit from knowing what was previously planned, decided, rejected, attempted, or learned.
+Use historical Memory when an important decision may benefit from knowing what was previously planned, decided, rejected, attempted, contradicted, or learned.
 
 Memory is for **context and decision support**. It is not current implementation truth.
+
+For the broader ownership/routing model, also see `project-engineering/letterblack-mcp-ecosystem-and-routing.md`.
 
 ## Use this when
 
@@ -21,10 +23,12 @@ Use Memory before a consequential decision when any of these are likely relevant
 - previous debugging conclusions;
 - earlier implementation attempts;
 - past trade-offs or constraints;
+- historical claims that conflict with current source/runtime behavior;
 - "what did we decide before?";
 - "did we already plan this?";
 - "why was this designed this way?";
 - "what were the next steps?";
+- "did we previously reject or replace this?";
 - a new proposal might duplicate old work.
 
 Do not query Memory for every ordinary question. Use it when historical context could materially change the decision.
@@ -87,6 +91,8 @@ Use Memory capabilities through BirdEye when available:
 
 Do not dump the entire archive into context.
 
+A zero-result query is not proof that the topic was never discussed. Before concluding absence, retry with one or two materially different terms, project aliases, feature names, identifiers, or a broader scoped recall when justified. If nothing useful is found after bounded retries, report that no supporting history was found for the searched scope.
+
 ## Decision rule
 
 When Memory finds a useful historical plan or decision, ask:
@@ -98,6 +104,24 @@ When Memory finds a useful historical plan or decision, ask:
 5. Does the historical evidence reveal a useful unfinished plan or prevent duplicate work?
 
 Then decide from current evidence plus historical context.
+
+## Contradiction handling
+
+If Memory and current reality actively disagree, do not classify the Memory result as ordinary staleness and move on automatically.
+
+Treat the disagreement as a useful signal:
+
+```text
+historical claim/decision
+≠ current workspace/runtime
+→ verify both sides
+→ check chronology/supersession
+→ determine whether this is expected evolution, an incomplete migration, regression, reintroduced behavior, or unresolved contradiction
+```
+
+Examples include a historically rejected path that is active again, a feature remembered as removed but present in the current runtime, or a previously required invariant that current source violates.
+
+Current evidence still wins for present-state claims, but the contradiction may expose a real defect or architecture drift worth investigating.
 
 ## Evidence precedence
 
@@ -137,9 +161,10 @@ Do not turn every recall into a large report.
 ## Important safeguards
 
 - A memory hit proves that something was recorded, not that it is still true.
-- Zero results mean no supporting result was found for that query/scope; do not invent missing history.
+- Zero results mean no supporting result was found for that query/scope; query mismatch is a possible false negative until bounded alternate terms are tried.
 - Preserve provenance when a historical claim materially affects a decision.
 - Check surrounding chronology when a later message may have corrected or superseded an earlier one.
+- Investigate material contradictions between historical decisions and current reality instead of silently discarding either side.
 - Prefer current workspace/runtime evidence for claims about present behavior.
 - Do not create a new feature merely because an old conversation mentioned it.
 
@@ -155,7 +180,7 @@ Use:
 Memory recall/search for Brew plans and decisions
 → recover important historical plans
 → inspect current Brew workspace/GitHub/runtime
-→ identify which plans are already implemented, obsolete, or still useful
+→ identify which plans are already implemented, obsolete, contradictory, or still useful
 → use that comparison to support the next decision
 ```
 
