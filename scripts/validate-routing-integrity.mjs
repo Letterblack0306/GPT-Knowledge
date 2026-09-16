@@ -10,6 +10,7 @@ const ROUTING_SURFACES = [
   'INDEX.md',
   'knowledge-index.json',
   'knowledge-sections.json',
+  'skills/INDEX.md',
 ];
 
 function trackedFiles() {
