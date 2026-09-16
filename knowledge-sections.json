@@ -3,6 +3,18 @@
   "purpose": "Section-level routing hints for selective GPT-Knowledge retrieval. Use this after knowledge-index.json identifies the relevant domain or when a trigger maps directly to a stable section.",
   "routes": [
     {
+      "id": "registered-skills-index",
+      "triggers": [
+        "registered skills",
+        "available skills",
+        "skill registry",
+        "skill paths"
+      ],
+      "file": "skills/INDEX.md",
+      "anchor": "#registered-skills",
+      "purpose": "Resolve exact repository-local SKILL.md paths before selective fetch."
+    },
+    {
       "id": "memory-decision-simple-loop",
       "triggers": [
         "did we already plan this",
