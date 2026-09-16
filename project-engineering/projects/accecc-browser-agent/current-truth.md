@@ -135,27 +135,69 @@ Its package diff introduced the `acceptance:ui` command pointing at `ui-state-dr
 
 PR #17 head is ancestrally incorporated into current local main, while the current main workspace retains the package command but lacks the runner file.
 
-Therefore the strongest current classification is:
+Therefore:
 
 ```text
 DISPROVEN: "the UI acceptance runner was never implemented"
 IMPLEMENTED historically/on PR #17
 FAIL currently on main
-INFERRED likely later source drift/regression until deletion/ownership history is traced
 ```
 
-Do not simply copy the PR file back into main without tracing later commits/owners that removed or replaced it.
+## Verified removal chronology
+
+Read-only history tracing on the current repository established that `scripts/ui-state-driven-acceptance-v2.js` was later removed during governance/consolidation history, including commits:
+
+```text
+85e39341127c8b3749972166f2a852c2bbfb32eb
+feat(governance): normalize change governance guard policy enforcement and sync test suite
+
+ba6b99d1a9b61f68f63274f62c62244dcf78a711
+chore: consolidate workspace governance changes
+```
+
+GitHub confirms both commits exist in `Letterblack0306/Accecc_Browser_Agent` with those messages.
+
+The active workspace/history inspection also found:
+
+```text
+current-main replacement acceptance runner: NOT FOUND
+origin/feat/state-driven-ui-acceptance-20260816 still contains the historical runner
+current package.json still references the removed v2 runner
+```
+
+Current classification:
+
+```text
+PROVEN: historical runner existed
+PROVEN: current acceptance:ui command points to a missing file
+PROVEN: acceptance:ui fails before Electron startup
+IMPLEMENTED: UI state-driven runner existed historically
+FAIL: current command-layer acceptance integration
+INFERRED: later governance/consolidation drift left the package command stale
+UNVERIFIED: whether removal was intentional product supersession, incomplete consolidation, or accidental regression
+DISPROVEN: "a current replacement runner exists on main"
+```
+
+Do not restore/copy the old runner merely because it exists on the historical branch. First establish the semantic intent of the removal commits and whether a different current acceptance path was intended.
 
 ## New dirty-state observation
 
-The latest failure-first acceptance pass observed new workspace state outside that action:
+The latest failure-first acceptance/reconciliation pass observed workspace state outside that action:
 
 ```text
 electron/chrome-launcher.js    modified
 scripts/browser-run.js         untracked
 ```
 
-Syntax checks for both passed, and `test/chrome-launcher-smoke.js` passed.
+Focused evidence:
+
+```text
+node --check electron/chrome-launcher.js: PASS
+node --check scripts/browser-run.js: PASS
+node test/chrome-launcher-smoke.js: PASS
+```
+
+These checks prove syntax/focused smoke behavior only. They do not prove ownership, admission, live browser behavior, or user-flow correctness.
 
 Classification:
 
@@ -204,12 +246,12 @@ target-role interaction: UNVERIFIED
 full user flow: UNVERIFIED
 ```
 
-The next safe work is read-only owner/history tracing for:
+The next safe work is read-only owner/history reconciliation for:
 
-1. why `ui-state-driven-acceptance-v2.js` disappeared after PR #17 ancestry;
-2. whether another current runner superseded it;
+1. semantic intent of the runner removals in `85e3934` and `ba6b99d`;
+2. whether another acceptance mechanism was intended to supersede `ui-state-driven-acceptance-v2.js`;
 3. ownership and intent of modified `electron/chrome-launcher.js`;
 4. ownership and intent of untracked `scripts/browser-run.js`;
-5. relevant Drive/session history that explains those changes.
+5. relevant Drive/session history around governance consolidation and browser-launch changes.
 
-No implementation, cleanup, PR mutation, branch mutation, push, staging, or revert is implied by this record.
+No implementation, cleanup, PR mutation, branch mutation, push, staging, restore, or revert is implied by this record.
