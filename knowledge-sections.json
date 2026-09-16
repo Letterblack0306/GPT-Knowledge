@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Section-level routing hints for selective GPT-Knowledge retrieval. Use this after knowledge-index.json identifies the relevant domain or when a trigger maps directly to a stable section.",
+  "routes": [
+    {
+      "id": "memory-decision-simple-loop",
+      "triggers": [
+        "did we already plan this",
+        "what did we decide before",
+        "why was this designed this way",
+        "find old plans",
+        "unfinished work",
+        "rejected idea",
+        "historical contradiction"
+      ],
+      "file": "skills/memory-assisted-decision-support/SKILL.md",
+      "anchor": "#loop",
+      "purpose": "Use the minimal recall -> verify -> compare -> decide loop."
+    },
+    {
+      "id": "memory-decision-source-roles",
+      "triggers": [
+        "which source owns truth",
+        "memory vs birdeye",
+        "memory vs github",
+        "historical vs current truth"
+      ],
+      "file": "skills/memory-assisted-decision-support/SKILL.md",
+      "anchor": "#source-roles",
+      "purpose": "Separate historical context from local, remote, runtime, and GPT-K roles."
+    },
+    {
+      "id": "memory-decision-contradiction",
+      "triggers": [
+        "current behavior contradicts old decision",
+        "memory disagrees with workspace",
+        "memory disagrees with runtime",
+        "old plan contradicts current implementation"
+      ],
+      "file": "project-engineering/memory-assisted-decision-support.md",
+      "anchor": "#contradictions-are-signals",
+      "purpose": "Treat history/current-state disagreement as a signal to investigate provenance, supersession, drift, or regression."
+    },
+    {
+      "id": "memory-decision-zero-results",
+      "triggers": [
+        "memory search returned nothing",
+        "no memory results",
+        "was this never discussed",
+        "memory retrieval miss"
+      ],
+      "file": "project-engineering/memory-assisted-decision-support.md",
+      "anchor": "#zero-result-does-not-prove-never-discussed",
+      "purpose": "Retry with bounded alternate terms/scopes before concluding history is absent."
+    }
+  ]
+}
