@@ -228,6 +228,16 @@
     "rust_main": "520f254c60512f320f82aced0d3b04b129f8b2ed",
     "scope": "Published the existing proven provider/Cline composition and current Rust source projection needed for the completed continuation slice. Unrelated dirty files, deletions, logs, copied Cline trees and manual chat-history folders were not published.",
     "next_sync_rule": "Local agent may fetch and fast-forward main. Preserve unrelated working-tree changes; stop on any merge refusal or unexpected diff.",
+    "latest_client_composition_reconciliation": {
+      "repository": "Letterblack0306/LBE_Agents_wall_Intigration",
+      "branch": "main",
+      "commits": [
+        "98910babef4cbc4a87e4a17c89a6cbe7bb948212",
+        "bf4f7a8be627b01adf864bfa55b2b70ee423dcaf"
+      ],
+      "scope": "Route the canonical lbe launcher through the existing LBE CLI/TUI wrapper, create or reuse one persisted LBE session, export workspace/database/runtime identity, and fail closed without provider or binary configuration. No LBE authority was duplicated.",
+      "result": "IMPLEMENTED_UNVERIFIED_LIVE"
+    },
     "latest_documentation_reconciliation": {
       "repository": "Letterblack0306/LBE_Presistent_Agent_wall",
       "branch": "main",
@@ -499,7 +509,7 @@
       "html_role": "Reference/design only",
       "textual_role": "Retired as final product UI"
     },
-    "current_first_missing_seam": "LBE_CLI_PRODUCT_COMPOSITION_AND_STRUCTURAL_VISUAL_DIFFERENTIATION",
+    "current_first_missing_seam": "REAL_LBE_LAUNCH_SESSION_PROVIDER_AND_STRUCTURAL_SHELL_PROOF",
     "release_ready": false
   },
   "interface_reconciliation": {
@@ -511,7 +521,7 @@
     "rust_role": "Reference/integration client only",
     "textual_role": "Reference/retired final product path; synthetic runtime state is not acceptable",
     "canonical_product_source": "lbe_guard_inspector/product_entry.py, lbe_guard_inspector/cli.py, and bundled runtime/cline_worker/",
-    "exact_entrypoint": "DOCUMENTED lbe; installed live composition remains UNVERIFIED until terminal acceptance"
+    "exact_entrypoint": "DOCUMENTED lbe; launcher composition IMPLEMENTED, installed live launch/session/provider behavior remains UNVERIFIED"
   },
   "machine_driven_continuation": {
     "classification": "MANDATORY",
