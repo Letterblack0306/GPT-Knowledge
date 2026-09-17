@@ -40,14 +40,56 @@ Observed result:
 - repository source commit/push: NOT PERFORMED;
 - fresh origin-main package/install proof: NOT PERFORMED.
 
+## Source reconciliation/export evidence
+The repair was re-verified against the unchanged canonical remote base and exported without mutating Git state.
+
+Observed source reconciliation state:
+- branch: `main`;
+- local HEAD: `aa1424e11ae2917b6217a7bc99b03e01958dfc7d`;
+- `origin/main`: `aa1424e11ae2917b6217a7bc99b03e01958dfc7d`;
+- ahead/behind: `0/0`;
+- `tools/lbe_product_integration.ps1`: modified locally;
+- `tests/test_product_launcher_contract.py`: new untracked repair file;
+- unrelated dirty/untracked files remained preserved and excluded.
+
+Exact exported repair artifacts are located outside the repository at:
+`C:\Users\prave\.agent-terminal-loop\lbe-launcher-publication\`
+
+Recorded repair hashes:
+- `tools/lbe_product_integration.ps1`: SHA-256 `6476435f43c8eee0e79e516c13c07d74c401cedee78fddd14748d1e11a7386fb`, 55,146 bytes, UTF-8, CRLF;
+- `tests/test_product_launcher_contract.py`: SHA-256 `fd11af790e535d9ceb03b9f7ad14e2614fd8f55385f3b647b5de0e350d06606f`, 1,564 bytes, UTF-8, LF;
+- origin/main `tools/lbe_product_integration.ps1`: SHA-256 `9e7ebeea735417db1749e9da6fdb76bb794ee67c`;
+- origin/main `tests/test_product_launcher_contract.py`: absent.
+
+Export bundle also includes `repair.patch` and `manifest.json`; the patch contains only the two intended repair paths and the manifest records base SHA, path hashes, byte lengths, encoding, newline style, and generation time.
+
+Focused reconciliation validation:
+- PowerShell parser: PASS;
+- launcher contract tests: `2 passed`;
+- release packaging tests: `2 passed` in the reconciliation run;
+- combined focused result: `4 passed`;
+- `git diff --check`: PASS;
+- source files modified during reconciliation: none;
+- Git state modified during reconciliation: none.
+
+Publication classification:
+`READY_FOR_GITHUB_PUBLICATION`
+
+Publication scope is exactly:
+1. `tools/lbe_product_integration.ps1`
+2. `tests/test_product_launcher_contract.py`
+
+Do not reconstruct these files from summaries. Publish the exact exported snapshot only.
+
 ## Current classifications
 - `PRODUCT_LAUNCHER_CONFIGURATION_COMPOSITION_DEFECT`: source owner identified and locally repaired.
 - `REAL_PRODUCT_COMMAND_IDENTITY`: UNPROVEN installed.
 - `REAL_LAUNCHER_CONFIG_BINDING`: SOURCE_REPAIR_PRESENT / INSTALLED_PROOF_PENDING.
 - `FINAL_PRODUCT_SOURCE_RECONCILIATION`: remains open.
+- `SOURCE_PUBLICATION_READINESS`: READY_FOR_GITHUB_PUBLICATION.
 
 ## Why installed proof is still blocked
-`tools/lbe_product_integration.ps1` forces build/package modes to consume `origin/main`. The repair currently exists only in the local worktree. A package produced from current `origin/main` would therefore exclude the repair and cannot be used as acceptance evidence.
+`tools/lbe_product_integration.ps1` forces build/package modes to consume `origin/main`. The repair currently exists only in the local worktree/export bundle. A package produced from current `origin/main` would therefore exclude the repair and cannot be used as acceptance evidence.
 
 The next step is to publish/reconcile exactly the two intended source files into canonical GitHub `main`, preserving all unrelated local dirty/untracked state. After publication, build/package from clean `origin/main`, install into a fresh disposable product root, and prove:
 - `Get-Command lbe` resolves to the LetterBlack-owned product shim/launcher;
