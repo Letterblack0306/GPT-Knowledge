@@ -192,7 +192,7 @@
   "canonical_execution_path": {
     "status": "MANDATORY_REFERENCE_FOR_NEXT_STEP",
     "document": "project-engineering/projects/lbe-plan-canvas/CANONICAL_AGENT_LBE_EXECUTION_PATH.md",
-    "sequencing_rule": "Use the canonical agent-to-LBE execution path as the default implementation and acceptance order. Do not jump around settled layers; identify the first missing seam and continue downward."
+    "sequencing_rule": "Use the canonical agent-to-LBE execution path as the default implementation and acceptance order. The normal product entrypoint is `lbe`; Cline is embedded reasoning/provider/interaction mechanics; LBE remains the sole authority. Do not jump around settled layers. Identify the first missing seam and continue downward."
   },
   "workspace_mirror": {
     "status": "SYNCHRONIZED_LOCAL_WORKSPACE_MIRROR",
@@ -317,7 +317,7 @@
       "exact_cline_source_or_acquisition": "BLOCKED_PENDING_LOCAL_REMOTE_RECONCILIATION"
     }
   },
-  "verified_at": "2026-09-07",
+  "verified_at": "2026-09-17",
   "current_execution_state": {
     "gate_id": "CLIENT_ACQUISITION_AND_ENTRYPOINT_RECONCILIATION",
     "current_status": "BLOCKED_BY_CROSS_SOURCE_DRIFT",
@@ -518,5 +518,19 @@
     "next_action": "Inspect local lbe.ps1, lbe.bat, install/profile launchers, and live process environment to determine the exact LBE_PROVIDER_CONFIG path used by the installed lbe product.",
     "acceptance": "Record the resolved path and verify that provider/model values in that file match the authoritative LBE session/provider selection.",
     "stop_rule": "If no launcher sets LBE_PROVIDER_CONFIG, classify provider binding as incomplete and repair launcher/product-entry composition rather than manually editing an arbitrary provider JSON file."
+  },
+  "current_product": {
+    "product": "LBE",
+    "entrypoint": "lbe",
+    "final_surface": "LBE-branded coding IDE CLI/TUI",
+    "embedded_mechanics": "Cline reasoning/provider/model/continuation/compatible interaction",
+    "authority": "LBE identity/policy/authorization/governed execution/receipts/evidence/persistence/recovery/validation/completion",
+    "rust": "reference/integration input only",
+    "html": "reference only"
+  },
+  "current_single_job": {
+    "id": "LBE_CLI_PRODUCT_COMPOSITION_AND_STRUCTURAL_VISUAL_DIFFERENTIATION",
+    "status": "BLOCKED_ACTIVE_PRODUCT_GATE",
+    "required_flow": "lbe -> LBE shell -> embedded Cline mechanics -> LBE session/provider -> governed tool -> ToolReceipt/evidence -> continuation -> persistence/resume -> validation/completion -> clean TTY/ConPTY exit"
   }
 }
