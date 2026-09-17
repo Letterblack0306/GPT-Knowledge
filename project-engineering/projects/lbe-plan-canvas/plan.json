@@ -1,7 +1,7 @@
 {
   "schema_version": 51,
   "project": "LBE Persistent Agent",
-  "updated": "2026-09-08",
+  "updated": "2026-09-17",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "source_branch": "main",
   "original_workspace": "C:/Agents-Memory-Tool-v6-integration",
@@ -63,18 +63,18 @@
   },
   "product_surface_plan": {
     "final_target": "Typing `lbe` in a terminal opens the complete LBE-branded coding IDE CLI/TUI. Cline mechanics and backend runtime components are internal implementation details.",
-    "selected_current_client": "LBE CLI/TUI — exact source/acquisition path MISALIGNED_PENDING_RECONCILIATION",
+    "selected_current_client": "LBE CLI/TUI with embedded Cline mechanics — installed composition remains UNVERIFIED pending claim-matched acceptance",
     "selected_launcher": "installed `lbe` command via lbe_guard_inspector.product_entry:main",
     "entrypoint": "lbe_guard_inspector.product_entry:main (installed command: lbe)",
     "rust_reference_client": "C:/LBE-TUI-Lab/src/main.rs",
     "rust_reference_launcher": "C:/LBE-TUI-Lab/run-lbe.bat",
     "projection_rule": "Cline CLI/TUI and Rust reference clients may request and project state only. LBE_Presistent_Agent_wall remains sole owner of workspace/session identity, provider truth, policy, authorization, ToolRegistry, governed execution, MCP registration, ToolReceipt/evidence, persistence/recovery, validation and completion truth.",
     "source_reconciliation": {
-      "classification": "CLIENT_SOURCE_PATH_DRIFT",
-      "canonical_remote_cline_directory": "MISSING",
-      "canonical_remote_begin_directory": "MISSING",
-      "canonical_remote_launcher": "PRESENT but defaults to missing cline/apps/cli/dist/cli-windows-x64/bin/cline.exe",
-      "local_launcher_report": "LOCAL_REPORTED: Get-Command cline resolves npm-installed client",
+      "classification": "PRODUCT_ENTRYPOINT_DOCUMENTED_COMPOSITION_UNPROVEN",
+      "canonical_product_source": "lbe_guard_inspector/product_entry.py and lbe_guard_inspector/cli.py with bundled runtime/cline_worker/",
+      "canonical_external_entrypoint": "installed `lbe` command",
+      "internal_mechanics": "Cline provider/model/reasoning/continuation mechanics behind LBE authority",
+      "local_validation_surface": "C:/Agents-Memory-Tool-v6-integration is read-only evidence; C:/Agents-Memory-Tool-v6-validation is isolated validation runtime",
       "product_role": "UNCHANGED: LBE CLI/TUI user-facing, Cline embedded mechanics, LBE runtime sole authority, Rust reference/integration",
       "final_product_entrypoint": "lbe"
     },
