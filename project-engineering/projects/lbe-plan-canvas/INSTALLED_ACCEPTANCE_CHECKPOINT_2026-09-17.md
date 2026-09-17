@@ -7,12 +7,12 @@ This checkpoint records the latest installed/runtime acceptance evidence supplie
 ## Canonical workspaces observed
 
 - Backend/runtime: `C:\Agents-Memory-Tool-v6-integration`
-  - observed HEAD: `aa1424e`
-  - observed relation to remote: matches `origin/main`
+  - observed HEAD: `aa1424e11ae2917b6217a7bc99b03e01958dfc7d`
+  - observed relation to remote: matches `origin/main` (`0/0` ahead/behind)
   - pre-existing untracked `dist_reconcile_tmp/` and `verify_clean_install.py` preserved
 - Rust/client: `C:\LBE-TUI-Lab`
-  - observed HEAD: `1bf49c5`
-  - observed remote: `origin/main` = `4a1dd91`
+  - observed HEAD: `1bf49c5120dfb18e799b35d81fd2f58646ff8715`
+  - observed remote: `origin/main` = `4a1dd916615694097342cf6b0f2fab9ffad07f2e`
   - observed relation: two commits behind
   - pre-existing tracked/untracked recovery work preserved
 - Installed runtime: `C:\LBE_RUNTIME_PY312`
@@ -37,16 +37,17 @@ This lower-level idempotency checkpoint must not be reopened unless newer eviden
 
 ## Real installed provider-backed turn proof
 
-A valid local provider/model pair was proven through LM Studio/OpenAI-compatible configuration:
+A valid local provider/model pair is proven through LM Studio/OpenAI-compatible configuration:
 
 - provider ID: `openai-compatible`
 - model: `google/gemma-4-e4b`
+- endpoint used by the installed adapter: `http://127.0.0.1:1234/v1/chat/completions`
 - local provider listener/model discovery available
 - session provider/model persisted and matched provider configuration
-- real `product_entry._turn` created authoritative turn state and operational events
-- validation and completion-evidence machinery executed when the turn failed validation
+- real `product_entry._turn` creates authoritative turn state and operational events
+- validation and completion-evidence machinery executes and fails closed when no task-bound source change exists
 
-Provider availability itself is therefore not the current blocker.
+Provider availability itself is not the current blocker.
 
 ## Mutation tool contract resolution
 
@@ -75,50 +76,101 @@ Current source/runtime evidence classifies the two mutation tools as semanticall
 
 `SEMANTICALLY_DISTINCT_TOOLS`
 
-The provider-facing coding turn is not currently required to expose a tool named `workspace.patch`. The canonical provider mutation capability is `workspace.write_text`. Do not add `workspace.patch` to provider guidance solely to satisfy an earlier acceptance assumption.
+The provider-facing coding turn is not required to expose a tool named `workspace.patch`. The canonical provider mutation capability is `workspace.write_text`. Do not add `workspace.patch` to provider guidance solely to satisfy an earlier acceptance assumption.
 
-## Current installed acceptance blocker
+## Provider tool-call boundary diagnosis — resolved
 
-A real provider-backed turn was created successfully and `workspace.read` executed through the governed tool path. The model then stated textually that it had completed the requested change but did **not** emit an actual `workspace.write_text` tool call.
+The provider/tool translation boundary was inspected without repository source modification.
 
-Observed result:
+### Outbound request proof
 
-- turn lifecycle: PASS
-- governed read tool call: PASS
-- provider-facing `workspace.write_text` exposure: PASS
-- actual provider `workspace.write_text` tool-call emission: NOT PROVEN / FAILED IN THIS RUN
-- mutation: NOT EXECUTED
-- authoritative validation: ran and failed because no task-bound source change existed
-- completion promotion: correctly denied
-- repository source changes: none
-- focused backend/provider/product tests: `26 passed`
+The installed OpenAI-compatible adapter sends:
+
+- `model = google/gemma-4-e4b`;
+- messages;
+- an LBE-generated `tools` array;
+- `workspace.write_text` exactly once;
+- `workspace.write_text` schema with required `path` and `content`, optional `expected_sha256`, and `additionalProperties = false`;
+- `workspace.read`, `workspace.create_candidate_text`, `process.run_registered`, `git.status`, `git.stage_paths`, and `git.commit_staged`;
+- no normal-production `tool_choice` field;
+- no normal-production `stream` field (non-streaming completion).
+
+Therefore `runtime.guidance.loaded` and the actual provider request are aligned for the mutation tool surface.
+
+### Model/tool-call capability proof
+
+An isolated non-mutating diagnostic against the same endpoint/model supplied a synthetic `diagnostic_probe(value: string)` function and required a tool call only for that diagnostic. The provider returned:
+
+- structured `message.tool_calls`;
+- `finish_reason = tool_calls`;
+- empty ordinary assistant content;
+- arguments equivalent to `{value: probe}`.
+
+The returned synthetic function was not executed.
+
+This proves that the loaded `google/gemma-4-e4b` path can emit structured tool calls in the current LM Studio configuration.
+
+### Real coding-turn tool-call proof
+
+A real installed coding turn using the normal LBE adapter emitted a structured `workspace.write_text` tool call. LBE preserved the call through:
+
+`LM Studio structured tool_calls -> OpenAICompatibleEventAdapter -> normalized TOOL_CALL_COMPLETED -> GovernedProviderReasoningController -> GovernedToolOrchestrator -> workspace.write_text receipt/evidence`
+
+The governed operation:
+
+- authorization: `ALLOW`;
+- execution: `EXECUTED`;
+- created disposable `probe2.txt` with 5 bytes;
+- resulting SHA-256: `ba9c736f19e7f60b7f6764adb0b7908c0a2b394e09b6c09863528c7f2bc86095`.
+
+A separate real read turn likewise translated `workspace.read` into a governed receipt.
+
+No tool-call disappearance was observed in transport, adapter translation, normalization, authorization, or governed execution.
+
+### Root-cause classification
+
+`PROVIDER_MODEL_DID_NOT_CALL_TOOL`
+
+This classification applies to the earlier ordinary coding turn only. In that turn the model returned ordinary text without issuing the required mutation call. Current evidence shows that:
+
+- the tool definitions reached LM Studio correctly;
+- the loaded model can emit structured tool calls;
+- the normal LBE adapter can receive and translate structured tool calls;
+- the governed `workspace.write_text` path executes correctly when the model actually calls it.
+
+Therefore the earlier no-write result was not caused by tool-definition loss or response-translation loss.
+
+The remaining acceptance concern is behavioral/task compliance under the original coding prompt: reproduce the original prompt with request/response capture and determine whether the smallest corrective action belongs in task/tool-use guidance or provider/model selection. Do not force normal `tool_choice` or change mutation ownership solely because one turn chose ordinary text.
+
+## Installed invocation/configuration requirement
+
+The first disposable write attempt in the diagnostic was launched without the active LBE configuration environment and attempted to resolve `config.json` under the installed site-packages path. Supplying the authorized disposable diagnostic configuration allowed the same installed path to execute `workspace.write_text` successfully.
+
+Classification:
+
+`INVOCATION_CONFIGURATION_REQUIREMENT`
+
+This is not evidence of a provider schema or tool-translation defect. Any final product acceptance must prove the real installed launcher supplies the required active LBE configuration rather than relying on an ad-hoc diagnostic environment.
+
+## Current acceptance blocker
 
 Current blocker classification:
 
-`PROVIDER_TOOL_CALL_EMISSION_OR_TRANSLATION_NOT_YET_ISOLATED`
+`ORIGINAL_TASK_TOOL_USE_COMPLIANCE_NOT_YET_REPRODUCED`
 
-The failure does not justify changing mutation ownership, adding `workspace.patch` to the provider surface, weakening validation, or fabricating lifecycle records.
+Before source modification:
 
-## Next bounded diagnostic
-
-Before any implementation change, isolate whether the missing mutation tool call is caused by:
-
-1. model behavior (model chose text rather than tool call);
-2. outbound provider request not carrying the full LBE-generated tool definitions;
-3. incorrect/missing OpenAI-compatible `tools` / `tool_choice` request fields;
-4. LM Studio model/template/tool-call formatting behavior;
-5. raw provider response containing a tool call that the LBE adapter fails to translate;
-6. provider response containing only text because no parsable tool call was produced;
-7. streaming/non-streaming tool-call parsing mismatch;
-8. another evidence-backed provider-adapter seam.
-
-Capture the exact sanitized outbound provider request shape and raw provider response shape before modifying source. Do not print credentials.
-
-If the current provider adapter is proven to transmit and translate tool calls correctly, repeat acceptance with an already-available tool-capable model/configuration before treating model noncompliance as a product defect.
+1. replay/reproduce the original coding task as closely as current evidence permits;
+2. capture sanitized outbound request and raw provider response;
+3. prove whether the model again claims completion without `workspace.write_text`;
+4. inspect current task/guidance/tool-use prompting for contradictions or insufficient mutation requirements;
+5. compare with another already-available tool-capable model only if needed;
+6. do not treat ordinary textual claims as execution evidence;
+7. do not force normal production `tool_choice` merely to make acceptance pass.
 
 ## Deferred gates
 
-Do not advance to MCP until one real provider-backed mutation completes the full authoritative chain:
+Do not advance to MCP until one real provider-backed mutation completes the full authoritative chain under the acceptance task:
 
 `session -> turn -> workspace.write_text -> authorization -> governed execution -> ToolReceipt/evidence -> validation -> completion`
 
