@@ -499,19 +499,19 @@
       "html_role": "Reference/design only",
       "textual_role": "Retired as final product UI"
     },
-    "current_first_missing_seam": "CLINE_LBE_STRUCTURAL_VISUAL_DIFFERENTIATION",
+    "current_first_missing_seam": "LBE_CLI_PRODUCT_COMPOSITION_AND_STRUCTURAL_VISUAL_DIFFERENTIATION",
     "release_ready": false
   },
   "interface_reconciliation": {
-    "classification": "PRODUCT_ROLE_LOCKED_CLIENT_PATH_DRIFTED",
-    "product": "LBE CLI/TUI",
-    "cline_role": "Embedded provider/model/reasoning/delegated-agent mechanics",
-    "runtime_authority": "C:/Agents-Memory-Tool-v6-integration",
-    "rust_role": "Reference/integration client",
-    "canonical_remote_client_source": "MISSING: cline/apps/cli not present",
-    "canonical_remote_launcher": "PRESENT but defaults to missing vendored cline.exe",
-    "local_reported_launcher": "Get-Command cline -> npm-installed client",
-    "exact_entrypoint": "UNVERIFIED_PENDING_RECONCILIATION"
+    "classification": "PRODUCT_ROLE_LOCKED_EMBEDDED_MECHANICS",
+    "product": "LBE-branded coding IDE CLI/TUI",
+    "entrypoint": "lbe",
+    "cline_role": "Embedded provider/model/reasoning/interaction mechanics under LBE authority",
+    "runtime_authority": "C:/Agents-Memory-Tool-v6-validation for isolated validation; C:/Agents-Memory-Tool-v6-integration is read-only evidence surface",
+    "rust_role": "Reference/integration client only",
+    "textual_role": "Reference/retired final product path; synthetic runtime state is not acceptable",
+    "canonical_product_source": "lbe_guard_inspector/product_entry.py, lbe_guard_inspector/cli.py, and bundled runtime/cline_worker/",
+    "exact_entrypoint": "DOCUMENTED lbe; installed live composition remains UNVERIFIED until terminal acceptance"
   },
   "machine_driven_continuation": {
     "classification": "MANDATORY",
