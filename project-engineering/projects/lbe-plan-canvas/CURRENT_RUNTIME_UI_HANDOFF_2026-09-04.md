@@ -827,3 +827,51 @@ NEXT AUDIT WORK                         REMAINING PRODUCT/RUNTIME-MECHANICS ROWS
 ```
 
 Do not mark the complete product diff PASS until these remaining rows are explicitly resolved from current evidence. Do not substitute Rust-client proof for the accepted Cline CLI/TUI product surface, and do not transfer any LBE authority to Cline while closing the remaining rows.
+
+
+## 2026-09-17 — Canonical product-entrypoint reconciliation
+
+This current note supersedes earlier wording that treated an independently launched Cline CLI/TUI as the final product entrypoint.
+
+Current product truth:
+
+```text
+PRODUCT                 = LBE
+NORMAL ENTRYPOINT       = lbe
+FINAL SURFACE           = LBE-branded coding IDE CLI/TUI
+CLINE                   = embedded/reused reasoning, provider/model, continuation,
+                          response-composition, and compatible interaction mechanics
+LBE                     = sole identity/policy/authorization/execution/receipt/evidence/
+                          persistence/recovery/validation/completion authority
+RUST/RATATUI            = reference/integration input only
+HTML                    = reference only
+PYTHON/TEXTUAL          = reference/runnable material only; not final-product authority
+```
+
+Canonical Agent Wall documentation was reconciled on main through the following commits:
+
+```text
+2e9f9c76ce9303f714bf60cea37296fe54183e1f
+6eee8a53009bbe30c80b04fc7fc3a51423cc0e89
+429735183e0a4f08e1ef5859ce8871f19d5fef00
+7499463ad1748e118f3631e18e8bd3b8bfd07053
+```
+
+The machine gate remains unchanged:
+
+```text
+active_phase = INSTALLED_PTY_CONPTY_AND_FINAL_PRODUCT_ACCEPTANCE
+active_slice = FINAL_PRODUCT_SOURCE_RECONCILIATION
+status       = OPEN
+publication  = LOCKED
+```
+
+The first current product seam is:
+
+```text
+LBE_CLI_PRODUCT_COMPOSITION_AND_STRUCTURAL_VISUAL_DIFFERENTIATION
+```
+
+Required proof remains claim-matched: lbe launch, real LBE session/provider state, embedded Cline turn, governed tool proposal and authorization, exactly-once execution, persisted ToolReceipt/evidence, continuation, persistence/resume, deterministic completion, clean TTY/ConPTY exit, and terminal restoration. Documentation, source presence, focused tests, or an independently launched Cline process cannot substitute for this proof.
+
+Historical chat/Drive records explain prior decisions only. Current GitHub source, machine gate, local read-only validation evidence, and live runtime evidence outrank this historical projection. BirdEye MCP retrieval was unavailable during this refresh (Transport closed); no MCP retrieval result is being treated as current truth.
