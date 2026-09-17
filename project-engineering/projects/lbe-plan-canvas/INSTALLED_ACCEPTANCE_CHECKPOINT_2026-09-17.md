@@ -140,7 +140,50 @@ This classification applies to the earlier ordinary coding turn only. In that tu
 
 Therefore the earlier no-write result was not caused by tool-definition loss or response-translation loss.
 
-The remaining acceptance concern is behavioral/task compliance under the original coding prompt: reproduce the original prompt with request/response capture and determine whether the smallest corrective action belongs in task/tool-use guidance or provider/model selection. Do not force normal `tool_choice` or change mutation ownership solely because one turn chose ordinary text.
+## Reproduction diagnosis — no product defect proven from the reported Gemma turn
+
+The exact persisted Gemma failure referenced by the earlier report could not be recovered from the authorized evidence stores. Therefore the original task semantics, request snapshot, raw response, validation records, and completion records cannot currently be replayed or attributed to a concrete persisted Gemma turn.
+
+The available failed runtime record is a different task/model and must not be substituted:
+
+- runtime store: `C:\Agents-Memory-Tool-v6-integration\state\lbe-runtime.db`;
+- session: `tui-runtime-20260831-v2`;
+- turn: `turn-ae10f42e04b0460cb13bf7728df25d97`;
+- provider/model: `qwen/qwen3-vl-8b`;
+- user task: read-only workspace inspection that explicitly prohibited file modification and command execution;
+- observed tool call: `workspace.read`;
+- observed mutation call: none, consistent with the task;
+- completion evidence: `source_change`, `focused_test`, and `git_status` failed;
+- final result: `GOVERNED_CODING_TURN_ERROR: VALIDATION_FAILED`;
+- no recovery/replanning continuation was recorded for this turn.
+
+Current source inspection shows:
+
+- `agent_guidance.py` says to inspect, implement through governed capabilities, validate, and report evidence, and permits changes only through authorized tools;
+- current guidance does not contain the stronger invariant that a requested file modification is incomplete until a successful `workspace.write_text` receipt/evidence exists;
+- `agent_integration.py` performs one non-retryable reasoning attempt before completion evidence production;
+- retry policy currently covers `TIMEOUT` and `TEMPORARY_TOOL_FAILURE`, not a provider textual-completion response where validation later proves that no requested mutation occurred;
+- finalization correctly denies completion when required evidence is absent;
+- the observed failed path terminates after validation denial rather than automatically replanning.
+
+These source characteristics establish a possible combined guidance/recovery improvement area, but they do **not** prove that such a gap caused the unavailable original Gemma failure.
+
+Current defensible classification:
+
+`NO_PRODUCT_DEFECT_PROVEN_FOR_REPORTED_GEMMA_TURN`
+
+Do not change source solely on the basis of the unavailable original turn.
+
+Required evidence before attributing the reported failure:
+
+1. exact original Gemma `user.message`;
+2. session and turn identifiers;
+3. provider settings and effective guidance/tool-definition snapshot;
+4. raw model response;
+5. validation/completion records;
+6. three normal-production replays using the same task semantics.
+
+If that evidence cannot be recovered, close this specific historical failure as `INSUFFICIENT_EVIDENCE` rather than inventing a repair target.
 
 ## Installed invocation/configuration requirement
 
@@ -154,23 +197,17 @@ This is not evidence of a provider schema or tool-translation defect. Any final 
 
 ## Current acceptance blocker
 
-Current blocker classification:
+The historical reported Gemma failure is not an acceptable blocker without recoverable evidence.
 
-`ORIGINAL_TASK_TOOL_USE_COMPLIANCE_NOT_YET_REPRODUCED`
+The next product acceptance work should use a new, fully persisted, explicitly defined normal coding task and prove the complete authoritative chain under the real installed launcher/runtime configuration:
 
-Before source modification:
+`session -> turn -> governed mutation -> ToolReceipt/evidence -> validation -> completion`
 
-1. replay/reproduce the original coding task as closely as current evidence permits;
-2. capture sanitized outbound request and raw provider response;
-3. prove whether the model again claims completion without `workspace.write_text`;
-4. inspect current task/guidance/tool-use prompting for contradictions or insufficient mutation requirements;
-5. compare with another already-available tool-capable model only if needed;
-6. do not treat ordinary textual claims as execution evidence;
-7. do not force normal production `tool_choice` merely to make acceptance pass.
+Do not rely on an unrecoverable prior turn as the acceptance fixture.
 
 ## Deferred gates
 
-Do not advance to MCP until one real provider-backed mutation completes the full authoritative chain under the acceptance task:
+Do not advance to MCP until one real provider-backed mutation completes the full authoritative chain under a persisted acceptance task:
 
 `session -> turn -> workspace.write_text -> authorization -> governed execution -> ToolReceipt/evidence -> validation -> completion`
 
