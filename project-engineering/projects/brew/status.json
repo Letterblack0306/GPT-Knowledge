@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
   "project": "Brew",
-  "verified_at": "2026-09-14",
+  "verified_at": "2026-09-18",
   "source_repo": "Letterblack0306/brew",
   "source_branch": "main",
-  "source_head": "39da8df909e6e7cc84cf770fcc04c3e959808506",
+  "source_head": "722fc2386589d115bccfadae687923961f4cca95",
   "default_branch_observed": {
     "branch": "main",
-    "head": "39da8df909e6e7cc84cf770fcc04c3e959808506"
+    "head": "722fc2386589d115bccfadae687923961f4cca95"
   },
   "evidence_level": "LOCAL_REPOSITORY_AND_TEST_EVIDENCE_CONFIRMED",
-  "overall_classification": "MODEL_OWNED_REASONING_PATH_ESTABLISHED__SEMANTIC_TOOL_PRESELECTION_REMOVED__FULL_RUNTIME_PROOF_STILL_PENDING",
+  "overall_classification": "CANONICAL_REASONING_AND_CAPABILITY_PATH_ESTABLISHED__READONLY_GIT_ADDED__INSTALLED_AND_LIVE_ACCEPTANCE_STILL_PENDING",
   "authority_note": "This GPT-K record reflects verified Brew repository state and local test evidence through 2026-09-14. Current source/runtime, exact local revision, live provider/tool behavior, CI, and installed-runtime evidence continue to outrank this record.",
   "canonical_architecture": {
     "semantic_owner": "ONE_REASONING_MODEL",
@@ -59,6 +59,11 @@
       "commit": "39da8df909e6e7cc84cf770fcc04c3e959808506",
       "classification": "PROVEN_SOURCE_AND_TEST",
       "change": "Aligned the dynamic prompt tool catalogue with the native tool loop by using describeForModel({ includeUnavailable: false }); the model now sees the governed executable tool set consistently in both context and native tool schemas."
+    },
+    {
+      "commit": "722fc2386589d115bccfadae687923961f4cca95",
+      "classification": "PROVEN_SOURCE_AND_TEST",
+      "change": "Added canonical read-only git.status and git.diff_summary capabilities through Brew's governed capability registry and bounded adapters. Focused tests 2/2, readiness 10/10, full suite 421/421, runtime check and UI build reported PASS."
     }
   ],
   "canonical_runtime_findings": [
@@ -91,18 +96,34 @@
       "id": "scenario-router-natural-language-path",
       "classification": "RUNTIME_DEAD_FOR_CANONICAL_NATURAL_LANGUAGE_BASED_ON_CURRENT_SOURCE_TRACE",
       "detail": "The natural-language classifyScenario path was found only in tests. Canonical start.js uses classifyExplicitCommand for explicit slash/URL syntax and ordinary natural language falls through to the LLM reasoning loop."
+    },
+    {
+      "id": "operation-journal-current",
+      "classification": "PROVEN_SOURCE_AND_TEST_PRESENT",
+      "detail": "brew/observability/operation-journal.mjs is committed on main, imported by canonical agent/runner/gateway paths, and covered by operation-journal tests. Older REMAINING_AUDIT_AREAS text claiming it is uncommitted is STALE. Process-loss/exactly-once acceptance remains pending."
+    },
+    {
+      "id": "legacy-multi-agent-current",
+      "classification": "FAIL_CLOSED_COMPATIBILITY_SURFACE",
+      "detail": "brew/runtime/agents/dispatch-handlers.mjs is absent on current main. scripts/tests/single-agent-architecture.test.mjs asserts scenario-router, agent-dispatch, dispatch-handlers, and brew/start.js remain absent. subagent-engine.mjs and team-coordinator.mjs remain only as explicitly disabled fail-closed compatibility modules in the tested architecture."
     }
   ],
   "validation": {
     "full_test_command": "npm test",
-    "suite_count": 107,
-    "test_count": 411,
-    "passed": 411,
+    "suite_count": null,
+    "test_count": 421,
+    "passed": 421,
     "failed": 0,
-    "skipped": 0,
+    "skipped": null,
     "todo": 0,
-    "diff_check": "PASS",
-    "classification": "REPOSITORY_TEST_PROOF_NOT_LIVE_END_TO_END_RUNTIME_PROOF"
+    "diff_check": "PASS per implementation handoff",
+    "additional": [
+      "focused git capability tests 2/2 PASS",
+      "readiness 10/10 PASS",
+      "npm run check:runtime PASS",
+      "npm run build:ui PASS"
+    ],
+    "classification": "REPOSITORY_TEST_PROOF_NOT_INSTALLED_OR_LIVE_PROVIDER_ACCEPTANCE"
   },
   "branch_cleanup": {
     "superseded_branch": "audit/model-owned-reasoning-cleanup-20260914",
@@ -111,28 +132,52 @@
   },
   "remaining_audit_targets": [
     {
-      "id": "active-read-agent",
-      "status": "REACHABILITY_NOT_YET_CLASSIFIED",
-      "evidence": "Full test suite still contains 'active read agent owns supported inspection intents'.",
-      "next_check": "Trace imports/callers from canonical runner before changing or deleting."
+      "id": "clean-installed-runtime-acceptance",
+      "status": "PENDING",
+      "evidence": "Deployment candidate gate still requires clean exact-head install, installed layout/postflight, source/build identity, startup, runtime health and unrelated-directory CLI proof.",
+      "next_check": "Run controlled install/user-path acceptance from exact current main; do not substitute source-worktree success."
     },
     {
-      "id": "provider-planner",
-      "status": "REACHABILITY_NOT_YET_CLASSIFIED",
-      "evidence": "Full test suite still contains provider-planner behavior tests.",
-      "next_check": "Determine whether this is canonical, compatibility-only, or dead code."
+      "id": "provider-originated-tool-roundtrip",
+      "status": "PENDING_LIVE_PROOF",
+      "evidence": "Source tool loop and governed registry exist, but real provider -> native tool request -> receipt/evidence -> same-model continuation remains unproven at installed runtime level.",
+      "next_check": "Capture one correlated live provider turn with tool_call_id/operation/receipt/evidence/final response."
     },
     {
-      "id": "deterministic-fallback",
-      "status": "REACHABILITY_NOT_YET_CLASSIFIED",
-      "evidence": "Full test suite still exercises bounded deterministic workspace inspection and repeated-provider-action fallback behavior.",
-      "next_check": "Separate safety/recovery mechanics from semantic next-action ownership and remove only semantic authority if active."
+      "id": "completion-truth",
+      "status": "PENDING",
+      "evidence": "Current docs still require objective-grounded completion distinct from provider reply/tool completion.",
+      "next_check": "Prove completion/failure/cancel/block outcomes with claim-matched evidence."
     },
     {
-      "id": "planner-target-sanitization",
-      "status": "REACHABILITY_NOT_YET_CLASSIFIED",
-      "evidence": "Planner target sanitization remains covered by tests.",
-      "next_check": "Classify whether it is a path-safety normalization boundary or part of an active semantic planner."
+      "id": "crash-recovery-exactly-once",
+      "status": "PENDING",
+      "evidence": "Operation journal is committed and tested, but process-loss recovery, cancellation propagation and exactly-once consequential mutation proof remain open.",
+      "next_check": "Run crash timing/restart/replay scenarios against installed runtime."
+    },
+    {
+      "id": "unified-cancellation",
+      "status": "PENDING_OR_PARTIAL",
+      "evidence": "No current exact-head installed proof yet shows cancellation propagating through provider streams, terminal/browser/filesystem/validation/delivery.",
+      "next_check": "Use one operation identity and prove terminal cancellation across active executors."
+    },
+    {
+      "id": "browser-live-proof",
+      "status": "PENDING_LIVE_PROOF",
+      "evidence": "Browser capability source exists; Brew-attributed live browser connection/provider-loop evidence remains unproven.",
+      "next_check": "Run approved Brew-owned browser E2E with exact workspace/runtime identity."
+    },
+    {
+      "id": "single-authority-import-reachability",
+      "status": "PARTIALLY_PROVEN",
+      "evidence": "Canonical semantic dispatch files are removed and legacy subagent/team modules fail closed, but a release-time production import/reachability guard remains valuable.",
+      "next_check": "Add/execute production import graph/reachability check only if not already covered by current readiness guards."
+    },
+    {
+      "id": "documentation-reconciliation",
+      "status": "PENDING",
+      "evidence": "docs/status/REMAINING_AUDIT_AREAS.md still contains stale claims including uncommitted operation journal and active dispatch-handlers imports.",
+      "next_check": "Reconcile status docs against 722fc238 so future agents do not repeat superseded blockers."
     }
   ],
   "do_not_recreate": [
@@ -153,15 +198,14 @@
     "A completion claim after tool use cannot be linked to recorded receipt/evidence identity."
   ],
   "evidence_boundary": {
-    "classification": "CURRENT_LOCAL_REPOSITORY_AND_TEST_EVIDENCE__LIVE_RUNTIME_PROOF_INCOMPLETE",
-    "rule": "Repository/source and test evidence establish the current architecture and regressions at commit 39da8df9, but do not by themselves prove installed-runtime, real-provider, browser, adapter, restart/resume, or user-visible end-to-end behavior.",
+    "classification": "CURRENT_MAIN_SOURCE_AND_TEST_EVIDENCE__INSTALLED_LIVE_ACCEPTANCE_INCOMPLETE",
+    "rule": "Current main 722fc238 establishes source/test status for canonical reasoning/capabilities, including read-only Git and committed operation journal. It does not prove clean installed runtime, live provider/tool continuation, browser E2E, crash recovery/exactly-once, or final user readiness.",
     "next_required_runtime_proof": [
-      "one correlated ordinary user request through the canonical runner",
-      "native provider tool selection from the full governed executable catalogue",
-      "tool_call_id to receipt_id to verification evidence linkage",
-      "same-model continuation after the tool result",
-      "truthful failure when execution or verification fails",
-      "no semantic interception by remaining legacy paths"
+      "clean exact-head install and installed build/source identity",
+      "one real provider-originated governed tool roundtrip with receipt/evidence and same-model continuation",
+      "objective-grounded completion truth",
+      "restart/process-loss/exactly-once mutation proof",
+      "live Brew-attributed browser proof where required"
     ]
   }
 }
