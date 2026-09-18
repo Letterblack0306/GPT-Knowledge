@@ -946,5 +946,25 @@
     },
     "next_required_inspection": "Trace the live value of LBE_PROVIDER_CONFIG through lbe.ps1, lbe.bat, installer/profile scripts, and the launched process environment before modifying reasoning-provider.json.",
     "prohibition": "Do not assume config.json/reasoning_provider_config controls RealLbeWrapper. Do not edit reasoning-provider.json as a root-cause fix until the active LBE_PROVIDER_CONFIG path is proven."
+  },
+  "mode_policy_reconciliation": {
+    "classification": "STATIC_PROVEN_RUNTIME_CONFIRMATION_PENDING",
+    "observed_at": "2026-09-18",
+    "canonical_sources": [
+      "C:/LBE-TUI-Lab/lbe-cli.ps1",
+      "C:/LBE-TUI-Lab/src/wrapper.rs",
+      "C:/LBE-TUI-Lab/src/types.rs",
+      "C:/Agents-Memory-Tool-v6-integration/lbe_guard_inspector/runtime/mode_controller.py"
+    ],
+    "findings": [
+      "lbe-cli.ps1 creates new sessions as mode=audit, permission=read_only, runtime_policy=audit.",
+      "RealLbeWrapper::start_real_session maps Build->coding, Plan->investigation, Audit->audit but currently supplies permission=read_only and runtime_policy=audit for every mode.",
+      "Backend mode_controller forces runtime_policy=audit to effective audit mode.",
+      "RealLbeWrapper rejects UserRequest::SetMode as unsupported for real runtime.",
+      "Rust AgentMode::Audit is currently displayed/cycled as PLAN compatibility rather than a distinct visible AUDIT mode.",
+      "submit_conversational_turn expects Build->coding, Plan->investigation, Audit->audit, creating a likely mode-mismatch for ACT/PLAN sessions under the current persisted audit policy."
+    ],
+    "next_evidence": "Use an isolated database to persist/inspect the canonical launcher session tuple and run a bounded policy/turn-path probe that confirms whether ACT/PLAN return audit and trigger the Rust expected-mode mismatch. Do not change launcher authority until that claim-matched probe is recorded.",
+    "patch_status": "NOT_AUTHORIZED_YET"
   }
 }
