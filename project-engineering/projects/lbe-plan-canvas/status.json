@@ -127,10 +127,10 @@
     "preservation_rule": "Preserve current dirty/unpublished Rust work and do not use Rust acceptance as proof of Cline CLI user experience."
   },
   "current_blocker": {
-    "classification": "REVALIDATE_NARROW_CANONICAL_FIXES_AND_CLASSIFY_REMAINING_RUST_FAILURES",
-    "primary": "The first exact-head validation failed. Narrow proven replay defects are fixed, but current canonical heads have not yet been revalidated.",
-    "secondary": "If Rust tests still fail, exact test names/assertions are required before any more code changes.",
-    "tertiary": "Provider-dependent real turn and installed PTY/ConPTY end-to-end acceptance remain later gates."
+    "classification": "REVALIDATE_FOLLOW_UP_CANONICAL_HEADS",
+    "primary": "Narrow fixes for the exact-head validation failures are committed. Their effect is unverified.",
+    "secondary": "Do not patch remaining Rust failures speculatively; rerun the exact canonical suite and capture surviving test names/assertions first.",
+    "tertiary": "Provider-dependent turn and installed PTY/ConPTY end-to-end acceptance remain later gates."
   },
   "project_visit_protocol": {
     "classification": "MANDATORY_PROJECT_CONTEXT_REFRESH",
@@ -948,32 +948,37 @@
     "prohibition": "Do not assume config.json/reasoning_provider_config controls RealLbeWrapper. Do not edit reasoning-provider.json as a root-cause fix until the active LBE_PROVIDER_CONFIG path is proven."
   },
   "mode_policy_reconciliation": {
-    "classification": "EXACT_HEAD_REVALIDATION_FAILED__NARROW_REPAIRS_COMMITTED__RECHECK_REQUIRED",
+    "classification": "FOLLOW_UP_FIXES_COMMITTED_REVALIDATION_PENDING",
     "observed_at": "2026-09-18",
     "failed_validation": {
       "command_hash": "mode-policy-exact-head-revalidation-001",
       "backend_head": "905030cb72eebdaff12c124165abfecd6cb6e74d",
       "tui_head": "7c41dfab251e2da6226d4682e9c5b1ea00afa3f6",
-      "backend": "2 failed / 123 passed in focused 125-test suite",
-      "rust": "cargo check PASS; cargo fmt FAIL; 176 passed / 26 failed / 2 ignored",
-      "mode_gate": "FAIL"
+      "backend_result": "2 failed / 123 passed",
+      "tui_result": "cargo check PASS; cargo fmt FAIL; cargo test 176 passed / 26 failed / 2 ignored"
     },
-    "proven_failures": [
-      "backend cli.py missing module-level ModeRequest/resolve_mode import caused NameError in _session_mode",
-      "provider-list test expected obsolete singleton registry",
-      "TUI AgentMode cycle order mismatched existing canonical tests",
-      "TUI formatting was not rustfmt-clean"
-    ],
-    "follow_up_commits": {
-      "backend": "24e3cacf1e2899df0d28beffe27ed1a71a583b08",
-      "tui": "2eb57eb7aa8e386bc0b39bfad42f26942e70a5bf"
+    "canonical_follow_up": {
+      "backend_main": "cc0054950153a8c41a48ee0ba60f2675833f7cce",
+      "backend_code_fixes": [
+        "c8d9bc1c7811118888704faee457d0610125aa1e restore module-level ModeRequest/resolve_mode import",
+        "24e3cacf1e2899df0d28beffe27ed1a71a583b08 update provider-list test to current registry contract"
+      ],
+      "tui_main": "2eb57eb7aa8e386bc0b39bfad42f26942e70a5bf",
+      "tui_fixes": [
+        "f7230c266895dcb84014731e1bfea20a609bd5d4 align visible cycle with canonical ACT -> PLAN -> AUDIT -> ACT test contract",
+        "2eb57eb7aa8e386bc0b39bfad42f26942e70a5bf apply rustfmt formatting to mode transition bridge"
+      ]
     },
+    "gate_status": "FAIL_UNTIL_REVALIDATED",
     "next_required_evidence": [
-      "exact-head backend focused tests on current backend main",
-      "cargo check/test/fmt on current TUI main",
-      "if Rust failures remain, capture exact names/assertions before patching",
-      "bounded runtime validation after source/test suite passes"
+      "validate clean exports of backend cc0054950153a8c41a48ee0ba60f2675833f7cce and TUI 2eb57eb7aa8e386bc0b39bfad42f26942e70a5bf",
+      "focused backend mode/session CLI tests",
+      "cargo check",
+      "cargo fmt -- --check",
+      "cargo test -- --test-threads=1",
+      "capture exact failing Rust test names/assertions if any remain",
+      "bounded runtime validation only after source tests pass"
     ],
-    "verdict": "FAIL_UNTIL_REVALIDATED"
+    "verdict": "NO_MORE_SOURCE_CHANGES_WITHOUT_SURVIVING_FAILURE_EVIDENCE"
   }
 }
