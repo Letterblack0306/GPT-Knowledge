@@ -1069,5 +1069,77 @@
     },
     "remaining_acceptance_blockers": 0,
     "rule": "Do not reopen accepted runtime/UI/provider/mode/approval/receipt/PTY/resume/launcher slices without contradictory evidence."
+  },
+  "feature_integration_audit_2026_09_18": {
+    "classification": "SOURCE_AUDIT_AFTER_FINAL_INSTALLED_ACCEPTANCE",
+    "source_heads": {
+      "backend": "d4fc6629b1d54c307c51fbc14d37e17d540c5f63",
+      "rust_tui": "58104bae1cebd2be04fa1d5544b2ebfce90fe8ff"
+    },
+    "accepted_product_gate_note": "Installed-product acceptance remains valid for the tested scope. This audit evaluates broader feature/integration completeness and does not automatically reopen that gate.",
+    "proven_real_wrapper_integrations": [
+      "session start/list/resume",
+      "runtime snapshot attach/refresh",
+      "provider catalog discovery and provider health validation",
+      "model selection",
+      "PLAN/ACT/AUDIT mode transitions through canonical session.mode",
+      "conversational turn submission through product_entry turn",
+      "workspace read/list/glob/search",
+      "workspace patch through approval/governed product_entry boundary",
+      "registered process execution",
+      "authorization request/approve/reject",
+      "MCP registry refresh and BirdEye governed query",
+      "real diagnostics",
+      "turn abort request"
+    ],
+    "real_wrapper_exposed_but_unsupported": [
+      "session close",
+      "provider configuration",
+      "provider removal",
+      "checkpoint comparison",
+      "checkpoint restore",
+      "context compaction",
+      "session memory recall/checkpoint/forget operations",
+      "browser-chat attach/detach/send/continue"
+    ],
+    "ui_exposure_note": "Several unsupported RealLbeWrapper requests are directly exposed by slash commands such as /provider-config, /provider-remove, /close, /memory, /compact, /memory-checkpoint, /memory-forget, /browser-attach, /browser-detach, /browser-send and /browser-continue. Therefore these are user-visible integration gaps, not merely dormant enum variants.",
+    "provider_execution_paths": {
+      "rust_turn_entry": "RealLbeWrapper::submit_conversational_turn -> python -m lbe_guard_inspector.product_entry turn",
+      "coding_write_allowed": "product_entry._turn selects GovernedProviderReasoningController",
+      "plan_audit_or_read_only": "product_entry._turn uses build_provider_controller -> provider registry",
+      "cline_backend_presence": "ClineReasoningBackend exists and provider registry maps selected providers such as openai-native and vertex to it; GovernedClineWorker uses @cline/agents@0.0.75",
+      "conclusion": "The documented statement that all installed coding turns use headless Cline mechanics is not supported by the current writable coding call graph. Cline is integrated as a provider/runtime path, but writable coding currently uses the LBE GovernedProviderReasoningController directly."
+    },
+    "governed_tool_surface": {
+      "direct_product_entry": [
+        "workspace.read",
+        "workspace.list",
+        "workspace.glob",
+        "workspace.search",
+        "workspace.patch",
+        "process.run_registered",
+        "mcp.birdeye.<registered-tool>"
+      ],
+      "governed_coding_provider_loop": [
+        "workspace.read",
+        "workspace.create_candidate_text",
+        "workspace.write_text",
+        "process.run_registered",
+        "git.status",
+        "git.stage_paths",
+        "git.commit_staged"
+      ],
+      "older_provider_turn_runtime_note": "A compatibility provider_turn_runtime path remains workspace.read-only for provider-originated tool continuation."
+    },
+    "documentation_drift": [
+      "status.json still contains stale next_required_sequence entries marked BLOCKED/PENDING despite final acceptance PASS",
+      "status.json rust_client_current still labels Rust client reference/not primary despite Rust/Ratatui now being canonical visible product",
+      "backend PROJECT_INDEX.md still contains stale rows describing the Rust client as prototype/reference and Cline CLI as accepted visible entrypoint"
+    ],
+    "next_review_priority": [
+      "decide whether writable coding turns must actually use Cline AgentRuntime per product architecture or whether documentation should be corrected to provider-neutral governed reasoning",
+      "either wire or remove/hide slash commands whose RealLbeWrapper path is intentionally unsupported",
+      "reconcile stale GPT-K/backend index fields so feature status does not contradict current implementation"
+    ]
   }
 }
