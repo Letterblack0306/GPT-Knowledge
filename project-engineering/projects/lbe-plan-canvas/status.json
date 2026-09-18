@@ -1,7 +1,7 @@
 {
   "schema_version": 85,
   "project": "LBE Persistent Agent",
-  "verified_at": "2026-09-17",
+  "verified_at": "2026-09-18",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "source_branch": "main",
   "original_workspace": "C:/Agents-Memory-Tool-v6-integration",
@@ -23,11 +23,11 @@
     "entrypoint": "lbe"
   },
   "current_machine_state": {
-    "classification": "SINGLE_COMMAND_PRODUCT_COMPOSITION_INCOMPLETE",
+    "classification": "RUST_TUI_PRODUCT_TECHNOLOGY_SELECTED__IMPLEMENTATION_AND_INSTALLED_ACCEPTANCE_OPEN",
     "active_phase": "INSTALLED_PTY_CONPTY_AND_FINAL_PRODUCT_ACCEPTANCE",
-    "active_slice": "FINAL_PRODUCT_SOURCE_RECONCILIATION",
-    "status": "BLOCKED_ACTIVE",
-    "next_product_slice": "LBE_CLI_PRODUCT_COMPOSITION_AND_STRUCTURAL_VISUAL_DIFFERENTIATION",
+    "active_slice": "LBE_OWNED_RUST_TUI_PRODUCT_SURFACE",
+    "status": "OPEN_ACTIVE",
+    "next_product_slice": "RUST_TUI_CANONICALIZATION_AND_INSTALLED_ACCEPTANCE",
     "next_product_slice_activated": true
   },
   "runtime_authority": {
@@ -75,12 +75,14 @@
     "gate_effect": "NONE; this integration does not advance or close TUI_P2_P3_GOVERNED_EXECUTION_INTEGRATION."
   },
   "final_ui_direction": {
-    "classification": "LBE_BRANDED_CLI_TUI_WITH_EMBEDDED_CLINE_MECHANICS",
-    "selected_client": "C:\\LBE-TUI-Lab\\cline\\apps\\cli",
+    "classification": "LBE_OWNED_RUST_RATATUI_CLI_TUI_WITH_HEADLESS_CLINE_MECHANICS",
+    "selected_client": "C:\\LBE-TUI-Lab\\src\\",
+    "client_boundary": "LbeWrapper / RealLbeWrapper",
     "entrypoint": "lbe",
-    "launcher": "C:\\LBE-TUI-Lab\\run-cline-lbe.ps1",
-    "rust_status": "C:\\LBE-TUI-Lab\\src + run-lbe.bat = reference/integration prototype only",
-    "authority_rule": "LBE remains sole runtime authority; Cline is embedded reasoning/provider/interaction mechanics, not an independent final-product authority."
+    "launcher": "C:\\LBE-TUI-Lab\\lbe-cli.ps1 / installed lbe composition",
+    "html_react_role": "LBE visual/interaction contract and reuse source only; never runtime proof",
+    "cline_role": "Headless reasoning/provider/model/tool-proposal/continuation/response-composition mechanics behind LBE; no visible Cline product UI requirement",
+    "authority_rule": "Rust/Ratatui owns presentation/input only. LBE remains sole authority for identity, policy, authorization, governed execution, receipts/evidence, persistence/recovery, validation and completion."
   },
   "cline_boundary": {
     "active_runtime_worker": {
@@ -92,9 +94,10 @@
     "native_surface_history": "LBE-INTENT-CLINE-NATIVE-SURFACE-INTEGRATION-001 is superseded/reference-only."
   },
   "later_rust_ui": {
-    "classification": "REFERENCE_REUSE_INPUT_NOT_FINAL_PRODUCT_AUTHORITY",
+    "classification": "CANONICAL_VISIBLE_PRODUCT_IMPLEMENTATION_SELECTED_2026_09_18",
     "workspace": "C:/LBE-TUI-Lab",
-    "rule": "Rust/Ratatui work may be used as historical/reuse input but must not be projected as the active or final LBE product surface."
+    "source": "C:/LBE-TUI-Lab/src",
+    "rule": "Rust/Ratatui is the selected visible LBE terminal implementation. Source/tests do not by themselves prove installed or runtime acceptance."
   },
   "next_required_sequence": [
     {
@@ -124,9 +127,9 @@
     "preservation_rule": "Preserve current dirty/unpublished Rust work and do not use Rust acceptance as proof of Cline CLI user experience."
   },
   "current_blocker": {
-    "classification": "FINAL_PRODUCT_COMPOSITION_AND_STRUCTURAL_UI",
-    "primary": "Canonical source and launcher must resolve to the single-command LBE product rather than an independently launched Cline surface.",
-    "secondary": "The visible shell must be structurally LBE-branded and project real runtime/timeline/receipt/evidence state.",
+    "classification": "RUST_TUI_CANONICALIZATION_AND_INSTALLED_ACCEPTANCE",
+    "primary": "Canonical integration/build/package/launcher owners must agree that the Rust/Ratatui LBE client is the visible product surface while Cline remains headless mechanics only.",
+    "secondary": "The selected Rust client must implement the locked LBE shell using real LBE/provider state; existing HTML/React work is reference/specification input, not runtime truth.",
     "tertiary": "Real TTY/ConPTY lifecycle, clean exit, restart/resume, and complete installed acceptance remain unproven."
   },
   "project_visit_protocol": {
@@ -163,7 +166,7 @@
   "canonical_execution_path": {
     "classification": "PATH_TO_FOLLOW",
     "document": "project-engineering/projects/lbe-plan-canvas/CANONICAL_AGENT_LBE_EXECUTION_PATH.md",
-    "rule": "All future implementation sequencing follows USER -> `lbe` LBE-branded CLI/TUI with embedded Cline reasoning/client mechanics -> LBE identity/mode/policy -> authorization -> governed adapter -> authorized operation -> ToolReceipt/evidence -> provider continuation -> persistence/recovery -> deterministic validation/completion -> client/timeline projection. Work only on the first missing live seam."
+    "rule": "USER -> `lbe` -> LBE-owned Rust/Ratatui terminal shell -> RealLbeWrapper/canonical LBE product-entry boundary -> headless Cline reasoning/provider/model mechanics -> LBE identity/mode/policy -> authorization -> governed adapter -> authorized operation -> ToolReceipt/evidence -> provider continuation -> persistence/recovery -> deterministic validation/completion -> truthful Rust timeline projection. Work only on the first missing live seam."
   },
   "workspace_mirror": {
     "classification": "IMPORTANT_SUPPLEMENTARY_WORKSPACE_MIRROR",
