@@ -127,10 +127,10 @@
     "preservation_rule": "Preserve current dirty/unpublished Rust work and do not use Rust acceptance as proof of Cline CLI user experience."
   },
   "current_blocker": {
-    "classification": "FINAL_PRODUCT_SINGLE_COMMAND_LAUNCH_ONLY",
-    "primary": "Live Rust/Ratatui runtime, provider, governed tool, approval, receipt/evidence, PTY exit, and restart/resume acceptance all pass.",
-    "secondary": "One claim remains: fresh terminal `lbe` command resolution/launch through the installed package/launcher.",
-    "tertiary": "Do not reopen already-proven runtime/UI slices without contradictory evidence."
+    "classification": "CANONICAL_INSTALLER_LAUNCHER_CONTRACT",
+    "primary": "All real runtime/PTTY product acceptance passes; fresh-terminal command resolution is broken.",
+    "secondary": "Repair tools/lbe_product_integration.ps1 install/launcher composition so one installed `lbe` command owns PATH resolution and launches the Rust/Ratatui product.",
+    "tertiary": "After installation, remove/neutralize stale npm command collision through an explicit migration step and prove fresh-terminal resolution."
   },
   "project_visit_protocol": {
     "classification": "MANDATORY_PROJECT_CONTEXT_REFRESH",
@@ -1034,5 +1034,34 @@
     "completion_note": "The read-only turn produced VALIDATION_FAILED because no source change was expected; deterministic completion authority behaved correctly.",
     "remaining_unproven": "Fresh terminal typing only `lbe` resolves through the installed package/launcher to the canonical Rust/Ratatui product.",
     "final_product_acceptance": "BLOCKED_BY_SINGLE_COMMAND_INSTALLED_LAUNCH_ONLY"
+  },
+  "installed_command_resolution": {
+    "classification": "FAIL_CANONICAL_INSTALLER_LAUNCHER_CONTRACT",
+    "observed_at": "2026-09-18",
+    "resolution_order": [
+      "C:\\Users\\prave\\AppData\\Roaming\\npm\\lbe",
+      "C:\\Users\\prave\\AppData\\Roaming\\npm\\lbe.cmd",
+      "C:\\Users\\prave\\AppData\\Local\\Programs\\Python\\Python312\\Scripts\\lbe.exe"
+    ],
+    "findings": {
+      "npm": "BROKEN: @letterblack/lbe shim targets missing bin/lbe.js",
+      "python": "WRONG PRODUCT SURFACE: backend CLI, not Rust/Ratatui",
+      "rust": "PROVEN PRODUCT BINARY EXISTS but is not installed as authoritative PATH command"
+    },
+    "canonical_owner": "Letterblack0306/LBE_Presistent_Agent_wall/tools/lbe_product_integration.ps1 installer/launcher composition",
+    "existing_installer_behavior": [
+      "installs runtime wheel into %LOCALAPPDATA%\\LetterBlack\\LBE\\venv",
+      "copies Cline worker dependencies",
+      "copies Rust client to %LOCALAPPDATA%\\LetterBlack\\LBE\\lbe.exe",
+      "copies lbe-launch.ps1",
+      "does not establish authoritative PATH resolution for `lbe`"
+    ],
+    "rejected_final_fixes": [
+      "cargo install as final product installation",
+      "manual shim replacement outside installer ownership",
+      "leaving broken npm shim ahead of installed product",
+      "using Python console-script lbe as visible product"
+    ],
+    "required_fix": "Use the existing combined product installer to own a stable bin/launcher command and migration/collision handling, then fresh-terminal prove `Get-Command lbe -All` and `lbe` resolve to the Rust/Ratatui product path."
   }
 }
