@@ -127,10 +127,10 @@
     "preservation_rule": "Preserve current dirty/unpublished Rust work and do not use Rust acceptance as proof of Cline CLI user experience."
   },
   "current_blocker": {
-    "classification": "CANONICALIZATION_BLOCKED_BY_TUI_DIVERGENCE_AND_BACKEND_REMOTE_IDENTITY",
-    "primary": "The validated local mode-policy repair is not canonical. TUI local HEAD diverges from canonical GitHub main; backend checkout reports an origin/main SHA that does not match the actual canonical GitHub repository main.",
-    "secondary": "Extract the exact uncommitted validated diffs and prove each checkout remote URL/ref before applying the repair to canonical main.",
-    "tertiary": "Provider-dependent real turn and installed PTY/ConPTY end-to-end acceptance remain open after canonicalization."
+    "classification": "EXACT_HEAD_MODE_POLICY_REVALIDATION_THEN_INSTALLED_ACCEPTANCE",
+    "primary": "Mode-policy repair is canonicalized, but exact committed heads have not yet been validated in the user's runtime workspace.",
+    "secondary": "After exact-head PASS, continue structural real-state Rust UI and provider-dependent turn validation.",
+    "tertiary": "Installed `lbe` PTY/ConPTY lifecycle, restart/resume and full governed end-to-end acceptance remain open."
   },
   "project_visit_protocol": {
     "classification": "MANDATORY_PROJECT_CONTEXT_REFRESH",
@@ -948,68 +948,33 @@
     "prohibition": "Do not assume config.json/reasoning_provider_config controls RealLbeWrapper. Do not edit reasoning-provider.json as a root-cause fix until the active LBE_PROVIDER_CONFIG path is proven."
   },
   "mode_policy_reconciliation": {
-    "classification": "LOCAL_CANDIDATE_RUNTIME_PROVEN_PASS__CANONICAL_NOT_COMMITTED",
+    "classification": "CANONICALIZED_REVALIDATION_PENDING",
     "observed_at": "2026-09-18",
-    "probe": {
-      "command_status": "PASS",
+    "prior_local_proof": {
       "command_hash": "bounded-runtime-validation-002",
-      "meaning": "The local candidate repair passed bounded runtime validation and the defined mode-policy invariants."
+      "status": "PASS",
+      "note": "Proof applied to the local candidate before canonical replay."
     },
-    "canonical_heads_at_observation": {
-      "backend": "1b0bef4383740d7d59f8ef19d1698ac52267415c",
-      "tui": "15dd6799f0ea8f57e7dd0218e14501a56493a697"
+    "canonical_commits": {
+      "backend": "f7e09491c2142778ccead48611ed4c63d0da30d9",
+      "tui": "7c41dfab251e2da6226d4682e9c5b1ea00afa3f6"
     },
-    "local_candidate": {
-      "backend_files_changed": [
-        "lbe_guard_inspector/cli.py",
-        "tests/test_cli.py"
-      ],
-      "client_files_changed": [
-        "lbe-cli.ps1",
-        "src/types.rs",
-        "src/wrapper.rs"
-      ],
-      "mode_mapping": {
-        "PLAN": "investigation / read-only / no mutation capability",
-        "ACT": "coding only when existing permission authority is write_allowed or elevated; read_only fails closed with permission required",
-        "AUDIT": "audit / read-only evidence collection"
-      },
-      "real_set_mode_supported": true,
-      "visible_audit_mode_distinct": true,
-      "ui_can_grant_permission": false,
-      "validation": {
-        "focused_backend_tests": "PASS",
-        "rust_check": "PASS",
-        "rust_tests": "176 passed",
-        "rust_fmt": "PASS",
-        "bounded_runtime_validation_002": "PASS"
-      }
-    },
-    "canonical_status": "CANONICALIZATION_BLOCKED",
-    "verdict": "LOCAL_MODE_POLICY_DEFECT_RESOLVED__CANONICALIZATION_REQUIRED",
-    "next_required_evidence": [
-      "preserve unrelated dirty work and inspect exact diffs",
-      "commit backend repair to canonical backend main",
-      "commit Rust/client repair to canonical TUI main",
-      "re-run claim-matched validation on the exact committed heads",
-      "then update backend machine gate MODE_POLICY_PRODUCT_MAPPING from FAIL to PASS",
-      "provider-dependent real turn remains separately unproven if provider environment is unavailable",
-      "installed lbe PTY/ConPTY end-to-end acceptance remains open"
+    "canonical_semantics": [
+      "PLAN is distinct and requests investigation.",
+      "ACT is distinct and requests coding only when persisted permission authority already permits it.",
+      "AUDIT is distinct and requests audit.",
+      "read_only/audit_only ACT fails closed with PERMISSION_REQUIRED; the UI cannot grant permission.",
+      "RealLbeWrapper SetMode routes through LBE session mode authority and reattaches authoritative session projection.",
+      "No lbe-cli.ps1 change was required by the validated diff."
     ],
-    "canonicalization_blocker": {
-      "classification": "GIT_DIVERGENCE_AND_BACKEND_REMOTE_IDENTITY_MISMATCH",
-      "observed_at": "2026-09-18",
-      "tui": {
-        "local_head": "5a49d87bd3a972bc71f088098f15e257c7051003",
-        "canonical_github_main": "15dd6799f0ea8f57e7dd0218e14501a56493a697",
-        "note": "Local-only history diverges from canonical main. Historical 1bf49c5 is already an ancestor of canonical main by 12 commits; do not merge/replay that historical commit wholesale."
-      },
-      "backend": {
-        "agent_reported_origin_main": "aa1424e11ae2917b6217a7bc99b03e01958dfc7d",
-        "canonical_github_main": "1b0bef4383740d7d59f8ef19d1698ac52267415c",
-        "note": "Backend checkout remote/ref identity must be proven before any push or canonical commit."
-      },
-      "safe_next_step": "Export exact uncommitted validated diffs and remote identity only. Do not merge/reset/rebase/stash. Apply/review the validated repair against canonical GitHub main separately."
-    }
+    "validation_required": [
+      "fetch exact canonical backend/TUI heads with unrelated local work preserved",
+      "focused backend session-mode tests",
+      "cargo check",
+      "cargo test",
+      "cargo fmt -- --check",
+      "bounded-runtime-validation-002 on the exact canonical heads"
+    ],
+    "verdict": "NOT_PASS_UNTIL_EXACT_HEAD_REVALIDATION"
   }
 }
