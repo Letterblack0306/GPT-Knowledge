@@ -510,5 +510,17 @@
     "id": "LBE_OWNED_RUST_TUI_PRODUCT_SURFACE",
     "status": "OPEN_ACTIVE_PRODUCT_GATE",
     "required_flow": "lbe -> Rust/Ratatui LBE shell -> RealLbeWrapper/LBE session -> headless Cline reasoning/provider -> governed tool/approval -> ToolReceipt/evidence -> continuation -> persistence/resume -> validation/completion -> clean TTY/ConPTY exit"
-  }
+  },
+  "current_status": "FINAL_INSTALLED_PRODUCT_ACCEPTANCE_PASS",
+  "active_node": "installed-product-accepted",
+  "nodes": [
+    {
+      "id": "installed-product-accepted",
+      "lane": "Acceptance",
+      "title": "Installed LBE product accepted",
+      "status": "proven",
+      "priority": "COMPLETE",
+      "summary": "Fresh-shell `lbe` resolves the canonical installed LetterBlack launcher, launches the Rust/Ratatui product, attaches the authoritative runtime, and all defined PTY/provider/tool/approval/receipt/resume/mode-policy/installer provenance gates pass."
+    }
+  ]
 }
