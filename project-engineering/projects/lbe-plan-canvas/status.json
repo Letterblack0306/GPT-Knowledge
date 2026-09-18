@@ -127,10 +127,10 @@
     "preservation_rule": "Preserve current dirty/unpublished Rust work and do not use Rust acceptance as proof of Cline CLI user experience."
   },
   "current_blocker": {
-    "classification": "REVALIDATE_TUI_DEFAULT_STATE_REPAIR_THEN_RUSTFMT",
-    "primary": "Canonical TUI e22d3ef5 repairs the common default-state mismatch that plausibly caused most/all 26 test failures; exact-head test result is not yet known.",
-    "secondary": "The canonical TUI is still known not to be rustfmt-clean at the prior head; formatting must be handled as a separate mechanical change after behavioral revalidation.",
-    "tertiary": "Mode-policy runtime probe 003 remains blocked until TUI tests and fmt are green."
+    "classification": "RUSTFMT_ONLY_THEN_BOUNDED_RUNTIME_VALIDATION_003",
+    "primary": "TUI behavioral tests are fully green; canonical head is not rustfmt-clean.",
+    "secondary": "Publish the already-proven behavior-neutral rustfmt-only delta without changing semantics.",
+    "tertiary": "After exact-head fmt/check/test pass, run bounded-runtime-validation-003."
   },
   "project_visit_protocol": {
     "classification": "MANDATORY_PROJECT_CONTEXT_REFRESH",
@@ -982,34 +982,35 @@
     "verdict": "NO_MORE_SOURCE_CHANGES_WITHOUT_SURVIVING_FAILURE_EVIDENCE"
   },
   "tui_exact_head_revalidation": {
-    "classification": "COMMON_CAUSE_DEFAULT_STATE_REPAIR_COMMITTED_REVALIDATION_PENDING",
+    "classification": "BEHAVIORAL_PASS_RUSTFMT_ONLY_BLOCKER",
     "observed_at": "2026-09-18",
-    "failed_head": "2eb57eb7aa8e386bc0b39bfad42f26942e70a5bf",
-    "failed_result": {
+    "canonical_tui_head": "e22d3ef5acc46814558d92ccaba7a7b232d9921c",
+    "validation": {
       "rust_check": "PASS",
-      "rust_fmt": "FAIL",
-      "rust_tests": "176 passed / 26 failed / 2 ignored",
-      "bounded_runtime_validation_003": "NOT_RUN_DUE_TO_TEST_FAILURE"
+      "rust_tests": "202 passed / 0 failed / 2 ignored",
+      "rust_fmt": "FAIL at canonical head; PASS after applying exported rustfmt delta",
+      "prior_failures": "All 26 prior failures eliminated by App::default() Welcome+Build repair."
     },
-    "evidence": [
-      "App::default() at failed head used phase=Landing and agent_mode=Audit.",
-      "LbeSnapshot::default() uses active_mode=Build, creating an internal default-state mismatch.",
-      "Canonical tests contain no explicit Landing requirement and many failing tests assume the active shell immediately.",
-      "draw() short-circuits to draw_landing while phase=Landing, explaining audit rendering and many keyboard/panel/render failures.",
-      "Canonical UI contract defines the four-region active shell and no mandatory landing/hero gate."
-    ],
-    "canonical_repair": {
-      "commit": "e22d3ef5acc46814558d92ccaba7a7b232d9921c",
-      "change": "App::default(): Phase::Welcome + AgentMode::Build",
-      "scope": "two-line behavioral default-state repair only; no broad formatting cleanup mixed in"
+    "rustfmt_candidate": {
+      "changed_files": [
+        "src/main.rs",
+        "src/tests.rs",
+        "src/types.rs",
+        "src/ui.rs",
+        "src/wrapper.rs"
+      ],
+      "patch_sha256": "60041f23558452f52f5e70bceb1d816cc6d7ade56f1f90201a84633765e729b4",
+      "diff_check": "PASS",
+      "behavior_after_formatting": "cargo test remained 202 passed / 0 failed / 2 ignored",
+      "classification": "MECHANICAL_BEHAVIOR_NEUTRAL_CANDIDATE_NOT_YET_PUBLISHED"
     },
+    "bounded_runtime_validation_003": "NOT_RUN because canonical head is not fmt-clean",
     "next_required_evidence": [
-      "clean-export cargo check",
-      "clean-export cargo test -- --test-threads=1",
-      "capture surviving failing tests exactly",
-      "cargo fmt -- --check",
-      "if only formatting remains, generate a mechanical rustfmt-only patch separately",
-      "run bounded-runtime-validation-003 only after source tests and fmt pass"
+      "publish only the exact rustfmt delta to canonical TUI main",
+      "validate cargo fmt -- --check on the new exact head",
+      "re-run cargo check and cargo test -- --test-threads=1 on that exact head",
+      "run bounded-runtime-validation-003",
+      "only then grade MODE_POLICY_PRODUCT_MAPPING"
     ]
   }
 }
