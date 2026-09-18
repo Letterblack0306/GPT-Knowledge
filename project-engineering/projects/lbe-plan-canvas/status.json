@@ -1177,5 +1177,25 @@
     },
     "false_record": "LBE-INTENT-CLINE-RUNTIME-WIRING-001 RESULT: PASS (focused)",
     "actual_state": "Cline stdio worker/bridge exists; writable ACT/coding still bypasses Cline AgentRuntime via GovernedProviderReasoningController."
+  },
+  "documentation_consolidation": {
+    "classification": "CANONICAL_PRODUCT_TRUTH_BOOTSTRAP_CREATED",
+    "canonical_product_truth": {
+      "repository": "Letterblack0306/LBE_Presistent_Agent_wall",
+      "path": "docs/LBE_PRODUCT_SOURCE_OF_TRUTH.md",
+      "commit": "b25472a4cc18748d76c52bc89ef12f97b910daea",
+      "rule": "Single human-readable current product truth; preserve implemented/partial/planned features; omission from a current slice is not deprecation."
+    },
+    "agent_document_write_policy": {
+      "path": "docs/governance/AGENT_DOCUMENT_WRITE_POLICY.md",
+      "commit": "de5f3d9cdbc1f3ecf44d3c43aad653a6c787da61",
+      "target_state": "After one-time consolidation, docs/** is agent-read-only except bounded lifecycle writes to docs/governance/PROJECT_INTENT_LEDGER.md; non-ledger doc writes require explicit user authorization."
+    },
+    "bootstrap_intent": {
+      "id": "LBE-INTENT-DOCUMENT-SOURCE-OF-TRUTH-CONSOLIDATION-001",
+      "commit": "88ad2e4ee7e4422c051c3b88aa51376aefa29e3b",
+      "status": "ACTIVE",
+      "remaining": "One-time consolidation/deletion/reference repair and machine enforcement are still pending; no old docs were deleted by the bootstrap."
+    }
   }
 }
