@@ -110,3 +110,61 @@ At minimum prove:
 ## Gate rule
 
 This review is a **candidate next product slice only**. No implementation gate is activated by this document. Backend mutation requires explicit user authorization for a new intent/slice.
+
+
+## Reconciliation update — historical gate/ledger evidence
+
+Further canonical review establishes that this is not a new architecture-selection question.
+
+Backend governance already records:
+
+```text
+INTENT_ID: LBE-INTENT-CLINE-RUNTIME-WIRING-001
+STATUS: ACCEPTED
+AFFECTED_STRUCTURE: lbe_guard_inspector/runtime/cline_provider_turn_runtime.py
+DESIRED_RESULT: ClineWorkerTurnRuntime runs foreground product turns through GovernedClineWorker
+RESULT: PASS (focused)
+MACHINE_SLICE: CLINE_RUNTIME_WIRING
+```
+
+The historical provider-continuation gate also explicitly requires:
+
+```text
+Python/LBE turn.execute
+-> bounded Node worker
+-> Cline AgentRuntime.run()/continue()
+-> tool.proposed
+-> Python GovernedToolOrchestrator
+-> ToolReceipt
+-> tool.result
+-> same Cline continuation loop
+```
+
+and states that continuation/tool-loop mechanics are owned by the pinned Cline AgentRuntime while LBE retains authorization, execution, receipt/evidence, persistence and completion authority.
+
+Current canonical source contradicts that recorded PASS:
+
+- `lbe_guard_inspector/runtime/cline_provider_turn_runtime.py` is absent from current main;
+- no current `product_entry.py` or `cli.py` path references `ClineWorkerTurnRuntime`;
+- writable coding instead constructs `GovernedProviderReasoningController` and runs its own eight-iteration OpenAI-compatible continuation loop.
+
+GitHub code search finds `ClineWorkerTurnRuntime` and `cline_provider_turn_runtime.py` only in the governance ledger, not in current source. Commit search by those symbols/path did not return an implementation commit.
+
+### Revised classification
+
+```text
+CLINE_ARCHITECTURE_DECISION                 = PRE-EXISTING / ACCEPTED
+CLINE_STDIO + PROVIDER CONTINUATION DESIGN  = PRE-EXISTING / ACCEPTED
+CLINE_RUNTIME_WIRING LEDGER RESULT          = PASS (focused) RECORDED
+CURRENT IMPLEMENTATION ARTIFACT             = MISSING
+CURRENT WRITABLE CALL GRAPH                 = DIVERGED
+CLASSIFICATION                              = PASS_RECORD / SOURCE_DIVERGENCE
+```
+
+This should be treated as reconciliation/repair of an already-approved architecture, not as invention of a new reasoning owner.
+
+### Repair target
+
+Restore the already-recorded Cline foreground runtime semantics behind the current product entry seam, using the existing `GovernedClineWorker` and existing LBE authority owners. The precise implementation may recreate `ClineWorkerTurnRuntime` or an equivalent canonical owner, but the resulting call graph must satisfy the recorded invariants and must not introduce another continuation engine.
+
+Because the current installed-product gate is closed, mutation still requires an explicitly activated repair intent/slice under current governance. That authorization is procedural; the architecture decision itself is already settled.
