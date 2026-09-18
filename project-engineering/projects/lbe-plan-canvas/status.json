@@ -127,10 +127,10 @@
     "preservation_rule": "Preserve current dirty/unpublished Rust work and do not use Rust acceptance as proof of Cline CLI user experience."
   },
   "current_blocker": {
-    "classification": "MODE_POLICY_CLOSED_NEXT_PRODUCT_GATE_INSTALLED_INTERACTIVE_ACCEPTANCE",
-    "primary": "PLAN/ACT/AUDIT product-mode mapping is exact-head runtime proven and no longer blocks the product.",
-    "secondary": "Next product work is installed `lbe` real-user-path acceptance: launch Rust/Ratatui, provider/model, real conversational turn, governed tool/approval/receipt projection, PTY/ConPTY clean exit, and restart/resume.",
-    "tertiary": "Do not reopen mode-policy mapping unless new runtime evidence contradicts this PASS."
+    "classification": "FINAL_PRODUCT_SINGLE_COMMAND_LAUNCH_ONLY",
+    "primary": "Live Rust/Ratatui runtime, provider, governed tool, approval, receipt/evidence, PTY exit, and restart/resume acceptance all pass.",
+    "secondary": "One claim remains: fresh terminal `lbe` command resolution/launch through the installed package/launcher.",
+    "tertiary": "Do not reopen already-proven runtime/UI slices without contradictory evidence."
   },
   "project_visit_protocol": {
     "classification": "MANDATORY_PROJECT_CONTEXT_REFRESH",
@@ -1005,5 +1005,34 @@
       "run bounded-runtime-validation-003",
       "only then grade MODE_POLICY_PRODUCT_MAPPING"
     ]
+  },
+  "installed_interactive_acceptance": {
+    "classification": "PASS_EXCEPT_SINGLE_COMMAND_INSTALLED_ENTRYPOINT",
+    "observed_at": "2026-09-18",
+    "tested_binary": "C:\\Users\\prave\\AppData\\Local\\Temp\\opencode\\lbe-tui-canon-clone\\target\\release\\lbe.exe",
+    "session_id": "sess_lbe_accept_001",
+    "workspace_id": "workspace_fac63b08febbb29c",
+    "runtime_contract": {
+      "mode": "coding",
+      "permission": "write_allowed",
+      "runtime_policy": "permissive",
+      "provider": "LM Studio",
+      "model": "google/gemma-4-e4b"
+    },
+    "passed": [
+      "real Windows PTY Rust/Ratatui render",
+      "authoritative runtime/session/workspace projection",
+      "live provider/model binding",
+      "real governed workspace.read turn",
+      "ToolReceipt/evidence projection",
+      "interactive approval ALLOW",
+      "interactive rejection DENY",
+      "clean Ctrl+D exit",
+      "restart/resume same persisted session",
+      "persisted DB turn/completion evidence"
+    ],
+    "completion_note": "The read-only turn produced VALIDATION_FAILED because no source change was expected; deterministic completion authority behaved correctly.",
+    "remaining_unproven": "Fresh terminal typing only `lbe` resolves through the installed package/launcher to the canonical Rust/Ratatui product.",
+    "final_product_acceptance": "BLOCKED_BY_SINGLE_COMMAND_INSTALLED_LAUNCH_ONLY"
   }
 }
