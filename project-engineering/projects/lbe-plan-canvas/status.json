@@ -127,10 +127,10 @@
     "preservation_rule": "Preserve current dirty/unpublished Rust work and do not use Rust acceptance as proof of Cline CLI user experience."
   },
   "current_blocker": {
-    "classification": "RUST_TUI_VALIDATION_STRUCTURAL_UI_AND_INSTALLED_ACCEPTANCE",
-    "primary": "Source-level product integration reconciliation is committed in backend main (`cebd8cf7751b2cdeb8a76fb0dcc2e0bc0c8f58e5`): Cline UI checks are reference-only/non-blocking and Rust remains the packaged client. Claim-matched validation of that exact revision is still required.",
-    "secondary": "The selected Rust client must implement the locked LBE shell using real LBE/provider state; existing HTML/React work is reference/specification input, not runtime truth.",
-    "tertiary": "Real TTY/ConPTY lifecycle, clean exit, restart/resume, and complete installed acceptance remain unproven."
+    "classification": "RUST_TUI_MODE_POLICY_AND_INSTALLED_ACCEPTANCE",
+    "primary": "Runtime probe bounded-runtime-validation-001 proved ACT and PLAN both collapse to backend audit under the current persisted read_only/audit policy, while the Rust client expects coding/investigation. Real SetMode is unsupported and visible AUDIT is not distinct.",
+    "secondary": "Implement one authority-safe PLAN/ACT/AUDIT mapping and real mode/session transition seam in the Rust client/launcher without granting write authority from presentation state alone.",
+    "tertiary": "Provider turn proof remains blocked by provider environment; real TTY/ConPTY lifecycle, restart/resume and complete installed acceptance remain open."
   },
   "project_visit_protocol": {
     "classification": "MANDATORY_PROJECT_CONTEXT_REFRESH",
@@ -948,23 +948,48 @@
     "prohibition": "Do not assume config.json/reasoning_provider_config controls RealLbeWrapper. Do not edit reasoning-provider.json as a root-cause fix until the active LBE_PROVIDER_CONFIG path is proven."
   },
   "mode_policy_reconciliation": {
-    "classification": "STATIC_PROVEN_RUNTIME_CONFIRMATION_PENDING",
+    "classification": "RUNTIME_PROVEN_FAIL_CURRENT_IMPLEMENTATION",
     "observed_at": "2026-09-18",
-    "canonical_sources": [
+    "probe": {
+      "command_status": "PASS",
+      "command_hash": "bounded-runtime-validation-001",
+      "meaning": "The bounded validation completed successfully; it proved the current product mode-policy implementation is incorrect."
+    },
+    "canonical_remote_head": "15dd6799f0ea8f57e7dd0218e14501a56493a697",
+    "backend_module": {
+      "available": true,
+      "path": "C:/Agents-Memory-Tool-v6-integration/lbe_guard_inspector/__init__.py"
+    },
+    "persisted_launcher_session": {
+      "mode": "audit",
+      "permission": "read_only",
+      "runtime_policy": "audit"
+    },
+    "effective_backend_modes": {
+      "ACT": "audit",
+      "PLAN": "audit",
+      "AUDIT": "audit"
+    },
+    "rust_expectations": {
+      "ACT": "coding",
+      "PLAN": "investigation",
+      "AUDIT": "audit"
+    },
+    "mismatches": {
+      "ACT": "FAIL: expected coding, backend resolved audit",
+      "PLAN": "FAIL: expected investigation, backend resolved audit",
+      "AUDIT": "PASS: expected audit, backend resolved audit"
+    },
+    "real_set_mode_supported": false,
+    "visible_audit_mode_distinct": false,
+    "provider_turn_probe": "BLOCKED_BY_PROVIDER_ENVIRONMENT",
+    "verdict": "FAIL_CURRENT_IMPLEMENTATION",
+    "first_patch_owners": [
       "C:/LBE-TUI-Lab/lbe-cli.ps1",
-      "C:/LBE-TUI-Lab/src/wrapper.rs",
       "C:/LBE-TUI-Lab/src/types.rs",
-      "C:/Agents-Memory-Tool-v6-integration/lbe_guard_inspector/runtime/mode_controller.py"
+      "C:/LBE-TUI-Lab/src/wrapper.rs"
     ],
-    "findings": [
-      "lbe-cli.ps1 creates new sessions as mode=audit, permission=read_only, runtime_policy=audit.",
-      "RealLbeWrapper::start_real_session maps Build->coding, Plan->investigation, Audit->audit but currently supplies permission=read_only and runtime_policy=audit for every mode.",
-      "Backend mode_controller forces runtime_policy=audit to effective audit mode.",
-      "RealLbeWrapper rejects UserRequest::SetMode as unsupported for real runtime.",
-      "Rust AgentMode::Audit is currently displayed/cycled as PLAN compatibility rather than a distinct visible AUDIT mode.",
-      "submit_conversational_turn expects Build->coding, Plan->investigation, Audit->audit, creating a likely mode-mismatch for ACT/PLAN sessions under the current persisted audit policy."
-    ],
-    "next_evidence": "Use an isolated database to persist/inspect the canonical launcher session tuple and run a bounded policy/turn-path probe that confirms whether ACT/PLAN return audit and trigger the Rust expected-mode mismatch. Do not change launcher authority until that claim-matched probe is recorded.",
-    "patch_status": "NOT_AUTHORIZED_YET"
+    "smallest_patch_seam": "Create one explicit product-mode -> persisted backend mode/permission/runtime_policy mapping for PLAN/ACT/AUDIT and a real LBE-owned mode/session transition bridge. Do not merely change launcher defaults.",
+    "patch_authorization": "READY_FOR_BOUNDED_IMPLEMENTATION"
   }
 }
