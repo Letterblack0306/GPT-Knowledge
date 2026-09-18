@@ -127,10 +127,10 @@
     "preservation_rule": "Preserve current dirty/unpublished Rust work and do not use Rust acceptance as proof of Cline CLI user experience."
   },
   "current_blocker": {
-    "classification": "RUST_TUI_MODE_POLICY_AND_INSTALLED_ACCEPTANCE",
-    "primary": "Runtime probe bounded-runtime-validation-001 proved ACT and PLAN both collapse to backend audit under the current persisted read_only/audit policy, while the Rust client expects coding/investigation. Real SetMode is unsupported and visible AUDIT is not distinct.",
-    "secondary": "Implement one authority-safe PLAN/ACT/AUDIT mapping and real mode/session transition seam in the Rust client/launcher without granting write authority from presentation state alone.",
-    "tertiary": "Provider turn proof remains blocked by provider environment; real TTY/ConPTY lifecycle, restart/resume and complete installed acceptance remain open."
+    "classification": "CANONICALIZE_VALIDATED_MODE_POLICY_REPAIR_THEN_INSTALLED_ACCEPTANCE",
+    "primary": "bounded-runtime-validation-002 proves the local candidate mode-policy repair passes, but the changed backend and TUI files are not yet present on canonical GitHub main.",
+    "secondary": "After commit/push, re-run the same claim-matched validation against the exact committed heads before changing the machine gate from FAIL to PASS.",
+    "tertiary": "Provider-dependent real turn proof and installed PTY/ConPTY end-to-end product acceptance remain open."
   },
   "project_visit_protocol": {
     "classification": "MANDATORY_PROJECT_CONTEXT_REFRESH",
@@ -948,48 +948,53 @@
     "prohibition": "Do not assume config.json/reasoning_provider_config controls RealLbeWrapper. Do not edit reasoning-provider.json as a root-cause fix until the active LBE_PROVIDER_CONFIG path is proven."
   },
   "mode_policy_reconciliation": {
-    "classification": "RUNTIME_PROVEN_FAIL_CURRENT_IMPLEMENTATION",
+    "classification": "LOCAL_CANDIDATE_RUNTIME_PROVEN_PASS__CANONICAL_NOT_COMMITTED",
     "observed_at": "2026-09-18",
     "probe": {
       "command_status": "PASS",
-      "command_hash": "bounded-runtime-validation-001",
-      "meaning": "The bounded validation completed successfully; it proved the current product mode-policy implementation is incorrect."
+      "command_hash": "bounded-runtime-validation-002",
+      "meaning": "The local candidate repair passed bounded runtime validation and the defined mode-policy invariants."
     },
-    "canonical_remote_head": "15dd6799f0ea8f57e7dd0218e14501a56493a697",
-    "backend_module": {
-      "available": true,
-      "path": "C:/Agents-Memory-Tool-v6-integration/lbe_guard_inspector/__init__.py"
+    "canonical_heads_at_observation": {
+      "backend": "1b0bef4383740d7d59f8ef19d1698ac52267415c",
+      "tui": "15dd6799f0ea8f57e7dd0218e14501a56493a697"
     },
-    "persisted_launcher_session": {
-      "mode": "audit",
-      "permission": "read_only",
-      "runtime_policy": "audit"
+    "local_candidate": {
+      "backend_files_changed": [
+        "lbe_guard_inspector/cli.py",
+        "tests/test_cli.py"
+      ],
+      "client_files_changed": [
+        "lbe-cli.ps1",
+        "src/types.rs",
+        "src/wrapper.rs"
+      ],
+      "mode_mapping": {
+        "PLAN": "investigation / read-only / no mutation capability",
+        "ACT": "coding only when existing permission authority is write_allowed or elevated; read_only fails closed with permission required",
+        "AUDIT": "audit / read-only evidence collection"
+      },
+      "real_set_mode_supported": true,
+      "visible_audit_mode_distinct": true,
+      "ui_can_grant_permission": false,
+      "validation": {
+        "focused_backend_tests": "PASS",
+        "rust_check": "PASS",
+        "rust_tests": "176 passed",
+        "rust_fmt": "PASS",
+        "bounded_runtime_validation_002": "PASS"
+      }
     },
-    "effective_backend_modes": {
-      "ACT": "audit",
-      "PLAN": "audit",
-      "AUDIT": "audit"
-    },
-    "rust_expectations": {
-      "ACT": "coding",
-      "PLAN": "investigation",
-      "AUDIT": "audit"
-    },
-    "mismatches": {
-      "ACT": "FAIL: expected coding, backend resolved audit",
-      "PLAN": "FAIL: expected investigation, backend resolved audit",
-      "AUDIT": "PASS: expected audit, backend resolved audit"
-    },
-    "real_set_mode_supported": false,
-    "visible_audit_mode_distinct": false,
-    "provider_turn_probe": "BLOCKED_BY_PROVIDER_ENVIRONMENT",
-    "verdict": "FAIL_CURRENT_IMPLEMENTATION",
-    "first_patch_owners": [
-      "C:/LBE-TUI-Lab/lbe-cli.ps1",
-      "C:/LBE-TUI-Lab/src/types.rs",
-      "C:/LBE-TUI-Lab/src/wrapper.rs"
-    ],
-    "smallest_patch_seam": "Create one explicit product-mode -> persisted backend mode/permission/runtime_policy mapping for PLAN/ACT/AUDIT and a real LBE-owned mode/session transition bridge. Do not merely change launcher defaults.",
-    "patch_authorization": "READY_FOR_BOUNDED_IMPLEMENTATION"
+    "canonical_status": "NOT_YET_COMMITTED_OR_PUSHED",
+    "verdict": "LOCAL_MODE_POLICY_DEFECT_RESOLVED__CANONICALIZATION_REQUIRED",
+    "next_required_evidence": [
+      "preserve unrelated dirty work and inspect exact diffs",
+      "commit backend repair to canonical backend main",
+      "commit Rust/client repair to canonical TUI main",
+      "re-run claim-matched validation on the exact committed heads",
+      "then update backend machine gate MODE_POLICY_PRODUCT_MAPPING from FAIL to PASS",
+      "provider-dependent real turn remains separately unproven if provider environment is unavailable",
+      "installed lbe PTY/ConPTY end-to-end acceptance remains open"
+    ]
   }
 }
