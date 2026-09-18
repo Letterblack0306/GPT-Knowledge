@@ -1,11 +1,13 @@
 # LBE CLI/TUI — Canonical Product UI Contract
 
 Status: **CURRENT / CANONICAL UI CONTRACT**  
-Updated: 2026-09-08  
+Updated: 2026-09-18  
 Product: **LBE — Lockstep Boundry Engine**  
 User-facing surface: **LBE CLI/TUI**  
 Runtime authority: **LBE runtime**  
-Embedded mechanics: **Cline provider/auth/model/reasoning/delegated-agent mechanics**
+Visible implementation: **LBE-owned Rust/Ratatui**  
+Visual/interaction reference: **existing LBE HTML/React work**  
+Embedded headless mechanics: **Cline provider/model/reasoning/tool-proposal/continuation mechanics**
 
 ## Authority
 
@@ -13,7 +15,7 @@ This document is the single canonical GPT-K location for LBE product UI behavior
 
 Do not distribute current UI requirements across ad-hoc handoff notes, historical TUI references, checkpoint notes, or implementation commentary. Those may preserve history, but current UI truth must be maintained here and referenced from `plan.json` and `status.json`.
 
-Historical Rust/Ratatui, Textual, HTML, Cline-native, and generated mockup UI material is reference-only unless this document explicitly adopts a behavior.
+Rust/Ratatui is the selected visible product implementation by explicit product-owner decision on 2026-09-18. Existing HTML/React work is retained as visual/interaction reference and reuse input; its simulated state is never runtime truth. Cline-native UI/OpenTUI material is reference-only. Textual remains historical/diagnostic.
 
 ## Product principle
 
@@ -249,13 +251,16 @@ LBE runtime
       persistence/recovery, validation and completion
 
 Rust/Ratatui
-    = reference/integration client
+    = canonical visible LBE terminal implementation; presentation/input/projection only
+
+Cline
+    = headless reasoning/provider/model/tool-proposal/continuation mechanics; no visible product-UI requirement
 
 Textual
     = historical/diagnostic prototype, not final product UI
 
-HTML / generated visuals
-    = design/reference only, never runtime proof
+HTML / React / generated visuals
+    = LBE design/interaction reference and reuse input only, never runtime proof
 ```
 
 ## Acceptance
@@ -271,7 +276,7 @@ Acceptable visual/runtime evidence:
 
 Generated mockups are never proof.
 
-Current interactive gate remains the real terminal LBE CLI path, not Textual shell tests.
+Current interactive gate remains the real installed Rust/Ratatui LBE CLI path, not Textual shell tests, browser prototypes, or a separately launched Cline CLI.
 
 ## Non-goals
 
@@ -279,7 +284,7 @@ Do not:
 
 - make Evidence or Runtime permanent UI sections;
 - expose technical proof IDs as normal product content;
-- resurrect Textual/Rust as the primary product surface;
+- replace the selected Rust/Ratatui product surface with Textual or a copied/rebranded Cline product UI without an explicit superseding user decision;
 - turn AUDIT into a second runtime;
 - add a second lifecycle/session/receipt/evidence owner;
 - display fabricated agent messages, receipts, runtime status, or telemetry;
