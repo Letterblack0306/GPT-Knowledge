@@ -6,7 +6,7 @@
   "source_branch": "main",
   "original_workspace": "C:/Agents-Memory-Tool-v6-integration",
   "later_ui_workspace": "C:/LBE-TUI-Lab",
-  "overall_classification": "NOT_READY_TO_USE_UNTIL_COMPLETE_FINAL_PRODUCT_ACCEPTANCE",
+  "overall_classification": "FINAL_INSTALLED_LBE_PRODUCT_ACCEPTANCE_PASS",
   "authority_note": "GPT-Knowledge is a projection only. Current canonical source/configuration, current local validation/runtime evidence, machine governance, active intent and acceptance records outrank this file.",
   "final_product": {
     "definition": "Persistent provider-neutral LBE agent product in which the agent/provider owns reasoning, investigation strategy, capability selection, interpretation and replanning, while LBE owns workspace/session identity, policy, authorization, governed execution, ToolReceipts/evidence, persistence, recovery, deterministic validation and completion truth.",
@@ -23,12 +23,12 @@
     "entrypoint": "lbe"
   },
   "current_machine_state": {
-    "classification": "RUST_TUI_PRODUCT_TECHNOLOGY_SELECTED__IMPLEMENTATION_AND_INSTALLED_ACCEPTANCE_OPEN",
+    "classification": "FINAL_INSTALLED_PRODUCT_ACCEPTED",
     "active_phase": "INSTALLED_PTY_CONPTY_AND_FINAL_PRODUCT_ACCEPTANCE",
-    "active_slice": "LBE_OWNED_RUST_TUI_PRODUCT_SURFACE",
-    "status": "OPEN_ACTIVE",
-    "next_product_slice": "RUST_TUI_CANONICALIZATION_AND_INSTALLED_ACCEPTANCE",
-    "next_product_slice_activated": true
+    "active_slice": "NONE",
+    "status": "PASS_CLOSED",
+    "next_product_slice": "NONE",
+    "next_product_slice_activated": false
   },
   "runtime_authority": {
     "status": "ESTABLISHED_GOVERNED",
@@ -127,10 +127,10 @@
     "preservation_rule": "Preserve current dirty/unpublished Rust work and do not use Rust acceptance as proof of Cline CLI user experience."
   },
   "current_blocker": {
-    "classification": "CANONICALIZE_PROVEN_INSTALLER_BEHAVIOR_ONLY",
-    "primary": "Installed product behavior is accepted on the tested machine.",
-    "secondary": "Canonical GitHub source does not yet reproduce that installer/launcher contract, so implementation-head provenance remains open.",
-    "tertiary": "Do not reopen runtime/UI/provider/mode/approval/receipt/PTY/resume work."
+    "classification": "NONE_FOR_INSTALLED_PRODUCT_ACCEPTANCE",
+    "primary": "No blocker remains for the defined installed LBE product acceptance gate.",
+    "secondary": "Release/publication is a separate governed process and is not implied by this product acceptance.",
+    "tertiary": "Any future work should start under a new explicitly authorized product/release intent."
   },
   "project_visit_protocol": {
     "classification": "MANDATORY_PROJECT_CONTEXT_REFRESH",
@@ -155,14 +155,7 @@
     "active_config_path": "UNVERIFIED",
     "active_config_trace_required": true
   },
-  "remaining_unproven": [
-    "interactive Cline CLI/TUI launch under a real TTY",
-    "interactive provider-backed turn through the accepted Cline product surface",
-    "interactive governed tool/approval flow through the accepted Cline product surface",
-    "interactive ToolReceipt/evidence projection and correlation",
-    "clean PTY/ConPTY exit and terminal restoration",
-    "final installed end-to-end product acceptance"
-  ],
+  "remaining_unproven": [],
   "canonical_execution_path": {
     "classification": "PATH_TO_FOLLOW",
     "document": "project-engineering/projects/lbe-plan-canvas/CANONICAL_AGENT_LBE_EXECUTION_PATH.md",
@@ -1036,34 +1029,45 @@
     "final_product_acceptance": "BLOCKED_BY_SINGLE_COMMAND_INSTALLED_LAUNCH_ONLY"
   },
   "installed_command_resolution": {
-    "classification": "INSTALLED_PRODUCT_PASS_CANONICAL_INSTALLER_SOURCE_PENDING",
+    "classification": "PASS_CANONICAL_SOURCE_AND_INSTALLED_RUNTIME_ALIGNED",
     "observed_at": "2026-09-18",
+    "backend_canonical_installer_commit": "09b5c1cd28806d4381fabaa4723191494f2bc32f",
+    "rust_tui_commit": "58104bae1cebd2be04fa1d5544b2ebfce90fe8ff",
     "installed_root": "C:\\Users\\prave\\AppData\\Local\\LetterBlack\\LBE",
-    "resolution_order": [
-      "C:\\Users\\prave\\AppData\\Local\\LetterBlack\\LBE\\bin\\lbe.cmd",
-      "C:\\Users\\prave\\AppData\\Local\\Programs\\Python\\Python312\\Scripts\\lbe.exe"
-    ],
     "authoritative_entrypoint": "C:\\Users\\prave\\AppData\\Local\\LetterBlack\\LBE\\bin\\lbe.cmd",
-    "launch_chain": "bin\\lbe.cmd -> lbe-launch.ps1 -> installed lbe.exe",
-    "machine_acceptance": {
-      "status": "PASS",
-      "evidence": [
-        "obsolete npm @letterblack/lbe removed",
-        "LetterBlack\\LBE\\bin prepended to user PATH",
-        "bare lbe from fresh cmd",
-        "Rust/Ratatui LETTERBLACK ENGINE rendered",
-        "CONNECTED / AGENT WALL / ACT LIVE",
-        "sess_lbe_accept_001 restored from installed state\\lbe.sqlite3",
-        "LM Studio / google/gemma-4-e4b projected",
-        "11 providers discovered",
-        "no retained lbe.exe after session teardown"
-      ]
+    "launch_chain": "fresh terminal `lbe` -> bin\\lbe.cmd -> lbe-launch.ps1 -> installed lbe.exe -> authoritative LBE runtime",
+    "installed_binary_sha256": "6E794AF5E2F2E869D0F02F7CCB25EAD105956E9C05EC67ECE43F76F58B4BAB8F",
+    "canonical_source_provenance": "CLOSED",
+    "validation": [
+      "obsolete npm @letterblack/lbe package and shims removed",
+      "LetterBlack\\LBE\\bin prepended to user PATH idempotently",
+      "fresh-shell Get-Command resolves installed LetterBlack lbe.cmd first",
+      "canonical installer rebuilt/reinstalled from exact backend main 09b5c1c",
+      "installed lbe.exe byte-identical to canonical built client",
+      "bare lbe launches LETTERBLACK ENGINE / CONNECTED / AGENT WALL / ACT LIVE",
+      "sess_lbe_accept_001 restored",
+      "LM Studio / google/gemma-4-e4b live projected",
+      "11 providers discovered",
+      "clean teardown with no retained lbe.exe process"
+    ]
+  },
+  "final_product_acceptance": {
+    "classification": "PASS",
+    "observed_at": "2026-09-18",
+    "verdicts": {
+      "installed_pty_conpty": "PASS",
+      "single_command_launch": "PASS",
+      "real_runtime_attachment": "PASS",
+      "provider_model_binding": "PASS",
+      "governed_tool_roundtrip": "PASS",
+      "receipt_evidence_projection": "PASS",
+      "interactive_approve_reject": "PASS",
+      "clean_terminal_exit": "PASS",
+      "installed_restart_resume": "PASS",
+      "mode_policy_product_mapping": "PASS",
+      "canonical_installer_launcher_contract": "PASS"
     },
-    "canonical_source_provenance": {
-      "status": "PENDING",
-      "observed_backend_main": "85de0ffc7c37b2978b2e9b07d8079505656bf64a",
-      "mismatch": "Canonical tools/lbe_product_integration.ps1 still lacks the installed bin\\lbe.cmd/PATH/zero-argument durable launcher behavior proven on the machine.",
-      "required": "Publish exact installer changes, rebuild/reinstall from exact canonical main, then rerun lightweight fresh-shell smoke."
-    }
+    "remaining_acceptance_blockers": 0,
+    "rule": "Do not reopen accepted runtime/UI/provider/mode/approval/receipt/PTY/resume/launcher slices without contradictory evidence."
   }
 }
