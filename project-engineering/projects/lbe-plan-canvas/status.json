@@ -127,10 +127,10 @@
     "preservation_rule": "Preserve current dirty/unpublished Rust work and do not use Rust acceptance as proof of Cline CLI user experience."
   },
   "current_blocker": {
-    "classification": "CANONICAL_INSTALLER_DURABLE_ENTRYPOINT_ONLY",
-    "primary": "Runtime/UI/PTTY and bare `lbe` command behavior pass.",
-    "secondary": "The installed command currently depends on manually rewired npm shims pointing to an ephemeral Temp build; canonical installer ownership is still missing.",
-    "tertiary": "Do not reopen runtime, mode-policy, provider, approval, receipt/evidence, exit, or resume slices unless contradictory evidence appears."
+    "classification": "CANONICALIZE_PROVEN_INSTALLER_BEHAVIOR_ONLY",
+    "primary": "Installed product behavior is accepted on the tested machine.",
+    "secondary": "Canonical GitHub source does not yet reproduce that installer/launcher contract, so implementation-head provenance remains open.",
+    "tertiary": "Do not reopen runtime/UI/provider/mode/approval/receipt/PTY/resume work."
   },
   "project_visit_protocol": {
     "classification": "MANDATORY_PROJECT_CONTEXT_REFRESH",
@@ -1036,36 +1036,34 @@
     "final_product_acceptance": "BLOCKED_BY_SINGLE_COMMAND_INSTALLED_LAUNCH_ONLY"
   },
   "installed_command_resolution": {
-    "classification": "BARE_COMMAND_PASS_CANONICAL_INSTALLER_FAIL",
+    "classification": "INSTALLED_PRODUCT_PASS_CANONICAL_INSTALLER_SOURCE_PENDING",
     "observed_at": "2026-09-18",
-    "fresh_terminal_resolution": [
-      "C:\\Users\\prave\\AppData\\Roaming\\npm\\lbe.ps1",
-      "C:\\Users\\prave\\AppData\\Roaming\\npm\\lbe.cmd",
-      "C:\\Users\\prave\\AppData\\Roaming\\npm\\lbe",
+    "installed_root": "C:\\Users\\prave\\AppData\\Local\\LetterBlack\\LBE",
+    "resolution_order": [
+      "C:\\Users\\prave\\AppData\\Local\\LetterBlack\\LBE\\bin\\lbe.cmd",
       "C:\\Users\\prave\\AppData\\Local\\Programs\\Python\\Python312\\Scripts\\lbe.exe"
     ],
-    "winning_entrypoint": "C:\\Users\\prave\\AppData\\Roaming\\npm\\lbe.cmd",
-    "winning_target": "C:\\Users\\prave\\AppData\\Local\\Temp\\opencode\\lbe-tui-canon-clone\\target\\release\\lbe.exe",
-    "bare_command_acceptance": {
+    "authoritative_entrypoint": "C:\\Users\\prave\\AppData\\Local\\LetterBlack\\LBE\\bin\\lbe.cmd",
+    "launch_chain": "bin\\lbe.cmd -> lbe-launch.ps1 -> installed lbe.exe",
+    "machine_acceptance": {
       "status": "PASS",
       "evidence": [
-        "bare cmd /c lbe from fresh terminal",
+        "obsolete npm @letterblack/lbe removed",
+        "LetterBlack\\LBE\\bin prepended to user PATH",
+        "bare lbe from fresh cmd",
         "Rust/Ratatui LETTERBLACK ENGINE rendered",
         "CONNECTED / AGENT WALL / ACT LIVE",
-        "sess_lbe_accept_001 restored",
-        "LM Studio / google/gemma-4-e4b and 11 providers projected",
-        "clean Ctrl+D exit"
+        "sess_lbe_accept_001 restored from installed state\\lbe.sqlite3",
+        "LM Studio / google/gemma-4-e4b projected",
+        "11 providers discovered",
+        "no retained lbe.exe after session teardown"
       ]
     },
-    "durability_contract": {
-      "status": "FAIL",
-      "reasons": [
-        "npm shims were manually rewired rather than produced by canonical installer",
-        "winning target is under LocalAppData\\Temp\\opencode and is ephemeral",
-        "stale @letterblack/lbe scaffold remains a junction to dirty backend worktree",
-        "canonical tools/lbe_product_integration.ps1 has not yet been proven to own PATH resolution"
-      ]
-    },
-    "required_fix": "Patch canonical combined installer/launcher, install to stable LetterBlack LBE root, establish PATH ownership, migrate stale collisions, then fresh-terminal revalidate without manual shim rewiring."
+    "canonical_source_provenance": {
+      "status": "PENDING",
+      "observed_backend_main": "85de0ffc7c37b2978b2e9b07d8079505656bf64a",
+      "mismatch": "Canonical tools/lbe_product_integration.ps1 still lacks the installed bin\\lbe.cmd/PATH/zero-argument durable launcher behavior proven on the machine.",
+      "required": "Publish exact installer changes, rebuild/reinstall from exact canonical main, then rerun lightweight fresh-shell smoke."
+    }
   }
 }
