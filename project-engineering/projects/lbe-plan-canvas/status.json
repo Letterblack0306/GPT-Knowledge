@@ -127,8 +127,8 @@
     "preservation_rule": "Preserve current dirty/unpublished Rust work and do not use Rust acceptance as proof of Cline CLI user experience."
   },
   "current_blocker": {
-    "classification": "RUST_TUI_CANONICALIZATION_AND_INSTALLED_ACCEPTANCE",
-    "primary": "Canonical integration/build/package/launcher owners must agree that the Rust/Ratatui LBE client is the visible product surface while Cline remains headless mechanics only.",
+    "classification": "RUST_TUI_VALIDATION_STRUCTURAL_UI_AND_INSTALLED_ACCEPTANCE",
+    "primary": "Source-level product integration reconciliation is committed in backend main (`cebd8cf7751b2cdeb8a76fb0dcc2e0bc0c8f58e5`): Cline UI checks are reference-only/non-blocking and Rust remains the packaged client. Claim-matched validation of that exact revision is still required.",
     "secondary": "The selected Rust client must implement the locked LBE shell using real LBE/provider state; existing HTML/React work is reference/specification input, not runtime truth.",
     "tertiary": "Real TTY/ConPTY lifecycle, clean exit, restart/resume, and complete installed acceptance remain unproven."
   },
