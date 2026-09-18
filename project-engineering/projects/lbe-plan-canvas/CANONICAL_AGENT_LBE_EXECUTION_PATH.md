@@ -10,10 +10,12 @@ Status: **CURRENT PRODUCT HANDOFF — FOLLOW THE FIRST UNPROVEN SEAM**
 - Runtime authority: LBE Agent Wall.
 - Validation runtime: `C:\Agents-Memory-Tool-v6-validation`.
 - Evidence workspace: `C:\Agents-Memory-Tool-v6-integration`; preserve it and inspect it read-only.
-- Cline is embedded/reused for reasoning, provider/model interaction, continuation and compatible client mechanics. It is not an independent product, session, policy, execution, receipt, evidence or completion authority.
-- Rust/Ratatui and HTML are reference/integration inputs only. The old Textual preview/fabrication path is not an accepted final product path.
+- Rust/Ratatui is the canonical visible LBE terminal implementation selected by the product owner on 2026-09-18.
+- Existing LBE HTML/React work is retained as visual/interaction reference and reuse input; simulated browser state is never runtime truth.
+- Cline is embedded/reused headlessly for reasoning, provider/model interaction, tool proposals, continuation and response composition. It is not the visible product UI and is not an independent session, policy, execution, receipt, evidence or completion authority.
+- The old Textual preview/fabrication path and copied/rebranded Cline UI paths are not accepted final product paths.
 
-The machine gate remains authoritative. Do not rewrite it to make documentation pass. Current gate: `INSTALLED_PTY_CONPTY_AND_FINAL_PRODUCT_ACCEPTANCE`; active slice: `FINAL_PRODUCT_SOURCE_RECONCILIATION`; status: **OPEN**.
+The machine gate remains authoritative. Do not rewrite it to make documentation pass. Current gate: `INSTALLED_PTY_CONPTY_AND_FINAL_PRODUCT_ACCEPTANCE`; active slice: `LBE_OWNED_RUST_TUI_PRODUCT_SURFACE`; status: **OPEN**.
 
 ## Ownership boundary
 
@@ -77,9 +79,9 @@ Do not promote IMPLEMENTED, DOCUMENTED or historical PASS to PROVEN without curr
 
 ## Current first missing live seam
 
-`LBE_CLI_PRODUCT_COMPOSITION_AND_STRUCTURAL_VISUAL_DIFFERENTIATION`.
+`LBE_OWNED_RUST_TUI_PRODUCT_SURFACE`.
 
-The next agent must map the production-reachable `lbe` path, then prove that it uses one authoritative LBE session/runtime, embedded Cline mechanics, real provider/model state and real event projection. Any preview state or fabricated receipt/evidence value reachable from normal launch is a FAIL for final-product acceptance.
+The next agent must reconcile the production-reachable `lbe` path so it launches the selected Rust/Ratatui LBE client, uses one authoritative LBE session/runtime, invokes Cline only as headless reasoning/provider mechanics, and projects real provider/model/event/context state. Any preview state or fabricated receipt/evidence value reachable from normal launch is a FAIL for final-product acceptance.
 
 Do not reopen LBE Core owners. Reuse existing session, provider, authorization, ToolRegistry, governed execution, receipt, evidence, persistence, validation and completion owners.
 
