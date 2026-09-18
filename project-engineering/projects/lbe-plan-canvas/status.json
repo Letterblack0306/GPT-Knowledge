@@ -127,10 +127,10 @@
     "preservation_rule": "Preserve current dirty/unpublished Rust work and do not use Rust acceptance as proof of Cline CLI user experience."
   },
   "current_blocker": {
-    "classification": "NONE_FOR_INSTALLED_PRODUCT_ACCEPTANCE",
-    "primary": "No blocker remains for the defined installed LBE product acceptance gate.",
-    "secondary": "Release/publication is a separate governed process and is not implied by this product acceptance.",
-    "tertiary": "Any future work should start under a new explicitly authorized product/release intent."
+    "classification": "NONE_FOR_ACCEPTED_INSTALLED_PRODUCT__NEXT_CANDIDATE_ARCHITECTURE_ALIGNMENT",
+    "primary": "Installed-product acceptance remains closed PASS for the accepted scope.",
+    "secondary": "A source-verified architecture-conformance gap exists: writable ACT/coding bypasses the registry-selected Cline backend.",
+    "tertiary": "No implementation is authorized until a new backend intent/slice is explicitly activated."
   },
   "project_visit_protocol": {
     "classification": "MANDATORY_PROJECT_CONTEXT_REFRESH",
@@ -1140,6 +1140,26 @@
       "decide whether writable coding turns must actually use Cline AgentRuntime per product architecture or whether documentation should be corrected to provider-neutral governed reasoning",
       "either wire or remove/hide slash commands whose RealLbeWrapper path is intentionally unsupported",
       "reconcile stale GPT-K/backend index fields so feature status does not contradict current implementation"
+    ]
+  },
+  "cline_execution_ownership_review": {
+    "classification": "SOURCE_VERIFIED_ARCHITECTURE_CONFORMANCE_GAP",
+    "observed_at": "2026-09-18",
+    "review_document": "project-engineering/projects/lbe-plan-canvas/CLINE_EXECUTION_OWNERSHIP_REVIEW_2026-09-18.md",
+    "backend_head": "d4fc6629b1d54c307c51fbc14d37e17d540c5f63",
+    "rust_tui_head": "58104bae1cebd2be04fa1d5544b2ebfce90fe8ff",
+    "installed_acceptance_scope": "REMAINS_PASS",
+    "actual_writable_path": "RealLbeWrapper -> product_entry turn -> GovernedProviderReasoningController -> OpenAICompatibleEventAdapter -> LBE governed tool loop",
+    "cline_current_path": "provider registry -> ClineReasoningBackend -> GovernedClineWorker -> @cline/agents for Cline-mapped provider paths",
+    "verdict": "Current writable ACT/coding call graph does not make Cline the universal reasoning/provider/continuation owner claimed by the canonical architecture.",
+    "candidate_next_slice": "CLINE_ACT_CODING_REASONING_OWNERSHIP_ALIGNMENT",
+    "implementation_authorized": false,
+    "minimum_change": [
+      "route writable coding provider selection through canonical provider registry",
+      "add/reuse one Cline-backed coding controller with the existing run() -> LBEResponse contract",
+      "reuse existing LBE ToolRegistry/GovernedToolOrchestrator/authorization/receipt/evidence/persistence/completion owners",
+      "keep provider-specific non-Cline fallback explicit",
+      "no Rust/Ratatui change"
     ]
   }
 }
