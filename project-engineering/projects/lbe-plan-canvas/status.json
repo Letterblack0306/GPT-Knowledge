@@ -127,10 +127,10 @@
     "preservation_rule": "Preserve current dirty/unpublished Rust work and do not use Rust acceptance as proof of Cline CLI user experience."
   },
   "current_blocker": {
-    "classification": "NONE_FOR_ACCEPTED_INSTALLED_PRODUCT__NEXT_CANDIDATE_ARCHITECTURE_ALIGNMENT",
-    "primary": "Installed-product acceptance remains closed PASS for the accepted scope.",
-    "secondary": "A source-verified architecture-conformance gap exists: writable ACT/coding bypasses the registry-selected Cline backend.",
-    "tertiary": "No implementation is authorized until a new backend intent/slice is explicitly activated."
+    "classification": "CLINE_RUNTIME_WIRING_PASS_RECORD_SOURCE_DIVERGENCE",
+    "primary": "Canonical governance says the Cline foreground runtime wiring was accepted/PASS, but its named implementation artifact is absent and the current writable coding path bypasses Cline AgentRuntime.",
+    "secondary": "Repair should restore the already-approved Cline AgentRuntime continuation path behind LBE authority, not redesign ownership.",
+    "tertiary": "Installed-product acceptance remains historical PASS for its tested behavior; broader architecture conformance is not currently satisfied."
   },
   "project_visit_protocol": {
     "classification": "MANDATORY_PROJECT_CONTEXT_REFRESH",
@@ -1143,7 +1143,7 @@
     ]
   },
   "cline_execution_ownership_review": {
-    "classification": "SOURCE_VERIFIED_ARCHITECTURE_CONFORMANCE_GAP",
+    "classification": "PASS_RECORD_SOURCE_DIVERGENCE",
     "observed_at": "2026-09-18",
     "review_document": "project-engineering/projects/lbe-plan-canvas/CLINE_EXECUTION_OWNERSHIP_REVIEW_2026-09-18.md",
     "backend_head": "d4fc6629b1d54c307c51fbc14d37e17d540c5f63",
@@ -1160,6 +1160,14 @@
       "reuse existing LBE ToolRegistry/GovernedToolOrchestrator/authorization/receipt/evidence/persistence/completion owners",
       "keep provider-specific non-Cline fallback explicit",
       "no Rust/Ratatui change"
-    ]
+    ],
+    "architecture_decision": "PRE_EXISTING_ACCEPTED",
+    "historical_intent": "LBE-INTENT-CLINE-RUNTIME-WIRING-001",
+    "historical_result": "PASS (focused)",
+    "historical_target": "lbe_guard_inspector/runtime/cline_provider_turn_runtime.py::ClineWorkerTurnRuntime",
+    "current_source_state": "TARGET FILE/SYMBOL ABSENT; writable ACT/coding uses GovernedProviderReasoningController eight-iteration OpenAI-compatible loop",
+    "historical_gate_contract": "Cline AgentRuntime owns continuation mechanics; LBE mediates tool.proposed via GovernedToolOrchestrator and returns ToolReceipt as tool.result",
+    "repair_classification": "RECONCILIATION_OF_ALREADY_APPROVED_ARCHITECTURE",
+    "note": "No new architecture decision is required. A current machine-gate repair slice still requires explicit activation before backend mutation."
   }
 }
