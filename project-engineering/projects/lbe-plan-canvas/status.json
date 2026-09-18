@@ -127,10 +127,10 @@
     "preservation_rule": "Preserve current dirty/unpublished Rust work and do not use Rust acceptance as proof of Cline CLI user experience."
   },
   "current_blocker": {
-    "classification": "EXACT_HEAD_MODE_POLICY_REVALIDATION_THEN_INSTALLED_ACCEPTANCE",
-    "primary": "Mode-policy repair is canonicalized, but exact committed heads have not yet been validated in the user's runtime workspace.",
-    "secondary": "After exact-head PASS, continue structural real-state Rust UI and provider-dependent turn validation.",
-    "tertiary": "Installed `lbe` PTY/ConPTY lifecycle, restart/resume and full governed end-to-end acceptance remain open."
+    "classification": "REVALIDATE_NARROW_CANONICAL_FIXES_AND_CLASSIFY_REMAINING_RUST_FAILURES",
+    "primary": "The first exact-head validation failed. Narrow proven replay defects are fixed, but current canonical heads have not yet been revalidated.",
+    "secondary": "If Rust tests still fail, exact test names/assertions are required before any more code changes.",
+    "tertiary": "Provider-dependent real turn and installed PTY/ConPTY end-to-end acceptance remain later gates."
   },
   "project_visit_protocol": {
     "classification": "MANDATORY_PROJECT_CONTEXT_REFRESH",
@@ -948,33 +948,32 @@
     "prohibition": "Do not assume config.json/reasoning_provider_config controls RealLbeWrapper. Do not edit reasoning-provider.json as a root-cause fix until the active LBE_PROVIDER_CONFIG path is proven."
   },
   "mode_policy_reconciliation": {
-    "classification": "CANONICALIZED_REVALIDATION_PENDING",
+    "classification": "EXACT_HEAD_REVALIDATION_FAILED__NARROW_REPAIRS_COMMITTED__RECHECK_REQUIRED",
     "observed_at": "2026-09-18",
-    "prior_local_proof": {
-      "command_hash": "bounded-runtime-validation-002",
-      "status": "PASS",
-      "note": "Proof applied to the local candidate before canonical replay."
+    "failed_validation": {
+      "command_hash": "mode-policy-exact-head-revalidation-001",
+      "backend_head": "905030cb72eebdaff12c124165abfecd6cb6e74d",
+      "tui_head": "7c41dfab251e2da6226d4682e9c5b1ea00afa3f6",
+      "backend": "2 failed / 123 passed in focused 125-test suite",
+      "rust": "cargo check PASS; cargo fmt FAIL; 176 passed / 26 failed / 2 ignored",
+      "mode_gate": "FAIL"
     },
-    "canonical_commits": {
-      "backend": "f7e09491c2142778ccead48611ed4c63d0da30d9",
-      "tui": "7c41dfab251e2da6226d4682e9c5b1ea00afa3f6"
+    "proven_failures": [
+      "backend cli.py missing module-level ModeRequest/resolve_mode import caused NameError in _session_mode",
+      "provider-list test expected obsolete singleton registry",
+      "TUI AgentMode cycle order mismatched existing canonical tests",
+      "TUI formatting was not rustfmt-clean"
+    ],
+    "follow_up_commits": {
+      "backend": "24e3cacf1e2899df0d28beffe27ed1a71a583b08",
+      "tui": "2eb57eb7aa8e386bc0b39bfad42f26942e70a5bf"
     },
-    "canonical_semantics": [
-      "PLAN is distinct and requests investigation.",
-      "ACT is distinct and requests coding only when persisted permission authority already permits it.",
-      "AUDIT is distinct and requests audit.",
-      "read_only/audit_only ACT fails closed with PERMISSION_REQUIRED; the UI cannot grant permission.",
-      "RealLbeWrapper SetMode routes through LBE session mode authority and reattaches authoritative session projection.",
-      "No lbe-cli.ps1 change was required by the validated diff."
+    "next_required_evidence": [
+      "exact-head backend focused tests on current backend main",
+      "cargo check/test/fmt on current TUI main",
+      "if Rust failures remain, capture exact names/assertions before patching",
+      "bounded runtime validation after source/test suite passes"
     ],
-    "validation_required": [
-      "fetch exact canonical backend/TUI heads with unrelated local work preserved",
-      "focused backend session-mode tests",
-      "cargo check",
-      "cargo test",
-      "cargo fmt -- --check",
-      "bounded-runtime-validation-002 on the exact canonical heads"
-    ],
-    "verdict": "NOT_PASS_UNTIL_EXACT_HEAD_REVALIDATION"
+    "verdict": "FAIL_UNTIL_REVALIDATED"
   }
 }
