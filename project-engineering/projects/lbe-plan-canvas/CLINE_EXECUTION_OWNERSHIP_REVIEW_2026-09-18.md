@@ -168,3 +168,49 @@ This should be treated as reconciliation/repair of an already-approved architect
 Restore the already-recorded Cline foreground runtime semantics behind the current product entry seam, using the existing `GovernedClineWorker` and existing LBE authority owners. The precise implementation may recreate `ClineWorkerTurnRuntime` or an equivalent canonical owner, but the resulting call graph must satisfy the recorded invariants and must not introduce another continuation engine.
 
 Because the current installed-product gate is closed, mutation still requires an explicitly activated repair intent/slice under current governance. That authorization is procedural; the architecture decision itself is already settled.
+
+
+## Final provenance classification — false PASS record
+
+GitHub canonical history confirms that:
+
+```text
+GET /repos/Letterblack0306/LBE_Presistent_Agent_wall/commits
+?path=lbe_guard_inspector/runtime/cline_provider_turn_runtime.py
+
+=> []
+```
+
+Therefore the recorded ledger state:
+
+```text
+LBE-INTENT-CLINE-RUNTIME-WIRING-001
+STATUS: ACCEPTED
+RESULT: PASS (focused)
+AFFECTED_STRUCTURE: lbe_guard_inspector/runtime/cline_provider_turn_runtime.py
+DESIRED_RESULT: ClineWorkerTurnRuntime ...
+```
+
+is not merely stale relative to current source. The named implementation artifact never entered canonical GitHub history.
+
+Classification:
+
+```text
+ARCHITECTURE DECISION                 = VALID / PRE-EXISTING
+CLINE STDIO FOUNDATION                = IMPLEMENTED
+CLINE PROVIDER CONTINUATION CONTRACT  = DOCUMENTED / ACCEPTED
+CLINE RUNTIME WIRING PASS RECORD      = FALSE GOVERNANCE RECORD
+ClineWorkerTurnRuntime                = NEVER CANONICALIZED
+CURRENT WRITABLE ACT PATH             = NON-CONFORMING
+```
+
+The repair is therefore not a new design and not a restoration of a deleted canonical file. It is completion of an already-approved architecture whose runtime-wiring PASS was recorded prematurely.
+
+The correct next implementation slice must:
+1. create the missing canonical Cline foreground runtime owner;
+2. wire writable ACT/coding provider selection through the registry;
+3. keep Cline AgentRuntime as continuation owner for Cline-mapped providers;
+4. preserve LBE as the sole authorization/execution/receipt/evidence/persistence/completion authority;
+5. prove deny-before-execute, allow-exactly-once, tool-result continuation, event mapping, cancellation semantics, native Cline mutation-tool exclusion, and installed ACT runtime behavior.
+
+No backend mutation is authorized by this documentation update alone.
