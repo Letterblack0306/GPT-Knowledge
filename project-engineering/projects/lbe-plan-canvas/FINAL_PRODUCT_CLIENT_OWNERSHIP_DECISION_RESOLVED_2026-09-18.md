@@ -135,3 +135,108 @@ Until the dependency-recovery seam is identified:
 - do not copy an entire uncontrolled Cline checkout into canonical source;
 - do not change launcher mode/permissions;
 - do not claim final product acceptance.
+
+
+## Recovery/composition seam correction — 2026-09-18
+
+Further inspection of the canonical integration owner proves that an npm-only bounded `cline/` adapter is not sufficient to close the product-composition gate.
+
+`tools/lbe_product_integration.ps1` currently has two incompatible assumptions:
+
+### Structural/product proof expects bundled Cline CLI/TUI
+
+The contract loader requires or inspects:
+
+- `cline/apps/cli/src/runtime/lbe-tool-adapter.ts`;
+- `cline/apps/cli/src/runtime/run-agent.ts`;
+- `cline/apps/cli/src/runtime/lbe-tool-adapter.test.ts`;
+- `cline/apps/cli/src/tui/interactive-welcome.ts`;
+- `cline/apps/cli/src/tui/keyboard-map.ts`;
+- `cline/apps/cli/src/tui/views/onboarding/screens.tsx`;
+- `cline/apps/cli/src/tui/components/status-bar.tsx`;
+- `cline/apps/cli/src/tui/root.tsx`;
+- `cline/apps/cli/src/tui/components/lbe-identity.tsx`;
+- `cline/apps/cli/src/tui/views/home-view.tsx`;
+- `cline/apps/cli/src/tui/views/chat-view.tsx`;
+- `cline/apps/cli/src/tui/components/input-bar.tsx`;
+- `cline/apps/cli/src/tui/components/chat-message-list.tsx`;
+- `cline/apps/cli/src/tui/components/letterblack-loader.tsx`.
+
+The verifier explicitly records:
+
+```text
+cline.embedded_surface.present
+Bundled Cline CLI mechanics are the active LBE CLI/TUI implementation surface;
+absence blocks current product proof.
+```
+
+Its proof path also requires:
+
+```text
+cline/apps/cli
+npx vitest ...
+npm run typecheck
+```
+
+Therefore `@cline/agents@0.0.75` plus five reference runtime files cannot satisfy the current Cline UI/product contract.
+
+### Build/package still installs Rust as the client
+
+The same canonical integration script currently performs:
+
+```text
+cargo build --release --locked
+target/release/lbe.exe
+-> package client/lbe.exe
+-> installer copies lbe.exe to install root
+-> generated lbe-launch.ps1 executes installed lbe.exe
+```
+
+The generated launcher explicitly fails if the installed Rust client is absent.
+
+Classification:
+
+`CANONICAL_INTEGRATION_OWNER_INTERNAL_CONTRADICTION`
+
+The verifier says Cline CLI/TUI is the active product surface while the build/package path still makes Rust the installed product client.
+
+### Consequence
+
+The next seam is not merely recovering `@cline/agents` or adding a bounded `cline/` directory.
+
+The current integration owner must first be reconciled so that:
+
+```text
+contract/proof target
+=
+build/package target
+=
+installed launcher target
+=
+accepted product surface
+```
+
+under the already-settled product composition:
+
+```text
+product = LBE
+entrypoint = lbe
+Cline = embedded reasoning/provider/client mechanics
+LBE = authority
+Rust = reference/integration only
+```
+
+Do not implement the npm-only Option A as the product repair. It would provide runtime-agent mechanics but not the required Cline TUI source, and the package would still install Rust.
+
+### First concrete implementation owner
+
+`C:\Agents-Memory-Tool-v6-integration\tools\lbe_product_integration.ps1`
+
+Required next evidence:
+
+1. determine the intended build/package source for the embedded Cline CLI/TUI;
+2. determine the minimal reproducible upstream Cline source set required to build that client;
+3. replace the current Rust installed-client packaging path only after the Cline/LBE client package path is proven;
+4. remove the system-`cline` fallback from normal product composition;
+5. preserve Rust build/tests only as reference/regression evidence;
+6. prove contract checks, Cline typecheck/tests, product build/package, installed `lbe` launch and real TTY acceptance against the same client revision.
