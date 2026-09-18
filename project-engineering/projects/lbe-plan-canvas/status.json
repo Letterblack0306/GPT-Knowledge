@@ -127,10 +127,10 @@
     "preservation_rule": "Preserve current dirty/unpublished Rust work and do not use Rust acceptance as proof of Cline CLI user experience."
   },
   "current_blocker": {
-    "classification": "CANONICALIZE_VALIDATED_MODE_POLICY_REPAIR_THEN_INSTALLED_ACCEPTANCE",
-    "primary": "bounded-runtime-validation-002 proves the local candidate mode-policy repair passes, but the changed backend and TUI files are not yet present on canonical GitHub main.",
-    "secondary": "After commit/push, re-run the same claim-matched validation against the exact committed heads before changing the machine gate from FAIL to PASS.",
-    "tertiary": "Provider-dependent real turn proof and installed PTY/ConPTY end-to-end product acceptance remain open."
+    "classification": "CANONICALIZATION_BLOCKED_BY_TUI_DIVERGENCE_AND_BACKEND_REMOTE_IDENTITY",
+    "primary": "The validated local mode-policy repair is not canonical. TUI local HEAD diverges from canonical GitHub main; backend checkout reports an origin/main SHA that does not match the actual canonical GitHub repository main.",
+    "secondary": "Extract the exact uncommitted validated diffs and prove each checkout remote URL/ref before applying the repair to canonical main.",
+    "tertiary": "Provider-dependent real turn and installed PTY/ConPTY end-to-end acceptance remain open after canonicalization."
   },
   "project_visit_protocol": {
     "classification": "MANDATORY_PROJECT_CONTEXT_REFRESH",
@@ -985,7 +985,7 @@
         "bounded_runtime_validation_002": "PASS"
       }
     },
-    "canonical_status": "NOT_YET_COMMITTED_OR_PUSHED",
+    "canonical_status": "CANONICALIZATION_BLOCKED",
     "verdict": "LOCAL_MODE_POLICY_DEFECT_RESOLVED__CANONICALIZATION_REQUIRED",
     "next_required_evidence": [
       "preserve unrelated dirty work and inspect exact diffs",
@@ -995,6 +995,21 @@
       "then update backend machine gate MODE_POLICY_PRODUCT_MAPPING from FAIL to PASS",
       "provider-dependent real turn remains separately unproven if provider environment is unavailable",
       "installed lbe PTY/ConPTY end-to-end acceptance remains open"
-    ]
+    ],
+    "canonicalization_blocker": {
+      "classification": "GIT_DIVERGENCE_AND_BACKEND_REMOTE_IDENTITY_MISMATCH",
+      "observed_at": "2026-09-18",
+      "tui": {
+        "local_head": "5a49d87bd3a972bc71f088098f15e257c7051003",
+        "canonical_github_main": "15dd6799f0ea8f57e7dd0218e14501a56493a697",
+        "note": "Local-only history diverges from canonical main. Historical 1bf49c5 is already an ancestor of canonical main by 12 commits; do not merge/replay that historical commit wholesale."
+      },
+      "backend": {
+        "agent_reported_origin_main": "aa1424e11ae2917b6217a7bc99b03e01958dfc7d",
+        "canonical_github_main": "1b0bef4383740d7d59f8ef19d1698ac52267415c",
+        "note": "Backend checkout remote/ref identity must be proven before any push or canonical commit."
+      },
+      "safe_next_step": "Export exact uncommitted validated diffs and remote identity only. Do not merge/reset/rebase/stash. Apply/review the validated repair against canonical GitHub main separately."
+    }
   }
 }
