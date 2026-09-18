@@ -127,10 +127,10 @@
     "preservation_rule": "Preserve current dirty/unpublished Rust work and do not use Rust acceptance as proof of Cline CLI user experience."
   },
   "current_blocker": {
-    "classification": "CLINE_RUNTIME_WIRING_PASS_RECORD_SOURCE_DIVERGENCE",
-    "primary": "Canonical governance says the Cline foreground runtime wiring was accepted/PASS, but its named implementation artifact is absent and the current writable coding path bypasses Cline AgentRuntime.",
-    "secondary": "Repair should restore the already-approved Cline AgentRuntime continuation path behind LBE authority, not redesign ownership.",
-    "tertiary": "Installed-product acceptance remains historical PASS for its tested behavior; broader architecture conformance is not currently satisfied."
+    "classification": "CLINE_RUNTIME_WIRING_FALSE_PASS_RECORD",
+    "primary": "Governance records CLINE_RUNTIME_WIRING as PASS, but its named runtime implementation never entered canonical GitHub history.",
+    "secondary": "Writable ACT/coding therefore remains non-conforming with the accepted Cline AgentRuntime ownership boundary.",
+    "tertiary": "Record is corrected in GPT-K; backend repair still requires an explicitly activated implementation slice."
   },
   "project_visit_protocol": {
     "classification": "MANDATORY_PROJECT_CONTEXT_REFRESH",
@@ -1143,7 +1143,7 @@
     ]
   },
   "cline_execution_ownership_review": {
-    "classification": "PASS_RECORD_SOURCE_DIVERGENCE",
+    "classification": "FALSE_PASS_GOVERNANCE_RECORD__MISSING_CANONICAL_IMPLEMENTATION",
     "observed_at": "2026-09-18",
     "review_document": "project-engineering/projects/lbe-plan-canvas/CLINE_EXECUTION_OWNERSHIP_REVIEW_2026-09-18.md",
     "backend_head": "d4fc6629b1d54c307c51fbc14d37e17d540c5f63",
@@ -1167,7 +1167,15 @@
     "historical_target": "lbe_guard_inspector/runtime/cline_provider_turn_runtime.py::ClineWorkerTurnRuntime",
     "current_source_state": "TARGET FILE/SYMBOL ABSENT; writable ACT/coding uses GovernedProviderReasoningController eight-iteration OpenAI-compatible loop",
     "historical_gate_contract": "Cline AgentRuntime owns continuation mechanics; LBE mediates tool.proposed via GovernedToolOrchestrator and returns ToolReceipt as tool.result",
-    "repair_classification": "RECONCILIATION_OF_ALREADY_APPROVED_ARCHITECTURE",
-    "note": "No new architecture decision is required. A current machine-gate repair slice still requires explicit activation before backend mutation."
+    "repair_classification": "COMPLETE_PREVIOUSLY_APPROVED_BUT_NEVER_CANONICALIZED_RUNTIME_WIRING",
+    "note": "No new architecture decision is required. A current machine-gate repair slice still requires explicit activation before backend mutation.",
+    "canonical_history_check": {
+      "repository": "Letterblack0306/LBE_Presistent_Agent_wall",
+      "path": "lbe_guard_inspector/runtime/cline_provider_turn_runtime.py",
+      "commits_found": 0,
+      "conclusion": "The named implementation artifact never entered canonical GitHub history."
+    },
+    "false_record": "LBE-INTENT-CLINE-RUNTIME-WIRING-001 RESULT: PASS (focused)",
+    "actual_state": "Cline stdio worker/bridge exists; writable ACT/coding still bypasses Cline AgentRuntime via GovernedProviderReasoningController."
   }
 }
