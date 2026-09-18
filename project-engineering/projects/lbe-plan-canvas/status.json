@@ -127,10 +127,10 @@
     "preservation_rule": "Preserve current dirty/unpublished Rust work and do not use Rust acceptance as proof of Cline CLI user experience."
   },
   "current_blocker": {
-    "classification": "RUSTFMT_ONLY_THEN_BOUNDED_RUNTIME_VALIDATION_003",
-    "primary": "TUI behavioral tests are fully green; canonical head is not rustfmt-clean.",
-    "secondary": "Publish the already-proven behavior-neutral rustfmt-only delta without changing semantics.",
-    "tertiary": "After exact-head fmt/check/test pass, run bounded-runtime-validation-003."
+    "classification": "MODE_POLICY_CLOSED_NEXT_PRODUCT_GATE_INSTALLED_INTERACTIVE_ACCEPTANCE",
+    "primary": "PLAN/ACT/AUDIT product-mode mapping is exact-head runtime proven and no longer blocks the product.",
+    "secondary": "Next product work is installed `lbe` real-user-path acceptance: launch Rust/Ratatui, provider/model, real conversational turn, governed tool/approval/receipt projection, PTY/ConPTY clean exit, and restart/resume.",
+    "tertiary": "Do not reopen mode-policy mapping unless new runtime evidence contradicts this PASS."
   },
   "project_visit_protocol": {
     "classification": "MANDATORY_PROJECT_CONTEXT_REFRESH",
@@ -948,38 +948,31 @@
     "prohibition": "Do not assume config.json/reasoning_provider_config controls RealLbeWrapper. Do not edit reasoning-provider.json as a root-cause fix until the active LBE_PROVIDER_CONFIG path is proven."
   },
   "mode_policy_reconciliation": {
-    "classification": "FOLLOW_UP_FIXES_COMMITTED_REVALIDATION_PENDING",
+    "classification": "PASS_EXACT_HEAD_RUNTIME_PROVEN",
     "observed_at": "2026-09-18",
-    "failed_validation": {
-      "command_hash": "mode-policy-exact-head-revalidation-001",
-      "backend_head": "905030cb72eebdaff12c124165abfecd6cb6e74d",
-      "tui_head": "7c41dfab251e2da6226d4682e9c5b1ea00afa3f6",
-      "backend_result": "2 failed / 123 passed",
-      "tui_result": "cargo check PASS; cargo fmt FAIL; cargo test 176 passed / 26 failed / 2 ignored"
+    "backend_head": "cc0054950153a8c41a48ee0ba60f2675833f7cce",
+    "tui_head": "58104bae1cebd2be04fa1d5544b2ebfce90fe8ff",
+    "tui_parent": "e22d3ef5acc46814558d92ccaba7a7b232d9921c",
+    "rustfmt_patch_sha256": "60041f23558452f52f5e70bceb1d816cc6d7ade56f1f90201a84633765e729b4",
+    "validation": {
+      "backend_tests": "125 passed / 0 failed",
+      "rust_check": "PASS",
+      "rust_fmt": "PASS",
+      "rust_tests": "202 passed / 0 failed / 2 ignored",
+      "bounded_runtime_validation_003": "PASS"
     },
-    "canonical_follow_up": {
-      "backend_main": "cc0054950153a8c41a48ee0ba60f2675833f7cce",
-      "backend_code_fixes": [
-        "c8d9bc1c7811118888704faee457d0610125aa1e restore module-level ModeRequest/resolve_mode import",
-        "24e3cacf1e2899df0d28beffe27ed1a71a583b08 update provider-list test to current registry contract"
-      ],
-      "tui_main": "2eb57eb7aa8e386bc0b39bfad42f26942e70a5bf",
-      "tui_fixes": [
-        "f7230c266895dcb84014731e1bfea20a609bd5d4 align visible cycle with canonical ACT -> PLAN -> AUDIT -> ACT test contract",
-        "2eb57eb7aa8e386bc0b39bfad42f26942e70a5bf apply rustfmt formatting to mode transition bridge"
-      ]
+    "invariants": {
+      "plan_read_only": "APPLIED -> investigation",
+      "audit_read_only": "APPLIED -> audit",
+      "act_read_only": "PERMISSION_REQUIRED; accepted=false; resolved_mode=audit",
+      "denied_act_persisted_state_unchanged": true,
+      "act_write_allowed": "APPLIED -> coding; permission=write_allowed; runtime_policy=permissive",
+      "real_set_mode_supported": true,
+      "visible_audit_mode_distinct": true,
+      "ui_can_grant_permission": false,
+      "failed_transition_mutates_session": false
     },
-    "gate_status": "FAIL_UNTIL_REVALIDATED",
-    "next_required_evidence": [
-      "validate clean exports of backend cc0054950153a8c41a48ee0ba60f2675833f7cce and TUI 2eb57eb7aa8e386bc0b39bfad42f26942e70a5bf",
-      "focused backend mode/session CLI tests",
-      "cargo check",
-      "cargo fmt -- --check",
-      "cargo test -- --test-threads=1",
-      "capture exact failing Rust test names/assertions if any remain",
-      "bounded runtime validation only after source tests pass"
-    ],
-    "verdict": "NO_MORE_SOURCE_CHANGES_WITHOUT_SURVIVING_FAILURE_EVIDENCE"
+    "verdict": "MODE_POLICY_PRODUCT_MAPPING_PASS"
   },
   "tui_exact_head_revalidation": {
     "classification": "BEHAVIORAL_PASS_RUSTFMT_ONLY_BLOCKER",
