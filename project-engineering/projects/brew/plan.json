@@ -3,13 +3,13 @@
   "project": "Brew",
   "purpose": "Structured projection of Brew's canonical-runtime drift recovery, reference reuse, and acceptance gates. Navigation state only; current Brew repository/runtime evidence remains authoritative.",
   "authority_rule": "Current Brew runtime/source, exact revision, live evidence, CI, and project-owned checkpoints outrank this GPT-K projection. Upstream references challenge implementation design but do not become Brew authority.",
-  "updated": "2026-09-08",
+  "updated": "2026-09-19",
   "source_repo": "Letterblack0306/brew",
-  "source_branch": "agent/canonical-runtime-operation-authority-20260812",
-  "source_head": "2071e47e2dbc27dbe6e4d5dc9f7efc7d987569eb",
+  "source_branch": "main",
+  "source_head": "15b02efa37ee14119f1b5d665381e47b8a85d1c6",
   "default_branch_observed": {
     "branch": "main",
-    "head": "579e5ee3648a06533d6dc5b110ae64cb1aaf3490"
+    "head": "15b02efa37ee14119f1b5d665381e47b8a85d1c6"
   },
   "current_status_record": "project-engineering/projects/brew/BREW_DRIFT_RECOVERY_AND_UPSTREAM_REUSE_2026-09-08.md",
   "active_node": "drift-recovery-reference-reuse",
@@ -17,9 +17,16 @@
     {
       "id": "architecture",
       "lane": "Authority",
-      "title": "One reasoning agent and one canonical runtime",
+      "title": "One primary reasoning identity, one canonical runtime, bounded delegation",
       "status": "proven",
-      "summary": "Semantic reasoning remains model-owned; runtime owns identity, policy, execution, state, evidence, validation and recovery."
+      "summary": "Brew retains the user-level goal and user relationship; runtime owns canonical policy/execution/evidence boundaries. Bounded subagents, specialist agents, teams, planners, supervisors and workers are valid when they add capability without becoming competing product authorities."
+    },
+    {
+      "id": "delegation-feature-preservation",
+      "lane": "Architecture",
+      "title": "Preserve useful subagents, teams, specialists, and workers",
+      "status": "documented",
+      "summary": "Delegates may reason autonomously within assigned scope. Working capability is kept, adapted, enhanced, or combined; removal requires evidence that a path is broken, fake, unreachable, unsafe, obsolete after migration, or a conflicting authority."
     },
     {
       "id": "canonical-query",
@@ -34,7 +41,7 @@
       "title": "Recover drift and converge on upstream-proven contracts",
       "status": "current",
       "priority": "P0",
-      "summary": "Remove reachable secondary semantic authorities and weaker success/failure contracts. Reuse/adapt Hermes, Cline, Codex, OpenHands and LobeHub patterns instead of recreating agent infrastructure."
+      "summary": "Remove only proven conflicting semantic authorities and weaker/fake success contracts. Preserve working capabilities, including useful subagents/teams/workers, and reuse/adapt/combine before replacement."
     },
     {
       "id": "provider-result-invariant",
@@ -112,6 +119,11 @@
   "edges": [
     {
       "from": "architecture",
+      "to": "delegation-feature-preservation",
+      "type": "architecture"
+    },
+    {
+      "from": "delegation-feature-preservation",
       "to": "canonical-query",
       "type": "flow"
     },
