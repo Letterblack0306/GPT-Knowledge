@@ -11,9 +11,9 @@
   },
   "evidence_level": "CURRENT_MAIN_ARCHITECTURE_POLICY_DOCUMENTED__PRIOR_SOURCE_TEST_EVIDENCE_PRESERVED",
   "overall_classification": "CANONICAL_REASONING_AND_CAPABILITY_PATH_ESTABLISHED__READONLY_GIT_ADDED__INSTALLED_AND_LIVE_ACCEPTANCE_STILL_PENDING",
-  "authority_note": "This GPT-K record reflects Brew repository architecture-policy updates through 2026-09-19. The latest changes clarify bounded delegation and feature preservation; they do not by themselves prove new runtime behavior. Current source/runtime, exact local revision, live provider/tool behavior, CI, and installed-runtime evidence continue to outrank this record.",
+  "authority_note": "This GPT-K record reflects Brew architecture-policy updates through 2026-09-19 and distinguishes two revision-bound machine-behavior findings: PR #439 head e7e68b86 contains a source-proven pre-model semantic tool-selection defect; later Brew revisions remove that boundary and expose the governed registry directly. Neither historical source analysis nor policy documentation substitutes for current exact-head installed/runtime, CI, provider, browser, or crash-recovery proof.",
   "canonical_architecture": {
-    "semantic_owner": "PRIMARY_BREW_USER_LEVEL_REASONING_IDENTITY",
+    "semantic_owner": "PRIMARY_BREW_USER_LEVEL_REASONING_AUTHORITY",
     "flow": [
       "user_request",
       "reasoning_model",
@@ -53,7 +53,7 @@
         "temporary_workers",
         "distributed_workers"
       ],
-      "rule": "Delegates may reason autonomously within assigned task scope, but must not become competing authorities for the top-level user goal, canonical policy, side effects, evidence truth, persistence truth, or product-level completion.",
+      "rule": "Brew owns the user-level goal and relationship. Delegates may reason autonomously within assigned task scope, but must not become competing authorities for top-level goal, canonical policy, side effects, evidence truth, persistence truth, or product-level completion.",
       "feature_preservation": "Working and useful capabilities are kept; improvable capabilities are adapted/enhanced; useful overlap is combined; removal requires evidence of broken, fake, unreachable, unsafe, obsolete-after-migration, or conflicting-authority behavior."
     }
   },
@@ -139,6 +139,16 @@
       "id": "legacy-multi-agent-current",
       "classification": "FAIL_CLOSED_COMPATIBILITY_SURFACE",
       "detail": "Legacy compatibility modules remain fail-closed on the previously proven path. Their fail-closed status is not a blanket ban on subagents/teams: useful delegated-agent capability may be preserved or reintroduced through canonical Brew contracts when there is a proven feature requirement."
+    },
+    {
+      "id": "pr439-premodel-tool-selection",
+      "classification": "PROVEN_MACHINE_BEHAVIOR_DEFECT__SOURCE_PROVEN_AT_E7E68B86",
+      "detail": "At PR #439 head e7e68b86, task-tool-selection.mjs used requestHints() regex groups over user text to score/select a capability subset; runner-foundation-integration actively called createTaskToolRegistryView(message, registry), and runTurn passed the restricted registry into runAgentToolLoop. Excluded tools were rejected with TOOL_NOT_SELECTED_FOR_TASK. Therefore semantically equivalent wording could alter the model-visible tool set before reasoning."
+    },
+    {
+      "id": "premodel-tool-selection-remediation",
+      "classification": "FIXED_LATER__SOURCE_AND_REGRESSION_PROVEN",
+      "detail": "Later Brew main removed task-tool-selection.mjs. prepareRunnerFoundationTurn returns the governed executable registry directly; selectedTools is telemetry, not a selection/execution boundary. Commit a8f4425c records this remediation; regression coverage protects against reintroduction."
     }
   ],
   "validation": {
@@ -211,6 +221,12 @@
       "status": "PENDING",
       "evidence": "docs/status/REMAINING_AUDIT_AREAS.md still contains stale claims including uncommitted operation journal and active dispatch-handlers imports.",
       "next_check": "Reconcile status docs against 722fc238 so future agents do not repeat superseded blockers."
+    },
+    {
+      "id": "machine-behavior-current-head-reconfirmation",
+      "status": "CURRENT_FIX_SOURCE_AND_REGRESSION_PROVEN__LIVE_RELEASE_RECONFIRMATION_OPTIONAL_BEFORE_RELEASE",
+      "evidence": "Historical PR #439 head contains a source-proven pre-model semantic tool-selection defect. Later main removes that path and regression-tests the governed-registry behavior.",
+      "next_check": "Do not reopen architecture cleanup unless current exact-head source or live acceptance shows semantic preselection/routing has reappeared. Release validation may re-run a wording-invariance falsifier, but feature-removal work is not implied."
     }
   ],
   "do_not_recreate": [
@@ -233,7 +249,7 @@
   ],
   "evidence_boundary": {
     "classification": "CURRENT_MAIN_SOURCE_AND_TEST_EVIDENCE__INSTALLED_LIVE_ACCEPTANCE_INCOMPLETE",
-    "rule": "Current main includes a 2026-09-19 documented architecture-policy clarification permitting bounded subagents/teams/workers while preserving one primary user-level Brew authority and canonical runtime boundaries. The prior source/test evidence remains valid for the previously tested runtime surfaces; these documentation commits do not themselves prove new delegated-agent runtime behavior or installed acceptance.",
+    "rule": "Historical PR #439 head e7e68b86 contains a source-proven deterministic pre-model semantic tool-selection defect. Later Brew main removes that selector and keeps the governed executable registry model-visible, with regression protection. Useful delegated-agent capability remains acceptable. The unresolved release gates are installed/live acceptance, provider/browser correlation, crash recovery/exactly-once, and CI—not reintroducing a blanket ban on subagents/teams.",
     "next_required_runtime_proof": [
       "clean exact-head install and installed build/source identity",
       "one real provider-originated governed tool roundtrip with receipt/evidence and same-model continuation",
@@ -241,5 +257,45 @@
       "restart/process-loss/exactly-once mutation proof",
       "live Brew-attributed browser proof where required"
     ]
+  },
+  "machine_behavior_audit": {
+    "audit_date": "2026-09-19",
+    "audit_context": "PR #439 machine-behavior candidates investigation",
+    "pr_number": 439,
+    "pr_base": "11710e82847da7eb646d29dc6197240a1624a9be",
+    "pr_head": "e7e68b86d50022740a5743e61bc9ddd2e5460ef8",
+    "current_worktree_head_reported": "ca6d8d38",
+    "classification": "PROVEN_MACHINE_BEHAVIOR_DEFECT_AT_PR439_HEAD__FIXED_ON_LATER_MAIN",
+    "evidence_level": "SOURCE_PROVEN_AT_PR_HEAD__CURRENT_FIX_SOURCE_AND_REGRESSION_PROVEN__PR_HEAD_RUNTIME_NOT_RUN",
+    "question": "Does PR #439 contain active machine behavior that pre-selects semantic capability before the model reasons?",
+    "owner": "brew/runtime/agents/runner-foundation-integration.mjs::prepareRunnerFoundationTurn",
+    "source_of_truth": "PR #439 head e7e68b86d50022740a5743e61bc9ddd2e5460ef8",
+    "authoritative_observable": [
+      "runTurn(message, registry)",
+      "prepareRunnerFoundationTurn(message, registry)",
+      "createTaskToolRegistryView(...)",
+      "requestHints() regex scoring",
+      "restricted model-visible registry",
+      "runAgentToolLoop(restricted registry)",
+      "TOOL_NOT_SELECTED_FOR_TASK enforcement for excluded tools"
+    ],
+    "falsifier": "Changing wording while preserving semantic intent does not change the model-visible capability registry.",
+    "result": "Falsifier fails by source trace at PR #439 head: requestHints() matches hardcoded semantic regex groups, scores capabilities, restricts the model-visible registry, and the wrapper enforces exclusion. This is active pre-model semantic interception on the canonical path.",
+    "current_fix": "Later main removes brew/runtime/agents/task-tool-selection.mjs; prepareRunnerFoundationTurn returns the governed executable registry directly and selectedTools is telemetry rather than an execution boundary. Fix commit recorded as a8f4425cc99e85ce4d769fc76077946d9f8fc5bf, with regression coverage in runner-foundation integration tests.",
+    "related_modules": {
+      "canonical_defect": [
+        "brew/runtime/agents/task-tool-selection.mjs",
+        "brew/runtime/agents/runner-foundation-integration.mjs",
+        "brew/runner/brew-runner.mjs"
+      ],
+      "isolated_or_noncanonical": [
+        "scenario-router.mjs / agent-dispatch.mjs / dispatch-handlers.mjs require consumer tracing",
+        "next-action-planner.mjs / provider-planner.mjs were isolated behind noncanonical active-read/agent-loop paths at PR head"
+      ],
+      "preserve": [
+        "subagent/team/heterogeneous-agent/browser-agent/workspace-agent/coding-role/verifier/worker infrastructure when bounded and governed"
+      ]
+    },
+    "evidence_boundary": "PR-head evidence is SOURCE_PROVEN from git-show/source tracing, not RUNTIME_PROVEN. Current-main cleanup/fix is separately source/regression proven. Do not merge PR #439 wholesale and do not port its pre-model semantic selection back."
   }
 }

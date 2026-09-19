@@ -63,7 +63,100 @@ split authority and false-success drift
 
 ## Brew end-state goal
 
-**One persistent Brew agent receives the user request, reasons dynamically through the active provider, sees truthful capabilities, chooses tools when useful, executes through runtime policy, continues from real evidence, and returns the result. Features are capabilities available to Brew — never separate personalities, routers, supervisors, keyword workflows, or decision-makers. Roadmaps are candidate lists; live one-agent behavior is the authority.**
+**Brew retains one primary user-facing reasoning authority and may delegate bounded work to subagents, specialist agents, teams, planners, supervisors, temporary workers, or distributed workers when delegation improves capability. Delegates may reason autonomously within assigned scope. The architecture defect to prevent is machine behavior that preempts the primary Brew reasoning path, hard-codes semantic intent/tool choice/completion, or creates competing policy, execution, evidence, persistence, or product-level completion authority. Roadmaps are candidate lists; current runtime behavior and evidence remain authoritative.**
+
+## 2026-09-19 machine-behavior investigation update
+
+A corrected evidence-driven investigation compared historical PR #439 with the later canonical Brew runtime.
+
+### Historical PR #439 defect — source proven
+
+PR #439 head:
+
+```text
+e7e68b86d50022740a5743e61bc9ddd2e5460ef8
+```
+
+contains an active pre-model semantic capability-selection boundary on its canonical `runTurn()` path.
+
+The source trace is:
+
+```text
+runTurn(message, projectRegistry)
+  -> prepareRunnerFoundationTurn({ message, registry, ... })
+  -> createTaskToolRegistryView(registry, message, ...)
+  -> requestHints(message)
+       hardcoded semantic regex groups
+       capability scoring / subset selection
+  -> restricted registry
+  -> runAgentToolLoop(restricted registry)
+```
+
+`task-tool-selection.mjs` also enforced that subset: if the model requested a capability excluded by the deterministic selector, the wrapper returned `TOOL_NOT_SELECTED_FOR_TASK`.
+
+Falsifier:
+
+> Changing wording while preserving semantic intent does not change the model-visible capability registry.
+
+At PR #439 head the falsifier fails by source inspection because `requestHints()` is keyword/regex-sensitive and its output changes the capability subset shown to and executable by the model.
+
+Classification:
+
+```text
+PROVEN_MACHINE_BEHAVIOR_DEFECT
+EVIDENCE_LEVEL = SOURCE_PROVEN
+PR_HEAD_RUNTIME_PROOF = NOT_RUN
+```
+
+This is the architecture problem Brew must avoid: deterministic runtime code deciding semantic capability relevance before the reasoning model sees the governed executable tool set.
+
+### Later main remediation
+
+Later Brew main removes `brew/runtime/agents/task-tool-selection.mjs`. The current runner foundation returns the governed executable registry directly, and `selectedTools` is telemetry representing available tools rather than a semantic execution boundary.
+
+Recorded remediation commit:
+
+```text
+a8f4425cc99e85ce4d769fc76077946d9f8fc5bf
+```
+
+Regression coverage protects against restoring semantic tool preselection or using selection telemetry as a `TOOL_NOT_SELECTED_FOR_TASK`-style gate.
+
+Therefore the correct historical/current distinction is:
+
+```text
+PR #439 e7e68b86:
+  SOURCE_PROVEN machine-behavior defect
+
+later canonical main:
+  selector removed
+  governed registry exposed directly
+  source/regression remediation proven
+```
+
+### Other PR #439 modules
+
+Do not infer defects from names.
+
+- `scenario-router.mjs`, `agent-dispatch.mjs`, and `dispatch-handlers.mjs` existed at the PR head, but consumer tracing did not establish them as the canonical `runTurn()` semantic path. Trace consumers before changing/removing them.
+- `next-action-planner.mjs` and `provider-planner.mjs` were associated with isolated `agent-loop.mjs` / `active-read-agent.mjs` paths rather than the canonical runner/agent/gateway/Telegram path at the audited PR head.
+- subagent, team, heterogeneous-agent, browser-agent, workspace-agent, coding-role, verifier, and worker infrastructure are not defects by class. Preserve/adapt them when they operate as bounded delegated capability under Brew's canonical policy, execution, evidence, persistence, and completion contracts.
+
+### PR #439 disposition
+
+PR #439 is a historical feature source, not a merge candidate.
+
+Potentially useful evidence/verification/observability capabilities should be compared against current main and adapted only when still missing, including:
+
+- execution snapshots;
+- completion validation / `validation_receipt`;
+- durable resource/work provenance;
+- idempotent replay evidence;
+- heterogeneous-agent result normalization;
+- skill freshness auditing;
+- independent deep-review verification.
+
+Do **not** port the historical pre-model semantic tool-selection behavior back.
 
 ## 2026-09-13 governed-memory acceptance update
 
@@ -166,7 +259,7 @@ The table below is historical audit context from 2026-09-08. Several items have 
 | `brew/runtime/chat/brew-chat-agent.mjs` | ORPHANED_KEYWORD_RESPONDER | Prove no supported consumer, then quarantine/remove. |
 | `brew/runtime/agents/scenario-router.mjs` | REMOVED / no active semantic router in current reported local state | Do not recreate. |
 | `brew/runtime/agents/dispatch-handlers.mjs` | LEGACY_DIRECT_HANDLER_SURFACE | Keep disabled/unreachable unless an explicit supported consumer is proven. |
-| `subagent-engine.mjs` / `team-coordinator.mjs` | LEGACY / fail-closed-or-absent by revision | Do not revive multi-agent authority. |
+| `subagent-engine.mjs` / `team-coordinator.mjs` | LEGACY / fail-closed-or-absent by revision | Do not restore these exact legacy implementations by name alone. Preserve or recover useful delegated-agent capability through current canonical Brew contracts when consumer/feature evidence supports it. |
 
 ## Recovered intended architecture
 
@@ -223,7 +316,9 @@ Use for:
 - interruption/stop/retry and persistent-agent ergonomics.
 
 Do not copy:
-- multi-agent/subagent authority that conflicts with Brew's single reasoning-agent decision.
+- unbounded or competing multi-agent/subagent authority that takes over Brew's user-level goal or bypasses canonical policy, execution, evidence, persistence, or completion contracts.
+
+Bounded delegated agents/teams are valid when they improve capability and remain correlated to the parent Brew task.
 
 Primary adoption boundary:
 ```text
@@ -342,7 +437,7 @@ GPT-K routes the question to a suitable upstream; the upstream repository must s
 | Steering/cancel/interrupt | Planned | Hermes/Codex | DEFER until lifecycle owner proof |
 | Messaging adapters | Semantic bypass remediation reported proven; live Telegram tool/duplicate-response acceptance remains open | Hermes | VALIDATE_LIVE_TRANSPORT_ONLY_BEHAVIOR |
 | Scheduled jobs/automation | Existing scheduler infrastructure but not the current architectural gate | Hermes | DO_NOT_EXPAND |
-| Multi-agent/subagent/team | Intentionally disabled/removed from active semantic routing | none needed | DO_NOT_RECREATE |
+| Delegated agents/subagents/teams | Legacy implementations are revision-dependent; bounded delegation is architecture-valid | Existing Brew supervision/contracts + relevant upstream worker patterns | PRESERVE_WORKING_CAPABILITY; ADAPT/GOVERN; remove only proven obsolete/conflicting implementations |
 | Observability/events | Existing trajectory/event work | Codex/OpenHands | TRACE current owner before extension |
 | Startup/readiness | Isolated-state startup and blocker/runtime-import gates reported green | LobeHub/provider health + existing Brew readiness | PRESERVE_ONE_STARTUP_AUTHORITY |
 
@@ -397,7 +492,7 @@ Do not create new Brew-specific implementations for these concerns before exhaus
 - another messaging gateway core;
 - a new skills format when AgentSkills/Codex/Hermes-compatible progressive disclosure is sufficient;
 - a new generic provider abstraction where Cline/LobeHub patterns can be adapted;
-- revived multi-agent/subagent/team orchestration without a newly proven requirement;
+- unbounded or competing multi-agent/subagent/team orchestration that bypasses Brew's parent-task correlation, policy, execution, evidence, persistence, or product-level completion contracts;
 - status prose that substitutes for typed runtime state;
 - completion based on loop termination or successful HTTP status alone.
 
