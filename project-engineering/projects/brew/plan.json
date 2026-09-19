@@ -22,11 +22,18 @@
       "summary": "Brew retains the user-level goal and user relationship; runtime owns canonical policy/execution/evidence boundaries. Bounded subagents, specialist agents, teams, planners, supervisors and workers are valid when they add capability without becoming competing product authorities."
     },
     {
+      "id": "machine-behavior-boundary",
+      "lane": "Authority",
+      "title": "Prevent deterministic semantic interception; preserve useful delegation",
+      "status": "proven_at_722fc238_pending_current_head_reconfirmation",
+      "summary": "A revision-bound 2026-09-19 investigation at Brew 722fc238 reported no active pre-model semantic interception in the canonical runTurn -> runAgentToolLoop path. Architecture review should target machine behavior such as deterministic intent/tool/completion takeover, not the mere presence of subagents, teams, planners, supervisors, roles, or workers."
+    },
+    {
       "id": "delegation-feature-preservation",
       "lane": "Architecture",
       "title": "Preserve useful subagents, teams, specialists, and workers",
       "status": "documented",
-      "summary": "Delegates may reason autonomously within assigned scope. Working capability is kept, adapted, enhanced, or combined; removal requires evidence that a path is broken, fake, unreachable, unsafe, obsolete after migration, or a conflicting authority."
+      "summary": "Working subagents, specialist agents, teams, planners, supervisors and workers are valid product capabilities when bounded and governed. KEEP/ADAPT/COMBINE before removal; only broken, fake, unreachable, unsafe, obsolete-after-migration, or conflicting-authority implementations are removal candidates."
     },
     {
       "id": "canonical-query",
@@ -117,6 +124,16 @@
     }
   ],
   "edges": [
+    {
+      "from": "architecture",
+      "to": "machine-behavior-boundary",
+      "type": "authority-boundary"
+    },
+    {
+      "from": "machine-behavior-boundary",
+      "to": "delegation-feature-preservation",
+      "type": "feature-preservation"
+    },
     {
       "from": "architecture",
       "to": "delegation-feature-preservation",
