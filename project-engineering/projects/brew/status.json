@@ -11,9 +11,9 @@
   },
   "evidence_level": "CURRENT_MAIN_ARCHITECTURE_POLICY_DOCUMENTED__PRIOR_SOURCE_TEST_EVIDENCE_PRESERVED",
   "overall_classification": "CANONICAL_REASONING_AND_CAPABILITY_PATH_ESTABLISHED__READONLY_GIT_ADDED__INSTALLED_AND_LIVE_ACCEPTANCE_STILL_PENDING",
-  "authority_note": "This GPT-K record reflects Brew repository architecture-policy updates through 2026-09-19. The latest changes clarify bounded delegation and feature preservation; they do not by themselves prove new runtime behavior. Current source/runtime, exact local revision, live provider/tool behavior, CI, and installed-runtime evidence continue to outrank this record.",
+  "authority_note": "This GPT-K record reflects Brew repository architecture-policy updates through 2026-09-19 plus a revision-bound machine-behavior investigation at Brew 722fc238. The latest policy permits bounded delegation and feature preservation. The machine-behavior investigation found no active pre-model semantic interception at that audited revision. Neither the policy documentation nor the historical revision-bound investigation substitutes for current exact-head runtime, CI, installed-runtime, provider, browser, or crash-recovery proof.",
   "canonical_architecture": {
-    "semantic_owner": "PRIMARY_BREW_USER_LEVEL_REASONING_IDENTITY",
+    "semantic_owner": "PRIMARY_BREW_USER_LEVEL_REASONING_AUTHORITY",
     "flow": [
       "user_request",
       "reasoning_model",
@@ -53,7 +53,7 @@
         "temporary_workers",
         "distributed_workers"
       ],
-      "rule": "Delegates may reason autonomously within assigned task scope, but must not become competing authorities for the top-level user goal, canonical policy, side effects, evidence truth, persistence truth, or product-level completion.",
+      "rule": "Brew owns the user-level goal and relationship. Delegates may reason autonomously within assigned task scope, but must not become competing authorities for top-level goal, canonical policy, side effects, evidence truth, persistence truth, or product-level completion.",
       "feature_preservation": "Working and useful capabilities are kept; improvable capabilities are adapted/enhanced; useful overlap is combined; removal requires evidence of broken, fake, unreachable, unsafe, obsolete-after-migration, or conflicting-authority behavior."
     }
   },
@@ -139,6 +139,11 @@
       "id": "legacy-multi-agent-current",
       "classification": "FAIL_CLOSED_COMPATIBILITY_SURFACE",
       "detail": "Legacy compatibility modules remain fail-closed on the previously proven path. Their fail-closed status is not a blanket ban on subagents/teams: useful delegated-agent capability may be preserved or reintroduced through canonical Brew contracts when there is a proven feature requirement."
+    },
+    {
+      "id": "machine-behavior-audit-722fc238",
+      "classification": "REVISION_BOUND_NO_ACTIVE_MACHINE_BEHAVIOR_DEFECT_FOUND",
+      "detail": "At Brew 722fc238, the reported active trace was runTurn -> runAgentToolLoop -> provider/model reasoning with the governed tool set -> capability registry execution -> evidence-backed continuation. Suspect pre-model planners/routers were absent or zero-importer orphans, so deterministic semantic interception was not reproduced. This finding targets machine behavior only; bounded subagents, teams, specialists, planners, supervisors, and workers remain valid when governed and non-conflicting."
     }
   ],
   "validation": {
@@ -211,6 +216,12 @@
       "status": "PENDING",
       "evidence": "docs/status/REMAINING_AUDIT_AREAS.md still contains stale claims including uncommitted operation journal and active dispatch-handlers imports.",
       "next_check": "Reconcile status docs against 722fc238 so future agents do not repeat superseded blockers."
+    },
+    {
+      "id": "machine-behavior-current-head-reconfirmation",
+      "status": "PENDING_CURRENT_HEAD_RUNTIME_RECONFIRMATION",
+      "evidence": "The 2026-09-19 machine-behavior investigation found no pre-model semantic interception at Brew 722fc238, but current Brew main is newer.",
+      "next_check": "When machine behavior changes or before release, rerun the bounded falsifier against the exact candidate SHA. Do not reopen feature-removal work merely because a component is named agent, planner, supervisor, team, role, or worker."
     }
   ],
   "do_not_recreate": [
@@ -233,7 +244,7 @@
   ],
   "evidence_boundary": {
     "classification": "CURRENT_MAIN_SOURCE_AND_TEST_EVIDENCE__INSTALLED_LIVE_ACCEPTANCE_INCOMPLETE",
-    "rule": "Current main includes a 2026-09-19 documented architecture-policy clarification permitting bounded subagents/teams/workers while preserving one primary user-level Brew authority and canonical runtime boundaries. The prior source/test evidence remains valid for the previously tested runtime surfaces; these documentation commits do not themselves prove new delegated-agent runtime behavior or installed acceptance.",
+    "rule": "Current Brew main includes the delegation/feature-preservation policy. Separately, a revision-bound investigation at 722fc238 reported no active deterministic pre-model semantic interception in the canonical runtime path. This supports the machine-behavior boundary but does not prove current-head installed/live acceptance. Useful delegated-agent capability is acceptable; only conflicting or ungoverned authority is an architecture defect.",
     "next_required_runtime_proof": [
       "clean exact-head install and installed build/source identity",
       "one real provider-originated governed tool roundtrip with receipt/evidence and same-model continuation",
@@ -241,5 +252,25 @@
       "restart/process-loss/exactly-once mutation proof",
       "live Brew-attributed browser proof where required"
     ]
+  },
+  "machine_behavior_audit": {
+    "audit_date": "2026-09-19",
+    "audit_context": "PR #439 machine-behavior candidates investigation",
+    "audited_brew_revision": "722fc2386589d115bccfadae687923961f4cca95",
+    "current_brew_main_observed": "15b02efa37ee14119f1b5d665381e47b8a85d1c6",
+    "classification": "REVISION_BOUND_SOURCE_AND_REPORTED_RUNTIME_TRACE__NO_ACTIVE_PREMODEL_SEMANTIC_INTERCEPTION_FOUND",
+    "question": "Does active runtime code semantically intercept ordinary natural-language requests before the reasoning model sees the request and governed capabilities?",
+    "falsifier": "Semantically equivalent requests with changed wording cause deterministic pre-model code to select a different product-level goal, tool, or response.",
+    "active_path_reported": [
+      "gateway-server.mjs / telegram-child-entry.mjs",
+      "brew/runner/brew-runner.mjs::runTurn",
+      "brew/runtime/agents/agent-tool-loop.mjs::runAgentToolLoop",
+      "provider/model reasoning with governed tool catalogue",
+      "brew/capabilities/capability-registry.mjs execution",
+      "receipt/evidence returned to reasoning loop"
+    ],
+    "result": "Falsifier not reproduced at audited revision. Suspect deterministic planners/routers were absent or reported orphaned/unreachable. No active machine-behavior defect was identified in the canonical path.",
+    "orphan_cleanup_rule": "Orphaned planner/routing modules are cleanup candidates only after consumer proof. Their names are not architecture defects, and useful subagents/teams/specialists/workers must be preserved when governed.",
+    "evidence_boundary": "The runtime trace and orphan/import findings were supplied from the local Brew investigation at 722fc238. Current Brew main is newer; current-head runtime proof must be re-established before treating this as current-main RUNTIME_PROVEN."
   }
 }
