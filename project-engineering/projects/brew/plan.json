@@ -25,8 +25,8 @@
       "id": "machine-behavior-boundary",
       "lane": "Authority",
       "title": "Prevent deterministic semantic interception; preserve useful delegation",
-      "status": "proven_at_722fc238_pending_current_head_reconfirmation",
-      "summary": "A revision-bound 2026-09-19 investigation at Brew 722fc238 reported no active pre-model semantic interception in the canonical runTurn -> runAgentToolLoop path. Architecture review should target machine behavior such as deterministic intent/tool/completion takeover, not the mere presence of subagents, teams, planners, supervisors, roles, or workers."
+      "status": "historical_defect_fixed_on_later_main",
+      "summary": "PR #439 head e7e68b86 contains a source-proven active pre-model tool-selection boundary: requestHints() regex scoring restricted the model-visible capability registry and enforced exclusions before reasoning. Later main removes this selector and exposes the governed executable registry directly. Preserve governed subagents/teams/specialists; reject only machine behavior that preempts reasoning or creates conflicting authority."
     },
     {
       "id": "delegation-feature-preservation",
@@ -121,6 +121,13 @@
       "status": "blocked",
       "priority": "LOCKED",
       "summary": "No release claim until installed runtime, live acceptance and current-head CI are proven."
+    },
+    {
+      "id": "pr439-reference-porting",
+      "lane": "Reference Reuse",
+      "title": "Treat PR #439 as feature source, not merge candidate",
+      "status": "active_reference",
+      "summary": "Port only missing evidence/verification/observability capabilities from PR #439 onto current canonical owners. Do not port task-tool-selection semantic prefiltering, scenario-style routing, or other pre-model semantic authority."
     }
   ],
   "edges": [
@@ -198,6 +205,11 @@
       "from": "deferred-capabilities",
       "to": "ci-release",
       "type": "acceptance"
+    },
+    {
+      "from": "machine-behavior-boundary",
+      "to": "pr439-reference-porting",
+      "type": "exclude-defect-preserve-features"
     }
   ]
 }
