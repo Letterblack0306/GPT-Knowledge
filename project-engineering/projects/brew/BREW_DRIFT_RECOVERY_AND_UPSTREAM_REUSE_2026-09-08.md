@@ -67,45 +67,96 @@ split authority and false-success drift
 
 ## 2026-09-19 machine-behavior investigation update
 
-A later evidence-driven investigation audited the machine-behavior concern against Brew revision `722fc2386589d115bccfadae687923961f4cca95`.
+A corrected evidence-driven investigation compared historical PR #439 with the later canonical Brew runtime.
 
-### Question
+### Historical PR #439 defect — source proven
 
-> Does active deterministic runtime code semantically intercept ordinary natural-language requests before the reasoning model sees the request and governed capabilities?
-
-### Reported canonical trace at that revision
+PR #439 head:
 
 ```text
-HTTP / CLI / Telegram
-  -> gateway / telegram entry
-  -> brew/runner/brew-runner.mjs::runTurn
-  -> brew/runtime/agents/agent-tool-loop.mjs::runAgentToolLoop
-  -> provider/model reasoning with governed tool catalogue
-  -> brew/capabilities/capability-registry.mjs
-  -> governed tool execution
-  -> receipt/evidence
-  -> model continuation/final answer
+e7e68b86d50022740a5743e61bc9ddd2e5460ef8
 ```
 
-The bounded falsifier used semantically equivalent wording (for example, `check git status` versus `show me the git state`) and looked for deterministic keyword-driven goal/tool/response selection before provider reasoning.
+contains an active pre-model semantic capability-selection boundary on its canonical `runTurn()` path.
 
-### Classification
+The source trace is:
 
-`NO_ACTIVE_MACHINE_BEHAVIOR_DEFECT_FOUND_AT_722FC238__REVISION_BOUND`
+```text
+runTurn(message, projectRegistry)
+  -> prepareRunnerFoundationTurn({ message, registry, ... })
+  -> createTaskToolRegistryView(registry, message, ...)
+  -> requestHints(message)
+       hardcoded semantic regex groups
+       capability scoring / subset selection
+  -> restricted registry
+  -> runAgentToolLoop(restricted registry)
+```
 
-The reported investigation found:
-- no active pre-model semantic interception in the traced canonical path;
-- suspect scenario/task/provider/next-action routing modules absent from the active tree or unreachable;
-- remaining planner/tool-routing files reported as zero-importer orphans;
-- explicit-prefix parsing in an orphaned tool-routing helper did not establish active runtime semantic routing.
+`task-tool-selection.mjs` also enforced that subset: if the model requested a capability excluded by the deterministic selector, the wrapper returned `TOOL_NOT_SELECTED_FOR_TASK`.
 
-This finding does **not** mean all files named planner/agent/team/supervisor/worker are defects. Machine behavior is the issue. Useful bounded delegation is allowed under the 2026-09-19 Brew architecture policy when parent-task scope, policy, side effects, receipts/evidence, persistence, and completion remain governed.
+Falsifier:
 
-### Evidence boundary
+> Changing wording while preserving semantic intent does not change the model-visible capability registry.
 
-This investigation was reported against Brew `722fc238`. Brew main later advanced to `15b02efa37ee14119f1b5d665381e47b8a85d1c6` with delegation/feature-preservation documentation updates. Therefore the machine-behavior result is strong revision-bound evidence, not automatic current-head installed/runtime proof.
+At PR #439 head the falsifier fails by source inspection because `requestHints()` is keyword/regex-sensitive and its output changes the capability subset shown to and executable by the model.
 
-PR #439 is reference context only: it remains an old, heavily diverged open PR and is not the current Brew source authority.
+Classification:
+
+```text
+PROVEN_MACHINE_BEHAVIOR_DEFECT
+EVIDENCE_LEVEL = SOURCE_PROVEN
+PR_HEAD_RUNTIME_PROOF = NOT_RUN
+```
+
+This is the architecture problem Brew must avoid: deterministic runtime code deciding semantic capability relevance before the reasoning model sees the governed executable tool set.
+
+### Later main remediation
+
+Later Brew main removes `brew/runtime/agents/task-tool-selection.mjs`. The current runner foundation returns the governed executable registry directly, and `selectedTools` is telemetry representing available tools rather than a semantic execution boundary.
+
+Recorded remediation commit:
+
+```text
+a8f4425cc99e85ce4d769fc76077946d9f8fc5bf
+```
+
+Regression coverage protects against restoring semantic tool preselection or using selection telemetry as a `TOOL_NOT_SELECTED_FOR_TASK`-style gate.
+
+Therefore the correct historical/current distinction is:
+
+```text
+PR #439 e7e68b86:
+  SOURCE_PROVEN machine-behavior defect
+
+later canonical main:
+  selector removed
+  governed registry exposed directly
+  source/regression remediation proven
+```
+
+### Other PR #439 modules
+
+Do not infer defects from names.
+
+- `scenario-router.mjs`, `agent-dispatch.mjs`, and `dispatch-handlers.mjs` existed at the PR head, but consumer tracing did not establish them as the canonical `runTurn()` semantic path. Trace consumers before changing/removing them.
+- `next-action-planner.mjs` and `provider-planner.mjs` were associated with isolated `agent-loop.mjs` / `active-read-agent.mjs` paths rather than the canonical runner/agent/gateway/Telegram path at the audited PR head.
+- subagent, team, heterogeneous-agent, browser-agent, workspace-agent, coding-role, verifier, and worker infrastructure are not defects by class. Preserve/adapt them when they operate as bounded delegated capability under Brew's canonical policy, execution, evidence, persistence, and completion contracts.
+
+### PR #439 disposition
+
+PR #439 is a historical feature source, not a merge candidate.
+
+Potentially useful evidence/verification/observability capabilities should be compared against current main and adapted only when still missing, including:
+
+- execution snapshots;
+- completion validation / `validation_receipt`;
+- durable resource/work provenance;
+- idempotent replay evidence;
+- heterogeneous-agent result normalization;
+- skill freshness auditing;
+- independent deep-review verification.
+
+Do **not** port the historical pre-model semantic tool-selection behavior back.
 
 ## 2026-09-13 governed-memory acceptance update
 
