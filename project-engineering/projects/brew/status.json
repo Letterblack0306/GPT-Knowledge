@@ -1,19 +1,19 @@
 {
   "schema_version": 1,
   "project": "Brew",
-  "verified_at": "2026-09-18",
+  "verified_at": "2026-09-19",
   "source_repo": "Letterblack0306/brew",
   "source_branch": "main",
-  "source_head": "722fc2386589d115bccfadae687923961f4cca95",
+  "source_head": "15b02efa37ee14119f1b5d665381e47b8a85d1c6",
   "default_branch_observed": {
     "branch": "main",
-    "head": "722fc2386589d115bccfadae687923961f4cca95"
+    "head": "15b02efa37ee14119f1b5d665381e47b8a85d1c6"
   },
-  "evidence_level": "LOCAL_REPOSITORY_AND_TEST_EVIDENCE_CONFIRMED",
+  "evidence_level": "CURRENT_MAIN_ARCHITECTURE_POLICY_DOCUMENTED__PRIOR_SOURCE_TEST_EVIDENCE_PRESERVED",
   "overall_classification": "CANONICAL_REASONING_AND_CAPABILITY_PATH_ESTABLISHED__READONLY_GIT_ADDED__INSTALLED_AND_LIVE_ACCEPTANCE_STILL_PENDING",
-  "authority_note": "This GPT-K record reflects verified Brew repository state and local test evidence through 2026-09-14. Current source/runtime, exact local revision, live provider/tool behavior, CI, and installed-runtime evidence continue to outrank this record.",
+  "authority_note": "This GPT-K record reflects Brew repository architecture-policy updates through 2026-09-19. The latest changes clarify bounded delegation and feature preservation; they do not by themselves prove new runtime behavior. Current source/runtime, exact local revision, live provider/tool behavior, CI, and installed-runtime evidence continue to outrank this record.",
   "canonical_architecture": {
-    "semantic_owner": "ONE_REASONING_MODEL",
+    "semantic_owner": "PRIMARY_BREW_USER_LEVEL_REASONING_IDENTITY",
     "flow": [
       "user_request",
       "reasoning_model",
@@ -40,9 +40,22 @@
       "request_intent_classifier_before_model",
       "scenario_router_for_ordinary_natural_language",
       "heuristic_task_tool_preselection",
-      "second_planner_or_controller_outside_canonical_turn",
+      "unbounded_or_competing_planner_or_controller_that_owns_the_user_level_goal_outside_canonical_brew_authority",
       "deterministic_completion_judge_replacing_model_reasoning"
-    ]
+    ],
+    "delegation_model": {
+      "allowed": [
+        "bounded_subagents",
+        "specialist_agents",
+        "agent_teams",
+        "planners_within_delegated_scope",
+        "supervisors_for_bounded_task_coordination",
+        "temporary_workers",
+        "distributed_workers"
+      ],
+      "rule": "Delegates may reason autonomously within assigned task scope, but must not become competing authorities for the top-level user goal, canonical policy, side effects, evidence truth, persistence truth, or product-level completion.",
+      "feature_preservation": "Working and useful capabilities are kept; improvable capabilities are adapted/enhanced; useful overlap is combined; removal requires evidence of broken, fake, unreachable, unsafe, obsolete-after-migration, or conflicting-authority behavior."
+    }
   },
   "verified_changes": [
     {
@@ -64,6 +77,26 @@
       "commit": "722fc2386589d115bccfadae687923961f4cca95",
       "classification": "PROVEN_SOURCE_AND_TEST",
       "change": "Added canonical read-only git.status and git.diff_summary capabilities through Brew's governed capability registry and bounded adapters. Focused tests 2/2, readiness 10/10, full suite 421/421, runtime check and UI build reported PASS."
+    },
+    {
+      "commit": "de951f425230ce0fddcd446f915af4b3972f5ee6",
+      "classification": "DOCUMENTED_ARCHITECTURE_POLICY_NO_NEW_RUNTIME_PROOF",
+      "change": "Clarified root AGENTS policy: bounded subagents, specialist agents, teams and workers may enhance Brew; added explicit feature-preservation disposition rules."
+    },
+    {
+      "commit": "fd72f23d708d1b81ca6c18c1e17a6fb8630d42e7",
+      "classification": "DOCUMENTED_ARCHITECTURE_POLICY_NO_NEW_RUNTIME_PROOF",
+      "change": "Updated ADR-0001 to distinguish one primary user-level reasoning authority from valid delegated agent/team reasoning; architecture cleanup must preserve working capability."
+    },
+    {
+      "commit": "e57a6d09e51af33b30eabf3b0dd66081f5f42d90",
+      "classification": "DOCUMENTED_ARCHITECTURE_POLICY_NO_NEW_RUNTIME_PROOF",
+      "change": "Updated Brew Agent Architecture with delegated-scope autonomy and KEEP/ADAPT/COMBINE/MIGRATE/REMOVE disposition guidance."
+    },
+    {
+      "commit": "15b02efa37ee14119f1b5d665381e47b8a85d1c6",
+      "classification": "DOCUMENTED_ARCHITECTURE_POLICY_NO_NEW_RUNTIME_PROOF",
+      "change": "Updated Brew workspace plan with a delegation and feature-preservation contract covering roles/subagents and distributed workers."
     }
   ],
   "canonical_runtime_findings": [
@@ -90,7 +123,7 @@
     {
       "id": "subagent-runtime",
       "classification": "LEGACY_FAIL_CLOSED",
-      "detail": "The legacy subagent runtime remains intentionally disabled and fail-closed; it is not a live second reasoning authority in the canonical path."
+      "detail": "The legacy subagent compatibility runtime remains intentionally disabled and fail-closed in the currently proven path. This does not prohibit bounded subagents/teams as a product capability; future or existing working delegates are valid when they use canonical Brew policy/execution/evidence contracts and do not become competing user-level authorities."
     },
     {
       "id": "scenario-router-natural-language-path",
@@ -105,7 +138,7 @@
     {
       "id": "legacy-multi-agent-current",
       "classification": "FAIL_CLOSED_COMPATIBILITY_SURFACE",
-      "detail": "brew/runtime/agents/dispatch-handlers.mjs is absent on current main. scripts/tests/single-agent-architecture.test.mjs asserts scenario-router, agent-dispatch, dispatch-handlers, and brew/start.js remain absent. subagent-engine.mjs and team-coordinator.mjs remain only as explicitly disabled fail-closed compatibility modules in the tested architecture."
+      "detail": "Legacy compatibility modules remain fail-closed on the previously proven path. Their fail-closed status is not a blanket ban on subagents/teams: useful delegated-agent capability may be preserved or reintroduced through canonical Brew contracts when there is a proven feature requirement."
     }
   ],
   "validation": {
@@ -187,19 +220,20 @@
     "a second planner/controller outside the canonical turn",
     "deterministic completion authority replacing model evidence judgment",
     "parallel tool registries when the canonical governed registry can be extended",
-    "revived multi-agent/subagent/team orchestration without a newly proven requirement"
+    "unbounded multi-agent/subagent/team orchestration that creates competing user-goal, policy, execution, evidence, persistence, or completion authority",
+    "architecture cleanup that deletes a working useful capability solely because it uses agent/team/planner/supervisor/worker terminology"
   ],
   "acceptance_falsifiers": [
     "Any ordinary natural-language request is semantically routed before the canonical reasoning model.",
     "Any heuristic request classifier hides otherwise executable tools from the model.",
     "selectedTools telemetry becomes an execution boundary or TOOL_NOT_SELECTED_FOR_TASK-style gate.",
     "Dynamic prompt advertises tools that the native model tool schema marks unavailable.",
-    "A second planner/controller decides semantic next actions outside the canonical reasoning turn.",
+    "A planner/controller or delegated agent acquires competing authority over the top-level user goal or bypasses canonical Brew policy/execution/evidence/completion contracts.",
     "A completion claim after tool use cannot be linked to recorded receipt/evidence identity."
   ],
   "evidence_boundary": {
     "classification": "CURRENT_MAIN_SOURCE_AND_TEST_EVIDENCE__INSTALLED_LIVE_ACCEPTANCE_INCOMPLETE",
-    "rule": "Current main 722fc238 establishes source/test status for canonical reasoning/capabilities, including read-only Git and committed operation journal. It does not prove clean installed runtime, live provider/tool continuation, browser E2E, crash recovery/exactly-once, or final user readiness.",
+    "rule": "Current main includes a 2026-09-19 documented architecture-policy clarification permitting bounded subagents/teams/workers while preserving one primary user-level Brew authority and canonical runtime boundaries. The prior source/test evidence remains valid for the previously tested runtime surfaces; these documentation commits do not themselves prove new delegated-agent runtime behavior or installed acceptance.",
     "next_required_runtime_proof": [
       "clean exact-head install and installed build/source identity",
       "one real provider-originated governed tool roundtrip with receipt/evidence and same-model continuation",
