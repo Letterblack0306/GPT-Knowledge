@@ -934,3 +934,23 @@ Focused regression coverage was added in `tests/test_user_state.py`.
 GitHub returned no status contexts or workflow runs for the candidate head. Local LoopTool validation is still required before promotion beyond implemented-candidate state.
 
 Historical Drive lookup for this provider-profile seam returned no matching accessible record in the current connector session; no historical assumption was substituted for repository/GPT-K truth.
+
+
+## 2026-09-21 — Provider-profile TUI controls made real
+
+Classification: **IMPLEMENTED_ON_GITHUB / LOOPTOOL_VALIDATION_PENDING**
+
+Candidate LBE repository head: `e68c37438691e6ea89190f4b4d458fa5c4eccbfb`.
+
+The Rust provider command surface no longer uses the mock-era `opaque-ref` contract.
+
+Current command contract:
+
+```text
+/provider-config <profile> <provider> <model> <endpoint> [credential-id]
+/provider-remove <profile-name>
+```
+
+The real wrapper delegates profile creation/removal through `lbe_guard_inspector.product_entry` into the existing CLI/user-state owners. Removing a profile does not remove a provider capability from the catalog. LM Studio identity is aligned to the canonical registry id `lmstudio`.
+
+Focused Python and Rust regression coverage was updated. GitHub exposes no CI/status contexts for this head, and local LoopTool validation remains pending.
