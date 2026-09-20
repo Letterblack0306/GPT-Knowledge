@@ -14,10 +14,22 @@
       "url": "https://github.com/openai/codex",
       "default_branch": "main",
       "status": "active",
-      "primary_uses": ["execution-runtime", "typed-events", "approvals", "sandbox", "tool-execution", "validation", "cancellation", "session-turn-item-lifecycle"],
+      "primary_uses": [
+        "execution-runtime",
+        "typed-events",
+        "approvals",
+        "sandbox",
+        "tool-execution",
+        "validation",
+        "cancellation",
+        "session-turn-item-lifecycle"
+      ],
       "adopt": "Separation of model-authored messages from runtime/tool/approval/completion state.",
       "avoid": "Do not copy the complete runtime when only a lifecycle or execution-boundary pattern is needed.",
-      "gptk_studies": ["ai-agents/studies/codex-execution-validation.md"]
+      "gptk_studies": [
+        "ai-agents/studies/codex-execution-validation.md",
+        "ai-agents/studies/exact-agent-feature-reference-chain-2026-09-20.md"
+      ]
     },
     {
       "id": "cline",
@@ -26,10 +38,21 @@
       "url": "https://github.com/cline/cline",
       "default_branch": "main",
       "status": "active",
-      "primary_uses": ["provider-adapters", "model-turn-semantics", "tool-use-loop", "empty-response-handling", "model-capabilities", "ide-agent-execution"],
-      "adopt": "Centralized provider/model result semantics, including empty-response versus tool-only-turn behavior.",
+      "primary_uses": [
+        "provider-adapters",
+        "model-turn-semantics",
+        "tool-use-loop",
+        "empty-response-handling",
+        "model-capabilities",
+        "agent-runtime",
+        "team-sessions"
+      ],
+      "adopt": "Centralized provider/model result semantics, host-owned runtime construction, and explicit team/session lifecycle.",
       "avoid": "Do not create a second provider subsystem when the target already has one canonical owner.",
-      "gptk_studies": ["ai-agents/cline-runtime-reuse-for-governed-agent-infrastructure.md"]
+      "gptk_studies": [
+        "ai-agents/cline-runtime-reuse-for-governed-agent-infrastructure.md",
+        "ai-agents/studies/exact-agent-feature-reference-chain-2026-09-20.md"
+      ]
     },
     {
       "id": "hermes-agent",
@@ -38,22 +61,66 @@
       "url": "https://github.com/NousResearch/hermes-agent",
       "default_branch": "main",
       "status": "active",
-      "primary_uses": ["persistent-agent-loop", "messaging-gateways", "memory", "skills", "toolsets", "mcp", "channel-continuity"],
-      "adopt": "One agent core across channels and progressive loading of memory, skills, and integrations.",
-      "avoid": "Do not import subagent authority into a target architecture that deliberately uses one reasoning agent.",
-      "gptk_studies": ["ai-agents/studies/hermes-memory-skills-agent-loop.md"]
+      "primary_uses": [
+        "persistent-agent-loop",
+        "messaging-gateways",
+        "memory",
+        "skills",
+        "toolsets",
+        "mcp",
+        "channel-continuity",
+        "tool-call-persistence"
+      ],
+      "adopt": "One agent core across channels, persistent turn orchestration, and progressive loading of memory, skills, and integrations.",
+      "avoid": "Do not let gateway, memory, skills, or delegated work become a second untracked authority. Preserve working team/subagent features but keep parent/session ownership explicit.",
+      "gptk_studies": [
+        "ai-agents/studies/hermes-memory-skills-agent-loop.md",
+        "ai-agents/studies/exact-agent-feature-reference-chain-2026-09-20.md"
+      ]
     },
     {
       "id": "openhands",
-      "name": "OpenHands",
+      "name": "OpenHands Agent Canvas",
       "repository": "OpenHands/OpenHands",
       "url": "https://github.com/OpenHands/OpenHands",
       "default_branch": "main",
       "status": "active",
-      "primary_uses": ["autonomous-swe-runtime", "event-loop", "actions-observations", "workspace-abstraction", "lifecycle-state", "recovery"],
-      "adopt": "Explicit action/observation and lifecycle-state patterns for software-engineering runtimes.",
-      "avoid": "Do not add a parallel planner/controller when the target's canonical turn already owns reasoning.",
-      "gptk_studies": ["ai-agents/studies/openhands-autonomous-swe-runtime.md"]
+      "primary_uses": [
+        "agent-canvas",
+        "control-center",
+        "backend-selection",
+        "frontend-agent-client",
+        "local-stack-orchestration"
+      ],
+      "adopt": "Use for the user-facing control-center boundary, backend selection, and client orchestration.",
+      "avoid": "Do not treat OpenHands/OpenHands as the canonical agent/tool/conversation/workspace runtime owner; those implementations live in OpenHands/software-agent-sdk.",
+      "gptk_studies": [
+        "ai-agents/studies/openhands-autonomous-swe-runtime.md",
+        "ai-agents/studies/exact-agent-feature-reference-chain-2026-09-20.md"
+      ]
+    },
+    {
+      "id": "openhands-software-agent-sdk",
+      "name": "OpenHands software-agent-sdk",
+      "repository": "OpenHands/software-agent-sdk",
+      "url": "https://github.com/OpenHands/software-agent-sdk",
+      "default_branch": "main",
+      "status": "active",
+      "primary_uses": [
+        "autonomous-swe-runtime",
+        "action-observation",
+        "conversation-runtime",
+        "workspace-abstraction",
+        "lifecycle-state",
+        "confirmation-policy",
+        "agent-server"
+      ],
+      "adopt": "Use as the canonical OpenHands implementation reference for agents, tools, conversations, workspaces, events, security/confirmation, and the Agent Server API.",
+      "avoid": "Do not confuse Agent Canvas frontend behavior with this runtime owner, and do not import the complete runtime when only a narrow action/observation or workspace contract is needed.",
+      "gptk_studies": [
+        "ai-agents/studies/openhands-autonomous-swe-runtime.md",
+        "ai-agents/studies/exact-agent-feature-reference-chain-2026-09-20.md"
+      ]
     },
     {
       "id": "aider",
@@ -62,10 +129,19 @@
       "url": "https://github.com/Aider-AI/aider",
       "default_branch": "main",
       "status": "active",
-      "primary_uses": ["repository-cognition", "repo-map", "git-aware-editing", "selective-context", "context-budgeting"],
+      "primary_uses": [
+        "repository-cognition",
+        "repo-map",
+        "git-aware-editing",
+        "selective-context",
+        "context-budgeting"
+      ],
       "adopt": "Repository mapping and selective context expansion before edits.",
       "avoid": "Do not equate repository awareness with file authority or load the whole repository into context.",
-      "gptk_studies": ["ai-agents/studies/aider-repository-cognition.md"]
+      "gptk_studies": [
+        "ai-agents/studies/aider-repository-cognition.md",
+        "ai-agents/studies/exact-agent-feature-reference-chain-2026-09-20.md"
+      ]
     },
     {
       "id": "lobehub",
@@ -74,10 +150,22 @@
       "url": "https://github.com/lobehub/lobehub",
       "default_branch": "canary",
       "status": "active",
-      "primary_uses": ["provider-registry", "model-registry", "configuration", "knowledge", "mcp", "integrations", "readiness"],
+      "primary_uses": [
+        "provider-registry",
+        "model-registry",
+        "configuration",
+        "knowledge",
+        "mcp",
+        "integrations",
+        "readiness"
+      ],
       "adopt": "Separate provider/model metadata, configuration, capability, readiness, and integration lifecycle.",
       "avoid": "Do not treat configured state as runtime readiness.",
-      "gptk_studies": ["ai-agents/studies/lobehub-provider-integration-architecture.md", "ai-agents/studies/lobehub-agent-skills-system.md"]
+      "gptk_studies": [
+        "ai-agents/studies/lobehub-provider-integration-architecture.md",
+        "ai-agents/studies/lobehub-agent-skills-system.md",
+        "ai-agents/studies/exact-agent-feature-reference-chain-2026-09-20.md"
+      ]
     },
     {
       "id": "openclaw",
@@ -86,10 +174,22 @@
       "url": "https://github.com/openclaw/openclaw",
       "default_branch": "main",
       "status": "active",
-      "primary_uses": ["gateway", "control-plane", "multi-surface-access", "session-continuity", "transport-boundaries"],
+      "primary_uses": [
+        "gateway",
+        "control-plane",
+        "multi-surface-access",
+        "session-continuity",
+        "transport-boundaries",
+        "run-ownership",
+        "terminal-receipts"
+      ],
       "adopt": "Keep session/agent identity independent from CLI, UI, browser, or messaging transports.",
       "avoid": "Do not let channel clients become separate reasoning authorities.",
-      "gptk_studies": ["ai-agents/reference-derived-agent-architecture.md", "ai-agents/studies/agent-harness-reference-sources-2026-09-08.md"]
+      "gptk_studies": [
+        "ai-agents/reference-derived-agent-architecture.md",
+        "ai-agents/studies/agent-harness-reference-sources-2026-09-08.md",
+        "ai-agents/studies/exact-agent-feature-reference-chain-2026-09-20.md"
+      ]
     },
     {
       "id": "agent-zero",
@@ -98,10 +198,18 @@
       "url": "https://github.com/agent0ai/agent-zero",
       "default_branch": "main",
       "status": "active",
-      "primary_uses": ["general-agent-runtime", "tools", "extensibility", "local-agent-experimentation"],
+      "primary_uses": [
+        "general-agent-runtime",
+        "tools",
+        "extensibility",
+        "local-agent-experimentation"
+      ],
       "adopt": "Use as a comparative implementation reference for extensibility and local-agent patterns.",
       "avoid": "Do not treat it as a default target architecture without checking ownership and lifecycle fit.",
-      "gptk_studies": ["ai-agents/reference-derived-agent-architecture.md"]
+      "gptk_studies": [
+        "ai-agents/reference-derived-agent-architecture.md",
+        "ai-agents/studies/exact-agent-feature-reference-chain-2026-09-20.md"
+      ]
     },
     {
       "id": "gemini-cli",
@@ -110,10 +218,45 @@
       "url": "https://github.com/google-gemini/gemini-cli",
       "default_branch": "main",
       "status": "active",
-      "primary_uses": ["gemini-native-cli", "tool-execution", "command-session-patterns", "terminal-ux"],
-      "adopt": "Use for Gemini-native tool and CLI behavior when provider-specific evidence is required.",
-      "avoid": "Do not infer provider-neutral contracts from Gemini-specific behavior alone.",
-      "gptk_studies": ["ai-agents/provider-neutral-agent-auth-and-model-routing.md"]
+      "primary_uses": [
+        "browser-agent",
+        "browser-session-lifecycle",
+        "isolated-browser-tools",
+        "tool-scheduler",
+        "policy",
+        "confirmation",
+        "local-agent-executor",
+        "gemini-native-cli"
+      ],
+      "adopt": "Use the browser-agent definition/factory/invocation/manager chain for browser-specialized agents, and the scheduler/policy/confirmation chain for tool execution.",
+      "avoid": "Do not copy Gemini-specific model assumptions into provider-neutral layers; preserve the architectural seams rather than provider-specific defaults.",
+      "gptk_studies": [
+        "ai-agents/provider-neutral-agent-auth-and-model-routing.md",
+        "ai-agents/studies/exact-agent-feature-reference-chain-2026-09-20.md"
+      ]
+    },
+    {
+      "id": "deepseek-harness",
+      "name": "DeepSeek Harness",
+      "repository": "deepseek-ai/deepseek-harness",
+      "url": "https://github.com/deepseek-ai/deepseek-harness",
+      "default_branch": "master",
+      "status": "active",
+      "primary_uses": [
+        "agent-loop",
+        "tool-scheduling",
+        "browser-use-capability",
+        "computer-use-capability",
+        "subagent-lifecycle",
+        "skills",
+        "harness-seams"
+      ],
+      "adopt": "Use explicit package/service seams for the agent loop, ordered tool scheduling, browser/computer capability registration, subagent lifecycle, and skills.",
+      "avoid": "Do not treat every plugin seam as a reason to fragment an existing target owner. Use the harness to make ownership explicit, not to create duplicate authority.",
+      "gptk_studies": [
+        "ai-agents/studies/agent-harness-reference-sources-2026-09-08.md",
+        "ai-agents/studies/exact-agent-feature-reference-chain-2026-09-20.md"
+      ]
     }
   ]
 }
