@@ -1259,5 +1259,41 @@
     },
     "gdrive_history_lookup": "NO_MATCHES_RETURNED_FOR_PROVIDER_PROFILE_QUERY",
     "next_action": "LoopTool should fetch/inspect the new GitHub head and run only the focused provider user-state/product-entry/Rust wrapper regressions needed for this seam. Do not reopen accepted provider/runtime architecture."
+  },
+  "provider_profile_tui_control_update": {
+    "recorded_at": "2026-09-21",
+    "classification": "IMPLEMENTED_ON_GITHUB_LOOPTOOL_VALIDATION_PENDING",
+    "repository": "Letterblack0306/LBE_Presistent_Agent_wall",
+    "candidate_head": "e68c37438691e6ea89190f4b4d458fa5c4eccbfb",
+    "commits": [
+      "1c36bf0fd774b041e496ad638e0936796864bc5f",
+      "81b167c9d7324e030281ff31c80e4b0e3844a9a2",
+      "ebadb29efed9cfef4af4757b2c743a60b89bb90d",
+      "a654ec1ef5ac6522b83f41e412736ab9872fbb2c",
+      "2d911c671bc8a25f39f5d03d9541c7fc9da6a1fb",
+      "c440a125814c65cc16190b9cfbdc0cfd16db4b37",
+      "7046f393309768645b84cada76d6e1a2d2ecc6a1",
+      "43917edfacb9fd5ab22b3f45fa1078772484acee",
+      "e68c37438691e6ea89190f4b4d458fa5c4eccbfb"
+    ],
+    "behavior": [
+      "Rust ConfigureProvider is now profile-based and carries profile name, provider id, model, endpoint, timeout, optional credential reference, and activation intent.",
+      "The old mock-era opaque-ref provider command was removed from the command path.",
+      "The real Rust wrapper delegates profile creation to product_entry provider add and profile removal to product_entry provider remove.",
+      "Removing a profile no longer deletes the provider capability from the catalog projection.",
+      "CLI provider remove uses the existing UserStateStore.remove_profile owner.",
+      "LM Studio Rust provider id now matches the canonical registry id lmstudio while the command parser accepts lmstudio and lm-studio aliases."
+    ],
+    "authority_rule": "Provider profile configuration remains user-state/credential binding. Provider capability registry, session provider selection, reasoning runtime, governance, receipts/evidence and completion owners are unchanged.",
+    "validation": {
+      "github_status_contexts": "NONE_ATTACHED",
+      "github_workflow_runs": "NONE_RETURNED",
+      "looptool_local_validation": "PENDING",
+      "focused_tests": [
+        "tests/test_user_state.py",
+        "apps/lbe-terminal/src/tests.rs provider profile command cases"
+      ]
+    },
+    "next_action": "Use LoopTool only for focused validation of the candidate head and new provider-profile seams. If green, promote to validated local and continue to the next unsupported real-mode product seam without reopening accepted architecture."
   }
 }
