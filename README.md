@@ -4,6 +4,8 @@ A versioned, reusable engineering knowledge base for research-backed design, dev
 
 ## Load order
 https://drive.google.com/drive/folders/1T8Hv-MUhdK34V9xM9gPRq9M1UvMF1HsI
+loop test, > repo impliment > birdeye keep in watch, Gdrive memories and past, >dessision > looptooldo not drift toward single route or diffing into architecture. gpt-k has all the refrences no assumption allowed
+
 Always begin with [`000_START_HERE.md`](000_START_HERE.md). When prior plans, decisions, rejected ideas, unfinished work, or historical contradictions may materially affect a decision, route through [`001_MEMORY_DECISION_SUPPORT.md`](001_MEMORY_DECISION_SUPPORT.md). Then use [`knowledge-index.json`](knowledge-index.json) for deterministic file/domain routing, [`knowledge-sections.json`](knowledge-sections.json) when a trigger maps to a stable section, or [`INDEX.md`](INDEX.md) as the human-readable companion.
 
 Do not preload every domain. Knowledge guides decisions; it does not replace live workspace or runtime inspection.
