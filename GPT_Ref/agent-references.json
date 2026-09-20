@@ -257,6 +257,99 @@
         "ai-agents/studies/agent-harness-reference-sources-2026-09-08.md",
         "ai-agents/studies/exact-agent-feature-reference-chain-2026-09-20.md"
       ]
+    },
+    {
+      "id": "antigravity-cli",
+      "name": "Google Antigravity CLI",
+      "repository": "google-antigravity/antigravity-cli",
+      "url": "https://github.com/google-antigravity/antigravity-cli",
+      "default_branch": "main",
+      "status": "active",
+      "verified_revision": "7bb195acaec9e7788df5210d0dc3e15f3cefc6b3",
+      "primary_uses": [
+        "terminal-agent-ui",
+        "persistent-history",
+        "artifact-review",
+        "permissions",
+        "subagents",
+        "background-tasks",
+        "remote-control",
+        "status-projection",
+        "headless-mode",
+        "mcp",
+        "skills",
+        "hooks",
+        "plugins"
+      ],
+      "adopt": "Use its terminal projection, statusline/state projection, review/rewind, background-task, subagent, and permission interaction patterns while keeping target authority owners explicit.",
+      "avoid": "The public repository does not contain the complete production core. Do not infer unavailable implementation internals from README/changelog examples; use official product docs for product behavior and the public repo only where source is actually present.",
+      "gptk_studies": [
+        "ai-agents/studies/exact-agent-feature-reference-chain-2026-09-20.md"
+      ]
+    },
+    {
+      "id": "claude-code",
+      "name": "Claude Code",
+      "repository": "anthropics/claude-code",
+      "url": "https://github.com/anthropics/claude-code",
+      "default_branch": "main",
+      "status": "active",
+      "verified_revision": "7974a70773fa229e4cc65aa1b356cc21f5c216c4",
+      "primary_uses": [
+        "cli",
+        "interactive-agent-ui",
+        "permissions",
+        "hooks",
+        "skills",
+        "plugins",
+        "mcp",
+        "subagents",
+        "agent-teams",
+        "background-agents",
+        "worktrees",
+        "headless-json",
+        "remote-control",
+        "project-instructions"
+      ],
+      "adopt": "Use exact tool/permission names, project instruction scoping, hook lifecycle, subagent/team configuration, background-agent controls, and interactive CLI ergonomics where they fit the target owner.",
+      "avoid": "The public repository is not a complete mirror of all production core internals. Product behavior should be anchored to official Claude Code docs and only source-backed extension/mod/plugin claims should be treated as repository implementation evidence.",
+      "gptk_studies": [
+        "ai-agents/studies/exact-agent-feature-reference-chain-2026-09-20.md"
+      ]
+    },
+    {
+      "id": "opencode",
+      "name": "OpenCode",
+      "repository": "anomalyco/opencode",
+      "url": "https://github.com/anomalyco/opencode",
+      "default_branch": "dev",
+      "status": "active",
+      "verified_revision": "ebb7b76eca82342642c78645109e865614533827",
+      "primary_uses": [
+        "cli",
+        "tui",
+        "desktop",
+        "provider-registry",
+        "model-registry",
+        "tool-registry",
+        "permissions",
+        "agents",
+        "subagents",
+        "sessions",
+        "mcp",
+        "plugins",
+        "skills",
+        "lsp",
+        "remote-attach",
+        "web-server",
+        "workspace-ui",
+        "diff-ui"
+      ],
+      "adopt": "Use its explicit CLI/TUI/runtime separation, provider/model routing, permission-gated tool registry, session/child-session projection, remote attach/server surfaces, and runtime-vs-TUI configuration split.",
+      "avoid": "Do not transplant OpenCode's runtime authority wholesale into a target that already owns authorization, execution, receipts, persistence, validation, or completion. Reuse presentation and registry seams without duplicating target authority.",
+      "gptk_studies": [
+        "ai-agents/studies/exact-agent-feature-reference-chain-2026-09-20.md"
+      ]
     }
   ]
 }
