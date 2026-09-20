@@ -325,3 +325,21 @@ The user's broader exact-reference implementation request is recorded as sequent
 
 They are intentionally non-authorizing until the current active slice receives claim-matched validation and the machine gate selects the next slice. This preserves the repository rule of one active slice and prevents upstream references from creating parallel authority owners.
 
+
+
+## Extension/capability surface progress — 2026-09-20
+
+Canonical LBE main now also contains a working generic installed-extension management surface derived from the same reference architecture:
+
+- `ExternalCapabilityKind` includes `mcp`, `skill`, `plugin`, `hook`, `connector`, `subagent`, `network`, and `hosted_service`.
+- Installed capability metadata can be upserted, enabled, disabled, and removed atomically.
+- Product commands now support `lbe capabilities install|enable|disable|remove|list|validate`.
+- Install definitions may be supplied inline as JSON or by `@file`.
+- Rust TUI preserves the extension kind and exposes `/extensions`, `/skills`, `/plugins`, `/hooks`, and `/connectors`; `/mcp` remains an alias.
+- The TUI renders one unified extension registry while keeping transport/execution/authorization outside the UI projection.
+- Tests were added for registry management, capability kinds, product management commands, definition files, and generic TUI projection.
+
+Relevant LBE commits:
+`4609d8a`, `7163d922`, `779f18cd`, `46c734e8`, `02b10f4a`, `c0d6e282`, `ece55ab9`, `c04d30cb`, `2123b70d`, `3189e3b1`.
+
+This is implementation state from canonical GitHub source, not a claim of live installed acceptance.
