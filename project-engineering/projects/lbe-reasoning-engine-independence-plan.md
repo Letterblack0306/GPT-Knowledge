@@ -284,3 +284,44 @@ next_slice             = NONE
 Therefore this GPT-K plan records the next architecture direction only.
 
 Implementation must begin only after the canonical LBE repository opens a new explicit intent/gate that names the engine-independence slice and its affected owners.
+
+## 2026-09-20 implementation progress
+
+Canonical LBE source was rechecked before this update.
+
+```text
+LBE repository: Letterblack0306/LBE_Presistent_Agent_wall
+active slice: REASONING_ENGINE_PROVIDER_BINDING_SEPARATION
+gate: OPEN
+implementation_allowed: true
+
+implementation:
+39dd7cf9a6194a4931d1c564f43af50d5d8d9f7f  runtime: separate reasoning engine and provider bindings
+7685ecae0412a92f7b61f9b5b51011e3125a4f8d  tests: hard-block Cline import in absence proof
+935b159ccf15a7f86fc72b2b19be20e6a7a3f892  runtime: fail closed on unproven provider capabilities
+7c5bd4af3ca2962bd1cad0823207915cc7819a37  tests: require evidence for structured output capability
+```
+
+Implemented statically in the active slice:
+
+- Cline is no longer imported by the provider composition root at module import time.
+- Explicit `EngineProviderBinding` separates engine identity from provider identity.
+- Native-LBE and Cline bindings can coexist for one provider.
+- LM Studio has a native OpenAI-compatible default binding while the existing Cline binding remains available explicitly.
+- Existing Cline-only routes remain intact for providers not yet proven on a native transport.
+- No silent engine fallback is introduced.
+- Provider capabilities are projected from `ProviderModelCapabilitySnapshot`; unproven tool-call, streaming and structured-output claims fail closed instead of becoming positive capability claims.
+- The Cline-absence proof now uses an import finder that blocks the Cline adapter module itself, rather than only overriding ordinary `__import__`.
+
+Validation status remains **UNVERIFIED at full-regression/runtime level**. The repository's GitHub Actions `validate` workflow fails before workflow steps execute on these implementation commits and also on the immediately preceding governance-only commits, so the CI signal cannot currently distinguish product failure from the pre-existing workflow/runner condition. Do not close the machine gate from static evidence alone.
+
+The user's broader exact-reference implementation request is recorded as sequential proposed intents in the LBE intent ledger for:
+
+- governed tool/permission reference convergence;
+- session/checkpoint/subagent reference convergence;
+- MCP/skills/plugins/hooks extension-surface convergence;
+- Rust TUI reference convergence;
+- headless/remote surface convergence.
+
+They are intentionally non-authorizing until the current active slice receives claim-matched validation and the machine gate selects the next slice. This preserves the repository rule of one active slice and prevents upstream references from creating parallel authority owners.
+
