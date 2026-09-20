@@ -131,7 +131,15 @@
         "v6-validation",
         "815dfc0",
         "backend checkout recovery",
-        "deleted canonical files"
+        "deleted canonical files",
+        "LBE reasoning engine",
+        "LBE engine independence",
+        "LBE Cline independence",
+        "Cline optional",
+        "Cline adapter",
+        "LBE provider neutral",
+        "reasoning engine registry",
+        "replaceable reasoning engine"
       ],
       "canonical": [
         "project-engineering/project-feature-implementation-plan.md"
@@ -192,6 +200,11 @@
           "project-engineering/projects/brew-runtime-architecture-status-2026-09-07.md",
           "project-engineering/projects/brew/status.json",
           "project-engineering/projects/brew/plan.json"
+        ],
+        "lbe-reasoning-engine-independence": [
+          "project-engineering/projects/lbe-reasoning-engine-independence-plan.md",
+          "ai-agents/provider-neutral-agent-auth-and-model-routing.md",
+          "ai-agents/cline-runtime-reuse-for-governed-agent-infrastructure.md"
         ]
       }
     },
