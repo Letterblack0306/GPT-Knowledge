@@ -1228,5 +1228,36 @@
       "looptool_local_validation": "PENDING"
     },
     "next_action": "Run the focused Rust/fixture LoopTool suite against the new GitHub head, then continue with the next missing user-facing seam without reopening accepted architecture."
+  },
+  "provider_profile_binding_update": {
+    "recorded_at": "2026-09-21",
+    "classification": "IMPLEMENTED_ON_GITHUB_LOOPTOOL_VALIDATION_PENDING",
+    "repository": "Letterblack0306/LBE_Presistent_Agent_wall",
+    "candidate_head": "0dab83e48f7e3601914816b55c8d1de8ccc813fe",
+    "commits": [
+      "512198adb6ecd562b0260795e55f7c394167b110",
+      "8d594ced85b091c1c17205609bf141cad997b163",
+      "129b163e46362bab485edff2e18f2f4f539be227",
+      "716aceaafdee2add1b8801c246542ea17ed9b926",
+      "c449cc0bdb0e0e5c8ff9158b5b90768eb263aec1",
+      "0dab83e48f7e3601914816b55c8d1de8ccc813fe"
+    ],
+    "behavior": [
+      "provider add/use/migrate now use the existing UserStateStore and WindowsCredentialStore owners",
+      "provider active projects non-secret profile metadata only",
+      "provider check can resolve explicit config or an active per-user profile",
+      "product_entry turn can resolve the active profile when --provider-config is omitted",
+      "Rust RealLbeWrapper keeps explicit LBE_PROVIDER_CONFIG compatibility and otherwise delegates provider resolution to the active LBE user profile",
+      "resolved credential secret remains inside the Python provider boundary and is not returned to the Rust UI or persisted in runtime-state.json"
+    ],
+    "authority_rule": "This is configuration binding only. Provider runtime authority, session provider selection, reasoning engine ownership, tool governance, receipts/evidence and completion ownership are unchanged.",
+    "validation": {
+      "focused_tests_added": "tests/test_user_state.py",
+      "github_status_contexts": "NONE_ATTACHED",
+      "github_workflow_runs": "NONE_RETURNED",
+      "looptool_local_validation": "PENDING"
+    },
+    "gdrive_history_lookup": "NO_MATCHES_RETURNED_FOR_PROVIDER_PROFILE_QUERY",
+    "next_action": "LoopTool should fetch/inspect the new GitHub head and run only the focused provider user-state/product-entry/Rust wrapper regressions needed for this seam. Do not reopen accepted provider/runtime architecture."
   }
 }
