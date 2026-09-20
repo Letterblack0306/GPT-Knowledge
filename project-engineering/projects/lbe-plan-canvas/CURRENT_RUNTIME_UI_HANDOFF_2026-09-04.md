@@ -875,3 +875,23 @@ LBE_CLI_PRODUCT_COMPOSITION_AND_STRUCTURAL_VISUAL_DIFFERENTIATION
 Required proof remains claim-matched: lbe launch, real LBE session/provider state, embedded Cline turn, governed tool proposal and authorization, exactly-once execution, persisted ToolReceipt/evidence, continuation, persistence/resume, deterministic completion, clean TTY/ConPTY exit, and terminal restoration. Documentation, source presence, focused tests, or an independently launched Cline process cannot substitute for this proof.
 
 Historical chat/Drive records explain prior decisions only. Current GitHub source, machine gate, local read-only validation evidence, and live runtime evidence outrank this historical projection. BirdEye MCP retrieval was unavailable during this refresh (Transport closed); no MCP retrieval result is being treated as current truth.
+
+
+## 2026-09-21 continuation update
+
+Classification: **IMPLEMENTED_ON_GITHUB / LOOPTOOL_VALIDATION_PENDING**
+
+Canonical repository work continued without reopening accepted runtime architecture.
+
+- Corrected two stale test fixtures against the current runtime contracts:
+  - governed coding fake evidence service now derives from the real `EvidenceService` contract;
+  - the product-entry path validation fixture now supplies the configured workspace root expected by current validation ordering.
+- Extended the existing delegated child-agent lifecycle into the Rust cockpit:
+  - `/agents` remains the read-only delegated-run projection;
+  - new `/agent-cancel <child-agent-run-id>` requests cancellation;
+  - Rust routes the request through the existing `product_entry child-agent cancel` owner;
+  - the returned LBE-owned child-agent record replaces the projected run state.
+- No Rust-local child runtime, executor, authorization authority, session authority, persistence owner, receipt owner, or completion owner was introduced.
+- GitHub returned no attached workflow/status contexts for the candidate head. Local LoopTool validation remains required before this implementation is promoted to validated/accepted.
+
+Candidate LBE repository head after this slice: `d3c4f6f54bdabac664e89528f50f637bbcf4ca96`.
