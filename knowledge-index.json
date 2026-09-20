@@ -355,7 +355,12 @@
         "persistent agent integration",
         "Telegram settings",
         "provider config UI",
-        "workspace readiness"
+        "workspace readiness",
+        "Antigravity CLI",
+        "Claude Code",
+        "OpenCode CLI",
+        "agent feature reference map",
+        "exact agent feature reference"
       ],
       "canonical": [
         "ai-agents/unified-agent-engineering-methods.md"
@@ -403,6 +408,11 @@
         ],
         "agent-harness-references": [
           "ai-agents/studies/agent-harness-reference-sources-2026-09-08.md"
+        ],
+        "exact-agent-feature-reference-map": [
+          "ai-agents/studies/agent-feature-reference-map-2026-09-20.json",
+          "ai-agents/studies/exact-agent-feature-reference-chain-2026-09-20.md",
+          "GPT_Ref/GPT_REF.md"
         ]
       }
     },
