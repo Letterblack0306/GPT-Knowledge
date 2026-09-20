@@ -1295,5 +1295,44 @@
       ]
     },
     "next_action": "Use LoopTool only for focused validation of the candidate head and new provider-profile seams. If green, promote to validated local and continue to the next unsupported real-mode product seam without reopening accepted architecture."
+  },
+  "session_memory_recall_update": {
+    "recorded_at": "2026-09-21",
+    "classification": "IMPLEMENTED_ON_GITHUB_LOOPTOOL_VALIDATION_PENDING",
+    "repository": "Letterblack0306/LBE_Presistent_Agent_wall",
+    "candidate_head": "eaf92ccb4f803e67e9a238f3866a262c0ea9520e",
+    "commits": [
+      "9d1b4fee4df33641873b0ea5eb885aeeb20cfe67",
+      "59a3ea65561db9e166f175d743294774b5303228",
+      "22bb521389f3d95f957ee33125b701c21f13b2be",
+      "7c90273d3b8d30a40c3f7d8327ffd0bf04d16c55",
+      "e3efc194cf2c6926885842c9380967544f471b1b",
+      "aeeddfc86d3bb2ece063096ac4eaa6b3fc8b7b01",
+      "07935515715a522e3eab2c0d3c1299fb7a6b1452",
+      "6e0e25ce26b1a30483a35a1456ad65f3d1b3a4a1",
+      "3a297c11152dabc2ec9274b1725eab6649734d6d",
+      "eaf92ccb4f803e67e9a238f3866a262c0ea9520e"
+    ],
+    "behavior": [
+      "CLI memory recall delegates to SessionMemoryRuntimeBridge.rehydrate(session_id=...) and therefore revalidates verified memory against current workspace state before projection.",
+      "Rust RealLbeWrapper RecallSessionMemory delegates to the canonical product_entry/CLI memory recall owner.",
+      "Runtime memory categories are represented explicitly in the Rust projection instead of being coerced into mock-only categories.",
+      "Unknown real content/session hashes are projected as absent rather than fabricated.",
+      "Connected Memory panel is labeled as a read-only validated LBE projection rather than mock/pre-integration.",
+      "Memory checkpoint, forget, and browser controls remain unsupported until owner-backed contracts exist."
+    ],
+    "authority_rule": "LBE memory runtime remains sole durable memory/promotion authority. Rust is read-only projection and control transport.",
+    "validation": {
+      "github_status_contexts": "NONE_ATTACHED",
+      "github_workflow_runs": "NONE_RETURNED",
+      "looptool_local_validation": "PENDING",
+      "focused_tests": [
+        "tests/test_cli.py::test_memory_recall_returns_revalidated_session_memory",
+        "apps/lbe-terminal/src/tests.rs::real_wrapper_requires_connected_runtime_for_session_memory_recall",
+        "cargo fmt --check",
+        "git diff --check"
+      ]
+    },
+    "next_action": "Run only the focused LoopTool validation for this new memory recall slice. If it passes, promote and continue to the next genuinely owner-backed user-visible seam."
   }
 }
