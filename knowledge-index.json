@@ -139,7 +139,13 @@
         "Cline adapter",
         "LBE provider neutral",
         "reasoning engine registry",
-        "replaceable reasoning engine"
+        "replaceable reasoning engine",
+        "LBE terminal UI",
+        "sci-fi minimal TUI",
+        "agent cockpit",
+        "LBE accessibility modes",
+        "LBE plain output",
+        "LBE authorization gate"
       ],
       "canonical": [
         "project-engineering/project-feature-implementation-plan.md"
@@ -205,6 +211,10 @@
           "project-engineering/projects/lbe-reasoning-engine-independence-plan.md",
           "ai-agents/provider-neutral-agent-auth-and-model-routing.md",
           "ai-agents/cline-runtime-reuse-for-governed-agent-infrastructure.md"
+        ],
+        "lbe-terminal-sci-fi-minimal-ui": [
+          "project-engineering/projects/lbe-terminal-sci-fi-minimal-ui.md",
+          "ai-agents/studies/agent-feature-reference-map-2026-09-20.json"
         ]
       }
     },
