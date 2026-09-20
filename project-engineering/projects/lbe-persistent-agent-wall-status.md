@@ -1,5 +1,32 @@
 # LBE Persistent Agent Wall — Current Project Mirror
 
+## 2026-09-20 architecture direction — LBE core independent of Cline
+
+Current canonical source/governance observed before this GPT-K update:
+
+```text
+Letterblack0306/LBE_Presistent_Agent_wall
+HEAD = 57294568d62cfb8bb41a07359c6f1943e0832b9a
+machine gate = PASS / COMPLETED / CLOSED
+implementation_allowed = false
+```
+
+The next product architecture direction is now recorded in [`lbe-reasoning-engine-independence-plan.md`](lbe-reasoning-engine-independence-plan.md).
+
+Core decision:
+
+```text
+LBE = required persistent governed agent runtime / authority core
+Cline = optional supported reasoning-engine/provider-ecosystem adapter
+model providers = separately pluggable
+no reasoning engine or provider = LBE authority owner
+```
+
+This is an additive decoupling plan, not a Cline-removal plan. Preserve proven Cline provider/model, continuation, streaming, tool-call, cancellation, delegated-agent/subagent, and other useful mechanics behind LBE-owned contracts. Add non-Cline reasoning paths without creating a second authorization, execution, receipt, persistence, validation, or completion authority.
+
+Current-state evaluations must read canonical source/workspace and `.lbe/governance/implementation-gates.json` before using Drive/chat mirrors. Gate-blind mirrors remain historical/context evidence only.
+
+
 ## Authority and routing
 
 - Reconciled projection: 2026-09-07
