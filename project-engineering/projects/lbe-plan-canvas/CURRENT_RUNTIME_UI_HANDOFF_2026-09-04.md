@@ -895,3 +895,42 @@ Canonical repository work continued without reopening accepted runtime architect
 - GitHub returned no attached workflow/status contexts for the candidate head. Local LoopTool validation remains required before this implementation is promoted to validated/accepted.
 
 Candidate LBE repository head after this slice: `d3c4f6f54bdabac664e89528f50f637bbcf4ca96`.
+
+
+## 2026-09-21 — Active provider-profile binding implemented
+
+Classification: **IMPLEMENTED_ON_GITHUB / LOOPTOOL_VALIDATION_PENDING**
+
+This continuation removes a normal-use configuration dependency without changing provider/runtime authority.
+
+Canonical LBE repository candidate head:
+
+`0dab83e48f7e3601914816b55c8d1de8ccc813fe`
+
+Implemented path:
+
+```text
+provider add/use/migrate
+-> UserStateStore
+-> opaque credential_id only
+-> WindowsCredentialStore
+-> ProviderConfig resolved inside Python/LBE
+-> product_entry turn / provider check
+-> existing provider/runtime owners
+-> Rust RealLbeWrapper
+```
+
+Behavior:
+
+- `provider add`, `provider use`, `provider migrate`, and `provider active` are now wired.
+- Legacy API keys are moved into Windows Credential Manager during migration; they are not stored in `runtime-state.json` or emitted in command output.
+- `provider check` accepts the explicit config path when provided and otherwise resolves the active user profile.
+- `product_entry turn` no longer requires `--provider-config`; it can resolve the active profile and checks that profile provider/model match persisted session identity.
+- Rust keeps explicit `LBE_PROVIDER_CONFIG` compatibility. When it is absent, provider discovery/validation and turns fall through to the active LBE user profile.
+- Resolved credentials never cross into Rust projection, receipts/evidence, or persisted user-state JSON.
+
+Focused regression coverage was added in `tests/test_user_state.py`.
+
+GitHub returned no status contexts or workflow runs for the candidate head. Local LoopTool validation is still required before promotion beyond implemented-candidate state.
+
+Historical Drive lookup for this provider-profile seam returned no matching accessible record in the current connector session; no historical assumption was substituted for repository/GPT-K truth.
