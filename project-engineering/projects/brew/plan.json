@@ -2,17 +2,17 @@
   "schema_version": 1,
   "project": "Brew",
   "purpose": "Structured projection of Brew's canonical-runtime drift recovery, reference reuse, and acceptance gates. Navigation state only; current Brew repository/runtime evidence remains authoritative.",
-  "authority_rule": "Current Brew runtime/source, exact revision, live evidence, CI, and project-owned checkpoints outrank this GPT-K projection. Upstream references challenge implementation design but do not become Brew authority.",
-  "updated": "2026-09-19",
+  "authority_rule": "Current Brew source/runtime, exact revision, live evidence, CI, and project-owned checkpoints outrank this GPT-K projection. BirdEye/G-Drive are evidence/access projections; imported Memory is historical provenance; neither overrides current GitHub/runtime truth.",
+  "updated": "2026-09-20",
   "source_repo": "Letterblack0306/brew",
   "source_branch": "main",
-  "source_head": "15b02efa37ee14119f1b5d665381e47b8a85d1c6",
+  "source_head": "603e75afb1d35cd8e80ef4a1583bb7106504a95d",
   "default_branch_observed": {
     "branch": "main",
-    "head": "15b02efa37ee14119f1b5d665381e47b8a85d1c6"
+    "head": "603e75afb1d35cd8e80ef4a1583bb7106504a95d"
   },
   "current_status_record": "project-engineering/projects/brew/BREW_DRIFT_RECOVERY_AND_UPSTREAM_REUSE_2026-09-08.md",
-  "active_node": "drift-recovery-reference-reuse",
+  "active_node": "secret-redaction-runtime-sinks",
   "nodes": [
     {
       "id": "architecture",
@@ -39,81 +39,105 @@
       "id": "drift-recovery-reference-reuse",
       "lane": "Active Gate",
       "title": "Recover drift and converge on upstream-proven contracts",
-      "status": "current",
+      "status": "completed",
       "priority": "P0",
-      "summary": "Remove only proven conflicting semantic authorities and weaker/fake success contracts. Preserve working capabilities, including useful subagents/teams/workers, and reuse/adapt/combine before replacement."
+      "summary": "Canonical runtime migration/test alignment is complete for the validated P0/P1 authority work; continue only from current evidence gaps."
     },
     {
       "id": "provider-result-invariant",
       "lane": "P0 Correctness",
       "title": "One model-turn success invariant",
-      "status": "warning",
+      "status": "proven",
       "priority": "P0",
-      "summary": "Every active adapter must reject empty assistant output when there is no model tool activity and must preserve provider/runtime failures without fabricating assistant text."
+      "summary": "P0 provider-result invariant validated on canonical paths."
     },
     {
       "id": "telegram-transport-only",
       "lane": "P0 Correctness",
       "title": "Telegram is transport, not a second agent",
-      "status": "warning",
+      "status": "proven",
       "priority": "P0",
-      "summary": "Ordinary natural-language Telegram input must reach the canonical turn exactly once; only explicit runtime/transport commands remain deterministic."
+      "summary": "P0 Telegram transport purity validated against the canonical turn authority."
     },
     {
       "id": "legacy-response-quarantine",
       "lane": "P0 Correctness",
       "title": "Quarantine duplicate response authorities",
-      "status": "next",
+      "status": "proven",
       "priority": "P0",
-      "summary": "Prove consumers before retaining main-agent/direct-response, response-decision, brew-chat-agent, scenario-router and other stale semantic surfaces."
+      "summary": "P0 legacy response authority quarantine is validated on canonical paths; current reachability audit reports no active legacy authority."
     },
     {
       "id": "session-turn-item",
       "lane": "P1 Runtime",
       "title": "Canonical Session / Turn / Item lifecycle",
-      "status": "next",
+      "status": "proven",
       "priority": "P1",
-      "summary": "Adopt Codex/OpenHands-style lifecycle separation without creating a second persistence authority."
+      "summary": "Canonical session/turn/operation identity and recovery evidence are covered by current P1 validation."
     },
     {
       "id": "capability-registry",
       "lane": "P1 Runtime",
       "title": "Canonical capability registry and health",
-      "status": "next",
+      "status": "proven",
       "priority": "P1",
-      "summary": "Extend existing Brew capability ownership using Hermes/LobeHub registry patterns; configured is not equivalent to ready."
+      "summary": "P1 canonical capability registry with readiness/health separation is validated."
     },
     {
       "id": "provider-continuation",
       "lane": "P1 Runtime",
       "title": "Provider-native tool continuation",
-      "status": "next",
+      "status": "proven",
       "priority": "P1",
-      "summary": "Prove model call -> governed tool -> evidence -> provider continuation -> final non-empty response."
+      "summary": "P1 provider continuation contract is validated in canonical source/test evidence; installed live provider repro remains a separate proof layer."
     },
     {
       "id": "recovery",
       "lane": "P1 Runtime",
       "title": "Cancellation / restart / resume / exactly-once",
-      "status": "next",
+      "status": "proven",
       "priority": "P1",
-      "summary": "Use explicit identity and runtime events; do not infer recovery or completion from loop termination."
+      "summary": "P1 checkpoint/recovery and exactly-once semantics are validated at the current source/test contract level; live process-loss repro remains separate when claimed."
     },
     {
       "id": "deferred-capabilities",
       "lane": "P2 Recovered Features",
       "title": "MCP, skills, scheduler, browser/desktop and knowledge expansion",
-      "status": "blocked",
+      "status": "unlocked",
       "priority": "P2",
-      "summary": "Recover planned capabilities after canonical response/lifecycle authority is stable; adapt upstream patterns rather than adding parallel managers."
+      "summary": "P0-P1 prerequisites are satisfied. MCP, skills, scheduler, browser/desktop and related deferred capabilities may now be assessed individually; unlocked does not mean implemented or live-proven."
     },
     {
       "id": "ci-release",
       "lane": "Release",
       "title": "Installed runtime + current-head CI acceptance",
-      "status": "blocked",
-      "priority": "LOCKED",
-      "summary": "No release claim until installed runtime, live acceptance and current-head CI are proven."
+      "status": "proven_with_live_acceptance_separate",
+      "priority": "P3",
+      "summary": "P3 CI/release repository gate is validated. Production/live installed-runtime acceptance remains a distinct evidence layer and must be re-proven when claimed."
+    },
+    {
+      "id": "standalone-portability",
+      "lane": "Portability",
+      "title": "Non-Git standalone export",
+      "status": "proven",
+      "priority": "DONE",
+      "summary": "Fresh export without .git passes hermetic git capability coverage and the complete 505-test suite."
+    },
+    {
+      "id": "runtime-reachability-current",
+      "lane": "Authority",
+      "title": "Current runtime import/reachability graph",
+      "status": "proven_static",
+      "priority": "DONE",
+      "summary": "PASS: 179 reachable files, 340 edges, zero unresolved imports and zero active legacy authority; four non-literal dynamic import sites remain for bounded inspection."
+    },
+    {
+      "id": "secret-redaction-runtime-sinks",
+      "lane": "Security",
+      "title": "Restore real event/log secret redaction",
+      "status": "current_gap",
+      "priority": "P1",
+      "summary": "Current main event-bus and log-manager reference a missing secret-redactor module and silently fall back to passthrough metadata. Add one canonical runtime redactor and direct sink tests."
     }
   ],
   "edges": [
