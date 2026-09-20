@@ -532,5 +532,18 @@
       "cancel": "/agent-cancel <child-agent-run-id>"
     },
     "validation_state": "GITHUB_IMPLEMENTED_LOOPTOOL_PENDING"
+  },
+  "provider_profile_product_binding": {
+    "recorded_at": "2026-09-21",
+    "classification": "EXISTING_OWNER_REUSE_IMPLEMENTED_CANDIDATE",
+    "purpose": "Remove normal-use dependence on manual provider JSON files while preserving explicit config compatibility.",
+    "path": "UserStateStore active profile -> opaque credential_id -> WindowsCredentialStore -> ProviderConfig inside Python/LBE boundary -> existing provider/runtime owners",
+    "rules": [
+      "never persist provider secret in runtime-state.json",
+      "never project resolved secret to Rust, receipts, evidence or CLI output",
+      "explicit --provider-config remains supported",
+      "active profile must match the persisted session provider identity before use"
+    ],
+    "validation_state": "GITHUB_IMPLEMENTED_LOOPTOOL_PENDING"
   }
 }
