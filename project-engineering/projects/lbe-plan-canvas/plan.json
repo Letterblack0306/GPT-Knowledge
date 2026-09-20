@@ -522,5 +522,15 @@
       "priority": "COMPLETE",
       "summary": "Fresh-shell `lbe` resolves the canonical installed LetterBlack launcher, launches the Rust/Ratatui product, attaches the authoritative runtime, and all defined PTY/provider/tool/approval/receipt/resume/mode-policy/installer provenance gates pass."
     }
-  ]
+  ],
+  "delegated_agent_product_control": {
+    "recorded_at": "2026-09-21",
+    "classification": "BOUNDED_EXISTING_OWNER_REUSE",
+    "rule": "Delegated child-agent lifecycle remains LBE-owned. The Rust cockpit may project runs and request supported lifecycle controls through product_entry; it must not create a second child-agent runtime, executor, session authority or completion owner.",
+    "current_surface": {
+      "observe": "/agents",
+      "cancel": "/agent-cancel <child-agent-run-id>"
+    },
+    "validation_state": "GITHUB_IMPLEMENTED_LOOPTOOL_PENDING"
+  }
 }
