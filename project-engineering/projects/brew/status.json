@@ -1,17 +1,17 @@
 {
   "schema_version": 1,
   "project": "Brew",
-  "verified_at": "2026-09-19",
+  "verified_at": "2026-09-20",
   "source_repo": "Letterblack0306/brew",
   "source_branch": "main",
-  "source_head": "15b02efa37ee14119f1b5d665381e47b8a85d1c6",
+  "source_head": "603e75afb1d35cd8e80ef4a1583bb7106504a95d",
   "default_branch_observed": {
     "branch": "main",
-    "head": "15b02efa37ee14119f1b5d665381e47b8a85d1c6"
+    "head": "603e75afb1d35cd8e80ef4a1583bb7106504a95d"
   },
-  "evidence_level": "CURRENT_MAIN_ARCHITECTURE_POLICY_DOCUMENTED__PRIOR_SOURCE_TEST_EVIDENCE_PRESERVED",
-  "overall_classification": "CANONICAL_REASONING_AND_CAPABILITY_PATH_ESTABLISHED__READONLY_GIT_ADDED__INSTALLED_AND_LIVE_ACCEPTANCE_STILL_PENDING",
-  "authority_note": "This GPT-K record reflects Brew repository architecture-policy updates through 2026-09-19. The latest changes clarify bounded delegation and feature preservation; they do not by themselves prove new runtime behavior. Current source/runtime, exact local revision, live provider/tool behavior, CI, and installed-runtime evidence continue to outrank this record.",
+  "evidence_level": "CURRENT_MAIN_SOURCE_TEST_PORTABILITY_AND_STATIC_REACHABILITY_EVIDENCE__LIVE_INSTALLED_ACCEPTANCE_SEPARATE",
+  "overall_classification": "P0_P1_P3_VALIDATED__P2_UNLOCKED__PORTABILITY_PROVEN__RUNTIME_REACHABILITY_PASS__SECRET_REDACTION_GAP_OPEN",
+  "authority_note": "Current Brew source/runtime and exact revision evidence outrank this projection. G-Drive workspace copies and imported Memory are supporting/historical evidence only; BirdEye is an evidence/access surface, not source authority.",
   "canonical_architecture": {
     "semantic_owner": "PRIMARY_BREW_USER_LEVEL_REASONING_IDENTITY",
     "flow": [
@@ -97,6 +97,21 @@
       "commit": "15b02efa37ee14119f1b5d665381e47b8a85d1c6",
       "classification": "DOCUMENTED_ARCHITECTURE_POLICY_NO_NEW_RUNTIME_PROOF",
       "change": "Updated Brew workspace plan with a delegation and feature-preservation contract covering roles/subagents and distributed workers."
+    },
+    {
+      "commit": "a8819521e8c97b4f6cc2122481c120339c1fb170",
+      "classification": "PROVEN_SOURCE_AND_TEST",
+      "change": "Recursive Brew test discovery was corrected so the canonical runner discovers nested suites from repository root."
+    },
+    {
+      "commit": "175a1b63fcf8f9c8b770f8e533ebce73e7c756a9",
+      "classification": "PROVEN_SOURCE_AND_TEST",
+      "change": "Runtime migration coverage was aligned to canonical runTurn/Telegram/command-policy/CLI contracts; canonical full suite reported 505/505 PASS."
+    },
+    {
+      "commit": "603e75afb1d35cd8e80ef4a1583bb7106504a95d",
+      "classification": "PROVEN_SOURCE_TEST_AND_STANDALONE_PORTABILITY",
+      "change": "Git capability tests were made hermetic and portable. Canonical targeted coverage passed 2/2; a fresh standalone export with no .git passed targeted 2/2 and full 505/505; local and origin/main were verified equal at this commit."
     }
   ],
   "canonical_runtime_findings": [
@@ -139,24 +154,41 @@
       "id": "legacy-multi-agent-current",
       "classification": "FAIL_CLOSED_COMPATIBILITY_SURFACE",
       "detail": "Legacy compatibility modules remain fail-closed on the previously proven path. Their fail-closed status is not a blanket ban on subagents/teams: useful delegated-agent capability may be preserved or reintroduced through canonical Brew contracts when there is a proven feature requirement."
+    },
+    {
+      "id": "runtime-reachability-current",
+      "classification": "PROVEN_STATIC_CURRENT_MAIN",
+      "detail": "Current runtime reachability audit reports PASS with 179 reachable files, 340 edges, 0 unresolved imports, 0 activeLegacyAuthority, 0 legacyCompatibilityImports, and 0 legacyCompatibilitySurfaces. Four non-literal dynamic-import files still require separate runtime inspection."
+    },
+    {
+      "id": "dynamic-loader-boundaries",
+      "classification": "PARTIALLY_PROVEN_SOURCE",
+      "detail": "brew/capabilities/local-tool-registry.mjs and brew/runtime/plugins/plugin-runtime.mjs use runtime-selected imports but enforce configured-root/package-root containment before module load. event-bus.mjs and log-manager.mjs use a fixed internal redactor URL rather than arbitrary runtime discovery."
+    },
+    {
+      "id": "missing-secret-redactor",
+      "classification": "PROVEN_CURRENT_SOURCE_DEFECT",
+      "detail": "At Brew main 603e75af, brew/runtime/event-bus.mjs and brew/runtime/log-manager.mjs dynamically import ../secrets/secret-redactor.mjs but fall back to identity redaction on failure. brew/secrets/secret-redactor.mjs is absent on current GitHub main, so event/log metadata redaction is currently passthrough unless another future module is supplied. Repair requires a canonical runtime redactor plus direct sink tests."
     }
   ],
   "validation": {
-    "full_test_command": "npm test",
-    "suite_count": null,
-    "test_count": 421,
-    "passed": 421,
+    "full_test_command": "node scripts/run-all.mjs",
+    "suite_count": 124,
+    "test_count": 505,
+    "passed": 505,
     "failed": 0,
-    "skipped": null,
+    "skipped": 0,
     "todo": 0,
-    "diff_check": "PASS per implementation handoff",
+    "diff_check": "PASS",
     "additional": [
-      "focused git capability tests 2/2 PASS",
-      "readiness 10/10 PASS",
-      "npm run check:runtime PASS",
-      "npm run build:ui PASS"
+      "canonical git capability targeted test 2/2 PASS",
+      "fresh standalone export without .git: git capability targeted test 2/2 PASS",
+      "fresh standalone export: full suite 505/505 PASS",
+      "canonical workspace-index validator PASS after unrelated local gap documents were isolated",
+      "canonical full suite 505/505 PASS",
+      "runtime reachability audit status PASS; reachable=179; edges=340; unresolvedImports=0; activeLegacyAuthority=0"
     ],
-    "classification": "REPOSITORY_TEST_PROOF_NOT_INSTALLED_OR_LIVE_PROVIDER_ACCEPTANCE"
+    "classification": "CURRENT_MAIN_REPOSITORY_TEST_AND_STANDALONE_PORTABILITY_PROOF__LIVE_PROVIDER_BROWSER_AND_INSTALLED_RUNTIME_ACCEPTANCE_NOT_REPROVEN_BY_THIS_UPDATE"
   },
   "branch_cleanup": {
     "superseded_branch": "audit/model-owned-reasoning-cleanup-20260914",
@@ -166,15 +198,15 @@
   "remaining_audit_targets": [
     {
       "id": "clean-installed-runtime-acceptance",
-      "status": "PENDING",
-      "evidence": "Deployment candidate gate still requires clean exact-head install, installed layout/postflight, source/build identity, startup, runtime health and unrelated-directory CLI proof.",
-      "next_check": "Run controlled install/user-path acceptance from exact current main; do not substitute source-worktree success."
+      "status": "RECHECK_CURRENT_HEAD",
+      "evidence": "Standalone non-Git portability is proven at current head, but that export is not the same claim as installed-runtime startup/provider/browser acceptance.",
+      "next_check": "Run installed exact-head acceptance when making a production-ready/live-runtime claim."
     },
     {
       "id": "provider-originated-tool-roundtrip",
       "status": "PENDING_LIVE_PROOF",
-      "evidence": "Source tool loop and governed registry exist, but real provider -> native tool request -> receipt/evidence -> same-model continuation remains unproven at installed runtime level.",
-      "next_check": "Capture one correlated live provider turn with tool_call_id/operation/receipt/evidence/final response."
+      "evidence": "P1 provider continuation is validated in canonical source/test coverage, but this update did not capture a new installed live provider-originated tool roundtrip.",
+      "next_check": "Capture one correlated installed/live provider turn when that evidence level is required."
     },
     {
       "id": "completion-truth",
@@ -196,21 +228,27 @@
     },
     {
       "id": "browser-live-proof",
-      "status": "PENDING_LIVE_PROOF",
-      "evidence": "Browser capability source exists; Brew-attributed live browser connection/provider-loop evidence remains unproven.",
-      "next_check": "Run approved Brew-owned browser E2E with exact workspace/runtime identity."
+      "status": "PENDING_LIVE_REPROOF",
+      "evidence": "Browser capability architecture remains present, but this Sep 20 reconciliation did not execute a new Brew-attributed live browser acceptance.",
+      "next_check": "Run live Brew browser proof when closing installed/runtime acceptance."
     },
     {
       "id": "single-authority-import-reachability",
-      "status": "PARTIALLY_PROVEN",
-      "evidence": "Canonical semantic dispatch files are removed and legacy subagent/team modules fail closed, but a release-time production import/reachability guard remains valuable.",
-      "next_check": "Add/execute production import graph/reachability check only if not already covered by current readiness guards."
+      "status": "PROVEN_STATIC_CURRENT",
+      "evidence": "Current audit reports PASS with 179 reachable files, 340 edges, 0 unresolved imports, 0 active legacy authority and 0 legacy compatibility surfaces.",
+      "next_check": "Inspect the four non-literal dynamic import sites separately; do not infer arbitrary runtime loading from static reachability."
     },
     {
       "id": "documentation-reconciliation",
       "status": "PENDING",
       "evidence": "docs/status/REMAINING_AUDIT_AREAS.md still contains stale claims including uncommitted operation journal and active dispatch-handlers imports.",
       "next_check": "Reconcile status docs against 722fc238 so future agents do not repeat superseded blockers."
+    },
+    {
+      "id": "secret-redaction-runtime-sinks",
+      "status": "PROVEN_GAP",
+      "evidence": "Current main references a missing brew/secrets/secret-redactor.mjs from event-bus and log-manager, then silently falls back to passthrough metadata.",
+      "next_check": "Implement or restore one canonical runtime object redactor, add direct event/log redaction tests, and rerun the full suite plus reachability audit."
     }
   ],
   "do_not_recreate": [
@@ -232,13 +270,13 @@
     "A completion claim after tool use cannot be linked to recorded receipt/evidence identity."
   ],
   "evidence_boundary": {
-    "classification": "CURRENT_MAIN_SOURCE_AND_TEST_EVIDENCE__INSTALLED_LIVE_ACCEPTANCE_INCOMPLETE",
-    "rule": "Current main includes a 2026-09-19 documented architecture-policy clarification permitting bounded subagents/teams/workers while preserving one primary user-level Brew authority and canonical runtime boundaries. The prior source/test evidence remains valid for the previously tested runtime surfaces; these documentation commits do not themselves prove new delegated-agent runtime behavior or installed acceptance.",
+    "classification": "CURRENT_MAIN_P0_P1_P3_VALIDATED__P2_UNLOCKED__LIVE_INSTALLED_ACCEPTANCE_SEPARATE",
+    "rule": "P0 provider-result/Telegram/legacy-response invariants, P1 registry/provider-continuation/recovery contracts, and P3 CI/release source gates have validation evidence. P2 is no longer blocked by P0/P1, but its deferred capability work is not thereby complete. Current repository and standalone portability are proven; installed live provider/browser behavior must be re-proven when claimed.",
     "next_required_runtime_proof": [
-      "clean exact-head install and installed build/source identity",
-      "one real provider-originated governed tool roundtrip with receipt/evidence and same-model continuation",
-      "objective-grounded completion truth",
-      "restart/process-loss/exactly-once mutation proof",
+      "repair and directly test event/log secret redaction",
+      "inspect the four non-literal dynamic import sites at runtime where material",
+      "clean exact-head installed-runtime acceptance for production-ready claims",
+      "one correlated live provider-originated governed tool roundtrip when installed behavior is claimed",
       "live Brew-attributed browser proof where required"
     ]
   }
