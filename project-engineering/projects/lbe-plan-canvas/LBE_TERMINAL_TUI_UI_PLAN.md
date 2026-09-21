@@ -296,3 +296,136 @@ Do not:
 A normal user should be able to open LBE, choose PLAN/ACT/AUDIT as needed, converse naturally, understand what the agent is doing at a human level, approve consequential actions when required, and continue working without being exposed to internal governance/proof machinery.
 
 The machinery remains real, authoritative, and inspectable — it simply stays out of the user's way.
+
+
+## Mature coding-TUI action surface — verified 2026-09-21
+
+This section tightens the existing keyboard direction using current real-world reference behavior. It does **not** authorize client mutation while another machine slice is active.
+
+The canonical LBE Rust client already implements substantially more than a six-key prototype: command palette, provider/model/session pickers, session start/list/resume/close requests, checkpoint compare/restore, MCP/extensions, tools, process activity, browser-chat controls, workspace read/list/glob/search/patch, registered process execution, diagnostics, context compaction, memory recall/checkpoints, child-agent refresh/cancel, approval/reject, transcript/workspace scrolling, mode switching and runtime abort.
+
+The next Rust-TUI convergence slice must therefore be **gap-only** and preserve these owners.
+
+### Required action families
+
+A professional LBE terminal client should expose a coherent action registry/keymap covering at least:
+
+```text
+application
+  command palette
+  help
+  quit
+  clear/dismiss
+
+composer
+  submit
+  history
+  external editor handoff
+  @file/context insertion
+  queued prompts
+  active-turn steering
+
+turn control
+  interrupt
+  cancel
+  background blocking operation
+  resume/continue
+
+sessions
+  new
+  list/switch
+  recent projects
+  close
+  rename
+  fork
+  timeline
+  parent/child navigation
+
+model/runtime
+  provider picker
+  model picker
+  reasoning-engine identity
+  PLAN / ACT / AUDIT
+  context compact
+  status/doctor
+
+workspace
+  file search
+  workspace search
+  inspect/read
+  diff/changes
+  diagnostics
+  Git state
+
+execution
+  process list
+  live output
+  background process control
+  approvals
+  tool details
+
+recovery
+  checkpoint
+  compare
+  restore
+  undo
+  redo/reapply where supported
+
+extensions
+  MCP
+  skills
+  plugins
+  hooks
+  connectors
+  capability health/availability
+```
+
+No action family may create a second authority owner. UI actions dispatch to existing LBE runtime/session/tool/provider owners.
+
+### Keymap design rule
+
+Use one discoverable action registry as the source of truth for:
+
+- command palette entries;
+- slash commands;
+- keyboard bindings;
+- mouse targets;
+- help text.
+
+Avoid separate hard-coded key lists that drift from available commands.
+
+A leader-key scheme is acceptable for dense secondary actions, but direct keys should remain for high-frequency controls such as submit, interrupt/cancel, palette, scrolling and contextual dismiss.
+
+### Current reference-derived UX requirements
+
+Current public references justify the following behaviors:
+
+- command palette exposes every context-valid action;
+- session navigation is first-class rather than hidden behind raw IDs;
+- queued prompts can be inspected/removed;
+- a blocking tool/process can be backgrounded without killing the session;
+- child/subagent sessions remain navigable back to the parent;
+- undo/restore affects both conversation state and workspace state only where LBE has authoritative checkpoint evidence;
+- provider/model/agent-engine switching shows the actual selected identity and never implies authentication/health from selection alone;
+- mouse support supplements, but does not replace, the complete keyboard path;
+- long-running processes project live output and terminal state rather than a fake spinner;
+- approvals are contextual high-risk decisions only; routine governed work should not become a permanent approval state machine.
+
+### Acceptance for the future RUST_TUI_REFERENCE_CONVERGENCE slice
+
+Do not call the TUI complete from source presence or shortcut count. Required proof must include:
+
+1. action-registry-to-command-palette parity;
+2. action-registry-to-help parity;
+3. every bound key dispatches the intended runtime/control action;
+4. keyboard-only completion of normal coding workflow;
+5. mouse equivalence for interactive controls where mouse is offered;
+6. session/model/provider/mode/checkpoint/process/extension flows against real backend events;
+7. active-turn interrupt/cancel distinction;
+8. queued steering/background process behavior;
+9. narrow + wide PTY/ConPTY rendering;
+10. installed `lbe` path and restart/resume;
+11. no mock/fake connected/success state in real mode;
+12. full regression after the active reasoning-engine slice is closed.
+
+This is a product acceptance boundary, not a request to redesign the current four-region LBE shell.
