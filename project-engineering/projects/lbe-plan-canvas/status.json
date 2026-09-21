@@ -1420,5 +1420,16 @@
       ]
     },
     "next_action": "Continue implementation only on owner-backed product seams. Use LoopTool for bounded claim-matched validation without re-running accepted architecture proofs."
+  },
+  "memory_checkpoint_blocker": {
+    "recorded_at": "2026-09-21",
+    "classification": "BLOCKED_OWNER_CONTRACT",
+    "source_repository": "Letterblack0306/LBE_Presistent_Agent_wall",
+    "evidence": [
+      "lbe_guard_inspector/memory/compaction.py requires source_message_count, source_prefix_hash, and source_last_message_key",
+      "docs/contracts/VALIDATED_WORKSPACE_MEMORY.md states those values are validated when a compaction file is produced",
+      "no canonical repository owner was found that derives those values from the live transcript for the TUI request"
+    ],
+    "decision": "Do not wire UserRequest::CreateMemoryCheckpoint or /compact by inventing transcript identity. Preserve the request/mock contracts and continue other owner-backed product work."
   }
 }
