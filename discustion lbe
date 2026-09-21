@@ -1,0 +1,81 @@
+So, uh, the overall concept was um, uh little bit drifted so I'm sending you the deep research documentations
+LBE deep research.md
+File
+rollout-2026-08-27T03-15-54-01a0405b-cf0b-79c0-a1ac-b1e72757a96b.jsonl
+File
+rollout-2026-08-27T04-53-31-01a040b5-2f3d-7b42-af13-b1d76d3c45ca.jsonl
+File
+can u audit this codex actions
+rollout-2026-08-27T04-53-31-01a040b5-2f3d-7b42-af13-b1d76d3c45ca(1).jsonl
+File
+rollout-2026-08-27T03-15-54-01a0405b-cf0b-79c0-a1ac-b1e72757a96b(1).jsonl
+File
+can u audit
+Fri, Aug 28 at 1:51 PM
+1787909569114_v8kk1.messages.json
+File
+this is workspace agents runtime audit report cna u check what is the drift and current status
+
+I checked the audit carefully. There is still real drift, and the audit agent understated it.
+
+Main drift
+
+1. Canonical HEAD and workspace disagree.
+HEAD is e71c8ef — “adopt Cline CLI/SDK surface and remove Python/Textual interface” — but the dirty workspace contains new untracked textual_tui.py, terminal_projection.py, tui_view_models.py, their tests, and .ui-preview/.
+
+2. Governance and structural documentation disagree.
+governance.json now says:
+
+product UI = HTML/CSS/JavaScript
+Python/Textual UI = FORBIDDEN
+Textual files = legacy/reference only
+
+But PROJECT_INDEX.md still describes session_lifecycle.py as a shared CLI/Textual owner and still declares a “usable LBE Textual interface product surface” checkpoint. That is a genuine STALE_PROJECTION / DOCUMENT_CONFLICT, not merely “migration in progress.”
+
+3. The machine gate still contains historical Textual authority.
+The gate retains the superseded terminal-workspace section with textual_tui.py in its old allowed paths, plus prior PASS records requiring/reusing the Textual client. These may be legitimate historical records, but they must be explicitly classified as historical/superseded so agents cannot mistake them for current authority.
+
+4. 821 passed does not prove canonical HEAD.
+That test run executed the dirty working tree, including untracked tests and implementation files. So it proves:
+
+DIRTY_WORKSPACE_REGRESSION = PASS
+
+It does not prove:
+
+e71c8ef CANONICAL_HEAD = PASS
+
+That distinction was missed in the audit.
+
+Current status
+CANONICAL HEAD:
+e71c8ef
+= Cline CLI/SDK direction
+= Python/Textual product UI removed
+
+CURRENT WORKSPACE:
+DIRTY / DIVERGED FROM HEAD
+
+UI MACHINE AUTHORITY:
+HTML/CSS/JavaScript
+Python/Textual = FORBIDDEN
+Cline/OpenTUI = reference/adaptation authority
+
+TEST STATUS:
+821 passed on DIRTY WORKTREE
+canonical-head-only regression = UNVERIFIED
+
+DOCUMENT AUTHORITY:
+CONFLICTED
+PROJECT_INDEX + historical machine-gate entries still project Textual ownership
+
+RUNTIME:
+Broad regression currently healthy in dirty tree
+
+RELEASE / NORMALIZATION:
+BLOCKED until authority projections and dirty workspace are reconciled
+
+So I would change the audit's final verdict from “CONDITIONALLY STABLE because migration is uncommitted” to:
+
+RUNTIME TESTS HEALTHY — WORKSPACE AUTHORITY DRIFT UNRESOLVED.
+
+The immediate issue is not runtime correctness. It is that HEAD, governance, PROJECT_INDEX, historical gate records, and the dirty UI implementation are currently describing different product realities.
