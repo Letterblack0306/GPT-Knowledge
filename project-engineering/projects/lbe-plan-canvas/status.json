@@ -1352,5 +1352,41 @@
     ],
     "authority_rule": "This changes only user-visible command exposure; no runtime or policy authority moved.",
     "next_action": "Use LoopTool to validate the combined memory-recall and truthful-command-surface candidate head, then continue to the next owner-backed seam."
+  },
+  "checkpoint_inspection_update": {
+    "recorded_at": "2026-09-21",
+    "classification": "IMPLEMENTED_ON_GITHUB_LOOPTOOL_VALIDATION_PENDING",
+    "repository": "Letterblack0306/LBE_Presistent_Agent_wall",
+    "candidate_head": "1b8784cdcb345abfe5e4de72cdd953f2470cc533",
+    "commits": [
+      "d8ec55e7590f0e39c305b25ae21bd282543b269e",
+      "65fe96749d3b25bb2478a24942b6156479ec27db",
+      "df5587cca1cbd3fea162551b4a382d713b250b2b",
+      "a43c410244cb79744147b34ebf1692fd9310f072",
+      "b8f5da962e62160536479481331b702931df82d9",
+      "59edcd52b767e4abd3a453d1f5a562af8abed566",
+      "f8d98d10f513f9737d367457b9a87a4be5cab741",
+      "1b8784cdcb345abfe5e4de72cdd953f2470cc533"
+    ],
+    "behavior": [
+      "CLI checkpoint latest projects the canonical persisted checkpoint and current protected-checkpoint eligibility from SessionMemoryRuntimeBridge.rehydrate.",
+      "Rust /checkpoints now issues a read-only RefreshCheckpoint request to the canonical LBE owner.",
+      "RealLbeWrapper projects checkpoint id, creation time and workspace revision without inventing a changed-file list.",
+      "Connected checkpoint panel is inspection-only and blocks compare/restore affordances until those owners are wired.",
+      "Mock compare/restore contracts remain preserved for internal tests."
+    ],
+    "authority_rule": "Checkpoint persistence/revalidation remains owned by LBE memory runtime. Rust only requests and projects the read-only checkpoint summary.",
+    "validation": {
+      "looptool_local_validation": "PENDING",
+      "prior_looptool_failure": "BLOCKED_VALIDATION_SURFACE_COMMAND_CORRUPTION_AND_CLONE_COLLISION",
+      "focused_tests": [
+        "tests/test_cli.py::test_checkpoint_latest_returns_persisted_revalidated_checkpoint",
+        "apps/lbe-terminal/src/tests.rs::real_wrapper_requires_connected_runtime_for_checkpoint_refresh",
+        "apps/lbe-terminal/src/tests.rs::checkpoints_command_routes_read_only_refresh_request",
+        "cargo fmt --check",
+        "git diff --check"
+      ]
+    },
+    "next_action": "Run one corrected isolated LoopTool validation for current head using a unique temporary directory, then continue to the next owner-backed seam."
   }
 }
