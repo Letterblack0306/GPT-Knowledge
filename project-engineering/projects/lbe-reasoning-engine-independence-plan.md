@@ -357,3 +357,58 @@ Implementation continued in the already-authorized runtime owner rather than wid
 This does **not** create a new policy or UI authority. The projection is derived from the same registered tool specification and authorization receipt already used for execution. It is intended to make governed tool truth available for later client projection without letting the TUI reconstruct authority from model prose.
 
 Validation classification: **IMPLEMENTED / STATIC SOURCE CHECKED; RUNTIME + full regression not yet claimed by this GPT-K note.** The prior attempted change to `lbe_guard_inspector/provider_turn_runtime.py` + `apps/lbe-terminal` failed the current intent-scope gate and should not be forced through this slice.
+
+
+## 2026-09-21 current-source reconciliation and reference synthesis
+
+Canonical GitHub source was re-read before this update.
+
+```text
+LBE runtime main: 5ad590bd0113d3c336589510de258ac815d6920a
+active slice: REASONING_ENGINE_PROVIDER_BINDING_SEPARATION
+gate: OPEN
+implementation_allowed: true
+client workspace mutation in this slice: FORBIDDEN BY CURRENT NON_GOALS
+```
+
+Current-source findings:
+
+- `provider_registry.py` now lazy-loads `cline_reasoning_provider` only when an explicit Cline binding is built; native LBE initialization no longer imports Cline at provider-registry module import time.
+- `EngineProviderBinding` carries explicit `engine_id` + `provider_id` identity and prevents duplicate/default ambiguity.
+- Native-LBE bindings are present for OpenAI-compatible, OpenAI, Anthropic, Gemini, LM Studio, Ollama, and OpenRouter where a current backend exists.
+- Cline bindings remain explicitly available for LM Studio, Ollama, OpenRouter and as the current default for OpenAI-native, Vertex, Bedrock and OpenCode.
+- `build_provider_controller(..., engine_id=...)` composes the selected persisted engine/provider binding without changing LBE workspace/session/authorization authority.
+- `GovernedProviderReasoningController` and `GovernedClineCodingController` both converge on the same LBE `ToolRegistry`, `GovernedToolOrchestrator`, `ToolReceipt`, evidence, workspace identity and completion owners.
+- Current tests include a hard Cline-absence import proof and explicit native-vs-Cline binding checks.
+- The latest GitHub Actions run at this head reports failure, but all matrix jobs terminated before executing workflow steps. Classify that signal as **CI runner/infrastructure failure; source test result unknown**, not as a product regression.
+
+Current reference verification on 2026-09-21:
+
+- Cline CLI documents one shared agent core across CLI/IDE/SDK, Plan/Act, MCP, checkpoints, subagents/teams, schedules, connectors, background execution and mouse-capable TUI.
+- OpenCode documents a mature TUI action model including command palette, sessions/tabs, model/agent switching, undo/redo, queued prompts, backgrounding, interrupt, child-session navigation, editor handoff and configurable leader-key bindings.
+- Codex documents sandbox + approval separation, session-scoped approvals, managed configuration, constrained writable roots, network policies and agent-native logs.
+
+Reuse rule remains unchanged: these references define capability/interaction patterns only. LBE must not copy their authority owners.
+
+### Required closure for the active slice
+
+Do **not** close `REASONING_ENGINE_PROVIDER_BINDING_SEPARATION` from static source alone. Claim-matched closure still requires:
+
+1. engine-neutral initialization with Cline import blocked;
+2. at least one native-LBE live provider turn;
+3. one governed tool proposal -> R6C -> R6E -> ToolReceipt/evidence -> provider continuation;
+4. Cline regression proof through the same authority boundary;
+5. explicit engine/provider/model identity in persisted/session-visible state;
+6. no silent engine/provider fallback;
+7. focused + full regression on an environment where the test runner actually executes;
+8. installed/runtime acceptance before any final-product PASS.
+
+Until those execute successfully, classification remains:
+
+```text
+ENGINE/PROVIDER SEPARATION SOURCE = IMPLEMENTED
+STATIC OWNER/BOUNDARY CHECK       = PASS
+FULL REGRESSION                    = UNVERIFIED
+LIVE MULTI-ENGINE ACCEPTANCE       = UNVERIFIED
+SLICE CLOSURE                      = NOT PROVEN
+```
