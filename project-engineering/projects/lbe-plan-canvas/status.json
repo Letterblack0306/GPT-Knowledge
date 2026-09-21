@@ -1431,5 +1431,26 @@
       "no canonical repository owner was found that derives those values from the live transcript for the TUI request"
     ],
     "decision": "Do not wire UserRequest::CreateMemoryCheckpoint or /compact by inventing transcript identity. Preserve the request/mock contracts and continue other owner-backed product work."
+  },
+  "looptool_repair_2026_09_21": {
+    "recorded_at": "2026-09-21",
+    "classification": "CANDIDATE_REPAIRED_LOOPTOOL_REVALIDATION_REQUIRED",
+    "source_failure": {
+      "command_hash": "D8ADE098B21B8A6B5A58E20D19B2819933C4AB6A9A041885D9663174B03F511D",
+      "failed_candidate": "1b8784cdcb345abfe5e4de72cdd953f2470cc533",
+      "failing_tests": [
+        "tests/test_cli.py::test_memory_recall_returns_revalidated_session_memory",
+        "tests/test_cli.py::test_checkpoint_latest_returns_persisted_revalidated_checkpoint"
+      ],
+      "root_cause": "CLI called nonexistent SessionMemoryRuntimeBridge.rehydrate(session_id=...). Existing canonical method is SessionMemoryRuntimeBridge.start_or_resume(), which delegates to SessionMemoryAdapter.rehydrate with persisted session identity."
+    },
+    "repair": {
+      "repository": "Letterblack0306/LBE_Presistent_Agent_wall",
+      "commit": "eb09ffda330986f70167f7ae955555119fda3661",
+      "file": "lbe_guard_inspector/cli.py",
+      "change": "Replaced exactly three invalid runtime.rehydrate(session_id=state.session_id) calls with runtime.start_or_resume() in memory recall, checkpoint latest, and checkpoint compare paths."
+    },
+    "evidence_classification": "IMPLEMENTED_ON_GITHUB / LOOPTOOL_REVALIDATION_PENDING",
+    "next_action": "Rerun only the repaired memory recall/checkpoint latest/checkpoint compare Python tests and focused Rust dispatch tests on the repaired candidate."
   }
 }
