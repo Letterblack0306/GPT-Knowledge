@@ -1334,5 +1334,23 @@
       ]
     },
     "next_action": "Run only the focused LoopTool validation for this new memory recall slice. If it passes, promote and continue to the next genuinely owner-backed user-visible seam."
+  },
+  "truthful_command_surface_update": {
+    "recorded_at": "2026-09-21",
+    "classification": "IMPLEMENTED_ON_GITHUB_LOOPTOOL_VALIDATION_PENDING",
+    "repository": "Letterblack0306/LBE_Presistent_Agent_wall",
+    "candidate_head": "89603ca8f65fd9a95e5e5b9714759c3cdc7451ef",
+    "commits": [
+      "73ffe5e0992ab19f7296314a848cfbd02e0b84d8",
+      "89603ca8f65fd9a95e5e5b9714759c3cdc7451ef"
+    ],
+    "behavior": [
+      "Production command palette no longer advertises unwired checkpoint restore, context compaction, or browser-chat controls.",
+      "/undo no longer attempts restore; it only inspects the current checkpoint and states that restore remains unavailable until the LBE owner is wired.",
+      "/compact no longer dispatches an unsupported real request and explicitly reports that a canonical compaction payload is not yet available.",
+      "Internal mock/request contracts remain preserved for future owner-backed integration."
+    ],
+    "authority_rule": "This changes only user-visible command exposure; no runtime or policy authority moved.",
+    "next_action": "Use LoopTool to validate the combined memory-recall and truthful-command-surface candidate head, then continue to the next owner-backed seam."
   }
 }
