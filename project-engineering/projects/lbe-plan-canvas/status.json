@@ -1452,5 +1452,36 @@
     },
     "evidence_classification": "IMPLEMENTED_ON_GITHUB / LOOPTOOL_REVALIDATION_PENDING",
     "next_action": "Rerun only the repaired memory recall/checkpoint latest/checkpoint compare Python tests and focused Rust dispatch tests on the repaired candidate."
+  },
+  "rust_compile_repair_2026_09_21": {
+    "recorded_at": "2026-09-21",
+    "classification": "CANDIDATE_REPAIRED_LOOPTOOL_REVALIDATION_REQUIRED",
+    "source_failure": {
+      "command_hash": "0E5204E1EBE9E01A92C612D9A73D6CEB731D7086DA41EC2D6E202B5F0F1C91CB",
+      "validated_python": "PASS: 3 focused Python tests",
+      "rust_compile_errors": [
+        "stray limit_arg in refresh_mcp_registry",
+        "missing command_palette_commands import in tests",
+        "UserRequest derived Eq despite f64 timeout_seconds",
+        "three RealLbeWrapper references used nonexistent database field instead of wall_database"
+      ]
+    },
+    "repair": {
+      "repository": "Letterblack0306/LBE_Presistent_Agent_wall",
+      "candidate_head": "accecc437964b592c4db9d0865b2a5ea41a1403e",
+      "commits": [
+        "8396e5bd7c06c813471ebe59290dd20be718efa2",
+        "2d1a69fedce95403518a4f2cd17d61f10f016119",
+        "accecc437964b592c4db9d0865b2a5ea41a1403e"
+      ],
+      "changes": [
+        "Removed Eq derive from UserRequest because ConfigureProvider.timeout_seconds is f64.",
+        "Removed accidental limit_arg from refresh_mcp_registry.",
+        "Replaced three nonexistent RealLbeWrapper.database references with wall_database.",
+        "Imported command_palette_commands into Rust tests."
+      ]
+    },
+    "evidence_classification": "IMPLEMENTED_ON_GITHUB / LOOPTOOL_REVALIDATION_PENDING",
+    "next_action": "Run only the previously failing Rust compile/focused tests at candidate head accecc437...; if green, continue to the next owner-backed seam."
   }
 }
