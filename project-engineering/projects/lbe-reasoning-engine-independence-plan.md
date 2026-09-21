@@ -343,3 +343,17 @@ Relevant LBE commits:
 `4609d8a`, `7163d922`, `779f18cd`, `46c734e8`, `02b10f4a`, `c0d6e282`, `ece55ab9`, `c04d30cb`, `2123b70d`, `3189e3b1`.
 
 This is implementation state from canonical GitHub source, not a claim of live installed acceptance.
+
+
+## 2026-09-21 governed tool projection continuation
+
+Current canonical LBE source was re-read before this note. The active machine slice remains `REASONING_ENGINE_PROVIDER_BINDING_SEPARATION`; `apps/lbe-terminal` is explicitly outside the active intent scope.
+
+Implementation continued in the already-authorized runtime owner rather than widening the slice:
+
+- `c81a3f166aedb54656c75731bf6f578a761907ff` — `lbe_guard_inspector/runtime/governed_coding.py` now projects `governed_tool_projection` from the existing LBE `ToolRegistry` + `ToolReceipt` truth owners.
+- `5ad590bd0113d3c336589510de258ac815d6920a` — the existing engine-neutral governed-coding test now checks the projected tool identity, capability, access class, network behavior, risk class, authorization verdict, and rationale.
+
+This does **not** create a new policy or UI authority. The projection is derived from the same registered tool specification and authorization receipt already used for execution. It is intended to make governed tool truth available for later client projection without letting the TUI reconstruct authority from model prose.
+
+Validation classification: **IMPLEMENTED / STATIC SOURCE CHECKED; RUNTIME + full regression not yet claimed by this GPT-K note.** The prior attempted change to `lbe_guard_inspector/provider_turn_runtime.py` + `apps/lbe-terminal` failed the current intent-scope gate and should not be forced through this slice.
