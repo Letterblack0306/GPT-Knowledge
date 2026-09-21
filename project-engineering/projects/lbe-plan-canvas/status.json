@@ -1388,5 +1388,37 @@
       ]
     },
     "next_action": "Run one corrected isolated LoopTool validation for current head using a unique temporary directory, then continue to the next owner-backed seam."
+  },
+  "checkpoint_revalidation_and_connected_ui_update": {
+    "recorded_at": "2026-09-21",
+    "classification": "IMPLEMENTED_ON_GITHUB_LOOPTOOL_VALIDATION_PENDING",
+    "repository": "Letterblack0306/LBE_Presistent_Agent_wall",
+    "candidate_head": "191e714a1a12a1778079d215df89fc60e76a28be",
+    "commits": [
+      "164448839a4faab1acec313838ee75c257383d6c",
+      "5463e2299ad4c70a10fd02d281509d7f96df4ad0",
+      "97bb9991c925817b5c72202267ea9afe5fc4aaf8",
+      "05dc8191b32b2e6753d20d8ea279e1d9ec6bfcc9",
+      "24c7bce442af1688c7ce5d5249369f0a530b82ca",
+      "d0e0369723e2c8eea7918a51220291b7b4683545",
+      "445a02c16d07449f46ce7067ba2fbb8558f816ad",
+      "191e714a1a12a1778079d215df89fc60e76a28be"
+    ],
+    "behavior": [
+      "CLI checkpoint compare revalidates the latest persisted checkpoint against current workspace state through SessionMemoryRuntimeBridge.rehydrate.",
+      "Real Rust checkpoint comparison delegates to the canonical LBE owner and projects status/reasons instead of inventing changed-file evidence.",
+      "Connected checkpoint UI exposes revalidation while restore remains blocked.",
+      "Mock checkpoint comparison still supports its changed-file fixture contract for internal tests.",
+      "Connected Provider, Model, MCP and Doctor secondary renderers no longer claim MOCK / NOT CONNECTED when backed by live LBE projections."
+    ],
+    "authority_rule": "Checkpoint eligibility remains LBE memory-runtime authority; Rust transports and renders the read-only verdict. Provider/model/MCP/diagnostic owners are unchanged.",
+    "looptool": {
+      "validation": "PENDING",
+      "last_failures": [
+        "BLOCKED_VALIDATION_SURFACE: browser rendered Git clone URL as Markdown and command cloned into an unintended existing destination before tests ran",
+        "No source/test regression has yet been demonstrated by LoopTool for this candidate"
+      ]
+    },
+    "next_action": "Continue implementation only on owner-backed product seams. Use LoopTool for bounded claim-matched validation without re-running accepted architecture proofs."
   }
 }
