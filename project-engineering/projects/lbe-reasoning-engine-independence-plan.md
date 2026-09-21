@@ -412,3 +412,37 @@ FULL REGRESSION                    = UNVERIFIED
 LIVE MULTI-ENGINE ACCEPTANCE       = UNVERIFIED
 SLICE CLOSURE                      = NOT PROVEN
 ```
+
+
+## 2026-09-21 canonical repo implementation continuation
+
+Current LBE source was mutated only inside the active `REASONING_ENGINE_PROVIDER_BINDING_SEPARATION` slice.
+
+Implemented on `Letterblack0306/LBE_Presistent_Agent_wall/main`:
+
+- native governed coding now fails closed on unsupported provider protocols instead of routing every provider through OpenAI Chat Completions;
+- Anthropic Messages governed tool continuation preserves provider `tool_use.id` through `tool_result`;
+- Gemini GenerateContent governed tool continuation preserves provider `functionCall.id` through `functionResponse`;
+- OpenAI Responses governed tool continuation preserves `response.id`, function `call_id`, and `previous_response_id`;
+- OpenAI Responses has a bounded native reasoning backend using provider-native JSON-schema output;
+- native OpenAI/Anthropic/Gemini reasoning bindings are protocol-aware and fail closed on mismatched endpoint families;
+- the canonical `lbe code` entry path no longer hard-rejects Cline; it delegates coding-controller selection to the same engine-neutral governed coding factory used by the product runtime;
+- focused tests now cover provider-native correlation, Cline/native authority projection equivalence, Cline CLI routing, fail-closed protocol selection, and Responses structured reasoning;
+- stale tests that monkeypatched the removed Chat-Completions construction seam were moved to the new provider-adapter factory seam.
+
+Current validation classification:
+
+```text
+SOURCE IMPLEMENTATION                 = IMPLEMENTED
+STATIC OWNER / SYMBOL RECONCILIATION  = PASS
+FOCUSED TEST EXECUTION                = BLOCKED_CONFIGURATION
+FULL REGRESSION                       = BLOCKED_CONFIGURATION
+LIVE NATIVE PROVIDER ACCEPTANCE       = UNVERIFIED
+LIVE CLINE REGRESSION                 = UNVERIFIED
+ACTIVE SLICE                          = OPEN
+NEXT TUI SLICE                        = NOT AUTHORIZED TO START
+```
+
+GitHub Actions run `35559528172` was rerun. Attempts 1 and 2 both terminated every Ubuntu/Windows matrix job before any workflow step executed and produced no job logs. The local execution container also cannot resolve GitHub, so it cannot clone the current repository for pytest/cargo execution.
+
+This is a CI-runner/configuration blocker, not evidence that the source tests failed. Do not convert it into PASS and do not advance the machine gate until the required regression actually executes.
