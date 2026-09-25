@@ -174,6 +174,11 @@
       "id": "selected-workspace-capability-truth-local-candidate",
       "classification": "USER_SUPPLIED_LOCAL_SOURCE_AND_TEST_VALIDATED__REMOTE_MAIN_NOT_YET_UPDATED",
       "detail": "The Sep 25 local candidate evaluates capability truth against the selected registry workspace rather than process.cwd(), rejects Git capability when the selected workspace is outside the discovered repository, and prevents unrelated parent repositories from leaking Git readiness. Reported validation: targeted 2/2, focused 20, full 505/505, runtime syntax PASS, readiness 10/10."
+    },
+    {
+      "id": "selective-continuity-authority-split-local-candidate",
+      "classification": "USER_SUPPLIED_LOCAL_SOURCE_AND_TEST_VALIDATED__LIVE_ACCEPTANCE_PENDING",
+      "detail": "Sep 25 AGENTS contract and memory test now distinguish episodic/session recall, verified project-scoped semantic memory, and current filesystem/source truth. Reported memory-system test is 9/9 PASS and proves in-project retrieval plus no cross-project prompt/memory leakage."
     }
   ],
   "validation": {
@@ -195,7 +200,10 @@
       "2026-09-25 user-supplied local candidate: capability selected-workspace targeted tests 2/2 PASS",
       "2026-09-25 user-supplied local candidate: focused autonomy/one-agent/recovery/capability tests 20 PASS",
       "2026-09-25 user-supplied local candidate: full npm test 505/505 PASS",
-      "2026-09-25 user-supplied local candidate: runtime syntax check PASS; readiness 10/10 PASS"
+      "2026-09-25 user-supplied local candidate: runtime syntax check PASS; readiness 10/10 PASS",
+      "2026-09-25 local candidate: memory-system tests 9/9 PASS",
+      "2026-09-25 local candidate: verified project memory retrieved in-scope and absent from unrelated project context",
+      "2026-09-25 local candidate: git diff --check PASS"
     ],
     "classification": "REMOTE_MAIN_REPOSITORY_TEST_AND_STANDALONE_PORTABILITY_PROOF__LOCAL_SEP25_SOURCE_TEST_CANDIDATE_ADDED__LIVE_PROVIDER_CONVERSATIONAL_ACCEPTANCE_NOT_YET_PROVEN"
   },
@@ -294,7 +302,9 @@
       "one positive durable-memory admission/retrieval case and negative non-admission case",
       "deliberately unavailable tool withheld/reported truthfully",
       "Phase 2 kill/restart recovery with no duplicate first mutation",
-      "repair and directly test event/log secret redaction if still present in the tested local candidate"
+      "repair and directly test event/log secret redaction if still present in the tested local candidate",
+      "Combined Test 1 must demonstrate session recall without semantic auto-promotion and must re-check current filesystem before asserting present state",
+      "Combined Test 1 must demonstrate one positive verified project-memory retrieval after restart plus one unrelated-project non-leakage case"
     ]
   },
   "local_worktree_candidate": {
@@ -343,9 +353,32 @@
       "focused_autonomy_one_agent_recovery_capability_tests": "20 PASS",
       "npm_test": "505/505 PASS",
       "runtime_check": "RUNTIME_SYNTAX_CHECK_PASS",
-      "readiness": "10/10 PASS"
+      "readiness": "10/10 PASS",
+      "memory_system_tests": "9/9 PASS",
+      "diff_check": "PASS"
     },
     "evidence_boundary": "SOURCE_AND_AUTOMATED_TEST_VALIDATED_LOCAL_CANDIDATE__NOT_PROVIDER_BACKED_LIVE_ACCEPTANCE",
-    "next_required_proof": "Run the five-turn real-provider conversational acceptance covering pure chat behavior, real read, real mutation, new-session recall, and a deliberately unavailable tool; keep session recall distinct from semantic memory and current filesystem truth."
+    "next_required_proof": "Run the five-turn real-provider conversational acceptance covering pure chat behavior, real read, real mutation, new-session recall, and a deliberately unavailable tool; keep session recall distinct from semantic memory and current filesystem truth.",
+    "selective_continuity_contract": {
+      "session_or_episodic_recall": "Previous-session events are continuity/history evidence and must not be auto-promoted into semantic project truth.",
+      "semantic_project_memory": "Only verified project-scoped durable guidance is retrieved as semantic memory; retrieval remains bounded and project-scoped.",
+      "current_filesystem_or_source_truth": "Historical recall or semantic memory does not prove current filesystem/source state; Brew must re-check current evidence before asserting present truth."
+    },
+    "agents_contract_corrections": [
+      "Phase 1 requires direct tool-result evidence only; durable correlated receipts remain Phase 2.",
+      "Turn 4 distinguishes episodic/session recall from semantic memory and current filesystem truth.",
+      "Turn 4 requires current filesystem re-check before asserting that a prior edit still exists now.",
+      "Turn 4A adds a positive verified project-memory admission/retrieval case with project-scope isolation."
+    ],
+    "memory_test_evidence": {
+      "classification": "USER_SUPPLIED_LOCAL_SOURCE_AND_TEST_VALIDATED",
+      "test": "verified project memory is retrieved in scope but not leaked to another project",
+      "proves": [
+        "verified project memory is retrieved for the correct project",
+        "verified rule enters bounded context",
+        "unrelated project receives no memory prompt block or matching memory entry"
+      ],
+      "note": "Fixture uses safe equivalent prose because the existing memory security scanner rejects executable-looking syntax such as process.cwd()."
+    }
   }
 }
