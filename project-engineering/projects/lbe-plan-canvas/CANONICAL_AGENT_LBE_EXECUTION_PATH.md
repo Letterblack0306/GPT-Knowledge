@@ -117,3 +117,72 @@ Result: **architecture aligned; acceptance remains open**.
 
 This reconciliation supersedes any GPT-K projection that says final installed acceptance is currently PASS/CLOSED without newer claim-matched installed evidence. Historical PASS records remain history; they do not override the open proof sequence above.
 
+## 2026-09-25 late runtime-proof continuation
+
+Classification: **ARCHITECTURE PRESERVED / RUNTIME CHAIN ADVANCED / INSTALLED ACCEPTANCE OPEN**
+
+The current local LBE evidence narrows the remaining work without changing the canonical authority model.
+
+### Newly proven current behavior
+
+At local workspace `C:/Agents-Memory-Tool-v6-integration`:
+
+- `1286b6a` persists operational history for single-shot governed turns. Completed and failed turns now leave an operational turn, reasoning item, and requested/completed-or-failed events correlated with provider/model, runtime operation, guard/result identity, and evidence references before return/raise.
+- `4908ff1` makes provider config loading BOM-tolerant (`utf-8-sig`) and preserves real provider error detail through the OpenAI-compatible adapter/governed-coding path.
+- A bounded OpenRouter coding request passed provider admission; the earlier 131072-token request defect is no longer the active provider blocker.
+- The effective **requested output bound** is observable in turn metadata and may be explicitly overridden.
+- Seven governed tools were projected with LBE verdict/risk metadata while direct native mutation tools remained unexposed.
+- A real coding completion contract was created and evaluated. The observed `VALIDATION_FAILED` result was truthful, not a validator defect.
+
+### Provider/model capability is not LBE-authored context capacity
+
+Keep these distinct:
+
+```text
+provider/model context window + provider/model max output
+= discovered/configured capability facts
+
+LBE default/max requested output
+= outbound request policy
+
+per-turn requested output
+= concrete request parameter
+```
+
+LBE may reject an outbound request that exceeds its own request policy, but it must not invent the provider/model context window.
+
+Use distinct failure causes for model capability/configuration, LBE request policy, context-fit, provider quota, and credentials.
+
+### Earliest current defect
+
+The live read-only coding probe produced a legitimate governed `workspace.read` tool request and a real completion contract. The contract failed correctly because:
+
+- `source_change`: no governed mutation occurred;
+- `focused_test`: the evidence producer invoked hardcoded `python`, which resolves to Python 3.10 without pytest on this machine;
+- `git_status`: no governed source change existed.
+
+Therefore:
+
+```text
+VALIDATOR = NOT DEFECTIVE
+NEXT OWNER = shared >=3.11 interpreter resolver for focused-test evidence production
+```
+
+Reuse the existing interpreter-resolution owner used by the launcher/runtime. Do not move interpreter selection into validation semantics.
+
+### Remaining proof order
+
+```text
+shared validation interpreter
+-> real bounded governed source mutation
+-> persisted governed_operations + ToolReceipt/evidence + passing completion contract
+-> crash-seam exactly-once/restart replay
+-> changed-payload rejection
+-> installed artifact provenance
+-> real Rust/Ratatui PTY/ConPTY acceptance
+-> release readiness
+```
+
+The crash-seam requirement is explicit: if a side effect succeeds and its governed operation is durable but the process dies before completion finalization, restart/replay must not execute the side effect twice.
+
+Historical R3-R7 PASS remains preserved as historical accepted baseline. These newer proofs do not rewrite that history and do not yet establish current installed-product PASS.
