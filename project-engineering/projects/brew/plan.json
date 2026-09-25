@@ -3,7 +3,7 @@
   "project": "Brew",
   "purpose": "Structured projection of Brew's canonical-runtime drift recovery, reference reuse, and acceptance gates. Navigation state only; current Brew repository/runtime evidence remains authoritative.",
   "authority_rule": "Current Brew source/runtime, exact revision, live evidence, CI, and project-owned checkpoints outrank this GPT-K projection. BirdEye/G-Drive are evidence/access projections; imported Memory is historical provenance; neither overrides current GitHub/runtime truth.",
-  "updated": "2026-09-20",
+  "updated": "2026-09-25",
   "source_repo": "Letterblack0306/brew",
   "source_branch": "main",
   "source_head": "603e75afb1d35cd8e80ef4a1583bb7106504a95d",
@@ -12,7 +12,7 @@
     "head": "603e75afb1d35cd8e80ef4a1583bb7106504a95d"
   },
   "current_status_record": "project-engineering/projects/brew/BREW_DRIFT_RECOVERY_AND_UPSTREAM_REUSE_2026-09-08.md",
-  "active_node": "secret-redaction-runtime-sinks",
+  "active_node": "five-turn-live-conversational-acceptance",
   "nodes": [
     {
       "id": "architecture",
@@ -138,6 +138,30 @@
       "status": "current_gap",
       "priority": "P1",
       "summary": "Current main event-bus and log-manager reference a missing secret-redactor module and silently fall back to passthrough metadata. Add one canonical runtime redactor and direct sink tests."
+    },
+    {
+      "id": "local-capability-truth-repair-2026-09-25",
+      "lane": "Current Local Candidate",
+      "title": "Selected-workspace capability truth repair",
+      "status": "source_test_validated_local_uncommitted",
+      "priority": "P0/P1 REPAIR",
+      "summary": "User-supplied Sep 25 local worktree evidence reports capability evaluation bound to the selected registry workspace, no parent-repository Git leakage, truthful unavailable Git state, targeted 2/2, focused 20, full 505/505, runtime syntax PASS and readiness 10/10. Remote main remains 603e75af until this local candidate is revision-identified and merged."
+    },
+    {
+      "id": "five-turn-live-conversational-acceptance",
+      "lane": "Active Gate",
+      "title": "Provider-backed one-agent combined acceptance",
+      "status": "pending_live_proof",
+      "priority": "BLOCKING",
+      "summary": "Run the AGENTS.md five-turn sequence on the real provider/runtime: pure chat without governance leakage, real file read, verified reversible mutation, new-session episodic recall, and deliberately unavailable-tool honesty. Add one positive durable-memory admission/retrieval case; do not confuse session history with semantic memory or current filesystem truth."
+    },
+    {
+      "id": "phase2-receipt-recovery-composition",
+      "lane": "Next Gate",
+      "title": "Durable receipt correlation and kill/restart continuation",
+      "status": "blocked_on_combined_test_1",
+      "priority": "AFTER LIVE ACCEPTANCE",
+      "summary": "After Combined Test 1 passes repeatably, prove durable operation/turn/tool-call receipts plus checkpoint recovery across forced termination without duplicating the already-completed mutation."
     }
   ],
   "edges": [
@@ -205,6 +229,18 @@
       "from": "deferred-capabilities",
       "to": "ci-release",
       "type": "acceptance"
+    },
+    {
+      "from": "capability-registry",
+      "to": "local-capability-truth-repair-2026-09-25"
+    },
+    {
+      "from": "local-capability-truth-repair-2026-09-25",
+      "to": "five-turn-live-conversational-acceptance"
+    },
+    {
+      "from": "five-turn-live-conversational-acceptance",
+      "to": "phase2-receipt-recovery-composition"
     }
   ]
 }
