@@ -6,7 +6,7 @@
   "source_branch": "main",
   "original_workspace": "C:/Agents-Memory-Tool-v6-integration",
   "later_ui_workspace": "C:/LBE-TUI-Lab",
-  "overall_classification": "CURRENT_AUDIT_RECONCILIATION_OPEN_ACCEPTANCE",
+  "overall_classification": "CURRENT_RUNTIME_PROOF_ADVANCED_INSTALLED_ACCEPTANCE_OPEN",
   "authority_note": "GPT-Knowledge is a projection only. Current canonical source/configuration, current local validation/runtime evidence, machine governance, active intent and acceptance records outrank this file.",
   "final_product": {
     "definition": "Persistent provider-neutral LBE agent product in which the agent/provider owns reasoning, investigation strategy, capability selection, interpretation and replanning, while LBE owns workspace/session identity, policy, authorization, governed execution, ToolReceipts/evidence, persistence, recovery, deterministic validation and completion truth.",
@@ -23,12 +23,12 @@
     "entrypoint": "lbe"
   },
   "current_machine_state": {
-    "classification": "INSTALLED_FINAL_PRODUCT_ACCEPTANCE_OPEN",
+    "classification": "INSTALLED_FINAL_PRODUCT_ACCEPTANCE_OPEN_RUNTIME_CHAIN_ADVANCING",
     "active_phase": "INSTALLED_PTY_CONPTY_AND_FINAL_PRODUCT_ACCEPTANCE",
-    "active_slice": "LBE_OWNED_RUST_TUI_PRODUCT_SURFACE",
+    "active_slice": "GOVERNED_CODING_COMPLETION_AND_REPLAY_PROOF",
     "status": "OPEN",
-    "next_product_slice": "NONE_UNTIL_ACTIVE_GATE_CLOSES",
-    "next_product_slice_activated": false
+    "next_product_slice": "SHARED_VALIDATION_INTERPRETER_THEN_REAL_GOVERNED_MUTATION",
+    "next_product_slice_activated": true
   },
   "runtime_authority": {
     "status": "ESTABLISHED_GOVERNED",
@@ -158,10 +158,12 @@
     "active_config_trace_required": true
   },
   "remaining_unproven": [
-    "focused regression for the September 24 provider/model binding candidate in an environment with pytest",
-    "durable operation fingerprint and ToolReceipt/evidence correlation across provider continuation, retry and process restart",
-    "installed exactly-once mutation replay after restart with changed-payload rejection",
+    "shared >=3.11 interpreter resolution for the focused-test evidence producer, reusing the launcher/runtime interpreter owner rather than hardcoded `python`",
+    "successful real governed coding mutation that persists governed_operations, authoritative ToolReceipt/evidence, and a passing task_completion_contract",
+    "durable exactly-once replay across the crash seam: successful persisted operation followed by process death before completion finalization must not execute the side effect twice after restart",
+    "changed-payload rejection for an already persisted operation identity after restart",
     "typed Rust timeline projection for conversational authorization/tool/receipt/evidence/failure state without fabricated values",
+    "source/build/package/installed-artifact provenance for the canonical `lbe` Rust/Ratatui product",
     "real installed Windows TTY/ConPTY launch/input/submit/interrupt/quit/terminal-restoration proof",
     "installed restart/resume of the same persisted session with provider/model/receipt/evidence/history continuity",
     "fresh complete installed end-to-end product run at the accepted revision"
@@ -1504,12 +1506,12 @@
         "finding": "Authoritative runtime identifiers/receipts/evidence reach the Rust client, but conversational events are largely flattened into transcript strings. Implement presentation-only typed timeline cells; add no authority."
       },
       "D_provider_model_binding": {
-        "result": "NARROW_REPAIR_IMPLEMENTED_FOCUSED_REGRESSION_INCOMPLETE",
-        "finding": "Persisted session model must bind ProviderConfig immediately before provider/controller construction. Missing helper import and stale tests were corrected; direct binding smoke passed; pytest was unavailable in the active audit interpreter."
+        "result": "RUNTIME_PATH_ADVANCED_REQUEST_BOUNDING_AND_PROVIDER_ADMISSION_PROVEN",
+        "finding": "Session/provider composition and bounded requested-output behavior have advanced through live OpenRouter provider admission. Provider/model capability remains configuration/runtime data; LBE owns only its outbound request-policy bound. Final successful governed coding completion is still open."
       },
       "E_receipts_exactly_once": {
-        "result": "READY_WITH_RISKS_INSTALLED_ACCEPTANCE_BLOCKED",
-        "finding": "Isolated receipt/continuation/evidence seams exist, but durable operation/request/receipt identity across installed continuation and restart is not proven."
+        "result": "SINGLE_SHOT_RECEIPT_RUNTIME_PROVEN_DURABLE_OPERATION_REPLAY_STILL_OPEN",
+        "finding": "Single-shot completed and failed governed turns now persist operational history and correlation. A live coding probe created/evaluated the real completion contract truthfully, but no governed mutation executed, so durable governed_operations, successful completion, crash-seam exactly-once replay, and changed-payload rejection remain open."
       },
       "G_legacy_textual": {
         "result": "NON_PRODUCTION_LEGACY_CONFIRMED",
@@ -1523,5 +1525,77 @@
       "Rust reference-only classification that conflicts with the current canonical Rust/Ratatui product decision"
     ],
     "authority_rule": "Current source/runtime/governance and claim-matched acceptance evidence outrank GPT-K projections. GPT-K records the reconciliation; it does not create proof."
+  },
+  "runtime_progress_2026_09_25_late": {
+    "classification": "CURRENT_LOCAL_RUNTIME_EVIDENCE_PUBLICATION_LOCKED",
+    "workspace": "C:/Agents-Memory-Tool-v6-integration",
+    "local_commits": {
+      "1286b6a": "single-shot governed turns now persist operational turn/item/requested/completed-or-failed receipt history before returning or raising",
+      "4908ff1": "UTF-8 BOM-tolerant config loading plus preservation of real provider error messages through adapter/coding runtime"
+    },
+    "publication": "LOCKED",
+    "remote_alignment": "NOT_REVERIFIED_FOR_LOCAL_ONLY_COMMITS",
+    "validation": {
+      "receipt_slice": "866 passed / 0 failed / 1 skipped at commit 1286b6a",
+      "bom_and_error_slice": "867 passed / 0 failed / 1 skipped at commit 4908ff1",
+      "request_sizing_slice": "883 passed / 0 failed / 1 skipped before the later terminology-only staged rename",
+      "staged_request_policy_rename": "36 focused tests green; full-suite result not yet recorded in GPT-K; staged and uncommitted"
+    },
+    "proven_current": [
+      "real single-shot governed turns persist operational_turns, reasoning items, and requested/completed-or-failed events with provider/model/operation/guard/result/evidence correlation",
+      "failed provider turns also leave durable operational receipts before raising",
+      "PowerShell-style UTF-8 BOM provider config files load successfully using utf-8-sig",
+      "provider error details survive the OpenAI-compatible adapter and governed-coding layer instead of collapsing to a fixed generic error",
+      "OpenRouter no longer receives an accidental 131072 max_tokens coding request; a bounded live coding turn passed provider admission",
+      "effective requested output bound is observable in TURN_STARTED metadata and explicit override is supported",
+      "seven governed tools were projected with ALLOW verdicts and risk classes while direct native mutation tools remained unexposed",
+      "VALIDATION_FAILED on the live read-only coding probe was truthful: the completion contract existed and failed its actual source_change/focused_test/git_status requirements"
+    ],
+    "provider_capability_vs_request_policy": {
+      "rule": "Provider/model context window and maximum-output capability are provider/model configuration facts. LBE may bound the outbound requested output parameter as request policy but must not invent model context capacity.",
+      "terminology": "Use requested-output policy names; `ceiling` is misleading when read as model capability.",
+      "required_distinct_causes": [
+        "MODEL_CAPABILITY_UNKNOWN",
+        "MODEL_CONFIG_INVALID",
+        "REQUEST_OUTPUT_EXCEEDS_MODEL_LIMIT",
+        "REQUEST_OUTPUT_EXCEEDS_LBE_POLICY",
+        "REQUEST_EXCEEDS_CONTEXT_WINDOW",
+        "PROVIDER_QUOTA_REJECTED",
+        "PROVIDER_CREDENTIALS_MISSING"
+      ]
+    },
+    "validation_characterization": {
+      "verdict": "VALIDATION_LOGIC_NOT_DEFECTIVE",
+      "earliest_incorrect_state": "FOCUSED_TEST_INTERPRETER_SELECTION",
+      "evidence": [
+        "live response was not truncated: prompt_tokens=82, completion_tokens=17, total=99, terminal event model.turn.requires_tool",
+        "the model legitimately requested governed workspace.read for README.md; an empty plan is not a normalization defect for this tool-driven turn",
+        "adapter preserved turn.started -> tool_call.started -> tool_call.completed -> usage.updated -> turn.requires_tool",
+        "task_completion_contracts contained the real three-requirement coding contract and task_completion_evidence contained three truthful FAIL rows",
+        "source_change failed because the probe only read a file",
+        "focused_test failed because the evidence producer invoked hardcoded `python`, resolving to Python 3.10 without pytest on this machine",
+        "git_status reflected only pre-existing dirty state; no governed mutation occurred",
+        "governed_operations remained empty because no governed mutating operation executed"
+      ],
+      "next_owner": "shared interpreter resolver used by launcher and focused-test evidence producer; validator remains unchanged"
+    },
+    "request_policy_rename_candidate": {
+      "status": "STAGED_UNCOMMITTED",
+      "change": "rename request-output constants to explicitly describe LBE outbound request policy rather than model/context capability",
+      "focused_validation": "36 focused tests green",
+      "rule": "Do not promote to committed/current-head evidence until the full suite is green and the commit exists."
+    },
+    "next_sequence": [
+      "finish/commit the terminology-only request-policy rename only after its full suite is green",
+      "reuse one >=3.11 interpreter resolver in the focused-test evidence producer; do not make the validator choose Python",
+      "run a real bounded coding task that performs a governed source mutation and can satisfy source_change + focused_test + git_status",
+      "inspect governed_operations + ToolReceipt/evidence + task_completion_contract correlation for the successful mutation",
+      "then prove crash-seam exactly-once/restart replay and changed-payload rejection",
+      "then close installed artifact provenance and real Rust/Ratatui PTY/ConPTY acceptance"
+    ],
+    "harness_blockers": {
+      "memory_mcp": "BLOCKED until the already-running MCP process restarts; numpy 2.5.3 was installed for Python 3.13 but the live process still lacks it",
+      "packaging_files": "install.ps1 and verify_clean_install.py remain uncommitted and outside the currently registered intent scope"
+    }
   }
 }
