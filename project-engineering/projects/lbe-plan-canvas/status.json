@@ -1,12 +1,12 @@
 {
   "schema_version": 85,
   "project": "LBE Persistent Agent",
-  "verified_at": "2026-09-18",
+  "verified_at": "2026-09-25",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "source_branch": "main",
   "original_workspace": "C:/Agents-Memory-Tool-v6-integration",
   "later_ui_workspace": "C:/LBE-TUI-Lab",
-  "overall_classification": "FINAL_INSTALLED_LBE_PRODUCT_ACCEPTANCE_PASS",
+  "overall_classification": "CURRENT_AUDIT_RECONCILIATION_OPEN_ACCEPTANCE",
   "authority_note": "GPT-Knowledge is a projection only. Current canonical source/configuration, current local validation/runtime evidence, machine governance, active intent and acceptance records outrank this file.",
   "final_product": {
     "definition": "Persistent provider-neutral LBE agent product in which the agent/provider owns reasoning, investigation strategy, capability selection, interpretation and replanning, while LBE owns workspace/session identity, policy, authorization, governed execution, ToolReceipts/evidence, persistence, recovery, deterministic validation and completion truth.",
@@ -23,11 +23,11 @@
     "entrypoint": "lbe"
   },
   "current_machine_state": {
-    "classification": "FINAL_INSTALLED_PRODUCT_ACCEPTED",
+    "classification": "INSTALLED_FINAL_PRODUCT_ACCEPTANCE_OPEN",
     "active_phase": "INSTALLED_PTY_CONPTY_AND_FINAL_PRODUCT_ACCEPTANCE",
-    "active_slice": "NONE",
-    "status": "PASS_CLOSED",
-    "next_product_slice": "NONE",
+    "active_slice": "LBE_OWNED_RUST_TUI_PRODUCT_SURFACE",
+    "status": "OPEN",
+    "next_product_slice": "NONE_UNTIL_ACTIVE_GATE_CLOSES",
     "next_product_slice_activated": false
   },
   "runtime_authority": {
@@ -103,7 +103,7 @@
     {
       "order": 0,
       "id": "lbe-cli-product-composition-and-structural-visual-differentiation",
-      "status": "BLOCKED_ACTIVE_PRODUCT_GATE",
+      "status": "ACTIVE_CURRENT_PRODUCT_GATE",
       "scope": "Make `lbe` resolve to the LBE-branded CLI/TUI shell, retain compatible embedded Cline mechanics, and bind the visible timeline to emitted LBE/provider/client events only."
     },
     {
@@ -121,16 +121,18 @@
   ],
   "status_rule": "Before every next instruction refresh GPT-K and current local evidence. Do not rerun accepted baseline tests or read-only proofs merely for reassurance. Drive the open gate by completing the first remaining live composition behavior.",
   "rust_client_current": {
-    "classification": "REFERENCE_INTEGRATION_CLIENT_NOT_PRIMARY_USER_SURFACE",
+    "classification": "CANONICAL_VISIBLE_LBE_PRODUCT_IMPLEMENTATION",
     "workspace": "C:/LBE-TUI-Lab",
-    "role": "Rust/Ratatui reference/integration client used for bounded contract and integration experiments; not product-surface acceptance authority.",
-    "preservation_rule": "Preserve current dirty/unpublished Rust work and do not use Rust acceptance as proof of Cline CLI user experience."
+    "role": "Rust/Ratatui is the selected visible LBE terminal client. It owns presentation/input only; LBE retains runtime and governance authority.",
+    "preservation_rule": "Preserve unrelated dirty/unpublished Rust work. Source/tests do not substitute for installed acceptance."
   },
   "current_blocker": {
-    "classification": "CLINE_RUNTIME_WIRING_FALSE_PASS_RECORD",
-    "primary": "Governance records CLINE_RUNTIME_WIRING as PASS, but its named runtime implementation never entered canonical GitHub history.",
-    "secondary": "Writable ACT/coding therefore remains non-conforming with the accepted Cline AgentRuntime ownership boundary.",
-    "tertiary": "Record is corrected in GPT-K; backend repair still requires an explicitly activated implementation slice."
+    "classification": "NEWER_AUDIT_EVIDENCE_SUPERSEDES_FINAL_PASS_PROJECTION",
+    "primary": "September 24 provider/model audit reproduced a session-model versus stale ProviderConfig model binding defect. A narrow candidate repair imported and exercised bind_provider_config_to_session, but the focused pytest suite could not run in that audit environment because pytest was unavailable.",
+    "secondary": "Receipt/exactly-once audit found GovernedToolOrchestrator request/receipt replay identity remains process-memory backed at the inspected seam; durable installed provider-continuation/restart correlation is not proven.",
+    "tertiary": "Rust timeline audit found authoritative receipt/evidence identifiers are available but much conversational state is still flattened into transcript strings; typed truthful projection remains an open presentation seam.",
+    "legacy": "Textual remains historical/diagnostic and non-production. verify_clean_install.py was corrected to probe the actual lbe_guard_inspector.textual_tui module path without importing it.",
+    "rule": "Do not reopen accepted LBE authority architecture. Continue only on claim-matched missing seams and do not convert source presence or focused smoke checks into installed acceptance."
   },
   "project_visit_protocol": {
     "classification": "MANDATORY_PROJECT_CONTEXT_REFRESH",
@@ -155,7 +157,15 @@
     "active_config_path": "UNVERIFIED",
     "active_config_trace_required": true
   },
-  "remaining_unproven": [],
+  "remaining_unproven": [
+    "focused regression for the September 24 provider/model binding candidate in an environment with pytest",
+    "durable operation fingerprint and ToolReceipt/evidence correlation across provider continuation, retry and process restart",
+    "installed exactly-once mutation replay after restart with changed-payload rejection",
+    "typed Rust timeline projection for conversational authorization/tool/receipt/evidence/failure state without fabricated values",
+    "real installed Windows TTY/ConPTY launch/input/submit/interrupt/quit/terminal-restoration proof",
+    "installed restart/resume of the same persisted session with provider/model/receipt/evidence/history continuity",
+    "fresh complete installed end-to-end product run at the accepted revision"
+  ],
   "canonical_execution_path": {
     "classification": "PATH_TO_FOLLOW",
     "document": "project-engineering/projects/lbe-plan-canvas/CANONICAL_AGENT_LBE_EXECUTION_PATH.md",
@@ -1483,5 +1493,35 @@
     },
     "evidence_classification": "IMPLEMENTED_ON_GITHUB / LOOPTOOL_REVALIDATION_PENDING",
     "next_action": "Run only the previously failing Rust compile/focused tests at candidate head accecc437...; if green, continue to the next owner-backed seam."
+  },
+  "audit_reconciliation_2026_09_25": {
+    "classification": "NEWER_READ_ONLY_AND_FOLLOWUP_IMPLEMENTATION_EVIDENCE_RECONCILED",
+    "evidence_date": "2026-09-24",
+    "architecture_result": "ALIGNED_WITH_CURRENT_PLAN_NO_REDIRECTION_REQUIRED",
+    "workstreams": {
+      "C_rust_ui": {
+        "result": "PROPOSAL_ONLY_READY_WITH_RISKS",
+        "finding": "Authoritative runtime identifiers/receipts/evidence reach the Rust client, but conversational events are largely flattened into transcript strings. Implement presentation-only typed timeline cells; add no authority."
+      },
+      "D_provider_model_binding": {
+        "result": "NARROW_REPAIR_IMPLEMENTED_FOCUSED_REGRESSION_INCOMPLETE",
+        "finding": "Persisted session model must bind ProviderConfig immediately before provider/controller construction. Missing helper import and stale tests were corrected; direct binding smoke passed; pytest was unavailable in the active audit interpreter."
+      },
+      "E_receipts_exactly_once": {
+        "result": "READY_WITH_RISKS_INSTALLED_ACCEPTANCE_BLOCKED",
+        "finding": "Isolated receipt/continuation/evidence seams exist, but durable operation/request/receipt identity across installed continuation and restart is not proven."
+      },
+      "G_legacy_textual": {
+        "result": "NON_PRODUCTION_LEGACY_CONFIRMED",
+        "finding": "lbe_guard_inspector/textual_tui.py is historical/diagnostic and not canonical-launch reachable. Synthetic preview receipt/evidence text is not runtime proof. verify_clean_install.py was corrected to inspect the actual module path."
+      }
+    },
+    "supersedes": [
+      "overall FINAL_INSTALLED_LBE_PRODUCT_ACCEPTANCE_PASS projection where unsupported by newer claim-matched evidence",
+      "PASS_CLOSED current-machine projection",
+      "remaining_unproven empty-list projection",
+      "Rust reference-only classification that conflicts with the current canonical Rust/Ratatui product decision"
+    ],
+    "authority_rule": "Current source/runtime/governance and claim-matched acceptance evidence outrank GPT-K projections. GPT-K records the reconciliation; it does not create proof."
   }
 }
