@@ -145,7 +145,7 @@
       "title": "Selected-workspace capability truth repair",
       "status": "source_test_validated_local_uncommitted",
       "priority": "P0/P1 REPAIR",
-      "summary": "User-supplied Sep 25 local worktree evidence reports capability evaluation bound to the selected registry workspace, no parent-repository Git leakage, truthful unavailable Git state, targeted 2/2, focused 20, full 505/505, runtime syntax PASS and readiness 10/10. Remote main remains 603e75af until this local candidate is revision-identified and merged."
+      "summary": "Sep 25 local worktree now includes selected-workspace capability truth plus clarified selective-continuity contracts. Reported validation includes Git capability 2/2, memory system 9/9, focused autonomy/one-agent/recovery/capability 20, runtime syntax PASS, readiness 10/10, and diff check PASS. Remote main remains 603e75af until local revision/merge identity is proven."
     },
     {
       "id": "five-turn-live-conversational-acceptance",
@@ -153,7 +153,7 @@
       "title": "Provider-backed one-agent combined acceptance",
       "status": "pending_live_proof",
       "priority": "BLOCKING",
-      "summary": "Run the AGENTS.md five-turn sequence on the real provider/runtime: pure chat without governance leakage, real file read, verified reversible mutation, new-session episodic recall, and deliberately unavailable-tool honesty. Add one positive durable-memory admission/retrieval case; do not confuse session history with semantic memory or current filesystem truth."
+      "summary": "Run the AGENTS.md provider-backed combined acceptance: pure chat without governance leakage, real file read, verified reversible mutation, new-session episodic recall that is not auto-promoted to semantic memory, current filesystem re-check before present-state claims, one positive verified project-scoped semantic-memory retrieval with unrelated-project non-leakage, and deliberately unavailable-tool honesty."
     },
     {
       "id": "phase2-receipt-recovery-composition",
