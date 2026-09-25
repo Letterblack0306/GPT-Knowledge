@@ -954,3 +954,83 @@ Current command contract:
 The real wrapper delegates profile creation/removal through `lbe_guard_inspector.product_entry` into the existing CLI/user-state owners. Removing a profile does not remove a provider capability from the catalog. LM Studio identity is aligned to the canonical registry id `lmstudio`.
 
 Focused Python and Rust regression coverage was updated. GitHub exposes no CI/status contexts for this head, and local LoopTool validation remains pending.
+
+## 2026-09-25 — September 24 audit reconciliation
+
+Classification: **ARCHITECTURE ALIGNED / INSTALLED ACCEPTANCE OPEN**
+
+The September 24 provider, receipt, Rust UI and legacy-path audit sessions were reviewed as full event histories, including follow-up edits. They do not require an architecture redesign.
+
+### Workstream C — Rust UI projection
+
+- Rust/Ratatui remains the canonical visible product surface.
+- Existing authoritative conversational receipt/evidence identifiers are already received by the client.
+- The remaining product seam is presentation-only: project typed timeline cells for messages, tool requests/results, authorization, failures, receipts, evidence, validation and completion instead of relying primarily on flattened transcript strings.
+- Missing values must remain visibly unavailable; the client must not fabricate proof.
+
+### Workstream D — provider/model session binding
+
+Reproduced failure:
+
+```text
+persisted selected session model
+!= stale ProviderConfig.model
+-> next provider turn rejects before continuation
+```
+
+The existing `bind_provider_config_to_session` helper is the correct composition seam. The follow-up implementation imported it into the CLI composition path and updated stale focused tests. A direct binding smoke check passed. Full focused pytest did not run because the active interpreter lacked pytest.
+
+Classification:
+
+```text
+IMPLEMENTED_CANDIDATE
+FOCUSED_REGRESSION_INCOMPLETE
+NOT_RUNTIME_PROVEN
+```
+
+Do not create a second provider resolver or move provider authority into Rust.
+
+### Workstream E — durable receipts / exactly-once / restart
+
+The isolated runtime seams exist, but the inspected `GovernedToolOrchestrator` replay identity is process-memory backed. Current acceptance still requires proof that immutable operation identity and the authoritative ToolReceipt/evidence survive continuation, retry and process restart.
+
+Required proof remains:
+
+```text
+ALLOW
+-> one handler execution
+-> persisted request fingerprint
+-> persisted ToolReceipt/evidence
+-> provider continuation from that receipt
+-> restart/resume
+-> duplicate replay returns same receipt
+-> changed payload rejected
+
+DENY / ESCALATE
+-> zero execution
+-> no successful continuation
+```
+
+Reuse existing persistence/operational-history owners. Do not add another dispatcher or receipt authority.
+
+### Workstream G — Textual legacy path
+
+`lbe_guard_inspector/textual_tui.py` is historical/diagnostic and not on the canonical `lbe` launch path. Its preview/synthetic receipt/evidence strings are not product proof.
+
+The clean-install verifier previously probed the wrong historical path. A follow-up corrected it to inspect `lbe_guard_inspector.textual_tui` with module discovery rather than importing/executing Textual.
+
+### Reconciled current position
+
+```text
+PRODUCT                    = LBE
+ENTRYPOINT                 = lbe
+VISIBLE CLIENT             = LBE-owned Rust/Ratatui
+CLINE                      = headless reasoning/provider/continuation mechanics
+RUNTIME/GOVERNANCE OWNER   = LBE
+TEXTUAL                    = historical/diagnostic, non-production
+ARCHITECTURE               = PRESERVED
+FINAL INSTALLED ACCEPTANCE = OPEN
+```
+
+Any older GPT-K field claiming `FINAL_INSTALLED_LBE_PRODUCT_ACCEPTANCE_PASS`, `PASS_CLOSED`, or an empty `remaining_unproven` set is superseded by this reconciliation unless newer claim-matched installed evidence is recorded.
+
