@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "project": "Brew",
-  "verified_at": "2026-09-20",
+  "verified_at": "2026-09-25",
   "source_repo": "Letterblack0306/brew",
   "source_branch": "main",
   "source_head": "603e75afb1d35cd8e80ef4a1583bb7106504a95d",
@@ -9,9 +9,9 @@
     "branch": "main",
     "head": "603e75afb1d35cd8e80ef4a1583bb7106504a95d"
   },
-  "evidence_level": "CURRENT_MAIN_SOURCE_TEST_PORTABILITY_AND_STATIC_REACHABILITY_EVIDENCE__LIVE_INSTALLED_ACCEPTANCE_SEPARATE",
-  "overall_classification": "P0_P1_P3_VALIDATED__P2_UNLOCKED__PORTABILITY_PROVEN__RUNTIME_REACHABILITY_PASS__SECRET_REDACTION_GAP_OPEN",
-  "authority_note": "Current Brew source/runtime and exact revision evidence outrank this projection. G-Drive workspace copies and imported Memory are supporting/historical evidence only; BirdEye is an evidence/access surface, not source authority.",
+  "evidence_level": "CURRENT_REMOTE_MAIN_SOURCE_TEST_PORTABILITY_AND_STATIC_REACHABILITY_EVIDENCE__NEWER_USER_SUPPLIED_LOCAL_WORKTREE_SOURCE_TEST_EVIDENCE__LIVE_CONVERSATIONAL_ACCEPTANCE_OPEN",
+  "overall_classification": "REMOTE_MAIN_603E75_SOURCE_TEST_BASELINE__LOCAL_CAPABILITY_TRUTH_REPAIR_SOURCE_TEST_VALIDATED__FIVE_TURN_LIVE_ACCEPTANCE_PENDING",
+  "authority_note": "Current Brew runtime observations and exact local/remote revision evidence outrank this projection. Remote GitHub main is independently observed at 603e75afb1d35cd8e80ef4a1583bb7106504a95d. The 2026-09-25 capability-truth repair and validation results below are user-supplied local-worktree evidence and are not silently promoted to remote-main or installed-runtime proof.",
   "canonical_architecture": {
     "semantic_owner": "PRIMARY_BREW_USER_LEVEL_REASONING_IDENTITY",
     "flow": [
@@ -169,6 +169,11 @@
       "id": "missing-secret-redactor",
       "classification": "PROVEN_CURRENT_SOURCE_DEFECT",
       "detail": "At Brew main 603e75af, brew/runtime/event-bus.mjs and brew/runtime/log-manager.mjs dynamically import ../secrets/secret-redactor.mjs but fall back to identity redaction on failure. brew/secrets/secret-redactor.mjs is absent on current GitHub main, so event/log metadata redaction is currently passthrough unless another future module is supplied. Repair requires a canonical runtime redactor plus direct sink tests."
+    },
+    {
+      "id": "selected-workspace-capability-truth-local-candidate",
+      "classification": "USER_SUPPLIED_LOCAL_SOURCE_AND_TEST_VALIDATED__REMOTE_MAIN_NOT_YET_UPDATED",
+      "detail": "The Sep 25 local candidate evaluates capability truth against the selected registry workspace rather than process.cwd(), rejects Git capability when the selected workspace is outside the discovered repository, and prevents unrelated parent repositories from leaking Git readiness. Reported validation: targeted 2/2, focused 20, full 505/505, runtime syntax PASS, readiness 10/10."
     }
   ],
   "validation": {
@@ -186,9 +191,13 @@
       "fresh standalone export: full suite 505/505 PASS",
       "canonical workspace-index validator PASS after unrelated local gap documents were isolated",
       "canonical full suite 505/505 PASS",
-      "runtime reachability audit status PASS; reachable=179; edges=340; unresolvedImports=0; activeLegacyAuthority=0"
+      "runtime reachability audit status PASS; reachable=179; edges=340; unresolvedImports=0; activeLegacyAuthority=0",
+      "2026-09-25 user-supplied local candidate: capability selected-workspace targeted tests 2/2 PASS",
+      "2026-09-25 user-supplied local candidate: focused autonomy/one-agent/recovery/capability tests 20 PASS",
+      "2026-09-25 user-supplied local candidate: full npm test 505/505 PASS",
+      "2026-09-25 user-supplied local candidate: runtime syntax check PASS; readiness 10/10 PASS"
     ],
-    "classification": "CURRENT_MAIN_REPOSITORY_TEST_AND_STANDALONE_PORTABILITY_PROOF__LIVE_PROVIDER_BROWSER_AND_INSTALLED_RUNTIME_ACCEPTANCE_NOT_REPROVEN_BY_THIS_UPDATE"
+    "classification": "REMOTE_MAIN_REPOSITORY_TEST_AND_STANDALONE_PORTABILITY_PROOF__LOCAL_SEP25_SOURCE_TEST_CANDIDATE_ADDED__LIVE_PROVIDER_CONVERSATIONAL_ACCEPTANCE_NOT_YET_PROVEN"
   },
   "branch_cleanup": {
     "superseded_branch": "audit/model-owned-reasoning-cleanup-20260914",
@@ -196,6 +205,12 @@
     "reason": "Useful architecture behavior and regression coverage were incorporated into main; direct comparison showed no remaining material architecture gap worth preserving."
   },
   "remaining_audit_targets": [
+    {
+      "id": "five-turn-live-conversational-acceptance",
+      "status": "PENDING_LIVE_PROOF",
+      "evidence": "Source and automated contracts are reported green in the Sep 25 local candidate, but no claim-matched provider-backed five-turn transcript yet proves conversational quality, real mutation, cross-session recall, and truthful unavailable-tool behavior together.",
+      "next_check": "Run the AGENTS.md Combined Test 1 on the actual provider-backed runtime. Include one positive durable-memory admission case in addition to negative admission/session-recall checks."
+    },
     {
       "id": "clean-installed-runtime-acceptance",
       "status": "RECHECK_CURRENT_HEAD",
@@ -270,14 +285,67 @@
     "A completion claim after tool use cannot be linked to recorded receipt/evidence identity."
   ],
   "evidence_boundary": {
-    "classification": "CURRENT_MAIN_P0_P1_P3_VALIDATED__P2_UNLOCKED__LIVE_INSTALLED_ACCEPTANCE_SEPARATE",
-    "rule": "P0 provider-result/Telegram/legacy-response invariants, P1 registry/provider-continuation/recovery contracts, and P3 CI/release source gates have validation evidence. P2 is no longer blocked by P0/P1, but its deferred capability work is not thereby complete. Current repository and standalone portability are proven; installed live provider/browser behavior must be re-proven when claimed.",
+    "classification": "REMOTE_MAIN_BASELINE_PROVEN__LOCAL_SEP25_SOURCE_TEST_REPAIR_VALIDATED__LIVE_ACCEPTANCE_PENDING",
+    "rule": "Remote main remains independently observed at 603e75af. The Sep 25 capability-truth repair is newer local-worktree evidence with source/tests reported green; it must not be represented as merged remote-main or installed-runtime proof until revision identity and live acceptance are captured.",
     "next_required_runtime_proof": [
-      "repair and directly test event/log secret redaction",
-      "inspect the four non-literal dynamic import sites at runtime where material",
-      "clean exact-head installed-runtime acceptance for production-ready claims",
-      "one correlated live provider-originated governed tool roundtrip when installed behavior is claimed",
-      "live Brew-attributed browser proof where required"
+      "five-turn provider-backed Combined Test 1 from AGENTS.md",
+      "real mutation verified from filesystem/tool evidence before success is narrated",
+      "new-session episodic/session recall without treating history as current filesystem truth",
+      "one positive durable-memory admission/retrieval case and negative non-admission case",
+      "deliberately unavailable tool withheld/reported truthfully",
+      "Phase 2 kill/restart recovery with no duplicate first mutation",
+      "repair and directly test event/log secret redaction if still present in the tested local candidate"
     ]
+  },
+  "local_worktree_candidate": {
+    "observed_at": "2026-09-25",
+    "workspace": "D:\\Developement\\_Brew_V02\\Brew_Rebuild",
+    "evidence_classification": "USER_SUPPLIED_LOCAL_SOURCE_AND_AUTOMATED_TEST_EVIDENCE",
+    "remote_main_observed_head": "603e75afb1d35cd8e80ef4a1583bb7106504a95d",
+    "local_head": null,
+    "remote_relationship": "UNVERIFIED_LOCAL_WORKTREE_HAS_UNCOMMITTED_CHANGES",
+    "combined_contracts": [
+      "brew-capability-truth",
+      "brew-one-agent-runtime",
+      "brew-project-continuity",
+      "brew-runtime-proof-and-recovery",
+      "brew-selective-memory"
+    ],
+    "canonical_path_preserved": [
+      "gateway",
+      "agent-core",
+      "brew-runner",
+      "agent-tool-loop",
+      "capability registry",
+      "policy/executor",
+      "receipt",
+      "model continuation/final response"
+    ],
+    "implementation_changes": [
+      "brew/capabilities/builtin-capability-adapters.mjs",
+      "brew/capabilities/capability-registry.mjs"
+    ],
+    "capability_truth_repair": [
+      "Capability evaluation uses the selected registry workspace instead of process.cwd().",
+      "Git capabilities are unavailable when the selected workspace is outside the discovered repository.",
+      "An unrelated parent Git repository cannot make a temporary/non-repository workspace appear Git-capable.",
+      "Runtime exposes truthful unavailable state instead of a false Git tool."
+    ],
+    "preserved_user_owned_worktree_changes": [
+      "M AGENTS.md",
+      "D Agent.md",
+      "?? AGENTS.md - Shortcut.lnk"
+    ],
+    "validation": {
+      "syntax_builtin_adapter": "PASS",
+      "syntax_capability_registry": "PASS",
+      "git_capability_tests": "2/2 PASS",
+      "focused_autonomy_one_agent_recovery_capability_tests": "20 PASS",
+      "npm_test": "505/505 PASS",
+      "runtime_check": "RUNTIME_SYNTAX_CHECK_PASS",
+      "readiness": "10/10 PASS"
+    },
+    "evidence_boundary": "SOURCE_AND_AUTOMATED_TEST_VALIDATED_LOCAL_CANDIDATE__NOT_PROVIDER_BACKED_LIVE_ACCEPTANCE",
+    "next_required_proof": "Run the five-turn real-provider conversational acceptance covering pure chat behavior, real read, real mutation, new-session recall, and a deliberately unavailable tool; keep session recall distinct from semantic memory and current filesystem truth."
   }
 }
