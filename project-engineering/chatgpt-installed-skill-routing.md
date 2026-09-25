@@ -270,3 +270,46 @@ Skill routing is method selection, not project truth. Always revalidate current 
 This document records the expected installed skill names as of the current skill suite. If a named skill is unavailable in the active ChatGPT environment, do not pretend it was applied. Continue using the relevant GPT-Knowledge method and report the unavailable skill route when material.
 
 When installed skill names change, update this routing document rather than creating aliases silently.
+
+### LBE project-specific skills
+
+When these project-specific skills are installed/available, use them only for Letterblack LBE work:
+
+#### `letterblack-lbe-boundary-engineering`
+
+**Role:** normal LBE continuation owner.
+
+Use for LBE implementation, runtime integration, provider/tool continuation, receipts/evidence, persistence/recovery, authorization, packaging, installed-product proof, and claim-matched acceptance.
+
+It assumes the project structure/history inventory has already been aligned unless current evidence falsifies that baseline. It should move the current implementation/proof queue forward rather than repeatedly reopening whole-project discovery.
+
+#### `letterblack-lbe-tui-interaction-design`
+
+**Role:** LBE Rust/Ratatui interaction specialist.
+
+Use for terminal layout, focus/navigation, keyboard interaction, command palette, approvals, typed timeline cells, evidence/receipt inspection, Agent Wall/child-run presentation, responsive terminal behavior, accessibility, and PTY/ConPTY UX.
+
+It is a projection/interaction specialist only. It must not become an authorization, execution, receipt, persistence, validation, or completion authority.
+
+#### `letterblack-lbe-full-project-reconstruction`
+
+**Role:** explicit whole-project reconstruction specialist.
+
+Use only when the user requests exhaustive reconstruction or current evidence proves the accepted project map is unreliable: unknown worktree/repo, unexplained source lineage, unclassified executable path, major source/governance contradiction, or unknown installed provenance.
+
+Do not activate it during ordinary bounded LBE continuation.
+
+Recommended LBE composition:
+
+```text
+letterblack-lbe-boundary-engineering
+  + evidence driven engineering       for bounded defect/proof loops
+  + Letterblack Project Evidence      for current project evidence
+  + Agent Runtime Proof               for live/runtime closure
+  + Preserve Agent Reasoning          when reasoning/runtime boundaries matter
+  + devils governenece rules          only when authority/policy is implicated
+  + letterblack-lbe-tui-interaction-design
+      only for TUI/interaction work
+```
+
+Use `letterblack-lbe-full-project-reconstruction` only on an explicit reconstruction trigger.
