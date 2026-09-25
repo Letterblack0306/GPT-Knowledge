@@ -888,7 +888,7 @@
     ],
     "rule": "Panels, commands, colors, or preview-mode output do not prove the final coding IDE. Final acceptance requires `lbe` alone to enter REAL runtime, embedded Cline provider/model selection, governed coding execution, receipts/evidence, persistence/resume, and accepted LBE UI under an interactive terminal."
   },
-  "updated": "2026-09-08",
+  "updated": "2026-09-25",
   "ui_contract_2026_09_08": {
     "classification": "CANONICAL_UI_POLICY_LOCKED",
     "canonical_document": "project-engineering/projects/lbe-plan-canvas/LBE_TERMINAL_TUI_UI_PLAN.md",
