@@ -1,7 +1,7 @@
 {
   "schema_version": 51,
   "project": "LBE Persistent Agent",
-  "updated": "2026-09-18",
+  "updated": "2026-09-25",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "source_branch": "main",
   "original_workspace": "C:/Agents-Memory-Tool-v6-integration",
@@ -511,16 +511,24 @@
     "status": "OPEN_ACTIVE_PRODUCT_GATE",
     "required_flow": "lbe -> Rust/Ratatui LBE shell -> RealLbeWrapper/LBE session -> headless Cline reasoning/provider -> governed tool/approval -> ToolReceipt/evidence -> continuation -> persistence/resume -> validation/completion -> clean TTY/ConPTY exit"
   },
-  "current_status": "FINAL_INSTALLED_PRODUCT_ACCEPTANCE_PASS",
-  "active_node": "installed-product-accepted",
+  "current_status": "INSTALLED_FINAL_PRODUCT_ACCEPTANCE_OPEN_AFTER_AUDIT_RECONCILIATION",
+  "active_node": "sept-24-audit-reconciliation-open-gaps",
   "nodes": [
     {
       "id": "installed-product-accepted",
       "lane": "Acceptance",
       "title": "Installed LBE product accepted",
-      "status": "proven",
-      "priority": "COMPLETE",
-      "summary": "Fresh-shell `lbe` resolves the canonical installed LetterBlack launcher, launches the Rust/Ratatui product, attaches the authoritative runtime, and all defined PTY/provider/tool/approval/receipt/resume/mode-policy/installer provenance gates pass."
+      "status": "superseded_by_newer_claim_matched_audit_evidence",
+      "priority": "HISTORICAL",
+      "summary": "Fresh-shell `lbe` resolves the canonical installed LetterBlack launcher, launches the Rust/Ratatui product, attaches the authoritative runtime, and all defined PTY/provider/tool/approval/receipt/resume/mode-policy/installer provenance gates pass. This prior projection is retained as historical and is not current acceptance truth after the September 24 audit reconciliation."
+    },
+    {
+      "id": "sept-24-audit-reconciliation-open-gaps",
+      "lane": "Acceptance",
+      "title": "September 24 audit reconciliation",
+      "status": "active",
+      "priority": "CURRENT",
+      "summary": "Architecture remains accepted. Provider/model binding has a narrow candidate repair with incomplete focused regression; durable installed receipt/exactly-once/restart proof remains open; Rust typed timeline projection remains an owner-preserving UI seam; Textual remains non-production."
     }
   ],
   "delegated_agent_product_control": {
@@ -545,5 +553,14 @@
       "active profile must match the persisted session provider identity before use"
     ],
     "validation_state": "GITHUB_IMPLEMENTED_LOOPTOOL_PENDING"
+  },
+  "audit_reconciliation_2026_09_25": {
+    "architecture": "UNCHANGED_AND_REAFFIRMED",
+    "product_path": "lbe -> LBE-owned Rust/Ratatui -> RealLbeWrapper/LBE -> headless Cline mechanics -> governed consequences -> truthful Rust projection",
+    "provider_binding": "Candidate repair exists at existing reasoning_config/CLI composition seam; complete focused regression still required.",
+    "receipt_persistence": "Do not create another dispatcher or receipt authority. Prove/persist immutable operation fingerprint and ToolReceipt/evidence through existing persistence owners before continuation and across restart.",
+    "rust_timeline": "Implement typed presentation cells from existing authoritative LbeEvent/App projections; no UI-owned execution/completion truth.",
+    "textual": "Historical/diagnostic only; do not add Textual as a production dependency or treat preview strings as proof.",
+    "acceptance": "OPEN until the complete installed chain is exercised at the accepted revision."
   }
 }
