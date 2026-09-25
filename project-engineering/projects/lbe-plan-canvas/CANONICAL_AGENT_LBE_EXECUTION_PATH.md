@@ -103,3 +103,17 @@ Final acceptance is BLOCKED unless the complete installed chain is exercised. So
 ## Historical material
 
 Google Drive/chat history and older client notes may explain rationale and previous decisions. They must not override current GitHub main, current machine governance, current source, current runtime evidence or current local validation evidence. If a connected memory/MCP retrieval fails, report the failure and continue from authoritative repository/runtime evidence.
+
+## 2026-09-25 audit reconciliation
+
+Newer September 24 audit-session evidence was compared against this canonical path.
+
+Result: **architecture aligned; acceptance remains open**.
+
+- **Rust timeline / Workstream C:** authoritative session/turn/operation/receipt/evidence data reaches the Rust client, but conversational runtime state is still largely flattened into transcript strings. The permitted implementation is presentation-only typed timeline projection from existing events; no Rust-local authority may be introduced.
+- **Provider/model binding / Workstream D:** the reproduced failure was persisted session model versus stale ProviderConfig model. The existing `bind_provider_config_to_session` composition seam is the correct owner. A narrow follow-up imported the helper and updated stale focused tests; a direct smoke check passed, but pytest was unavailable in that audit interpreter, so the candidate is not promoted to runtime-proven.
+- **Receipts/exactly-once / Workstream E:** isolated receipt, continuation, replay and evidence mechanisms exist, but durable operation fingerprint + ToolReceipt/evidence correlation across installed continuation and process restart remains unproven. Reuse existing persistence/history owners; do not create a second receipt or dispatch authority.
+- **Legacy Textual / Workstream G:** `lbe_guard_inspector/textual_tui.py` remains historical/diagnostic and is not canonical-`lbe` reachable. Synthetic preview receipt/evidence text is not runtime proof. The clean-install verifier was corrected to inspect the actual module path without importing Textual.
+
+This reconciliation supersedes any GPT-K projection that says final installed acceptance is currently PASS/CLOSED without newer claim-matched installed evidence. Historical PASS records remain history; they do not override the open proof sequence above.
+
