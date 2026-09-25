@@ -98,10 +98,10 @@
   },
   "current_active_slice": {
     "phase": "INSTALLED_PTY_CONPTY_AND_FINAL_PRODUCT_ACCEPTANCE",
-    "slice": "LBE_OWNED_RUST_TUI_PRODUCT_SURFACE",
+    "slice": "GOVERNED_CODING_COMPLETION_AND_REPLAY_PROOF",
     "status": "OPEN_ACTIVE",
-    "implementation_goal": "Canonicalize the existing Rust/Ratatui LBE client, adapt the LBE HTML/React interaction contract without synthetic state, keep Cline headless, then prove installed TTY/ConPTY acceptance.",
-    "next_gate": "INTERACTIVE_RUST_TTY_ACCEPTANCE"
+    "implementation_goal": "Repair the proven focused-test interpreter owner without touching validator logic, then complete one real governed coding mutation and use its persisted operation/receipt/completion state to prove crash-seam exactly-once replay before installed PTY/ConPTY closure.",
+    "next_gate": "SUCCESSFUL_GOVERNED_MUTATION_COMPLETION"
   },
   "accepted_baseline": {
     "classification": "PROVEN_ACCEPTED_RUNTIME_FOUNDATION",
@@ -127,39 +127,45 @@
   "execution_sequence": [
     {
       "order": 1,
-      "id": "canonicalize-rust-lbe-client",
-      "status": "ACTIVE",
-      "scope": "Reconcile backend integration/build/package/launcher ownership so the Rust/Ratatui client is the canonical visible `lbe` product surface."
+      "id": "finish-request-policy-terminology-candidate",
+      "status": "IN_PROGRESS_LOCAL_ONLY",
+      "scope": "Record request-policy naming clearly; commit only after full-suite validation. Do not interpret the LBE requested-output bound as model/context capacity."
     },
     {
       "order": 2,
-      "id": "bind-real-runtime-state",
-      "status": "PENDING",
-      "scope": "Use RealLbeWrapper/LBE owners for real session/provider/mode/context/timeline/approval state; no simulation."
+      "id": "share-validation-interpreter-resolver",
+      "status": "NEXT_IMPLEMENTATION",
+      "scope": "Replace hardcoded `python` in focused-test evidence production with the established >=3.11 interpreter resolver. Keep validator logic unchanged."
     },
     {
       "order": 3,
-      "id": "headless-cline-continuation",
-      "status": "PENDING",
-      "scope": "Prove headless Cline reasoning/provider/model continuation behind LBE without visible/system Cline UI dependency."
+      "id": "prove-real-governed-coding-mutation",
+      "status": "PENDING_AFTER_2",
+      "scope": "Run one bounded coding task that actually mutates source through governed execution and can satisfy source_change, focused_test, and git_status."
     },
     {
       "order": 4,
-      "id": "complete-lbe-rust-ui",
-      "status": "PENDING",
-      "scope": "Implement the locked minimal LBE shell in Rust using existing HTML/React visual/interaction work as reference."
+      "id": "prove-persisted-operation-receipt-completion-correlation",
+      "status": "PENDING_AFTER_3",
+      "scope": "Correlate governed_operations, immutable operation/request identity, ToolReceipt/evidence, provider continuation, and passing task_completion_contract for the successful mutation."
     },
     {
       "order": 5,
-      "id": "full-interactive-product-acceptance",
-      "status": "PENDING",
-      "scope": "Fresh terminal -> lbe -> provider/model -> governed turn/tool/approval -> ToolReceipt/evidence -> persistence/resume -> clean exit."
+      "id": "prove-crash-seam-exactly-once-restart",
+      "status": "PENDING_AFTER_4",
+      "scope": "Crash after successful persisted side effect but before completion finalization; restart/replay must not execute twice, and changed payload under the same operation identity must be rejected."
     },
     {
       "order": 6,
+      "id": "prove-installed-artifact-and-rust-pty",
+      "status": "PENDING_AFTER_5",
+      "scope": "Establish source/build/package/install provenance, then prove the installed Rust/Ratatui lbe path with real PTY/ConPTY input, approval/denial, receipt/evidence projection, clean exit and terminal restoration."
+    },
+    {
+      "order": 7,
       "id": "installed-product-release",
       "status": "LOCKED",
-      "scope": "Publish/package only after exact installed acceptance passes."
+      "scope": "Release readiness only after current installed end-to-end acceptance is claim-matched and green."
     }
   ],
   "separate_non_product_work": {
@@ -308,27 +314,28 @@
       "exact_cline_source_or_acquisition": "BLOCKED_PENDING_LOCAL_REMOTE_RECONCILIATION"
     }
   },
-  "verified_at": "2026-09-17",
+  "verified_at": "2026-09-25",
   "current_execution_state": {
-    "gate_id": "CLIENT_ACQUISITION_AND_ENTRYPOINT_RECONCILIATION",
-    "current_status": "BLOCKED_BY_CROSS_SOURCE_DRIFT",
-    "canonical_product_integration_commit": "29a6d32148186401ca764348d68a1bca9b31aee7",
-    "canonical_remote_facts": [
-      "cline/ missing",
-      "begin/ missing",
-      "run-cline-lbe.ps1 present",
-      "launcher defaults to missing vendored cline.exe"
+    "gate_id": "GOVERNED_CODING_COMPLETION_AND_REPLAY_PROOF",
+    "current_status": "BLOCKED_BY_FOCUSED_TEST_INTERPRETER_OWNER",
+    "local_workspace": "C:/Agents-Memory-Tool-v6-integration",
+    "local_head": "4908ff1",
+    "publication": "LOCKED",
+    "proven_runtime_facts": [
+      "single-shot completed and failed turns persist operational receipts and correlation",
+      "UTF-8 BOM provider configs load",
+      "provider error detail is preserved",
+      "OpenRouter bounded coding request passed provider admission",
+      "effective requested output cap is observable and overrideable",
+      "seven governed tools were projected; direct native mutation tools were not exposed",
+      "completion contract creation/evaluation is working and VALIDATION_FAILED was truthful"
     ],
-    "local_reported_fact": "run-cline-lbe.ps1 resolves npm-installed cline via Get-Command cline",
-    "next_product_slice": "CLINE_LBE_STRUCTURAL_VISUAL_DIFFERENTIATION",
-    "next_product_slice_activated": false,
-    "backend_recovery_prerequisite": {
-      "status": "BLOCKED_PENDING_DELETION_RATIONALE",
-      "canonical_source": "origin/main",
-      "copy_from_validation_required": false,
-      "restore_from_origin_main_if_deletion_rejected": true,
-      "commit_staged_deletions_allowed": false
-    }
+    "current_blocker": "focused-test evidence producer hardcodes `python`; on this machine it resolves Python 3.10 without pytest",
+    "validator_status": "NOT_DEFECTIVE_DO_NOT_PATCH",
+    "probe_scenario_status": "READ_ONLY_TASK_UNDER_MUTATION_REQUIRED_CODING_CONTRACT_CANNOT_COMPLETE_BY_DESIGN",
+    "governed_operations_status": "ZERO_ROWS_EXPECTED_FOR_THE_READ_ONLY_PROBE",
+    "next_action": "reuse the established >=3.11 interpreter resolver in the focused-test evidence producer, rerun claim-matched validation, then execute a bounded real source mutation",
+    "request_policy_rename": "staged/uncommitted terminology-only candidate; 36 focused tests green; do not treat as current committed head until full suite and commit exist"
   },
   "machine_execution_plan": {
     "rule": "The frontend technology decision is resolved. Implementation and installed acceptance remain open and fail closed.",
@@ -507,12 +514,12 @@
     "cline_ui": "reference/reuse only; not product requirement"
   },
   "current_single_job": {
-    "id": "LBE_OWNED_RUST_TUI_PRODUCT_SURFACE",
+    "id": "GOVERNED_CODING_COMPLETION_AND_REPLAY_PROOF",
     "status": "OPEN_ACTIVE_PRODUCT_GATE",
-    "required_flow": "lbe -> Rust/Ratatui LBE shell -> RealLbeWrapper/LBE session -> headless Cline reasoning/provider -> governed tool/approval -> ToolReceipt/evidence -> continuation -> persistence/resume -> validation/completion -> clean TTY/ConPTY exit"
+    "required_flow": "real coding objective -> provider/model request with bounded requested output -> governed mutation proposal -> LBE authorization -> exactly one execution -> persisted governed operation + ToolReceipt/evidence -> focused validation with shared >=3.11 interpreter -> passing completion contract -> restart/crash replay -> no duplicate side effect -> Rust/Ratatui installed proof"
   },
-  "current_status": "INSTALLED_FINAL_PRODUCT_ACCEPTANCE_OPEN_AFTER_AUDIT_RECONCILIATION",
-  "active_node": "sept-24-audit-reconciliation-open-gaps",
+  "current_status": "INSTALLED_FINAL_PRODUCT_ACCEPTANCE_OPEN_RUNTIME_CHAIN_ADVANCING",
+  "active_node": "shared-validation-interpreter-then-governed-mutation-proof",
   "nodes": [
     {
       "id": "installed-product-accepted",
@@ -557,10 +564,13 @@
   "audit_reconciliation_2026_09_25": {
     "architecture": "UNCHANGED_AND_REAFFIRMED",
     "product_path": "lbe -> LBE-owned Rust/Ratatui -> RealLbeWrapper/LBE -> headless Cline mechanics -> governed consequences -> truthful Rust projection",
-    "provider_binding": "Candidate repair exists at existing reasoning_config/CLI composition seam; complete focused regression still required.",
-    "receipt_persistence": "Do not create another dispatcher or receipt authority. Prove/persist immutable operation fingerprint and ToolReceipt/evidence through existing persistence owners before continuation and across restart.",
-    "rust_timeline": "Implement typed presentation cells from existing authoritative LbeEvent/App projections; no UI-owned execution/completion truth.",
-    "textual": "Historical/diagnostic only; do not add Textual as a production dependency or treat preview strings as proof.",
-    "acceptance": "OPEN until the complete installed chain is exercised at the accepted revision."
+    "historical_baseline": "R3-R7 remain historical accepted baseline and are not promoted to current installed proof.",
+    "provider_binding_and_request_sizing": "Live OpenRouter provider admission now succeeds with bounded requested output. Provider/model context/output capability is discovered/configured data; LBE request-policy bounds only its outbound request parameter.",
+    "receipt_persistence": "Single-shot completed and failed turns are runtime-proven durable in operational history. The remaining receipt problem is narrowed to successful governed mutation persistence and replay across crash/restart.",
+    "completion_validation": "Validator is behaving correctly. The live read-only coding probe created and evaluated the real completion contract and failed because source_change/focused_test/git_status requirements were genuinely unmet.",
+    "earliest_current_defect": "Focused-test evidence producer selects hardcoded `python`, resolving to Python 3.10 without pytest; share the >=3.11 interpreter resolver already used by launcher/runtime rather than changing validator semantics.",
+    "rust_timeline": "Presentation-only typed timeline remains open; no UI-owned execution/completion truth.",
+    "textual": "Historical/diagnostic only.",
+    "acceptance": "OPEN until a real governed coding mutation completes, exactly-once/restart replay is proven, installed artifact provenance is established, and the real Rust/Ratatui PTY/ConPTY path passes."
   }
 }
