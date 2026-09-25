@@ -1034,3 +1034,49 @@ FINAL INSTALLED ACCEPTANCE = OPEN
 
 Any older GPT-K field claiming `FINAL_INSTALLED_LBE_PRODUCT_ACCEPTANCE_PASS`, `PASS_CLOSED`, or an empty `remaining_unproven` set is superseded by this reconciliation unless newer claim-matched installed evidence is recorded.
 
+## 2026-09-25 late handoff — current runtime proof boundary
+
+This handoff supersedes older next-step text that still points to client acquisition, generic receipt discovery, or provider/model binding as the primary current blocker.
+
+Current local evidence:
+
+```text
+LOCAL HEAD / PROVEN COMMITS
+1286b6a  single-shot operational turn receipts
+4908ff1  BOM config loading + provider error transparency
+
+PUBLICATION
+LOCKED
+
+CURRENT ACCEPTANCE
+OPEN
+```
+
+Current proven behavior:
+
+- operational receipts persist for completed and failed single-shot governed turns;
+- provider/model/operation/guard/result/evidence correlation is durable in operational history for the exercised path;
+- BOM-prefixed provider configs load;
+- provider errors remain specific rather than collapsing to a generic message;
+- bounded OpenRouter coding requests now pass provider admission;
+- LBE request-output policy is distinct from provider/model context/output capability;
+- a real coding completion contract was created/evaluated and failed truthfully.
+
+The latest `VALIDATION_FAILED` is **not** a validator bug. The earliest incorrect state is the focused-test evidence producer selecting hardcoded `python`, which resolves to Python 3.10 without pytest. The read-only probe also could not satisfy a coding contract that requires a source change.
+
+Next implementation/proof slice:
+
+```text
+1. share the existing >=3.11 interpreter resolver with the focused-test evidence producer;
+2. leave validator logic unchanged;
+3. run a bounded coding task that performs a real governed source mutation;
+4. correlate governed_operations + ToolReceipt/evidence + task_completion_contract;
+5. prove crash-seam exactly-once/restart replay and changed-payload rejection;
+6. then close installed-artifact provenance and Rust/Ratatui PTY/ConPTY acceptance.
+```
+
+A terminology-only request-policy rename is staged/uncommitted in the local workspace with 36 focused tests green; do not treat it as current committed-head evidence until its full suite completes and a commit exists.
+
+Memory MCP retrieval is currently harness-blocked until the already-running MCP process restarts. Installing numpy into the backing Python environment does not retroactively update the running process.
+
+`install.ps1` and `verify_clean_install.py` remain outside the currently registered implementation intent and must not be silently absorbed into this runtime slice.
