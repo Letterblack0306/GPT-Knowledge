@@ -1,135 +1,351 @@
 {
   "schema_version": 1,
   "project": "Brew",
-  "verified_at": "2026-08-22",
+  "verified_at": "2026-09-25",
   "source_repo": "Letterblack0306/brew",
-  "source_branch": "agent/canonical-runtime-operation-authority-20260812",
-  "source_head": "486a9b433ead59a470e511236139e8201ed292ba",
-  "base_branch": "main",
-  "base_head": "a6342ff3fc0943ade2cc8bde62d79f94952f24ce",
-  "pull_request": 442,
-  "overall_classification": "LOCAL_UPSTREAM_ALIGNED_DIRTY_P2_CLI_SESSION_REPAIR_IN_PROGRESS_VALIDATION_UNPROVEN",
-  "authority_note": "LoopTool command AE1C8619D58E17AD16E7BFFC55100AA8A1DE1BD2F243FAE61C202C6A105D29CA proves the local workspace identity, upstream alignment, one-worktree state, dirty repair surface, and continuation-gate position. Product/runtime success is not inferred from the command PASS.",
-  "closed": [
-    {
-      "id": "architecture",
-      "title": "Canonical reasoning/runtime authority direction",
-      "classification": "PROVEN_PROJECT_CONTRACT",
-      "detail": "PR #442 and its architecture authorities define one persistent reasoning agent and canonical runtime without moving deterministic execution/policy/evidence ownership into the model."
-    },
-    {
-      "id": "provider-turn",
-      "title": "Provider-backed canonical text turn",
-      "classification": "RUNTIME_PROVEN_RECORDED",
-      "detail": "The project records a real canonical /query response through LM Studio and qwen/qwen3-vl-8b for the observed interaction."
-    },
-    {
-      "id": "p0-boundary",
-      "title": "P0 operation-correlation boundary",
-      "classification": "PROVEN_BOUNDARY",
-      "detail": "The earliest identity-loss boundary was established at createProviderAdapter(generateResponse) output handoff, with brew/runner/brew-runner.mjs as the minimal owner."
-    },
-    {
-      "id": "p1-correlation",
-      "title": "P1 operation correlation",
-      "classification": "RUNTIME_PROVEN_RECORDED",
-      "detail": "At accepted runtime revision 1d74031d, all four model lifecycle events carried the exact /query operationId; WRONG_OPERATION_ID_COUNT=0."
-    },
-    {
-      "id": "p2-lifecycle-map",
-      "title": "P2 CLI session authority boundary",
-      "classification": "PROVEN_LOCAL_BOUNDARY",
-      "detail": "The obsolete SessionStore and canonical thread-state/sessions namespace have incompatible lifecycle semantics; the smallest active conflicting owner is the CLI SessionService adapter boundary."
-    }
-  ],
-  "supported_historical": [
-    {
-      "id": "old-gpt-record",
-      "title": "17 August GPT-Knowledge Brew record",
-      "classification": "SUPERSEDED_BY_CURRENT_PR_HEAD",
-      "detail": "The prior projection referenced head 169bc635 and an open correlation defect. Current PR head is 486a9b43 and records P1 correlation closed."
-    }
-  ],
-  "pending": [
-    {
-      "id": "p2-repair",
-      "title": "CLI SessionService authority repair",
-      "priority": "P2 ACTIVE",
-      "classification": "DIRTY_IMPLEMENTATION_IN_PROGRESS",
-      "detail": "Local modifications exist in .ai/continuation-gate.json, brew/cli/services/session-service.mjs, docs/status/ACTIVE_CHANGELOG.md and focused test files, with additional untracked evidence/audit/test files. Nothing is yet committed or promoted as accepted."
-    },
-    {
-      "id": "p2-validation",
-      "title": "P2 repair acceptance",
-      "priority": "REQUIRED BEFORE ADVANCE",
-      "classification": "UNPROVEN",
-      "detail": "Prove canonical session reads, no legacy status/resumedAt/active-session.json writes, truthful Brew status, canonical /query persistence, unchanged operation/message correlation, focused/composition/runtime/regression evidence, and exact revision."
-    },
-    {
-      "id": "branch-main-divergence",
-      "title": "Feature branch versus main",
-      "priority": "BEFORE MERGE",
-      "classification": "UPSTREAM_ALIGNED_MAIN_DIVERGED",
-      "detail": "Local branch is exactly aligned with its feature upstream (0 ahead/0 behind) at 486a9b43. origin/main is a6342ff3; feature-to-main reconciliation and merge readiness remain unproven."
-    },
-    {
-      "id": "turn-id",
-      "title": "Canonical durable turnId ownership",
-      "priority": "P2",
-      "classification": "UNVERIFIED",
-      "detail": "No global turnId owner or semantics are proven. Do not add one from schema inference."
-    },
-    {
-      "id": "tool-loop",
-      "title": "Live provider tool execution composition",
-      "priority": "P3",
-      "classification": "NOT_YET_PROVEN",
-      "detail": "Provider-native tool call → governed host execution → receipt → provider continuation and persistent ordered item lifecycle remain open."
-    },
-    {
-      "id": "recovery",
-      "title": "Cancellation and restart recovery",
-      "priority": "P3",
-      "classification": "NOT_YET_PROVEN",
-      "detail": "Cancellation/error attribution and crash/restart/resume exactly-once behavior remain open."
-    },
-    {
-      "id": "integrations",
-      "title": "Dynamic tools, Browser and Telegram E2E",
-      "priority": "P3",
-      "classification": "NOT_YET_PROVEN",
-      "detail": "Dynamic tool lifecycle/reuse, browser E2E, and Telegram account delivery E2E remain open."
-    },
-    {
-      "id": "release",
-      "title": "Installed runtime, CI and release readiness",
-      "priority": "LOCKED",
-      "classification": "NOT_YET_PROVEN",
-      "detail": "Installed-runtime acceptance and full current-head CI/release acceptance remain unproven."
-    },
-    {
-      "id": "harness-adoption",
-      "title": "DeepSeek Harness compatibility and adoption",
-      "priority": "REFERENCE / BLOCKED",
-      "classification": "ADOPTION_UNPROVEN",
-      "detail": "Compatibility audit found adapter requirements for provider routing, tools/capabilities, sessions/persistence, receipts/evidence, and UI projection. Workspace identity/confinement must remain Brew-owned; no verified Harness equivalent for Brew approvals/governance was established. Resource-policy (13), autonomy (10), and memory/session (18) tests passed, but the Harness executable/package was absent and no governed Brew-style Harness task ran. Do not replace Brew runtime authority."
-    }
-  ],
-  "next_acceptance": {
-    "question": "Does the bounded CLI SessionService repair remove the legacy session authority without regressing canonical query persistence or operation/message correlation?",
-    "observable": "Focused CLI session tests plus Brew status, canonical /query persistence, operation/message correlation, composition, runtime, regression, clean diff review, and exact-revision evidence.",
-    "falsifier": "Legacy status/resumedAt/active-session.json state is still written, canonical records are mutated incompatibly, Brew status fabricates an active session, query correlation regresses, or evidence is not tied to the exact accepted revision."
+  "source_branch": "main",
+  "source_head": "603e75afb1d35cd8e80ef4a1583bb7106504a95d",
+  "default_branch_observed": {
+    "branch": "main",
+    "head": "603e75afb1d35cd8e80ef4a1583bb7106504a95d"
   },
-  "local_evidence": {
-    "command_hash": "AE1C8619D58E17AD16E7BFFC55100AA8A1DE1BD2F243FAE61C202C6A105D29CA",
-    "workspace": "G:\\Developments\\38_Brew_Creative_Agent\\brew",
-    "branch": "agent/canonical-runtime-operation-authority-20260812",
-    "head": "486a9b433ead59a470e511236139e8201ed292ba",
-    "upstream": "origin/agent/canonical-runtime-operation-authority-20260812",
-    "ahead": 0,
-    "behind": 0,
-    "origin_main": "a6342ff3fc0943ade2cc8bde62d79f94952f24ce",
-    "worktrees": 1,
-    "working_tree": "DIRTY"
+  "evidence_level": "CURRENT_REMOTE_MAIN_SOURCE_TEST_PORTABILITY_AND_STATIC_REACHABILITY_EVIDENCE__NEWER_USER_SUPPLIED_LOCAL_WORKTREE_SOURCE_TEST_EVIDENCE__LIVE_CONVERSATIONAL_ACCEPTANCE_OPEN",
+  "overall_classification": "REMOTE_MAIN_603E75_SOURCE_TEST_BASELINE__LOCAL_CAPABILITY_TRUTH_REPAIR_SOURCE_TEST_VALIDATED__FIVE_TURN_LIVE_ACCEPTANCE_PENDING",
+  "authority_note": "Current Brew runtime observations and exact local/remote revision evidence outrank this projection. Remote GitHub main is independently observed at 603e75afb1d35cd8e80ef4a1583bb7106504a95d. The 2026-09-25 capability-truth repair and validation results below are user-supplied local-worktree evidence and are not silently promoted to remote-main or installed-runtime proof.",
+  "canonical_architecture": {
+    "semantic_owner": "PRIMARY_BREW_USER_LEVEL_REASONING_IDENTITY",
+    "flow": [
+      "user_request",
+      "reasoning_model",
+      "governed_executable_tool_registry",
+      "policy_and_permission_checks",
+      "tool_execution",
+      "receipt_and_evidence_return",
+      "same_reasoning_model_decides_next_step",
+      "verification",
+      "final_answer"
+    ],
+    "runtime_deterministic_owners": [
+      "security",
+      "permissions",
+      "workspace_containment",
+      "approvals_and_policy",
+      "schema_validation",
+      "tool_execution",
+      "receipts",
+      "persistence_checkpoints_and_recovery",
+      "verification"
+    ],
+    "forbidden_semantic_authorities": [
+      "request_intent_classifier_before_model",
+      "scenario_router_for_ordinary_natural_language",
+      "heuristic_task_tool_preselection",
+      "unbounded_or_competing_planner_or_controller_that_owns_the_user_level_goal_outside_canonical_brew_authority",
+      "deterministic_completion_judge_replacing_model_reasoning"
+    ],
+    "delegation_model": {
+      "allowed": [
+        "bounded_subagents",
+        "specialist_agents",
+        "agent_teams",
+        "planners_within_delegated_scope",
+        "supervisors_for_bounded_task_coordination",
+        "temporary_workers",
+        "distributed_workers"
+      ],
+      "rule": "Delegates may reason autonomously within assigned task scope, but must not become competing authorities for the top-level user goal, canonical policy, side effects, evidence truth, persistence truth, or product-level completion.",
+      "feature_preservation": "Working and useful capabilities are kept; improvable capabilities are adapted/enhanced; useful overlap is combined; removal requires evidence of broken, fake, unreachable, unsafe, obsolete-after-migration, or conflicting-authority behavior."
+    }
+  },
+  "verified_changes": [
+    {
+      "commit": "a8f4425cc99e85ce4d769fc76077946d9f8fc5bf",
+      "classification": "PROVEN_SOURCE_AND_TEST",
+      "change": "Removed active request-semantic tool preselection from the runner foundation. The canonical reasoning loop now receives the full governed executable registry instead of a regex/token-scored subset. Deleted the obsolete task-tool-selection module, response-decision-layer, and stale runtime build script; removed stale workflow reference."
+    },
+    {
+      "commit": "4a5cb5345b20c335c9c1c359e09bf1bcc6c0439a",
+      "classification": "PROVEN_SOURCE_AND_TEST",
+      "change": "Added regression coverage that rejects semantic tool preselection, semantic router/planner re-entry into the canonical runner, and tool-selection telemetry being used as an execution capability boundary."
+    },
+    {
+      "commit": "39da8df909e6e7cc84cf770fcc04c3e959808506",
+      "classification": "PROVEN_SOURCE_AND_TEST",
+      "change": "Aligned the dynamic prompt tool catalogue with the native tool loop by using describeForModel({ includeUnavailable: false }); the model now sees the governed executable tool set consistently in both context and native tool schemas."
+    },
+    {
+      "commit": "722fc2386589d115bccfadae687923961f4cca95",
+      "classification": "PROVEN_SOURCE_AND_TEST",
+      "change": "Added canonical read-only git.status and git.diff_summary capabilities through Brew's governed capability registry and bounded adapters. Focused tests 2/2, readiness 10/10, full suite 421/421, runtime check and UI build reported PASS."
+    },
+    {
+      "commit": "de951f425230ce0fddcd446f915af4b3972f5ee6",
+      "classification": "DOCUMENTED_ARCHITECTURE_POLICY_NO_NEW_RUNTIME_PROOF",
+      "change": "Clarified root AGENTS policy: bounded subagents, specialist agents, teams and workers may enhance Brew; added explicit feature-preservation disposition rules."
+    },
+    {
+      "commit": "fd72f23d708d1b81ca6c18c1e17a6fb8630d42e7",
+      "classification": "DOCUMENTED_ARCHITECTURE_POLICY_NO_NEW_RUNTIME_PROOF",
+      "change": "Updated ADR-0001 to distinguish one primary user-level reasoning authority from valid delegated agent/team reasoning; architecture cleanup must preserve working capability."
+    },
+    {
+      "commit": "e57a6d09e51af33b30eabf3b0dd66081f5f42d90",
+      "classification": "DOCUMENTED_ARCHITECTURE_POLICY_NO_NEW_RUNTIME_PROOF",
+      "change": "Updated Brew Agent Architecture with delegated-scope autonomy and KEEP/ADAPT/COMBINE/MIGRATE/REMOVE disposition guidance."
+    },
+    {
+      "commit": "15b02efa37ee14119f1b5d665381e47b8a85d1c6",
+      "classification": "DOCUMENTED_ARCHITECTURE_POLICY_NO_NEW_RUNTIME_PROOF",
+      "change": "Updated Brew workspace plan with a delegation and feature-preservation contract covering roles/subagents and distributed workers."
+    },
+    {
+      "commit": "a8819521e8c97b4f6cc2122481c120339c1fb170",
+      "classification": "PROVEN_SOURCE_AND_TEST",
+      "change": "Recursive Brew test discovery was corrected so the canonical runner discovers nested suites from repository root."
+    },
+    {
+      "commit": "175a1b63fcf8f9c8b770f8e533ebce73e7c756a9",
+      "classification": "PROVEN_SOURCE_AND_TEST",
+      "change": "Runtime migration coverage was aligned to canonical runTurn/Telegram/command-policy/CLI contracts; canonical full suite reported 505/505 PASS."
+    },
+    {
+      "commit": "603e75afb1d35cd8e80ef4a1583bb7106504a95d",
+      "classification": "PROVEN_SOURCE_TEST_AND_STANDALONE_PORTABILITY",
+      "change": "Git capability tests were made hermetic and portable. Canonical targeted coverage passed 2/2; a fresh standalone export with no .git passed targeted 2/2 and full 505/505; local and origin/main were verified equal at this commit."
+    }
+  ],
+  "canonical_runtime_findings": [
+    {
+      "id": "agent-tool-loop-model-owned",
+      "classification": "PROVEN_SOURCE",
+      "detail": "brew/runtime/agents/agent-tool-loop.mjs sends the governed tool catalogue to the provider, accepts native model tool actions, executes through the registry, returns receipts/evidence to the same loop, and requires evidence-backed finalization after tool use."
+    },
+    {
+      "id": "runner-foundation-no-semantic-preselection",
+      "classification": "PROVEN_SOURCE_AND_REGRESSION_TEST",
+      "detail": "prepareRunnerFoundationTurn no longer calls createTaskToolRegistryView or requestHints. It returns the governed executable registry and selectedTools is compatibility telemetry representing all exposed executable tools, not heuristic semantic selection."
+    },
+    {
+      "id": "project-registry-governance",
+      "classification": "PROVEN_SOURCE",
+      "detail": "Project registry filtering remains a deterministic permission/configuration boundary over allowed or disabled tools and does not interpret user request semantics."
+    },
+    {
+      "id": "plugin-registry-governance",
+      "classification": "PROVEN_SOURCE",
+      "detail": "Plugin registry composition exposes active plugin tools and delegates execution without taking semantic request ownership."
+    },
+    {
+      "id": "subagent-runtime",
+      "classification": "LEGACY_FAIL_CLOSED",
+      "detail": "The legacy subagent compatibility runtime remains intentionally disabled and fail-closed in the currently proven path. This does not prohibit bounded subagents/teams as a product capability; future or existing working delegates are valid when they use canonical Brew policy/execution/evidence contracts and do not become competing user-level authorities."
+    },
+    {
+      "id": "scenario-router-natural-language-path",
+      "classification": "RUNTIME_DEAD_FOR_CANONICAL_NATURAL_LANGUAGE_BASED_ON_CURRENT_SOURCE_TRACE",
+      "detail": "The natural-language classifyScenario path was found only in tests. Canonical start.js uses classifyExplicitCommand for explicit slash/URL syntax and ordinary natural language falls through to the LLM reasoning loop."
+    },
+    {
+      "id": "operation-journal-current",
+      "classification": "PROVEN_SOURCE_AND_TEST_PRESENT",
+      "detail": "brew/observability/operation-journal.mjs is committed on main, imported by canonical agent/runner/gateway paths, and covered by operation-journal tests. Older REMAINING_AUDIT_AREAS text claiming it is uncommitted is STALE. Process-loss/exactly-once acceptance remains pending."
+    },
+    {
+      "id": "legacy-multi-agent-current",
+      "classification": "FAIL_CLOSED_COMPATIBILITY_SURFACE",
+      "detail": "Legacy compatibility modules remain fail-closed on the previously proven path. Their fail-closed status is not a blanket ban on subagents/teams: useful delegated-agent capability may be preserved or reintroduced through canonical Brew contracts when there is a proven feature requirement."
+    },
+    {
+      "id": "runtime-reachability-current",
+      "classification": "PROVEN_STATIC_CURRENT_MAIN",
+      "detail": "Current runtime reachability audit reports PASS with 179 reachable files, 340 edges, 0 unresolved imports, 0 activeLegacyAuthority, 0 legacyCompatibilityImports, and 0 legacyCompatibilitySurfaces. Four non-literal dynamic-import files still require separate runtime inspection."
+    },
+    {
+      "id": "dynamic-loader-boundaries",
+      "classification": "PARTIALLY_PROVEN_SOURCE",
+      "detail": "brew/capabilities/local-tool-registry.mjs and brew/runtime/plugins/plugin-runtime.mjs use runtime-selected imports but enforce configured-root/package-root containment before module load. event-bus.mjs and log-manager.mjs use a fixed internal redactor URL rather than arbitrary runtime discovery."
+    },
+    {
+      "id": "missing-secret-redactor",
+      "classification": "PROVEN_CURRENT_SOURCE_DEFECT",
+      "detail": "At Brew main 603e75af, brew/runtime/event-bus.mjs and brew/runtime/log-manager.mjs dynamically import ../secrets/secret-redactor.mjs but fall back to identity redaction on failure. brew/secrets/secret-redactor.mjs is absent on current GitHub main, so event/log metadata redaction is currently passthrough unless another future module is supplied. Repair requires a canonical runtime redactor plus direct sink tests."
+    },
+    {
+      "id": "selected-workspace-capability-truth-local-candidate",
+      "classification": "USER_SUPPLIED_LOCAL_SOURCE_AND_TEST_VALIDATED__REMOTE_MAIN_NOT_YET_UPDATED",
+      "detail": "The Sep 25 local candidate evaluates capability truth against the selected registry workspace rather than process.cwd(), rejects Git capability when the selected workspace is outside the discovered repository, and prevents unrelated parent repositories from leaking Git readiness. Reported validation: targeted 2/2, focused 20, full 505/505, runtime syntax PASS, readiness 10/10."
+    }
+  ],
+  "validation": {
+    "full_test_command": "node scripts/run-all.mjs",
+    "suite_count": 124,
+    "test_count": 505,
+    "passed": 505,
+    "failed": 0,
+    "skipped": 0,
+    "todo": 0,
+    "diff_check": "PASS",
+    "additional": [
+      "canonical git capability targeted test 2/2 PASS",
+      "fresh standalone export without .git: git capability targeted test 2/2 PASS",
+      "fresh standalone export: full suite 505/505 PASS",
+      "canonical workspace-index validator PASS after unrelated local gap documents were isolated",
+      "canonical full suite 505/505 PASS",
+      "runtime reachability audit status PASS; reachable=179; edges=340; unresolvedImports=0; activeLegacyAuthority=0",
+      "2026-09-25 user-supplied local candidate: capability selected-workspace targeted tests 2/2 PASS",
+      "2026-09-25 user-supplied local candidate: focused autonomy/one-agent/recovery/capability tests 20 PASS",
+      "2026-09-25 user-supplied local candidate: full npm test 505/505 PASS",
+      "2026-09-25 user-supplied local candidate: runtime syntax check PASS; readiness 10/10 PASS"
+    ],
+    "classification": "REMOTE_MAIN_REPOSITORY_TEST_AND_STANDALONE_PORTABILITY_PROOF__LOCAL_SEP25_SOURCE_TEST_CANDIDATE_ADDED__LIVE_PROVIDER_CONVERSATIONAL_ACCEPTANCE_NOT_YET_PROVEN"
+  },
+  "branch_cleanup": {
+    "superseded_branch": "audit/model-owned-reasoning-cleanup-20260914",
+    "remote_deleted": true,
+    "reason": "Useful architecture behavior and regression coverage were incorporated into main; direct comparison showed no remaining material architecture gap worth preserving."
+  },
+  "remaining_audit_targets": [
+    {
+      "id": "five-turn-live-conversational-acceptance",
+      "status": "PENDING_LIVE_PROOF",
+      "evidence": "Source and automated contracts are reported green in the Sep 25 local candidate, but no claim-matched provider-backed five-turn transcript yet proves conversational quality, real mutation, cross-session recall, and truthful unavailable-tool behavior together.",
+      "next_check": "Run the AGENTS.md Combined Test 1 on the actual provider-backed runtime. Include one positive durable-memory admission case in addition to negative admission/session-recall checks."
+    },
+    {
+      "id": "clean-installed-runtime-acceptance",
+      "status": "RECHECK_CURRENT_HEAD",
+      "evidence": "Standalone non-Git portability is proven at current head, but that export is not the same claim as installed-runtime startup/provider/browser acceptance.",
+      "next_check": "Run installed exact-head acceptance when making a production-ready/live-runtime claim."
+    },
+    {
+      "id": "provider-originated-tool-roundtrip",
+      "status": "PENDING_LIVE_PROOF",
+      "evidence": "P1 provider continuation is validated in canonical source/test coverage, but this update did not capture a new installed live provider-originated tool roundtrip.",
+      "next_check": "Capture one correlated installed/live provider turn when that evidence level is required."
+    },
+    {
+      "id": "completion-truth",
+      "status": "PENDING",
+      "evidence": "Current docs still require objective-grounded completion distinct from provider reply/tool completion.",
+      "next_check": "Prove completion/failure/cancel/block outcomes with claim-matched evidence."
+    },
+    {
+      "id": "crash-recovery-exactly-once",
+      "status": "PENDING",
+      "evidence": "Operation journal is committed and tested, but process-loss recovery, cancellation propagation and exactly-once consequential mutation proof remain open.",
+      "next_check": "Run crash timing/restart/replay scenarios against installed runtime."
+    },
+    {
+      "id": "unified-cancellation",
+      "status": "PENDING_OR_PARTIAL",
+      "evidence": "No current exact-head installed proof yet shows cancellation propagating through provider streams, terminal/browser/filesystem/validation/delivery.",
+      "next_check": "Use one operation identity and prove terminal cancellation across active executors."
+    },
+    {
+      "id": "browser-live-proof",
+      "status": "PENDING_LIVE_REPROOF",
+      "evidence": "Browser capability architecture remains present, but this Sep 20 reconciliation did not execute a new Brew-attributed live browser acceptance.",
+      "next_check": "Run live Brew browser proof when closing installed/runtime acceptance."
+    },
+    {
+      "id": "single-authority-import-reachability",
+      "status": "PROVEN_STATIC_CURRENT",
+      "evidence": "Current audit reports PASS with 179 reachable files, 340 edges, 0 unresolved imports, 0 active legacy authority and 0 legacy compatibility surfaces.",
+      "next_check": "Inspect the four non-literal dynamic import sites separately; do not infer arbitrary runtime loading from static reachability."
+    },
+    {
+      "id": "documentation-reconciliation",
+      "status": "PENDING",
+      "evidence": "docs/status/REMAINING_AUDIT_AREAS.md still contains stale claims including uncommitted operation journal and active dispatch-handlers imports.",
+      "next_check": "Reconcile status docs against 722fc238 so future agents do not repeat superseded blockers."
+    },
+    {
+      "id": "secret-redaction-runtime-sinks",
+      "status": "PROVEN_GAP",
+      "evidence": "Current main references a missing brew/secrets/secret-redactor.mjs from event-bus and log-manager, then silently falls back to passthrough metadata.",
+      "next_check": "Implement or restore one canonical runtime object redactor, add direct event/log redaction tests, and rerun the full suite plus reachability audit."
+    }
+  ],
+  "do_not_recreate": [
+    "request-semantic regex or token tool selection before the model",
+    "channel-specific natural-language agents",
+    "provider-specific semantic routers",
+    "a second planner/controller outside the canonical turn",
+    "deterministic completion authority replacing model evidence judgment",
+    "parallel tool registries when the canonical governed registry can be extended",
+    "unbounded multi-agent/subagent/team orchestration that creates competing user-goal, policy, execution, evidence, persistence, or completion authority",
+    "architecture cleanup that deletes a working useful capability solely because it uses agent/team/planner/supervisor/worker terminology"
+  ],
+  "acceptance_falsifiers": [
+    "Any ordinary natural-language request is semantically routed before the canonical reasoning model.",
+    "Any heuristic request classifier hides otherwise executable tools from the model.",
+    "selectedTools telemetry becomes an execution boundary or TOOL_NOT_SELECTED_FOR_TASK-style gate.",
+    "Dynamic prompt advertises tools that the native model tool schema marks unavailable.",
+    "A planner/controller or delegated agent acquires competing authority over the top-level user goal or bypasses canonical Brew policy/execution/evidence/completion contracts.",
+    "A completion claim after tool use cannot be linked to recorded receipt/evidence identity."
+  ],
+  "evidence_boundary": {
+    "classification": "REMOTE_MAIN_BASELINE_PROVEN__LOCAL_SEP25_SOURCE_TEST_REPAIR_VALIDATED__LIVE_ACCEPTANCE_PENDING",
+    "rule": "Remote main remains independently observed at 603e75af. The Sep 25 capability-truth repair is newer local-worktree evidence with source/tests reported green; it must not be represented as merged remote-main or installed-runtime proof until revision identity and live acceptance are captured.",
+    "next_required_runtime_proof": [
+      "five-turn provider-backed Combined Test 1 from AGENTS.md",
+      "real mutation verified from filesystem/tool evidence before success is narrated",
+      "new-session episodic/session recall without treating history as current filesystem truth",
+      "one positive durable-memory admission/retrieval case and negative non-admission case",
+      "deliberately unavailable tool withheld/reported truthfully",
+      "Phase 2 kill/restart recovery with no duplicate first mutation",
+      "repair and directly test event/log secret redaction if still present in the tested local candidate"
+    ]
+  },
+  "local_worktree_candidate": {
+    "observed_at": "2026-09-25",
+    "workspace": "D:\\Developement\\_Brew_V02\\Brew_Rebuild",
+    "evidence_classification": "USER_SUPPLIED_LOCAL_SOURCE_AND_AUTOMATED_TEST_EVIDENCE",
+    "remote_main_observed_head": "603e75afb1d35cd8e80ef4a1583bb7106504a95d",
+    "local_head": null,
+    "remote_relationship": "UNVERIFIED_LOCAL_WORKTREE_HAS_UNCOMMITTED_CHANGES",
+    "combined_contracts": [
+      "brew-capability-truth",
+      "brew-one-agent-runtime",
+      "brew-project-continuity",
+      "brew-runtime-proof-and-recovery",
+      "brew-selective-memory"
+    ],
+    "canonical_path_preserved": [
+      "gateway",
+      "agent-core",
+      "brew-runner",
+      "agent-tool-loop",
+      "capability registry",
+      "policy/executor",
+      "receipt",
+      "model continuation/final response"
+    ],
+    "implementation_changes": [
+      "brew/capabilities/builtin-capability-adapters.mjs",
+      "brew/capabilities/capability-registry.mjs"
+    ],
+    "capability_truth_repair": [
+      "Capability evaluation uses the selected registry workspace instead of process.cwd().",
+      "Git capabilities are unavailable when the selected workspace is outside the discovered repository.",
+      "An unrelated parent Git repository cannot make a temporary/non-repository workspace appear Git-capable.",
+      "Runtime exposes truthful unavailable state instead of a false Git tool."
+    ],
+    "preserved_user_owned_worktree_changes": [
+      "M AGENTS.md",
+      "D Agent.md",
+      "?? AGENTS.md - Shortcut.lnk"
+    ],
+    "validation": {
+      "syntax_builtin_adapter": "PASS",
+      "syntax_capability_registry": "PASS",
+      "git_capability_tests": "2/2 PASS",
+      "focused_autonomy_one_agent_recovery_capability_tests": "20 PASS",
+      "npm_test": "505/505 PASS",
+      "runtime_check": "RUNTIME_SYNTAX_CHECK_PASS",
+      "readiness": "10/10 PASS"
+    },
+    "evidence_boundary": "SOURCE_AND_AUTOMATED_TEST_VALIDATED_LOCAL_CANDIDATE__NOT_PROVIDER_BACKED_LIVE_ACCEPTANCE",
+    "next_required_proof": "Run the five-turn real-provider conversational acceptance covering pure chat behavior, real read, real mutation, new-session recall, and a deliberately unavailable tool; keep session recall distinct from semantic memory and current filesystem truth."
   }
 }
