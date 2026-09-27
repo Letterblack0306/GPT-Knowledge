@@ -1,6 +1,100 @@
 # Letterblack BirdEye — Local Evidence, MCP Routing, EYES, and Governed Execution
 
-Updated: 2026-09-01
+Updated: 2026-09-27
+
+## 2026-09-27 live census and ownership/provenance update
+
+Newer live BirdEye evidence supersedes the older September 1 runtime snapshot for the specific capabilities below. Older process-exclusivity observations remain historical unless freshly revalidated.
+
+Current supplied BirdEye status:
+
+~~~text
+Unified EYES generation lag = 0
+workspace projection        = current
+memory projection           = current
+skills projection           = current
+query projector             = live
+canonical EYES database     = operational
+~~~
+
+The LBE workspace root resolves explicitly as:
+
+~~~text
+workspace identity = agents-memory-tool-v6-integration
+root               = C:\Agents-Memory-Tool-v6-integration
+indexed files      = 874
+hashed files       = 826
+~~~
+
+### Repository Census V1
+
+BirdEye now has an external, deterministic repository-census layer derived from its inventory pattern. Generated audit artifacts remain outside the product repository under BirdEye-owned state.
+
+Accepted census profile reported against the launcher checkpoint:
+
+~~~text
+FILES DISCOVERED        529
+FILES CLASSIFIED        529
+SOURCE FILES            227
+SOURCE FILES PARSED     227
+PARSE FAILURES          0
+IMPORTS EXAMINED        1643
+LOCAL RESOLVED          672
+EXTERNAL                971
+UNRESOLVED IMPORTS      0
+UNEXPLAINED FAILURES    0
+CENSUS / COVERAGE       PROVEN / COMPLETE
+~~~
+
+OPEN STATIC FINDINGS = 0 is bounded to Census V1 import/classification rules. It does not prove the absence of ownership, architecture, runtime, governance, or behavioral defects.
+
+### Ownership / Provenance V1.5
+
+BirdEye also records ownership provenance separately from symbol presence. The initial scan reported:
+
+~~~text
+ownership records             455
+OWNER_PROVEN                    4
+OWNER_CANDIDATE               189
+BLOCKED_HISTORY_REQUIRED        3
+COMPATIBILITY_WRAPPER           3
+MULTIPLE_OWNER_CANDIDATES      28
+OWNER_FROM_OTHER_BRANCH       228
+unexplained scan failures       0
+~~~
+
+Interpretation rule:
+
+~~~text
+scan coverage complete != ownership resolution complete
+same basename/symbol    != same authority
+branch-only copy        != live authority
+duplicate symbol        != duplicate effect owner
+~~~
+
+Cross-branch/worktree/history evidence is retained as provenance and blocker input. Canonical ownership is established by tracing the live entrypoint/caller/consumer/effect path, not by filename, Git author, branch presence, or PROJECT_INDEX registration alone.
+
+BirdEye now separates:
+
+~~~text
+symbol ownership
+effect ownership
+persistence ownership
+entrypoint ownership
+compatibility role
+authorized mutation target
+~~~
+
+This supports the LBE OWNER_AUTHORITY_BLOCKER: BirdEye supplies evidence and conflict classifications; LBE governance decides whether a mutation is authorized.
+
+Protected checkpoint state reported after the first ownership reconciliation:
+
+~~~text
+CKPT-LAUNCHER-CLEAN-INSTALL-1d89882      PROTECTED
+CKPT-BRD-OWNERSHIP-RECONCILIATION-001    PROTECTED at LBE HEAD 1dd5a50
+~~~
+
+Future scans should be incremental: compare hashes and dependency/ownership edges, reopen only affected findings/checkpoints, and avoid re-auditing already protected slices without contradictory evidence.
 
 ## Purpose
 

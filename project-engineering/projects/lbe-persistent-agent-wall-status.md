@@ -1,5 +1,84 @@
 # LBE Persistent Agent Wall — Current Project Mirror
 
+## 2026-09-27 ownership/governed-execution reconciliation
+
+This section records newer live/local evidence than the older project mirror below. It does not replace the authority hierarchy: current LBE source, machine governance, workspace/runtime evidence, and raw acceptance/checkpoint records remain stronger than GPT-Knowledge.
+
+Latest committed LBE checkpoint supplied during this reconciliation:
+
+~~~text
+repository = Letterblack0306/LBE_Presistent_Agent_wall
+workspace  = C:\Agents-Memory-Tool-v6-integration
+branch     = main
+HEAD       = 1dd5a50
+~~~
+
+Protected checkpoints reported:
+
+~~~text
+CKPT-LAUNCHER-CLEAN-INSTALL-1d89882          PROTECTED
+CKPT-BRD-OWNERSHIP-RECONCILIATION-001        PROTECTED at 1dd5a50
+~~~
+
+The launcher/clean-install slice was committed under its own bounded intent rather than widening the PTY/ConPTY intent. The ownership reconciliation then resolved five BRD findings: one real duplicate authority was collapsed onto the proven protocol owner, one duplicate was classified as test-only/non-authoritative, and three current utilities/entrypoints were registered in PROJECT_INDEX.md.
+
+A later local completion report describes the explicit owner-authority governance implementation across contracts/schemas/rules, governed coding, BirdEye-governed execution, packaging checks, and the terminal UI. The specifically affected files reported for that completion include:
+
+~~~text
+lbe_guard_inspector/runtime/cline_governed_birdeye.py
+lbe_guard_inspector/runtime/governed_coding.py
+tests/test_cline_governed_birdeye.py
+~~~
+
+Validation reported for that later completion:
+
+~~~text
+core ownership/governed-coding tests   62 passed
+BirdEye governed-execution tests       10 passed
+release wheel packaging test            1 passed
+Rust terminal tests                   251 passed, 2 ignored
+Python compilation                     PASS
+git diff --check                       PASS
+~~~
+
+No commit SHA was supplied for that later completion, so GPT-K classifies it as **LOCAL_VALIDATED / COMMIT_ID_UNVERIFIED**, not as canonical remote truth.
+
+### Owner authority rule
+
+The current governance direction now includes a first-class blocker:
+
+~~~text
+OWNER_AUTHORITY_BLOCKER
+UI label: Wrong Owner / Wrong Scope
+
+No proven owner = no patch.
+Wrong owner = blocker.
+Cross-scope edit = blocker.
+Docs-only fix for a runtime defect = blocker.
+~~~
+
+The rule distinguishes the **responsibility/effect owner** from the **authorized mutation target**. They may differ. An edit is allowed only when the responsible owner is evidence-backed, the permitted mutation paths are explicit, unresolved competing owners are classified, and claim-matched validation is defined. Post-execution scope validation remains separate from pre-execution owner proof.
+
+The current BirdEye ownership work is evidence/index support for this rule; BirdEye does not itself become the authority owner. LBE Core/governance remains the decision boundary.
+
+### Warning classification from current validation
+
+Two warning classes were reported and remain non-blocking for the validated slice:
+
+~~~text
+Git LF -> CRLF normalization warnings
+  = working-tree normalization warning
+  = not a code/test failure
+  = git diff --check passed
+
+Rust dead_code warnings
+  = unused-code diagnostics
+  = not a test failure
+  = require ownership/reachability classification before deletion
+~~~
+
+Do not normalize line endings or delete dead-code candidates as part of unrelated owner-authority work.
+
 ## 2026-09-20 architecture direction — LBE core independent of Cline
 
 Current canonical source/governance observed before this GPT-K update:

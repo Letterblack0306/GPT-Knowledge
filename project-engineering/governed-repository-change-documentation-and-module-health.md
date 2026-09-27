@@ -142,6 +142,56 @@ The purpose is not paperwork. It creates durable causal evidence for future sess
 
 ---
 
+## 3.1 Owner authority blocker — blocking
+
+Governed repositories should treat wrong-owner and wrong-scope mutation as a first-class hard blocker when the repository uses explicit ownership/authority boundaries.
+
+Recommended identifier:
+
+~~~text
+OWNER_AUTHORITY_BLOCKER
+~~~
+
+Meaning:
+
+> The issue may be real, but the proposed fix is not authorized until the responsible owner/effect boundary and the allowed mutation scope are proven.
+
+Required before an authority-bearing patch:
+
+~~~text
+owner_file_or_module
+owner_reason
+owner_evidence
+allowed_paths
+validation_command_or_observable
+~~~
+
+Block when:
+
+~~~text
+owner_not_proven
+owner_conflict_unresolved
+proposed_path_outside_allowed_scope
+cross_layer_patch_without_owner_evidence
+docs_only_fix_for_runtime_issue
+ui_only_fix_for_backend_issue_without_evidence
+broad_refactor_for_narrow_issue
+~~~
+
+Do not equate ownership with the last Git author, a matching filename, a PROJECT_INDEX row, or a copy on another branch/worktree. Those are evidence inputs. The responsible owner is the active component that owns the relevant effect/responsibility.
+
+Also distinguish:
+
+~~~text
+responsibility/effect owner
+from
+authorized mutation target
+~~~
+
+They may differ. A consumer can be the correct mutation target when it duplicates, bypasses, or misuses a canonical owner.
+
+This blocker complements, rather than replaces, the change-documentation gate. The documentation gate proves the change is declared; the owner-authority blocker proves the mutation is aimed at an evidence-backed responsibility boundary and remains within scope.
+
 ## 4. Protected surfaces and break-glass documentation
 
 Some repositories may designate architecture-critical paths such as:

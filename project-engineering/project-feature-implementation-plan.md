@@ -211,6 +211,56 @@ Check:
 
 Before adding a new module or abstraction, prove that the required capability does not already exist in another active path or pending integration path.
 
+## 4.1 Owner authority blocker
+
+Before patching a defect or changing an existing feature, apply an explicit owner/scope gate.
+
+Canonical rule:
+
+~~~text
+OWNER_AUTHORITY_BLOCKER
+UI label: Wrong Owner / Wrong Scope
+
+No proven owner = no patch.
+Wrong owner = blocker.
+Cross-scope edit = blocker.
+Docs-only fix for a runtime defect = blocker.
+~~~
+
+A proposed fix must establish:
+
+~~~text
+issue / observed failure
+responsibility or effect owner
+why that owner is responsible
+owner evidence
+authorized mutation target(s)
+allowed paths/scope
+validation command or authoritative observable
+unresolved competing owner candidates, if any
+~~~
+
+Important distinction:
+
+~~~text
+responsibility/effect owner != authorized mutation target
+~~~
+
+For example, a protocol owner may be canonical while the correct repair is in a consumer that duplicated or bypassed that protocol. Proving the canonical owner does not imply the owner file itself must always be edited.
+
+Block mutation when:
+
+- the responsible owner is not proven;
+- multiple live owner candidates remain unresolved;
+- the proposed path is outside the documented/authorized issue scope;
+- a runtime/backend defect is being closed with docs/UI-only changes without evidence that those layers own the effect;
+- a narrow defect is being used to justify a broad refactor;
+- branch/worktree/history provenance has not been reconciled where it materially affects ownership.
+
+This is a deterministic governance boundary, not a replacement for agent reasoning. The agent still investigates and proposes the owner; governance blocks authority-bearing changes until the evidence and scope contract are sufficient.
+
+After execution, validate the actual changed paths separately. A pre-execution owner PASS does not excuse a post-execution scope escape.
+
 Default preference:
 
 ```text
