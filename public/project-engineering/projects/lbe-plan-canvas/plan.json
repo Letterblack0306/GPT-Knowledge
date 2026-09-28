@@ -69,22 +69,15 @@
       "id": "launcher",
       "lane": "Current Uncommitted Work",
       "title": "Launcher clean-install reconciliation",
-      "status": "blocked",
-      "summary": "Authorized but implementation-pending in ledger; work is reported present in dirty tree and not yet landed. Validation/path authority currently blocks closure."
+      "status": "pending",
+      "summary": "Authorized work is reported present in the dirty tree and not yet landed. Closure requires current-governance checks and claim-appropriate validation; the former signed task-scope blocker has been removed from current main."
     },
     {
-      "id": "governance-translation",
+      "id": "current-governance",
       "lane": "Governance",
-      "title": "Authorized intent to executable scope translation",
-      "status": "open",
-      "summary": "Duplicate manual scope signature remains an open design/implementation repair. Existing hard denies and signature fallback must remain intact."
-    },
-    {
-      "id": "validate",
-      "lane": "Governance",
-      "title": "Validation authority",
-      "status": "blocked",
-      "summary": "Active scope INDEXER-AND-PROVIDER-BLOCKERS-003 allows read/write/delete/commit but not validate."
+      "title": "Current implementation gate and workspace lock",
+      "status": "current",
+      "summary": "Current main uses .lbe/governance/implementation-gates.json and workspace-lock.json. The former scripts/governance-lib.mjs/action-preflight.mjs plus separately signed task-scope mechanism is absent and must not be carried forward as a blocker."
     },
     {
       "id": "provider-reachability",
@@ -165,16 +158,6 @@
       "type": "uncommitted"
     },
     {
-      "from": "governance-translation",
-      "to": "validate",
-      "type": "governance-boundary"
-    },
-    {
-      "from": "validate",
-      "to": "truthful-current-acceptance",
-      "type": "blocks-clean-validation"
-    },
-    {
       "from": "provider-reachability",
       "to": "truthful-current-acceptance",
       "type": "blocks-live-provider-proof"
@@ -193,6 +176,16 @@
       "from": "truthful-current-acceptance",
       "to": "release",
       "type": "acceptance"
+    },
+    {
+      "from": "current-governance",
+      "to": "truthful-current-acceptance",
+      "type": "governs"
+    },
+    {
+      "from": "launcher",
+      "to": "truthful-current-acceptance",
+      "type": "requires-validation-and-landing"
     }
   ]
 }
