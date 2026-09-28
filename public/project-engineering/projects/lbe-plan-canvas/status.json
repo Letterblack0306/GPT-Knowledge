@@ -44,18 +44,6 @@
       "completion truth"
     ]
   },
-  "current_scope": {
-    "id": "INDEXER-AND-PROVIDER-BLOCKERS-003",
-    "signed_at": "2026-09-28T17:10:42Z",
-    "allowed_actions": [
-      "read",
-      "write",
-      "delete",
-      "commit"
-    ],
-    "validate_authorized": false,
-    "status": "ACTIVE_BUT_INSUFFICIENT_FOR_REQUIRED_VALIDATION"
-  },
   "current_findings": [
     {
       "id": "IDX-1-2-3",
@@ -76,11 +64,6 @@
       "id": "PYTHON-WORKTREE-TEST",
       "classification": "TESTED_WORKING_TREE_ONLY",
       "detail": "Current-session Python regression was reported as 925 passed on the working tree. It must not be attributed to HEAD without a clean-HEAD validation run."
-    },
-    {
-      "id": "VALIDATE-ACTION",
-      "classification": "BLOCKED_BY_GOVERNANCE",
-      "detail": "The active signed scope does not authorize validate, so clean-HEAD comparison and required validation cannot be executed through the governed path."
     },
     {
       "id": "PROVIDER-REACHABILITY",
@@ -105,7 +88,7 @@
     {
       "id": "LAUNCHER-CLEAN-INSTALL-RECONCILIATION-001",
       "classification": "AUTHORIZED_IMPLEMENTATION_PENDING_DIRTY_WORKTREE",
-      "detail": "Launcher clean-install work is reported already implemented but uncommitted. Landing and evidence remain blocked by current path scope and missing validate authorization."
+      "detail": "Launcher clean-install work is reported already implemented but uncommitted. Closure still requires claim-appropriate validation/evidence, but the removed signed task-scope mechanism is not a current blocker."
     },
     {
       "id": "INDEXER-RESUME-POSITION",
@@ -116,11 +99,6 @@
       "id": "TRUNCATION-COMPLETENESS",
       "classification": "OPEN_PROCESS_DEFECT",
       "detail": "Prior reports repeatedly treated truncated command/file output as complete; current process must preserve truncation as an explicit evidence gap."
-    },
-    {
-      "id": "GOVERNANCE-AUTHORITY-TRANSLATION",
-      "classification": "OPEN_REPAIR_NOT_COMPLETED",
-      "detail": "Current local governance flow still requires a separately signed task scope even when broader project intent is already authorized. The desired repair is deterministic intent-to-contained-scope validation while retaining signatures as fallback for new or expanded authority."
     }
   ],
   "historical_acceptance": {
@@ -130,10 +108,24 @@
     "current_release_readiness": "BLOCKED"
   },
   "next_authoritative_moves": [
-    "Authorize validate in a newly signed scope before clean-HEAD regression or fresh install validation.",
+    "Run clean-HEAD regression/fresh-install validation through the current governance model; do not require the removed task-scope signature mechanism.",
     "Establish whether current main contains the historical R7 observable-13 repair or independently prove the installed artifact carries the provisioned dependency tree.",
     "Make the configured provider endpoint reachable without silent endpoint substitution.",
     "Run current installed provider turn and operator-observed keyboard/mouse PTY acceptance.",
-    "Land only the bounded uncommitted launcher work after its scope and validation authority are correct."
-  ]
+    "Land only the bounded uncommitted launcher work after current-governance checks and required validation evidence pass."
+  ],
+  "governance_current": {
+    "classification": "CURRENT_REPO_GOVERNANCE_OWNER",
+    "authority_files": [
+      ".lbe/governance/implementation-gates.json",
+      ".lbe/governance/workspace-lock.json"
+    ],
+    "removed_legacy_mechanism": [
+      "scripts/governance-lib.mjs",
+      "scripts/action-preflight.mjs",
+      ".governance/task-scope.json",
+      ".governance/task-scope.sig.json"
+    ],
+    "note": "The former separately signed task-scope/preflight model is not present on current main and must not be treated as a current blocker."
+  }
 }
