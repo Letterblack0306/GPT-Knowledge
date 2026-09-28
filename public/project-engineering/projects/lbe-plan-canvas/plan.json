@@ -73,11 +73,11 @@
       "summary": "Authorized work is reported present in the dirty tree and not yet landed. Closure requires current-governance checks and claim-appropriate validation; the former signed task-scope blocker has been removed from current main."
     },
     {
-      "id": "current-governance",
+      "id": "governance-divergence",
       "lane": "Governance",
-      "title": "Current implementation gate and workspace lock",
-      "status": "current",
-      "summary": "Current main uses .lbe/governance/implementation-gates.json and workspace-lock.json. The former scripts/governance-lib.mjs/action-preflight.mjs plus separately signed task-scope mechanism is absent and must not be carried forward as a blocker."
+      "title": "Local vs origin/main governance divergence",
+      "status": "warning",
+      "summary": "Active local checkout reports a live signed task-scope/action-preflight gate, while origin/main 80f82320 lacks those paths and uses .lbe/governance machine files. Do not bypass either by assumption; reconcile history first."
     },
     {
       "id": "provider-reachability",
@@ -178,14 +178,14 @@
       "type": "acceptance"
     },
     {
-      "from": "current-governance",
-      "to": "truthful-current-acceptance",
-      "type": "governs"
-    },
-    {
       "from": "launcher",
       "to": "truthful-current-acceptance",
       "type": "requires-validation-and-landing"
+    },
+    {
+      "from": "governance-divergence",
+      "to": "truthful-current-acceptance",
+      "type": "must-reconcile"
     }
   ]
 }
