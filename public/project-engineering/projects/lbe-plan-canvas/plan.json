@@ -1,181 +1,197 @@
 {
-  "schema_version": 2,
+  "schema_version": 3,
   "project": "LBE Persistent Agent",
-  "purpose": "Repository-driven visual roadmap for Letterblack0306/LBE_Presistent_Agent_wall. Navigation state only; source, machine gates, runtime and acceptance evidence remain authoritative.",
-  "authority_rule": "Current repository main, .lbe/governance/implementation-gates.json, project acceptance records, exact local revision, installed runtime and interactive evidence outrank this projection.",
-  "updated": "2026-08-22",
+  "purpose": "Current projection of the LBE Persistent Agent roadmap. Repository, runtime, governance, installed evidence and exact working-tree state remain authoritative.",
+  "authority_rule": "Current repository main, active governance/scope, exact local working tree, installed runtime and direct acceptance evidence outrank this projection. Google Drive chat history is context only.",
+  "updated": "2026-09-29",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "source_branch": "main",
-  "source_head": "942e494dbbf17550eb01f82caae31822d7ffbbbd",
-  "active_node": "tui-projection-view-models",
+  "source_head": "80f82320b05c1b4f7884788a69f7ac7b21331aec",
+  "active_node": "truthful-current-acceptance",
   "nodes": [
     {
       "id": "vision",
       "lane": "Foundation",
       "title": "Persistent governed agent runtime",
       "status": "proven",
-      "summary": "Providers reason; LBE owns workspace identity, policy, authorization, governed execution, receipts, evidence, persistence, recovery and deterministic completion."
+      "summary": "Reasoning/provider mechanics may vary; LBE owns identity, policy, authorization, execution, receipts/evidence, persistence, recovery, validation and completion truth."
     },
     {
-      "id": "r3-r6",
-      "lane": "Accepted Baseline",
-      "title": "R3–R6F core contracts",
-      "status": "proven",
-      "summary": "Machine gate records R3 through R6F as PROVEN_COMPLETE."
+      "id": "historical-r3-r7",
+      "lane": "Historical Accepted Baseline",
+      "title": "R3–R7 bounded acceptance",
+      "status": "historical-proven",
+      "summary": "Accepted for their recorded revisions and observables only; not current runtime proof."
     },
     {
-      "id": "cli",
-      "lane": "Accepted Baseline",
-      "title": "CLI control plane",
-      "status": "proven",
-      "summary": "Machine gate records CLI as PROVEN_COMPLETE."
+      "id": "historical-pty",
+      "lane": "Historical Accepted Baseline",
+      "title": "2026-09-18 installed PTY/final-product acceptance",
+      "status": "historical-proven",
+      "summary": "Explicitly historical PASS. It does not establish current main or current installed acceptance."
     },
     {
-      "id": "r7",
-      "lane": "Accepted Baseline",
-      "title": "R7 installed end-to-end acceptance",
-      "status": "proven",
-      "summary": "Machine gate records R7_INSTALLED_END_TO_END_ACCEPTANCE as PASS."
-    },
-    {
-      "id": "release-readiness",
-      "lane": "Accepted Baseline",
-      "title": "Release package readiness and precheck",
-      "status": "proven",
-      "summary": "Release package contract repair, readiness acceptance and publication precheck are PASS only for their bounded claims."
-    },
-    {
-      "id": "complete-tui",
-      "lane": "Active Product Phase",
-      "title": "Complete TUI implementation",
-      "status": "proven",
-      "summary": "Explicitly authorized phase. GitHub is implementation authority; LoopTool/local execution is evidence-only and must not patch source. Publication is paused."
-    },
-    {
-      "id": "tui-projection-view-models",
-      "lane": "Active Slice",
-      "title": "TUI projection contract and view models",
+      "id": "main-head",
+      "lane": "Current Source",
+      "title": "Canonical main",
       "status": "current",
-      "priority": "OPEN",
-      "summary": "Project persisted events into typed truthful TUI states without creating a second runtime or inventing unavailable evidence. Source and focused tests exist at main 942e494d; executed focused proof is not established by repository inspection alone."
+      "summary": "Remote main observed at 80f82320b05c1b4f7884788a69f7ac7b21331aec on 2026-09-29."
     },
     {
-      "id": "tui-workspace",
-      "lane": "TUI Sequence",
-      "title": "Objective and activity workspace",
-      "status": "next",
-      "summary": "Build one spatially stable keyboard-first workspace with progressive disclosure over existing owners."
-    },
-    {
-      "id": "tui-commands",
-      "lane": "TUI Sequence",
-      "title": "Truthful command routing",
-      "status": "next",
-      "summary": "Implement distinct status, provider, evidence, help, interrupt and cancel behavior; no unrelated help aliases."
-    },
-    {
-      "id": "tui-sessions-provider",
-      "lane": "TUI Sequence",
-      "title": "Session and provider surfaces",
-      "status": "next",
-      "summary": "Session create/resume/navigation plus provider/model selection, configuration and health through existing owners."
-    },
-    {
-      "id": "tui-details",
-      "lane": "TUI Sequence",
-      "title": "Structured evidence and capability views",
-      "status": "next",
-      "summary": "Render tool, authorization, receipt, evidence, validation, diff, capability and integration truth with unsupported states."
-    },
-    {
-      "id": "tui-installed-acceptance",
-      "lane": "Acceptance",
-      "title": "Installed interactive runtime proof",
-      "status": "blocked",
-      "priority": "FINAL TUI GATE",
-      "summary": "Requires exact clean artifact, Windows Terminal render, six distinct commands, session/provider flows, governed local-provider tool turn, interrupt/cancel, terminal compatibility and regression evidence."
-    },
-    {
-      "id": "release-gate-conflict",
-      "lane": "Release",
-      "title": "2.0.3 gate reconciliation",
+      "id": "dirty-worktree",
+      "lane": "Current Local State",
+      "title": "Dirty integration working tree",
       "status": "warning",
-      "priority": "DOCUMENT CONFLICT",
-      "summary": "pyproject.toml is already 2.0.3, but release_progression still lists setting 2.0.3 as remaining. Reconcile gate text before release preparation resumes."
+      "summary": "Current local evidence reports 13 modified tracked files. Test results from this tree must not be attributed to HEAD or bed2e4b."
     },
     {
-      "id": "release-2.0.3",
-      "lane": "Release",
-      "title": "Publish and verify 2.0.3",
+      "id": "idx",
+      "lane": "Closed Bounded Repairs",
+      "title": "Indexer/prune/search-governance defects",
+      "status": "closed",
+      "summary": "IDX-1/2/3 closed at 33d2440 with temp-DB validation; current installed behavior still requires claim-appropriate evidence."
+    },
+    {
+      "id": "prov1",
+      "lane": "Provider",
+      "title": "Provider/model binding",
+      "status": "implemented",
+      "summary": "Repair implemented; exact real-turn config consumption remains UNVERIFIED."
+    },
+    {
+      "id": "pkg1",
+      "lane": "Packaging",
+      "title": "R7 observable 13 dependency provisioning",
+      "status": "historical-proven",
+      "summary": "Historical defect repaired and installed-proven at 1ecaaea9. Node/npm is a build prerequisite; carryover to current branch remains UNVERIFIED."
+    },
+    {
+      "id": "launcher",
+      "lane": "Current Uncommitted Work",
+      "title": "Launcher clean-install reconciliation",
       "status": "blocked",
-      "priority": "PAUSED",
-      "summary": "Publication is forbidden during COMPLETE_TUI_IMPLEMENTATION. Exact artifact/install, immediate PyPI absence, trusted publishing and post-publish verification remain required."
+      "summary": "Authorized but implementation-pending in ledger; work is reported present in dirty tree and not yet landed. Validation/path authority currently blocks closure."
+    },
+    {
+      "id": "governance-translation",
+      "lane": "Governance",
+      "title": "Authorized intent to executable scope translation",
+      "status": "open",
+      "summary": "Duplicate manual scope signature remains an open design/implementation repair. Existing hard denies and signature fallback must remain intact."
+    },
+    {
+      "id": "validate",
+      "lane": "Governance",
+      "title": "Validation authority",
+      "status": "blocked",
+      "summary": "Active scope INDEXER-AND-PROVIDER-BLOCKERS-003 allows read/write/delete/commit but not validate."
+    },
+    {
+      "id": "provider-reachability",
+      "lane": "Runtime Acceptance",
+      "title": "Configured provider reachability",
+      "status": "blocked",
+      "summary": "localhost:1234 is unreachable. 1431 was observed reachable but must not be silently substituted."
+    },
+    {
+      "id": "truthful-current-acceptance",
+      "lane": "Current Acceptance",
+      "title": "Truthful current installed acceptance",
+      "status": "blocked",
+      "priority": "ACTIVE",
+      "summary": "Current final acceptance remains blocked. Working-tree tests are not HEAD proof; live provider turn, keyboard semantics and attached-session mouse paths remain unverified."
+    },
+    {
+      "id": "resume",
+      "lane": "Open Feature Gap",
+      "title": "True positional --resume",
+      "status": "open",
+      "summary": "Still not implemented; resume remains incremental restart behavior."
+    },
+    {
+      "id": "truncation",
+      "lane": "Evidence Process",
+      "title": "Truncation completeness discipline",
+      "status": "open",
+      "summary": "Never report truncated output as complete; keep incomplete retrieval explicitly classified."
+    },
+    {
+      "id": "release",
+      "lane": "Release",
+      "title": "Release readiness",
+      "status": "blocked",
+      "summary": "Publication/release remains separate and cannot be inferred from historical acceptance or working-tree tests."
     }
   ],
   "edges": [
     {
       "from": "vision",
-      "to": "r3-r6",
-      "type": "flow"
+      "to": "historical-r3-r7",
+      "type": "baseline"
     },
     {
-      "from": "r3-r6",
-      "to": "cli",
-      "type": "flow"
+      "from": "historical-r3-r7",
+      "to": "historical-pty",
+      "type": "historical-acceptance"
     },
     {
-      "from": "cli",
-      "to": "r7",
-      "type": "flow"
+      "from": "historical-pty",
+      "to": "main-head",
+      "type": "does-not-prove-current"
     },
     {
-      "from": "r7",
-      "to": "release-readiness",
-      "type": "flow"
+      "from": "main-head",
+      "to": "dirty-worktree",
+      "type": "local-development"
     },
     {
-      "from": "release-readiness",
-      "to": "complete-tui",
-      "type": "flow"
+      "from": "dirty-worktree",
+      "to": "idx",
+      "type": "contains"
     },
     {
-      "from": "complete-tui",
-      "to": "tui-projection-view-models",
-      "type": "flow"
+      "from": "dirty-worktree",
+      "to": "prov1",
+      "type": "contains"
     },
     {
-      "from": "tui-projection-view-models",
-      "to": "tui-workspace",
-      "type": "acceptance"
+      "from": "historical-r3-r7",
+      "to": "pkg1",
+      "type": "historical-proof"
     },
     {
-      "from": "tui-workspace",
-      "to": "tui-commands",
-      "type": "flow"
+      "from": "dirty-worktree",
+      "to": "launcher",
+      "type": "uncommitted"
     },
     {
-      "from": "tui-commands",
-      "to": "tui-sessions-provider",
-      "type": "flow"
+      "from": "governance-translation",
+      "to": "validate",
+      "type": "governance-boundary"
     },
     {
-      "from": "tui-sessions-provider",
-      "to": "tui-details",
-      "type": "flow"
+      "from": "validate",
+      "to": "truthful-current-acceptance",
+      "type": "blocks-clean-validation"
     },
     {
-      "from": "tui-details",
-      "to": "tui-installed-acceptance",
-      "type": "acceptance"
+      "from": "provider-reachability",
+      "to": "truthful-current-acceptance",
+      "type": "blocks-live-provider-proof"
     },
     {
-      "from": "tui-installed-acceptance",
-      "to": "release-gate-conflict",
-      "type": "requires-revalidation"
+      "from": "prov1",
+      "to": "truthful-current-acceptance",
+      "type": "requires-live-turn"
     },
     {
-      "from": "release-gate-conflict",
-      "to": "release-2.0.3",
+      "from": "launcher",
+      "to": "truthful-current-acceptance",
+      "type": "requires-landed-validated-artifact"
+    },
+    {
+      "from": "truthful-current-acceptance",
+      "to": "release",
       "type": "acceptance"
     }
   ]
