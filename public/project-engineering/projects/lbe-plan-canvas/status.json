@@ -99,6 +99,11 @@
       "id": "TRUNCATION-COMPLETENESS",
       "classification": "OPEN_PROCESS_DEFECT",
       "detail": "Prior reports repeatedly treated truncated command/file output as complete; current process must preserve truncation as an explicit evidence gap."
+    },
+    {
+      "id": "LOCAL-REMOTE-GOVERNANCE-DIVERGENCE",
+      "classification": "PROVEN_MIXED_STATE",
+      "detail": "Active local checkout reports a live signed task-scope/action-preflight gate, while current origin/main at 80f82320 does not contain that governance kit. Local actions remain governed by the live local gate until branch/history reconciliation establishes the canonical lineage."
     }
   ],
   "historical_acceptance": {
@@ -108,24 +113,36 @@
     "current_release_readiness": "BLOCKED"
   },
   "next_authoritative_moves": [
-    "Run clean-HEAD regression/fresh-install validation through the current governance model; do not require the removed task-scope signature mechanism.",
+    "Compare the active local HEAD/history against origin/main before deleting, bypassing, or re-creating any governance mechanism.",
+    "While on the current local checkout, obey the live signed-scope/action-preflight gate for local mutations and validation.",
     "Establish whether current main contains the historical R7 observable-13 repair or independently prove the installed artifact carries the provisioned dependency tree.",
     "Make the configured provider endpoint reachable without silent endpoint substitution.",
-    "Run current installed provider turn and operator-observed keyboard/mouse PTY acceptance.",
-    "Land only the bounded uncommitted launcher work after current-governance checks and required validation evidence pass."
+    "Run current installed provider turn and operator-observed keyboard/mouse PTY acceptance."
   ],
   "governance_current": {
-    "classification": "CURRENT_REPO_GOVERNANCE_OWNER",
-    "authority_files": [
-      ".lbe/governance/implementation-gates.json",
-      ".lbe/governance/workspace-lock.json"
-    ],
-    "removed_legacy_mechanism": [
-      "scripts/governance-lib.mjs",
-      "scripts/action-preflight.mjs",
-      ".governance/task-scope.json",
-      ".governance/task-scope.sig.json"
-    ],
-    "note": "The former separately signed task-scope/preflight model is not present on current main and must not be treated as a current blocker."
+    "classification": "LOCAL_REMOTE_GOVERNANCE_DIVERGENCE",
+    "local_active_checkout": {
+      "head_reported": "bed2e4b",
+      "signed_scope_gate": "PRESENT_AND_LIVE",
+      "paths_reported": [
+        ".governance/task-scope.json",
+        ".governance/task-scope.sig.json",
+        ".governance/workspace-policy.json",
+        "operator-kit/Approve-Scope.mjs",
+        "scripts/action-preflight.mjs",
+        "scripts/propose-scope.mjs"
+      ],
+      "runtime_observation": "action-preflight currently returns authorization decisions; local work must obey this gate until the checkout is reconciled."
+    },
+    "remote_main": {
+      "head": "80f82320b05c1b4f7884788a69f7ac7b21331aec",
+      "full_tree_checked": true,
+      "signed_scope_paths_present": false,
+      "authority_files": [
+        ".lbe/governance/implementation-gates.json",
+        ".lbe/governance/workspace-lock.json"
+      ]
+    },
+    "rule": "Do not bypass the active local signed-scope gate merely because remote main lacks it. First reconcile local versus origin/main and determine which governance lineage is canonical for the active work."
   }
 }
