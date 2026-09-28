@@ -1,118 +1,139 @@
 {
-  "schema_version": 3,
+  "schema_version": 4,
   "project": "LBE Persistent Agent",
-  "verified_at": "2026-09-04",
+  "verified_at": "2026-09-29",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "source_branch": "main",
-  "source_head": "b6eb087095059f94acc65654260459c8f579a147",
-  "client_repo": "Letterblack0306/LBE_Agents_wall_Intigration",
-  "client_branch": "main",
-  "client_head": "1605f54b744237d6c00b3ed6b5692cbcbc3fca55",
-  "overall_classification": "CROSS_REPO_PROVE_PASS_PACKAGE_RETEST_BLOCKED_INTERACTIVE_CLI_UNVERIFIED_RELEASE_NOT_READY",
-  "authority_note": "GitHub main is published implementation authority. Local workspaces are runtime/development evidence. Google Drive is a one-way filtered downstream snapshot of local workspaces for recovery/forensics, not a peer or source of implementation authority.",
+  "source_head": "80f82320b05c1b4f7884788a69f7ac7b21331aec",
+  "canonical_workspace": "C:\\Agents-Memory-Tool-v6-integration",
+  "overall_classification": "CURRENT_MAIN_NEWER_THAN_GPTK_LOCAL_WORKTREE_DIRTY_FINAL_ACCEPTANCE_BLOCKED",
+  "authority_note": "Current repository/runtime/governance evidence outranks GPT-K. Google Drive chat history is context/decision memory only. GPT-K is a projection and must not promote historical PASS records into current runtime truth.",
   "evidence_sources": {
-    "github": {
-      "classification": "PROVEN_CURRENT",
-      "agent_wall_head": "b6eb087095059f94acc65654260459c8f579a147",
-      "rust_tui_head": "1605f54b744237d6c00b3ed6b5692cbcbc3fca55"
+    "github_main": {
+      "classification": "PROVEN_CURRENT_REMOTE_SOURCE",
+      "head": "80f82320b05c1b4f7884788a69f7ac7b21331aec",
+      "observed_at": "2026-09-29",
+      "note": "Remote main is newer than the previous GPT-K projection."
     },
-    "drive": {
-      "classification": "PROVEN_ONE_WAY_SNAPSHOT",
-      "root_role": "downstream backup/recovery evidence",
-      "agent_wall_manifest_updated": "2026-09-04T06:06:58.599Z",
-      "agent_wall_manifest_files": 3306,
-      "rust_tui_manifest_updated": "2026-09-03T21:50:00.850Z",
-      "rust_tui_manifest_files": 6665,
+    "current_local_session": {
+      "classification": "CURRENT_USER_REPORTED_LOCAL_EVIDENCE",
+      "workspace": "C:\\Agents-Memory-Tool-v6-integration",
+      "working_tree": "DIRTY",
+      "modified_tracked_count": 13,
+      "note": "Local working-tree results must not be attributed to HEAD or a named commit unless separately tested."
+    },
+    "drive_history": {
+      "classification": "HISTORICAL_CONTEXT_ONLY",
+      "folder": "1UFfbxyqi6ChigWf2NhrQ-P5grtnQZ1NK",
+      "latest_export_checked": "chatgpt_export_20260920_114956.json",
+      "latest_export_modified": "2026-09-20T07:49:56.640Z",
       "implementation_authority": false
-    },
-    "looptool": {
-      "classification": "CURRENT_LOCAL_EXECUTION_EVIDENCE",
-      "latest_cli_command": "cargo run --bin lbe",
-      "latest_cli_observed": "Compiling lbe-terminal v0.1.0 (C:\\LBE-TUI-Lab)",
-      "latest_cli_result": "TIMED_OUT_BEFORE_COMPILE_OR_INTERACTIVE_RESULT",
-      "duration_seconds": 1.14
     }
   },
-  "closed": [
-    {
-      "id": "cross-repo-structural-check",
-      "title": "Canonical cross-repository structural integration",
-      "classification": "PROVEN_PASS",
-      "detail": "Canonical check reported Structural integration: True."
-    },
-    {
-      "id": "canonical-prove",
-      "title": "Canonical clean-snapshot proof",
-      "classification": "PROVEN_PASS",
-      "detail": "Agent focused tests: 58 passed; Rust tests: 204 passed, 0 failed; cargo fmt --check: PASS."
-    },
-    {
-      "id": "approval-bridge-source",
-      "title": "Writable exact-operation approval bridge",
-      "classification": "IMPLEMENTED_WITH_TEST_PROOF_PRESENT",
-      "detail": "Agent Wall and Rust source include exact operation fingerprint/binding, approval ID, exact replay, idempotent receipt behavior, and payload substitution rejection."
-    },
-    {
-      "id": "package-worker-copy",
-      "title": "Package worker copy bottleneck",
-      "classification": "IMPLEMENTED_FIX",
-      "detail": "Agent Wall b6eb087 installs worker dependencies directly into the final package worker directory instead of recursively copying node_modules."
-    }
-  ],
-  "pending": [
-    {
-      "id": "package-retest",
-      "title": "Candidate package retest",
-      "priority": "ACTIVE",
-      "classification": "BLOCKED_BY_LOCAL_GIT_FILTER",
-      "detail": "git archive through LoopTool is blocked by EPIPE from required global filter C:/Users/prave/.git-tools/utf8nobom-filter.mjs before the package script is reached."
-    },
-    {
-      "id": "interactive-cli",
-      "title": "Real Rust CLI interactive launch",
-      "priority": "ACTIVE",
-      "classification": "UNVERIFIED",
-      "detail": "cargo run --bin lbe was observed compiling, then LoopTool timed out at 1.14 seconds. No compile failure or successful TUI launch is proven."
-    },
-    {
-      "id": "live-patch-acceptance",
-      "title": "Installed writable workspace.patch acceptance",
-      "priority": "RELEASE_GATE",
-      "classification": "NOT_YET_PROVEN",
-      "detail": "Must prove exact-operation approval, exactly-once mutation, idempotent replay, payload-substitution rejection, and persisted receipt/event projection through the installed Rust/LBE path."
-    },
-    {
-      "id": "pty-conpty",
-      "title": "Installed PTY/ConPTY interactive acceptance",
-      "priority": "RELEASE_GATE",
-      "classification": "NOT_YET_PROVEN",
-      "detail": "A real terminal-attached installed acceptance remains required."
-    },
-    {
-      "id": "release-ready",
-      "title": "Release readiness",
-      "priority": "BLOCKED",
-      "classification": "FALSE",
-      "detail": "Candidate packaging and installed interactive acceptance are incomplete."
-    }
-  ],
-  "current_environment_observations": {
-    "git_filter": {
-      "classification": "PROVEN_BLOCKER_FOR_ARCHIVE_PATH",
-      "clean": "node \"C:/Users/prave/.git-tools/utf8nobom-filter.mjs\"",
-      "smudge": "node \"C:/Users/prave/.git-tools/utf8nobom-filter.mjs\"",
-      "required": true,
-      "observed_error": "EPIPE: broken pipe, write"
-    },
-    "drive_topology": {
-      "direction": "LOCAL_WORKSPACE_TO_GOOGLE_DRIVE_ONLY",
-      "reverse_sync": false,
-      "note": "Drive divergence from GitHub is expected when the local workspace is dirty, behind, contains local-only evidence, or includes excluded/generated material."
-    }
+  "product_architecture": {
+    "visible_client": "LBE-owned Rust/Ratatui under apps/lbe-terminal",
+    "reasoning": "engine-neutral LBE provider binding; Cline is a supported adapter",
+    "runtime_authority": "LBE Agent Wall",
+    "fixed_ownership": [
+      "workspace/session/turn identity",
+      "policy and authorization",
+      "governed execution",
+      "receipts/evidence provenance",
+      "persistence/recovery",
+      "validation",
+      "completion truth"
+    ]
   },
-  "next_acceptance": {
-    "question": "Can the real Rust CLI be built/launched through a terminal path that remains attached long enough for interactive acceptance without treating LoopTool's short execution cutoff as an LBE/Rust failure?",
-    "observable": "A terminal-attached lbe process reaches the interactive TUI using the real runtime and remains available for manual input.",
-    "falsifier": "A concrete Rust compile/link/runtime error is captured, or the real runtime fails before the TUI can accept input."
-  }
+  "current_scope": {
+    "id": "INDEXER-AND-PROVIDER-BLOCKERS-003",
+    "signed_at": "2026-09-28T17:10:42Z",
+    "allowed_actions": [
+      "read",
+      "write",
+      "delete",
+      "commit"
+    ],
+    "validate_authorized": false,
+    "status": "ACTIVE_BUT_INSUFFICIENT_FOR_REQUIRED_VALIDATION"
+  },
+  "current_findings": [
+    {
+      "id": "IDX-1-2-3",
+      "classification": "CLOSED_BOUNDED",
+      "detail": "Partial-scan/prune safety and search-governance revalidation were implemented at 33d2440 and temp-DB tested. Do not extrapolate to current installed runtime without fresh evidence."
+    },
+    {
+      "id": "PROV-1",
+      "classification": "IMPLEMENTED_REAL_TURN_UNVERIFIED",
+      "detail": "Provider/model binding repair is implemented; real provider-turn consumption of the exact bound config remains unverified."
+    },
+    {
+      "id": "RUST-WORKTREE-TEST",
+      "classification": "TESTED_WORKING_TREE_ONLY",
+      "detail": "cargo test on the dirty working tree reported 251 passed, 0 failed, 2 ignored. This does not establish HEAD or bed2e4b because modified Rust files were present."
+    },
+    {
+      "id": "PYTHON-WORKTREE-TEST",
+      "classification": "TESTED_WORKING_TREE_ONLY",
+      "detail": "Current-session Python regression was reported as 925 passed on the working tree. It must not be attributed to HEAD without a clean-HEAD validation run."
+    },
+    {
+      "id": "VALIDATE-ACTION",
+      "classification": "BLOCKED_BY_GOVERNANCE",
+      "detail": "The active signed scope does not authorize validate, so clean-HEAD comparison and required validation cannot be executed through the governed path."
+    },
+    {
+      "id": "PROVIDER-REACHABILITY",
+      "classification": "BLOCKED_CONFIGURATION",
+      "detail": "Configured localhost:1234 is unreachable (TCP timeout); 1431 was observed reachable but is not substituted because endpoint/port selection is operator-owned."
+    },
+    {
+      "id": "VISUAL-ACCEPTANCE",
+      "classification": "UNVERIFIED_OPERATOR_REQUIRED",
+      "detail": "Keyboard semantic acceptance and attached-session mouse/provider/model/approval interactions remain unverified and require real interactive observation."
+    },
+    {
+      "id": "DOCUMENT-CONFLICT",
+      "classification": "TRACED_NOT_RECONCILED",
+      "detail": "The September 18 installed PTY/final-product PASS is explicitly historical and does not establish current acceptance. Current machine/current-status records remain blocked; no reconciliation edit has been made."
+    },
+    {
+      "id": "PKG-1-R7-OBS13",
+      "classification": "HISTORICAL_ACCEPTED_BASELINE_CURRENT_BRANCH_CARRYOVER_UNVERIFIED",
+      "detail": "The missing @cline/agents wheel dependency defect was repaired and installed-proven at implementation_sha 1ecaaea9. Residual Node/npm availability is a build-environment prerequisite, not an open product defect. Whether that repair is carried by the current branch is not yet established."
+    },
+    {
+      "id": "LAUNCHER-CLEAN-INSTALL-RECONCILIATION-001",
+      "classification": "AUTHORIZED_IMPLEMENTATION_PENDING_DIRTY_WORKTREE",
+      "detail": "Launcher clean-install work is reported already implemented but uncommitted. Landing and evidence remain blocked by current path scope and missing validate authorization."
+    },
+    {
+      "id": "INDEXER-RESUME-POSITION",
+      "classification": "OPEN_NOT_STARTED",
+      "detail": "--resume still behaves as an incremental restart rather than a true positional resume."
+    },
+    {
+      "id": "TRUNCATION-COMPLETENESS",
+      "classification": "OPEN_PROCESS_DEFECT",
+      "detail": "Prior reports repeatedly treated truncated command/file output as complete; current process must preserve truncation as an explicit evidence gap."
+    },
+    {
+      "id": "GOVERNANCE-AUTHORITY-TRANSLATION",
+      "classification": "OPEN_REPAIR_NOT_COMPLETED",
+      "detail": "Current local governance flow still requires a separately signed task scope even when broader project intent is already authorized. The desired repair is deterministic intent-to-contained-scope validation while retaining signatures as fallback for new or expanded authority."
+    }
+  ],
+  "historical_acceptance": {
+    "r3_to_r7": "ACCEPTED_BOUNDED_HISTORICAL_BASELINE",
+    "installed_pty_2026_09_18": "HISTORICAL_PASS_NOT_CURRENT_ACCEPTANCE",
+    "current_installed_acceptance": "OPEN",
+    "current_release_readiness": "BLOCKED"
+  },
+  "next_authoritative_moves": [
+    "Authorize validate in a newly signed scope before clean-HEAD regression or fresh install validation.",
+    "Establish whether current main contains the historical R7 observable-13 repair or independently prove the installed artifact carries the provisioned dependency tree.",
+    "Make the configured provider endpoint reachable without silent endpoint substitution.",
+    "Run current installed provider turn and operator-observed keyboard/mouse PTY acceptance.",
+    "Land only the bounded uncommitted launcher work after its scope and validation authority are correct."
+  ]
 }
