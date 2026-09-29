@@ -178,6 +178,81 @@ RealityScan reconstruction/export        NOT YET PROVEN
 The CLI existence question is now closed. The next bounded action should stop repeating executable-discovery probes and move to the smallest non-destructive project/import or image-alignment workflow supported by the current RealityScan CLI documentation/runtime. A command PASS still does not prove reconstruction; require an observable project/component/output artifact before advancing the classification.
 
 
+### 2026-09-30 client-entrypoint and governed-command runtime proof
+
+Supplied live MCP/runtime evidence reports that both Cline MCP client configurations were changed from `mcp_server.py` to `loop_mcp_server.py`:
+
+~~~text
+C:\Users\prave\.cline\data\settings\cline_mcp_settings.json
+C:\Users\prave\AppData\Roaming\Code\User\globalStorage\saoudrizwan.claude-dev\settings\cline_mcp_settings.json
+~~~
+
+The current Cline conversation retained its pre-change tool snapshot, so a client/MCP restart or new session is still required before those newly configured Loop tools appear natively in that session.
+
+A live `loop_mcp_server.py` stdio session then exposed `workspace_run` and `workspace_run_sequence`, and supplied execution receipts show `workspace_run` actually executed commands in the active Brew workspace:
+
+~~~text
+workspace = brew
+root      = D:\Developement\_Brew_V02\Brew_Rebuild
+
+git status --porcelain
+  -> exit 0; three untracked files reported
+
+python --version
+  -> exit 0; Python 3.13.12
+
+git pull --ff-only origin main
+  -> exit 0; "Already up to date."
+  -> mutation capability/context evidence supplied
+  -> authority decision reported as ALLOW
+
+git grep -n BREW_BIRDEYE_LOOP_PULL_PROBE -- README.md
+  -> README.md:19 contains BREW_BIRDEYE_LOOP_PULL_PROBE=0401f69
+
+git log -1 --oneline
+  -> local HEAD reported as 8b4018bd
+~~~
+
+Canonical GitHub independently confirms the Brew remote currently has HEAD `8b4018bd60dd4f56827b7cfafc22ad41fc778cce`, and its README contains the exact local-sync marker `BREW_BIRDEYE_LOOP_PULL_PROBE=0401f69`.
+
+Classification:
+
+~~~text
+loop_mcp_server tool exposure             RUNTIME_PROVEN
+workspace_run read-only execution         RUNTIME_PROVEN
+workspace_run non-git execution           RUNTIME_PROVEN
+workspace_run governed pull execution     RUNTIME_PROVEN
+Brew marker visibility                    RUNTIME_PROVEN + GITHUB_CORROBORATED
+Brew remote HEAD 8b4018bd                 GITHUB_PROVEN
+client config edits                       SUPPLIED_RUNTIME_EVIDENCE; restart still required for current-session tool refresh
+~~~
+
+#### Important source/runtime divergence
+
+Do **not** claim that current GitHub `main` already authorizes `git pull` in the `workspace_run` command allowlist.
+
+Current canonical `workspace_bridge.py` at blob `4b5cf8af92f4df994222fc23640bf7b8579a5b0c` has:
+
+~~~text
+allowed_ops = {
+  status, diff, log, show, branch, rev-parse,
+  ls-files, grep, worktree, fetch, add, commit
+}
+~~~
+
+and therefore its command validator would reject `git pull` as an unsupported Git operation. The same file's mutation classifier does list `pull`, but mutation classification is not command authorization.
+
+This creates a concrete divergence:
+
+~~~text
+live runtime receipt: git pull executed successfully through workspace_run
+canonical GitHub main: current validator does not authorize git pull
+~~~
+
+Treat the runtime execution as real for that live environment, but classify the implementation relationship as `SOURCE_RUNTIME_DIVERGENCE` until the local BirdEye source/config used by that MCP process is inspected or the relevant policy change is pushed to GitHub. Do not rewrite this as "GitHub already permits bounded pull."
+
+The G:-drive `brew-creative-agent` root remains reported unavailable; the active Brew root for this proof is the D:-drive workspace above.
+
 ### Governed-execution policy boundary
 
 GitHub `main` for `workspace_bridge.py` shows that `workspace_run` is intentionally policy-restricted. It allows selected Git, npm, Node workspace-script, and Python module commands; arbitrary executables are rejected as `command not allowlisted`, shell wrappers are forbidden, and absolute/path-escaping arguments are rejected.
