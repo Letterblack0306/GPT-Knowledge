@@ -253,6 +253,48 @@ Treat the runtime execution as real for that live environment, but classify the 
 
 The G:-drive `brew-creative-agent` root remains reported unavailable; the active Brew root for this proof is the D:-drive workspace above.
 
+### 2026-09-30 local BirdEye worktree state
+
+The exact local BirdEye runtime checkout was then inspected:
+
+~~~text
+local HEAD = dcdc29aee61e898273988f32808a302644d6890c
+GitHub main = 0401f69a7ee7dbb5037e2bb0fc5b12bcd5bd2cc7
+~~~
+
+The local checkout is not clean. `git status --short` reported tracked modifications including:
+
+~~~text
+agent.py
+config.json
+eye_database.py
+eye_memory.json
+eye_skills.json
+eye_workspace.json
+mcp_server.py
+tests/test_mcp_lazy_reconciliation.py
+tests/test_skills_tool.py
+tests/test_workspace_identity.py
+workspace_bridge.py
+~~~
+
+and multiple untracked files/directories, including ownership/census utilities, runtime-boundary documentation, temporary logs, and additional tests.
+
+Classification:
+
+~~~text
+local BirdEye HEAD differs from GitHub main     RUNTIME_PROVEN
+local BirdEye worktree dirty                    RUNTIME_PROVEN
+workspace_bridge.py locally modified            RUNTIME_PROVEN
+canonical GitHub workspace_bridge unchanged     GITHUB_PROVEN
+exact local pull-policy diff                    NOT YET PROVEN
+SOURCE_RUNTIME_DIVERGENCE                       PROVEN
+~~~
+
+Because `workspace_bridge.py` itself is modified locally, the live ability to execute `git pull --ff-only` may be explained by an uncommitted local policy change. Do not attribute that behavior to local HEAD `dcdc29a...` or to GitHub `main` until the exact `workspace_bridge.py` diff is inspected.
+
+Next smallest observable: inspect only the local diff for `workspace_bridge.py`, not the entire dirty worktree.
+
 ### Governed-execution policy boundary
 
 GitHub `main` for `workspace_bridge.py` shows that `workspace_run` is intentionally policy-restricted. It allows selected Git, npm, Node workspace-script, and Python module commands; arbitrary executables are rejected as `command not allowlisted`, shell wrappers are forbidden, and absolute/path-escaping arguments are rejected.
