@@ -37,17 +37,39 @@ loop_mcp_server.py --stdio  = enhanced BirdEye + Loop surface; workspace_run and
 
 Do not collapse these into one claim. The no-CDP execution capability is proven for the enhanced Loop MCP surface.
 
-### 2026-09-29 command-failure interpretation
+### 2026-09-29 RealityCapture discovery audit
 
-A LoopTool PowerShell probe against:
+The first LoopTool PowerShell probe against:
 
 ~~~text
 D:\2026\SAM_GINIE\jpg MODEL
 ~~~
 
-failed before image enumeration or RealityCapture detection because the executed command contained `$.Extension` rather than PowerShell's automatic-variable form `$_.Extension`. The observed failure therefore does **not** falsify the folder, image set, or RealityCapture installation. It falsifies only that specific relayed PowerShell command.
+failed before image enumeration or RealityCapture detection because the relayed command contained `$.Extension` instead of PowerShell's automatic-variable form `$_.Extension`. That result is classified as `TEST_HARNESS_FAILURE`; it did not falsify the folder, image set, or RealityCapture installation.
 
-For the next bounded probe, prefer `workspace_run` with direct argv commands (or a corrected PowerShell invocation only when shell semantics are actually needed), then observe the returned execution receipt before making feature/install claims.
+A corrected follow-up probe then completed successfully and observed:
+
+~~~text
+ImageCount        = 224
+FirstImage        = DSC00152.jpg
+LastImage         = DSC00384.jpg
+Folder            = D:\2026\SAM_GINIE\jpg MODEL
+RealityCaptureExe = null
+~~~
+
+Interpretation:
+
+- the 224-image local source set and folder are runtime-observed;
+- `RealityCaptureExe = null` proves only that `Get-Command RealityCapture.exe` and the one explicitly tested legacy install path did not resolve an executable;
+- it does **not** prove RealityCapture is absent, because Epic/RealityCapture installation paths, registry uninstall records, Start Menu shortcuts, and launcher-managed locations were not yet inspected.
+
+### Governed-execution policy boundary
+
+GitHub `main` for `workspace_bridge.py` shows that `workspace_run` is intentionally policy-restricted. It allows selected Git, npm, Node workspace-script, and Python module commands; arbitrary executables are rejected as `command not allowlisted`, shell wrappers are forbidden, and absolute/path-escaping arguments are rejected.
+
+Therefore the enhanced no-CDP BirdEye Loop surface is **not equivalent to unrestricted local process execution**. In particular, current source does not authorize launching an external `RealityCapture.exe` directly through `workspace_run`.
+
+Use the evidence/index layer to locate the executable and a currently authorized execution path for discovery. If RealityCapture itself must be launched, either use an already-authorized external bridge/LoopTool route or deliberately extend BirdEye governance with a bounded RealityCapture capability; do not bypass the command policy.
 
 
 ## 2026-09-27 live census and ownership/provenance update
