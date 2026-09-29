@@ -456,3 +456,22 @@ Current proof does **not** establish that every LoopTool execution already persi
 ## Implementation-specific verification
 
 Before claiming current parser, readiness, duplicate-suppression, approval, timeout/cancellation, session, result-return or UI behavior, inspect the current `Letterblack0306/tools` source/runtime. The operating contract and implementation can drift.
+
+## Current LBE installer audit checkpoint — 2026-09-29
+
+A supplied LoopTool/agent result attempted a bounded compatibility repair in `C:\Agents-Memory-Tool-v6-integration` and failed closed before mutation:
+
+```text
+COMMAND HASH: A32EE84FF801402D286D031D91852BE8610CAE4BF9DBAF818A67BF74A376A8ED
+STATUS: FAIL
+EXIT CODE: 1
+REASON: Exact ArgumentList compatibility owner not found; refusing broad edit
+```
+
+GitHub current source was then used as the remote truth. `tools/lbe_product_integration.ps1` currently owns `Invoke-Native` using the PowerShell call operator and splatted arguments, so the attempted `$psi.ArgumentList` compatibility target is obsolete. The command therefore demonstrated the desired fail-closed behavior against a stale target; it did not prove a product defect in that function and did not prove a source mutation.
+
+The actual current installer contract is separately proven on remote `main`: `install.ps1` remains the old `python -m py_compile` validation stub, while `tests/test_product_launcher_contract.py` requires delegation to `tools/lbe_product_integration.ps1 -Mode package` and rejects the old stub.
+
+Remote checkpoint: `Letterblack0306/LBE_Presistent_Agent_wall@4f1449a41c69e7cb5354cc76cb2ed8460512121a`.
+
+Interpretation rule for future LoopTool use: **do not reconstruct or revive an obsolete implementation owner merely because an agent result names it. Reconcile the exact current source owner first, then issue the smallest repair.** Installed product and PTY/ConPTY acceptance remain separate runtime gates.
