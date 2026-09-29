@@ -1,6 +1,54 @@
 # Letterblack BirdEye — Local Evidence, MCP Routing, EYES, and Governed Execution
 
-Updated: 2026-09-27
+Updated: 2026-09-29
+
+## 2026-09-29 BirdEye Loop governed-execution runtime reconciliation
+
+Current runtime evidence and canonical GitHub source establish a narrower, newer execution topology than the older browser-relay-only description.
+
+### Proven execution surface
+
+A live `loop_mcp_server.py --stdio` MCP `initialize` + `tools/list` probe returned both:
+
+~~~text
+workspace_run
+workspace_run_sequence
+~~~
+
+Their published descriptions explicitly state that governed local argv execution does **not** require browser debugging or CDP.
+
+Canonical GitHub `main` independently confirms that `loop_mcp_server.py` owns these exposed tools and dispatches them through the existing BirdEye execution/evidence path:
+
+~~~text
+workspace_run          -> RunRequest.from_mapping(...) -> run_command(..., CONFIG_PATH)
+workspace_run_sequence -> RunSequenceRequest.from_mapping(...) -> run_sequence(..., CONFIG_PATH)
+~~~
+
+The command contract is argv-array based. Prefer it over free-form PowerShell/shell wrappers when the task can be expressed directly.
+
+### Important server-surface distinction
+
+`mcp_server.py` on GitHub `main` currently defines `_WORKSPACE_RUN_SCHEMA` and `_WORKSPACE_RUN_SEQUENCE_SCHEMA`, but does not include them in its base `_TOOL_DEFINITIONS` or `_TOOL_REGISTRY`. Therefore:
+
+~~~text
+mcp_server.py --stdio       = base BirdEye surface; workspace_run is not currently advertised there
+loop_mcp_server.py --stdio  = enhanced BirdEye + Loop surface; workspace_run and workspace_run_sequence are advertised and dispatched
+~~~
+
+Do not collapse these into one claim. The no-CDP execution capability is proven for the enhanced Loop MCP surface.
+
+### 2026-09-29 command-failure interpretation
+
+A LoopTool PowerShell probe against:
+
+~~~text
+D:\2026\SAM_GINIE\jpg MODEL
+~~~
+
+failed before image enumeration or RealityCapture detection because the executed command contained `$.Extension` rather than PowerShell's automatic-variable form `$_.Extension`. The observed failure therefore does **not** falsify the folder, image set, or RealityCapture installation. It falsifies only that specific relayed PowerShell command.
+
+For the next bounded probe, prefer `workspace_run` with direct argv commands (or a corrected PowerShell invocation only when shell semantics are actually needed), then observe the returned execution receipt before making feature/install claims.
+
 
 ## 2026-09-27 live census and ownership/provenance update
 
