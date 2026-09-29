@@ -61,7 +61,24 @@ Interpretation:
 
 - the 224-image local source set and folder are runtime-observed;
 - `RealityCaptureExe = null` proves only that `Get-Command RealityCapture.exe` and the one explicitly tested legacy install path did not resolve an executable;
-- it does **not** prove RealityCapture is absent, because Epic/RealityCapture installation paths, registry uninstall records, Start Menu shortcuts, and launcher-managed locations were not yet inspected.
+- it does **not** prove RealityCapture is absent.
+
+A second bounded discovery probe then inspected three uninstall-registry roots plus the same three known install-path candidates and observed:
+
+~~~text
+RegistryMatches  = []
+KnownPathMatches = null
+~~~
+
+This narrows the result but still does not prove absence. The correct status is:
+
+~~~text
+image source set             RUNTIME_PROVEN
+RealityCapture executable    UNRESOLVED_EXECUTABLE_LOCATION
+RealityCapture not installed NOT PROVEN
+~~~
+
+The user's installation claim remains an external assertion until current machine evidence locates the executable or launcher metadata. Remaining bounded discovery sources include Epic Games Launcher manifests, Windows App Paths, Start Menu application registrations/shortcuts, and custom launcher-managed install locations.
 
 ### Governed-execution policy boundary
 
