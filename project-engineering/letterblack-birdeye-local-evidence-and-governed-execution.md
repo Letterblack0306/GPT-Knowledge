@@ -295,6 +295,36 @@ Because `workspace_bridge.py` itself is modified locally, the live ability to ex
 
 Next smallest observable: inspect only the local diff for `workspace_bridge.py`, not the entire dirty worktree.
 
+### 2026-09-30 local workspace_bridge partial diff
+
+A targeted local diff of `workspace_bridge.py` was inspected. The visible hunk proves two local changes on top of the local checkout:
+
+~~~text
+CIRCUIT_FAILURE_THRESHOLD = 2
+
+load_workspaces(...)
+  no longer rejects every configured root merely because that root's path
+  is unavailable on the current machine.
+
+resolve_workspace(...)
+  now checks existence when the specifically requested workspace is resolved.
+~~~
+
+This explains how an unavailable unrelated root (for example a G:-drive workspace) can coexist with successful execution in the active D:-drive Brew workspace.
+
+The supplied diff fragment does **not** yet show the command allowlist or a `git pull` authorization change. Therefore it does not yet explain the previously observed successful `git pull --ff-only`.
+
+Classification:
+
+~~~text
+local workspace_bridge modified                    RUNTIME_PROVEN
+missing unrelated roots deferred during loading    RUNTIME_PROVEN
+requested-root existence enforced at resolution    RUNTIME_PROVEN
+cause of live git-pull authorization               NOT YET PROVEN
+~~~
+
+Do not infer unseen diff hunks. Inspect only the command-policy section next.
+
 ### Governed-execution policy boundary
 
 GitHub `main` for `workspace_bridge.py` shows that `workspace_run` is intentionally policy-restricted. It allows selected Git, npm, Node workspace-script, and Python module commands; arbitrary executables are rejected as `command not allowlisted`, shell wrappers are forbidden, and absolute/path-escaping arguments are rejected.
