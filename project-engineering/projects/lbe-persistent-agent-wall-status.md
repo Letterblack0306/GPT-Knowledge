@@ -1,4 +1,51 @@
 # LBE Persistent Agent Wall — Current Project Mirror
+## 2026-09-29 current installer-contract audit — remote truth reconciled
+
+A fresh LoopTool/agent execution attempt in the local workspace `C:\Agents-Memory-Tool-v6-integration` was supplied as:
+
+```text
+COMMAND STATUS: FAIL
+COMMAND HASH: A32EE84FF801402D286D031D91852BE8610CAE4BF9DBAF818A67BF74A376A8ED
+EXIT CODE: 1
+```
+
+The command failed closed before mutation because it searched for an exact `Invoke-Native`/PowerShell `ArgumentList` owner pattern and raised:
+
+```text
+Exact ArgumentList compatibility owner not found; refusing broad edit
+```
+
+Current GitHub source independently confirms that this expected owner is stale: `tools/lbe_product_integration.ps1` currently implements `Invoke-Native` with PowerShell's call operator and splatted arguments (`& $FilePath @Arguments`), not the `$psi.ArgumentList` form targeted by the attempted repair. Therefore the failed command is correctly classified as a **stale-target / no-mutation guard stop**, not evidence that the current integration script is broken.
+
+The remote repository was also checked for the actual installer contract. Current `main` still has `install.ps1` as the old validation stub using `python -m py_compile`, while `tests/test_product_launcher_contract.py` explicitly requires the root installer to delegate to `tools/lbe_product_integration.ps1 -Mode package` and forbids that py_compile-only implementation.
+
+Current remote source checkpoint:
+
+```text
+repository = Letterblack0306/LBE_Presistent_Agent_wall
+remote main HEAD = 4f1449a41c69e7cb5354cc76cb2ed8460512121a
+tools/lbe_product_integration.ps1 = present
+root install.ps1 = old validation stub
+launcher contract test = expects canonical package delegation
+```
+
+Classification:
+
+```text
+agent command transport/result        OBSERVED
+attempted source mutation              NOT PROVEN; command failed before edit
+stale ArgumentList owner assumption    PROVEN against current remote source
+root installer defect                  PROVEN_REMOTE_CONTRACT_MISMATCH
+canonical package owner                PROVEN_PRESENT
+installed product acceptance           NOT PROVEN
+PTY/ConPTY acceptance                  STILL OPEN
+release readiness                      NOT PROVEN
+```
+
+This audit does not authorize a broad compatibility rewrite. The next repair must target the **actual current installer owner/contract**, not resurrect the obsolete `ArgumentList` implementation shape. Local/runtime execution remains separately required before claiming the installed product works.
+
+Remote repository and current source outrank the supplied historical/chat claim for present implementation truth.
+
 
 ## 2026-09-27 ownership/governed-execution reconciliation
 
