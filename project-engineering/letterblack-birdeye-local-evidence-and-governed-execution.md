@@ -78,7 +78,38 @@ RealityCapture executable    UNRESOLVED_EXECUTABLE_LOCATION
 RealityCapture not installed NOT PROVEN
 ~~~
 
-The user's installation claim remains an external assertion until current machine evidence locates the executable or launcher metadata. Remaining bounded discovery sources include Epic Games Launcher manifests, Windows App Paths, Start Menu application registrations/shortcuts, and custom launcher-managed install locations.
+The user's installation claim is now corroborated by current machine launcher metadata.
+
+A third bounded discovery probe inspected Windows App Paths, Epic Games Launcher manifests, Start Menu registrations, and Start Menu shortcuts. It returned three Epic manifests:
+
+~~~text
+RealityScan 2.2
+  InstallLocation = C:\Program Files\Epic Games\RealityScan_2.2
+  LaunchExecutable = RealityScan.exe
+
+RealityScan 2.0.1
+  InstallLocation = C:\Program Files\Epic Games\RealityScan_2.0
+  LaunchExecutable = RealityScan.exe
+
+RealityCapture 1.5.1
+  InstallLocation = C:\Program Files\Epic Games\RealityCapture_1.5
+  LaunchExecutable = AppProxy.exe
+~~~
+
+No Windows App Paths, StartApps, or Start Menu shortcut matches were returned.
+
+Classification:
+
+~~~text
+RealityScan 2.2 Epic installation metadata      RUNTIME_PROVEN
+RealityScan 2.0.1 Epic installation metadata    RUNTIME_PROVEN
+RealityCapture 1.5.1 Epic installation metadata RUNTIME_PROVEN
+RealityCapture direct executable path           NOT YET PROVEN
+RealityCapture launch proxy path                 INFERRED from manifest; verify file existence before launch
+~~~
+
+Do not rewrite `LaunchExecutable=AppProxy.exe` into `RealityCapture.exe`. The Epic manifest proves the launcher metadata, not that `AppProxy.exe` exists at the composed path or that it supports RealityCapture CLI flags. The next bounded check is file existence/version metadata inside the three returned install roots, followed by a non-destructive CLI/help probe only through an authorized execution path.
+
 
 ### Governed-execution policy boundary
 
