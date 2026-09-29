@@ -145,7 +145,37 @@ RealityCapture AppProxy.exe current file   DISPROVEN at manifest-reported root
 
 The launcher records for RealityScan 2.0.1 and RealityCapture 1.5.1 are therefore stale/orphaned with respect to their manifest-reported install roots. Current machine evidence identifies RealityScan 2.2, not RealityCapture 1.5.1, as the live installed photogrammetry application.
 
-Do not promote `RealityScan.exe exists` into CLI compatibility or successful reconstruction. The next bounded observable is a non-destructive RealityScan version/help invocation through an authorized execution path, followed by a minimal project/import operation only if the CLI contract is confirmed.
+Do not promote `RealityScan.exe exists` into CLI compatibility or successful reconstruction.
+
+A fifth bounded runtime probe invoked the live RealityScan 2.2 executable with four non-destructive arguments:
+
+~~~text
+-help
+--help
+-version
+--version
+~~~
+
+All four returned exit code 0. The observed stdout identified:
+
+~~~text
+RealityScan 2.2.0.119430 (c) 2026 Epic Games, Inc.
+Online help: https://rshelp.capturingreality.com
+-license displays licensing information
+~~~
+
+Classification:
+
+~~~text
+RealityScan 2.2 process startup          RUNTIME_PROVEN
+RealityScan 2.2 help/version CLI         RUNTIME_PROVEN
+RealityScan version identity             RUNTIME_PROVEN
+RealityScan licensing state              NOT YET PROVEN
+RealityScan image import/alignment       NOT YET PROVEN
+RealityScan reconstruction/export        NOT YET PROVEN
+~~~
+
+The CLI existence question is now closed. The next bounded action should stop repeating executable-discovery probes and move to the smallest non-destructive project/import or image-alignment workflow supported by the current RealityScan CLI documentation/runtime. A command PASS still does not prove reconstruction; require an observable project/component/output artifact before advancing the classification.
 
 
 ### Governed-execution policy boundary
