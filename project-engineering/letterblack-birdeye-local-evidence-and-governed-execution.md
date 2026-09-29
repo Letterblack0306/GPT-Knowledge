@@ -108,7 +108,44 @@ RealityCapture direct executable path           NOT YET PROVEN
 RealityCapture launch proxy path                 INFERRED from manifest; verify file existence before launch
 ~~~
 
-Do not rewrite `LaunchExecutable=AppProxy.exe` into `RealityCapture.exe`. The Epic manifest proves the launcher metadata, not that `AppProxy.exe` exists at the composed path or that it supports RealityCapture CLI flags. The next bounded check is file existence/version metadata inside the three returned install roots, followed by a non-destructive CLI/help probe only through an authorized execution path.
+Do not rewrite `LaunchExecutable=AppProxy.exe` into `RealityCapture.exe`. The Epic manifest proves the launcher metadata, not that `AppProxy.exe` exists at the composed path or that it supports RealityCapture CLI flags.
+
+A fourth bounded probe then inspected the three launcher-reported install roots and file-version metadata.
+
+Observed:
+
+~~~text
+C:\Program Files\Epic Games\RealityScan_2.2
+  root exists = true
+  RealityScan.exe exists = true
+  FileVersion = 2.2.0.119430.RS
+  ProductName = RealityScan
+  ProductVersion = 2.2.0.119430
+  RSNode.exe exists = true
+  RegisterApplication.exe exists = true
+
+C:\Program Files\Epic Games\RealityScan_2.0
+  root exists = false
+
+C:\Program Files\Epic Games\RealityCapture_1.5
+  root exists = false
+~~~
+
+Classification:
+
+~~~text
+RealityScan 2.2 installed executable       RUNTIME_PROVEN
+RealityScan 2.2 product/version metadata   RUNTIME_PROVEN
+RealityScan 2.0 Epic manifest              RUNTIME_PROVEN launcher metadata
+RealityScan 2.0 current install root       DISPROVEN
+RealityCapture 1.5 Epic manifest           RUNTIME_PROVEN launcher metadata
+RealityCapture 1.5 current install root    DISPROVEN
+RealityCapture AppProxy.exe current file   DISPROVEN at manifest-reported root
+~~~
+
+The launcher records for RealityScan 2.0.1 and RealityCapture 1.5.1 are therefore stale/orphaned with respect to their manifest-reported install roots. Current machine evidence identifies RealityScan 2.2, not RealityCapture 1.5.1, as the live installed photogrammetry application.
+
+Do not promote `RealityScan.exe exists` into CLI compatibility or successful reconstruction. The next bounded observable is a non-destructive RealityScan version/help invocation through an authorized execution path, followed by a minimal project/import operation only if the CLI contract is confirmed.
 
 
 ### Governed-execution policy boundary
