@@ -693,3 +693,47 @@ only then a bounded filesystem search under likely vendor/program roots
 ```
 
 GitHub current-source revalidation on 2026-09-30: `Letterblack0306/Letterblack_BirdEye@main` `loop_mcp_server.py` blob `5efdb230c116aabce0577b3ec17fe49e8ccbd0eb` still exposes governed `workspace_run` and `workspace_run_sequence`, with no-CDP execution stated in the tool contract.
+
+
+## RealityScan executable-path/runtime-project checkpoint — 2026-09-30
+
+Fresh user-supplied LoopTool evidence:
+
+```text
+COMMAND HASH: 81A87A18BF9150CF7919E5C69714B441AF24E971678DFCB7BFADC9A891D9B4FC
+STATUS: PASS
+EXIT CODE: 0
+WORKING DIRECTORY: D:\2026\SAM_GINIE\jpg MODEL\capture_Reality
+```
+
+Current running process evidence:
+
+```text
+ProcessName: RealityScan
+PID: 32924
+ExecutablePath: C:\Program Files\Epic Games\RealityScan_2.2\RealityScan.exe
+MainWindowTitle: _3D_mode 2l_aligned* saved to D:\2026\SAM_GINIE\jpg MODEL\capture_Reality - RealityScan
+```
+
+CIM independently reported the same executable path and showed that the process was originally launched with:
+
+```text
+D:\2026\SAM_GINIE\jpg MODEL\capture_Reality\_3D_mode 2l_copy.rsproj
+```
+
+Interpretation boundary:
+
+```text
+REALITYSCAN_PROCESS_RUNNING = PROVEN
+REALITYSCAN_EXECUTABLE_PATH = PROVEN
+EXECUTABLE = C:\Program Files\Epic Games\RealityScan_2.2\RealityScan.exe
+CURRENT WINDOW TITLE REFERENCES ALIGNED PROJECT = PROVEN
+CURRENT WINDOW HAS UNSAVED CHANGES MARKER (*) = PROVEN
+PROCESS STARTUP COMMANDLINE PROJECT = _3D_mode 2l_copy.rsproj
+CURRENT OPEN DOCUMENT == STARTUP COMMANDLINE PROJECT = NOT ASSUMED
+EXPORT_LATEST_COMPONENTS = NOT YET EXECUTED
+```
+
+Important rule: process command-line arguments describe how the existing process was launched; they do not prove which project is currently active after in-application open/save-as operations. For bounded CLI work, pass the intended project explicitly and use the proven executable path rather than relying on the already-running GUI process state.
+
+GitHub current-source revalidation on 2026-09-30: `Letterblack0306/Letterblack_BirdEye@main` `loop_mcp_server.py` blob `5efdb230c116aabce0577b3ec17fe49e8ccbd0eb` still exposes governed `workspace_run` and `workspace_run_sequence`, with no-CDP execution stated in the tool contract.
