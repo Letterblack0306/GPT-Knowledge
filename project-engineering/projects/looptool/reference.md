@@ -475,3 +475,46 @@ The actual current installer contract is separately proven on remote `main`: `in
 Remote checkpoint: `Letterblack0306/LBE_Presistent_Agent_wall@4f1449a41c69e7cb5354cc76cb2ed8460512121a`.
 
 Interpretation rule for future LoopTool use: **do not reconstruct or revive an obsolete implementation owner merely because an agent result names it. Reconcile the exact current source owner first, then issue the smallest repair.** Installed product and PTY/ConPTY acceptance remain separate runtime gates.
+
+
+## RealityScan bounded-command path checkpoint — 2026-09-30
+
+A user-supplied LoopTool/agent result attempted to inspect the current RealityScan aligned project from:
+
+```text
+WORKING DIRECTORY: D:\2026\SAM_GINIE\jpg MODEL\capture_Reality
+COMMAND HASH: 48AF5AE9A11795E97766FAAD0AF0D4DE13E7D6E7EDACDF627646A758C2A83816
+STATUS: FAIL
+EXIT CODE: 1
+```
+
+The failure was caused by the executed target path:
+
+```text
+D:\2026\SAM_GINIE\jpg MODEL\capture_Reality_3D_mode 2l_aligned.rsproj
+```
+
+which omitted the directory separator between `capture_Reality` and `_3D_mode 2l_aligned.rsproj`.
+
+Classification:
+
+```text
+COMMAND_EXECUTION = PROVEN
+PROJECT_FILE_ABSENCE = NOT PROVEN
+ROOT_CAUSE = MALFORMED_TARGET_PATH
+SOURCE_MUTATION = NONE
+NEXT ACTION = resolve the file relative to the proven working directory, then inspect
+```
+
+Do not reinterpret this failure as evidence that the RealityScan project file is absent. Prefer working-directory-relative path construction for filenames beginning with punctuation/underscore or containing spaces:
+
+```powershell
+$root = (Get-Location).Path
+$p = Join-Path -Path $root -ChildPath '_3D_mode 2l_aligned.rsproj'
+```
+
+Before failing on an expected filename, enumerate `*.rsproj` in the established working directory and report the exact candidates. This separates a stale/mistyped filename from an actually missing artifact.
+
+GitHub current-source cross-check on 2026-09-30: `Letterblack0306/Letterblack_BirdEye` current `loop_mcp_server.py` exposes governed `workspace_run` and `workspace_run_sequence`, and their tool descriptions explicitly state that browser debugging/CDP is not required. Canonical merge evidence: `0401f69a7ee7dbb5037e2bb0fc5b12bcd5bd2cc7` ("feat(loop): expose governed local command execution").
+
+Interpretation rule: if the ChatGPT runtime does not surface these MCP actions, classify that as a **tool-exposure/runtime integration gap**, not as absence of LoopTool capability in canonical BirdEye source. Continue using the authorized AGENT COMMAND relay when that is the available execution path.
