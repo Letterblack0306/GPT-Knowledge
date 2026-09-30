@@ -737,3 +737,56 @@ EXPORT_LATEST_COMPONENTS = NOT YET EXECUTED
 Important rule: process command-line arguments describe how the existing process was launched; they do not prove which project is currently active after in-application open/save-as operations. For bounded CLI work, pass the intended project explicitly and use the proven executable path rather than relying on the already-running GUI process state.
 
 GitHub current-source revalidation on 2026-09-30: `Letterblack0306/Letterblack_BirdEye@main` `loop_mcp_server.py` blob `5efdb230c116aabce0577b3ec17fe49e8ccbd0eb` still exposes governed `workspace_run` and `workspace_run_sequence`, with no-CDP execution stated in the tool contract.
+
+
+## RealityScan export harness/argument-quoting checkpoint — 2026-09-30
+
+Fresh user-supplied LoopTool evidence:
+
+```text
+COMMAND HASH: A49C19B54353DC714FB60406DD7092E85459A42D288EAE12D82EBA4BE2787D77
+COMMAND STATUS: FAIL
+WRAPPER EXIT CODE: 1
+REALITYSCAN PROCESS EXIT CODE: 0
+PROCESS ID: 34136
+DURATION: 212.41s
+RSALIGN_COUNT: 0
+FINAL WRAPPER ERROR: NO_RSALIGN_COMPONENTS_EXPORTED
+```
+
+The wrapper used:
+
+```powershell
+Start-Process -FilePath $exe -ArgumentList @(
+  '-load',
+  $project,
+  '-setMinComponentSize',
+  '1',
+  '-exportLatestComponents',
+  $audit,
+  '-quit'
+) -PassThru -Wait
+```
+
+Both `$project` and `$audit` contain spaces in their absolute paths.
+
+Microsoft PowerShell documentation states that `Start-Process -ArgumentList` joins an array into one space-separated string and that the outer quotes of individual PowerShell strings are not retained. Argument values containing spaces must therefore include escaped double quotes; Microsoft recommends using one ArgumentList string containing the necessary quote characters.
+
+RealityScan's current CLI documentation confirms that `exportLatestComponents folderName` exports components created by the last alignment as `.rsalign` files and that `setMinComponentSize size` controls the minimum component size for that export.
+
+Therefore this run does **not** prove that RealityScan correctly received the intended project and output-folder arguments.
+
+Classification:
+
+```text
+REALITYSCAN_EXECUTABLE_LAUNCHED = PROVEN
+REALITYSCAN_CHILD_EXIT_CODE_0 = PROVEN
+EXPECTED_EXPORT_FILES_PRESENT = DISPROVEN FOR THIS INVOCATION
+REALITYSCAN_EXPORT COMMAND CORRECTLY ARGUMENTED = NOT PROVEN
+START_PROCESS ARGUMENT TRANSPORT = TEST_HARNESS_FAILURE / MALFORMED FOR SPACE-CONTAINING VALUES
+REALITYSCAN exportLatestComponents DEFECT = NOT PROVEN
+SAVED PROJECT HAS NO LATEST COMPONENTS = NOT PROVEN
+SOURCE/PROJECT MUTATION = NONE PROVEN BY THIS WRAPPER
+```
+
+Next action: repeat the same bounded export with explicit quoting preserved in a single `ArgumentList` string (or another argv-safe launcher), print that exact argument string, and inspect the output directory. Do not diagnose RealityScan or the project until the corrected invocation is observed.
