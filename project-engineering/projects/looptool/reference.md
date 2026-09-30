@@ -645,3 +645,51 @@ exportRegistration <fileName> [params.xml]
 Current RealityScan documentation also states that Registration export can produce an Image List (`.imagelist`) containing the enabled or selected images. Therefore, once a current component is selected, component-to-image membership should be obtained through a supported RealityScan registration/image-list export path rather than by heuristic parsing of `sfm*.dat` binaries.
 
 Use this as the preferred next diagnostic owner for camera membership.
+
+
+## RealityScan executable-resolution checkpoint — 2026-09-30
+
+Fresh user-supplied LoopTool evidence:
+
+```text
+COMMAND HASH: CA315C6FB80055B96D60EAA1A2F4D5DFE1A3418A76D1BC6FD1764F14074EECAE
+STATUS: FAIL
+EXIT CODE: 1
+WORKING DIRECTORY: D:\2026\SAM_GINIE\jpg MODEL\capture_Reality
+ERROR: REALITYSCAN_EXE_NOT_FOUND
+```
+
+The command only checked these executable-resolution routes:
+
+```text
+C:\Program Files\Epic Games\RealityScan\RealityScan.exe
+C:\Program Files\Capturing Reality\RealityCapture\RealityCapture.exe
+Get-Command RealityScan.exe
+```
+
+Classification:
+
+```text
+COMMAND_EXECUTION = PROVEN
+PROJECT_FILE_CHECK = PASSED BEFORE EXECUTABLE RESOLUTION
+REALITYSCAN_NOT_INSTALLED = NOT PROVEN
+REALITYSCAN_EXECUTABLE_PATH = UNRESOLVED
+EXPORT_LATEST_COMPONENTS = NOT EXECUTED
+COMPONENT_EXPORT_RESULT = UNTESTED
+SOURCE MUTATION = NONE
+```
+
+Do not promote `REALITYSCAN_EXE_NOT_FOUND` into product absence. Earlier runtime evidence in the same task showed an active `RealityScan` process being foregrounded for UI inspection; therefore the next bounded owner is the current process executable path and Windows registration/shortcut metadata, not more guessed installation paths.
+
+Preferred bounded resolution order:
+
+```text
+Get-Process RealityScan / RealityCapture -> Path / MainModule.FileName
+Win32_Process ExecutablePath for matching process names
+App Paths registry
+Uninstall registry DisplayIcon / InstallLocation
+Start Menu shortcut targets
+only then a bounded filesystem search under likely vendor/program roots
+```
+
+GitHub current-source revalidation on 2026-09-30: `Letterblack0306/Letterblack_BirdEye@main` `loop_mcp_server.py` blob `5efdb230c116aabce0577b3ec17fe49e8ccbd0eb` still exposes governed `workspace_run` and `workspace_run_sequence`, with no-CDP execution stated in the tool contract.
