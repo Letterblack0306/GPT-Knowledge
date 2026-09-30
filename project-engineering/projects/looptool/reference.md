@@ -571,3 +571,57 @@ ALL_COMPONENTS_MERGED = DISPROVEN by the live RealityScan UI evidence supplied i
 Do not infer image-to-component membership from component names/counts alone. The `.rsproj` component nodes reference `sfm*.dat` sidecars; the next bounded diagnostic should identify the latest/current component records and inspect their SFM sidecars (or an authoritative RealityScan export/UI report) to map actual camera membership before adding cross-component control points.
 
 GitHub current-source revalidation on 2026-09-30: `Letterblack0306/Letterblack_BirdEye@main` `loop_mcp_server.py` blob `5efdb230c116aabce0577b3ec17fe49e8ccbd0eb` still exposes `workspace_run` and `workspace_run_sequence`, with no-CDP execution stated in the tool contract.
+
+
+## RealityScan current-generation/SFM membership checkpoint — 2026-09-30
+
+Fresh LoopTool evidence:
+
+```text
+COMMAND HASH: 72231EF5371F14D7AC2D6A8178CBCEF93DBAE8ADA454D4C694E60C2DDBC06BC3
+STATUS: PASS
+EXIT CODE: 0
+DURATION: 1.28s
+WORKING DIRECTORY: D:\2026\SAM_GINIE\jpg MODEL\capture_Reality
+```
+
+Observed project facts from `_3D_mode 2l_aligned.rsproj`:
+
+```text
+TOTAL_COMPONENT_RECORDS = 258
+```
+
+The tail of project order shows successive alignment generations. The latest observed complete nine-component generation is:
+
+```text
+Component 0 (28) -> sfm498.dat
+Component 1 (28) -> sfm499.dat
+Component 2 (28) -> sfm500.dat
+Component 3 (28) -> sfm501.dat
+Component 4 (28) -> sfm502.dat
+Component 5 (28) -> sfm503.dat
+Component 6 (28) -> sfm504.dat
+Component 7 (28) -> sfm505.dat
+Component 8 (24) -> sfm506.dat
+```
+
+All nine sidecars exist and share the aligned project's observed timestamp `2026-09-30 07:55:16`. This supports treating XML indexes 249-257 / SFM 498-506 as the latest observed complete generation in project order, not every historical component record in the file.
+
+A bounded ASCII/UTF-16 filename probe over the newest SFM sidecars found no `DSC#####.jpg` strings.
+
+Classification:
+
+```text
+PROJECT COMPONENT HISTORY EXISTS = PROVEN
+LATEST OBSERVED COMPLETE GENERATION = PROVEN FROM PROJECT ORDER
+LATEST GENERATION COMPONENT COUNT = 9
+LATEST GENERATION CAMERA COUNTS = 28,28,28,28,28,28,28,28,24
+SFM SIDECARS EXIST = PROVEN
+DSC FILENAME MEMBERSHIP EXTRACTABLE BY SIMPLE STRING PROBE = DISPROVEN
+IMAGE-TO-COMPONENT MEMBERSHIP = NOT YET PROVEN
+ALL COMPONENTS UNIFIED = DISPROVEN
+```
+
+Do not keep reverse-engineering RealityScan SFM binaries by heuristic string scans once the bounded probe fails. The next authoritative observable should come from RealityScan itself: select each current component and inspect/export its registered inputs/cameras, or use an official RealityScan report/export/CLI surface if available. The goal is a component -> image membership map that can support verified cross-component bridge-point selection.
+
+GitHub source revalidation on 2026-09-30: `Letterblack0306/Letterblack_BirdEye@main` `loop_mcp_server.py` blob `5efdb230c116aabce0577b3ec17fe49e8ccbd0eb` still exposes governed `workspace_run` and `workspace_run_sequence`; their current descriptions state that browser debugging/CDP is not required.
