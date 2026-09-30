@@ -625,3 +625,20 @@ ALL COMPONENTS UNIFIED = DISPROVEN
 Do not keep reverse-engineering RealityScan SFM binaries by heuristic string scans once the bounded probe fails. The next authoritative observable should come from RealityScan itself: select each current component and inspect/export its registered inputs/cameras, or use an official RealityScan report/export/CLI surface if available. The goal is a component -> image membership map that can support verified cross-component bridge-point selection.
 
 GitHub source revalidation on 2026-09-30: `Letterblack0306/Letterblack_BirdEye@main` `loop_mcp_server.py` blob `5efdb230c116aabce0577b3ec17fe49e8ccbd0eb` still exposes governed `workspace_run` and `workspace_run_sequence`; their current descriptions state that browser debugging/CDP is not required.
+
+
+### RealityScan authoritative membership route — source-verified 2026-09-30
+
+Official current RealityScan documentation confirms these supported CLI surfaces:
+
+```text
+selectComponent <componentName>
+exportLatestComponents <folderName>
+exportSelectedComponentDir <folderName>
+exportSelectedComponentFile <fileName>
+exportRegistration <fileName> [params.xml]
+```
+
+Current RealityScan documentation also states that Registration export can produce an Image List (`.imagelist`) containing the enabled or selected images. Therefore, once a current component is selected, component-to-image membership should be obtained through a supported RealityScan registration/image-list export path rather than by heuristic parsing of `sfm*.dat` binaries.
+
+Use this as the preferred next diagnostic owner for camera membership.
