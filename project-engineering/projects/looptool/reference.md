@@ -518,3 +518,56 @@ Before failing on an expected filename, enumerate `*.rsproj` in the established 
 GitHub current-source cross-check on 2026-09-30: `Letterblack0306/Letterblack_BirdEye` current `loop_mcp_server.py` exposes governed `workspace_run` and `workspace_run_sequence`, and their tool descriptions explicitly state that browser debugging/CDP is not required. Canonical merge evidence: `0401f69a7ee7dbb5037e2bb0fc5b12bcd5bd2cc7` ("feat(loop): expose governed local command execution").
 
 Interpretation rule: if the ChatGPT runtime does not surface these MCP actions, classify that as a **tool-exposure/runtime integration gap**, not as absence of LoopTool capability in canonical BirdEye source. Continue using the authorized AGENT COMMAND relay when that is the available execution path.
+
+
+## RealityScan aligned-project existence checkpoint — 2026-09-30
+
+A fresh user-supplied LoopTool result succeeded against the bounded working directory:
+
+```text
+WORKING DIRECTORY: D:\2026\SAM_GINIE\jpg MODEL\capture_Reality
+COMMAND HASH: 6BE9AA155EC1BC49430873EF0D601FEEC52E7517CE2976F14AD4A3A6C93586A2
+STATUS: PASS
+EXIT CODE: 0
+DURATION: 1.29s
+```
+
+The command enumerated the local RealityScan project candidates and proved that the aligned project exists:
+
+```text
+_3D_mode 2l_aligned.rsproj
+Length: 121045
+LastWriteTime: 2026-09-30 07:55:16 local
+Full path rooted under:
+D:\2026\SAM_GINIE\jpg MODEL\capture_Reality
+```
+
+The same project contains source image records beginning with `..\DSC00152.jpg` and component records backed by sidecar SFM files. The observed excerpt included component records such as:
+
+```text
+Component 5 (23) -> sfm209.dat
+Component 6 (23) -> sfm210.dat
+Component 7 (23) -> sfm211.dat
+Component 8 (19) -> sfm212.dat
+Component 0 (24) -> sfm213.dat
+Component 1 (24) -> sfm214.dat
+Component 2 (24) -> sfm215.dat
+Component 3 (24) -> sfm216.dat
+Component 4 (24) -> sfm217.dat
+Component 5 (24) -> sfm218.dat
+```
+
+Interpretation boundary:
+
+```text
+ALIGNED_PROJECT_EXISTS = PROVEN
+PROJECT_READABLE = PROVEN
+COMPONENT_RECORDS_EXIST = PROVEN
+CURRENT_COMPONENT_MEMBERSHIP_BY_IMAGE = NOT YET PROVEN
+LATEST/CURRENT COMPONENT SET FROM XML EXCERPT ALONE = NOT YET PROVEN
+ALL_COMPONENTS_MERGED = DISPROVEN by the live RealityScan UI evidence supplied in the task context
+```
+
+Do not infer image-to-component membership from component names/counts alone. The `.rsproj` component nodes reference `sfm*.dat` sidecars; the next bounded diagnostic should identify the latest/current component records and inspect their SFM sidecars (or an authoritative RealityScan export/UI report) to map actual camera membership before adding cross-component control points.
+
+GitHub current-source revalidation on 2026-09-30: `Letterblack0306/Letterblack_BirdEye@main` `loop_mcp_server.py` blob `5efdb230c116aabce0577b3ec17fe49e8ccbd0eb` still exposes `workspace_run` and `workspace_run_sequence`, with no-CDP execution stated in the tool contract.
