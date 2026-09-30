@@ -591,7 +591,7 @@ Observed project facts from `_3D_mode 2l_aligned.rsproj`:
 TOTAL_COMPONENT_RECORDS = 258
 ```
 
-The tail of project order shows successive alignment generations. The latest observed complete nine-component generation is:
+The tail of project order shows repeated component-name generations. The final observed XML records are:
 
 ```text
 Component 0 (28) -> sfm498.dat
@@ -605,7 +605,9 @@ Component 7 (28) -> sfm505.dat
 Component 8 (24) -> sfm506.dat
 ```
 
-All nine sidecars exist and share the aligned project's observed timestamp `2026-09-30 07:55:16`. This supports treating XML indexes 249-257 / SFM 498-506 as the latest observed complete generation in project order, not every historical component record in the file.
+All nine sidecars exist and share the aligned project's observed timestamp `2026-09-30 07:55:16`. This supports treating XML indexes 249-257 / SFM 498-506 as the final observed component records in project order, not every historical component record in the file.
+
+Important correction: the parenthesized numbers in names such as `Component 0 (28)` are **not proven camera counts**. RealityCapture/RealityScan history demonstrates that repeated alignment can produce names such as `Component 0 (1)`, `Component 0 (2)` as renamed/suffixed component generations. Therefore the previous probe field named `CameraCount`, which was derived only by regex from the component name, was a parser assumption and must not be used as camera-count evidence.
 
 A bounded ASCII/UTF-16 filename probe over the newest SFM sidecars found no `DSC#####.jpg` strings.
 
@@ -613,9 +615,10 @@ Classification:
 
 ```text
 PROJECT COMPONENT HISTORY EXISTS = PROVEN
-LATEST OBSERVED COMPLETE GENERATION = PROVEN FROM PROJECT ORDER
-LATEST GENERATION COMPONENT COUNT = 9
-LATEST GENERATION CAMERA COUNTS = 28,28,28,28,28,28,28,28,24
+FINAL OBSERVED COMPONENT RECORD SET = PROVEN FROM XML ORDER
+FINAL OBSERVED COMPONENT RECORD COUNT = 9
+PARENTHESIZED NAME SUFFIX == CAMERA COUNT = DISPROVEN / BAD INFERENCE
+ACTUAL CAMERA COUNT PER COMPONENT = NOT YET PROVEN
 SFM SIDECARS EXIST = PROVEN
 DSC FILENAME MEMBERSHIP EXTRACTABLE BY SIMPLE STRING PROBE = DISPROVEN
 IMAGE-TO-COMPONENT MEMBERSHIP = NOT YET PROVEN
