@@ -23,26 +23,36 @@ Use this order before LBE work:
 
 ```text
 LBE CLI/TUI product role: CURRENT
-Cline embedded mechanics: CURRENT
+canonical visible client: Python LBE terminal_ui
+normal command: lbe
+Cline mechanics: CURRENT SUPPORTED ADAPTER
 LBE runtime authority: CURRENT
 Rust/Ratatui: REFERENCE / INTEGRATION
 
-active product gate:
-CLINE_LBE_STRUCTURAL_VISUAL_DIFFERENTIATION
-status: FAIL_CURRENT_IMPLEMENTATION
+active slice:
+LBE_OWNED_TERMINAL_PRODUCT_SURFACE
+status: OPEN
 
-next gate:
-INTERACTIVE_CLINE_TTY_ACCEPTANCE
-status: PENDING_AFTER_VISUAL_REWORK
+runtime/package source:
+75158f15369cb5cedfe7ebae2a332051ac63de54
 
-release ready: NO
+exact package/install evidence:
+candidate package verification PASS
+isolated install PASS
+bare lbe launch/version/clean exit PASS
+installed provider/model controls PASS
+installed Python-client restart/resume PASS_BOUNDED
+
+remaining acceptance:
+real PTY/ConPTY interaction + terminal restoration
+current approval DENY/ALLOW + one safe governed mutation
+deterministic completion evidence
+
+final product acceptance: BLOCKED
+publication: LOCKED
 ```
 
-The current backend verifier explicitly rejects a skin-only Cline landing composition. Branding alone is insufficient. The accepted product must first satisfy the minimal LBE runtime-shell structure before TTY acceptance is promoted.
-
-Historical R7, terminal-workspace, writable-approval, repository-divergence, and 2026-09-01 MCP-process observations remain useful history only unless fresh canonical evidence makes them current again.
-
-
+Do not route new work back to the historical Cline visual-differentiation gate or to Rust/Ratatui as the primary product. Current runtime/package source, machine governance, receipts and acceptance records in the LBE repository outrank this routing mirror.
 ## Product-direction check
 
 ```text
