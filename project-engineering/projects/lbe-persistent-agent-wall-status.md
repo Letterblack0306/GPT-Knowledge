@@ -1,4 +1,49 @@
 # LBE Persistent Agent Wall — Current Project Mirror
+## 2026-10-10 current LBE terminal implementation / installed acceptance mirror
+
+> **Projection only.** Current LBE runtime, machine governance, exact Git source/package, receipts, and acceptance records outrank this GPT-K mirror.
+
+Current canonical direction and bounded evidence:
+
+```text
+product                         = LBE / LetterBlack
+normal command                  = lbe
+visible client                  = LBE-owned Python terminal client
+canonical visible source        = lbe_guard_inspector/terminal_ui.py
+Rust/Ratatui                    = reference/integration only
+Cline                           = supported reasoning/provider adapter
+runtime authority               = LBE Agent Wall
+active slice                    = LBE_OWNED_TERMINAL_PRODUCT_SURFACE
+final product acceptance        = OPEN / BLOCKED
+publication                     = LOCKED
+runtime/package source          = 75158f15369cb5cedfe7ebae2a332051ac63de54
+```
+
+Implemented and currently bounded-proven:
+
+- `lbe` opens the LBE-owned terminal surface rather than the Rust client.
+- Exact runtime/package source `75158f1` passed focused terminal/product/launcher/Cline regression (**33 passed**) and canonical product prove.
+- Candidate `LetterBlack-LBE-2.0.3-win-x64-candidate.zip` passed package verification with **18,658 files** and no verification errors.
+- Exact candidate installed to an isolated root without changing the user's PATH or replacing existing npm/LBE command owners.
+- Installed `lbe --version` returned `2.0.3`; bare `lbe` rendered `LBE | LETTERBLACK`, authoritative workspace/provider/model/mode/session state and `[I]` composer; `/quit` exited RC=0.
+- Installed command shim preserves nonzero launcher failures.
+- Installed `/providers`, `/models`, `/model <id>` reuse existing LBE provider/session owners. The configured live endpoint projected 17 providers and five local models, and `google/gemma-4-e4b` selection persisted.
+- Installed Python terminal restart/resume restored session `tui-29f2116feb31454ba7e154e068a324b3` with `openai-compatible/google/gemma-4-e4b` and ACT state retained.
+- Earlier installed runtime proof on the same provider/execution path completed a real Gemma provider continuation and governed `workspace.read`, with ToolReceipt `receipt-dda22b70674e4f01bef6d7d1e65802d5` plus verified workspace evidence and continuation.
+
+Remaining final acceptance is intentionally not promoted to PASS:
+
+```text
+real PTY/ConPTY input + terminal restoration       OPEN
+current approval DENY/ALLOW + safe mutation        OPEN
+deterministic completion evidence                  OPEN
+final product acceptance                           BLOCKED
+publication                                        LOCKED
+```
+
+The only configured Remote Desktop Commander machine observed during this acceptance pass was offline, so no real remote interactive-terminal evidence was fabricated. A disposable governed validation workspace is still needed before running the final approval/mutation acceptance; the dirty canonical workspace must not be used for proof-file mutations.
+
+---
 ## 2026-09-29 current installer-contract audit — remote truth reconciled
 
 A fresh LoopTool/agent execution attempt in the local workspace `C:\Agents-Memory-Tool-v6-integration` was supplied as:
