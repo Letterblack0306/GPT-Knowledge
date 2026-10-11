@@ -1,3 +1,35 @@
+## 2026-10-11 local Rust/Ratatui provider-setup verification
+
+> Bounded live-workspace evidence only. Local workspace `C:\Agents-Memory-Tool-v6-integration` at `fd9212a223882e9c546826af0a51197ae6810827` is 4 commits ahead and 37 commits behind fetched `origin/main`; this proof must not be promoted into canonical installed-product acceptance until repository history is reconciled.
+
+Confirmed directly in the local Rust client:
+
+- `Phase::ProviderSetup { step: ProviderSetupStep }` exists.
+- `ProviderSetupMethod` is data-driven and includes `Preconfigured`, `ApiKey`, `Endpoint`, and `ExternalCredentialChain`; provider defaults are not one hardcoded setup method.
+- Landing/provider progression is gated by `AuthState::Ready`; provider setup cannot simply skip the runtime-ready requirement.
+- Explicit `v` validation key is wired while the provider panel is active.
+- `/tools` resolves to `MockPanel::Tools`.
+- Full Rust suite: **285 passed / 0 failed / 2 ignored**.
+- `main.rs` and `wrapper.rs` both contain current local changes consistent with provider-setup/runtime projection work.
+
+Status projection:
+
+```text
+Rust provider-setup state machine        PROVEN_LOCAL
+provider auth-ready gate                PROVEN_LOCAL
+provider validation key                 PROVEN_LOCAL
+/tools panel wiring                     PROVEN_LOCAL
+Rust regression suite                   PASS_LOCAL (285/0/2)
+raw API-key entry                       NOT IMPLEMENTED / secure runtime-owned storage contract required
+OAuth login                             NOT IMPLEMENTED / secure runtime-owned auth contract required
+Write-Launcher stray-file cleanup       OPEN / owner identified, exact fix not yet accepted
+canonical repo reconciliation           OPEN (local +4 / remote +37)
+final installed-product acceptance      NOT IMPLIED BY THIS PROOF
+```
+
+Do not discard these Rust improvements even if product-surface ownership is later reconciled differently: provider setup, validation gating, tool-panel wiring, and their tests are working feature evidence and may be retained as reference/integration or product code according to the final reconciled owner decision.
+
+---
 # LBE Persistent Agent Wall — Current Project Mirror
 ## 2026-10-10 current LBE terminal implementation / installed acceptance mirror
 
