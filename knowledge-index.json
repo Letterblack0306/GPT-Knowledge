@@ -145,7 +145,15 @@
         "agent cockpit",
         "LBE accessibility modes",
         "LBE plain output",
-        "LBE authorization gate"
+        "LBE authorization gate",
+        "GPT failure patterns",
+        "agent mistakes",
+        "false completion",
+        "hallucinated implementation",
+        "failure to correct",
+        "repeated tool failure",
+        "assumptions as evidence",
+        "runtime proof gap"
       ],
       "canonical": [
         "project-engineering/project-feature-implementation-plan.md"
@@ -215,6 +223,9 @@
         "lbe-terminal-sci-fi-minimal-ui": [
           "project-engineering/projects/lbe-terminal-sci-fi-minimal-ui.md",
           "ai-agents/studies/agent-feature-reference-map-2026-09-20.json"
+        ],
+        "gpt-agent-failure-correction": [
+          "project-engineering/gpt-agent-failure-patterns-and-correction.md"
         ]
       }
     },
