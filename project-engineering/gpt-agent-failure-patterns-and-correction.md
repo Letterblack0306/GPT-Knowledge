@@ -76,6 +76,12 @@ These are **failure modes to watch for, not 40 independently verified GPT incide
 - **Visual / photogrammetry accuracy:** generated imagery is not geometry truth; compare deliverables against supplied real photographs and acceptance constraints before completion.
 - **Over-prescription:** a giant checklist, invented blocker, or extra governance file can itself be a failure. Apply only the evidence needed for this task.
 
+## Recoverable blocker pattern
+
+**Do not confuse a blocked operation with a permanently blocked objective.** A guard may prevent a particular action until an authorization, scope, validation or evidence prerequisite is satisfied. Treat documentation-only recommendations as informational unless an actually executing authority binds them to a particular stage. Inspect the current enforcing implementation before deciding severity.
+
+Agent continuation path: identify the exact denied action and owner → classify security, scope, validation, dependency or advisory status → resolve any prerequisite already authorized → re-evaluate the actual gate → resume the original task and verify effect. If permission expansion or another person's approval is required, preserve the state and ask only for that missing authority. An explicit DENY stays binding; agents must not make themselves an exception, fabricate receipts or weaken checks.
+
 ## Correction acceptance
 
 1. **Locate:** show actual target, workspace, revision, runtime and authority boundary (or mark unavailable).
