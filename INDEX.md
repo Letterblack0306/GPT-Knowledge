@@ -2,6 +2,14 @@
 
 `knowledge-index.json` is the canonical machine-readable routing manifest. This file is the human-readable companion.
 
+## Failure and correction reference
+
+For GPT/agent assumptions, hallucinations, repeated mistakes, false completion, tool failures, source-of-truth drift, missing runtime evidence and ineffective repairs, route to:
+
+- [GPT / Agent Failure Patterns — Evidence and Correction](project-engineering/gpt-agent-failure-patterns-and-correction.md)
+
+This compact catalogue selects applicable patterns; it does not replace [Process Recall](002_PROCESS_RECALL.md), [Unified Agent Engineering](ai-agents/unified-agent-engineering-methods.md), or live workspace/runtime proof.
+
 Use the smallest relevant knowledge set. Do not preload every domain.
 
 ## Project or feature work — FIRST REFERENCE
