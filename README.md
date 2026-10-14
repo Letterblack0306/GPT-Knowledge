@@ -1,5 +1,22 @@
 # GPT-Knowledge
-The biggest mistake people make with ChatGPT is using vague, one-line prompts and expecting expert-level results.Here are the top 10 mistakes people make when using and prompting GPT models:Vague Prompts: Asking broad questions like "Write a marketing plan" gives the AI no direction, leading to generic and useless answers.Burying the Actual Ask: Tossing in your core question at the very end of a massive, unstructured wall of text confuses the model.Assuming It Remembers Everything: Believing the AI tracks your entire history or context from days prior without reminding it of your constraints or business details.Not Telling It What Good Looks Like: Failing to provide examples, style guidelines, tone, or formatting instructions upfront.Asking for Too Much in One Shot: Dumping a complex, multi-step project into a single prompt instead of breaking it down into smaller, manageable parts.Accepting the First Output: Treating the first response as final rather than treating it as a draft and pushing back or iterating.Ignoring Formatting Instructions: Leaving structural or length requirements (like word counts or bullet points) out until it is too late.Blindly Trusting the Facts: Believing everything the AI outputs without verifying calculations, code, or checking for hallucinations.Sharing Sensitive Information: Entering private data, passwords, or company secrets into public chat interfaces where privacy policies might expose them.Treating It Like a Search Engine: Using ultra-short, keyword-only queries instead of conversing with it like a knowledgeable assistant.
+
+A selective, evidence-driven reference library for agent engineering, local execution, debugging and Letterblack projects.
+
+## Start here
+
+| Need | Canonical entry |
+|---|---|
+| Workspace and evidence rules | [Start Here](000_START_HERE.md) |
+| Find the relevant documentation | [Knowledge Router](INDEX.md) / [Machine-readable Index](knowledge-index.json) |
+| GPT/agent mistakes, assumptions and corrections | [Failure Patterns & Correction](project-engineering/gpt-agent-failure-patterns-and-correction.md) |
+| Project truth and historical claims | [Process Recall](002_PROCESS_RECALL.md) / [Memory Decision Support](001_MEMORY_DECISION_SUPPORT.md) |
+| Agent investigation and validation | [Unified Agent Engineering](ai-agents/unified-agent-engineering-methods.md) |
+| Project changes and feature planning | [Project Feature Plan](project-engineering/project-feature-implementation-plan.md) |
+
+**Evidence hierarchy:** user objective → live runtime → active source → project knowledge → GPT-K guidance → external documentation → model prior. Documentation and tests alone never prove user-visible behavior.
+
+## Repository reference material
+
 A versioned, reusable engineering knowledge base for research-backed design, development, debugging, validation, agent architecture, browser automation, local-model integration, Letterblack product design, and creative technology workflows.
 
 ## Load order
