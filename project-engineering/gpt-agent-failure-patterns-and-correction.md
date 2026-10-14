@@ -2,7 +2,7 @@
 
 **Scope:** Cross-project guidance, not a current-runtime status report.  
 **Updated:** 2026-10-14  
-**Owners:** [Start Here](../../000_START_HERE.md) · [Process Recall](../../002_PROCESS_RECALL.md) · [Unified Agent Engineering](../../ai-agents/unified-agent-engineering-methods.md) · [Project/Feature Plan](../project-feature-implementation-plan.md)
+**Owners:** [Start Here](../000_START_HERE.md) · [Process Recall](../002_PROCESS_RECALL.md) · [Unified Agent Engineering](../ai-agents/unified-agent-engineering-methods.md) · [Project/Feature Plan](project-feature-implementation-plan.md)
 
 ## Use this reference
 
@@ -14,7 +14,7 @@ Use the relevant pattern below; **do not run all checks for every request**, con
 
 ## Evidence labels
 
-Use [Process Recall](../../002_PROCESS_RECALL.md) for project-state classification: `PROVEN`, `IMPLEMENTED`, `DOCUMENTED`, `INFERRED`, `UNVERIFIED`, `STALE`, `BLOCKED`, `FAIL`, `DISPROVEN`. A narrower investigation may use `SUPPORTED`, `HYPOTHESIS`, and `UNKNOWN` as defined in [Unified Agent Engineering](../../ai-agents/unified-agent-engineering-methods.md). Never silently interchange their meanings.
+Use [Process Recall](../002_PROCESS_RECALL.md) for project-state classification: `PROVEN`, `IMPLEMENTED`, `DOCUMENTED`, `INFERRED`, `UNVERIFIED`, `STALE`, `BLOCKED`, `FAIL`, `DISPROVEN`. A narrower investigation may use `SUPPORTED`, `HYPOTHESIS`, and `UNKNOWN` as defined in [Unified Agent Engineering](../ai-agents/unified-agent-engineering-methods.md). Never silently interchange their meanings.
 
 **Critical distinction:** source exists ≠ loaded ≠ reachable ≠ authorized ≠ executed ≠ validated ≠ user-visible effect. A failure to invoke a tool proves the invocation failed, not the hypothetical tool result.
 
