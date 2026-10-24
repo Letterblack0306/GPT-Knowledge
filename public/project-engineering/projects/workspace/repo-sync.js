@@ -77,12 +77,6 @@
 
   async function saveToRepo() {
     if (!active) return;
-    let key = sessionStorage.getItem('lb-workspace-save-key') || '';
-    if (!key) {
-      key = prompt('Workspace save key');
-      if (!key) return;
-      sessionStorage.setItem('lb-workspace-save-key', key);
-    }
 
     saveButton.disabled = true;
     setSync('SAVING…', '');
@@ -91,16 +85,11 @@
       const r = await fetch(API, {
         method: 'POST',
         headers: {
-          'content-type': 'application/json',
-          'x-workspace-save-key': key
+          'content-type': 'application/json'
         },
         body: JSON.stringify({ project: active, state: cleanForRepo(state) })
       });
       const result = await r.json().catch(() => ({}));
-      if (r.status === 401) {
-        sessionStorage.removeItem('lb-workspace-save-key');
-        throw new Error('Invalid workspace save key');
-      }
       if (!r.ok || !result.ok) throw new Error(result.error || `Save failed (${r.status})`);
       const next = { ...getState(), _dirty: false, _repoSavedAt: new Date().toISOString() };
       localStorage.setItem(stateKey(), JSON.stringify(next));
@@ -108,7 +97,7 @@
       saveButton.title = result.commit ? `Committed ${result.commit.slice(0, 8)}` : 'Saved to GPT-Knowledge';
     } catch (error) {
       console.error('[workspace repo sync] save failed', error);
-      setSync(error.message === 'Invalid workspace save key' ? 'BAD SAVE KEY' : 'SAVE FAILED', 'error');
+      setSync('SAVE FAILED', 'error');
       alert(error.message || 'Save failed');
     } finally {
       saveButton.disabled = false;

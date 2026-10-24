@@ -4,7 +4,7 @@
 This is a GPT-K projection of current Brew workspace/runtime evidence. Current local source, live runtime state, active repository contracts, and runtime reports remain higher authority.
 
 ## Workspace
-`G:\Developments\38_Brew_Creative_Agent\brew`
+`[retired-local-volume]/[historical-workspace]\38_Brew_Creative_Agent\brew`
 
 Observed current source commit referenced by GitHub search: `1a34fe5bdf40dfbdf04972963a988dcb426bd160`.
 

@@ -11,7 +11,7 @@
 <div class="app">
   <aside class="side"><div class="brand"><b>LB WORKSPACE</b><span>Repository-driven project truth</span></div><div id="projects" class="project-list"></div><div class="side-foot">Plan + status JSON drive this UI.<br>Refresh reads repository-deployed data again.</div></aside>
   <main class="main"><header class="top"><div class="title"><b id="projectTitle">Loading…</b><span id="projectSub"></span></div><div class="badges"><span class="badge" id="headBadge">HEAD —</span><span class="badge current" id="classBadge">—</span></div></header><div class="canvas"><div class="board" id="board"></div></div></main>
-  <aside class="status"><h2>Current state</h2><div class="sub" id="verifiedAt">No status data</div><div class="legend"><span class="done">Completed / Working</span><span class="pending">Pending</span><span class="issue">Issue / Failure</span><span class="active">Active Gate</span></div><div id="statusContent"></div></aside>
+  <aside class="status"><div class="status-head"><h2>Repo branches</h2><button id="branchToggle" title="Fold / unfold panel" aria-expanded="true">«</button></div><div class="sub" id="verifiedAt">No status data</div><div id="statusContent"><div id="branchList"></div></div></aside>
 </div>
 <aside class="drawer" id="drawer"><button id="closeDrawer">×</button><div class="phase" id="dPhase"></div><h3 id="dTitle"></h3><p id="dSummary"></p><div class="relations" id="dRelations"></div></aside>
 <script>
@@ -32,7 +32,7 @@ function openNode(id){const n=(currentPlan.nodes||[]).find(x=>x.id===id);if(!n)r
 $('closeDrawer').onclick=()=>$('drawer').classList.remove('open');
 function statusTone(item,kind){if(kind==='closed')return'closed';if(kind==='history')return'history';const text=`${item?.classification||''} ${item?.status||''} ${item?.title||''}`.toLowerCase();if(/fail|failure|blocked|defect|issue|error|timeout|inconclusive/.test(text))return'issue';return'pending'}
 function cards(items,kind){return(items||[]).map(x=>`<div class="status-card ${statusTone(x,kind)}"><div class="meta">${esc(x.priority||x.classification||kind)}</div><h3>${esc(x.title)}</h3><p>${esc(x.detail)}</p></div>`).join('')}
-function renderStatus(){const root=$('statusContent');if(!currentStatus){$('verifiedAt').textContent='No project status file registered';$('headBadge').textContent='HEAD —';$('classBadge').textContent='PLAN ONLY';root.innerHTML='<div class="status-card"><p>This project currently exposes plan data only.</p></div>';return}$('verifiedAt').textContent=`Verified projection: ${currentStatus.verified_at||'unknown'}`;$('headBadge').textContent=`HEAD ${(currentStatus.source_head||'—').slice(0,8)}`;$('classBadge').textContent=currentStatus.overall_classification||'—';let html='';if(currentStatus.next_acceptance){html+=`<div class="gate"><b>Next acceptance question</b><p>${esc(currentStatus.next_acceptance.question)}</p></div>`}html+='<h2>Pending / Issues</h2>'+cards(currentStatus.pending,'pending');html+='<h2>Completed / Working</h2>'+cards(currentStatus.closed,'closed');html+='<h2>Historical proof</h2>'+cards(currentStatus.supported_historical,'history');root.innerHTML=html}
+function renderStatus(){if(!currentStatus){$('verifiedAt').textContent='No project status file registered';$('headBadge').textContent='HEAD —';$('classBadge').textContent='PLAN ONLY';return}$('verifiedAt').textContent=`Verified projection: ${currentStatus.verified_at||'unknown'}`;$('headBadge').textContent=`HEAD ${(currentStatus.source_head||'—').slice(0,8)}`;$('classBadge').textContent=currentStatus.overall_classification||'—'}
 const canvas=document.querySelector('.canvas');let pan=null;
 canvas.addEventListener('pointerdown',e=>{if(e.button!==0||e.target.closest('.node,.draggable')||e.target.closest('a,button,input,textarea,select'))return;pan={id:e.pointerId,x:e.clientX,y:e.clientY,left:canvas.scrollLeft,top:canvas.scrollTop};canvas.setPointerCapture(e.pointerId);canvas.classList.add('panning');e.preventDefault()});
 canvas.addEventListener('pointermove',e=>{if(!pan||e.pointerId!==pan.id)return;canvas.scrollLeft=pan.left-(e.clientX-pan.x);canvas.scrollTop=pan.top-(e.clientY-pan.y);e.preventDefault()});
@@ -45,4 +45,5 @@ load().catch(e=>{$('projectTitle').textContent='Workspace unavailable';$('projec
 <script src="./birdeye-ui.js"></script>
 <script src="./agent-ui.js"></script>
 <script src="./canvas-drag.js"></script>
+<script src="./repo-branches-ui.js"></script>
 </body></html>

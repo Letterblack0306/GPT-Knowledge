@@ -1,7 +1,6 @@
 /* Live Agent panel — additive only.
  *
- * Appends an Agent section BELOW the existing board content. Never mutates
- * or repositions existing workspace/BirdEye DOM. Talks only to the LAN
+ * Renders only for the Access Browser Agent workspace. Talks only to the LAN
  * Live Agent Gateway (outbound WS); browsers may submit instructions only,
  * never raw tool calls.
  */
@@ -11,6 +10,8 @@
     const secure = location.protocol === 'https:' ? 'wss' : 'ws';
     return `${secure}://${location.hostname}:8081/ws/browser`;
   })();
+  const PROJECT_ID = 'access-browser-agent';
+  const STYLE_ID = 'lb-agent-ui-style';
 
   let ws = null;
   let sessionId = sessionStorage.getItem('lb-agent-session-id') || null;
@@ -19,10 +20,15 @@
   const toolBoxes = new Map();
 
   function esc(s) {
-    return String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+    return String(s ?? '').replace(/[&<>\"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '\"': '&quot;' }[c]));
   }
 
   function $(id) { return document.getElementById(id); }
+  function currentProjectId() {
+    if (window.__workspaceCurrentProjectId) return String(window.__workspaceCurrentProjectId);
+    return (location.hash || `#${PROJECT_ID}`).slice(1) || PROJECT_ID;
+  }
+  function isAccessProject() { return currentProjectId() === PROJECT_ID; }
   function setStatus(text, ok) { const el = $('lb-agent-status'); if (el) { el.textContent = text; el.className = ok ? 'ok' : 'bad'; } }
   function send(obj) { if (ws && ws.readyState === WebSocket.OPEN) ws.send(JSON.stringify(obj)); }
   function addMsg(cls, text) {
@@ -46,11 +52,10 @@
     return { badge: b, pre };
   }
 
-  function build() {
-    const board = document.querySelector('.board');
-    if (!board || document.getElementById('lb-agent-section')) return;
-
+  function ensureStyle() {
+    if ($(STYLE_ID)) return;
     const style = document.createElement('style');
+    style.id = STYLE_ID;
     style.textContent = `
 #lb-agent-section{margin:40px 42px 60px;border:1px solid var(--line);border-radius:18px;background:#0b0f15cc;padding:16px;text-align:left}
 #lb-agent-section h2{margin:0 0 10px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
@@ -72,6 +77,13 @@
 .lb-agent-tool .badge{font-size:9px;padding:1px 7px;border-radius:999px;border:1px solid var(--line)}
 .lb-agent-tool pre{margin:0;padding:8px 12px;font-size:10px;overflow-x:auto;background:#090c11}`;
     document.head.appendChild(style);
+  }
+
+  function build() {
+    if (!isAccessProject()) return;
+    const board = document.querySelector('.board');
+    if (!board || $('lb-agent-section')) return;
+    ensureStyle();
 
     const section = document.createElement('section');
     section.id = 'lb-agent-section';
@@ -98,11 +110,6 @@
     };
     $('lb-agent-cancel').onclick = () => sessionId && send({ type: 'session.cancel', session_id: sessionId });
     $('lb-agent-input').addEventListener('keydown', e => { if (e.key === 'Enter') $('lb-agent-run').click(); });
-  }
-
-  function currentProjectId() {
-    if (window.__workspaceCurrentProjectId) return String(window.__workspaceCurrentProjectId);
-    return (location.hash || '#access-browser-agent').slice(1) || 'access-browser-agent';
   }
 
   function handleEvent(ev) {
@@ -132,7 +139,7 @@
       case 'session.completed': addMsg('final', 'Final: ' + (ev.payload.final_answer || '(empty)')); break;
       case 'session.failed': addMsg('err', `SESSION FAILED [${ev.payload.code}] ${ev.payload.error || ''}`); break;
       case 'session.cancelled': addMsg('err', 'Session cancelled.'); break;
-      default: break; // unknown event types are intentionally not rendered
+      default: break;
     }
   }
 
@@ -151,20 +158,41 @@
     }
   }
 
+  function disconnect() {
+    if (!ws) return;
+    const socket = ws;
+    ws = null;
+    socket.onclose = null;
+    try { socket.close(); } catch {}
+  }
+
   function connect() {
-    if (!document.getElementById('lb-agent-section')) return;
+    if (!$('lb-agent-section') || !isAccessProject()) return;
+    if (ws && (ws.readyState === WebSocket.OPEN || ws.readyState === WebSocket.CONNECTING)) return;
     try { ws = new WebSocket(GATEWAY_WS); } catch { return setStatus('gateway unreachable', false); }
     ws.onopen = () => setStatus(sessionId ? 'connected' : 'connected · gateway', true);
-    ws.onclose = () => { setStatus('gateway offline', false); setTimeout(connect, 4000); };
+    ws.onclose = () => {
+      ws = null;
+      setStatus('gateway offline', false);
+      if (isAccessProject()) setTimeout(connect, 4000);
+    };
     ws.onerror = () => setStatus('gateway error', false);
-    ws.onmessage = e => { try { handle(JSON.parse(e.data)); } catch { /* ignore malformed */ } };
+    ws.onmessage = e => { try { handle(JSON.parse(e.data)); } catch {} };
   }
 
-  function boot() {
-    build();
-    if (document.getElementById('lb-agent-section')) connect();
+  function syncProjectPanel() {
+    if (isAccessProject()) {
+      build();
+      connect();
+      return;
+    }
+    disconnect();
+    $('lb-agent-section')?.remove();
   }
 
+  function boot() { syncProjectPanel(); }
+
+  window.addEventListener('hashchange', () => setTimeout(syncProjectPanel, 0));
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
   else boot();
 })();

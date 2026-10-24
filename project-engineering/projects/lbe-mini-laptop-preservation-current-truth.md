@@ -109,7 +109,7 @@ D:\Repos\New folder\...
 The action was correctly blocked because the active authorized workspace was the separate Browser Agent workspace:
 
 ```text
-G:\Developments\46_Accecc_Browser_Agent\Browser Agent
+D:\Developement\_Brwoser_agent\Browser_Agent
 ```
 
 No D: file inspection, file creation, copy, staging, commit, push, branch mutation, or cleanup was performed by that action.

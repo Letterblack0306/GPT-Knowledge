@@ -102,7 +102,7 @@ Do not merge #20 as-is into the principal stack. Before retirement, audit its 41
 
 Workspace:
 
-`G:\Developments\46_Accecc_Browser_Agent\Browser Agent`
+`D:\Developement\_Brwoser_agent\Browser_Agent`
 
 Current audit state:
 

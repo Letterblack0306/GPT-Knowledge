@@ -702,3 +702,85 @@ Backend commits that perform this truth reconciliation:
 ```
 
 Do not return the product to PASS until the actual single-command surface invokes real Cline-backed reasoning through the authoritative LBE runtime and projects persisted receipts/evidence with live installed terminal proof.
+
+## Core architecture reconciliation — 2026-10-02
+
+Status: VERIFIED AGAINST GPT-K CANONICAL RECORDS + BIRDEYE MEMORY/EVIDENCE
+
+### Stable core boundary
+
+```text
+USER
+  -> LBE product entrypoint (`lbe`)
+  -> reasoning/provider/model/continuation mechanics
+  -> capability/tool proposal
+  -> LBE RUNTIME (sole authority boundary)
+       session/workspace identity
+       policy + authorization
+       governed ToolRegistry/orchestration
+       operation identity/idempotency
+       execution
+       ToolReceipt + evidence
+       persistence/recovery
+       deterministic validation
+       completion truth
+  -> governed external capability / actual effect
+  -> receipt/evidence
+  -> reasoning continuation
+```
+
+Stable invariants:
+
+1. Agent/provider owns cognition, reasoning, proposals and replanning; it does not own authority-bearing execution.
+2. LBE owns capabilities and consequences and remains the sole authority for workspace/session truth, authorization, governed execution, operation identity, receipts/evidence, persistence/recovery, deterministic validation and completion truth.
+3. `ALLOW` is an authorization decision, not proof of execution. Execution truth requires the actual effect plus correlated ToolReceipt/evidence.
+4. Provider/model prose cannot establish completion truth.
+5. Memory/history may inform reasoning but cannot establish current execution truth.
+6. UI/client technology is a projection/control surface and must not become a second runtime authority.
+7. Delegated agents/subagents/teams are compatible only behind the same LBE authority boundary; native independent mutation/process authority remains forbidden.
+8. BirdEye is evidence/retrieval/memory infrastructure and does not replace LBE authorization/execution authority.
+9. GPT-K is canonical architecture/status/reference knowledge, not runtime truth; current source/runtime evidence outranks stale projections.
+10. The installed product contract remains one user entrypoint: terminal -> `lbe` -> complete LBE product, with internal workers/scripts hidden from normal user orchestration.
+
+### Cline boundary cross-verification
+
+BirdEye memory independently preserves the accepted governed-Cline architecture checkpoint:
+
+```text
+SELECTED:
+  GOVERNED_NODE_SUBPROCESS_STDIO
+
+REJECTED:
+  LONG_LIVED_NODE_SIDECAR_RPC
+  EMBEDDED_JS_RUNTIME
+  ClineCore wholesale authority adoption
+  native Cline mutation/process authority
+```
+
+The same checkpoint preserves the existing LBE owners (`resolve_authorization`, `GovernedToolOrchestrator`, `ToolReceipt`, `provider_turn_runtime`, and LBE session/history/evidence/validation/completion owners) while allowing Cline mechanics for model/tool/continuation/event behavior. This corroborates the GPT-K authority split rather than superseding it.
+
+### Product-client composition is not an immutable core invariant
+
+Earlier GPT-K records selected LBE as the product, Cline as embedded mechanics/client, and Rust/Ratatui as reference/integration only. The same canonical corpus later records `CANONICAL_INTEGRATION_OWNER_INTERNAL_CONTRADICTION`: the product verifier expected the Cline CLI/TUI surface while build/package/install still produced and launched Rust `lbe.exe`. Later local work also continued the Rust/Ratatui path.
+
+Therefore do not use the historical `Cline visible client vs Rust visible client` choice to redefine the execution-authority architecture. Resolve that question at the product-composition/installed-client layer against current source/runtime evidence. The non-negotiable invariant is that whichever client is visible must remain a projection/control surface over one LBE authority boundary and must not introduce parallel session/tool/persistence/completion authority.
+
+### Current classification
+
+```text
+LBE execution-authority architecture       PROVEN / STABLE
+agent-vs-LBE authority split               PROVEN / STABLE
+Cline governed reasoning reuse             ACCEPTED / CORROBORATED BY BIRDEYE
+Cline native execution authority           REJECTED
+parallel independent runtime authority      REJECTED
+receipts/evidence ownership                LBE
+validation/completion ownership            LBE
+memory as execution truth                  REJECTED
+subagents under LBE boundary               COMPATIBLE
+single installed `lbe` entry               LOCKED PRODUCT CONTRACT
+Rust-vs-Cline visible-client composition   PRODUCT-LAYER RECONCILIATION; NOT CORE AUTHORITY
+```
+
+### Sequencing rule
+
+Do not reopen or redesign the stable core authority architecture while closing product/install/runtime gates. Patch only a proven current owner. Historical client decisions may guide provenance but cannot override newer current source/runtime evidence. Tests, verifier PASS, package integrity, UI rendering, authorization ALLOW, or receipt presence alone do not establish complete product behavior; claim-matched live effects and installed acceptance remain required.

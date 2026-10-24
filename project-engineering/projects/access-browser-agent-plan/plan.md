@@ -37,6 +37,51 @@ MISSING — IMPLEMENTATION REQUIRED
 
 Only the third category authorizes a new capability plan. This projection does not create product authority, runtime state, or external UI requirements.
 
+## MCP capability and persistence audit
+
+The Browser Agent MCP architecture has two distinct paths that must not be conflated:
+
+```text
+generic MCP:
+Provider / Model -> UnifiedAgentService -> ToolRegistry
+  -> dynamic MCP tools -> McpClient -> configured stdio server
+  -> initialize -> tools/list -> mcp.<tool-name> -> tools/call
+
+BirdEye request integration:
+birdeye-request-client.js -> GitHub/API-mediated diagnosis requests
+```
+
+The generic MCP client, Electron lifecycle, dynamic tool registration, settings UI, and command persistence are existing source capabilities. Current configured command, live attachment, returned tools, and runtime registry membership remain runtime claims and must be rechecked. BirdEye stdio launchability is not Browser Agent MCP attachment evidence.
+
+### First-landing audit question
+
+> What MCP capability is actually available to the agent at first launch?
+
+Owners: `src/system/mcp-client.js`, `electron/electron-main.js`, `src/system/ide-preferences.js`, and `src/agent/executive/UnifiedAgentService.js`.
+
+Source of truth: current preferences plus live MCP connection state plus registered agent tools.
+
+Observable: configured command, enabled state, initialized server, `tools/list` result, and registered `mcp.*` tools.
+
+Falsifier: empty command, disabled state, failed initialization, zero returned tools, or no `mcp.*` tools in the live registry.
+
+### Preference-contract acceptance
+
+`mcpEnabled` is an owned preference field. It must flow through `DEFAULTS`, normalization, load, save, and restart restoration. The required acceptance is:
+
+```text
+configure BirdEye stdio command
+-> enable MCP
+-> connected
+-> skills appears
+-> restart Browser Agent
+-> command and enabled state restore
+-> BirdEye reattaches
+-> skills appears again
+```
+
+Until the complete restart acceptance is executed against the Browser Agent runtime, classify the integration as **EXISTING BUT NOT YET VERIFIED LIVE**, with persistent enabled-state lifecycle incomplete if restoration fails.
+
 ## Closed P1.1 — Runtime Progress / Re-entry Contract
 
 Source transition:

@@ -608,7 +608,7 @@ C:\MCP Local\
 ├── state
 ├── workspace
 ├── Chat_Dataexported
-└── startup-loader.ps1
+└── servers\startup-loader.ps1
 ```
 
 Roles:

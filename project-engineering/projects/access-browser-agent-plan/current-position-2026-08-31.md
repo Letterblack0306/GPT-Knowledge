@@ -33,7 +33,7 @@ Classification:
 
 Audited workspace:
 
-`G:\Developments\46_Accecc_Browser_Agent\Browser Agent`
+`D:\Developement\_Brwoser_agent\Browser_Agent`
 
 Reported state:
 

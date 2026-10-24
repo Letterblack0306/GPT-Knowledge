@@ -4,7 +4,7 @@
 
 This checkpoint records user-supplied local worktree validation from:
 
-    G:\Developments\38_Brew_Creative_Agent\brew
+    [retired-local-volume]/[historical-workspace]\38_Brew_Creative_Agent\brew
 
 The candidate contains uncommitted changes and therefore is **not** equivalent to current GitHub `Letterblack0306/brew/main`.
 
@@ -57,7 +57,7 @@ Current release installer and layout validator define the normal user installati
 
 The `workspace\` level is intentional. Double nesting such as `.Brew\workspace\workspace\` or source-path fallback is not accepted.
 
-Global CLI shims must resolve to `.Brew\workspace\bin\brew.cjs` and must not execute the source checkout under `G:\Developments\...`.
+Global CLI shims must resolve to `.Brew\workspace\bin\brew.cjs` and must not execute the source checkout under `[retired-local-volume]/[historical-workspace]\...`.
 
 ## Required installed user-test proof
 

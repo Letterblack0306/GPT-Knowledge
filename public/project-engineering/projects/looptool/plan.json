@@ -1,9 +1,9 @@
 {
   "schema_version": 2,
   "project": "LoopTool",
-  "purpose": "Visual operating map for LoopTool as the bounded local execution/evidence bridge inside the GPT-Knowledge engineering workflow. This map explains when to use it, when not to use it, how command/result transport works, and what evidence it can and cannot prove.",
-  "authority_rule": "Current GPT-Knowledge routing, current Letterblack0306/tools source, active local workspace identity, returned AGENT RESULT evidence, and live runtime/rendered behavior outrank this projection. LoopTool is transport/evidence, not the investigation owner or acceptance authority.",
-  "updated": "2026-08-21",
+  "purpose": "Visual operating map for LoopTool as the bounded local execution/evidence bridge inside the GPT-Knowledge engineering workflow. This map explains when to use it, when not to use it, how command/result transport works, how it composes historical Memory retrieval for existing plans/decisions/disagreements, and what evidence it can and cannot prove.",
+  "authority_rule": "Current GPT-Knowledge routing, current Letterblack0306/tools source, active local workspace identity, returned AGENT RESULT evidence, current Memory/BirdEye evidence and live runtime/rendered behavior outrank this projection. LoopTool is transport/evidence, not the historical-memory owner, investigation owner or acceptance authority.",
+  "updated": "2026-08-23",
   "source_repo": "Letterblack0306/tools",
   "source_branch": "master",
   "source_head": "ddf1c09873599efe5f4976f7dc6456a65474b9b6",
@@ -28,7 +28,7 @@
       "lane": "Role",
       "title": "Keep authorities separate",
       "status": "proven",
-      "summary": "GPT-Knowledge owns reusable method/routing; Skills own task procedures; GitHub owns remote repo truth; active workspace owns local file/revision truth; LoopTool owns command transport/evidence return; live runtime/UI owns behavioral acceptance."
+      "summary": "GPT-Knowledge owns reusable method/routing; Memory owns canonical historical retrieval; GitHub owns remote repo truth; active workspace owns local file/revision truth; BirdEye owns governed local evidence; LoopTool owns command transport/evidence return; live runtime/UI owns behavioral acceptance."
     },
     {
       "id": "gpt-route",
@@ -45,6 +45,13 @@
       "summary": "Before consequential execution establish repository, project, branch/revision, working directory and runtime identity as applicable. Do not execute against an assumed workspace."
     },
     {
+      "id": "historical-question",
+      "lane": "Before Execution",
+      "title": "Recover prior plan / decision when relevant",
+      "status": "proven",
+      "summary": "When the user asks what was planned, decided, rejected, corrected, tried or implemented before, scope the question to the exact project/workspace/feature first and retrieve historical evidence before reinventing the direction."
+    },
+    {
       "id": "question-falsifier",
       "lane": "Before Execution",
       "title": "One question + observable",
@@ -57,6 +64,48 @@
       "title": "Testing / debugging / inspection",
       "status": "proven",
       "summary": "Use when deterministic local evidence is required: reproduce a failure, inspect repo/runtime state, run focused tests, validate a fix, execute a bounded maintenance command, or collect stdout/stderr/exit-code/runtime evidence."
+    },
+    {
+      "id": "historical-retrieval",
+      "lane": "Use When",
+      "title": "Existing plan / decision / disagreement recall",
+      "status": "proven",
+      "summary": "LoopTool can compose GPT-Knowledge project mapping, BirdEye local identity and Memory historical retrieval to recover prior plans, decisions, corrections, rejected approaches and implementation evidence with provenance. LoopTool transports the bounded retrieval; Memory remains the historical owner."
+    },
+    {
+      "id": "source-selection",
+      "lane": "Historical Evidence",
+      "title": "Choose the owning historical source",
+      "status": "proven",
+      "summary": "Use the imported GPT/ChatGPT archive for broad conversation history, Cline session history for Cline/tool/runtime-session evidence, and Memory exact/semantic/hybrid retrieval as the canonical historical interface. Do not assume one source contains all history."
+    },
+    {
+      "id": "scope-before-ranking",
+      "lane": "Historical Evidence",
+      "title": "Scope before ranking",
+      "status": "proven",
+      "summary": "Bind retrieval to project/workspace/repository/feature/session/time anchors before semantic or keyword ranking. A high-scoring mixed-project session is not authoritative merely because it contains matching terms."
+    },
+    {
+      "id": "preserve-disagreement",
+      "lane": "Historical Evidence",
+      "title": "Preserve rejected and superseded history",
+      "status": "proven",
+      "summary": "Retrieve disagreement, correction, rejection and supersession context instead of hiding old statements. Historical evidence can remain searchable even when stale or wrong; retrieval does not promote it to current truth."
+    },
+    {
+      "id": "graph-context",
+      "lane": "Historical Evidence",
+      "title": "Use conversation graph context",
+      "status": "proven",
+      "summary": "ChatGPT archive conversations may branch. Do not infer chronology from SQLite row adjacency. When correction history matters, use conversation/node relationships and the relevant active branch."
+    },
+    {
+      "id": "truth-reconciliation",
+      "lane": "Historical Evidence",
+      "title": "History proposes; current evidence resolves truth",
+      "status": "proven",
+      "summary": "Historical plans and decisions answer what happened before and why. Present-state claims about branch, files, wiring, runtime health or current authority must be reconciled against GitHub, BirdEye/current workspace or live runtime evidence before being stated as truth."
     },
     {
       "id": "explicit-looptool",
@@ -113,7 +162,7 @@
       "lane": "Evidence",
       "title": "Classify only observed layer",
       "status": "proven",
-      "summary": "Command emitted is not command executed. Exit code 0 is not feature acceptance. A focused test pass is not end-to-end proof. Classify evidence only at the layer actually observed."
+      "summary": "Command emitted is not command executed. Exit code 0 is not feature acceptance. A focused test pass is not end-to-end proof. Historical retrieval rank is not authority. Classify evidence only at the layer actually observed."
     },
     {
       "id": "failure-separation",
@@ -150,7 +199,15 @@
     {"from":"not-agent","to":"authority-separation","type":"authority"},
     {"from":"authority-separation","to":"gpt-route","type":"workflow"},
     {"from":"gpt-route","to":"identity","type":"workflow"},
-    {"from":"identity","to":"question-falsifier","type":"workflow"},
+    {"from":"identity","to":"historical-question","type":"workflow"},
+    {"from":"historical-question","to":"historical-retrieval","type":"selection"},
+    {"from":"historical-question","to":"question-falsifier","type":"workflow"},
+    {"from":"historical-retrieval","to":"source-selection","type":"retrieval"},
+    {"from":"source-selection","to":"scope-before-ranking","type":"retrieval"},
+    {"from":"scope-before-ranking","to":"preserve-disagreement","type":"context"},
+    {"from":"preserve-disagreement","to":"graph-context","type":"context"},
+    {"from":"graph-context","to":"truth-reconciliation","type":"reconciliation"},
+    {"from":"truth-reconciliation","to":"question-falsifier","type":"workflow"},
     {"from":"question-falsifier","to":"use-cases","type":"selection"},
     {"from":"question-falsifier","to":"explicit-looptool","type":"selection"},
     {"from":"use-cases","to":"command-envelope","type":"transport"},

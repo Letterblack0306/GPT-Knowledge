@@ -29,5 +29,16 @@
     "ubuntu_bind": "10.10.0.4:8080  (NOT 0.0.0.0)",
     "ufw": "ufw default deny incoming; ufw allow from <wg interface peer IP> to 10.10.0.4 port 8080"
   },
-  "apply": "Not applied from this environment. Copy the .conf to /etc/nginx/sites-available/, symlink to sites-enabled, ensure TLS certs exist (certbot -d knowledge.letterblack.co.ae), then: nginx -t && systemctl reload nginx"
+  "apply": "Not applied from this environment. Copy the .conf to /etc/nginx/sites-available/, symlink to sites-enabled, ensure TLS certs exist (certbot -d knowledge.letterblack.co.ae), then: nginx -t && systemctl reload nginx",
+  "second_public_edge_gap": {
+    "recorded": "2026-08-23",
+    "observed_domain": "agent.letterblack.net",
+    "observed_ip": "193.123.91.227",
+    "live_evidence": "HTTP 200 on /project-engineering/projects/workspace/projects.json (Cache-Control: no-store, nginx 1.18.0). Same path for /project-engineering/projects/portfolio/plan.json.",
+    "live_freshness": "DISPROVEN. Live looptool/status.json is 3572 bytes (pre-proof) while local public/ is 6113 bytes (post-proof). The live edge is serving an older deployment copy, not the rebuilt public/.",
+    "repo_evidence": "No file in the GPT-Knowledge repository mentions agent.letterblack.net. The only nginx config in the repo is knowledge.letterblack.co.ae.conf, which documents 84.235.251.204 -> WireGuard -> 10.10.0.4:8080. The two hosts are different IPs.",
+    "owner_status": "UNVERIFIED. The serving path (root / alias / proxy_pass / upstream), the current deployment/sync mechanism, and the authoritative mapping from C:\\MCP Local\\GPT-Knowledge\\public to the live edge are not documented in the repository and cannot be inspected from the local workspace.",
+    "doc_reference": "project-engineering/repository-status-checkpointing-and-live-surface-reconciliation.md section 15 (Live-surface reconciliation record, 2026-08-23).",
+    "next_required_gate": "Read-only inspection of the agent.letterblack.net nginx server block, its root/alias/proxy_pass, the actual service or filesystem holding the stale files, and any existing deploy/sync command. No copy, no restart, no deploy may run before this gate returns LIVE_EDGE_OWNER, LIVE_CONTENT_ROOT, UPSTREAM, CURRENT_DEPLOY_MECHANISM, EXPECTED_SOURCE, MISMATCH, and MINIMAL_DEPLOY_STEP."
+  }
 }

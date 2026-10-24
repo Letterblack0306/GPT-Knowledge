@@ -9,11 +9,11 @@ This is the current evidence checkpoint for the Access Browser Agent R3 recovery
 ## Canonical source / revision
 
 - Repository: `Letterblack0306/Accecc_Browser_Agent`
-- Canonical worktree: `G:\Developments\46_Accecc_Browser_Agent\Browser Agent_R3_CANONICAL`
+- Canonical worktree: `[retired-local-volume]/[historical-workspace]\46_Accecc_Browser_Agent\Browser Agent_R3_CANONICAL`
 - Active PR: `#18` — `refactor: make Browser Loop a natural agent conversation`
 - Branch: `refactor/browser-conversation-turn-transport-20260816`
 - Exact canonical revision used by the live recovery harness: `5b8747bfad20f85cccf65630493beb7d4d6543b7`
-- Selected governed workspace inside the app: `G:\Developments\46_Accecc_Browser_Agent\Browser Agent`
+- Selected governed workspace inside the app: `[retired-local-volume]/[historical-workspace]\46_Accecc_Browser_Agent\Browser Agent`
 - Selected recovery conversation: `https://chatgpt.com/c/6a7dd21e-47dc-83ed-a7a5-51e66d7bfed9`
 
 Do not conflate the canonical source worktree with the selected governed workspace.

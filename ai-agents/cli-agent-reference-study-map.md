@@ -24,6 +24,8 @@ For completion-contract and validation-gate questions, also use the dedicated LB
 
 That study combines current LBE source verification with primary live references such as GitHub required status checks and durable execution systems. It is specifically intended to prevent a CLI, provider, or model from becoming a second completion/evidence authority.
 
+For locally observed VS Code/Copilot CLI agent-session and tool-execution evidence, including permission/skill events and provenance limits, see `ai-agents/studies/vscode-copilot-cli-local-event-execution-evidence-2026-10-11.md`.
+
 ## Study matrix
 
 | Concern | Primary reference | Secondary reference | What to extract |

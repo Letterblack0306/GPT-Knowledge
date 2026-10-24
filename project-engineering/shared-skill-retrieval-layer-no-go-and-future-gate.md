@@ -97,3 +97,32 @@ and the reopen gate above remains CLOSED regardless of their existence.
 5. **Authority classification remains ours:** no reference implements source-authority
    classes (CANONICAL/SECONDARY/.../UNKNOWN as ranking constraints); that stays a
    local design requirement.
+
+## Verified status addendum (runtime audit, 2026-08-24)
+
+Anchor commits (verified via `git rev-parse`): BirdEye `7ad49b4`, GPT-Knowledge `82371a4`.
+A prior circulating audit cited HEAD `10d9979`; that ref is invalid in both repos
+and must not be used as provenance.
+
+Corrections to this document's line 14 wording:
+
+```text
+"trust-tagged ranked search" -> results CARRY root_class/source_class TAGS,
+                                but the tags are advisory ranking signals only.
+```
+
+Runtime evidence (live stdio probes against `birdeye v0.1.0`):
+
+- Hashing/indexing: PROVEN — 81,994/82,128 files SHA-256-hashed in
+  `state/workspace.db`; remainder = 72 large + 62 unreadable by design. Search
+  results carry per-file sha256.
+- Truth/authority/type-governed retrieval: NOT IMPLEMENTED — no filter excludes
+  by authority class; classification only adjusts rank score
+  (`agent.py:966,1032`). Unknown root silently defaults to
+  `root_class="workspace"` (`agent.py:990`).
+- Search latency: root-restricted query ~5s; unrestricted full-corpus scan
+  reads every candidate file on disk (>2 min) — pass `roots=`/`extensions=`
+  until an FTS/content index exists.
+
+Effective classification: BirdEye hashing/indexing USABLE;
+strict truth/type/authority-governed retrieval BLOCKED (not built).

@@ -491,7 +491,7 @@ PUBLIC ROUTE REACHABILITY         PROVEN
 
 LOCAL_PROJECTS EXCLUSION          INTENTIONALLY NOT PUBLISHED
   workspace/local-projects.json contains machine-local Windows paths
-  (e.g. G:\Developments\...). It is canonical source-of-record inside
+  (e.g. [retired-local-volume]/[historical-workspace]\...). It is canonical source-of-record inside
   the repository and is the file referenced by the LoopTool
   runtime_proof. The runtime proof's PROJECT_SOURCE line therefore
   names a file the hosted UI does not fetch. That is the intended

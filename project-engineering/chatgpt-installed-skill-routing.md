@@ -47,6 +47,37 @@ Use for:
 
 Do not use it to replace specialist project-truth, runtime-proof, governance, UI, or framework knowledge.
 
+### `browser-agent-command-loop`
+
+**Role:** visible Browser Agent delegation and multi-round execution controller.
+
+Use when the user asks ChatGPT to:
+
+- give a task to Browser Agent and keep going until it is actually finished;
+- run or continue the Browser Agent loop;
+- perform a browser/machine task through Browser Agent while keeping its UI visible;
+- let Browser Agent use its available tools dynamically and report back;
+- reuse the user's existing logged-in Chrome profile/session rather than an empty managed profile;
+- follow up after partial results, tool failures, or blockers instead of stopping after one response;
+- coordinate instruction-provider conversations such as ChatGPT, Claude, Gemini, DeepSeek, or Arena with the local Browser Agent.
+
+Canonical skill: `skills/browser-agent-command-loop/SKILL.md`.
+
+This skill owns the controller loop:
+
+```text
+user objective
+  -> visible Browser Agent UI
+  -> task packet
+  -> Browser Agent reasoning + tools
+  -> visible progress/result
+  -> controller evaluates acceptance
+  -> follow-up when incomplete
+  -> repeat until accepted or genuine external blocker
+```
+
+Do not use it to replace Browser Agent with hidden controller-side execution. For machine/browser work, prefer the user's current existing browser session/profile and do not silently create or switch to an empty managed profile.
+
 ### `Project Truth Review`
 
 **Question:** Are we still building the intended product?

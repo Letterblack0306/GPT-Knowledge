@@ -71,13 +71,23 @@
     if (kind === 'c') return 'closed';
     if (kind === 'h') return 'history';
     const t = `${x?.classification || ''} ${x?.status || ''} ${x?.title || ''}`.toLowerCase();
-    return /fail|failure|blocked|defect|issue|error|timeout|inconclusive/.test(t) ? 'issue' : 'pending';
+    if (/fail|failure|blocked|defect|issue|error|timeout|inconclusive/.test(t)) return 'issue';
+    if (kind === 'f' && /proven|implemented|working|available|pass|ready|live/.test(t)) return 'closed';
+    return 'pending';
   };
 const cardHTML = (x, kind) => `<div class="meta">${esc(x.priority || x.classification || kind)}</div><b>${esc(x.title || '')}</b>${x.detail ? `<p>${esc(x.detail)}</p>` : ''}`;
 
+  const featureItems = () => {
+    if (Array.isArray(currentStatus?.features)) return currentStatus.features;
+    if (Array.isArray(currentPlan?.features)) return currentPlan.features;
+    if (Array.isArray(currentProject?.features)) return currentProject.features;
+    return [];
+  };
+
   const buildCards = (saved, ax) => {
-        const cs = currentStatus;
-    if (!cs) return;
+    const cs = currentStatus || {};
+    const features = featureItems();
+    if (!currentStatus && !features.length) return;
     layerEl();
     if (!lay) return;
     box = document.createElement('div');
@@ -91,11 +101,14 @@ const cardHTML = (x, kind) => `<div class="meta">${esc(x.priority || x.classific
     grab(box, 'b', '__box');
     let i = 0;
     const push = (label, items, kind) => {
+      if (!Array.isArray(items) || !items.length) return;
       const g = document.createElement('div');
       g.className = 'state-group'; g.innerHTML = `<span class="state-h">${esc(label)}</span>`;
       box.appendChild(g);
-      (items || []).forEach(x => {
-        const id = `state:${kind}:${i++}`;
+      items.forEach(x => {
+        const stable = String(x?.id || `${kind}:${i}`).replace(/[^A-Za-z0-9._-]/g, '-');
+        const id = `state:${kind}:${stable}`;
+        i += 1;
         const c = document.createElement('div');
                 c.className = `state-card ${tone(x, kind)} draggable`;
         c.dataset.key = id;
@@ -107,7 +120,8 @@ const cardHTML = (x, kind) => `<div class="meta">${esc(x.priority || x.classific
         box.appendChild(c);
       });
     };
-    if (cs.next_acceptance) push('ACTIVE GATE', [{ classification: 'NEXT ACCEPTANCE', title: cs.next_acceptance.question, detail: cs.next_acceptance.observable }], 'p');
+    push('FEATURES', features, 'f');
+    if (cs.next_acceptance) push('ACTIVE GATE', [{ id:'next-acceptance', classification: 'NEXT ACCEPTANCE', title: cs.next_acceptance.question, detail: cs.next_acceptance.observable }], 'p');
     push('PENDING / ISSUES', cs.pending, 'p');
     push('COMPLETED / WORKING', cs.closed, 'c');
     push('HISTORICAL PROOF', cs.supported_historical, 'h');

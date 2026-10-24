@@ -38,7 +38,7 @@ Never promote IMPLEMENTED, DOCUMENTED, or passing tests into PROVEN without clai
 Workspace reported by the active desktop agent:
 
 ```text
-G:\Developments\46_Accecc_Browser_Agent\Browser Agent
+D:\Developement\_Brwoser_agent\Browser_Agent
 branch: main
 HEAD: 4f29e132399be1c14013803e7c676d4f338f6d78
 local vs origin/main at last verified checkpoint: ahead 5, behind 0

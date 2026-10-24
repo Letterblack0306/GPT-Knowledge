@@ -202,7 +202,7 @@ Do not promote this static architecture trace into those claims.
 This section records live/local Brew validation evidence supplied on 2026-09-08 against:
 
 ```text
-workspace: G:\Developments\38_Brew_Creative_Agent\brew
+workspace: [retired-local-volume]/[historical-workspace]\38_Brew_Creative_Agent\brew
 branch: agent/canonical-runtime-operation-authority-20260812
 HEAD: 486a9b433ead59a470e511236139e8201ed292ba
 phase: P2_CANONICAL_SESSION_TURN_ITEM_LIFECYCLE

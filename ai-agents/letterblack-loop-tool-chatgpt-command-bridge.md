@@ -82,7 +82,7 @@ and is scoped to the project root passed through `--cwd`.
 
 ```text
 === AGENT COMMAND START ===
-WORKING DIRECTORY: G:\Developments\38_Brew_Creative_Agent
+WORKING DIRECTORY: [retired-local-volume]/[historical-workspace]\38_Brew_Creative_Agent
 COMMAND: git status --short --branch
 === AGENT COMMAND END ===
 ```
@@ -121,7 +121,7 @@ LoopTool does not accept an arbitrary working directory outside the project root
 If launched with:
 
 ```text
---cwd G:\Developments\38_Brew_Creative_Agent
+--cwd [retired-local-volume]/[historical-workspace]\38_Brew_Creative_Agent
 ```
 
 then the root itself and descendants are valid; unrelated paths must be rejected.
@@ -158,7 +158,7 @@ It must not be confused with:
 === AGENT RESULT START ===
 COMMAND STATUS: PASS
 COMMAND HASH: <SHA-256 HASH>
-WORKING DIRECTORY: G:\Developments\38_Brew_Creative_Agent
+WORKING DIRECTORY: [retired-local-volume]/[historical-workspace]\38_Brew_Creative_Agent
 COMMAND: git status --short --branch
 EXIT CODE: 0
 STDOUT:

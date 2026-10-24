@@ -12,7 +12,7 @@ Command hash:
 
 Working directory:
 
-`G:\Developments\46_Accecc_Browser_Agent\Browser Agent`
+`[retired-local-volume]/[historical-workspace]\46_Accecc_Browser_Agent\Browser Agent`
 
 Observed after `git fetch origin --prune`:
 

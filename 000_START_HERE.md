@@ -49,6 +49,69 @@ This guidance applies across every workspace. It is informative operating guidan
 9. GitHub required checks are a useful live reference pattern when applicable: requirements are configured independently, producers report structured statuses/conclusions, and a final gate evaluates whether the required checks passed. Treat this as a reusable architectural pattern, not a requirement that every project copy GitHub's implementation.
 10. Keep evidence roles distinct: GPT-Knowledge supplies reusable knowledge and prior reasoning; GitHub supplies live repository/PR/check/patch truth; BirdEye supplies local workspace/revision/index evidence and policy-governed execution; runtime validation supplies behavior and user-visible execution truth.
 
+## MCP first-landing truth rule
+
+MCP is optional capability infrastructure. It is not automatically BirdEye, automatically connected, or proof of tool availability merely because an `McpClient` class, settings control, or documentation exists. The Browser Agent generic MCP path and its BirdEye request path are separate integrations:
+
+```text
+Browser Agent
+  -> Electron runtime
+  -> McpClient
+  -> configured stdio server
+  -> initialize
+  -> tools/list
+  -> live mcp.<tool-name> registrations
+  -> tools/call
+
+Browser Agent BirdEye request path
+  -> birdeye-request-client.js
+  -> GitHub/API-mediated diagnosis request
+```
+
+For BirdEye MCP, classify the capability as `PROVEN_CURRENT_LIVE` only when the Browser Agent runtime itself reports an initialized connection and the returned tools appear in its live registry. A separately successful BirdEye launcher or GitHub/API request does not prove Browser Agent MCP attachment.
+
+At first launch, audit the actual capability using:
+
+```text
+owners:
+  src/system/mcp-client.js
+  electron/electron-main.js
+  src/system/ide-preferences.js
+  src/agent/executive/UnifiedAgentService.js
+
+source of truth:
+  current preferences
+  + live MCP connection state
+  + registered agent tools
+
+observable:
+  configured command
+  enabled state
+  initialized server
+  tools/list result
+  registered mcp.* tools
+
+falsifier:
+  empty command, disabled state, failed initialize, zero returned tools,
+  or no mcp.* tools in the live registry
+```
+
+The required BirdEye restart acceptance is:
+
+```text
+configure python.exe Letterblack_BirdEye/mcp_server.py --stdio
+-> enable MCP
+-> connected
+-> skills appears
+-> restart Browser Agent
+-> command restored
+-> enabled restored
+-> BirdEye reattaches
+-> skills appears again
+```
+
+Until that acceptance passes, report: **MCP integration exists, but persistent enabled-state lifecycle is incomplete.**
+
 ## Historical-memory retrieval route
 
 When the current task materially depends on prior discussions, old project decisions, rejected ideas, previous implementation attempts, stale/superseded architecture, or earlier tool/agent sessions, load `project-engineering/projects/memory/reference.md` before inventing a history-search method.

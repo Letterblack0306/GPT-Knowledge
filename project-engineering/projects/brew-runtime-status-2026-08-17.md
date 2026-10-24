@@ -8,7 +8,7 @@
 - Brew branch: `agent/canonical-runtime-operation-authority-20260812`
 - Brew PR head at this record: `169bc635cf11d2b773610697aebd63b625fd4e2e`
 - Brew base: `main` @ `33276e231f597f5fa026f7b76231fc8d5d2080b3`
-- Local runtime workspace observed: `G:\Developments\38_Brew_Creative_Agent\brew`
+- Local runtime workspace observed: `[retired-local-volume]/[historical-workspace]\38_Brew_Creative_Agent\brew`
 - Purpose: cross-session current-position record for Brew's provider-backed canonical runtime proof and the next investigation boundary
 - Authority: status/reference only; current Brew GitHub source, exact local revision, live runtime evidence, and project-owned status/checkpoint documents remain authoritative
 
@@ -86,7 +86,7 @@ Observed runtime identity:
 - port: `8600`
 - PID observed: `210072`
 - runtime entry: `brew/agent/orchestrator-server.mjs`
-- started from: `G:\Developments\38_Brew_Creative_Agent\brew`
+- started from: `[retired-local-volume]/[historical-workspace]\38_Brew_Creative_Agent\brew`
 - runtime entry hash matched the local checkout entry hash used by the proof
 
 Observed active path:

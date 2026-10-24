@@ -69,7 +69,7 @@ LOCAL EXCEPTION: ?? config.json.bak-preskills
 Observed MCP roots:
 
 ```text
-access-browser-agent -> G:\Developments\46_Accecc_Browser_Agent\Browser Agent [workspace]
+access-browser-agent -> [retired-local-volume]/[historical-workspace]\46_Accecc_Browser_Agent\Browser Agent [workspace]
 gpt-knowledge        -> C:\MCP Local\GPT-Knowledge [knowledge]
 memory               -> C:\MCP Local\Memory [workspace]
 ```

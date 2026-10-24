@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "purpose": "Verified machine-local workspace mappings only. Historical paths and absent drives must not be used as current locations.",
+  "projects": {
+    "lbe": {
+      "local_path": "C:\\Agents-Memory-Tool-v6-integration"
+    },
+    "access-browser-agent": {
+      "local_path": "D:\\Developement\\_Brwoser_agent\\Browser_Agent"
+    },
+    "brew": {
+      "local_path": "D:\\Developement\\_Brew_V02\\Brew_Rebuild"
+    },
+    "memory": {
+      "local_path": "C:\\MCP Local\\Memory"
+    }
+  }
+}

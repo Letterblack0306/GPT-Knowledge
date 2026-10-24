@@ -92,7 +92,7 @@ From a local GPT-Knowledge checkout:
 ```powershell
 python local-runtime\gptk_local_agent.py `
   --project access-browser-agent `
-  --workspace "G:\Developments\46_Accecc_Browser_Agent\Browser Agent" `
+  --workspace "D:\Developement\_Brwoser_agent\Browser_Agent" `
   --target-url "https://chatgpt.com/c/<conversation-id>" `
   --cdp-url "http://127.0.0.1:7430"
 ```

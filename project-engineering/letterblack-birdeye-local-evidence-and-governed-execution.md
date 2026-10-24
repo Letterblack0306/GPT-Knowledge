@@ -255,3 +255,21 @@ Before making a consequential present-state claim about BirdEye/MCP Local:
 5. preserve canonical ownership for Memory, Skills, GPT-Knowledge, GitHub, and runtime evidence;
 6. treat the current production-ready status as **NOT YET PROVEN** while the global alignment audit remains FAIL;
 7. update this reference and `letterblack-mcp-ecosystem-and-routing.md` when validated status changes.
+
+## BirdEye local bridge and ChatGPT connector lifecycle recovery — 2026-10-14
+
+**Classification:** local lifecycle recovery PROVEN; ChatGPT-originated acceptance UNVERIFIED.
+
+### Verified runtime facts
+
+- The existing loopback bridge at `127.0.0.1:8765` was restored after its integrity gate rejected a stale `server_sha256` pin. The installed `mini_local_mcp.py` changed on 2026-10-11 while `bridge_config.json` still contained the prior 2026-10-06 hash. The deployed server included configured `read_image`; the configuration pin was reconciled to deployed SHA-256 `3ebb530def56d45daa81d0b9d757a0dd65afb5551869cf3574126544d1b7579b`.
+- `BirdEye Local Bridge` is now the sole Scheduled Task lifecycle owner, running as `Letterblack` at logon with `IgnoreNew` multiple-instance policy and bounded task restart. Its maintainer now terminates only the exact configured `local_bridge.py` child before launch, preventing orphaned Python listeners after a task stop/restart.
+- A controlled bridge task restart passed authenticated `/health`, Streamable HTTP tool discovery, `write_text -> file_hash -> run_process -> result` smoke, and exact-one-bridge-process verification. Receipt: `bird-20261014-111334-a5f31e17`.
+- `BirdEye Connector Tunnel` is now the sole Scheduled Task lifecycle owner for the existing `local-mini` tunnel profile. It runs exactly one `tunnel-client.exe` on `127.0.0.1:8767`; `/healthz` is live and `/readyz` is ready.
+- A controlled connector task restart passed exact-one-process verification and a successful required control-plane poll. Receipt: `bird-20261014-111132-e92084b7`.
+- Final live snapshot: one bridge process (PID 14804), one tunnel process (PID 28296), authenticated bridge health, ready tunnel, and successful control-plane poll. Receipt: `bird-20261014-111425-ba69306d`.
+- The existing private Tailscale Serve configuration was not changed. The connector profile intentionally targets both BirdEye HTTP (`127.0.0.1:8766/mcp`) and the authenticated local bridge (`127.0.0.1:8765/mcp`); this is target configuration, not competing lifecycle ownership.
+
+### Remaining acceptance blocker
+
+A real ChatGPT UI/connector-originated MCP request invoking `workspace_run` has not yet been observed. Local bridge smoke, tunnel readiness, and a successful control-plane poll do not prove that ChatGPT selected this connector, issued the request, delivered the result, or surfaced BirdEye's execution receipt. Completion of remote-connector acceptance requires that end-to-end ChatGPT action and its correlated effect/receipt.
