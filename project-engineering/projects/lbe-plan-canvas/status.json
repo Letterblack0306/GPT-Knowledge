@@ -1,12 +1,12 @@
 {
   "schema_version": 85,
   "project": "LBE Persistent Agent",
-  "verified_at": "2026-09-18",
+  "verified_at": "2026-09-25",
   "source_repo": "Letterblack0306/LBE_Presistent_Agent_wall",
   "source_branch": "main",
   "original_workspace": "C:/Agents-Memory-Tool-v6-integration",
   "later_ui_workspace": "C:/LBE-TUI-Lab",
-  "overall_classification": "FINAL_INSTALLED_LBE_PRODUCT_ACCEPTANCE_PASS",
+  "overall_classification": "CURRENT_RUNTIME_PROOF_ADVANCED_INSTALLED_ACCEPTANCE_OPEN",
   "authority_note": "GPT-Knowledge is a projection only. Current canonical source/configuration, current local validation/runtime evidence, machine governance, active intent and acceptance records outrank this file.",
   "final_product": {
     "definition": "Persistent provider-neutral LBE agent product in which the agent/provider owns reasoning, investigation strategy, capability selection, interpretation and replanning, while LBE owns workspace/session identity, policy, authorization, governed execution, ToolReceipts/evidence, persistence, recovery, deterministic validation and completion truth.",
@@ -23,12 +23,12 @@
     "entrypoint": "lbe"
   },
   "current_machine_state": {
-    "classification": "FINAL_INSTALLED_PRODUCT_ACCEPTED",
+    "classification": "INSTALLED_FINAL_PRODUCT_ACCEPTANCE_OPEN_RUNTIME_CHAIN_ADVANCING",
     "active_phase": "INSTALLED_PTY_CONPTY_AND_FINAL_PRODUCT_ACCEPTANCE",
-    "active_slice": "NONE",
-    "status": "PASS_CLOSED",
-    "next_product_slice": "NONE",
-    "next_product_slice_activated": false
+    "active_slice": "GOVERNED_CODING_COMPLETION_AND_REPLAY_PROOF",
+    "status": "OPEN",
+    "next_product_slice": "SHARED_VALIDATION_INTERPRETER_THEN_REAL_GOVERNED_MUTATION",
+    "next_product_slice_activated": true
   },
   "runtime_authority": {
     "status": "ESTABLISHED_GOVERNED",
@@ -103,7 +103,7 @@
     {
       "order": 0,
       "id": "lbe-cli-product-composition-and-structural-visual-differentiation",
-      "status": "BLOCKED_ACTIVE_PRODUCT_GATE",
+      "status": "ACTIVE_CURRENT_PRODUCT_GATE",
       "scope": "Make `lbe` resolve to the LBE-branded CLI/TUI shell, retain compatible embedded Cline mechanics, and bind the visible timeline to emitted LBE/provider/client events only."
     },
     {
@@ -121,16 +121,18 @@
   ],
   "status_rule": "Before every next instruction refresh GPT-K and current local evidence. Do not rerun accepted baseline tests or read-only proofs merely for reassurance. Drive the open gate by completing the first remaining live composition behavior.",
   "rust_client_current": {
-    "classification": "REFERENCE_INTEGRATION_CLIENT_NOT_PRIMARY_USER_SURFACE",
+    "classification": "CANONICAL_VISIBLE_LBE_PRODUCT_IMPLEMENTATION",
     "workspace": "C:/LBE-TUI-Lab",
-    "role": "Rust/Ratatui reference/integration client used for bounded contract and integration experiments; not product-surface acceptance authority.",
-    "preservation_rule": "Preserve current dirty/unpublished Rust work and do not use Rust acceptance as proof of Cline CLI user experience."
+    "role": "Rust/Ratatui is the selected visible LBE terminal client. It owns presentation/input only; LBE retains runtime and governance authority.",
+    "preservation_rule": "Preserve unrelated dirty/unpublished Rust work. Source/tests do not substitute for installed acceptance."
   },
   "current_blocker": {
-    "classification": "CLINE_RUNTIME_WIRING_FALSE_PASS_RECORD",
-    "primary": "Governance records CLINE_RUNTIME_WIRING as PASS, but its named runtime implementation never entered canonical GitHub history.",
-    "secondary": "Writable ACT/coding therefore remains non-conforming with the accepted Cline AgentRuntime ownership boundary.",
-    "tertiary": "Record is corrected in GPT-K; backend repair still requires an explicitly activated implementation slice."
+    "classification": "NEWER_AUDIT_EVIDENCE_SUPERSEDES_FINAL_PASS_PROJECTION",
+    "primary": "September 24 provider/model audit reproduced a session-model versus stale ProviderConfig model binding defect. A narrow candidate repair imported and exercised bind_provider_config_to_session, but the focused pytest suite could not run in that audit environment because pytest was unavailable.",
+    "secondary": "Receipt/exactly-once audit found GovernedToolOrchestrator request/receipt replay identity remains process-memory backed at the inspected seam; durable installed provider-continuation/restart correlation is not proven.",
+    "tertiary": "Rust timeline audit found authoritative receipt/evidence identifiers are available but much conversational state is still flattened into transcript strings; typed truthful projection remains an open presentation seam.",
+    "legacy": "Textual remains historical/diagnostic and non-production. verify_clean_install.py was corrected to probe the actual lbe_guard_inspector.textual_tui module path without importing it.",
+    "rule": "Do not reopen accepted LBE authority architecture. Continue only on claim-matched missing seams and do not convert source presence or focused smoke checks into installed acceptance."
   },
   "project_visit_protocol": {
     "classification": "MANDATORY_PROJECT_CONTEXT_REFRESH",
@@ -155,7 +157,17 @@
     "active_config_path": "UNVERIFIED",
     "active_config_trace_required": true
   },
-  "remaining_unproven": [],
+  "remaining_unproven": [
+    "shared >=3.11 interpreter resolution for the focused-test evidence producer, reusing the launcher/runtime interpreter owner rather than hardcoded `python`",
+    "successful real governed coding mutation that persists governed_operations, authoritative ToolReceipt/evidence, and a passing task_completion_contract",
+    "durable exactly-once replay across the crash seam: successful persisted operation followed by process death before completion finalization must not execute the side effect twice after restart",
+    "changed-payload rejection for an already persisted operation identity after restart",
+    "typed Rust timeline projection for conversational authorization/tool/receipt/evidence/failure state without fabricated values",
+    "source/build/package/installed-artifact provenance for the canonical `lbe` Rust/Ratatui product",
+    "real installed Windows TTY/ConPTY launch/input/submit/interrupt/quit/terminal-restoration proof",
+    "installed restart/resume of the same persisted session with provider/model/receipt/evidence/history continuity",
+    "fresh complete installed end-to-end product run at the accepted revision"
+  ],
   "canonical_execution_path": {
     "classification": "PATH_TO_FOLLOW",
     "document": "project-engineering/projects/lbe-plan-canvas/CANONICAL_AGENT_LBE_EXECUTION_PATH.md",
@@ -876,7 +888,7 @@
     ],
     "rule": "Panels, commands, colors, or preview-mode output do not prove the final coding IDE. Final acceptance requires `lbe` alone to enter REAL runtime, embedded Cline provider/model selection, governed coding execution, receipts/evidence, persistence/resume, and accepted LBE UI under an interactive terminal."
   },
-  "updated": "2026-09-08",
+  "updated": "2026-09-25",
   "ui_contract_2026_09_08": {
     "classification": "CANONICAL_UI_POLICY_LOCKED",
     "canonical_document": "project-engineering/projects/lbe-plan-canvas/LBE_TERMINAL_TUI_UI_PLAN.md",
@@ -1196,6 +1208,394 @@
       "commit": "88ad2e4ee7e4422c051c3b88aa51376aefa29e3b",
       "status": "ACTIVE",
       "remaining": "One-time consolidation/deletion/reference repair and machine enforcement are still pending; no old docs were deleted by the bootstrap."
+    }
+  },
+  "last_repository_implementation_update": {
+    "recorded_at": "2026-09-21",
+    "classification": "IMPLEMENTED_ON_GITHUB_LOOPTOOL_VALIDATION_PENDING",
+    "repository": "Letterblack0306/LBE_Presistent_Agent_wall",
+    "commits": [
+      "6b65fe462d3de383dce7b05264b50dd5bbea63d7",
+      "5ef694c1e61564a765a794b15c8ac61d4183d946",
+      "a4ec74b8ffbaa5952fa485463e3320bc48ec17de",
+      "8e425b5fdd29da201449557ba2b492dbc9e08bd1",
+      "4013b991f97033899a806d3605142dee5931f610",
+      "a5e8efed62948c99af9740bdbff696d7ed2235d2",
+      "d3c4f6f54bdabac664e89528f50f637bbcf4ca96"
+    ],
+    "stale_fixture_corrections": [
+      "governed coding fake evidence service now conforms to EvidenceService contract",
+      "product_entry workspace path fixture now supplies the configured-root context required by current validation ordering"
+    ],
+    "delegated_child_agent_control": {
+      "status": "IMPLEMENTED_CANDIDATE",
+      "user_surface": "/agent-cancel <child-agent-run-id>",
+      "rust_request": "CancelChildAgent { turn_id, child_agent_run_id }",
+      "runtime_owner": "existing product_entry child-agent cancel lifecycle",
+      "authority_rule": "Rust requests and projects cancellation only; LBE remains lifecycle, persistence and authority owner."
+    },
+    "validation": {
+      "github_commit_status_contexts": "NONE_ATTACHED",
+      "github_workflow_runs": "NONE_RETURNED",
+      "looptool_local_validation": "PENDING"
+    },
+    "next_action": "Run the focused Rust/fixture LoopTool suite against the new GitHub head, then continue with the next missing user-facing seam without reopening accepted architecture."
+  },
+  "provider_profile_binding_update": {
+    "recorded_at": "2026-09-21",
+    "classification": "IMPLEMENTED_ON_GITHUB_LOOPTOOL_VALIDATION_PENDING",
+    "repository": "Letterblack0306/LBE_Presistent_Agent_wall",
+    "candidate_head": "0dab83e48f7e3601914816b55c8d1de8ccc813fe",
+    "commits": [
+      "512198adb6ecd562b0260795e55f7c394167b110",
+      "8d594ced85b091c1c17205609bf141cad997b163",
+      "129b163e46362bab485edff2e18f2f4f539be227",
+      "716aceaafdee2add1b8801c246542ea17ed9b926",
+      "c449cc0bdb0e0e5c8ff9158b5b90768eb263aec1",
+      "0dab83e48f7e3601914816b55c8d1de8ccc813fe"
+    ],
+    "behavior": [
+      "provider add/use/migrate now use the existing UserStateStore and WindowsCredentialStore owners",
+      "provider active projects non-secret profile metadata only",
+      "provider check can resolve explicit config or an active per-user profile",
+      "product_entry turn can resolve the active profile when --provider-config is omitted",
+      "Rust RealLbeWrapper keeps explicit LBE_PROVIDER_CONFIG compatibility and otherwise delegates provider resolution to the active LBE user profile",
+      "resolved credential secret remains inside the Python provider boundary and is not returned to the Rust UI or persisted in runtime-state.json"
+    ],
+    "authority_rule": "This is configuration binding only. Provider runtime authority, session provider selection, reasoning engine ownership, tool governance, receipts/evidence and completion ownership are unchanged.",
+    "validation": {
+      "focused_tests_added": "tests/test_user_state.py",
+      "github_status_contexts": "NONE_ATTACHED",
+      "github_workflow_runs": "NONE_RETURNED",
+      "looptool_local_validation": "PENDING"
+    },
+    "gdrive_history_lookup": "NO_MATCHES_RETURNED_FOR_PROVIDER_PROFILE_QUERY",
+    "next_action": "LoopTool should fetch/inspect the new GitHub head and run only the focused provider user-state/product-entry/Rust wrapper regressions needed for this seam. Do not reopen accepted provider/runtime architecture."
+  },
+  "provider_profile_tui_control_update": {
+    "recorded_at": "2026-09-21",
+    "classification": "IMPLEMENTED_ON_GITHUB_LOOPTOOL_VALIDATION_PENDING",
+    "repository": "Letterblack0306/LBE_Presistent_Agent_wall",
+    "candidate_head": "e68c37438691e6ea89190f4b4d458fa5c4eccbfb",
+    "commits": [
+      "1c36bf0fd774b041e496ad638e0936796864bc5f",
+      "81b167c9d7324e030281ff31c80e4b0e3844a9a2",
+      "ebadb29efed9cfef4af4757b2c743a60b89bb90d",
+      "a654ec1ef5ac6522b83f41e412736ab9872fbb2c",
+      "2d911c671bc8a25f39f5d03d9541c7fc9da6a1fb",
+      "c440a125814c65cc16190b9cfbdc0cfd16db4b37",
+      "7046f393309768645b84cada76d6e1a2d2ecc6a1",
+      "43917edfacb9fd5ab22b3f45fa1078772484acee",
+      "e68c37438691e6ea89190f4b4d458fa5c4eccbfb"
+    ],
+    "behavior": [
+      "Rust ConfigureProvider is now profile-based and carries profile name, provider id, model, endpoint, timeout, optional credential reference, and activation intent.",
+      "The old mock-era opaque-ref provider command was removed from the command path.",
+      "The real Rust wrapper delegates profile creation to product_entry provider add and profile removal to product_entry provider remove.",
+      "Removing a profile no longer deletes the provider capability from the catalog projection.",
+      "CLI provider remove uses the existing UserStateStore.remove_profile owner.",
+      "LM Studio Rust provider id now matches the canonical registry id lmstudio while the command parser accepts lmstudio and lm-studio aliases."
+    ],
+    "authority_rule": "Provider profile configuration remains user-state/credential binding. Provider capability registry, session provider selection, reasoning runtime, governance, receipts/evidence and completion owners are unchanged.",
+    "validation": {
+      "github_status_contexts": "NONE_ATTACHED",
+      "github_workflow_runs": "NONE_RETURNED",
+      "looptool_local_validation": "PENDING",
+      "focused_tests": [
+        "tests/test_user_state.py",
+        "apps/lbe-terminal/src/tests.rs provider profile command cases"
+      ]
+    },
+    "next_action": "Use LoopTool only for focused validation of the candidate head and new provider-profile seams. If green, promote to validated local and continue to the next unsupported real-mode product seam without reopening accepted architecture."
+  },
+  "session_memory_recall_update": {
+    "recorded_at": "2026-09-21",
+    "classification": "IMPLEMENTED_ON_GITHUB_LOOPTOOL_VALIDATION_PENDING",
+    "repository": "Letterblack0306/LBE_Presistent_Agent_wall",
+    "candidate_head": "eaf92ccb4f803e67e9a238f3866a262c0ea9520e",
+    "commits": [
+      "9d1b4fee4df33641873b0ea5eb885aeeb20cfe67",
+      "59a3ea65561db9e166f175d743294774b5303228",
+      "22bb521389f3d95f957ee33125b701c21f13b2be",
+      "7c90273d3b8d30a40c3f7d8327ffd0bf04d16c55",
+      "e3efc194cf2c6926885842c9380967544f471b1b",
+      "aeeddfc86d3bb2ece063096ac4eaa6b3fc8b7b01",
+      "07935515715a522e3eab2c0d3c1299fb7a6b1452",
+      "6e0e25ce26b1a30483a35a1456ad65f3d1b3a4a1",
+      "3a297c11152dabc2ec9274b1725eab6649734d6d",
+      "eaf92ccb4f803e67e9a238f3866a262c0ea9520e"
+    ],
+    "behavior": [
+      "CLI memory recall delegates to SessionMemoryRuntimeBridge.rehydrate(session_id=...) and therefore revalidates verified memory against current workspace state before projection.",
+      "Rust RealLbeWrapper RecallSessionMemory delegates to the canonical product_entry/CLI memory recall owner.",
+      "Runtime memory categories are represented explicitly in the Rust projection instead of being coerced into mock-only categories.",
+      "Unknown real content/session hashes are projected as absent rather than fabricated.",
+      "Connected Memory panel is labeled as a read-only validated LBE projection rather than mock/pre-integration.",
+      "Memory checkpoint, forget, and browser controls remain unsupported until owner-backed contracts exist."
+    ],
+    "authority_rule": "LBE memory runtime remains sole durable memory/promotion authority. Rust is read-only projection and control transport.",
+    "validation": {
+      "github_status_contexts": "NONE_ATTACHED",
+      "github_workflow_runs": "NONE_RETURNED",
+      "looptool_local_validation": "PENDING",
+      "focused_tests": [
+        "tests/test_cli.py::test_memory_recall_returns_revalidated_session_memory",
+        "apps/lbe-terminal/src/tests.rs::real_wrapper_requires_connected_runtime_for_session_memory_recall",
+        "cargo fmt --check",
+        "git diff --check"
+      ]
+    },
+    "next_action": "Run only the focused LoopTool validation for this new memory recall slice. If it passes, promote and continue to the next genuinely owner-backed user-visible seam."
+  },
+  "truthful_command_surface_update": {
+    "recorded_at": "2026-09-21",
+    "classification": "IMPLEMENTED_ON_GITHUB_LOOPTOOL_VALIDATION_PENDING",
+    "repository": "Letterblack0306/LBE_Presistent_Agent_wall",
+    "candidate_head": "89603ca8f65fd9a95e5e5b9714759c3cdc7451ef",
+    "commits": [
+      "73ffe5e0992ab19f7296314a848cfbd02e0b84d8",
+      "89603ca8f65fd9a95e5e5b9714759c3cdc7451ef"
+    ],
+    "behavior": [
+      "Production command palette no longer advertises unwired checkpoint restore, context compaction, or browser-chat controls.",
+      "/undo no longer attempts restore; it only inspects the current checkpoint and states that restore remains unavailable until the LBE owner is wired.",
+      "/compact no longer dispatches an unsupported real request and explicitly reports that a canonical compaction payload is not yet available.",
+      "Internal mock/request contracts remain preserved for future owner-backed integration."
+    ],
+    "authority_rule": "This changes only user-visible command exposure; no runtime or policy authority moved.",
+    "next_action": "Use LoopTool to validate the combined memory-recall and truthful-command-surface candidate head, then continue to the next owner-backed seam."
+  },
+  "checkpoint_inspection_update": {
+    "recorded_at": "2026-09-21",
+    "classification": "IMPLEMENTED_ON_GITHUB_LOOPTOOL_VALIDATION_PENDING",
+    "repository": "Letterblack0306/LBE_Presistent_Agent_wall",
+    "candidate_head": "1b8784cdcb345abfe5e4de72cdd953f2470cc533",
+    "commits": [
+      "d8ec55e7590f0e39c305b25ae21bd282543b269e",
+      "65fe96749d3b25bb2478a24942b6156479ec27db",
+      "df5587cca1cbd3fea162551b4a382d713b250b2b",
+      "a43c410244cb79744147b34ebf1692fd9310f072",
+      "b8f5da962e62160536479481331b702931df82d9",
+      "59edcd52b767e4abd3a453d1f5a562af8abed566",
+      "f8d98d10f513f9737d367457b9a87a4be5cab741",
+      "1b8784cdcb345abfe5e4de72cdd953f2470cc533"
+    ],
+    "behavior": [
+      "CLI checkpoint latest projects the canonical persisted checkpoint and current protected-checkpoint eligibility from SessionMemoryRuntimeBridge.rehydrate.",
+      "Rust /checkpoints now issues a read-only RefreshCheckpoint request to the canonical LBE owner.",
+      "RealLbeWrapper projects checkpoint id, creation time and workspace revision without inventing a changed-file list.",
+      "Connected checkpoint panel is inspection-only and blocks compare/restore affordances until those owners are wired.",
+      "Mock compare/restore contracts remain preserved for internal tests."
+    ],
+    "authority_rule": "Checkpoint persistence/revalidation remains owned by LBE memory runtime. Rust only requests and projects the read-only checkpoint summary.",
+    "validation": {
+      "looptool_local_validation": "PENDING",
+      "prior_looptool_failure": "BLOCKED_VALIDATION_SURFACE_COMMAND_CORRUPTION_AND_CLONE_COLLISION",
+      "focused_tests": [
+        "tests/test_cli.py::test_checkpoint_latest_returns_persisted_revalidated_checkpoint",
+        "apps/lbe-terminal/src/tests.rs::real_wrapper_requires_connected_runtime_for_checkpoint_refresh",
+        "apps/lbe-terminal/src/tests.rs::checkpoints_command_routes_read_only_refresh_request",
+        "cargo fmt --check",
+        "git diff --check"
+      ]
+    },
+    "next_action": "Run one corrected isolated LoopTool validation for current head using a unique temporary directory, then continue to the next owner-backed seam."
+  },
+  "checkpoint_revalidation_and_connected_ui_update": {
+    "recorded_at": "2026-09-21",
+    "classification": "IMPLEMENTED_ON_GITHUB_LOOPTOOL_VALIDATION_PENDING",
+    "repository": "Letterblack0306/LBE_Presistent_Agent_wall",
+    "candidate_head": "191e714a1a12a1778079d215df89fc60e76a28be",
+    "commits": [
+      "164448839a4faab1acec313838ee75c257383d6c",
+      "5463e2299ad4c70a10fd02d281509d7f96df4ad0",
+      "97bb9991c925817b5c72202267ea9afe5fc4aaf8",
+      "05dc8191b32b2e6753d20d8ea279e1d9ec6bfcc9",
+      "24c7bce442af1688c7ce5d5249369f0a530b82ca",
+      "d0e0369723e2c8eea7918a51220291b7b4683545",
+      "445a02c16d07449f46ce7067ba2fbb8558f816ad",
+      "191e714a1a12a1778079d215df89fc60e76a28be"
+    ],
+    "behavior": [
+      "CLI checkpoint compare revalidates the latest persisted checkpoint against current workspace state through SessionMemoryRuntimeBridge.rehydrate.",
+      "Real Rust checkpoint comparison delegates to the canonical LBE owner and projects status/reasons instead of inventing changed-file evidence.",
+      "Connected checkpoint UI exposes revalidation while restore remains blocked.",
+      "Mock checkpoint comparison still supports its changed-file fixture contract for internal tests.",
+      "Connected Provider, Model, MCP and Doctor secondary renderers no longer claim MOCK / NOT CONNECTED when backed by live LBE projections."
+    ],
+    "authority_rule": "Checkpoint eligibility remains LBE memory-runtime authority; Rust transports and renders the read-only verdict. Provider/model/MCP/diagnostic owners are unchanged.",
+    "looptool": {
+      "validation": "PENDING",
+      "last_failures": [
+        "BLOCKED_VALIDATION_SURFACE: browser rendered Git clone URL as Markdown and command cloned into an unintended existing destination before tests ran",
+        "No source/test regression has yet been demonstrated by LoopTool for this candidate"
+      ]
+    },
+    "next_action": "Continue implementation only on owner-backed product seams. Use LoopTool for bounded claim-matched validation without re-running accepted architecture proofs."
+  },
+  "memory_checkpoint_blocker": {
+    "recorded_at": "2026-09-21",
+    "classification": "BLOCKED_OWNER_CONTRACT",
+    "source_repository": "Letterblack0306/LBE_Presistent_Agent_wall",
+    "evidence": [
+      "lbe_guard_inspector/memory/compaction.py requires source_message_count, source_prefix_hash, and source_last_message_key",
+      "docs/contracts/VALIDATED_WORKSPACE_MEMORY.md states those values are validated when a compaction file is produced",
+      "no canonical repository owner was found that derives those values from the live transcript for the TUI request"
+    ],
+    "decision": "Do not wire UserRequest::CreateMemoryCheckpoint or /compact by inventing transcript identity. Preserve the request/mock contracts and continue other owner-backed product work."
+  },
+  "looptool_repair_2026_09_21": {
+    "recorded_at": "2026-09-21",
+    "classification": "CANDIDATE_REPAIRED_LOOPTOOL_REVALIDATION_REQUIRED",
+    "source_failure": {
+      "command_hash": "D8ADE098B21B8A6B5A58E20D19B2819933C4AB6A9A041885D9663174B03F511D",
+      "failed_candidate": "1b8784cdcb345abfe5e4de72cdd953f2470cc533",
+      "failing_tests": [
+        "tests/test_cli.py::test_memory_recall_returns_revalidated_session_memory",
+        "tests/test_cli.py::test_checkpoint_latest_returns_persisted_revalidated_checkpoint"
+      ],
+      "root_cause": "CLI called nonexistent SessionMemoryRuntimeBridge.rehydrate(session_id=...). Existing canonical method is SessionMemoryRuntimeBridge.start_or_resume(), which delegates to SessionMemoryAdapter.rehydrate with persisted session identity."
+    },
+    "repair": {
+      "repository": "Letterblack0306/LBE_Presistent_Agent_wall",
+      "commit": "eb09ffda330986f70167f7ae955555119fda3661",
+      "file": "lbe_guard_inspector/cli.py",
+      "change": "Replaced exactly three invalid runtime.rehydrate(session_id=state.session_id) calls with runtime.start_or_resume() in memory recall, checkpoint latest, and checkpoint compare paths."
+    },
+    "evidence_classification": "IMPLEMENTED_ON_GITHUB / LOOPTOOL_REVALIDATION_PENDING",
+    "next_action": "Rerun only the repaired memory recall/checkpoint latest/checkpoint compare Python tests and focused Rust dispatch tests on the repaired candidate."
+  },
+  "rust_compile_repair_2026_09_21": {
+    "recorded_at": "2026-09-21",
+    "classification": "CANDIDATE_REPAIRED_LOOPTOOL_REVALIDATION_REQUIRED",
+    "source_failure": {
+      "command_hash": "0E5204E1EBE9E01A92C612D9A73D6CEB731D7086DA41EC2D6E202B5F0F1C91CB",
+      "validated_python": "PASS: 3 focused Python tests",
+      "rust_compile_errors": [
+        "stray limit_arg in refresh_mcp_registry",
+        "missing command_palette_commands import in tests",
+        "UserRequest derived Eq despite f64 timeout_seconds",
+        "three RealLbeWrapper references used nonexistent database field instead of wall_database"
+      ]
+    },
+    "repair": {
+      "repository": "Letterblack0306/LBE_Presistent_Agent_wall",
+      "candidate_head": "accecc437964b592c4db9d0865b2a5ea41a1403e",
+      "commits": [
+        "8396e5bd7c06c813471ebe59290dd20be718efa2",
+        "2d1a69fedce95403518a4f2cd17d61f10f016119",
+        "accecc437964b592c4db9d0865b2a5ea41a1403e"
+      ],
+      "changes": [
+        "Removed Eq derive from UserRequest because ConfigureProvider.timeout_seconds is f64.",
+        "Removed accidental limit_arg from refresh_mcp_registry.",
+        "Replaced three nonexistent RealLbeWrapper.database references with wall_database.",
+        "Imported command_palette_commands into Rust tests."
+      ]
+    },
+    "evidence_classification": "IMPLEMENTED_ON_GITHUB / LOOPTOOL_REVALIDATION_PENDING",
+    "next_action": "Run only the previously failing Rust compile/focused tests at candidate head accecc437...; if green, continue to the next owner-backed seam."
+  },
+  "audit_reconciliation_2026_09_25": {
+    "classification": "NEWER_READ_ONLY_AND_FOLLOWUP_IMPLEMENTATION_EVIDENCE_RECONCILED",
+    "evidence_date": "2026-09-24",
+    "architecture_result": "ALIGNED_WITH_CURRENT_PLAN_NO_REDIRECTION_REQUIRED",
+    "workstreams": {
+      "C_rust_ui": {
+        "result": "PROPOSAL_ONLY_READY_WITH_RISKS",
+        "finding": "Authoritative runtime identifiers/receipts/evidence reach the Rust client, but conversational events are largely flattened into transcript strings. Implement presentation-only typed timeline cells; add no authority."
+      },
+      "D_provider_model_binding": {
+        "result": "RUNTIME_PATH_ADVANCED_REQUEST_BOUNDING_AND_PROVIDER_ADMISSION_PROVEN",
+        "finding": "Session/provider composition and bounded requested-output behavior have advanced through live OpenRouter provider admission. Provider/model capability remains configuration/runtime data; LBE owns only its outbound request-policy bound. Final successful governed coding completion is still open."
+      },
+      "E_receipts_exactly_once": {
+        "result": "SINGLE_SHOT_RECEIPT_RUNTIME_PROVEN_DURABLE_OPERATION_REPLAY_STILL_OPEN",
+        "finding": "Single-shot completed and failed governed turns now persist operational history and correlation. A live coding probe created/evaluated the real completion contract truthfully, but no governed mutation executed, so durable governed_operations, successful completion, crash-seam exactly-once replay, and changed-payload rejection remain open."
+      },
+      "G_legacy_textual": {
+        "result": "NON_PRODUCTION_LEGACY_CONFIRMED",
+        "finding": "lbe_guard_inspector/textual_tui.py is historical/diagnostic and not canonical-launch reachable. Synthetic preview receipt/evidence text is not runtime proof. verify_clean_install.py was corrected to inspect the actual module path."
+      }
+    },
+    "supersedes": [
+      "overall FINAL_INSTALLED_LBE_PRODUCT_ACCEPTANCE_PASS projection where unsupported by newer claim-matched evidence",
+      "PASS_CLOSED current-machine projection",
+      "remaining_unproven empty-list projection",
+      "Rust reference-only classification that conflicts with the current canonical Rust/Ratatui product decision"
+    ],
+    "authority_rule": "Current source/runtime/governance and claim-matched acceptance evidence outrank GPT-K projections. GPT-K records the reconciliation; it does not create proof."
+  },
+  "runtime_progress_2026_09_25_late": {
+    "classification": "CURRENT_LOCAL_RUNTIME_EVIDENCE_PUBLICATION_LOCKED",
+    "workspace": "C:/Agents-Memory-Tool-v6-integration",
+    "local_commits": {
+      "1286b6a": "single-shot governed turns now persist operational turn/item/requested/completed-or-failed receipt history before returning or raising",
+      "4908ff1": "UTF-8 BOM-tolerant config loading plus preservation of real provider error messages through adapter/coding runtime"
+    },
+    "publication": "LOCKED",
+    "remote_alignment": "NOT_REVERIFIED_FOR_LOCAL_ONLY_COMMITS",
+    "validation": {
+      "receipt_slice": "866 passed / 0 failed / 1 skipped at commit 1286b6a",
+      "bom_and_error_slice": "867 passed / 0 failed / 1 skipped at commit 4908ff1",
+      "request_sizing_slice": "883 passed / 0 failed / 1 skipped before the later terminology-only staged rename",
+      "staged_request_policy_rename": "36 focused tests green; full-suite result not yet recorded in GPT-K; staged and uncommitted"
+    },
+    "proven_current": [
+      "real single-shot governed turns persist operational_turns, reasoning items, and requested/completed-or-failed events with provider/model/operation/guard/result/evidence correlation",
+      "failed provider turns also leave durable operational receipts before raising",
+      "PowerShell-style UTF-8 BOM provider config files load successfully using utf-8-sig",
+      "provider error details survive the OpenAI-compatible adapter and governed-coding layer instead of collapsing to a fixed generic error",
+      "OpenRouter no longer receives an accidental 131072 max_tokens coding request; a bounded live coding turn passed provider admission",
+      "effective requested output bound is observable in TURN_STARTED metadata and explicit override is supported",
+      "seven governed tools were projected with ALLOW verdicts and risk classes while direct native mutation tools remained unexposed",
+      "VALIDATION_FAILED on the live read-only coding probe was truthful: the completion contract existed and failed its actual source_change/focused_test/git_status requirements"
+    ],
+    "provider_capability_vs_request_policy": {
+      "rule": "Provider/model context window and maximum-output capability are provider/model configuration facts. LBE may bound the outbound requested output parameter as request policy but must not invent model context capacity.",
+      "terminology": "Use requested-output policy names; `ceiling` is misleading when read as model capability.",
+      "required_distinct_causes": [
+        "MODEL_CAPABILITY_UNKNOWN",
+        "MODEL_CONFIG_INVALID",
+        "REQUEST_OUTPUT_EXCEEDS_MODEL_LIMIT",
+        "REQUEST_OUTPUT_EXCEEDS_LBE_POLICY",
+        "REQUEST_EXCEEDS_CONTEXT_WINDOW",
+        "PROVIDER_QUOTA_REJECTED",
+        "PROVIDER_CREDENTIALS_MISSING"
+      ]
+    },
+    "validation_characterization": {
+      "verdict": "VALIDATION_LOGIC_NOT_DEFECTIVE",
+      "earliest_incorrect_state": "FOCUSED_TEST_INTERPRETER_SELECTION",
+      "evidence": [
+        "live response was not truncated: prompt_tokens=82, completion_tokens=17, total=99, terminal event model.turn.requires_tool",
+        "the model legitimately requested governed workspace.read for README.md; an empty plan is not a normalization defect for this tool-driven turn",
+        "adapter preserved turn.started -> tool_call.started -> tool_call.completed -> usage.updated -> turn.requires_tool",
+        "task_completion_contracts contained the real three-requirement coding contract and task_completion_evidence contained three truthful FAIL rows",
+        "source_change failed because the probe only read a file",
+        "focused_test failed because the evidence producer invoked hardcoded `python`, resolving to Python 3.10 without pytest on this machine",
+        "git_status reflected only pre-existing dirty state; no governed mutation occurred",
+        "governed_operations remained empty because no governed mutating operation executed"
+      ],
+      "next_owner": "shared interpreter resolver used by launcher and focused-test evidence producer; validator remains unchanged"
+    },
+    "request_policy_rename_candidate": {
+      "status": "STAGED_UNCOMMITTED",
+      "change": "rename request-output constants to explicitly describe LBE outbound request policy rather than model/context capability",
+      "focused_validation": "36 focused tests green",
+      "rule": "Do not promote to committed/current-head evidence until the full suite is green and the commit exists."
+    },
+    "next_sequence": [
+      "finish/commit the terminology-only request-policy rename only after its full suite is green",
+      "reuse one >=3.11 interpreter resolver in the focused-test evidence producer; do not make the validator choose Python",
+      "run a real bounded coding task that performs a governed source mutation and can satisfy source_change + focused_test + git_status",
+      "inspect governed_operations + ToolReceipt/evidence + task_completion_contract correlation for the successful mutation",
+      "then prove crash-seam exactly-once/restart replay and changed-payload rejection",
+      "then close installed artifact provenance and real Rust/Ratatui PTY/ConPTY acceptance"
+    ],
+    "harness_blockers": {
+      "memory_mcp": "BLOCKED until the already-running MCP process restarts; numpy 2.5.3 was installed for Python 3.13 but the live process still lacks it",
+      "packaging_files": "install.ps1 and verify_clean_install.py remain uncommitted and outside the currently registered intent scope"
     }
   }
 }

@@ -456,3 +456,337 @@ Current proof does **not** establish that every LoopTool execution already persi
 ## Implementation-specific verification
 
 Before claiming current parser, readiness, duplicate-suppression, approval, timeout/cancellation, session, result-return or UI behavior, inspect the current `Letterblack0306/tools` source/runtime. The operating contract and implementation can drift.
+
+## Current LBE installer audit checkpoint — 2026-09-29
+
+A supplied LoopTool/agent result attempted a bounded compatibility repair in `C:\Agents-Memory-Tool-v6-integration` and failed closed before mutation:
+
+```text
+COMMAND HASH: A32EE84FF801402D286D031D91852BE8610CAE4BF9DBAF818A67BF74A376A8ED
+STATUS: FAIL
+EXIT CODE: 1
+REASON: Exact ArgumentList compatibility owner not found; refusing broad edit
+```
+
+GitHub current source was then used as the remote truth. `tools/lbe_product_integration.ps1` currently owns `Invoke-Native` using the PowerShell call operator and splatted arguments, so the attempted `$psi.ArgumentList` compatibility target is obsolete. The command therefore demonstrated the desired fail-closed behavior against a stale target; it did not prove a product defect in that function and did not prove a source mutation.
+
+The actual current installer contract is separately proven on remote `main`: `install.ps1` remains the old `python -m py_compile` validation stub, while `tests/test_product_launcher_contract.py` requires delegation to `tools/lbe_product_integration.ps1 -Mode package` and rejects the old stub.
+
+Remote checkpoint: `Letterblack0306/LBE_Presistent_Agent_wall@4f1449a41c69e7cb5354cc76cb2ed8460512121a`.
+
+Interpretation rule for future LoopTool use: **do not reconstruct or revive an obsolete implementation owner merely because an agent result names it. Reconcile the exact current source owner first, then issue the smallest repair.** Installed product and PTY/ConPTY acceptance remain separate runtime gates.
+
+
+## RealityScan bounded-command path checkpoint — 2026-09-30
+
+A user-supplied LoopTool/agent result attempted to inspect the current RealityScan aligned project from:
+
+```text
+WORKING DIRECTORY: D:\2026\SAM_GINIE\jpg MODEL\capture_Reality
+COMMAND HASH: 48AF5AE9A11795E97766FAAD0AF0D4DE13E7D6E7EDACDF627646A758C2A83816
+STATUS: FAIL
+EXIT CODE: 1
+```
+
+The failure was caused by the executed target path:
+
+```text
+D:\2026\SAM_GINIE\jpg MODEL\capture_Reality_3D_mode 2l_aligned.rsproj
+```
+
+which omitted the directory separator between `capture_Reality` and `_3D_mode 2l_aligned.rsproj`.
+
+Classification:
+
+```text
+COMMAND_EXECUTION = PROVEN
+PROJECT_FILE_ABSENCE = NOT PROVEN
+ROOT_CAUSE = MALFORMED_TARGET_PATH
+SOURCE_MUTATION = NONE
+NEXT ACTION = resolve the file relative to the proven working directory, then inspect
+```
+
+Do not reinterpret this failure as evidence that the RealityScan project file is absent. Prefer working-directory-relative path construction for filenames beginning with punctuation/underscore or containing spaces:
+
+```powershell
+$root = (Get-Location).Path
+$p = Join-Path -Path $root -ChildPath '_3D_mode 2l_aligned.rsproj'
+```
+
+Before failing on an expected filename, enumerate `*.rsproj` in the established working directory and report the exact candidates. This separates a stale/mistyped filename from an actually missing artifact.
+
+GitHub current-source cross-check on 2026-09-30: `Letterblack0306/Letterblack_BirdEye` current `loop_mcp_server.py` exposes governed `workspace_run` and `workspace_run_sequence`, and their tool descriptions explicitly state that browser debugging/CDP is not required. Canonical merge evidence: `0401f69a7ee7dbb5037e2bb0fc5b12bcd5bd2cc7` ("feat(loop): expose governed local command execution").
+
+Interpretation rule: if the ChatGPT runtime does not surface these MCP actions, classify that as a **tool-exposure/runtime integration gap**, not as absence of LoopTool capability in canonical BirdEye source. Continue using the authorized AGENT COMMAND relay when that is the available execution path.
+
+
+## RealityScan aligned-project existence checkpoint — 2026-09-30
+
+A fresh user-supplied LoopTool result succeeded against the bounded working directory:
+
+```text
+WORKING DIRECTORY: D:\2026\SAM_GINIE\jpg MODEL\capture_Reality
+COMMAND HASH: 6BE9AA155EC1BC49430873EF0D601FEEC52E7517CE2976F14AD4A3A6C93586A2
+STATUS: PASS
+EXIT CODE: 0
+DURATION: 1.29s
+```
+
+The command enumerated the local RealityScan project candidates and proved that the aligned project exists:
+
+```text
+_3D_mode 2l_aligned.rsproj
+Length: 121045
+LastWriteTime: 2026-09-30 07:55:16 local
+Full path rooted under:
+D:\2026\SAM_GINIE\jpg MODEL\capture_Reality
+```
+
+The same project contains source image records beginning with `..\DSC00152.jpg` and component records backed by sidecar SFM files. The observed excerpt included component records such as:
+
+```text
+Component 5 (23) -> sfm209.dat
+Component 6 (23) -> sfm210.dat
+Component 7 (23) -> sfm211.dat
+Component 8 (19) -> sfm212.dat
+Component 0 (24) -> sfm213.dat
+Component 1 (24) -> sfm214.dat
+Component 2 (24) -> sfm215.dat
+Component 3 (24) -> sfm216.dat
+Component 4 (24) -> sfm217.dat
+Component 5 (24) -> sfm218.dat
+```
+
+Interpretation boundary:
+
+```text
+ALIGNED_PROJECT_EXISTS = PROVEN
+PROJECT_READABLE = PROVEN
+COMPONENT_RECORDS_EXIST = PROVEN
+CURRENT_COMPONENT_MEMBERSHIP_BY_IMAGE = NOT YET PROVEN
+LATEST/CURRENT COMPONENT SET FROM XML EXCERPT ALONE = NOT YET PROVEN
+ALL_COMPONENTS_MERGED = DISPROVEN by the live RealityScan UI evidence supplied in the task context
+```
+
+Do not infer image-to-component membership from component names/counts alone. The `.rsproj` component nodes reference `sfm*.dat` sidecars; the next bounded diagnostic should identify the latest/current component records and inspect their SFM sidecars (or an authoritative RealityScan export/UI report) to map actual camera membership before adding cross-component control points.
+
+GitHub current-source revalidation on 2026-09-30: `Letterblack0306/Letterblack_BirdEye@main` `loop_mcp_server.py` blob `5efdb230c116aabce0577b3ec17fe49e8ccbd0eb` still exposes `workspace_run` and `workspace_run_sequence`, with no-CDP execution stated in the tool contract.
+
+
+## RealityScan current-generation/SFM membership checkpoint — 2026-09-30
+
+Fresh LoopTool evidence:
+
+```text
+COMMAND HASH: 72231EF5371F14D7AC2D6A8178CBCEF93DBAE8ADA454D4C694E60C2DDBC06BC3
+STATUS: PASS
+EXIT CODE: 0
+DURATION: 1.28s
+WORKING DIRECTORY: D:\2026\SAM_GINIE\jpg MODEL\capture_Reality
+```
+
+Observed project facts from `_3D_mode 2l_aligned.rsproj`:
+
+```text
+TOTAL_COMPONENT_RECORDS = 258
+```
+
+The tail of project order shows repeated component-name generations. The final observed XML records are:
+
+```text
+Component 0 (28) -> sfm498.dat
+Component 1 (28) -> sfm499.dat
+Component 2 (28) -> sfm500.dat
+Component 3 (28) -> sfm501.dat
+Component 4 (28) -> sfm502.dat
+Component 5 (28) -> sfm503.dat
+Component 6 (28) -> sfm504.dat
+Component 7 (28) -> sfm505.dat
+Component 8 (24) -> sfm506.dat
+```
+
+All nine sidecars exist and share the aligned project's observed timestamp `2026-09-30 07:55:16`. This supports treating XML indexes 249-257 / SFM 498-506 as the final observed component records in project order, not every historical component record in the file.
+
+Important correction: the parenthesized numbers in names such as `Component 0 (28)` are **not proven camera counts**. RealityCapture/RealityScan history demonstrates that repeated alignment can produce names such as `Component 0 (1)`, `Component 0 (2)` as renamed/suffixed component generations. Therefore the previous probe field named `CameraCount`, which was derived only by regex from the component name, was a parser assumption and must not be used as camera-count evidence.
+
+A bounded ASCII/UTF-16 filename probe over the newest SFM sidecars found no `DSC#####.jpg` strings.
+
+Classification:
+
+```text
+PROJECT COMPONENT HISTORY EXISTS = PROVEN
+FINAL OBSERVED COMPONENT RECORD SET = PROVEN FROM XML ORDER
+FINAL OBSERVED COMPONENT RECORD COUNT = 9
+PARENTHESIZED NAME SUFFIX == CAMERA COUNT = DISPROVEN / BAD INFERENCE
+ACTUAL CAMERA COUNT PER COMPONENT = NOT YET PROVEN
+SFM SIDECARS EXIST = PROVEN
+DSC FILENAME MEMBERSHIP EXTRACTABLE BY SIMPLE STRING PROBE = DISPROVEN
+IMAGE-TO-COMPONENT MEMBERSHIP = NOT YET PROVEN
+ALL COMPONENTS UNIFIED = DISPROVEN
+```
+
+Do not keep reverse-engineering RealityScan SFM binaries by heuristic string scans once the bounded probe fails. The next authoritative observable should come from RealityScan itself: select each current component and inspect/export its registered inputs/cameras, or use an official RealityScan report/export/CLI surface if available. The goal is a component -> image membership map that can support verified cross-component bridge-point selection.
+
+GitHub source revalidation on 2026-09-30: `Letterblack0306/Letterblack_BirdEye@main` `loop_mcp_server.py` blob `5efdb230c116aabce0577b3ec17fe49e8ccbd0eb` still exposes governed `workspace_run` and `workspace_run_sequence`; their current descriptions state that browser debugging/CDP is not required.
+
+
+### RealityScan authoritative membership route — source-verified 2026-09-30
+
+Official current RealityScan documentation confirms these supported CLI surfaces:
+
+```text
+selectComponent <componentName>
+exportLatestComponents <folderName>
+exportSelectedComponentDir <folderName>
+exportSelectedComponentFile <fileName>
+exportRegistration <fileName> [params.xml]
+```
+
+Current RealityScan documentation also states that Registration export can produce an Image List (`.imagelist`) containing the enabled or selected images. Therefore, once a current component is selected, component-to-image membership should be obtained through a supported RealityScan registration/image-list export path rather than by heuristic parsing of `sfm*.dat` binaries.
+
+Use this as the preferred next diagnostic owner for camera membership.
+
+
+## RealityScan executable-resolution checkpoint — 2026-09-30
+
+Fresh user-supplied LoopTool evidence:
+
+```text
+COMMAND HASH: CA315C6FB80055B96D60EAA1A2F4D5DFE1A3418A76D1BC6FD1764F14074EECAE
+STATUS: FAIL
+EXIT CODE: 1
+WORKING DIRECTORY: D:\2026\SAM_GINIE\jpg MODEL\capture_Reality
+ERROR: REALITYSCAN_EXE_NOT_FOUND
+```
+
+The command only checked these executable-resolution routes:
+
+```text
+C:\Program Files\Epic Games\RealityScan\RealityScan.exe
+C:\Program Files\Capturing Reality\RealityCapture\RealityCapture.exe
+Get-Command RealityScan.exe
+```
+
+Classification:
+
+```text
+COMMAND_EXECUTION = PROVEN
+PROJECT_FILE_CHECK = PASSED BEFORE EXECUTABLE RESOLUTION
+REALITYSCAN_NOT_INSTALLED = NOT PROVEN
+REALITYSCAN_EXECUTABLE_PATH = UNRESOLVED
+EXPORT_LATEST_COMPONENTS = NOT EXECUTED
+COMPONENT_EXPORT_RESULT = UNTESTED
+SOURCE MUTATION = NONE
+```
+
+Do not promote `REALITYSCAN_EXE_NOT_FOUND` into product absence. Earlier runtime evidence in the same task showed an active `RealityScan` process being foregrounded for UI inspection; therefore the next bounded owner is the current process executable path and Windows registration/shortcut metadata, not more guessed installation paths.
+
+Preferred bounded resolution order:
+
+```text
+Get-Process RealityScan / RealityCapture -> Path / MainModule.FileName
+Win32_Process ExecutablePath for matching process names
+App Paths registry
+Uninstall registry DisplayIcon / InstallLocation
+Start Menu shortcut targets
+only then a bounded filesystem search under likely vendor/program roots
+```
+
+GitHub current-source revalidation on 2026-09-30: `Letterblack0306/Letterblack_BirdEye@main` `loop_mcp_server.py` blob `5efdb230c116aabce0577b3ec17fe49e8ccbd0eb` still exposes governed `workspace_run` and `workspace_run_sequence`, with no-CDP execution stated in the tool contract.
+
+
+## RealityScan executable-path/runtime-project checkpoint — 2026-09-30
+
+Fresh user-supplied LoopTool evidence:
+
+```text
+COMMAND HASH: 81A87A18BF9150CF7919E5C69714B441AF24E971678DFCB7BFADC9A891D9B4FC
+STATUS: PASS
+EXIT CODE: 0
+WORKING DIRECTORY: D:\2026\SAM_GINIE\jpg MODEL\capture_Reality
+```
+
+Current running process evidence:
+
+```text
+ProcessName: RealityScan
+PID: 32924
+ExecutablePath: C:\Program Files\Epic Games\RealityScan_2.2\RealityScan.exe
+MainWindowTitle: _3D_mode 2l_aligned* saved to D:\2026\SAM_GINIE\jpg MODEL\capture_Reality - RealityScan
+```
+
+CIM independently reported the same executable path and showed that the process was originally launched with:
+
+```text
+D:\2026\SAM_GINIE\jpg MODEL\capture_Reality\_3D_mode 2l_copy.rsproj
+```
+
+Interpretation boundary:
+
+```text
+REALITYSCAN_PROCESS_RUNNING = PROVEN
+REALITYSCAN_EXECUTABLE_PATH = PROVEN
+EXECUTABLE = C:\Program Files\Epic Games\RealityScan_2.2\RealityScan.exe
+CURRENT WINDOW TITLE REFERENCES ALIGNED PROJECT = PROVEN
+CURRENT WINDOW HAS UNSAVED CHANGES MARKER (*) = PROVEN
+PROCESS STARTUP COMMANDLINE PROJECT = _3D_mode 2l_copy.rsproj
+CURRENT OPEN DOCUMENT == STARTUP COMMANDLINE PROJECT = NOT ASSUMED
+EXPORT_LATEST_COMPONENTS = NOT YET EXECUTED
+```
+
+Important rule: process command-line arguments describe how the existing process was launched; they do not prove which project is currently active after in-application open/save-as operations. For bounded CLI work, pass the intended project explicitly and use the proven executable path rather than relying on the already-running GUI process state.
+
+GitHub current-source revalidation on 2026-09-30: `Letterblack0306/Letterblack_BirdEye@main` `loop_mcp_server.py` blob `5efdb230c116aabce0577b3ec17fe49e8ccbd0eb` still exposes governed `workspace_run` and `workspace_run_sequence`, with no-CDP execution stated in the tool contract.
+
+
+## RealityScan export harness/argument-quoting checkpoint — 2026-09-30
+
+Fresh user-supplied LoopTool evidence:
+
+```text
+COMMAND HASH: A49C19B54353DC714FB60406DD7092E85459A42D288EAE12D82EBA4BE2787D77
+COMMAND STATUS: FAIL
+WRAPPER EXIT CODE: 1
+REALITYSCAN PROCESS EXIT CODE: 0
+PROCESS ID: 34136
+DURATION: 212.41s
+RSALIGN_COUNT: 0
+FINAL WRAPPER ERROR: NO_RSALIGN_COMPONENTS_EXPORTED
+```
+
+The wrapper used:
+
+```powershell
+Start-Process -FilePath $exe -ArgumentList @(
+  '-load',
+  $project,
+  '-setMinComponentSize',
+  '1',
+  '-exportLatestComponents',
+  $audit,
+  '-quit'
+) -PassThru -Wait
+```
+
+Both `$project` and `$audit` contain spaces in their absolute paths.
+
+Microsoft PowerShell documentation states that `Start-Process -ArgumentList` joins an array into one space-separated string and that the outer quotes of individual PowerShell strings are not retained. Argument values containing spaces must therefore include escaped double quotes; Microsoft recommends using one ArgumentList string containing the necessary quote characters.
+
+RealityScan's current CLI documentation confirms that `exportLatestComponents folderName` exports components created by the last alignment as `.rsalign` files and that `setMinComponentSize size` controls the minimum component size for that export.
+
+Therefore this run does **not** prove that RealityScan correctly received the intended project and output-folder arguments.
+
+Classification:
+
+```text
+REALITYSCAN_EXECUTABLE_LAUNCHED = PROVEN
+REALITYSCAN_CHILD_EXIT_CODE_0 = PROVEN
+EXPECTED_EXPORT_FILES_PRESENT = DISPROVEN FOR THIS INVOCATION
+REALITYSCAN_EXPORT COMMAND CORRECTLY ARGUMENTED = NOT PROVEN
+START_PROCESS ARGUMENT TRANSPORT = TEST_HARNESS_FAILURE / MALFORMED FOR SPACE-CONTAINING VALUES
+REALITYSCAN exportLatestComponents DEFECT = NOT PROVEN
+SAVED PROJECT HAS NO LATEST COMPONENTS = NOT PROVEN
+SOURCE/PROJECT MUTATION = NONE PROVEN BY THIS WRAPPER
+```
+
+Next action: repeat the same bounded export with explicit quoting preserved in a single `ArgumentList` string (or another argv-safe launcher), print that exact argument string, and inspect the output directory. Do not diagnose RealityScan or the project until the corrected invocation is observed.

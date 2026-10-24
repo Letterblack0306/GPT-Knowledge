@@ -108,5 +108,25 @@
     "question": "Does the next LoopTool use answer one already-defined engineering question through the smallest bounded local execution action, with fresh evidence when current state matters?",
     "observable": "Exact workspace/revision identity when relevant, returned AGENT RESULT, proof reference/hash identities, and any additional authoritative runtime/UI observable required by the claim.",
     "falsifier": "The command runs against an unverified workspace, the result evidence is incomplete, a dated proof is treated as current without revalidation, or the conclusion exceeds the layer actually observed."
+  },
+  "current_audit": {
+    "date": "2026-09-29",
+    "classification": "PROVEN_REMOTE_CONTRACT_MISMATCH_AND_FAIL_CLOSED_LOCAL_ATTEMPT",
+    "scope": "LBE installer/package integration repair",
+    "agent_result": {
+      "status": "FAIL",
+      "command_hash": "A32EE84FF801402D286D031D91852BE8610CAE4BF9DBAF818A67BF74A376A8ED",
+      "exit_code": 1,
+      "reason": "Exact ArgumentList compatibility owner not found; refusing broad edit"
+    },
+    "remote_truth": {
+      "repository": "Letterblack0306/LBE_Presistent_Agent_wall",
+      "main_head": "4f1449a41c69e7cb5354cc76cb2ed8460512121a",
+      "integration_owner": "tools/lbe_product_integration.ps1 uses Invoke-Native with call operator and splatted arguments",
+      "installer": "install.ps1 remains the old py_compile validation stub",
+      "contract_test": "tests/test_product_launcher_contract.py requires root installer delegation to the canonical package flow"
+    },
+    "interpretation": "The command correctly failed closed against a stale ArgumentList target. No source mutation was proven. The installer contract mismatch is proven on remote main. Do not revive the obsolete ArgumentList shape.",
+    "acceptance_boundary": "Installed product and PTY/ConPTY acceptance remain unproven; LoopTool PASS/FAIL is not feature acceptance."
   }
 }

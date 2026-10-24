@@ -875,3 +875,208 @@ LBE_CLI_PRODUCT_COMPOSITION_AND_STRUCTURAL_VISUAL_DIFFERENTIATION
 Required proof remains claim-matched: lbe launch, real LBE session/provider state, embedded Cline turn, governed tool proposal and authorization, exactly-once execution, persisted ToolReceipt/evidence, continuation, persistence/resume, deterministic completion, clean TTY/ConPTY exit, and terminal restoration. Documentation, source presence, focused tests, or an independently launched Cline process cannot substitute for this proof.
 
 Historical chat/Drive records explain prior decisions only. Current GitHub source, machine gate, local read-only validation evidence, and live runtime evidence outrank this historical projection. BirdEye MCP retrieval was unavailable during this refresh (Transport closed); no MCP retrieval result is being treated as current truth.
+
+
+## 2026-09-21 continuation update
+
+Classification: **IMPLEMENTED_ON_GITHUB / LOOPTOOL_VALIDATION_PENDING**
+
+Canonical repository work continued without reopening accepted runtime architecture.
+
+- Corrected two stale test fixtures against the current runtime contracts:
+  - governed coding fake evidence service now derives from the real `EvidenceService` contract;
+  - the product-entry path validation fixture now supplies the configured workspace root expected by current validation ordering.
+- Extended the existing delegated child-agent lifecycle into the Rust cockpit:
+  - `/agents` remains the read-only delegated-run projection;
+  - new `/agent-cancel <child-agent-run-id>` requests cancellation;
+  - Rust routes the request through the existing `product_entry child-agent cancel` owner;
+  - the returned LBE-owned child-agent record replaces the projected run state.
+- No Rust-local child runtime, executor, authorization authority, session authority, persistence owner, receipt owner, or completion owner was introduced.
+- GitHub returned no attached workflow/status contexts for the candidate head. Local LoopTool validation remains required before this implementation is promoted to validated/accepted.
+
+Candidate LBE repository head after this slice: `d3c4f6f54bdabac664e89528f50f637bbcf4ca96`.
+
+
+## 2026-09-21 — Active provider-profile binding implemented
+
+Classification: **IMPLEMENTED_ON_GITHUB / LOOPTOOL_VALIDATION_PENDING**
+
+This continuation removes a normal-use configuration dependency without changing provider/runtime authority.
+
+Canonical LBE repository candidate head:
+
+`0dab83e48f7e3601914816b55c8d1de8ccc813fe`
+
+Implemented path:
+
+```text
+provider add/use/migrate
+-> UserStateStore
+-> opaque credential_id only
+-> WindowsCredentialStore
+-> ProviderConfig resolved inside Python/LBE
+-> product_entry turn / provider check
+-> existing provider/runtime owners
+-> Rust RealLbeWrapper
+```
+
+Behavior:
+
+- `provider add`, `provider use`, `provider migrate`, and `provider active` are now wired.
+- Legacy API keys are moved into Windows Credential Manager during migration; they are not stored in `runtime-state.json` or emitted in command output.
+- `provider check` accepts the explicit config path when provided and otherwise resolves the active user profile.
+- `product_entry turn` no longer requires `--provider-config`; it can resolve the active profile and checks that profile provider/model match persisted session identity.
+- Rust keeps explicit `LBE_PROVIDER_CONFIG` compatibility. When it is absent, provider discovery/validation and turns fall through to the active LBE user profile.
+- Resolved credentials never cross into Rust projection, receipts/evidence, or persisted user-state JSON.
+
+Focused regression coverage was added in `tests/test_user_state.py`.
+
+GitHub returned no status contexts or workflow runs for the candidate head. Local LoopTool validation is still required before promotion beyond implemented-candidate state.
+
+Historical Drive lookup for this provider-profile seam returned no matching accessible record in the current connector session; no historical assumption was substituted for repository/GPT-K truth.
+
+
+## 2026-09-21 — Provider-profile TUI controls made real
+
+Classification: **IMPLEMENTED_ON_GITHUB / LOOPTOOL_VALIDATION_PENDING**
+
+Candidate LBE repository head: `e68c37438691e6ea89190f4b4d458fa5c4eccbfb`.
+
+The Rust provider command surface no longer uses the mock-era `opaque-ref` contract.
+
+Current command contract:
+
+```text
+/provider-config <profile> <provider> <model> <endpoint> [credential-id]
+/provider-remove <profile-name>
+```
+
+The real wrapper delegates profile creation/removal through `lbe_guard_inspector.product_entry` into the existing CLI/user-state owners. Removing a profile does not remove a provider capability from the catalog. LM Studio identity is aligned to the canonical registry id `lmstudio`.
+
+Focused Python and Rust regression coverage was updated. GitHub exposes no CI/status contexts for this head, and local LoopTool validation remains pending.
+
+## 2026-09-25 — September 24 audit reconciliation
+
+Classification: **ARCHITECTURE ALIGNED / INSTALLED ACCEPTANCE OPEN**
+
+The September 24 provider, receipt, Rust UI and legacy-path audit sessions were reviewed as full event histories, including follow-up edits. They do not require an architecture redesign.
+
+### Workstream C — Rust UI projection
+
+- Rust/Ratatui remains the canonical visible product surface.
+- Existing authoritative conversational receipt/evidence identifiers are already received by the client.
+- The remaining product seam is presentation-only: project typed timeline cells for messages, tool requests/results, authorization, failures, receipts, evidence, validation and completion instead of relying primarily on flattened transcript strings.
+- Missing values must remain visibly unavailable; the client must not fabricate proof.
+
+### Workstream D — provider/model session binding
+
+Reproduced failure:
+
+```text
+persisted selected session model
+!= stale ProviderConfig.model
+-> next provider turn rejects before continuation
+```
+
+The existing `bind_provider_config_to_session` helper is the correct composition seam. The follow-up implementation imported it into the CLI composition path and updated stale focused tests. A direct binding smoke check passed. Full focused pytest did not run because the active interpreter lacked pytest.
+
+Classification:
+
+```text
+IMPLEMENTED_CANDIDATE
+FOCUSED_REGRESSION_INCOMPLETE
+NOT_RUNTIME_PROVEN
+```
+
+Do not create a second provider resolver or move provider authority into Rust.
+
+### Workstream E — durable receipts / exactly-once / restart
+
+The isolated runtime seams exist, but the inspected `GovernedToolOrchestrator` replay identity is process-memory backed. Current acceptance still requires proof that immutable operation identity and the authoritative ToolReceipt/evidence survive continuation, retry and process restart.
+
+Required proof remains:
+
+```text
+ALLOW
+-> one handler execution
+-> persisted request fingerprint
+-> persisted ToolReceipt/evidence
+-> provider continuation from that receipt
+-> restart/resume
+-> duplicate replay returns same receipt
+-> changed payload rejected
+
+DENY / ESCALATE
+-> zero execution
+-> no successful continuation
+```
+
+Reuse existing persistence/operational-history owners. Do not add another dispatcher or receipt authority.
+
+### Workstream G — Textual legacy path
+
+`lbe_guard_inspector/textual_tui.py` is historical/diagnostic and not on the canonical `lbe` launch path. Its preview/synthetic receipt/evidence strings are not product proof.
+
+The clean-install verifier previously probed the wrong historical path. A follow-up corrected it to inspect `lbe_guard_inspector.textual_tui` with module discovery rather than importing/executing Textual.
+
+### Reconciled current position
+
+```text
+PRODUCT                    = LBE
+ENTRYPOINT                 = lbe
+VISIBLE CLIENT             = LBE-owned Rust/Ratatui
+CLINE                      = headless reasoning/provider/continuation mechanics
+RUNTIME/GOVERNANCE OWNER   = LBE
+TEXTUAL                    = historical/diagnostic, non-production
+ARCHITECTURE               = PRESERVED
+FINAL INSTALLED ACCEPTANCE = OPEN
+```
+
+Any older GPT-K field claiming `FINAL_INSTALLED_LBE_PRODUCT_ACCEPTANCE_PASS`, `PASS_CLOSED`, or an empty `remaining_unproven` set is superseded by this reconciliation unless newer claim-matched installed evidence is recorded.
+
+## 2026-09-25 late handoff — current runtime proof boundary
+
+This handoff supersedes older next-step text that still points to client acquisition, generic receipt discovery, or provider/model binding as the primary current blocker.
+
+Current local evidence:
+
+```text
+LOCAL HEAD / PROVEN COMMITS
+1286b6a  single-shot operational turn receipts
+4908ff1  BOM config loading + provider error transparency
+
+PUBLICATION
+LOCKED
+
+CURRENT ACCEPTANCE
+OPEN
+```
+
+Current proven behavior:
+
+- operational receipts persist for completed and failed single-shot governed turns;
+- provider/model/operation/guard/result/evidence correlation is durable in operational history for the exercised path;
+- BOM-prefixed provider configs load;
+- provider errors remain specific rather than collapsing to a generic message;
+- bounded OpenRouter coding requests now pass provider admission;
+- LBE request-output policy is distinct from provider/model context/output capability;
+- a real coding completion contract was created/evaluated and failed truthfully.
+
+The latest `VALIDATION_FAILED` is **not** a validator bug. The earliest incorrect state is the focused-test evidence producer selecting hardcoded `python`, which resolves to Python 3.10 without pytest. The read-only probe also could not satisfy a coding contract that requires a source change.
+
+Next implementation/proof slice:
+
+```text
+1. share the existing >=3.11 interpreter resolver with the focused-test evidence producer;
+2. leave validator logic unchanged;
+3. run a bounded coding task that performs a real governed source mutation;
+4. correlate governed_operations + ToolReceipt/evidence + task_completion_contract;
+5. prove crash-seam exactly-once/restart replay and changed-payload rejection;
+6. then close installed-artifact provenance and Rust/Ratatui PTY/ConPTY acceptance.
+```
+
+A terminology-only request-policy rename is staged/uncommitted in the local workspace with 36 focused tests green; do not treat it as current committed-head evidence until its full suite completes and a commit exists.
+
+Memory MCP retrieval is currently harness-blocked until the already-running MCP process restarts. Installing numpy into the backing Python environment does not retroactively update the running process.
+
+`install.ps1` and `verify_clean_install.py` remain outside the currently registered implementation intent and must not be silently absorbed into this runtime slice.

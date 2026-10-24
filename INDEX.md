@@ -2,6 +2,14 @@
 
 `knowledge-index.json` is the canonical machine-readable routing manifest. This file is the human-readable companion.
 
+## Failure and correction reference
+
+For GPT/agent assumptions, hallucinations, repeated mistakes, false completion, tool failures, source-of-truth drift, missing runtime evidence and ineffective repairs, route to:
+
+- [GPT / Agent Failure Patterns — Evidence and Correction](project-engineering/gpt-agent-failure-patterns-and-correction.md)
+
+This compact catalogue selects applicable patterns; it does not replace [Process Recall](002_PROCESS_RECALL.md), [Unified Agent Engineering](ai-agents/unified-agent-engineering-methods.md), or live workspace/runtime proof.
+
 Use the smallest relevant knowledge set. Do not preload every domain.
 
 ## Project or feature work — FIRST REFERENCE
@@ -31,13 +39,14 @@ The implementation plan does not override live project truth. If its predicted o
 
 ### Brew current runtime architecture status
 
-For questions specifically about Brew's current reasoning/runtime architecture, canonical `/query -> runTurn()` authority, auxiliary planners/agents, legacy subagent/team surfaces, execution-router classification, PR #442 reconciliation, or whether a module should be kept/quarantined/removed, additionally load:
+For questions about Brew's current reasoning/runtime architecture or acceptance status, load the current machine-readable records first:
 
-- `project-engineering/projects/brew-runtime-architecture-status-2026-09-07.md`
-- `project-engineering/projects/brew/status.json` for the compact machine-readable current projection
-- `project-engineering/projects/brew/plan.json` for the current reconciliation/acceptance sequence
+- `project-engineering/projects/brew/status.json` — current Brew status projection and evidence boundary
+- `project-engineering/projects/brew/plan.json` — current active gate and acceptance sequence
 
-This is a source-grounded project status record, not runtime proof. Revalidate current Brew `main`, local workspace identity when relevant, runtime behavior, and CI before promoting static findings into implementation or release claims.
+Load `project-engineering/projects/brew-runtime-architecture-status-2026-09-07.md` only when historical/reconciliation context is needed for older planner/agent surfaces, execution-router classification, legacy subagent/team behavior, PR #442, or keep/quarantine/remove decisions.
+
+These records remain projections, not runtime proof. Revalidate current Brew `main`, the exact local workspace/revision when relevant, live provider/tool behavior, and CI before promoting static or user-supplied source/test findings into installed-runtime or release claims.
 
 ### LBE Persistent Agent project status
 

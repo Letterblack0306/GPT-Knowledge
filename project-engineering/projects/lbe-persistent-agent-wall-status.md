@@ -1,4 +1,234 @@
+## 2026-10-11 local Rust/Ratatui provider-setup verification
+
+> Bounded live-workspace evidence only. Local workspace `C:\Agents-Memory-Tool-v6-integration` at `fd9212a223882e9c546826af0a51197ae6810827` is 4 commits ahead and 37 commits behind fetched `origin/main`; this proof must not be promoted into canonical installed-product acceptance until repository history is reconciled.
+
+Confirmed directly in the local Rust client:
+
+- `Phase::ProviderSetup { step: ProviderSetupStep }` exists.
+- `ProviderSetupMethod` is data-driven and includes `Preconfigured`, `ApiKey`, `Endpoint`, and `ExternalCredentialChain`; provider defaults are not one hardcoded setup method.
+- Landing/provider progression is gated by `AuthState::Ready`; provider setup cannot simply skip the runtime-ready requirement.
+- Explicit `v` validation key is wired while the provider panel is active.
+- `/tools` resolves to `MockPanel::Tools`.
+- Full Rust suite: **285 passed / 0 failed / 2 ignored**.
+- `main.rs` and `wrapper.rs` both contain current local changes consistent with provider-setup/runtime projection work.
+
+Status projection:
+
+```text
+Rust provider-setup state machine        PROVEN_LOCAL
+provider auth-ready gate                PROVEN_LOCAL
+provider validation key                 PROVEN_LOCAL
+/tools panel wiring                     PROVEN_LOCAL
+Rust regression suite                   PASS_LOCAL (285/0/2)
+raw API-key entry                       NOT IMPLEMENTED / secure runtime-owned storage contract required
+OAuth login                             NOT IMPLEMENTED / secure runtime-owned auth contract required
+Write-Launcher stray-file cleanup       OPEN / owner identified, exact fix not yet accepted
+canonical repo reconciliation           OPEN (local +4 / remote +37)
+final installed-product acceptance      NOT IMPLIED BY THIS PROOF
+```
+
+Do not discard these Rust improvements even if product-surface ownership is later reconciled differently: provider setup, validation gating, tool-panel wiring, and their tests are working feature evidence and may be retained as reference/integration or product code according to the final reconciled owner decision.
+
+---
 # LBE Persistent Agent Wall — Current Project Mirror
+## 2026-10-10 current LBE terminal implementation / installed acceptance mirror
+
+> **Projection only.** Current LBE runtime, machine governance, exact Git source/package, receipts, and acceptance records outrank this GPT-K mirror.
+
+Current canonical direction and bounded evidence:
+
+```text
+product                         = LBE / LetterBlack
+normal command                  = lbe
+visible client                  = LBE-owned Python terminal client
+canonical visible source        = lbe_guard_inspector/terminal_ui.py
+Rust/Ratatui                    = reference/integration only
+Cline                           = supported reasoning/provider adapter
+runtime authority               = LBE Agent Wall
+active slice                    = LBE_OWNED_TERMINAL_PRODUCT_SURFACE
+final product acceptance        = OPEN / BLOCKED
+publication                     = LOCKED
+runtime/package source          = 75158f15369cb5cedfe7ebae2a332051ac63de54
+```
+
+Implemented and currently bounded-proven:
+
+- `lbe` opens the LBE-owned terminal surface rather than the Rust client.
+- Exact runtime/package source `75158f1` passed focused terminal/product/launcher/Cline regression (**33 passed**) and canonical product prove.
+- Candidate `LetterBlack-LBE-2.0.3-win-x64-candidate.zip` passed package verification with **18,658 files** and no verification errors.
+- Exact candidate installed to an isolated root without changing the user's PATH or replacing existing npm/LBE command owners.
+- Installed `lbe --version` returned `2.0.3`; bare `lbe` rendered `LBE | LETTERBLACK`, authoritative workspace/provider/model/mode/session state and `[I]` composer; `/quit` exited RC=0.
+- Installed command shim preserves nonzero launcher failures.
+- Installed `/providers`, `/models`, `/model <id>` reuse existing LBE provider/session owners. The configured live endpoint projected 17 providers and five local models, and `google/gemma-4-e4b` selection persisted.
+- Installed Python terminal restart/resume restored session `tui-29f2116feb31454ba7e154e068a324b3` with `openai-compatible/google/gemma-4-e4b` and ACT state retained.
+- Earlier installed runtime proof on the same provider/execution path completed a real Gemma provider continuation and governed `workspace.read`, with ToolReceipt `receipt-dda22b70674e4f01bef6d7d1e65802d5` plus verified workspace evidence and continuation.
+
+Remaining final acceptance is intentionally not promoted to PASS:
+
+```text
+real PTY/ConPTY input + terminal restoration       OPEN
+current approval DENY/ALLOW + safe mutation        OPEN
+deterministic completion evidence                  OPEN
+final product acceptance                           BLOCKED
+publication                                        LOCKED
+```
+
+The only configured Remote Desktop Commander machine observed during this acceptance pass was offline, so no real remote interactive-terminal evidence was fabricated. A disposable governed validation workspace is still needed before running the final approval/mutation acceptance; the dirty canonical workspace must not be used for proof-file mutations.
+
+---
+## 2026-09-29 current installer-contract audit — remote truth reconciled
+
+A fresh LoopTool/agent execution attempt in the local workspace `C:\Agents-Memory-Tool-v6-integration` was supplied as:
+
+```text
+COMMAND STATUS: FAIL
+COMMAND HASH: A32EE84FF801402D286D031D91852BE8610CAE4BF9DBAF818A67BF74A376A8ED
+EXIT CODE: 1
+```
+
+The command failed closed before mutation because it searched for an exact `Invoke-Native`/PowerShell `ArgumentList` owner pattern and raised:
+
+```text
+Exact ArgumentList compatibility owner not found; refusing broad edit
+```
+
+Current GitHub source independently confirms that this expected owner is stale: `tools/lbe_product_integration.ps1` currently implements `Invoke-Native` with PowerShell's call operator and splatted arguments (`& $FilePath @Arguments`), not the `$psi.ArgumentList` form targeted by the attempted repair. Therefore the failed command is correctly classified as a **stale-target / no-mutation guard stop**, not evidence that the current integration script is broken.
+
+The remote repository was also checked for the actual installer contract. Current `main` still has `install.ps1` as the old validation stub using `python -m py_compile`, while `tests/test_product_launcher_contract.py` explicitly requires the root installer to delegate to `tools/lbe_product_integration.ps1 -Mode package` and forbids that py_compile-only implementation.
+
+Current remote source checkpoint:
+
+```text
+repository = Letterblack0306/LBE_Presistent_Agent_wall
+remote main HEAD = 4f1449a41c69e7cb5354cc76cb2ed8460512121a
+tools/lbe_product_integration.ps1 = present
+root install.ps1 = old validation stub
+launcher contract test = expects canonical package delegation
+```
+
+Classification:
+
+```text
+agent command transport/result        OBSERVED
+attempted source mutation              NOT PROVEN; command failed before edit
+stale ArgumentList owner assumption    PROVEN against current remote source
+root installer defect                  PROVEN_REMOTE_CONTRACT_MISMATCH
+canonical package owner                PROVEN_PRESENT
+installed product acceptance           NOT PROVEN
+PTY/ConPTY acceptance                  STILL OPEN
+release readiness                      NOT PROVEN
+```
+
+This audit does not authorize a broad compatibility rewrite. The next repair must target the **actual current installer owner/contract**, not resurrect the obsolete `ArgumentList` implementation shape. Local/runtime execution remains separately required before claiming the installed product works.
+
+Remote repository and current source outrank the supplied historical/chat claim for present implementation truth.
+
+
+## 2026-09-27 ownership/governed-execution reconciliation
+
+This section records newer live/local evidence than the older project mirror below. It does not replace the authority hierarchy: current LBE source, machine governance, workspace/runtime evidence, and raw acceptance/checkpoint records remain stronger than GPT-Knowledge.
+
+Latest committed LBE checkpoint supplied during this reconciliation:
+
+~~~text
+repository = Letterblack0306/LBE_Presistent_Agent_wall
+workspace  = C:\Agents-Memory-Tool-v6-integration
+branch     = main
+HEAD       = 1dd5a50
+~~~
+
+Protected checkpoints reported:
+
+~~~text
+CKPT-LAUNCHER-CLEAN-INSTALL-1d89882          PROTECTED
+CKPT-BRD-OWNERSHIP-RECONCILIATION-001        PROTECTED at 1dd5a50
+~~~
+
+The launcher/clean-install slice was committed under its own bounded intent rather than widening the PTY/ConPTY intent. The ownership reconciliation then resolved five BRD findings: one real duplicate authority was collapsed onto the proven protocol owner, one duplicate was classified as test-only/non-authoritative, and three current utilities/entrypoints were registered in PROJECT_INDEX.md.
+
+A later local completion report describes the explicit owner-authority governance implementation across contracts/schemas/rules, governed coding, BirdEye-governed execution, packaging checks, and the terminal UI. The specifically affected files reported for that completion include:
+
+~~~text
+lbe_guard_inspector/runtime/cline_governed_birdeye.py
+lbe_guard_inspector/runtime/governed_coding.py
+tests/test_cline_governed_birdeye.py
+~~~
+
+Validation reported for that later completion:
+
+~~~text
+core ownership/governed-coding tests   62 passed
+BirdEye governed-execution tests       10 passed
+release wheel packaging test            1 passed
+Rust terminal tests                   251 passed, 2 ignored
+Python compilation                     PASS
+git diff --check                       PASS
+~~~
+
+No commit SHA was supplied for that later completion, so GPT-K classifies it as **LOCAL_VALIDATED / COMMIT_ID_UNVERIFIED**, not as canonical remote truth.
+
+### Owner authority rule
+
+The current governance direction now includes a first-class blocker:
+
+~~~text
+OWNER_AUTHORITY_BLOCKER
+UI label: Wrong Owner / Wrong Scope
+
+No proven owner = no patch.
+Wrong owner = blocker.
+Cross-scope edit = blocker.
+Docs-only fix for a runtime defect = blocker.
+~~~
+
+The rule distinguishes the **responsibility/effect owner** from the **authorized mutation target**. They may differ. An edit is allowed only when the responsible owner is evidence-backed, the permitted mutation paths are explicit, unresolved competing owners are classified, and claim-matched validation is defined. Post-execution scope validation remains separate from pre-execution owner proof.
+
+The current BirdEye ownership work is evidence/index support for this rule; BirdEye does not itself become the authority owner. LBE Core/governance remains the decision boundary.
+
+### Warning classification from current validation
+
+Two warning classes were reported and remain non-blocking for the validated slice:
+
+~~~text
+Git LF -> CRLF normalization warnings
+  = working-tree normalization warning
+  = not a code/test failure
+  = git diff --check passed
+
+Rust dead_code warnings
+  = unused-code diagnostics
+  = not a test failure
+  = require ownership/reachability classification before deletion
+~~~
+
+Do not normalize line endings or delete dead-code candidates as part of unrelated owner-authority work.
+
+## 2026-09-20 architecture direction — LBE core independent of Cline
+
+Current canonical source/governance observed before this GPT-K update:
+
+```text
+Letterblack0306/LBE_Presistent_Agent_wall
+HEAD = 57294568d62cfb8bb41a07359c6f1943e0832b9a
+machine gate = PASS / COMPLETED / CLOSED
+implementation_allowed = false
+```
+
+The next product architecture direction is now recorded in [`lbe-reasoning-engine-independence-plan.md`](lbe-reasoning-engine-independence-plan.md).
+
+Core decision:
+
+```text
+LBE = required persistent governed agent runtime / authority core
+Cline = optional supported reasoning-engine/provider-ecosystem adapter
+model providers = separately pluggable
+no reasoning engine or provider = LBE authority owner
+```
+
+This is an additive decoupling plan, not a Cline-removal plan. Preserve proven Cline provider/model, continuation, streaming, tool-call, cancellation, delegated-agent/subagent, and other useful mechanics behind LBE-owned contracts. Add non-Cline reasoning paths without creating a second authorization, execution, receipt, persistence, validation, or completion authority.
+
+Current-state evaluations must read canonical source/workspace and `.lbe/governance/implementation-gates.json` before using Drive/chat mirrors. Gate-blind mirrors remain historical/context evidence only.
+
 
 ## Authority and routing
 

@@ -34,6 +34,20 @@ INSUFFICIENT EVIDENCE — NO RECOMMENDATION YET.
 
 This repository is a selective decision aid, not a monolithic prompt.
 
+## Recoverable blockers and continuous authorized work
+
+**A blocker is a condition to investigate and resolve, not a permanent instruction to abandon the user objective.** This is operational guidance, not a grant of permission or a bypass of any policy decision.
+
+For a reported blocker, identify the actual enforcing source and classify it as **security/authorization**, **task/scope**, **validation or release**, **missing evidence/dependency**, or **informational documentation**. Distinguish a real DENY from advisory guidance or a failed tool invocation.
+
+- When the current user request and applicable policy already authorize remediation, satisfy the prerequisite through the existing owner, re-check the condition and **resume the original task without another permission loop**.
+- If a task scope or policy change is necessary, do not self-authorize it. Use the established authorization mechanism or request the missing approval. Continue unrelated, already-authorized investigation or preparation when useful.
+- If a tool fails, attempt a bounded alternative authorized evidence route; failure of one tool is not evidence that the objective is impossible.
+- Keep real identity, approval, target and execution restrictions fail-closed. Never turn an explicit DENY into ALLOW, fabricate missing proof, weaken validation or silently change scope.
+- Report `BLOCKED` only for the unresolved *specific boundary*. State the required condition and the exact next authorized step. Document and preserve context for resumption; do not describe a temporary blocker as permanent.
+
+See [GPT / Agent Failure Patterns](project-engineering/gpt-agent-failure-patterns-and-correction.md) and [Process Recall](002_PROCESS_RECALL.md) for diagnostic patterns and evidence classifications.
+
 ## Global workspace guidance
 
 This guidance applies across every workspace. It is informative operating guidance, not an automatic blocker or hard gate.

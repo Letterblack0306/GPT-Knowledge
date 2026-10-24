@@ -131,7 +131,29 @@
         "v6-validation",
         "815dfc0",
         "backend checkout recovery",
-        "deleted canonical files"
+        "deleted canonical files",
+        "LBE reasoning engine",
+        "LBE engine independence",
+        "LBE Cline independence",
+        "Cline optional",
+        "Cline adapter",
+        "LBE provider neutral",
+        "reasoning engine registry",
+        "replaceable reasoning engine",
+        "LBE terminal UI",
+        "sci-fi minimal TUI",
+        "agent cockpit",
+        "LBE accessibility modes",
+        "LBE plain output",
+        "LBE authorization gate",
+        "GPT failure patterns",
+        "agent mistakes",
+        "false completion",
+        "hallucinated implementation",
+        "failure to correct",
+        "repeated tool failure",
+        "assumptions as evidence",
+        "runtime proof gap"
       ],
       "canonical": [
         "project-engineering/project-feature-implementation-plan.md"
@@ -189,9 +211,21 @@
           "project-engineering/projects/lbe-product-definition/CROSS_WORKSPACE_CONTRACT.md"
         ],
         "brew-current-runtime-architecture": [
-          "project-engineering/projects/brew-runtime-architecture-status-2026-09-07.md",
           "project-engineering/projects/brew/status.json",
-          "project-engineering/projects/brew/plan.json"
+          "project-engineering/projects/brew/plan.json",
+          "project-engineering/projects/brew-runtime-architecture-status-2026-09-07.md"
+        ],
+        "lbe-reasoning-engine-independence": [
+          "project-engineering/projects/lbe-reasoning-engine-independence-plan.md",
+          "ai-agents/provider-neutral-agent-auth-and-model-routing.md",
+          "ai-agents/cline-runtime-reuse-for-governed-agent-infrastructure.md"
+        ],
+        "lbe-terminal-sci-fi-minimal-ui": [
+          "project-engineering/projects/lbe-terminal-sci-fi-minimal-ui.md",
+          "ai-agents/studies/agent-feature-reference-map-2026-09-20.json"
+        ],
+        "gpt-agent-failure-correction": [
+          "project-engineering/gpt-agent-failure-patterns-and-correction.md"
         ]
       }
     },
@@ -342,7 +376,12 @@
         "persistent agent integration",
         "Telegram settings",
         "provider config UI",
-        "workspace readiness"
+        "workspace readiness",
+        "Antigravity CLI",
+        "Claude Code",
+        "OpenCode CLI",
+        "agent feature reference map",
+        "exact agent feature reference"
       ],
       "canonical": [
         "ai-agents/unified-agent-engineering-methods.md"
@@ -390,6 +429,11 @@
         ],
         "agent-harness-references": [
           "ai-agents/studies/agent-harness-reference-sources-2026-09-08.md"
+        ],
+        "exact-agent-feature-reference-map": [
+          "ai-agents/studies/agent-feature-reference-map-2026-09-20.json",
+          "ai-agents/studies/exact-agent-feature-reference-chain-2026-09-20.md",
+          "GPT_Ref/GPT_REF.md"
         ]
       }
     },
@@ -564,7 +608,7 @@
     }
   },
   "routingRules": [
-    "For current Brew reasoning/runtime architecture, canonical /query -> runTurn() authority, auxiliary planner/agent surfaces, execution-router classification, legacy subagent/team compatibility, or PR #442 reconciliation, additionally load project-engineering/projects/brew-runtime-architecture-status-2026-09-07.md plus project-engineering/projects/brew/status.json and plan.json, then revalidate current Brew main and runtime before acting.",
+    "For current Brew reasoning/runtime architecture and acceptance status, load project-engineering/projects/brew/status.json and project-engineering/projects/brew/plan.json first. Load project-engineering/projects/brew-runtime-architecture-status-2026-09-07.md only as historical/reconciliation context for older planner, execution-router, legacy subagent/team, or PR #442 questions. Revalidate current Brew main, local workspace identity when relevant, and runtime evidence before acting.",
     "When Letterblack_BirdEye, local workspace evidence, local-vs-remote drift, workspace identity, revision status, indexed local search/inspection, or governed local command execution is relevant, load project-engineering/letterblack-birdeye-local-evidence-and-governed-execution.md. Use BirdEye for local evidence and policy-governed argv execution; use GitHub for canonical remote repository/PR/patch truth; use runtime-specific tools for behavior requiring live user-visible proof.",
     "For any project or feature implementation, extension, replacement, integration, migration, planning, or learning task, load project-engineering/project-feature-implementation-plan.md before domain-specific knowledge.",
     "For repository/project checkpoints, before-any-change verification, SHA/diff review, local-vs-remote drift, GPT-Knowledge source_head/classification synchronization, deployment/live-surface verification, or completion-state reconciliation, additionally load project-engineering/repository-status-checkpointing-and-live-surface-reconciliation.md. Reconcile source, local validation, project projection, and live/deployed surfaces before the next engineering mutation.",

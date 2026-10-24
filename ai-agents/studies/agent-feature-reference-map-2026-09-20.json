@@ -1,0 +1,657 @@
+{
+  "schema_version": 1,
+  "purpose": "Deterministic feature-to-upstream reference map. Reference evidence only; never target implementation authority.",
+  "verified_on": "2026-09-20",
+  "references": {
+    "antigravity": {
+      "repository": "google-antigravity/antigravity-cli",
+      "revision": "7bb195acaec9e7788df5210d0dc3e15f3cefc6b3",
+      "tracked_public_files": 15,
+      "source_limitation": "Public repo does not contain the complete production core; exact product behavior uses official Antigravity CLI docs plus repo README/changelog/examples."
+    },
+    "claude_code": {
+      "repository": "anthropics/claude-code",
+      "revision": "7974a70773fa229e4cc65aa1b356cc21f5c216c4",
+      "tracked_public_files": 1422,
+      "source_limitation": "Public repo contains extensions/mods/plugins/examples but is not a complete production core mirror; official Claude Code docs are required for core CLI/tool/UI behavior."
+    },
+    "cline": {
+      "repository": "cline/cline",
+      "revision": "9a2512bb9835869d74774da99708a7f9d80b0fe8",
+      "tracked_public_files": 4051,
+      "source_limitation": null
+    },
+    "opencode": {
+      "repository": "anomalyco/opencode",
+      "revision": "ebb7b76eca82342642c78645109e865614533827",
+      "default_branch": "dev",
+      "tracked_public_files": 6632,
+      "source_limitation": null
+    }
+  },
+  "feature_chains": [
+    {
+      "feature_id": "reasoning.engine_provider_separation",
+      "references": [
+        {
+          "ref": "cline",
+          "paths": [
+            "sdk/packages/README.md",
+            "sdk/ARCHITECTURE.md"
+          ],
+          "symbols": [
+            "@cline/llms",
+            "@cline/agents",
+            "@cline/core"
+          ]
+        },
+        {
+          "ref": "opencode",
+          "paths": [
+            "packages/opencode/src/provider/provider.ts",
+            "packages/opencode/src/tool/registry.ts"
+          ],
+          "symbols": [
+            "Provider",
+            "ToolRegistry.Service"
+          ]
+        }
+      ],
+      "lbe_boundary": "Reasoning engines/providers remain replaceable; LBE owns authority, receipts, persistence, validation and completion."
+    },
+    {
+      "feature_id": "tool.registry",
+      "references": [
+        {
+          "ref": "cline",
+          "paths": [
+            "docs/tools-reference/all-cline-tools.mdx",
+            "sdk/packages/core/src/extensions/tools/"
+          ],
+          "native_tools": [
+            "bash",
+            "editor",
+            "read_files",
+            "apply_patch",
+            "search",
+            "fetch_web",
+            "ask_question"
+          ]
+        },
+        {
+          "ref": "opencode",
+          "paths": [
+            "packages/opencode/src/tool/registry.ts",
+            "packages/web/src/content/docs/tools.mdx"
+          ],
+          "native_tools": [
+            "shell",
+            "read",
+            "glob",
+            "grep",
+            "edit",
+            "write",
+            "task",
+            "fetch",
+            "todo",
+            "search",
+            "skill",
+            "patch",
+            "question",
+            "lsp",
+            "plan"
+          ]
+        },
+        {
+          "ref": "claude_code",
+          "official_docs": [
+            "https://code.claude.com/docs/en/tools-reference"
+          ],
+          "native_tools": [
+            "Agent",
+            "AskUserQuestion",
+            "Bash",
+            "Edit",
+            "Glob",
+            "Grep",
+            "LSP",
+            "Read",
+            "Skill",
+            "TaskCreate",
+            "TaskGet",
+            "TaskList",
+            "TaskOutput",
+            "TaskStop",
+            "TaskUpdate",
+            "WebFetch",
+            "WebSearch",
+            "Write"
+          ]
+        }
+      ],
+      "lbe_boundary": "All mutations/external effects still cross LBE R6C/R6E."
+    },
+    {
+      "feature_id": "permissions.approval",
+      "references": [
+        {
+          "ref": "antigravity",
+          "repo_paths": [
+            "README.md",
+            "CHANGELOG.md"
+          ],
+          "official_docs": [
+            "https://www.antigravity.google/docs/permissions?tab=cli"
+          ],
+          "native_semantics": [
+            "Deny",
+            "Ask",
+            "Allow"
+          ]
+        },
+        {
+          "ref": "claude_code",
+          "official_docs": [
+            "https://code.claude.com/docs/en/permissions",
+            "https://code.claude.com/docs/en/interactive-mode"
+          ],
+          "native_surfaces": [
+            "permission modes",
+            "allowedTools",
+            "disallowedTools",
+            "Shift+Tab"
+          ]
+        },
+        {
+          "ref": "cline",
+          "paths": [
+            "apps/cli/README.md",
+            "apps/cli/src/tui/components/dialogs/tool-approval.tsx",
+            "apps/cli/src/tui/components/inline-tool-response.tsx"
+          ],
+          "native_surfaces": [
+            "--auto-approve",
+            "TTY approval",
+            "desktop approval IPC"
+          ]
+        },
+        {
+          "ref": "opencode",
+          "paths": [
+            "packages/web/src/content/docs/permissions.mdx",
+            "packages/tui/src/routes/session/permission.tsx"
+          ],
+          "native_semantics": [
+            "allow",
+            "ask",
+            "deny"
+          ]
+        }
+      ],
+      "lbe_boundary": "Upstream approval UX may be adapted; LBE authorization verdict remains authoritative."
+    },
+    {
+      "feature_id": "session.history_checkpoint_rewind",
+      "references": [
+        {
+          "ref": "antigravity",
+          "repo_paths": [
+            "CHANGELOG.md"
+          ],
+          "official_docs": [
+            "https://antigravity.google/docs/cli/reference/"
+          ],
+          "native_surfaces": [
+            "/resume",
+            "/fork",
+            "/rewind"
+          ]
+        },
+        {
+          "ref": "claude_code",
+          "official_docs": [
+            "https://code.claude.com/docs/en/cli-reference",
+            "https://code.claude.com/docs/en/interactive-mode"
+          ],
+          "native_surfaces": [
+            "--resume",
+            "--continue",
+            "rewind"
+          ]
+        },
+        {
+          "ref": "cline",
+          "paths": [
+            "apps/cli/src/tui/components/dialogs/checkpoint-picker.tsx",
+            "apps/cli/src/tui/views/history-view.tsx",
+            "apps/cli/src/tui/commands/slash-command-registry.ts"
+          ],
+          "native_surfaces": [
+            "/undo",
+            "/fork",
+            "/history"
+          ]
+        },
+        {
+          "ref": "opencode",
+          "paths": [
+            "packages/tui/src/routes/session/index.tsx",
+            "packages/tui/src/component/dialog-session-list.tsx",
+            "packages/web/src/content/docs/tui.mdx"
+          ],
+          "native_surfaces": [
+            "/undo",
+            "/redo",
+            "/sessions",
+            "--fork"
+          ]
+        }
+      ],
+      "lbe_boundary": "History/checkpoint UX must project LBE-owned persisted session/checkpoint truth."
+    },
+    {
+      "feature_id": "subagents.teams_background",
+      "references": [
+        {
+          "ref": "antigravity",
+          "repo_paths": [
+            "CHANGELOG.md",
+            "examples/statusline/statusline.sh"
+          ],
+          "official_docs": [
+            "https://antigravity.google/docs/cli/features/"
+          ],
+          "native_surfaces": [
+            "subagents",
+            "background tasks",
+            "/agents",
+            "/tasks"
+          ]
+        },
+        {
+          "ref": "claude_code",
+          "official_docs": [
+            "https://code.claude.com/docs/en/sub-agents",
+            "https://code.claude.com/docs/en/agent-teams"
+          ],
+          "native_tools": [
+            "Agent",
+            "ListAgents",
+            "Task*"
+          ]
+        },
+        {
+          "ref": "cline",
+          "paths": [
+            "sdk/packages/core/src/extensions/tools/team/",
+            "sdk/packages/core/src/session/team/",
+            "apps/cli/README.md"
+          ],
+          "native_surfaces": [
+            "spawn_agent",
+            "team tools",
+            "--team-name"
+          ]
+        },
+        {
+          "ref": "opencode",
+          "paths": [
+            "packages/opencode/src/tool/task.ts",
+            "packages/opencode/src/agent/",
+            "packages/tui/src/routes/session/subagent-footer.tsx",
+            "packages/tui/src/routes/session/index.tsx"
+          ],
+          "native_surfaces": [
+            "task tool",
+            "child sessions",
+            "background subagents"
+          ]
+        }
+      ],
+      "lbe_boundary": "Delegated workers are allowed; parent/session identity and all authority-bearing consequences remain LBE-owned."
+    },
+    {
+      "feature_id": "mcp.skills.plugins.hooks",
+      "references": [
+        {
+          "ref": "antigravity",
+          "repo_paths": [
+            "CHANGELOG.md"
+          ],
+          "official_docs": [
+            "https://antigravity.google/docs/cli/features/"
+          ],
+          "native_surfaces": [
+            "/mcp",
+            "/skills",
+            "/hooks",
+            "plugins"
+          ]
+        },
+        {
+          "ref": "claude_code",
+          "repo_paths": [
+            "plugins/"
+          ],
+          "official_docs": [
+            "https://code.claude.com/docs/en/cli-reference"
+          ],
+          "native_surfaces": [
+            "claude mcp",
+            "plugins",
+            "skills",
+            "hooks"
+          ]
+        },
+        {
+          "ref": "cline",
+          "paths": [
+            "apps/cli/src/commands/mcp.ts",
+            "apps/cli/src/commands/plugin.ts",
+            "apps/cli/src/commands/skill.ts",
+            "apps/cli/src/tui/commands/slash-command-registry.ts"
+          ],
+          "native_surfaces": [
+            "mcp",
+            "plugin",
+            "skills",
+            "runtime/plugin/skill/workflow slash commands"
+          ]
+        },
+        {
+          "ref": "opencode",
+          "paths": [
+            "packages/opencode/src/mcp/",
+            "packages/opencode/src/skill/",
+            "packages/opencode/src/plugin/",
+            "packages/opencode/src/tool/registry.ts"
+          ],
+          "native_surfaces": [
+            "opencode mcp",
+            "skill tool",
+            "plugin tools"
+          ]
+        }
+      ],
+      "lbe_boundary": "Registration/discovery may be adapted; external actions remain governed capabilities."
+    },
+    {
+      "feature_id": "ui.home_transcript_composer_status",
+      "references": [
+        {
+          "ref": "antigravity",
+          "repo_paths": [
+            "examples/statusline/statusline.sh",
+            "examples/title/title.sh",
+            "README.md"
+          ],
+          "state_fields": [
+            "agent_state",
+            "context_window.used_percentage",
+            "vcs.branch",
+            "vcs.dirty",
+            "sandbox.enabled",
+            "artifact_count",
+            "subagents",
+            "task_count",
+            "model.display_name"
+          ]
+        },
+        {
+          "ref": "cline",
+          "paths": [
+            "apps/cli/src/tui/views/home-view.tsx",
+            "apps/cli/src/tui/views/chat-view.tsx",
+            "apps/cli/src/tui/components/status-bar.tsx",
+            "apps/cli/src/tui/components/input-bar.tsx"
+          ],
+          "native_components": [
+            "HomeView",
+            "ChatView",
+            "StatusBar",
+            "InputBar",
+            "ChatMessageList",
+            "QueuedPrompts",
+            "InlineToolResponse"
+          ]
+        },
+        {
+          "ref": "opencode",
+          "paths": [
+            "packages/tui/src/routes/session/index.tsx",
+            "packages/tui/src/routes/session/sidebar.tsx",
+            "packages/tui/src/routes/session/footer.tsx"
+          ],
+          "native_components": [
+            "session timeline",
+            "PermissionPrompt",
+            "QuestionPrompt",
+            "Sidebar",
+            "Footer"
+          ]
+        }
+      ],
+      "lbe_boundary": "UI is projection/control only; it must never invent connected/healthy/approved state."
+    },
+    {
+      "feature_id": "ui.command_palette_slash",
+      "references": [
+        {
+          "ref": "cline",
+          "paths": [
+            "apps/cli/src/tui/components/dialogs/command-palette-items.ts",
+            "apps/cli/src/tui/commands/slash-command-registry.ts"
+          ],
+          "native_commands": [
+            "settings",
+            "model",
+            "theme",
+            "account",
+            "mcp",
+            "plugins",
+            "compact",
+            "skills",
+            "fork",
+            "undo",
+            "clear",
+            "history",
+            "help",
+            "quit"
+          ]
+        },
+        {
+          "ref": "opencode",
+          "paths": [
+            "packages/web/src/content/docs/tui.mdx"
+          ],
+          "native_commands": [
+            "connect",
+            "compact",
+            "details",
+            "editor",
+            "exit",
+            "export",
+            "help",
+            "init",
+            "models",
+            "new",
+            "redo",
+            "sessions",
+            "share",
+            "themes",
+            "thinking",
+            "undo",
+            "unshare"
+          ]
+        }
+      ],
+      "lbe_boundary": "Commands dispatch to existing LBE owners; command vocabulary must not create parallel state."
+    },
+    {
+      "feature_id": "ui.model_provider_picker",
+      "references": [
+        {
+          "ref": "antigravity",
+          "repo_paths": [
+            "CHANGELOG.md"
+          ],
+          "native_surfaces": [
+            "/model picker",
+            "fuzzy search"
+          ]
+        },
+        {
+          "ref": "claude_code",
+          "official_docs": [
+            "https://code.claude.com/docs/en/interactive-mode"
+          ],
+          "native_surfaces": [
+            "Alt/Option+P model picker"
+          ]
+        },
+        {
+          "ref": "cline",
+          "paths": [
+            "apps/cli/src/tui/components/model-selector/",
+            "apps/cli/src/tui/components/dialogs/provider-picker.tsx"
+          ],
+          "native_surfaces": [
+            "model selector",
+            "provider picker"
+          ]
+        },
+        {
+          "ref": "opencode",
+          "paths": [
+            "packages/tui/src/component/dialog-model.tsx",
+            "packages/tui/src/component/dialog-provider.tsx"
+          ],
+          "native_surfaces": [
+            "model dialog",
+            "provider dialog"
+          ]
+        }
+      ],
+      "lbe_boundary": "Configured/available/healthy/selected/actual-used must remain distinct."
+    },
+    {
+      "feature_id": "ui.diff_artifact_review",
+      "references": [
+        {
+          "ref": "antigravity",
+          "repo_paths": [
+            "CHANGELOG.md"
+          ],
+          "native_surfaces": [
+            "artifact viewer",
+            "/diff",
+            "review status"
+          ]
+        },
+        {
+          "ref": "claude_code",
+          "repo_paths": [
+            "mods/diff/"
+          ],
+          "official_docs": [
+            "https://code.claude.com/docs/en/interactive-mode"
+          ],
+          "native_surfaces": [
+            "diff/tool detail"
+          ]
+        },
+        {
+          "ref": "cline",
+          "paths": [
+            "apps/cli/src/tui/components/chat-entry.tsx",
+            "apps/cli/src/tui/components/chat-message-list.tsx"
+          ],
+          "native_surfaces": [
+            "syntax-highlighted diffs"
+          ]
+        },
+        {
+          "ref": "opencode",
+          "paths": [
+            "packages/tui/src/feature-plugins/system/diff-viewer.tsx",
+            "packages/tui/src/feature-plugins/system/diff-viewer-worker.ts"
+          ],
+          "native_surfaces": [
+            "diff viewer"
+          ]
+        }
+      ],
+      "lbe_boundary": "Review state must be tied to actual workspace/evidence state, not visual-only success."
+    },
+    {
+      "feature_id": "headless.remote_attach",
+      "references": [
+        {
+          "ref": "antigravity",
+          "repo_paths": [
+            "README.md",
+            "CHANGELOG.md"
+          ],
+          "official_docs": [
+            "https://antigravity.google/docs/cli/headless/"
+          ],
+          "native_surfaces": [
+            "-p/--prompt",
+            "Remote Control"
+          ]
+        },
+        {
+          "ref": "claude_code",
+          "official_docs": [
+            "https://code.claude.com/docs/en/cli-reference"
+          ],
+          "native_surfaces": [
+            "-p",
+            "stream-json",
+            "remote-control",
+            "--cloud"
+          ]
+        },
+        {
+          "ref": "cline",
+          "paths": [
+            "apps/cli/README.md",
+            "apps/cli/src/commands/program.ts",
+            "apps/cli/src/acp/"
+          ],
+          "native_surfaces": [
+            "one-shot",
+            "--json",
+            "--zen",
+            "--acp",
+            "connectors",
+            "hub"
+          ]
+        },
+        {
+          "ref": "opencode",
+          "paths": [
+            "packages/web/src/content/docs/cli.mdx",
+            "packages/opencode/src/cli/cmd/attach.ts",
+            "packages/opencode/src/cli/cmd/serve.ts",
+            "packages/opencode/src/cli/cmd/web.ts"
+          ],
+          "native_surfaces": [
+            "opencode run",
+            "serve",
+            "web",
+            "attach"
+          ]
+        }
+      ],
+      "lbe_boundary": "Remote/headless surfaces attach to the same LBE session/authority owners."
+    }
+  ],
+  "non_substitution_rules": [
+    "Exact upstream references inform design; they do not prove LBE implementation.",
+    "Do not replace working LBE owners with upstream owners.",
+    "Do not infer unavailable Antigravity or Claude core source.",
+    "Do not collapse similar native names (for example Bash/run_command/bash/shell) into one implementation identity.",
+    "No feature is complete until current LBE source/tests/runtime prove it."
+  ]
+}

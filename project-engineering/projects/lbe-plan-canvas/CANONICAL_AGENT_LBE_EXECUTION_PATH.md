@@ -103,3 +103,86 @@ Final acceptance is BLOCKED unless the complete installed chain is exercised. So
 ## Historical material
 
 Google Drive/chat history and older client notes may explain rationale and previous decisions. They must not override current GitHub main, current machine governance, current source, current runtime evidence or current local validation evidence. If a connected memory/MCP retrieval fails, report the failure and continue from authoritative repository/runtime evidence.
+
+## 2026-09-25 audit reconciliation
+
+Newer September 24 audit-session evidence was compared against this canonical path.
+
+Result: **architecture aligned; acceptance remains open**.
+
+- **Rust timeline / Workstream C:** authoritative session/turn/operation/receipt/evidence data reaches the Rust client, but conversational runtime state is still largely flattened into transcript strings. The permitted implementation is presentation-only typed timeline projection from existing events; no Rust-local authority may be introduced.
+- **Provider/model binding / Workstream D:** the reproduced failure was persisted session model versus stale ProviderConfig model. The existing `bind_provider_config_to_session` composition seam is the correct owner. A narrow follow-up imported the helper and updated stale focused tests; a direct smoke check passed, but pytest was unavailable in that audit interpreter, so the candidate is not promoted to runtime-proven.
+- **Receipts/exactly-once / Workstream E:** isolated receipt, continuation, replay and evidence mechanisms exist, but durable operation fingerprint + ToolReceipt/evidence correlation across installed continuation and process restart remains unproven. Reuse existing persistence/history owners; do not create a second receipt or dispatch authority.
+- **Legacy Textual / Workstream G:** `lbe_guard_inspector/textual_tui.py` remains historical/diagnostic and is not canonical-`lbe` reachable. Synthetic preview receipt/evidence text is not runtime proof. The clean-install verifier was corrected to inspect the actual module path without importing Textual.
+
+This reconciliation supersedes any GPT-K projection that says final installed acceptance is currently PASS/CLOSED without newer claim-matched installed evidence. Historical PASS records remain history; they do not override the open proof sequence above.
+
+## 2026-09-25 late runtime-proof continuation
+
+Classification: **ARCHITECTURE PRESERVED / RUNTIME CHAIN ADVANCED / INSTALLED ACCEPTANCE OPEN**
+
+The current local LBE evidence narrows the remaining work without changing the canonical authority model.
+
+### Newly proven current behavior
+
+At local workspace `C:/Agents-Memory-Tool-v6-integration`:
+
+- `1286b6a` persists operational history for single-shot governed turns. Completed and failed turns now leave an operational turn, reasoning item, and requested/completed-or-failed events correlated with provider/model, runtime operation, guard/result identity, and evidence references before return/raise.
+- `4908ff1` makes provider config loading BOM-tolerant (`utf-8-sig`) and preserves real provider error detail through the OpenAI-compatible adapter/governed-coding path.
+- A bounded OpenRouter coding request passed provider admission; the earlier 131072-token request defect is no longer the active provider blocker.
+- The effective **requested output bound** is observable in turn metadata and may be explicitly overridden.
+- Seven governed tools were projected with LBE verdict/risk metadata while direct native mutation tools remained unexposed.
+- A real coding completion contract was created and evaluated. The observed `VALIDATION_FAILED` result was truthful, not a validator defect.
+
+### Provider/model capability is not LBE-authored context capacity
+
+Keep these distinct:
+
+```text
+provider/model context window + provider/model max output
+= discovered/configured capability facts
+
+LBE default/max requested output
+= outbound request policy
+
+per-turn requested output
+= concrete request parameter
+```
+
+LBE may reject an outbound request that exceeds its own request policy, but it must not invent the provider/model context window.
+
+Use distinct failure causes for model capability/configuration, LBE request policy, context-fit, provider quota, and credentials.
+
+### Earliest current defect
+
+The live read-only coding probe produced a legitimate governed `workspace.read` tool request and a real completion contract. The contract failed correctly because:
+
+- `source_change`: no governed mutation occurred;
+- `focused_test`: the evidence producer invoked hardcoded `python`, which resolves to Python 3.10 without pytest on this machine;
+- `git_status`: no governed source change existed.
+
+Therefore:
+
+```text
+VALIDATOR = NOT DEFECTIVE
+NEXT OWNER = shared >=3.11 interpreter resolver for focused-test evidence production
+```
+
+Reuse the existing interpreter-resolution owner used by the launcher/runtime. Do not move interpreter selection into validation semantics.
+
+### Remaining proof order
+
+```text
+shared validation interpreter
+-> real bounded governed source mutation
+-> persisted governed_operations + ToolReceipt/evidence + passing completion contract
+-> crash-seam exactly-once/restart replay
+-> changed-payload rejection
+-> installed artifact provenance
+-> real Rust/Ratatui PTY/ConPTY acceptance
+-> release readiness
+```
+
+The crash-seam requirement is explicit: if a side effect succeeds and its governed operation is durable but the process dies before completion finalization, restart/replay must not execute the side effect twice.
+
+Historical R3-R7 PASS remains preserved as historical accepted baseline. These newer proofs do not rewrite that history and do not yet establish current installed-product PASS.

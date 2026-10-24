@@ -1,6 +1,432 @@
 # Letterblack BirdEye — Local Evidence, MCP Routing, EYES, and Governed Execution
 
-Updated: 2026-09-01
+Updated: 2026-09-29
+
+## 2026-09-29 BirdEye Loop governed-execution runtime reconciliation
+
+Current runtime evidence and canonical GitHub source establish a narrower, newer execution topology than the older browser-relay-only description.
+
+### Proven execution surface
+
+A live `loop_mcp_server.py --stdio` MCP `initialize` + `tools/list` probe returned both:
+
+~~~text
+workspace_run
+workspace_run_sequence
+~~~
+
+Their published descriptions explicitly state that governed local argv execution does **not** require browser debugging or CDP.
+
+Canonical GitHub `main` independently confirms that `loop_mcp_server.py` owns these exposed tools and dispatches them through the existing BirdEye execution/evidence path:
+
+~~~text
+workspace_run          -> RunRequest.from_mapping(...) -> run_command(..., CONFIG_PATH)
+workspace_run_sequence -> RunSequenceRequest.from_mapping(...) -> run_sequence(..., CONFIG_PATH)
+~~~
+
+The command contract is argv-array based. Prefer it over free-form PowerShell/shell wrappers when the task can be expressed directly.
+
+### Important server-surface distinction
+
+`mcp_server.py` on GitHub `main` currently defines `_WORKSPACE_RUN_SCHEMA` and `_WORKSPACE_RUN_SEQUENCE_SCHEMA`, but does not include them in its base `_TOOL_DEFINITIONS` or `_TOOL_REGISTRY`. Therefore:
+
+~~~text
+mcp_server.py --stdio       = base BirdEye surface; workspace_run is not currently advertised there
+loop_mcp_server.py --stdio  = enhanced BirdEye + Loop surface; workspace_run and workspace_run_sequence are advertised and dispatched
+~~~
+
+Do not collapse these into one claim. The no-CDP execution capability is proven for the enhanced Loop MCP surface.
+
+### 2026-09-29 RealityCapture discovery audit
+
+The first LoopTool PowerShell probe against:
+
+~~~text
+D:\2026\SAM_GINIE\jpg MODEL
+~~~
+
+failed before image enumeration or RealityCapture detection because the relayed command contained `$.Extension` instead of PowerShell's automatic-variable form `$_.Extension`. That result is classified as `TEST_HARNESS_FAILURE`; it did not falsify the folder, image set, or RealityCapture installation.
+
+A corrected follow-up probe then completed successfully and observed:
+
+~~~text
+ImageCount        = 224
+FirstImage        = DSC00152.jpg
+LastImage         = DSC00384.jpg
+Folder            = D:\2026\SAM_GINIE\jpg MODEL
+RealityCaptureExe = null
+~~~
+
+Interpretation:
+
+- the 224-image local source set and folder are runtime-observed;
+- `RealityCaptureExe = null` proves only that `Get-Command RealityCapture.exe` and the one explicitly tested legacy install path did not resolve an executable;
+- it does **not** prove RealityCapture is absent.
+
+A second bounded discovery probe then inspected three uninstall-registry roots plus the same three known install-path candidates and observed:
+
+~~~text
+RegistryMatches  = []
+KnownPathMatches = null
+~~~
+
+This narrows the result but still does not prove absence. The correct status is:
+
+~~~text
+image source set             RUNTIME_PROVEN
+RealityCapture executable    UNRESOLVED_EXECUTABLE_LOCATION
+RealityCapture not installed NOT PROVEN
+~~~
+
+The user's installation claim is now corroborated by current machine launcher metadata.
+
+A third bounded discovery probe inspected Windows App Paths, Epic Games Launcher manifests, Start Menu registrations, and Start Menu shortcuts. It returned three Epic manifests:
+
+~~~text
+RealityScan 2.2
+  InstallLocation = C:\Program Files\Epic Games\RealityScan_2.2
+  LaunchExecutable = RealityScan.exe
+
+RealityScan 2.0.1
+  InstallLocation = C:\Program Files\Epic Games\RealityScan_2.0
+  LaunchExecutable = RealityScan.exe
+
+RealityCapture 1.5.1
+  InstallLocation = C:\Program Files\Epic Games\RealityCapture_1.5
+  LaunchExecutable = AppProxy.exe
+~~~
+
+No Windows App Paths, StartApps, or Start Menu shortcut matches were returned.
+
+Classification:
+
+~~~text
+RealityScan 2.2 Epic installation metadata      RUNTIME_PROVEN
+RealityScan 2.0.1 Epic installation metadata    RUNTIME_PROVEN
+RealityCapture 1.5.1 Epic installation metadata RUNTIME_PROVEN
+RealityCapture direct executable path           NOT YET PROVEN
+RealityCapture launch proxy path                 INFERRED from manifest; verify file existence before launch
+~~~
+
+Do not rewrite `LaunchExecutable=AppProxy.exe` into `RealityCapture.exe`. The Epic manifest proves the launcher metadata, not that `AppProxy.exe` exists at the composed path or that it supports RealityCapture CLI flags.
+
+A fourth bounded probe then inspected the three launcher-reported install roots and file-version metadata.
+
+Observed:
+
+~~~text
+C:\Program Files\Epic Games\RealityScan_2.2
+  root exists = true
+  RealityScan.exe exists = true
+  FileVersion = 2.2.0.119430.RS
+  ProductName = RealityScan
+  ProductVersion = 2.2.0.119430
+  RSNode.exe exists = true
+  RegisterApplication.exe exists = true
+
+C:\Program Files\Epic Games\RealityScan_2.0
+  root exists = false
+
+C:\Program Files\Epic Games\RealityCapture_1.5
+  root exists = false
+~~~
+
+Classification:
+
+~~~text
+RealityScan 2.2 installed executable       RUNTIME_PROVEN
+RealityScan 2.2 product/version metadata   RUNTIME_PROVEN
+RealityScan 2.0 Epic manifest              RUNTIME_PROVEN launcher metadata
+RealityScan 2.0 current install root       DISPROVEN
+RealityCapture 1.5 Epic manifest           RUNTIME_PROVEN launcher metadata
+RealityCapture 1.5 current install root    DISPROVEN
+RealityCapture AppProxy.exe current file   DISPROVEN at manifest-reported root
+~~~
+
+The launcher records for RealityScan 2.0.1 and RealityCapture 1.5.1 are therefore stale/orphaned with respect to their manifest-reported install roots. Current machine evidence identifies RealityScan 2.2, not RealityCapture 1.5.1, as the live installed photogrammetry application.
+
+Do not promote `RealityScan.exe exists` into CLI compatibility or successful reconstruction.
+
+A fifth bounded runtime probe invoked the live RealityScan 2.2 executable with four non-destructive arguments:
+
+~~~text
+-help
+--help
+-version
+--version
+~~~
+
+All four returned exit code 0. The observed stdout identified:
+
+~~~text
+RealityScan 2.2.0.119430 (c) 2026 Epic Games, Inc.
+Online help: https://rshelp.capturingreality.com
+-license displays licensing information
+~~~
+
+Classification:
+
+~~~text
+RealityScan 2.2 process startup          RUNTIME_PROVEN
+RealityScan 2.2 help/version CLI         RUNTIME_PROVEN
+RealityScan version identity             RUNTIME_PROVEN
+RealityScan licensing state              NOT YET PROVEN
+RealityScan image import/alignment       NOT YET PROVEN
+RealityScan reconstruction/export        NOT YET PROVEN
+~~~
+
+The CLI existence question is now closed. The next bounded action should stop repeating executable-discovery probes and move to the smallest non-destructive project/import or image-alignment workflow supported by the current RealityScan CLI documentation/runtime. A command PASS still does not prove reconstruction; require an observable project/component/output artifact before advancing the classification.
+
+
+### 2026-09-30 client-entrypoint and governed-command runtime proof
+
+Supplied live MCP/runtime evidence reports that both Cline MCP client configurations were changed from `mcp_server.py` to `loop_mcp_server.py`:
+
+~~~text
+C:\Users\prave\.cline\data\settings\cline_mcp_settings.json
+C:\Users\prave\AppData\Roaming\Code\User\globalStorage\saoudrizwan.claude-dev\settings\cline_mcp_settings.json
+~~~
+
+The current Cline conversation retained its pre-change tool snapshot, so a client/MCP restart or new session is still required before those newly configured Loop tools appear natively in that session.
+
+A live `loop_mcp_server.py` stdio session then exposed `workspace_run` and `workspace_run_sequence`, and supplied execution receipts show `workspace_run` actually executed commands in the active Brew workspace:
+
+~~~text
+workspace = brew
+root      = D:\Developement\_Brew_V02\Brew_Rebuild
+
+git status --porcelain
+  -> exit 0; three untracked files reported
+
+python --version
+  -> exit 0; Python 3.13.12
+
+git pull --ff-only origin main
+  -> exit 0; "Already up to date."
+  -> mutation capability/context evidence supplied
+  -> authority decision reported as ALLOW
+
+git grep -n BREW_BIRDEYE_LOOP_PULL_PROBE -- README.md
+  -> README.md:19 contains BREW_BIRDEYE_LOOP_PULL_PROBE=0401f69
+
+git log -1 --oneline
+  -> local HEAD reported as 8b4018bd
+~~~
+
+Canonical GitHub independently confirms the Brew remote currently has HEAD `8b4018bd60dd4f56827b7cfafc22ad41fc778cce`, and its README contains the exact local-sync marker `BREW_BIRDEYE_LOOP_PULL_PROBE=0401f69`.
+
+Classification:
+
+~~~text
+loop_mcp_server tool exposure             RUNTIME_PROVEN
+workspace_run read-only execution         RUNTIME_PROVEN
+workspace_run non-git execution           RUNTIME_PROVEN
+workspace_run governed pull execution     RUNTIME_PROVEN
+Brew marker visibility                    RUNTIME_PROVEN + GITHUB_CORROBORATED
+Brew remote HEAD 8b4018bd                 GITHUB_PROVEN
+client config edits                       SUPPLIED_RUNTIME_EVIDENCE; restart still required for current-session tool refresh
+~~~
+
+#### Important source/runtime divergence
+
+Do **not** claim that current GitHub `main` already authorizes `git pull` in the `workspace_run` command allowlist.
+
+Current canonical `workspace_bridge.py` at blob `4b5cf8af92f4df994222fc23640bf7b8579a5b0c` has:
+
+~~~text
+allowed_ops = {
+  status, diff, log, show, branch, rev-parse,
+  ls-files, grep, worktree, fetch, add, commit
+}
+~~~
+
+and therefore its command validator would reject `git pull` as an unsupported Git operation. The same file's mutation classifier does list `pull`, but mutation classification is not command authorization.
+
+This creates a concrete divergence:
+
+~~~text
+live runtime receipt: git pull executed successfully through workspace_run
+canonical GitHub main: current validator does not authorize git pull
+~~~
+
+Treat the runtime execution as real for that live environment, but classify the implementation relationship as `SOURCE_RUNTIME_DIVERGENCE` until the local BirdEye source/config used by that MCP process is inspected or the relevant policy change is pushed to GitHub. Do not rewrite this as "GitHub already permits bounded pull."
+
+The G:-drive `brew-creative-agent` root remains reported unavailable; the active Brew root for this proof is the D:-drive workspace above.
+
+### 2026-09-30 local BirdEye worktree state
+
+The exact local BirdEye runtime checkout was then inspected:
+
+~~~text
+local HEAD = dcdc29aee61e898273988f32808a302644d6890c
+GitHub main = 0401f69a7ee7dbb5037e2bb0fc5b12bcd5bd2cc7
+~~~
+
+The local checkout is not clean. `git status --short` reported tracked modifications including:
+
+~~~text
+agent.py
+config.json
+eye_database.py
+eye_memory.json
+eye_skills.json
+eye_workspace.json
+mcp_server.py
+tests/test_mcp_lazy_reconciliation.py
+tests/test_skills_tool.py
+tests/test_workspace_identity.py
+workspace_bridge.py
+~~~
+
+and multiple untracked files/directories, including ownership/census utilities, runtime-boundary documentation, temporary logs, and additional tests.
+
+Classification:
+
+~~~text
+local BirdEye HEAD differs from GitHub main     RUNTIME_PROVEN
+local BirdEye worktree dirty                    RUNTIME_PROVEN
+workspace_bridge.py locally modified            RUNTIME_PROVEN
+canonical GitHub workspace_bridge unchanged     GITHUB_PROVEN
+exact local pull-policy diff                    NOT YET PROVEN
+SOURCE_RUNTIME_DIVERGENCE                       PROVEN
+~~~
+
+Because `workspace_bridge.py` itself is modified locally, the live ability to execute `git pull --ff-only` may be explained by an uncommitted local policy change. Do not attribute that behavior to local HEAD `dcdc29a...` or to GitHub `main` until the exact `workspace_bridge.py` diff is inspected.
+
+Next smallest observable: inspect only the local diff for `workspace_bridge.py`, not the entire dirty worktree.
+
+### 2026-09-30 local workspace_bridge partial diff
+
+A targeted local diff of `workspace_bridge.py` was inspected. The visible hunk proves two local changes on top of the local checkout:
+
+~~~text
+CIRCUIT_FAILURE_THRESHOLD = 2
+
+load_workspaces(...)
+  no longer rejects every configured root merely because that root's path
+  is unavailable on the current machine.
+
+resolve_workspace(...)
+  now checks existence when the specifically requested workspace is resolved.
+~~~
+
+This explains how an unavailable unrelated root (for example a G:-drive workspace) can coexist with successful execution in the active D:-drive Brew workspace.
+
+The supplied diff fragment does **not** yet show the command allowlist or a `git pull` authorization change. Therefore it does not yet explain the previously observed successful `git pull --ff-only`.
+
+Classification:
+
+~~~text
+local workspace_bridge modified                    RUNTIME_PROVEN
+missing unrelated roots deferred during loading    RUNTIME_PROVEN
+requested-root existence enforced at resolution    RUNTIME_PROVEN
+cause of live git-pull authorization               NOT YET PROVEN
+~~~
+
+Do not infer unseen diff hunks. Inspect only the command-policy section next.
+
+### Governed-execution policy boundary
+
+GitHub `main` for `workspace_bridge.py` shows that `workspace_run` is intentionally policy-restricted. It allows selected Git, npm, Node workspace-script, and Python module commands; arbitrary executables are rejected as `command not allowlisted`, shell wrappers are forbidden, and absolute/path-escaping arguments are rejected.
+
+Therefore the enhanced no-CDP BirdEye Loop surface is **not equivalent to unrestricted local process execution**. In particular, current source does not authorize launching an external `RealityCapture.exe` directly through `workspace_run`.
+
+Use the evidence/index layer to locate the executable and a currently authorized execution path for discovery. If RealityCapture itself must be launched, either use an already-authorized external bridge/LoopTool route or deliberately extend BirdEye governance with a bounded RealityCapture capability; do not bypass the command policy.
+
+
+## 2026-09-27 live census and ownership/provenance update
+
+Newer live BirdEye evidence supersedes the older September 1 runtime snapshot for the specific capabilities below. Older process-exclusivity observations remain historical unless freshly revalidated.
+
+Current supplied BirdEye status:
+
+~~~text
+Unified EYES generation lag = 0
+workspace projection        = current
+memory projection           = current
+skills projection           = current
+query projector             = live
+canonical EYES database     = operational
+~~~
+
+The LBE workspace root resolves explicitly as:
+
+~~~text
+workspace identity = agents-memory-tool-v6-integration
+root               = C:\Agents-Memory-Tool-v6-integration
+indexed files      = 874
+hashed files       = 826
+~~~
+
+### Repository Census V1
+
+BirdEye now has an external, deterministic repository-census layer derived from its inventory pattern. Generated audit artifacts remain outside the product repository under BirdEye-owned state.
+
+Accepted census profile reported against the launcher checkpoint:
+
+~~~text
+FILES DISCOVERED        529
+FILES CLASSIFIED        529
+SOURCE FILES            227
+SOURCE FILES PARSED     227
+PARSE FAILURES          0
+IMPORTS EXAMINED        1643
+LOCAL RESOLVED          672
+EXTERNAL                971
+UNRESOLVED IMPORTS      0
+UNEXPLAINED FAILURES    0
+CENSUS / COVERAGE       PROVEN / COMPLETE
+~~~
+
+OPEN STATIC FINDINGS = 0 is bounded to Census V1 import/classification rules. It does not prove the absence of ownership, architecture, runtime, governance, or behavioral defects.
+
+### Ownership / Provenance V1.5
+
+BirdEye also records ownership provenance separately from symbol presence. The initial scan reported:
+
+~~~text
+ownership records             455
+OWNER_PROVEN                    4
+OWNER_CANDIDATE               189
+BLOCKED_HISTORY_REQUIRED        3
+COMPATIBILITY_WRAPPER           3
+MULTIPLE_OWNER_CANDIDATES      28
+OWNER_FROM_OTHER_BRANCH       228
+unexplained scan failures       0
+~~~
+
+Interpretation rule:
+
+~~~text
+scan coverage complete != ownership resolution complete
+same basename/symbol    != same authority
+branch-only copy        != live authority
+duplicate symbol        != duplicate effect owner
+~~~
+
+Cross-branch/worktree/history evidence is retained as provenance and blocker input. Canonical ownership is established by tracing the live entrypoint/caller/consumer/effect path, not by filename, Git author, branch presence, or PROJECT_INDEX registration alone.
+
+BirdEye now separates:
+
+~~~text
+symbol ownership
+effect ownership
+persistence ownership
+entrypoint ownership
+compatibility role
+authorized mutation target
+~~~
+
+This supports the LBE OWNER_AUTHORITY_BLOCKER: BirdEye supplies evidence and conflict classifications; LBE governance decides whether a mutation is authorized.
+
+Protected checkpoint state reported after the first ownership reconciliation:
+
+~~~text
+CKPT-LAUNCHER-CLEAN-INSTALL-1d89882      PROTECTED
+CKPT-BRD-OWNERSHIP-RECONCILIATION-001    PROTECTED at LBE HEAD 1dd5a50
+~~~
+
+Future scans should be incremental: compare hashes and dependency/ownership edges, reopen only affected findings/checkpoints, and avoid re-auditing already protected slices without contradictory evidence.
 
 ## Purpose
 
