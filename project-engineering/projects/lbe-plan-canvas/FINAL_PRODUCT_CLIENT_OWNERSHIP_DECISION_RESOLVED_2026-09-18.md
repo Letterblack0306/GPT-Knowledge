@@ -240,3 +240,28 @@ Required next evidence:
 4. remove the system-`cline` fallback from normal product composition;
 5. preserve Rust build/tests only as reference/regression evidence;
 6. prove contract checks, Cline typecheck/tests, product build/package, installed `lbe` launch and real TTY acceptance against the same client revision.
+
+
+## Explicit product-owner supersession — later on 2026-09-18
+
+The product owner subsequently made a new explicit frontend/product-surface decision after reviewing the amount of existing LBE-owned TUI and HTML work:
+
+```text
+PRODUCT / BRAND               = LBE / LetterBlack
+VISIBLE TERMINAL UI           = LBE-owned Rust/Ratatui
+HTML / REACT                  = preserve as LBE visual/interaction contract + reuse source
+CLINE                          = headless reasoning/provider/model/tool-proposal/continuation mechanics only
+LBE RUNTIME                   = sole authority
+```
+
+This **supersedes this document's earlier conclusion that Rust must remain reference-only and that a bundled Cline CLI/TUI source tree is required as the visible product surface**.
+
+It does **not** supersede:
+
+- Cline as the selected reasoning-agent/provider mechanics source;
+- governed `cline_worker` / `@cline/agents` mechanics behind LBE;
+- LBE ownership of identity, policy, authorization, execution, ToolReceipt/evidence, persistence/recovery, validation, and completion;
+- the locked LBE visual/interaction contract;
+- installed TTY/ConPTY and end-to-end acceptance requirements.
+
+Current action is therefore not to restore a copied Cline UI. It is to canonicalize the existing Rust/Ratatui client, reuse the useful LBE HTML/React design work without simulated state, and reconcile build/package/launcher owners so the installed `lbe` command uses that Rust client with headless Cline mechanics behind LBE.

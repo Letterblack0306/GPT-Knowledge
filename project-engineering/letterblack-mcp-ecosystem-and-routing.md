@@ -547,3 +547,66 @@ For scoped MCP work:
 4. do not add duplicate retrieval tools;
 5. treat new launchers/orchestrators/preflight layers as scope-drift signals;
 6. create no parallel runtime architecture for a retrieval feature already owned by BirdEye.
+
+## BirdEye runtime validation and repair evidence - 2026-09-20
+
+This section records current local evidence for C:\MCP Local\Letterblack_BirdEye. It supplements the 2026-09-07 audit rather than replacing historical findings.
+
+### Repository and repair state
+
+- BirdEye local HEAD and origin/main were both 572a75b02c9d62f1b3adee8d9d191214a28afb8e before the current repair work.
+- The BirdEye worktree remains dirty with pre-existing unrelated local changes, but the isolated runtime repair was committed and pushed as 500704822b2e7042ff9b1849723f18b47445464c. Local HEAD and origin/main both resolve to that commit with 0/0 divergence.
+- The current repair registers and dispatches the already-implemented workspace_command_history capability and changes Skills query ranking to use SKILL.md catalog metadata first, with full-corpus lexical fallback when no catalog metadata matches.
+- A missing birdeye_watcher import was added to the local reconciliation test file so the pre-existing watcher test can execute.
+
+### Validation evidence
+
+- Full BirdEye test suite after adding the isolated regression file: 152 passed in 25.81s.
+- Targeted repaired contracts: PASS.
+- Python syntax compilation for repaired files: PASS.
+- Targeted git diff --check for the repaired files: PASS, with only line-ending warnings.
+- Whole-worktree git diff --check is INCONCLUSIVE through the command relay because the relay repeatedly terminated the command after about 1.9 seconds while only line-ending warnings had been emitted. Do not treat this as a whole-worktree whitespace pass.
+
+### Fresh MCP protocol proof
+
+A fresh process was launched through the configured BirdEye stdio command and exercised directly over MCP. The child process exited with code 0 after the protocol exchange.
+
+- initialize response: PASS.
+- tools/list response: PASS.
+- exposed MCP tool count: 20.
+- workspace_command_history present in the live tools/list: PASS.
+
+This proves the updated on-disk mcp_server.py can initialize as an MCP server and exposes the repaired tool registry over the real stdio protocol, not only through unit tests.
+
+### OpenCode integration state
+
+OpenCode configuration at C:\Users\prave\.config\opencode\opencode.jsonc has BirdEye enabled as a local MCP server using:
+
+C:\Python314\python.exe C:\MCP Local\Letterblack_BirdEye\mcp_server.py --stdio
+
+opencode mcp list successfully connected to BirdEye using that configuration. The active opencode serve process on 127.0.0.1:4096 also returned HTTP 200 from /mcp with birdeye status connected and mark3labs_filesystem disabled. No persistent BirdEye stdio child was present during the process scan, so the observed integration is service-managed/lazy rather than evidence of a continuously resident child process.
+
+### BirdEye status evidence
+
+Direct current-source birdeye_status() evidence returned:
+
+- overall ok: true.
+- workspace generation 555309, applied generation 555309, lag 0.
+- memory generation 0, applied generation 0, lag 0.
+- skills generation 750, applied generation 750, lag 0.
+- all three domains reported journal replayable and rebuildable.
+- generation_lag_zero: true.
+- legacy retirement switch: false.
+- legacy authority: compatibility-only.
+
+### Current classification
+
+BirdEye current on-disk runtime: VALIDATED.
+
+BirdEye fresh stdio MCP launch/handshake and repaired tool exposure: VALIDATED.
+
+OpenCode configured BirdEye launch path: VALIDATED.
+
+OpenCode service-level BirdEye MCP connection: VALIDATED via the active opencode serve /mcp endpoint reporting birdeye status connected. Persistent child residency is not required by this observed service-managed/lazy connection model.
+
+BirdEye repair Git publication: VALIDATED. Commit 500704822b2e7042ff9b1849723f18b47445464c is published on origin/main; unrelated pre-existing worktree changes remain uncommitted.

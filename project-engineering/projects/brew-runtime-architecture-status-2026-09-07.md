@@ -686,3 +686,114 @@ Telegram focused tests on new branch head: NOT YET RUN LOCALLY
 Telegram live confirmation message: NOT YET PROVEN
 Brew full end-to-end completion: NOT PROVEN
 ```
+
+
+---
+
+## Current reconciliation update — 2026-09-20
+
+### Authority and revision
+
+Current GitHub `Letterblack0306/brew` main is:
+
+```text
+603e75afb1d35cd8e80ef4a1583bb7106504a95d
+test: make git capability coverage portable
+```
+
+Local agent evidence also verified local `HEAD` and `origin/main` equal at this SHA after push.
+
+The Google Drive Brew workspace copy is useful as a Sep 19 evidence snapshot, but it is older than this current main revision. Its status documents and workspace index must therefore be treated as supporting evidence, not present-state authority.
+
+The imported ChatGPT Memory export is historical provenance. Its manifest contains nine conversation shards, `conversations-000.json` through `conversations-008.json`. Historical conversation evidence can recover intent, rejected ideas, and prior decisions, but it does not override current source/runtime evidence.
+
+### Current validation state
+
+Repository and portability evidence:
+
+```text
+canonical full suite        505 / 505 PASS
+standalone full suite       505 / 505 PASS
+canonical git targeted        2 / 2 PASS
+standalone git targeted       2 / 2 PASS
+standalone .git metadata      absent
+workspace index guard         PASS when unrelated local gap docs are isolated
+```
+
+The external LoopTool wrapper may report timeout/failure after Node has emitted a complete zero-failure summary. Preserve the child semantic result separately from wrapper timeout status.
+
+Current runtime reachability audit:
+
+```text
+status                       PASS
+reachable files              179
+edges                        340
+unresolved imports           0
+active legacy authority      0
+legacy compatibility imports 0
+legacy compatibility surfaces 0
+```
+
+Four non-literal dynamic import sites still require bounded inspection:
+
+- `brew/capabilities/local-tool-registry.mjs`
+- `brew/runtime/event-bus.mjs`
+- `brew/runtime/log-manager.mjs`
+- `brew/runtime/plugins/plugin-runtime.mjs`
+
+The local-tool and plugin loaders enforce configured-root/package-root containment before loading runtime-selected modules.
+
+### Newly proven current-main defect: missing secret redactor
+
+At current main, both:
+
+- `brew/runtime/event-bus.mjs`
+- `brew/runtime/log-manager.mjs`
+
+attempt to import:
+
+```text
+brew/secrets/secret-redactor.mjs
+```
+
+That module is absent on current GitHub main.
+
+Both consumers catch the import failure and fall back to identity redaction, so event/log metadata is currently passed through rather than sanitized by that hook.
+
+Historical blame traces the optional fallback change to commit `417a8e055` (`Fix runtime startup and UI wiring`, 2026-04-06). The change converted a direct redactor import into an optional dynamic import, but the referenced redactor module is not present in current source.
+
+Classification:
+
+```text
+missing runtime object redactor   PROVEN CURRENT-SOURCE DEFECT
+event/log fallback                FAIL-OPEN / PASSTHROUGH
+repair direction                  one canonical runtime redactor + direct sink tests
+```
+
+Do not solve this by adding another logging authority or memory-specific scanner. The repair should remain a narrow runtime security primitive shared by the existing sinks.
+
+### Priority status
+
+```text
+P0 provider result / Telegram / legacy-response invariants    PASS
+P1 capability registry / provider continuation / recovery     PASS
+P2 deferred capabilities                                      UNLOCKED, NOT COMPLETE
+P3 CI/release repository gate                                 PASS
+standalone non-Git portability                                PASS
+current static runtime reachability                            PASS
+runtime event/log secret redaction                             OPEN DEFECT
+```
+
+Installed/live provider, browser, and production-runtime claims remain separate evidence levels and should be re-proven when those claims are made.
+
+### BirdEye / GPT-K / Memory interpretation
+
+```text
+GitHub / live runtime  -> current implementation and behavior authority
+BirdEye                -> current local access/evidence projection
+GPT-Knowledge          -> durable project/method/status projection
+Memory                 -> historical conversations/messages/provenance
+G-Drive Brew clone     -> dated workspace snapshot / supporting evidence
+```
+
+BirdEye may expose or index another source without becoming its owner. GPT-K should record evidence boundaries, not promote old Drive or Memory state into current Brew truth.
