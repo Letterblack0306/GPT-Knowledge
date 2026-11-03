@@ -50,13 +50,51 @@
     {
       "id": "adobe-ai-generations-release-hardening",
       "name": "Adobe AI Generations",
-      "subtitle": "CEP Consolidation · Runtime · Release Hardening",
+      "subtitle": "CEP Runtime · Gemini · LoopTool Authority · Release Security",
       "mapped": true,
-      "active_node": "execution-single-lane",
+      "active_node": "github-actions-startup",
       "plan_file": "../adobe-ai-generations-release-hardening/plan.json",
       "status_file": "../adobe-ai-generations-release-hardening/status.json",
       "references_file": "../adobe-ai-generations-release-hardening/references.json",
-      "reference": "../adobe-ai-generations-release-hardening/status.json"
+      "reference": "../adobe-ai-generations-release-hardening/status.json",
+      "features": [
+        {
+          "id": "ci-startup",
+          "title": "GitHub Actions startup",
+          "classification": "P0_BLOCKED",
+          "detail": "startup_failure with zero jobs; cannot claim CI PASS."
+        },
+        {
+          "id": "gemini-pr345",
+          "title": "Gemini image generation PR #345",
+          "classification": "SOURCE_PATCHED_MOCKED_TESTS_PASS",
+          "detail": "Real API/gallery/AE receipt chain remains unverified."
+        },
+        {
+          "id": "gemini-metadata",
+          "title": "Gemini metadata contract",
+          "classification": "P1_OPEN",
+          "detail": "Issue #339 remains distinct from PR #345."
+        },
+        {
+          "id": "runtime-identity",
+          "title": "Main PC runtime identity",
+          "classification": "RECONCILIATION_REQUIRED",
+          "detail": "Thin loader v2.3.52 targets local src; checkout recorded dirty on feat/windows-authenticode-signing."
+        },
+        {
+          "id": "looptool-authority",
+          "title": "LoopTool mutation authorization",
+          "classification": "P1_AUTHORITY_GAP",
+          "detail": "Artist approval + ALLOW/DENY runtime proof required."
+        },
+        {
+          "id": "release-hardening",
+          "title": "Windows release hardening",
+          "classification": "P0_RELEASE_BLOCKED",
+          "detail": "Authenticode, elevation, provenance, clean-machine and AV acceptance remain required."
+        }
+      ]
     },
     {
       "id": "lbe",
