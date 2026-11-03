@@ -108,5 +108,35 @@
       "oracle-20261102T040721-0f3586feb38a"
     ],
     "local_audit_record": "%LOCALAPPDATA%\\Letterblack\\audit\\ai-vfx-cep-audit-2026-11-02.json"
-  }
+  },
+  "historical_audits": [
+    {
+      "period": "2026-10-19/2026-10-26",
+      "label": "AI VFX & Motion Graphics — Weekly Production Brief",
+      "classification": "USER_SUPPLIED_HISTORICAL_EVIDENCE",
+      "repository_snapshot": {
+        "main_head": "6db64ac7ef166557e7a9bd42903e32907e2d1d60",
+        "pr344": "https://github.com/Letterblack0306/Adobe_AI_Generations-04/pull/344",
+        "actions_run": "https://github.com/Letterblack0306/Adobe_AI_Generations-04/actions/runs/40065840659",
+        "issue338": "https://github.com/Letterblack0306/Adobe_AI_Generations-04/issues/338",
+        "issue339": "https://github.com/Letterblack0306/Adobe_AI_Generations-04/issues/339",
+        "pr340": "https://github.com/Letterblack0306/Adobe_AI_Generations-04/pull/340",
+        "pr341": "https://github.com/Letterblack0306/Adobe_AI_Generations-04/pull/341"
+      },
+      "runtime_snapshot": {
+        "machine_scope": "earlier Mini PC observation",
+        "installed_extension": "%APPDATA%\\Adobe\\CEP\\extensions\\com.letterblack.genai.dev",
+        "installed_version": "2.3.33",
+        "repository_version": "2.3.52",
+        "runtime_processes": 0,
+        "note": "Later Main PC audit records a different installed/runtime identity and supersedes this snapshot for current Main PC truth."
+      },
+      "external_developments": [
+        "Veo 3.1 Gemini API preview endpoint shutdown recorded 22 Oct 2026; verify Letterblack usage before treating as applicable.",
+        "Canva Craft craft_v1_2k recorded for controlled design-asset evaluation.",
+        "ComfyUI 0.42.1 and Blender 5.2.3 LTS recorded as maintenance-era evaluations; later audit supersedes current-version tracking."
+      ],
+      "local_audit_record": "C:\\MCP Local\\Letterblack_BirdEye\\state\\tasks\\ai-vfx-cep-audit-2026-10-26.json"
+    }
+  ]
 }
