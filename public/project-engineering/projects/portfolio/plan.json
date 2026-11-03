@@ -22,6 +22,14 @@
       "summary": "Current audit records startup_failure with zero jobs. Restore Actions initialization before treating any Adobe PR as CI-proven."
     },
     {
+      "id": "adobe-veo-endpoint-check",
+      "lane": "Adobe AI Generations",
+      "title": "Retired Veo endpoint compatibility check",
+      "status": "planned",
+      "priority": "P0 CONDITIONAL",
+      "summary": "Historical 26 Oct brief records Veo 3.1 preview endpoint shutdown. Verify whether current Letterblack source still references the retired identifiers; migrate only if usage is found."
+    },
+    {
       "id": "adobe-gemini-pr345",
       "lane": "Adobe AI Generations",
       "title": "Gemini image generation PR #345",
@@ -218,6 +226,11 @@
       "from": "adobe-runtime-authority",
       "to": "adobe-release-security",
       "type": "acceptance"
+    },
+    {
+      "from": "portfolio-alignment",
+      "to": "adobe-veo-endpoint-check",
+      "type": "verification"
     }
   ]
 }
