@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "project": "Project Portfolio",
-  "verified_at": "2026-08-22T19:26:00+04:00",
+  "verified_at": "2026-11-03T05:05:00+04:00",
   "overall_classification": "ALL_PROJECTS_MAPPED_OPEN_ACCEPTANCE_GATES_REMAIN",
   "authority_note": "This is an overall GPT-Knowledge UI projection. Project repositories, local workspace/runtime evidence, and project-owned status records remain authoritative.",
   "closed": [
@@ -80,20 +80,6 @@
       "detail": "Exact-revision focused/composition/runtime/regression evidence, canonical query/correlation preservation, clean accepted revision, and feature-to-main reconciliation remain open."
     },
     {
-      "id": "adobe-execution",
-      "title": "Adobe CEP execution single-lane proof",
-      "priority": "P0 ACTIVE",
-      "classification": "OPEN_DRAFT_RUNTIME_UNPROVEN",
-      "detail": "PR #330 is the active consolidation gate. Dependent ToolRouter, Settings, salvage and Generation Graph work should not be advanced as runtime-proven until the shared execution lane passes focused/static and live AE/CEP acceptance."
-    },
-    {
-      "id": "adobe-release-security",
-      "title": "Adobe Windows release hardening",
-      "priority": "P0 RELEASE BLOCKER",
-      "classification": "BLOCKED",
-      "detail": "Inner/final Authenticode signing, fail-closed verification, hidden-PowerShell remediation, exact artifact provenance, clean-machine smoke and AV/reputation review remain required before a replacement distribution release."
-    },
-    {
       "id": "access-live",
       "title": "Access Browser Agent live UI acceptance",
       "priority": "P1",
@@ -113,11 +99,39 @@
       "priority": "WHEN CLAIMED",
       "classification": "VERIFY_AT_TIME_OF_USE",
       "detail": "Runtime behavior requires current source/runtime observables when claimed."
+    },
+    {
+      "id": "adobe-ci-startup",
+      "title": "Adobe GitHub Actions startup",
+      "priority": "P0",
+      "classification": "BLOCKED_STARTUP_FAILURE",
+      "detail": "Audit records BuildFailed/startup_failure with zero jobs; CI is not passing."
+    },
+    {
+      "id": "adobe-pr345-live",
+      "title": "Adobe Gemini PR #345 live acceptance",
+      "priority": "P0",
+      "classification": "SOURCE_PATCHED_LIVE_UNVERIFIED",
+      "detail": "Mocked provider tests pass; real Gemini/gallery/AE receipt chain remains open."
+    },
+    {
+      "id": "adobe-runtime-authority",
+      "title": "Adobe runtime identity + mutation authority",
+      "priority": "P1",
+      "classification": "RECONCILIATION_AND_RUNTIME_PROOF_REQUIRED",
+      "detail": "Thin-loader/current checkout identity and LoopTool explicit authorization ALLOW/DENY proof remain open."
+    },
+    {
+      "id": "adobe-release-security",
+      "title": "Adobe Windows release hardening",
+      "priority": "P0 RELEASE BLOCKER",
+      "classification": "BLOCKED",
+      "detail": "Authenticode, hidden PowerShell remediation, provenance, clean-machine smoke and AV/reputation review remain required."
     }
   ],
   "next_acceptance": {
-    "question": "Can the Adobe CEP active gate (#330) be closed with current-branch static proof plus live AE single-lane execution evidence?",
-    "observable": "One canonical execution route across Chat, Library and Script Editor with sequential Play All, released locks and no duplicate dispatch.",
-    "falsifier": "Any project projection advances Adobe dependent work from chat/source intent without current AE/CEP evidence."
+    "question": "Can Adobe GitHub Actions start real jobs and can PR #345 then pass live Gemini → gallery → AE → receipt acceptance on a reconciled runtime?",
+    "observable": "Non-zero workflow jobs plus a live host receipt for the patched Gemini path.",
+    "falsifier": "Zero-job startup_failure or source/mock-only evidence presented as CI/runtime completion."
   }
 }
