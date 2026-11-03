@@ -3,7 +3,7 @@
   "project": "Project Portfolio",
   "purpose": "Overall navigation view of current GPT-Knowledge project plans, open issues, and next evidence gates. This is a projection for later reference, not implementation or runtime authority.",
   "authority_rule": "Each project’s current repository, local workspace, runtime evidence, and project-owned status outrank this portfolio summary.",
-  "updated": "2026-08-22",
+  "updated": "2026-11-03",
   "active_node": "portfolio-alignment",
   "nodes": [
     {
@@ -11,15 +11,31 @@
       "lane": "Overall",
       "title": "Portfolio alignment review",
       "status": "current",
-      "summary": "Mapped plans are aligned. Adobe AI Generations now has a consolidated CEP/runtime/release plan; its active gate is execution single-lane proof and its release remains blocked by Windows trust/provenance issues."
+      "summary": "Mapped plans remain aligned. Adobe AI Generations is now updated to the 2 Nov audit: Actions startup is P0, PR #345 needs live host acceptance, runtime/LoopTool authority remains open, and Windows distribution stays release-blocked."
     },
     {
-      "id": "adobe-cep-runtime",
+      "id": "adobe-ci-startup",
       "lane": "Adobe AI Generations",
-      "title": "CEP execution consolidation",
-      "status": "next",
-      "priority": "P0 ACTIVE",
-      "summary": "PR #330 must establish one live AE/CEP execution lane before dependent ToolRouter, Settings, salvage and Generation Graph work advances."
+      "title": "GitHub Actions job execution",
+      "status": "current",
+      "priority": "P0",
+      "summary": "Current audit records startup_failure with zero jobs. Restore Actions initialization before treating any Adobe PR as CI-proven."
+    },
+    {
+      "id": "adobe-gemini-pr345",
+      "lane": "Adobe AI Generations",
+      "title": "Gemini image generation PR #345",
+      "status": "blocked",
+      "priority": "P0",
+      "summary": "Focused mocked tests pass; real Gemini → gallery → AE import → receipt acceptance remains open."
+    },
+    {
+      "id": "adobe-runtime-authority",
+      "lane": "Adobe AI Generations",
+      "title": "Runtime identity + LoopTool authorization",
+      "status": "blocked",
+      "priority": "P1",
+      "summary": "Reconcile thin-loader source revision and verify explicit artist authorization for mutation with ALLOW/DENY receipts."
     },
     {
       "id": "adobe-release-security",
@@ -27,7 +43,7 @@
       "title": "Windows release hardening",
       "status": "blocked",
       "priority": "P0 RELEASE BLOCKER",
-      "summary": "After runtime consolidation, fix inner/final Authenticode signing, hidden PowerShell elevation, artifact provenance, clean-machine acceptance and AV review before replacing the distributed package."
+      "summary": "Authenticode, elevation cleanup, provenance, clean-machine smoke and AV review remain required before replacement distribution."
     },
     {
       "id": "access-live-ui",
@@ -125,16 +141,6 @@
   "edges": [
     {
       "from": "portfolio-alignment",
-      "to": "adobe-cep-runtime",
-      "type": "flow"
-    },
-    {
-      "from": "adobe-cep-runtime",
-      "to": "adobe-release-security",
-      "type": "acceptance"
-    },
-    {
-      "from": "portfolio-alignment",
       "to": "access-live-ui",
       "type": "flow"
     },
@@ -192,6 +198,26 @@
       "from": "lbe-tui-acceptance",
       "to": "lbe-release-conflict",
       "type": "requires-revalidation"
+    },
+    {
+      "from": "portfolio-alignment",
+      "to": "adobe-ci-startup",
+      "type": "flow"
+    },
+    {
+      "from": "adobe-ci-startup",
+      "to": "adobe-gemini-pr345",
+      "type": "acceptance"
+    },
+    {
+      "from": "adobe-gemini-pr345",
+      "to": "adobe-runtime-authority",
+      "type": "acceptance"
+    },
+    {
+      "from": "adobe-runtime-authority",
+      "to": "adobe-release-security",
+      "type": "acceptance"
     }
   ]
 }
