@@ -1,139 +1,91 @@
 {
-  "schema_version": 2,
-  "project": "Adobe AI Generations CEP Consolidation",
-  "verified_at": "2026-08-22T19:26:00+04:00",
+  "schema_version": 3,
+  "project": "Adobe AI Generations — CEP Runtime, Gemini & Release Hardening",
+  "verified_at": "2026-11-03T05:05:00+04:00",
   "source_repo": "Letterblack0306/Adobe_AI_Generations-04",
   "source_branch": "main",
-  "source_head": "d6c8c8000af4673aae9cee708dce97fbc89dd8c8",
-  "overall_classification": "CEP_CONSOLIDATION_ACTIVE_RELEASE_BLOCKED",
+  "source_head": "6904f80c80dd7cf32a87825ee9694338e911b895",
+  "overall_classification": "SOURCE_PATCHES_PRESENT_CI_AND_LIVE_AE_ACCEPTANCE_BLOCKED",
   "plan_truth": {
-    "state": "DOCUMENTED_CURRENT",
-    "document": "../adobe-ai-generations-release-hardening/plan.json",
-    "active_gate": "execution-single-lane",
-    "next_single_question": "Can PR #330 pass focused/static validation and live AE/CEP single-lane execution proof before dependent capability/UI work advances?"
+    "state": "USER_AUDIT_CURRENT_REPO_REVALIDATION_REQUIRED",
+    "document": "project-engineering/projects/adobe-ai-generations-release-hardening/plan.json",
+    "active_gate": "github-actions-startup",
+    "next_single_question": "Can GitHub Actions initialize and execute real jobs for the current Adobe repository before any PR is promoted as CI-proven?"
   },
   "closed": [
     {
-      "id": "repo-baseline",
-      "title": "Current repository baseline recorded",
-      "classification": "PROVEN",
-      "detail": "main HEAD d6c8c800; package version remains 2.3.52. Canonical merge plan exists and development is the feature-integration lane while main remains release/governance."
+      "id": "recent-main-fixes",
+      "title": "Recent main source corrections recorded",
+      "classification": "PROVEN_FROM_USER_AUDIT",
+      "detail": "Audit records a77b996 decoded-host response handling, af4ceb3 loopback CSP support, 0d6cf0a truthful vision comparison, and 6904f80 provider-error regression correction on main."
     },
     {
-      "id": "zxp-trust",
-      "title": "ZXP signing contract exists",
-      "classification": "IMPLEMENTED",
-      "detail": "release.yml restores the ZXP certificate, signs the package, verifies signature proof and hashes the artifact. Preserve this lane."
+      "id": "gemini-focused-tests",
+      "title": "PR #345 focused provider regression tests",
+      "classification": "PASS_MOCKED",
+      "detail": "Audit records patched image-model discovery, generateContent request/body/aspect/API-key header, inlineData parsing, text-only rejection, missing-image rejection and existing URL-redaction regression as passing on Main PC."
     },
     {
-      "id": "mac-trust",
-      "title": "macOS trust contract exists",
-      "classification": "IMPLEMENTED_IN_RELEASE_CONTRACT",
-      "detail": "Developer ID signing/notarization/stapling checks are part of the release contract and must not be weakened by Windows changes."
-    },
-    {
-      "id": "ci-306-disposition",
-      "title": "PR #306 disposition known",
-      "classification": "CLOSED_NOT_MERGED",
-      "detail": "The old development-alias CI PR is closed. Later main commits repaired CI/nightly trigger mapping; current workflows still require execution proof before the merge train is treated as healthy."
+      "id": "main-pc-loader-identity",
+      "title": "Main PC loader identity observed",
+      "classification": "PROVEN_FROM_BIRDEYE_AUDIT",
+      "detail": "Installed workspace extension version 2.3.52 is recorded as a thin dev loader targeting D:\\Developments\\40_AEP_Letterblack_GenAI\\Letterblack_Gen_AI\\src\\index.html."
     }
   ],
   "pending": [
     {
-      "id": "p0-execution-single-lane",
-      "title": "PR #330 — execution ownership consolidation",
-      "priority": "P0 ACTIVE",
-      "classification": "OPEN_DRAFT_RUNTIME_UNPROVEN",
-      "detail": "Patch branch fix/execution-surface-single-lane-cleanup is open/draft/mergeable. Fix removes duplicate direct CEPExec/classifier/action authority, restores shared 1500-line limit, fails Script Editor closed, aligns the booted codeblock handler and makes Library Play All sequential. Must pass focused/static gates plus live AE proof for one-dispatch, lock release, repeat run, no overlap and no duplicate execution."
+      "id": "p0-actions-startup",
+      "title": "GitHub Actions initialization",
+      "priority": "P0",
+      "classification": "BLOCKED_STARTUP_FAILURE",
+      "detail": "Run 41386703624 is recorded startup_failure / BuildFailed with zero jobs. Restore workflow initialization and require actual job execution before any CI PASS claim."
     },
     {
-      "id": "p0-capability-boundary",
-      "title": "PR #328 — capability registry / ToolRouter",
-      "priority": "P0 AFTER #330",
-      "classification": "OPEN_DRAFT_DEPENDENT",
-      "detail": "Patch branch feature/cep-capability-boundary is open/draft/mergeable. Consolidate model-visible capabilities around one registry, fail closed for undeclared access, route AEReadTools through ToolRouter and preserve approval-owned mutation. Requires live read-tool and no-duplicate proof after #330 stabilizes execution authority."
+      "id": "p0-pr345-live",
+      "title": "PR #345 real provider/host acceptance",
+      "priority": "P0",
+      "classification": "SOURCE_PATCHED_LIVE_UNVERIFIED",
+      "detail": "Prove real Gemini generation through patched provider, gallery persistence, After Effects import, observed host effect and receipt."
     },
     {
-      "id": "p1-settings",
-      "title": "PR #331 — Settings product surface",
+      "id": "p1-gemini-metadata",
+      "title": "Gemini capability metadata drift",
       "priority": "P1",
-      "classification": "OPEN_DRAFT_RUNTIME_UNPROVEN",
-      "detail": "Patch branch fix/settings-surface-cleanup removes duplicate About ownership, false no-provider state, normal-user model/preset controls and internal path diagnostics while preserving provider/security internals. Needs single-render and provider/key/local/path CEP proof."
+      "classification": "OPEN_ISSUE_339",
+      "detail": "Correct remaining obsolete vision/image/long-context capability heuristics. Keep distinct from PR #345 image-output discovery fix."
     },
     {
-      "id": "p1-icons",
-      "title": "PR #327 — icon reference integrity",
+      "id": "p1-runtime-identity",
+      "title": "Source/runtime identity reconciliation",
       "priority": "P1",
-      "classification": "OPEN_DRAFT_RETARGET_REQUIRED",
-      "detail": "Patch validates missing/empty/non-canonical/case-drift icon references and adds focused tests. PR is still based on main; retarget/rebase to development before integration. Focused local tests reported 5/5, but current-branch validation remains required."
+      "classification": "DIRTY_WORKSPACE_RUNTIME_UNPROVEN",
+      "detail": "Audit records feat/windows-authenticode-signing at cece8c25 with 90 dirty paths and uncommitted Gemini changes. Preserve work; prove exact revision and deployed source before runtime claims."
     },
     {
-      "id": "graph-blocked",
-      "title": "PR #329 — Generation Graph foundation",
-      "priority": "DEPENDENCY LOCK",
-      "classification": "OPEN_DRAFT_BLOCKED_BY_CAPABILITY_BOUNDARY",
-      "detail": "Second CEP panel foundation exists but must stay non-executing. Rebase after #328, attach approved AE read invoker, prove selected layer/comp/property/effects catalog, typed sockets and safe persistence; no raw eval/provider spending/graph mutation execution."
-    },
-    {
-      "id": "branch-salvage",
-      "title": "Retired integration branch salvage queue",
+      "id": "p1-looptool-authority",
+      "title": "LoopTool mutation authorization",
       "priority": "P1",
-      "classification": "REQUIRES_CLASSIFICATION",
-      "detail": "Do not merge integration/final-feature-alignment wholesale. After #330/#328/#331, classify unique Gemini/ChatResponse/token/latency/Gallery/import/typography/image-intent/CI/test work as present, minimally ported or rejected, then retire superseded branches/PRs."
+      "classification": "AUTHORITY_GAP",
+      "detail": "PR #340/#341 remain draft. Authentication/validation tokens are insufficient artist approval. Verify legitimate ALLOW plus required DENY paths and corresponding AE effect/receipt."
     },
     {
-      "id": "runtime-proof-sweep",
-      "title": "CEP runtime/UI acceptance backlog",
-      "priority": "P0 BEFORE RELEASE",
-      "classification": "LIVE_AE_PROOF_REQUIRED",
-      "detail": "Recheck provider settings/API-key secrecy, Script Editor rewrite + buttons, toast/debug noise, Ctrl+A scope, Local AI duplicate injection, readiness warnings, screenshot/gallery, execution lock/duplicate dispatch, icons and developer-only settings cards through the thin dev loader and localhost:8088. Static/deploy passes cannot close these items."
-    },
-    {
-      "id": "windows-inner-signing",
-      "title": "Windows inner Electron executable signing",
+      "id": "p0-release-security",
+      "title": "Windows distribution hardening",
       "priority": "P0 RELEASE BLOCKER",
-      "classification": "PATCH_REQUIRED",
-      "detail": "Patch scripts/installers/build-win-installer.mjs: remove CSC_IDENTITY_AUTO_DISCOVERY=false signing bypass behavior, stop swallowing signing failure, configure trusted Windows Authenticode identity/provider, and abort build when the inner Electron executable is not validly signed."
-    },
-    {
-      "id": "windows-final-signing",
-      "title": "Final Inno installer signing + CI verification",
-      "priority": "P0 RELEASE BLOCKER",
-      "classification": "PATCH_REQUIRED",
-      "detail": "Patch .github/workflows/release.yml and installer packaging: Authenticode-sign the final Letterblack-GenAI-Windows-vX.Y.Z.exe with timestamping and verify both inner + final signatures. The current artifact-integrity step only proves EXE existence/no MSI and is insufficient."
-    },
-    {
-      "id": "hidden-powershell",
-      "title": "Hidden PowerShell UAC relaunch",
-      "priority": "P1",
-      "classification": "HEURISTIC_RISK_CONFIRMED",
-      "detail": "Patch scripts/installers/LB_GenAI_Installer/main.js to replace hidden powershell.exe + Start-Process -Verb RunAs where possible with conventional elevation. Re-audit process enumeration, staging/removal and executable-launch behavior; retain only necessary behavior with explicit tests."
-    },
-    {
-      "id": "process-injection-proof",
-      "title": "Process-injection allegation needs bounded negative proof",
-      "priority": "P1",
-      "classification": "NOT_PROVEN_IN_INSPECTED_SOURCE",
-      "detail": "No classic remote-process injection implementation was found in inspected installer source. Add static/search and behavioral evidence for the final artifact and correlate any VirusTotal behavior label to exact traces before dismissing or accepting it."
-    },
-    {
-      "id": "artifact-provenance",
-      "title": "Release/Gumroad provenance chain",
-      "priority": "P0 RELEASE BLOCKER",
-      "classification": "UNVERIFIED",
-      "detail": "Publish SHA-256 for EXE/DMG/ZXP/canonical ZIP bound to tag+commit, then compare the exact Gumroad ZIP hash to the GitHub release artifact before distribution. Current Gumroad bytes remain unverified."
-    },
-    {
-      "id": "release-acceptance",
-      "title": "Hardened release acceptance",
-      "priority": "P0 FINAL",
       "classification": "BLOCKED",
-      "detail": "Required before publish: live CEP/runtime acceptance, trusted Windows signatures, preserved macOS/ZXP trust gates, clean-machine install/upgrade/uninstall smoke, hash provenance, Defender/SmartScreen/VirusTotal review tied to exact signed artifact, then GitHub Release and Gumroad replacement."
+      "detail": "Retain existing Authenticode/final Inno signing, hidden-PowerShell remediation, artifact provenance, clean-machine and AV acceptance requirements before replacement distribution."
+    },
+    {
+      "id": "p2-production-evals",
+      "title": "ComfyUI / Runway / UXP controlled evaluations",
+      "priority": "P2",
+      "classification": "PLANNED",
+      "detail": "Run measured ACEScg EXR, SVG/video editability/quality, and future UXP contract-equivalence acceptance; do not infer production readiness from feature announcements."
     }
   ],
   "next_acceptance": {
-    "question": "Can PR #330 establish one live, repeatable CEP/AE execution lane without duplicate dispatch or lock leakage?",
-    "observable": "Focused/static tests pass on the rebased/current branch and live AE proves Chat Play, Library Run/Apply/Play All and Script Editor Run all converge on the same runner with sequential completion and released locks.",
-    "falsifier": "Any surface bypasses the canonical runner, duplicates dispatch, overlaps Play All host work, retains a stale booted handler, or cannot repeat execution after completion/error."
+    "question": "Can GitHub Actions execute jobs, and can PR #345 then complete a real Gemini → gallery → After Effects → receipt chain on the reconciled Main PC runtime?",
+    "observable": "Non-zero Actions jobs with reported results plus a live patched Gemini image generation persisted to gallery and imported into AE with an execution receipt.",
+    "falsifier": "Any CI PASS claim with zero executed jobs, or any production-ready claim based only on mocked provider tests/source inspection."
   }
 }
