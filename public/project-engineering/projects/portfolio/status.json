@@ -42,7 +42,14 @@
       "detail": "The workspace and portfolio now point to repository main 942e494d and the exact active TUI projection slice."
     }
   ],
-  "supported_historical": [],
+  "supported_historical": [
+    {
+      "id": "adobe-2026-10-26-audit",
+      "title": "Adobe weekly audit 19–26 Oct",
+      "classification": "HISTORICAL_SUPERSEDED_WHERE_LATER_EVIDENCE_EXISTS",
+      "detail": "Preserves PR #344/zero-job CI, Mini PC v2.3.33 drift, pre-PR#345 Gemini defects and LoopTool restriction evidence without overriding the newer 2 Nov Main PC/current-source state."
+    }
+  ],
   "pending": [
     {
       "id": "lbe-active-slice",
@@ -127,6 +134,13 @@
       "priority": "P0 RELEASE BLOCKER",
       "classification": "BLOCKED",
       "detail": "Authenticode, hidden PowerShell remediation, provenance, clean-machine smoke and AV/reputation review remain required."
+    },
+    {
+      "id": "adobe-veo-check",
+      "title": "Adobe retired Veo preview endpoint check",
+      "priority": "P0 CONDITIONAL",
+      "classification": "VERIFY_USAGE",
+      "detail": "Search current source/config for retired Veo 3.1 preview model IDs. Close not-applicable if absent; otherwise migrate and prove real video generation."
     }
   ],
   "next_acceptance": {
