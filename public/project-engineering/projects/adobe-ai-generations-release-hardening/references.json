@@ -1,5 +1,5 @@
 {
-  "schema_version": 2,
+  "schema_version": 3,
   "references": [
     {
       "label": "Canonical merge consolidation plan",
@@ -90,5 +90,23 @@
       "kind": "external-observation",
       "evidence": "Customer reported sandbox-evasion/process-injection behavioral flags and declined installation. Exact report/hash remains required for artifact-specific classification."
     }
-  ]
+  ],
+  "updated": "2026-11-03",
+  "source_note": "Updated from user-supplied AI VFX & Motion Graphics Weekly Production Audit (26 Oct–2 Nov 2026). External claims in that audit remain audit-sourced unless independently reverified.",
+  "current_audit": {
+    "period": "2026-10-26/2026-11-02",
+    "main_head": "6904f80c80dd7cf32a87825ee9694338e911b895",
+    "pr345": "https://github.com/Letterblack0306/Adobe_AI_Generations-04/pull/345",
+    "actions_run": "https://github.com/Letterblack0306/Adobe_AI_Generations-04/actions/runs/41386703624",
+    "issue339": "https://github.com/Letterblack0306/Adobe_AI_Generations-04/issues/339",
+    "pr340": "https://github.com/Letterblack0306/Adobe_AI_Generations-04/pull/340",
+    "pr341": "https://github.com/Letterblack0306/Adobe_AI_Generations-04/pull/341",
+    "issue342": "https://github.com/Letterblack0306/Adobe_AI_Generations-04/issues/342",
+    "birdeye_receipts": [
+      "oracle-20261102T040517-9879714f118f",
+      "oracle-20261102T040628-b65c672a881d",
+      "oracle-20261102T040721-0f3586feb38a"
+    ],
+    "local_audit_record": "%LOCALAPPDATA%\\Letterblack\\audit\\ai-vfx-cep-audit-2026-11-02.json"
+  }
 }
