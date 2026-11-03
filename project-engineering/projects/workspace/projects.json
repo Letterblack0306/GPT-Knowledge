@@ -93,6 +93,18 @@
           "title": "Windows release hardening",
           "classification": "P0_RELEASE_BLOCKED",
           "detail": "Authenticode, elevation, provenance, clean-machine and AV acceptance remain required."
+        },
+        {
+          "id": "audit-lineage",
+          "title": "Weekly audit lineage",
+          "classification": "CURRENT_PLUS_HISTORICAL",
+          "detail": "Current UI uses the 2 Nov audit for active truth while retaining the 26 Oct Mini PC/source-drift snapshot as historical evidence only."
+        },
+        {
+          "id": "veo-retired-endpoints",
+          "title": "Veo 3.1 retired endpoint check",
+          "classification": "P0_CONDITIONAL_VERIFY_USAGE",
+          "detail": "Search current Letterblack integration for retired preview model identifiers; migrate only if actually present."
         }
       ]
     },
