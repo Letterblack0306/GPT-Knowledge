@@ -41,6 +41,13 @@
       "detail": "Run 41386703624 is recorded startup_failure / BuildFailed with zero jobs. Restore workflow initialization and require actual job execution before any CI PASS claim."
     },
     {
+      "id": "p0-veo-retired-endpoints",
+      "title": "Retired Veo 3.1 preview endpoint audit",
+      "priority": "P0 CONDITIONAL",
+      "classification": "VERIFY_USAGE",
+      "detail": "Search current source/config for retired veo-3.1-*-generate-preview identifiers. If absent, close as not applicable. If present, migrate and prove a real replacement video-generation round trip."
+    },
+    {
       "id": "p0-pr345-live",
       "title": "PR #345 real provider/host acceptance",
       "priority": "P0",
@@ -87,5 +94,37 @@
     "question": "Can GitHub Actions execute jobs, and can PR #345 then complete a real Gemini → gallery → After Effects → receipt chain on the reconciled Main PC runtime?",
     "observable": "Non-zero Actions jobs with reported results plus a live patched Gemini image generation persisted to gallery and imported into AE with an execution receipt.",
     "falsifier": "Any CI PASS claim with zero executed jobs, or any production-ready claim based only on mocked provider tests/source inspection."
-  }
+  },
+  "supported_historical": [
+    {
+      "id": "audit-2026-10-26-main",
+      "title": "19–26 Oct repository snapshot",
+      "classification": "HISTORICAL",
+      "detail": "Earlier audit recorded main HEAD 6db64ac7ef166557e7a9bd42903e32907e2d1d60, no new main commits that week, and PR #344 open/mergeable."
+    },
+    {
+      "id": "audit-2026-10-26-ci",
+      "title": "PR #344 Actions startup failure",
+      "classification": "HISTORICAL_STILL_CONSISTENT_WITH_LATER_FAILURE_CLASS",
+      "detail": "Run 40065840659 was recorded startup_failure / BuildFailed with zero jobs. Exact underlying workflow/platform cause was not proven."
+    },
+    {
+      "id": "audit-2026-10-26-mini-runtime",
+      "title": "Mini PC installed CEP drift",
+      "classification": "HISTORICAL_MACHINE_SPECIFIC",
+      "detail": "Earlier audit observed com.letterblack.genai.dev v2.3.33 and a Gemini provider blob differing from repository main. This is machine/time-specific and is superseded for current Main PC identity by the later 2 Nov audit."
+    },
+    {
+      "id": "audit-2026-10-26-gemini",
+      "title": "Gemini Imagen-only defect before PR #345",
+      "classification": "HISTORICAL_PRE_FIX",
+      "detail": "Earlier audit traced defaultImageModel imagen-3.0-generate-001 and :predict request ownership, with issue #338 open. Later audit records scoped PR #345 correcting image-output discovery/request parsing at source level, with live host acceptance still open."
+    },
+    {
+      "id": "audit-2026-10-26-looptool",
+      "title": "LoopTool mutation restriction split",
+      "classification": "HISTORICAL",
+      "detail": "Earlier audit recorded PR #340 with ae.batch.write true and PR #341 restrictive correction with ae.batch.write false. Current project state still requires explicit artist authority and ALLOW/DENY runtime evidence."
+    }
+  ]
 }
