@@ -31,6 +31,14 @@
       "summary": "Actions run 41386703624 is recorded as startup_failure / BuildFailed with zero jobs. Treat this as workflow/platform initialization failure, not test failure. Acceptance requires jobs to actually start and report results."
     },
     {
+      "id": "veo-31-retired-endpoint-check",
+      "lane": "Provider / External API",
+      "title": "Check for retired Veo 3.1 preview endpoints",
+      "status": "planned",
+      "priority": "P0 CONDITIONAL",
+      "summary": "19–26 Oct audit records veo-3.1-generate-preview, veo-3.1-fast-generate-preview and veo-3.1-lite-generate-preview as shut down on 22 Oct 2026. Search Letterblack integrations for those identifiers. If present, migrate through the replacement API contract and prove real generation, operation completion, asset retrieval and compositing validation. Do not treat this as an active Letterblack defect unless repository/runtime usage is found."
+    },
+    {
       "id": "gemini-pr345-host-acceptance",
       "lane": "Provider",
       "title": "PR #345 — Gemini image generation host acceptance",
@@ -133,6 +141,14 @@
       "status": "planned",
       "priority": "P2",
       "summary": "Preserve the architectural boundary: connected LLM reasons; CEP/future UXP owns context, validation, bounded host execution and evidence return. Prepare equivalent contract tests before migration."
+    },
+    {
+      "id": "canva-craft-evaluation",
+      "lane": "Production Research",
+      "title": "Canva Craft controlled evaluation",
+      "status": "planned",
+      "priority": "P2",
+      "summary": "Historical 19–26 Oct brief records Craft model craft_v1_2k and async image generation. Evaluate typography/layout fidelity, export structure/editability and cost using fixed assets. Editable Canva elements must not be equated with native After Effects layers."
     }
   ],
   "edges": [
@@ -191,6 +207,22 @@
     [
       "audit-baseline-2026-11-02",
       "uxp-compatibility"
+    ],
+    [
+      "audit-baseline-2026-11-02",
+      "veo-31-retired-endpoint-check"
+    ],
+    [
+      "audit-baseline-2026-11-02",
+      "canva-craft-evaluation"
     ]
+  ],
+  "audit_history": [
+    {
+      "period": "2026-10-19/2026-10-26",
+      "classification": "HISTORICAL_SUPERSEDED_WHERE_LATER_EVIDENCE_EXISTS",
+      "summary": "Earlier weekly brief recorded main HEAD 6db64ac7, PR #344 open with zero-job Actions startup_failure, Mini PC installed CEP dev v2.3.33 drift versus repository v2.3.52, Gemini Imagen-only defects (#338/#339), LoopTool write restriction split across PR #340/#341, and no live AE/CEP runtime during inspection.",
+      "supersession_note": "Do not project the 2.3.33 installed extension as current Main PC truth. The later 26 Oct–2 Nov audit separately records Main PC workspace-loader v2.3.52 and a different dirty checkout/runtime identity."
+    }
   ]
 }
