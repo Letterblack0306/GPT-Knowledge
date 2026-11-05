@@ -2,7 +2,7 @@
   "name": "gpt-knowledge-static",
   "private": true,
   "scripts": {
-    "build": "node scripts/build-vercel-static.mjs",
+    "build": "node scripts/build-vercel-static.mjs && node scripts/build-unified-portal.mjs",
     "test": "node scripts/validate-routing-integrity.mjs && node scripts/validate-gpt-ref-catalog.mjs && node scripts/test-birdeye-projections.mjs",
     "test:routing": "node scripts/validate-routing-integrity.mjs",
     "test:gpt-ref": "node scripts/validate-gpt-ref-catalog.mjs"
